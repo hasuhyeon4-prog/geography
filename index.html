@@ -11,6 +11,7 @@ header{height:58px;display:flex;gap:8px;align-items:center;padding:6px 14px;bord
 #map{position:relative;overflow:hidden;touch-action:none;user-select:none;background:var(--sea)}#mapScene{position:absolute;width:3600px;height:1800px;transform-origin:0 0;will-change:transform}#baseMap{position:absolute;left:0;top:50px;width:3600px;height:1450px;pointer-events:none;-webkit-user-drag:none}#mapSVG{position:absolute;inset:0;overflow:visible;pointer-events:none;width:3600px;height:1800px}.geoStroke{vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}.mapLabel{font-weight:750;fill:var(--ink);paint-order:stroke;stroke:#fff;stroke-linejoin:round}.mapControls{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:6px}.mapControls button{width:44px;height:44px;padding:0;background:rgba(255,255,255,.95);box-shadow:0 2px 7px #142d3911}.mapTools{position:absolute;left:10px;top:10px;display:flex;gap:6px}.mapTools button{font-size:12px;min-height:38px;padding:6px 10px;background:rgba(255,255,255,.96)}#mapNote{position:absolute;left:10px;bottom:8px;right:64px;pointer-events:none;font-size:11px;line-height:1.4;color:#526570;background:#ffffffd9;padding:4px 7px;border-radius:5px;width:fit-content;max-width:calc(100% - 80px)}
 #card{border-top:1px solid var(--line);background:white;padding:12px 16px calc(12px + env(safe-area-inset-bottom));max-height:45dvh;overflow-y:auto}#cardTop{display:flex;justify-content:space-between;align-items:center;gap:10px}#cardMeta{font-size:12px;color:var(--muted)}#recallButton{min-height:36px;font-size:12px;padding:5px 10px}#recallButton[aria-pressed=true]{background:var(--pale);border-color:var(--accent)}#itemName{font-size:23px;line-height:1.3;margin:6px 0;word-break:keep-all}#description{font-size:14px;line-height:1.6;margin:5px 0 10px;white-space:pre-line}#riverFacts,#keyFacts{display:grid;grid-template-columns:78px 1fr;gap:7px 10px;margin:8px 0 12px;font-size:13px;line-height:1.5}#riverFacts dt,#keyFacts dt{color:var(--accent);font-weight:750}#riverFacts dd,#keyFacts dd{margin:0}#detailBody{line-height:1.6;font-size:13px;white-space:pre-line}#details{margin:8px 0 10px;color:var(--muted);font-size:12px}summary{cursor:pointer;min-height:30px;display:list-item;padding:5px 0}#revealButton{width:100%;margin:8px 0}.cardActions{display:flex;gap:8px;margin-top:8px}.cardActions>button{flex:1;font-size:13px}#markAgain{color:var(--warm);background:#fff9f2;border-color:#f0d7be}#markKnown{color:var(--accent);background:var(--pale);border-color:#badcd5}.sequence{display:flex;align-items:center;gap:10px;margin-top:10px}.sequence button{min-width:72px}.sequence #position{flex:1;text-align:center;font-size:12px;color:var(--muted)}
 #emptyCard p{font-size:14px;line-height:1.6;color:var(--muted)}#emptyCard h2{font-size:20px;margin:5px 0 8px}
+#mapNote{display:flex;align-items:center;gap:7px;padding:6px 9px}#mapNote svg{flex:0 0 26px}#mapNote b{font-size:12px;color:var(--ink)}#quizTools{display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;margin:8px 0}#groupProgress{font-size:12px;color:var(--muted)}#quizTools label{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}#quizOrder{font-size:12px;min-height:34px;width:auto;max-width:190px;padding:5px;border-radius:7px}
 .backdrop{position:fixed;inset:0;background:#10273166;z-index:20}.drawer{position:fixed;z-index:21;inset:0 auto 0 0;width:min(420px,100%);display:flex;flex-direction:column;background:#fff;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);box-shadow:12px 0 48px #142d3926}.drawerHeader{height:62px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:8px 16px;border-bottom:1px solid var(--line)}.drawerHeader h2{font-size:18px;margin:0}.drawerHeader button{padding:8px 12px}.drawerControls{padding:14px 16px 10px;border-bottom:1px solid var(--line)}.drawerControls input{min-height:44px;width:100%;padding:10px 12px;font-size:16px}.drawerControls .filterRow{display:flex;align-items:center;gap:8px;margin-top:9px}.filterRow label{font-size:12px;color:var(--muted);flex:1}.filterRow button{font-size:12px}.listInfo{font-size:12px;color:var(--muted);padding:8px 0 0}#itemList{overflow-y:auto;flex:1;padding:6px 8px;overscroll-behavior:contain}.listItem{display:flex;align-items:center;gap:10px;min-height:55px;width:100%;text-align:left;border:0;border-radius:8px;padding:10px;margin:1px 0;background:transparent}.listItem.current{background:var(--pale)}.listItem .itemText{flex:1}.listItem strong{display:block;font-size:14px}.listItem small{display:block;font-size:11px;color:var(--muted);font-weight:400;margin-top:3px}.statusDot{font-size:12px;min-width:36px;text-align:right;color:var(--accent)}.again .statusDot{color:var(--warm)}.drawerFooter{padding:10px 16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}.drawerFooter button{width:100%;text-align:left;font-size:12px}.scrollBody{flex:1;overflow:auto;padding:16px;font-size:14px;line-height:1.65}.scrollBody h3{font-size:15px;margin:18px 0 6px}.scrollBody h3:first-child{margin-top:0}.scrollBody p{margin:6px 0 12px}.scrollBody button{font-size:13px}.switchLine{display:flex;gap:9px;align-items:center;margin:12px 0}.switchLine input{width:19px;height:19px}.buttonRow{display:flex;gap:8px;flex-wrap:wrap}#storageMessage{color:var(--warm);padding:9px 0}.catalogSection{margin-top:12px;border-top:1px solid var(--line);padding-top:8px}.catalogSection h4{font-size:12px;color:var(--muted);margin-bottom:4px}.catalogSection p{font-size:13px;white-space:pre-line}
 #toast{position:fixed;z-index:40;bottom:calc(16px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);max-width:calc(100% - 24px);padding:10px 15px;background:var(--ink);color:#fff;border-radius:10px;font-size:13px;pointer-events:none;box-shadow:0 4px 24px #0002}#bootNotice{position:fixed;z-index:50;left:16px;right:16px;top:80px;padding:18px;max-width:540px;margin:auto;background:#fff;box-shadow:0 12px 50px #0003;border:1px solid var(--line);border-radius:14px;line-height:1.6;font-size:14px}
 @media(min-width:900px){#app{grid-template-columns:minmax(400px,1fr) 350px;grid-template-rows:64px 64px minmax(0,1fr)}header{grid-column:1/3;height:64px;padding:8px 24px}.scope{grid-column:1/3;grid-template-columns:260px 260px;align-items:center;padding:10px 24px}#map{grid-column:1;grid-row:3}#card{grid-column:2;grid-row:3;max-height:none;border-top:0;border-left:1px solid var(--line);padding:22px 20px;display:flex;flex-direction:column}#itemName{font-size:26px;margin-top:12px}.sequence{margin-top:20px}#description{font-size:15px}#cardTop{align-items:center}}
@@ -26,6 +27,7 @@ header{height:58px;display:flex;gap:8px;align-items:center;padding:6px 14px;bord
  </main>
  <section id="card" aria-label="선택한 지명 학습">
   <div id="learningCard"><div id="cardTop"><span id="cardMeta"></span><button id="recallButton" aria-pressed="false">퀴즈 시작</button></div>
+   <div id="quizTools" hidden><span id="groupProgress" aria-live="polite"></span><label for="quizOrder">순서<select id="quizOrder"><option value="nearby">대륙별 · 가까운 순</option><option value="random">전체 무작위</option></select></label></div>
    <h2 id="itemName"></h2><div id="description"></div><dl id="riverFacts" hidden></dl><dl id="keyFacts" hidden></dl><button id="revealButton" class="primary" hidden>정답 보기</button>
    <details id="details"><summary>함께 기억하기·출처</summary><div id="detailBody"></div><div id="detailSources" class="small"></div></details>
    <div class="cardActions"><button id="markAgain">다시 보기</button><button id="markKnown">익혔음</button></div>
@@ -43,10 +45,10 @@ header{height:58px;display:flex;gap:8px;align-items:center;padding:6px 14px;bord
 <aside id="settingsDrawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" hidden>
  <div class="drawerHeader"><h2 id="settingsTitle">표시와 학습 기록</h2><button id="closeSettings">닫기</button></div>
  <div class="scrollBody">
-  <h3>지도 표시</h3><label class="switchLine"><input id="contextToggle" type="checkbox" checked>주변 항목도 옅게 표시</label><label class="switchLine"><input id="gridToggle" type="checkbox">적도·회귀선·본초 자오선</label><label class="switchLine"><input id="supplementToggle" type="checkbox">기존 보충 항목도 포함</label><p class="small muted">지역 선택은 지도의 학습 범위입니다. 인접한 범위는 서로 겹칠 수 있습니다.</p>
+  <h3>지도 표시</h3><label class="switchLine"><input id="contextToggle" type="checkbox" checked>주변 항목도 옅게 표시</label><label class="switchLine"><input id="gridToggle" type="checkbox">적도·회귀선·본초 자오선</label><label class="switchLine"><input id="supplementToggle" type="checkbox">기존 보충 항목도 포함</label><p class="small muted">도시는 원, 국가는 깃발, 산업 지역은 공장, 문화·갈등 지역은 마름모로 표시합니다. 지도의 아래쪽에서 현재 기호의 뜻을 확인할 수 있습니다. 음영과 점선은 학습을 위한 대략적인 범위이며, 국경·분쟁 경계의 확정선이 아닙니다.</p>
   <h3>학습 기록</h3><p id="totalProgress"></p><div id="storageMessage" role="status" hidden></div><p id="migrationMessage" class="small muted" hidden>이전 묶음 항목의 익힘 기록은 내보내기에 보관합니다. 새로 나뉜 장소는 각각 확인하며, 이전에 ‘다시 보기’로 표시한 묶음은 해당 장소들의 복습으로 옮겼습니다.</p><p class="small muted">기록은 이 브라우저에 저장됩니다. 기기나 파일을 바꿀 때는 기록 파일로 옮길 수 있습니다.</p><div class="buttonRow"><button id="exportButton">기록 내보내기</button><button id="importButton">기록 가져오기</button><input id="importInput" type="file" accept="application/json,.json" hidden></div>
-  <h3>학습 방법</h3><p>종류에서 <b>전체 통합</b>을 고르면 도시·국가·강·산맥 등을 함께 학습합니다. <b>퀴즈 시작</b>을 누르면 이름을 가리고, 통합 범위에서는 종류를 섞어서 출제합니다. 정답을 확인한 뒤 <b>익혔음</b> 또는 <b>다시 보기</b>로 표시합니다. 지도에서는 표시를 누르거나 확대·이동할 수 있습니다.</p>
-  <h3>수록 범위</h3><p id="coverageText"></p><p>첨부 검토본의 모든 지명이 지도에 수록된 것은 아닙니다. 하천의 대표 상류·하구 설명은 검토본을 반영했습니다.</p><p class="small muted">좌표와 바탕지도를 같은 위·경도에 맞췄습니다. 국가의 점은 국경 안쪽 대표 위치입니다. 주요 하천·호수·산맥·사막·해역은 Natural Earth 자료를 반영했으며, 세계지도 축척에 맞춰 단순화했습니다.</p>
+  <h3>학습 방법</h3><p>종류에서 <b>전체 통합</b>을 고르면 도시·국가·강·산맥 등을 함께 학습합니다. <b>퀴즈 시작</b>을 누르면 이름을 가리고 종류만 알려 줍니다. 기본은 <b>대륙별 · 가까운 순</b>으로, 선택한 장소부터 같은 대륙의 가까운 항목을 이어 봅니다. 퀴즈의 순서 선택에서 <b>전체 무작위</b>로 바꿀 수 있습니다. 정답을 확인한 뒤 <b>익혔음</b> 또는 <b>다시 보기</b>로 표시합니다.</p><p class="small muted">위쪽 지역 선택에서 한 대륙만 골라 학습·퀴즈할 수 있습니다. 북·중앙아메리카에는 멕시코와 카리브 지역을 포함합니다. 여러 대륙에 걸친 국가·해역은 학습 묶음 한 곳에 배치했고, 세계 규모의 지형·기준선은 별도로 모았습니다. 세부 범위는 서로 겹칠 수 있습니다.</p>
+  <h3>수록 범위</h3><p id="coverageText"></p><p>첨부 검토본의 모든 지명이 지도에 수록된 것은 아닙니다. 하천의 대표 상류·하구 설명은 검토본을 반영했습니다.</p><p class="small muted">좌표와 바탕지도를 같은 위·경도에 맞췄습니다. 국가의 깃발은 국경 안쪽 대표 위치입니다. 주요 하천·호수·산맥·사막·해역은 Natural Earth 자료를 반영했으며, 세계지도 축척에 맞춰 단순화했습니다.</p>
   <p class="small"><a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">지도 자료: Natural Earth</a></p><details id="documentCatalog"><summary>첨부 검토본의 전체 목록</summary><div id="catalogBody"></div></details>
  </div>
 </aside>
@@ -61,13 +63,87 @@ var $=function(id){return document.getElementById(id)};
 var raw=JSON.parse($('auditData').textContent),doc=JSON.parse($('documentData').textContent),geo=JSON.parse($('geometryData').textContent),content=JSON.parse($('contentData').textContent);
 var topics=[['all','전체 통합'],['country','국가'],['city','도시'],['river','하천'],['mountain','산맥·고원'],['land','사막·분지·호수'],['water','해협·해역·섬'],['region','산업·문화·갈등 지역'],['tectonic','반도·판·조산대'],['place','유적·공원'],['coords','세계의 기준선']];
 var topicBySection={'국가 98':'country','도시 103':'city','자연지리 · 하천':'river','자연지리 · 산맥·고원':'mountain','자연지리 · 사막·분지·호수':'land','자연지리 · 해협·해역':'water','지역 · 산업':'region','지역 · 문화·갈등':'region','지역 · 반도·판·조산대':'tectonic','좌표 골격':'coords'};
-var regions=[{id:'all',name:'전 세계',b:[-180,-60,180,84]},{id:'europe',name:'유럽',b:[-26,33,46,73]},{id:'westasia',name:'서남·중앙아시아',b:[25,9,90,56]},{id:'southasia',name:'남부 아시아',b:[60,-1,98,37]},{id:'eastasia',name:'동아시아',b:[90,18,148,55]},{id:'southeastasia',name:'동남아시아',b:[90,-13,145,28]},{id:'africa',name:'아프리카',b:[-20,-36,53,38]},{id:'northamerica',name:'북아메리카',b:[-170,15,-50,75]},{id:'latinamerica',name:'중남부 아메리카',b:[-120,-58,-33,32]},{id:'oceania',name:'오세아니아',b:[110,-49,180,0]},{id:'polar',name:'극지',b:[-180,-90,180,90]}];
+var continents=[
+ {id:'asia',name:'아시아',b:[25,-13,180,80],start:[128,36]},
+ {id:'europe',name:'유럽',b:[-26,30,70,73],start:[8,48]},
+ {id:'africa',name:'아프리카',b:[-20,-36,53,38],start:[30,15]},
+ {id:'northamerica',name:'북·중앙아메리카',b:[-170,5,-50,75],start:[-100,40]},
+ {id:'southamerica',name:'남아메리카',b:[-82,-58,-33,14],start:[-65,-15]},
+ {id:'oceania',name:'오세아니아',b:[110,-49,180,0],start:[135,-25]},
+ {id:'antarctica',name:'남극',b:[-180,-90,180,-60],start:[0,-80]},
+ {id:'world',name:'세계 골격·대륙 간 지형',b:[-180,-90,180,90],start:[0,0]}
+];
+var regions=[{id:'all',name:'전 세계',b:[-180,-60,180,84]}].concat(continents,[{id:'westasia',name:'서남·중앙아시아',b:[25,9,90,56]},{id:'southasia',name:'남부 아시아',b:[60,-1,98,37]},{id:'eastasia',name:'동아시아',b:[90,18,148,55]},{id:'southeastasia',name:'동남아시아',b:[90,-13,145,28]},{id:'latinamerica',name:'중남부 아메리카',b:[-120,-58,-33,32]},{id:'polar',name:'극지',b:[-180,-90,180,90]}]);
+// These are study groups: shared seas and continental boundaries appear once.
+var physicalGroups={
+ europe:'라인강|다뉴브강|템스강|우랄산맥|스칸디나비아산맥|알프스산맥|몽블랑산|나로드나야산|도버 해협|지브롤터 해협|보스포루스 해협|지중해|북해|발트해|흑해',
+ asia:'메콩강|이라와디강|짜오프라야강|갠지스강|브라마푸트라강|황허|창장|예니세이강|레나강|히말라야산맥|톈산산맥|엘부르즈산맥|시짱(티베트)고원|아나톨리아 고원|에베레스트산|아라비아 사막|룹알할리 사막|네푸드 사막|고비 사막|타클라마칸(타커라마간) 사막|타르 사막|투루판 분지|아랄해|카스피해|사해|말라카 해협|폴크 해협|호르무즈 해협|홍해|페르시아만|벵골만|남중국해|아라비아반도|인도차이나 반도|말레이반도',
+ africa:'나일강|나이저강|콩고강|잠베지강|아틀라스산맥|아비시니아 고원(에티오피아 고원)|킬리만자로산|사하라 사막|나미브 사막|차드호|빅토리아호|기니만|베냉 만|동아프리카 지구대',
+ northamerica:'미시시피강|로키산맥|애팔래치아산맥|엘버트산|콜리마 화산|모하비 사막|배드워터 분지|오대호|미시간호|멕시코만|카리브해|샌안드레아스 단층',
+ southamerica:'아마존강|파라나강|안데스산맥|아타카마 사막|파타고니아 사막|우유니 소금 사막',
+ oceania:'그레이트디바이딩산맥|남알프스 산맥|코지어스코산|그레이트빅토리아사막|대찬정 분지',
+ world:'북극해|환태평양 조산대(불의 고리)|알프스-히말라야 조산대|고기 조산대'
+},physicalContinent={};
+Object.keys(physicalGroups).forEach(function(id){physicalGroups[id].split('|').forEach(function(name){physicalContinent[name]=id})});
+function continentOf(it){
+ if(it.topic==='coords')return 'world';
+ if(physicalContinent[it.name])return physicalContinent[it.name];
+ var sub=it.subcat||'',country=it.country||'',c=center(it.geometry);
+ if(c.lat<-60||country==='남극')return 'antarctica';
+ if(it.name==='러시아'||it.name==='튀르키예')return 'asia';
+ if(sub.includes('유럽'))return 'europe';
+ if(sub.includes('아프리카'))return 'africa';
+ if(sub.includes('아시아'))return 'asia';
+ if(sub.includes('오세아니아'))return 'oceania';
+ if(sub==='북아메리카'||['캐나다','미국','멕시코','코스타리카','아이티'].includes(it.name)||/캐나다|미국|멕시코/.test(country))return 'northamerica';
+ if(sub.includes('아메리카')||/페루|콜롬비아|에콰도르|볼리비아|브라질|칠레|아르헨티나/.test(country))return 'southamerica';
+ if(/그리스|에스파냐/.test(country))return 'europe';
+ if(/오스트레일리아|뉴질랜드/.test(country))return 'oceania';
+ if(/케냐|탄자니아/.test(country))return 'africa';
+ if(/이란|인도네시아|말레이시아|브루나이|캄보디아|러시아/.test(country)||it.name==='바레인')return 'asia';
+ throw new Error('학습 대륙 분류가 없습니다: '+it.id);
+}
+var featureStyles={
+ country:{name:'국가',color:'#344b63',symbol:'flag',hint:'깃발은 국가 안쪽 대표 위치'},
+ city:{name:'도시',color:'#763fa4',symbol:'city',hint:'원은 도시의 위치'},
+ river:{name:'하천',color:'#007daa',symbol:'river',hint:'푸른 실선은 물길 · 끝점은 상류·하구'},
+ mountain:{name:'산맥',color:'#86532b',symbol:'mountain',hint:'갈색 선·음영은 산맥의 범위'},
+ plateau:{name:'고원',color:'#996226',symbol:'plateau',hint:'평평한 꼭대기 기호와 고원 범위'},
+ peak:{name:'산·화산',color:'#86532b',symbol:'mountain',hint:'삼각형은 산봉우리의 위치'},
+ desert:{name:'사막',color:'#aa7100',symbol:'desert',hint:'모래 언덕 기호와 사막 범위'},
+ basin:{name:'분지',color:'#8b6b49',symbol:'basin',hint:'움푹한 기호와 분지 위치·범위'},
+ lake:{name:'호수·내해',color:'#167bb1',symbol:'lake',hint:'물방울 기호와 호수 범위'},
+ strait:{name:'해협',color:'#006d90',symbol:'strait',hint:'마주 보는 화살표와 좁은 바닷길'},
+ sea:{name:'해역',color:'#087e9e',symbol:'sea',hint:'물결 기호와 바다 범위'},
+ island:{name:'섬',color:'#35855b',symbol:'island',hint:'섬 기호는 대표 위치'},
+ industry:{name:'산업 지역',color:'#4e56ad',symbol:'factory',hint:'공장 기호와 산업 지역 위치·범위'},
+ conflict:{name:'문화·갈등 지역',color:'#b53e5b',symbol:'diamond',dash:'6 4',hint:'마름모와 붉은 점선은 학습 지역의 대략적 범위'},
+ ecoregion:{name:'자연 지역',color:'#70822d',symbol:'leaf',hint:'잎 기호와 자연 지역 범위'},
+ peninsula:{name:'반도',color:'#3b846e',symbol:'peninsula',hint:'돌출된 땅 기호와 반도 범위'},
+ fault:{name:'단층',color:'#b14e28',symbol:'fault',dash:'8 4',hint:'주황 점선은 단층의 경로'},
+ rift:{name:'지구대',color:'#b14e28',symbol:'rift',dash:'8 4',hint:'주황 점선은 지구대의 경로'},
+ belt:{name:'조산대',color:'#b14e28',symbol:'belt',dash:'8 4',hint:'주황 점선은 조산대의 분포'},
+ heritage:{name:'유적',color:'#976630',symbol:'heritage',hint:'기둥 기호는 유적의 위치'},
+ park:{name:'국립공원·보호 구역',color:'#25805a',symbol:'tree',hint:'나무 기호는 공원·보호 구역의 위치'},
+ coords:{name:'대륙·대양·기준선',color:'#566670',symbol:'globe',hint:'번호와 선으로 표시한 세계의 골격'}
+};
+function featureKind(it){
+ var g=it.geometry,sub=it.subcat||'';
+ if(['country','city','river','coords'].includes(it.topic))return it.topic;
+ if(it.topic==='mountain')return g.kind==='plateau'?'plateau':g.kind==='peak'?'peak':'mountain';
+ if(it.topic==='land')return sub==='분지'?'basin':sub==='호수·내해'?'lake':'desert';
+ if(it.topic==='water')return it.section==='섬'?'island':sub==='해협'?'strait':'sea';
+ if(it.topic==='region')return it.name==='사헬 지대'?'ecoregion':g.kind==='industry'?'industry':'conflict';
+ if(it.topic==='tectonic')return sub==='반도'?'peninsula':sub==='조산대'?'belt':it.name.includes('단층')?'fault':'rift';
+ return /국립공원|보호 구역/.test(it.name)?'park':'heritage';
+}
 var aliases={},items=raw.filter(function(it){return it.section!=='국가 관계'&&it.section!=='지명 → 국가·도시'}).map(function(it){return Object.assign({},it,{geometry:geo.items[it.id]||it.geometry,topic:topicBySection[it.section],relations:[]})});
 raw.filter(function(it){return it.section==='국가 관계'}).forEach(function(it){var main=items.find(function(x){return x.topic==='country'&&x.name===it.name});if(main){aliases[it.id]=main.id;main.relations.push(it)}});
 content.items.forEach(function(it){items.push(Object.assign({},it,{relations:[]}))});
 items.forEach(function(it){var edit=content.updates[it.id];if(!edit)return;['memo','quick','facts','country'].forEach(function(key){if(Object.prototype.hasOwnProperty.call(edit,key))it[key]=edit[key]});it.notes=edit.notes;it.references=(it.references||[]).concat(edit.references);it.exam=Array.from(new Set([it.exam||''].concat(edit.exams).join(' / ').split(' / ').filter(Boolean))).join(' / ')});
 Object.keys(content.migrations).forEach(function(id){var targets=content.migrations[id];if(targets.length===1)aliases[id]=targets[0]});
 var byId=new Map(items.map(function(it){return [it.id,it]}));
+items.forEach(function(it){it.continent=continentOf(it);it.featureKind=featureKind(it);it.mapCenter=center(it.geometry)});
 function canon(id){return aliases[id]||id}
 function recordIds(id,kind){
  if(typeof id!=='string')return [];
@@ -80,7 +156,8 @@ function readJSON(key,fallback){try{var value=localStorage.getItem(key);return v
 function readSet(key){var value=readJSON(key,[]);if(!Array.isArray(value)){recordDamaged=true;value=[]}return new Set(value.flatMap(function(id){return recordIds(id,key==='wg33_wrong'?'again':'known')}))}
 var known=readSet('wg33_known'),again=readSet('wg33_wrong');again.forEach(function(id){known.delete(id)});
 var saved=readJSON('wg_study_view2',{});if(!saved||typeof saved!=='object'||Array.isArray(saved))saved={};
-var state={topic:topics.some(function(x){return x[0]===saved.topic})?saved.topic:'all',region:regions.some(function(x){return x.id===saved.region})?saved.region:'all',selected:null,queue:[],index:0,review:false,recall:false,revealed:true,scale:1,x:0,y:0,drawer:null,context:saved.context!==false,grid:saved.grid===true,supplement:saved.supplement===true,filter:['all','new','again'].includes(saved.filter)?saved.filter:'all'};
+var state={topic:topics.some(function(x){return x[0]===saved.topic})?saved.topic:'all',region:regions.some(function(x){return x.id===saved.region})?saved.region:'all',quizOrder:saved.quizOrder==='random'?'random':'nearby',selected:null,queue:[],index:0,review:false,recall:false,revealed:true,scale:1,x:0,y:0,drawer:null,context:saved.context!==false,grid:saved.grid===true,supplement:saved.supplement===true,filter:['all','new','again'].includes(saved.filter)?saved.filter:'all'};
+if(state.topic==='coords')state.region='all';
 var map=$('map'),scene=$('mapScene'),W=3600,H=1800,raf=0,toastTimer=0,lastFocus=null;
 function topicName(id){return (topics.find(function(x){return x[0]===id})||['',''])[1]}
 function current(){return state.selected?byId.get(state.selected):null}
@@ -96,21 +173,35 @@ function bbox(g){
 }
 function center(g){if(g.anchor)return {lon:g.anchor[0],lat:g.anchor[1]};var b=bbox(g);return {lon:(b[0]+b[2])/2,lat:(b[1]+b[3])/2}}
 function inRegion(it){
- if(state.region==='all'||it.topic==='coords')return true;
+ if(state.region==='all')return true;
+ if(continents.some(function(x){return x.id===state.region}))return it.continent===state.region;
+ if(it.topic==='coords')return false;
  var c=center(it.geometry),r=regions.find(function(x){return x.id===state.region});
  if(state.region==='polar')return c.lat>66||c.lat<-60;
  return c.lon>=r.b[0]&&c.lon<=r.b[2]&&c.lat>=r.b[1]&&c.lat<=r.b[3];
 }
 function scopeItems(){return available().filter(function(it){return (state.topic==='all'||it.topic===state.topic)&&inRegion(it)})}
 function shuffleQueue(){for(var i=state.queue.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),tmp=state.queue[i];state.queue[i]=state.queue[j];state.queue[j]=tmp}}
+function geographicDistance(a,b){var rad=Math.PI/180,dlat=(a.lat-b.lat)*rad,dlon=(a.lon-b.lon)*rad;return Math.sin(dlat/2)**2+Math.cos(a.lat*rad)*Math.cos(b.lat*rad)*Math.sin(dlon/2)**2}
+function orderQuiz(preferred){
+ if(state.quizOrder==='random'){shuffleQueue();return}
+ var first=state.queue.includes(preferred)?byId.get(preferred):null,groups=continents.slice(),ordered=[];
+ if(first)groups.sort(function(a,b){return (b.id===first.continent?1:0)-(a.id===first.continent?1:0)});
+ groups.forEach(function(group){
+  var left=state.queue.map(function(id){return byId.get(id)}).filter(function(it){return it.continent===group.id}),point=first&&first.continent===group.id?first.mapCenter:{lon:group.start[0],lat:group.start[1]};
+  if(first&&first.continent===group.id){ordered.push(first.id);left=left.filter(function(it){return it.id!==first.id})}
+  while(left.length){var best=0,min=Infinity;left.forEach(function(it,i){var distance=geographicDistance(point,it.mapCenter);if(distance<min){min=distance;best=i}});var next=left.splice(best,1)[0];ordered.push(next.id);point=next.mapCenter}
+ });
+ state.queue=ordered;
+}
 function passFilter(it){return state.filter==='all'||(state.filter==='new'&&!known.has(it.id))||(state.filter==='again'&&again.has(it.id))}
 function rebuildQueue(preferred){
  state.queue=(state.review?available().filter(function(it){return again.has(it.id)}):scopeItems().filter(passFilter)).map(function(it){return it.id});
- if(state.recall)shuffleQueue();
+ if(state.recall)orderQuiz(preferred);
  var index=state.queue.indexOf(preferred);state.index=index<0?0:index;state.selected=state.queue[state.index]||null;state.revealed=!state.recall;renderAll();if(state.selected){if(state.topic==='all'||state.recall)fitFocus();else fitScope()}saveView();
 }
 function writeStorage(key,value){if(storageOK)try{localStorage.setItem(key,JSON.stringify(value))}catch(e){storageOK=false}storageMessage()}
-function saveView(){writeStorage('wg_study_view2',{topic:state.topic,region:state.region,id:state.selected,context:state.context,grid:state.grid,supplement:state.supplement,filter:state.filter})}
+function saveView(){writeStorage('wg_study_view2',{topic:state.topic,region:state.region,id:state.selected,quizOrder:state.quizOrder,context:state.context,grid:state.grid,supplement:state.supplement,filter:state.filter})}
 function persist(){writeStorage('wg33_known',Array.from(known));writeStorage('wg33_wrong',Array.from(again));if(storageOK){recordDamaged=false;storageMessage()}updateProgress()}
 function storageMessage(){var el=$('storageMessage');el.hidden=storageOK&&!recordDamaged;el.textContent=!storageOK?'현재 환경에서는 기록을 영구 저장할 수 없습니다. 열린 동안에는 학습할 수 있으며, 기록 내보내기로 보관할 수 있습니다.':recordDamaged?'이전 기록 일부를 읽지 못했습니다. 읽을 수 있는 기록은 유지했습니다.':''}
 function toast(message){$('toast').textContent=message;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(function(){$('toast').hidden=true},2200)}
@@ -124,7 +215,7 @@ function updateProgress(){
 }
 function setSelected(id,fromList){
  var it=byId.get(id);if(!it)return;
- if(fromList&&state.queue.indexOf(id)<0){state.review=false;if(state.topic!=='all')state.topic=it.topic;state.region='all';state.filter='all';syncControls();state.queue=scopeItems().map(function(x){return x.id})}
+ if(fromList&&state.queue.indexOf(id)<0){state.review=false;if(state.topic!=='all')state.topic=it.topic;state.region='all';state.filter='all';syncControls();state.queue=scopeItems().map(function(x){return x.id});if(state.recall)orderQuiz(id)}
  state.selected=id;state.index=state.queue.indexOf(id);state.revealed=!state.recall;$('details').open=false;renderAll();if(fromList)closeDrawer();if(fromList||state.topic==='all'||state.recall)fitFocus();else ensureVisible();saveView();
 }
 function next(delta){var index=state.index+delta;if(index<0||index>=state.queue.length)return;setSelected(state.queue[index],false)}
@@ -145,10 +236,14 @@ function renderCard(){
  var it=current();$('learningCard').hidden=!it;$('emptyCard').hidden=!!it;
  if(!it){$('emptyTitle').textContent=state.review?'다시 볼 항목이 없어요':'이 범위에는 항목이 없어요';$('emptyText').textContent=state.review?'헷갈리는 지명에서 ‘다시 보기’를 누르면 여기에 모입니다.':'지역이나 표시 조건을 바꾸면 다른 항목을 볼 수 있어요.';$('emptyAction').textContent=state.review?'학습으로 돌아가기':'조건 풀고 전체 지역 보기';$('emptyAction').onclick=function(){state.review=false;state.recall=false;state.region='all';state.filter='all';syncControls();rebuildQueue()};return}
  var hidden=state.recall&&!state.revealed,river=riverFor(it);
- $('cardMeta').textContent=(state.review?'복습 · ':state.recall?'퀴즈 · ':'학습 · ')+topicName(it.topic)+(it.source==='보충'?' · 보충':'');
+ var style=featureStyles[it.featureKind],group=continents.find(function(x){return x.id===it.continent}),groupIds=state.queue.filter(function(id){return byId.get(id).continent===it.continent});
+ $('cardMeta').textContent=(state.review?'복습 · ':state.recall?'퀴즈 · ':'학습 · ')+style.name+(it.source==='보충'?' · 보충':'');
+ $('quizTools').hidden=!state.recall;$('quizOrder').value=state.quizOrder;
+ $('groupProgress').textContent=group.name+(state.quizOrder==='nearby'?' · '+(groupIds.indexOf(it.id)+1)+' / '+groupIds.length:'');
+ $('groupProgress').dataset.continent=it.continent;
  $('recallButton').textContent=state.recall?'학습으로':'퀴즈 시작';$('recallButton').setAttribute('aria-pressed',String(state.recall));
- $('itemName').textContent=hidden?'표시한 곳의 이름은?':it.name;
- $('description').textContent=hidden?(it.topic==='coords'?'강조된 대륙·대양 또는 기준선의 이름과 의미를 떠올려 보세요.':'강조된 지명의 이름을 먼저 떠올린 뒤 정답을 확인하세요.'):((it.country&&!it.memo.includes(it.country)?it.country+' · ':'')+it.memo);
+ $('itemName').textContent=hidden?(it.topic==='coords'?'표시한 번호·선의 이름과 의미는?':'표시한 '+style.name+'의 이름은?'):it.name;
+ $('description').textContent=hidden?'이름을 떠올린 뒤 정답을 확인하세요.':((it.country&&!it.memo.includes(it.country)?it.country+' · ':'')+it.memo);
  $('keyFacts').replaceChildren();$('keyFacts').hidden=hidden||!(it.facts&&it.facts.length);
  if(!hidden)(it.facts||[]).forEach(function(row){var dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=row[0];dd.textContent=row[1];$('keyFacts').append(dt,dd)});
  $('riverFacts').replaceChildren();$('riverFacts').hidden=hidden||!river;
@@ -163,12 +258,13 @@ function renderCard(){
  $('position').textContent=(state.index+1)+' / '+state.queue.length;$('prevButton').disabled=state.index<=0;$('nextButton').disabled=state.index>=state.queue.length-1;
 }
 function renderList(){
- var query=$('searchInput').value.trim().toLocaleLowerCase(),base=query?available():(state.review?state.queue.map(function(id){return byId.get(id)}):scopeItems()),arr=base.filter(passFilter);
+ var query=$('searchInput').value.trim().toLocaleLowerCase(),base=query?available():((state.review||state.recall)?state.queue.map(function(id){return byId.get(id)}):scopeItems()),arr=base.filter(passFilter);
  if(query)arr=arr.filter(function(it){return [it.name,it.country||'',it.memo,it.quick,(it.facts||[]).flat().join(' '),(it.notes||[]).join(' '),it.relations.map(function(x){return x.memo}).join(' ')].join(' ').toLocaleLowerCase().includes(query)});
  $('listTitle').textContent=state.review?'복습 목록':'학습 목록';$('listInfo').textContent=(query?'전체 지도 검색':state.review?'이번 복습':topicName(state.topic)+' · '+regions.find(function(x){return x.id===state.region}).name)+' · '+arr.length+'개';
  $('itemList').replaceChildren();var fragment=document.createDocumentFragment();
  arr.forEach(function(it){var button=document.createElement('button');button.type='button';button.className='listItem'+(it.id===state.selected?' current':'')+(again.has(it.id)?' again':'');button.dataset.id=it.id;
-  var wrapper=document.createElement('span');wrapper.className='itemText';var title=document.createElement('strong');title.textContent=it.name;var sub=document.createElement('small');sub.textContent=topicName(it.topic)+' · '+(it.country||it.subcat);wrapper.append(title,sub);
+  button.dataset.continent=it.continent;button.dataset.kind=it.featureKind;
+  var wrapper=document.createElement('span');wrapper.className='itemText';var title=document.createElement('strong');title.textContent=it.name;var sub=document.createElement('small');sub.textContent=featureStyles[it.featureKind].name+' · '+(it.country||it.subcat);wrapper.append(title,sub);
   var status=document.createElement('span');status.className='statusDot';status.textContent=again.has(it.id)?'복습':known.has(it.id)?'익힘':'';button.append(wrapper,status);button.onclick=function(){setSelected(it.id,true)};fragment.appendChild(button)
  });
  if(!arr.length){var p=document.createElement('p');p.className='small muted';p.style.padding='12px';p.textContent=query?'일치하는 지도 항목이 없습니다. 검토본에만 있는 지명은 아래 ‘수록 범위’에서 확인할 수 있습니다.':'표시 조건에 맞는 항목이 없습니다.';fragment.appendChild(p)}
@@ -182,22 +278,62 @@ function svg(tag,attrs,parent,text){var e=document.createElementNS('http://www.w
 function pointsPath(points,closed){return points.map(function(p,i){var a=project(p[0],p[1]);return (i?'L':'M')+a.x+' '+a.y}).join(' ')+(closed?' Z':'')}
 function label(lon,lat,name,parent,dx,dy,color){var p=project(lon,lat);svg('text',{x:p.x+(dx||0)/state.scale,y:p.y+(dy===undefined?-14:dy)/state.scale,'font-size':13/state.scale,'stroke-width':4/state.scale,class:'mapLabel','text-anchor':'middle',style:color?'fill:'+color:''},parent||$('labelLayer'),name)}
 function dot(lon,lat,parent,selected,color){var p=project(lon,lat);svg('circle',{cx:p.x,cy:p.y,r:(selected?7:3.5)/state.scale,fill:color||(selected?'#08797d':'#456978'),stroke:'#fff','stroke-width':selected?2:1,class:'geoStroke',opacity:selected?1:.5},parent)}
+function drawSymbol(parent,style){
+ var paths={
+  flag:'M-7 11V-10 M-6-9H9L5-3L9 3H-6Z',
+  river:'M-7-10C12-8-12-2 2 2S8 8 2 11',
+  mountain:'M-11 9L0-10L11 9Z M-5-1L0 2L5-1',
+  plateau:'M-12 9L-6-5H6L12 9Z',
+  desert:'M-12 8Q-4-7 5 8 M-1 8Q6-4 12 8 M-9-6H-7 M3-8H5',
+  basin:'M-11-7L-6 7H6L11-7 M-11 10H11',
+  lake:'M0-11C-3-6-9 0-9 4A9 8 0 0 0 9 4C9 0 3-6 0-11Z',
+  strait:'M-12 0H-3L-7-4 M-3 0L-7 4 M12 0H3L7-4 M3 0L7 4 M-2-10V-6 M2 6V10',
+  sea:'M-12-5Q-8-10-4-5T4-5T12-5 M-12 4Q-8-1-4 4T4 4T12 4',
+  island:'M-11 3L-4-5L1 0L5-7L11 3Z M-12 8Q-8 4-4 8T4 8T12 8',
+  factory:'M-11 9V-1L-4-5V0L3-5V2H7V-10H11V9Z M-7 5H-5 M-1 5H1',
+  diamond:'M0-12L12 0L0 12L-12 0Z M-3-6L2-1L-2 3L2 7',
+  leaf:'M-9 8C-15-5 0-10 10-10C12 4 3 13-9 8Z M-9 8L6-6',
+  peninsula:'M-11-10H-3V-3Q11-7 11 2Q11 11-2 8L-11 11 M-11-10V11',
+  fault:'M-11-6H-2L-6 0H4L1 6H11',
+  rift:'M-10-10L-5-2L-8 6L-5 11 M9-10L4-2L7 6L4 11',
+  belt:'M-12 7L-6-5L0 7L6-5L12 7 M-12 11H12',
+  heritage:'M-12-4L0-11L12-4Z M-8-1V8 M0-1V8 M8-1V8 M-12 11H12',
+  tree:'M0-12L-7-3H-4L-10 6H10L4-3H7Z M0 6V12',
+  globe:'M-11 0H11 M0-11C-7-6-7 6 0 11C7 6 7-6 0-11Z'
+ },attrs={'stroke-linejoin':'round','stroke-linecap':'round'};
+ if(style.symbol==='city'){
+  svg('circle',{cx:0,cy:0,r:8,fill:'#fff',stroke:style.color,'stroke-width':2},parent);
+  svg('circle',{cx:0,cy:0,r:4.5,fill:style.color},parent);return;
+ }
+ if(style.symbol==='globe')svg('circle',{cx:0,cy:0,r:11,fill:'#fff',stroke:style.color,'stroke-width':2},parent);
+ var d=paths[style.symbol];
+ svg('path',Object.assign({d:d,fill:'none',stroke:'#fff','stroke-width':5},attrs),parent);
+ svg('path',Object.assign({d:d,fill:['flag','mountain','plateau','lake','island','factory','diamond','leaf','peninsula','tree','heritage'].includes(style.symbol)?'#fff':'none',stroke:style.color,'stroke-width':2},attrs),parent);
+}
+function marker(lon,lat,parent,selected,style,kind){
+ var p=project(lon,lat),group=svg('g',{class:'mapMarker','data-kind':kind,'data-lon':lon,'data-lat':lat,transform:'translate('+p.x+' '+p.y+') scale('+((selected?1:.6)/state.scale)+')',opacity:selected?1:.5},parent);
+ drawSymbol(group,style);
+}
 function drawGeom(it,selected){
- var g=geometry(it),parent=selected?$('selectedLayer'):$('contextLayer'),colors={city:'#6750a4',country:'#6f7480',river:'#2682ab',mountain:'#9b7244',land:'#b08a41',water:'#2682ab'},color=selected?'#08797d':(colors[it.topic]||'#677e88'),stroke=selected?3:1.2,opacity=selected?1:.28,showName=selected&&state.revealed;
- if(g.type==='point'){dot(g.lon,g.lat,parent,selected);if(showName)label(g.lon,g.lat,it.name);return}
+ var g=geometry(it),style=featureStyles[it.featureKind],parent=svg('g',{class:'mapFeature','data-kind':it.featureKind,'data-id':it.id},selected?$('selectedLayer'):$('contextLayer')),color=style.color,stroke=selected?3:1.2,opacity=selected?1:.28,showName=selected&&state.revealed;
+ if(g.type==='point'){marker(g.lon,g.lat,parent,selected,style,it.featureKind);if(showName)label(g.lon,g.lat,it.name,null,0,-21,color);return}
  if(g.type==='multipoint'){g.points.forEach(function(p,i){dot(p[0],p[1],parent,selected);if(selected)label(p[0],p[1],String(i+1),$('labelLayer'),0,-13)});return}
  if(g.type==='worldlabels'){g.points.forEach(function(p,i){var lat=p[0]==='남극 대륙'?-78:p[2];dot(p[1],lat,parent,selected);if(showName)label(p[1],lat,p[0]);else if(selected)label(p[1],lat,String(i+1))});return}
  if(g.type==='hemispheres'){svg('rect',{x:0,y:0,width:W,height:900,fill:'#dbeaf7',opacity:.3},parent);svg('rect',{x:0,y:900,width:W,height:900,fill:'#f4e6d7',opacity:.3},parent);svg('path',{d:pointsPath([[-180,0],[180,0]]),stroke:color,'stroke-width':2,class:'geoStroke'},parent);if(showName){label(-100,35,'북반구');label(-100,-35,'남반구')}return}
  if(g.type==='latlines'){g.lats.forEach(function(lat){svg('path',{d:pointsPath([[-180,lat],[180,lat]]),stroke:color,'stroke-width':stroke,class:'geoStroke'},parent);if(showName)label(0,lat,lat===0?'적도 0°':lat>0?'북회귀선 23.5°N':'남회귀선 23.5°S')});return}
  if(g.type==='lonlines'){g.lons.forEach(function(lon){svg('path',{d:pointsPath([[lon,-90],[lon,90]]),stroke:color,'stroke-width':stroke,class:'geoStroke'},parent)});if(showName){label(0,45,'본초 자오선 0°');if(g.eastwest){label(-80,0,'서경 W');label(80,0,'동경 E')}}return}
- var attrs={stroke:color,'stroke-width':stroke,opacity:opacity,class:'geoStroke',fill:'none'};
+ var attrs={stroke:color,'stroke-width':stroke,opacity:opacity,class:'geoStroke',fill:'none','stroke-dasharray':style.dash||'none'};
  if(g.type==='line'||g.type==='poly'){attrs.d=pointsPath(g.pts,g.type==='poly');if(g.type==='poly'){attrs.fill=color;attrs['fill-opacity']=.09}svg('path',attrs,parent)}
- if(g.type==='multiline')svg('path',Object.assign({},attrs,{d:g.lines.map(function(p){return pointsPath(p)}).join(' '),'stroke-dasharray':it.topic==='tectonic'?'7 5':'none'}),parent);
+ if(g.type==='multiline')svg('path',Object.assign({},attrs,{d:g.lines.map(function(p){return pointsPath(p)}).join(' ')}),parent);
  if(g.type==='polygons')svg('path',Object.assign({},attrs,{d:g.polygons.flat().map(function(p){return pointsPath(p,true)}).join(' '),fill:color,'fill-opacity':selected?.12:.035,'fill-rule':'evenodd'}),parent);
  if(g.type==='ellipse'){var p=project(g.lon,g.lat);svg('ellipse',Object.assign({},attrs,{cx:p.x,cy:p.y,rx:g.rx*10,ry:g.ry*10,fill:color,'fill-opacity':.09,transform:g.rot?'rotate('+g.rot+' '+p.x+' '+p.y+')':''}),parent)}
  if(g.type==='box'){var a=project(g.bbox[0],g.bbox[3]);svg('rect',Object.assign({},attrs,{x:a.x,y:a.y,width:(g.bbox[2]-g.bbox[0])*10,height:(g.bbox[3]-g.bbox[1])*10,fill:color,'fill-opacity':.09}),parent)}
  if(selected&&it.topic==='river'&&(g.upstream||g.pts&&g.pts.length)){var first=g.upstream||g.pts[0],last=g.mouth||g.pts[g.pts.length-1];dot(first[0],first[1],parent,true,'#a25015');dot(last[0],last[1],parent,true,'#08797d');if(showName){label(first[0],first[1],'上 상류 쪽',null,0,-15,'#a25015');label(last[0],last[1],'下 하류 쪽',null,0,25)}}
- else if(showName){var c=center(g);label(c.lon,c.lat,it.name)}
+ else {
+  var c=center(g),emblem=!['river','mountain','fault','rift','belt'].includes(it.featureKind);
+  if(emblem)marker(c.lon,c.lat,parent,selected,style,it.featureKind);
+  if(showName)label(c.lon,c.lat,it.name,null,0,emblem?-23:-14,color);
+ }
 }
 function renderMap(){
  ['gridLayer','contextLayer','selectedLayer','labelLayer'].forEach(function(id){$(id).replaceChildren()});
@@ -206,7 +342,8 @@ function renderMap(){
  var it=current();if(state.grid&&!(it&&it.topic==='coords'&&!state.revealed)){[0,23.5,-23.5].forEach(function(lat){svg('path',{d:pointsPath([[-180,lat],[180,lat]]),stroke:'#627b86','stroke-width':.8,'stroke-dasharray':'5 7',opacity:.5,class:'geoStroke'},$('gridLayer'))});svg('path',{d:pointsPath([[0,-90],[0,90]]),stroke:'#627b86','stroke-width':.8,'stroke-dasharray':'5 7',opacity:.5,class:'geoStroke'},$('gridLayer'))}
  if(state.context&&!state.recall&&!state.review)scopeItems().forEach(function(x){if((state.topic!=='all'||x.topic!=='coords')&&(!it||x.id!==it.id))drawGeom(x,false)});
  if(it)drawGeom(it,true);
- $('mapNote').textContent=!it?'표시할 항목이 없습니다':it.topic==='country'?'점은 국가 내부의 대표 위치 · 국경은 바탕지도에서 확인':it.topic==='river'?'주요 물길 표시 · 상류와 하구의 연결에 집중':it.geometry.type==='multipoint'?'여러 지명을 묶은 항목 · 설명과 함께 확인':it.topic==='coords'?'대륙·대양과 기준선의 관계를 확인':it.geometry.type==='point'?'표시를 누르면 지명을 선택할 수 있어요':it.geometry.source?'음영은 세계지도 축척으로 단순화한 범위':'대략적인 위치·범위 표시';
+ $('mapNote').replaceChildren();
+ if(it){var style=featureStyles[it.featureKind],key=svg('svg',{viewBox:'-15 -15 30 30',width:26,height:26,'aria-hidden':'true'},$('mapNote'));drawSymbol(key,style);var note=document.createElement('span'),title=document.createElement('b');title.textContent=style.name;note.append(title,document.createElement('br'),style.hint);$('mapNote').append(note)}else $('mapNote').textContent='표시할 항목이 없습니다';
 }
 function mapSize(){return {w:Math.max(1,map.clientWidth),h:Math.max(1,map.clientHeight)}}
 function minScale(){var d=mapSize();return Math.min(d.w/W,d.h/H)}
@@ -242,14 +379,17 @@ document.addEventListener('keydown',function(e){
 });
 function reveal(){state.revealed=true;renderCard();renderMap()}
 topics.forEach(function(t){var o=document.createElement('option');o.value=t[0];o.textContent=t[1];$('topicSelect').appendChild(o)});
-regions.forEach(function(r){var o=document.createElement('option');o.value=r.id;o.textContent=r.name;$('regionSelect').appendChild(o)});
-$('topicSelect').onchange=function(){state.topic=this.value;if(state.topic==='all')state.region='all';state.review=false;state.filter='all';syncControls();rebuildQueue()};
+var continentOptions=document.createElement('optgroup'),detailOptions=document.createElement('optgroup');continentOptions.label='대륙별 학습';detailOptions.label='세부 범위';
+regions.forEach(function(r){var o=document.createElement('option');o.value=r.id;o.textContent=r.name;(r.id==='all'?$('regionSelect'):continents.some(function(c){return c.id===r.id})?continentOptions:detailOptions).appendChild(o)});
+$('regionSelect').append(continentOptions,detailOptions);
+$('topicSelect').onchange=function(){state.topic=this.value;if(state.topic==='coords')state.region='all';state.review=false;state.filter='all';syncControls();rebuildQueue()};
 $('regionSelect').onchange=function(){state.region=this.value;state.review=false;state.filter='all';syncControls();rebuildQueue()};
 $('listButton').onclick=function(){openDrawer('listDrawer')};$('closeList').onclick=closeDrawer;$('closeSettings').onclick=closeDrawer;$('backdrop').onclick=closeDrawer;$('settingsButton').onclick=function(){openDrawer('settingsDrawer')};
 $('reviewButton').onclick=function(){if(state.review){state.review=false;state.recall=false;rebuildQueue()}else startReview()};
 $('searchInput').oninput=renderList;$('statusFilter').onchange=function(){state.filter=this.value;rebuildQueue(state.selected)};
-$('shuffleButton').onclick=function(){shuffleQueue();state.index=0;state.selected=state.queue[0]||null;state.revealed=!state.recall;closeDrawer();renderAll();if(state.topic==='all'||state.recall)fitFocus();else fitScope();saveView();toast('현재 범위의 순서를 섞었어요')};
-$('recallButton').onclick=function(){state.recall=!state.recall;if(!state.recall)state.review=false;state.revealed=!state.recall;if(state.recall&&state.topic==='all'){shuffleQueue();state.index=0;state.selected=state.queue[0]||null}renderAll();if(state.recall)fitFocus();saveView()};$('revealButton').onclick=reveal;
+$('shuffleButton').onclick=function(){state.quizOrder='random';shuffleQueue();state.index=0;state.selected=state.queue[0]||null;state.revealed=!state.recall;closeDrawer();renderAll();if(state.topic==='all'||state.recall)fitFocus();else fitScope();saveView();toast('현재 범위를 무작위 순서로 바꿨어요')};
+$('quizOrder').onchange=function(){state.quizOrder=this.value;rebuildQueue();toast(state.quizOrder==='nearby'?'대륙별로 가까운 장소부터 이어집니다':'현재 범위를 무작위로 섞었어요')};
+$('recallButton').onclick=function(){var preferred=state.quizOrder==='nearby'&&current()&&!(state.topic==='all'&&current().topic==='coords')?state.selected:null;state.recall=!state.recall;if(!state.recall)state.review=false;rebuildQueue(state.recall?preferred:state.selected)};$('revealButton').onclick=reveal;
 $('markKnown').onclick=function(){mark('known')};$('markAgain').onclick=function(){mark('again')};$('prevButton').onclick=function(){next(-1)};$('nextButton').onclick=function(){next(1)};
 $('scopeFit').onclick=fitScope;$('focusFit').onclick=fitFocus;$('worldFit').onclick=function(){fitBox([-180,-90,180,90])};$('zoomIn').onclick=function(){var d=mapSize();zoom(1.35,d.w/2,d.h/2)};$('zoomOut').onclick=function(){var d=mapSize();zoom(1/1.35,d.w/2,d.h/2)};
 $('contextToggle').onchange=function(){state.context=this.checked;renderMap();saveView()};$('gridToggle').onchange=function(){state.grid=this.checked;renderMap();saveView()};$('supplementToggle').onchange=function(){state.supplement=this.checked;rebuildQueue(state.selected)};
