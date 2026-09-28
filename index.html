@@ -13,6 +13,7 @@ header{height:58px;display:flex;gap:8px;align-items:center;padding:6px 14px;bord
 #emptyCard p{font-size:14px;line-height:1.6;color:var(--muted)}#emptyCard h2{font-size:20px;margin:5px 0 8px}
 #mapNote{display:flex;align-items:center;gap:7px;padding:6px 9px}#mapNote svg{flex:0 0 26px}#mapNote b{font-size:12px;color:var(--ink)}#quizTools{display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;margin:8px 0}#groupProgress{font-size:12px;color:var(--muted)}#quizTools label{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}#quizOrder{font-size:12px;min-height:34px;width:auto;max-width:190px;padding:5px;border-radius:7px}
 .backdrop{position:fixed;inset:0;background:#10273166;z-index:20}.drawer{position:fixed;z-index:21;inset:0 auto 0 0;width:min(420px,100%);display:flex;flex-direction:column;background:#fff;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);box-shadow:12px 0 48px #142d3926}.drawerHeader{height:62px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:8px 16px;border-bottom:1px solid var(--line)}.drawerHeader h2{font-size:18px;margin:0}.drawerHeader button{padding:8px 12px}.drawerControls{padding:14px 16px 10px;border-bottom:1px solid var(--line)}.drawerControls input{min-height:44px;width:100%;padding:10px 12px;font-size:16px}.drawerControls .filterRow{display:flex;align-items:center;gap:8px;margin-top:9px}.filterRow label{font-size:12px;color:var(--muted);flex:1}.filterRow button{font-size:12px}.listInfo{font-size:12px;color:var(--muted);padding:8px 0 0}#itemList{overflow-y:auto;flex:1;padding:6px 8px;overscroll-behavior:contain}.listItem{display:flex;align-items:center;gap:10px;min-height:55px;width:100%;text-align:left;border:0;border-radius:8px;padding:10px;margin:1px 0;background:transparent}.listItem.current{background:var(--pale)}.listItem .itemText{flex:1}.listItem strong{display:block;font-size:14px}.listItem small{display:block;font-size:11px;color:var(--muted);font-weight:400;margin-top:3px}.statusDot{font-size:12px;min-width:36px;text-align:right;color:var(--accent)}.again .statusDot{color:var(--warm)}.drawerFooter{padding:10px 16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}.drawerFooter button{width:100%;text-align:left;font-size:12px}.scrollBody{flex:1;overflow:auto;padding:16px;font-size:14px;line-height:1.65}.scrollBody h3{font-size:15px;margin:18px 0 6px}.scrollBody h3:first-child{margin-top:0}.scrollBody p{margin:6px 0 12px}.scrollBody button{font-size:13px}.switchLine{display:flex;gap:9px;align-items:center;margin:12px 0}.switchLine input{width:19px;height:19px}.buttonRow{display:flex;gap:8px;flex-wrap:wrap}#storageMessage{color:var(--warm);padding:9px 0}.catalogSection{margin-top:12px;border-top:1px solid var(--line);padding-top:8px}.catalogSection h4{font-size:12px;color:var(--muted);margin-bottom:4px}.catalogSection p{font-size:13px;white-space:pre-line}
+.listRow{display:flex;align-items:center;gap:4px}.listRow>.listItem{flex:1;min-width:0;width:auto}.listItem .itemText{min-width:0;overflow-wrap:anywhere}.listRow .statusDot{white-space:nowrap;font-size:11px}.listRestore{flex-shrink:0;font-size:12px;padding:8px;color:var(--accent);background:var(--pale);border-color:#badcd5}
 #toast{position:fixed;z-index:40;bottom:calc(16px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);max-width:calc(100% - 24px);padding:10px 15px;background:var(--ink);color:#fff;border-radius:10px;font-size:13px;pointer-events:none;box-shadow:0 4px 24px #0002}#bootNotice{position:fixed;z-index:50;left:16px;right:16px;top:80px;padding:18px;max-width:540px;margin:auto;background:#fff;box-shadow:0 12px 50px #0003;border:1px solid var(--line);border-radius:14px;line-height:1.6;font-size:14px}
 @media(min-width:900px){#app{grid-template-columns:minmax(400px,1fr) 350px;grid-template-rows:64px 64px minmax(0,1fr)}header{grid-column:1/3;height:64px;padding:8px 24px}.scope{grid-column:1/3;grid-template-columns:260px 260px;align-items:center;padding:10px 24px}#map{grid-column:1;grid-row:3}#card{grid-column:2;grid-row:3;max-height:none;border-top:0;border-left:1px solid var(--line);padding:22px 20px;display:flex;flex-direction:column}#itemName{font-size:26px;margin-top:12px}.sequence{margin-top:20px}#description{font-size:15px}#cardTop{align-items:center}}
 @media(max-height:620px) and (max-width:899px){header{height:46px}.scope{padding:5px 10px}#app{grid-template-rows:auto auto minmax(130px,1fr) auto}#card{max-height:46dvh;padding:7px 12px}#itemName{font-size:19px}.sequence{margin-top:5px}#description{font-size:12px;margin-bottom:5px}}
@@ -40,7 +41,7 @@ header{height:58px;display:flex;gap:8px;align-items:center;padding:6px 14px;bord
 <div id="backdrop" class="backdrop" hidden></div>
 <aside id="listDrawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="listTitle" hidden>
  <div class="drawerHeader"><h2 id="listTitle">학습 목록</h2><button id="closeList" aria-label="목록 닫기">닫기</button></div>
- <div class="drawerControls"><input id="searchInput" type="search" placeholder="모든 지도 항목에서 검색" aria-label="지명 검색" autocomplete="off"><div class="filterRow"><label for="statusFilter">표시<select id="statusFilter"><option value="all">전체</option><option value="new">아직 익히지 않은 항목</option><option value="again">복습 대상 전체</option><option value="scheduled">이후 복습 예정</option><option value="added">이번에 추가한 지명</option></select></label><button id="shuffleButton">순서 섞기</button></div><div id="listInfo" class="listInfo"></div></div>
+ <div class="drawerControls"><input id="searchInput" type="search" placeholder="모든 지도 항목에서 검색" aria-label="지명 검색" autocomplete="off"><div class="filterRow"><label for="statusFilter">표시<select id="statusFilter"><option value="all">전체</option><option value="known">제외한 항목</option><option value="new">아직 익히지 않은 항목</option><option value="again">복습 대상 전체</option><option value="scheduled">이후 복습 예정</option><option value="added">이번에 추가한 지명</option></select></label><button id="shuffleButton">순서 섞기</button></div><div id="listInfo" class="listInfo"></div></div>
  <div id="itemList"></div><div class="drawerFooter"><div id="scopeProgress"></div><button id="settingsButton" class="quiet">표시 설정·기록·수록 범위</button></div>
 </aside>
 <aside id="settingsDrawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" hidden>
@@ -48,7 +49,7 @@ header{height:58px;display:flex;gap:8px;align-items:center;padding:6px 14px;bord
  <div class="scrollBody">
   <h3>지도 표시</h3><label class="switchLine"><input id="contextToggle" type="checkbox" checked>주변 항목도 옅게 표시</label><label class="switchLine"><input id="gridToggle" type="checkbox">적도·회귀선·본초 자오선</label><label class="switchLine"><input id="supplementToggle" type="checkbox">기존 보충 항목도 포함</label><p class="small muted">도시는 원, 국가는 깃발, 산업 지역은 공장, 문화·갈등 지역은 마름모로 표시합니다. 지도의 아래쪽에서 현재 기호의 뜻을 확인할 수 있습니다. 음영과 점선은 학습을 위한 대략적인 범위이며, 국경·분쟁 경계의 확정선이 아닙니다.</p>
   <h3>학습 기록</h3><p id="totalProgress"></p><div id="storageMessage" role="status" hidden></div><p id="migrationMessage" class="small muted" hidden>이전 묶음 항목의 익힘 기록은 내보내기에 보관합니다. 새로 나뉜 장소는 각각 확인하며, 이전에 ‘다시 보기’로 표시한 묶음은 해당 장소들의 복습으로 옮겼습니다.</p><p class="small muted">기존 익힘·복습 기록은 유지됩니다. ‘기억남’을 누른 항목부터 다음 복습일이 생깁니다. 복습 날짜는 기기의 날짜를 따릅니다. 기록은 이 브라우저에 저장됩니다. 기기나 파일을 바꿀 때는 기록 파일로 옮길 수 있습니다.</p><div class="buttonRow"><button id="exportButton">기록 내보내기</button><button id="importButton">기록 가져오기</button><input id="importInput" type="file" accept="application/json,.json" hidden></div>
-  <h3>학습 방법</h3><p>종류에서 <b>전체 통합</b>을 고르면 도시·국가·강·산맥 등을 함께 학습합니다. <b>퀴즈 시작</b>을 누르면 이름을 가리고 종류만 알려 줍니다. 기본은 <b>대륙별 · 가까운 순</b>으로, 선택한 장소부터 같은 대륙의 가까운 항목을 이어 봅니다. 퀴즈의 순서 선택에서 <b>전체 무작위</b>로 바꿀 수 있습니다. 정답을 확인한 뒤 <b>기억남</b> 또는 <b>기억 안 남</b>을 누릅니다. 기억난 항목은 오늘 퀴즈·복습에서 빠지고, 처음에는 다음 날 다시 나옵니다. 예정된 날에도 기억나면 다음 간격을 3일·7일·14일·30일로 늘립니다. 같은 날 여러 번 확인하거나 예정일 전에 확인해도 간격은 더 늘리지 않습니다. 기억 안 난 항목은 오늘 다시 볼 대상으로 남깁니다. <b>완전히 익힘</b>은 이후 퀴즈·복습에서 제외할 때만 사용하세요. 학습 화면에서 익힘을 취소할 수 있습니다.</p><p class="small muted">위쪽 지역 선택에서 한 대륙만 골라 학습·퀴즈할 수 있습니다. 북·중앙아메리카에는 멕시코와 카리브 지역을 포함합니다. 여러 대륙에 걸친 국가·해역은 학습 묶음 한 곳에 배치했고, 세계 규모의 지형·기준선은 별도로 모았습니다. 세부 범위는 서로 겹칠 수 있습니다.</p>
+  <h3>학습 방법</h3><p>종류에서 <b>전체 통합</b>을 고르면 도시·국가·강·산맥 등을 함께 학습합니다. <b>퀴즈 시작</b>을 누르면 이름을 가리고 종류만 알려 줍니다. 기본은 <b>대륙별 · 가까운 순</b>으로, 선택한 장소부터 같은 대륙의 가까운 항목을 이어 봅니다. 퀴즈의 순서 선택에서 <b>전체 무작위</b>로 바꿀 수 있습니다. 정답을 확인한 뒤 <b>기억남</b> 또는 <b>기억 안 남</b>을 누릅니다. 기억난 항목은 오늘 퀴즈·복습에서 빠지고, 처음에는 다음 날 다시 나옵니다. 예정된 날에도 기억나면 다음 간격을 3일·7일·14일·30일로 늘립니다. 같은 날 여러 번 확인하거나 예정일 전에 확인해도 간격은 더 늘리지 않습니다. 기억 안 난 항목은 오늘 다시 볼 대상으로 남깁니다. <b>완전히 익힘</b>은 이후 퀴즈·복습에서 제외할 때만 사용하세요. 목록·검색에서는 제외한 항목도 검색할 수 있습니다. 검색 결과의 ‘복습 복구’를 누르면 오늘 복습으로 돌아옵니다. 표시 메뉴의 ‘제외한 항목’에서 모아 볼 수도 있습니다.</p><p class="small muted">위쪽 지역 선택에서 한 대륙만 골라 학습·퀴즈할 수 있습니다. 북·중앙아메리카에는 멕시코와 카리브 지역을 포함합니다. 여러 대륙에 걸친 국가·해역은 학습 묶음 한 곳에 배치했고, 세계 규모의 지형·기준선은 별도로 모았습니다. 세부 범위는 서로 겹칠 수 있습니다.</p>
   <h3>수록 범위</h3><p id="coverageText"></p><p>강의 1·2권(P00–P11)의 위치 설명과 지역 비교를 바탕으로 보완했습니다. 도시 안 명소와 세부 지형 사례는 관련 국가·도시 설명에 함께 넣어 검색할 수 있습니다. 모든 사례명이 독립 퀴즈인 것은 아닙니다. 이름 없는 관측 지점에는 새 도시명을 붙이지 않았습니다.</p><p class="small muted">좌표와 바탕지도를 같은 위·경도에 맞췄습니다. 국가의 깃발은 국경 안쪽 대표 위치입니다. 주요 하천·호수·산맥·사막·해역은 Natural Earth 자료를 반영했으며, 세계지도 축척에 맞춰 단순화했습니다.</p>
   <p class="small"><a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">지도 자료: Natural Earth</a></p><details id="lectureCatalog"><summary>개정 강의에서 추가한 지도 항목</summary><div id="lectureCatalogBody"></div></details><details id="documentCatalog"><summary>이전 위치 선행학습 목록</summary><div id="catalogBody"></div></details>
  </div>
@@ -175,7 +176,7 @@ var storedSchedule=readJSON('wg_review_schedule',{});
 if(storedSchedule&&typeof storedSchedule==='object'&&!Array.isArray(storedSchedule))Object.keys(storedSchedule).forEach(function(id){var row=storedSchedule[id];if(!validSchedule(row)){recordDamaged=true;return}recordIds(id,'again').forEach(function(target){if(!byId.has(target)||known.has(target))return;reviewSchedule[target]={step:row.step,due:row.due,last:row.last};again.add(target)})});else recordDamaged=true;
 
 var saved=readJSON('wg_study_view2',{});if(!saved||typeof saved!=='object'||Array.isArray(saved))saved={};
-var state={topic:topics.some(function(x){return x[0]===saved.topic})?saved.topic:'all',region:regions.some(function(x){return x.id===saved.region})?saved.region:'all',quizOrder:saved.quizOrder==='random'?'random':'nearby',selected:null,queue:[],index:0,review:false,reviewIds:null,recall:false,revealed:true,scale:1,x:0,y:0,drawer:null,context:saved.context!==false,grid:saved.grid===true,supplement:saved.supplement===true,filter:['all','new','again','scheduled','added'].includes(saved.filter)?saved.filter:'all'};
+var state={topic:topics.some(function(x){return x[0]===saved.topic})?saved.topic:'all',region:regions.some(function(x){return x.id===saved.region})?saved.region:'all',quizOrder:saved.quizOrder==='random'?'random':'nearby',selected:null,queue:[],index:0,review:false,reviewIds:null,recall:false,revealed:true,scale:1,x:0,y:0,drawer:null,context:saved.context!==false,grid:saved.grid===true,supplement:saved.supplement===true,filter:['all','known','new','again','scheduled','added'].includes(saved.filter)?saved.filter:'all'};
 if(state.topic==='coords')state.region='all';
 var map=$('map'),scene=$('mapScene'),W=3600,H=1800,raf=0,toastTimer=0,lastFocus=null;
 function topicName(id){return (topics.find(function(x){return x[0]===id})||['',''])[1]}
@@ -213,7 +214,7 @@ function orderQuiz(preferred){
  });
  state.queue=ordered;
 }
-function passFilter(it){return state.filter==='all'||(state.filter==='new'&&!known.has(it.id))||(state.filter==='again'&&again.has(it.id))||(state.filter==='scheduled'&&again.has(it.id)&&!isDue(it.id))||(state.filter==='added'&&it.addedVersion===content.lectureAudit.version)}
+function passFilter(it){return state.filter==='all'||(state.filter==='known'&&known.has(it.id))||(state.filter==='new'&&!known.has(it.id))||(state.filter==='again'&&again.has(it.id))||(state.filter==='scheduled'&&again.has(it.id)&&!isDue(it.id))||(state.filter==='added'&&it.addedVersion===content.lectureAudit.version)}
 function quizEligible(it){return !state.recall||(!known.has(it.id)&&(state.filter==='scheduled'||isDue(it.id)))}
 function rebuildQueue(preferred){
  state.queue=(state.review?available().filter(function(it){return again.has(it.id)&&(state.filter==='scheduled'||isDue(it.id))&&(!state.reviewIds||state.reviewIds.includes(it.id))}):scopeItems()).filter(passFilter).filter(quizEligible).map(function(it){return it.id});
@@ -235,15 +236,26 @@ function updateProgress(){
 }
 function setSelected(id,fromList){
  var it=byId.get(id);if(!it)return;
- if(fromList&&state.queue.indexOf(id)<0){state.review=false;if(state.topic!=='all')state.topic=it.topic;state.region='all';state.filter='all';syncControls();state.queue=scopeItems().filter(quizEligible).map(function(x){return x.id});if(state.recall)orderQuiz(id)}
+ var openForStudy=fromList&&(state.recall||state.review)&&(known.has(it.id)||!quizEligible(it));
+ if(openForStudy)state.recall=false;
+ if(fromList&&(openForStudy||state.queue.indexOf(id)<0)){state.review=false;state.reviewIds=null;if(state.topic!=='all')state.topic=it.topic;state.region='all';state.filter='all';syncControls();state.queue=scopeItems().filter(quizEligible).map(function(x){return x.id});if(state.recall)orderQuiz(id)}
  state.selected=id;state.index=state.queue.indexOf(id);state.revealed=!state.recall;$('details').open=false;renderAll();if(fromList)closeDrawer();if(fromList||state.topic==='all'||state.recall)fitFocus();else ensureVisible();saveView();
 }
 function next(delta){var index=state.index+delta;if(index<0||index>=state.queue.length)return;setSelected(state.queue[index],false)}
+function restoreReview(id){
+ var it=byId.get(id);if(!it||!known.has(id))return;
+ known.delete(id);again.add(id);delete reviewSchedule[id];
+ if(state.review&&state.reviewIds&&!state.reviewIds.includes(id))state.reviewIds.push(id);
+ var selected=state.selected,wasRevealed=state.revealed;
+ persist();rebuildQueue(selected);
+ if(state.selected===selected&&wasRevealed){state.revealed=true;renderAll()}
+ toast(it.name+'을(를) 오늘 복습에 복구했어요.');
+}
 function mark(kind){
  var it=current();if(!it||!state.revealed)return;
  var message='';
  if(kind==='known'){
-  if(!state.recall&&!state.review&&known.has(it.id)){known.delete(it.id);message='익힘을 해제했어요. 퀴즈에 다시 포함됩니다.'}else{known.add(it.id);message='익힌 항목으로 표시했어요. 다음 퀴즈와 복습에서 제외합니다.'}
+  if(!state.recall&&!state.review&&known.has(it.id)){restoreReview(it.id);return}else{known.add(it.id);message='익힌 항목으로 표시했어요. 다음 퀴즈와 복습에서 제외합니다.'}
   again.delete(it.id);delete reviewSchedule[it.id];
  }else if(kind==='later'){
   known.delete(it.id);again.add(it.id);reviewSchedule[it.id]=plannedReview(it.id);message=shortDate(reviewSchedule[it.id].due)+'에 다시 확인해요.';
@@ -268,7 +280,7 @@ function renderCard(){
  if(!it){
   var scope=state.review?available().filter(function(x){return again.has(x.id)}):scopeItems(),scheduled=scope.filter(function(x){return again.has(x.id)&&!isDue(x.id)}),mastered=state.recall&&!state.review&&scope.length>0&&scope.every(function(x){return known.has(x.id)}),nextDue=scheduled.map(function(x){return reviewSchedule[x.id].due}).sort()[0];
   $('emptyTitle').textContent=mastered?'이 범위의 항목을 모두 익혔어요':state.recall&&nextDue?'오늘 볼 항목을 마쳤어요':state.review?'오늘 복습할 항목이 없어요':'이 범위에는 항목이 없어요';
-  $('emptyText').textContent=mastered?'익힌 항목은 퀴즈에서 제외합니다. 학습 화면에서 익힘 표시를 해제하면 다시 포함됩니다.':state.recall&&nextDue?'다음 복습은 '+shortDate(nextDue)+'부터예요. 예정된 항목은 목록의 ‘이후 복습 예정’에서 볼 수 있습니다.':state.review?'기억 안 난 항목은 오늘 다시 보고, 기억난 항목은 날짜를 두고 다시 확인합니다.':'지역이나 표시 조건을 바꾸면 다른 항목을 볼 수 있어요.';
+  $('emptyText').textContent=mastered?'목록·검색에서 지명을 검색하거나 ‘제외한 항목’을 선택한 뒤 ‘복습 복구’를 누르면 다시 포함됩니다.':state.recall&&nextDue?'다음 복습은 '+shortDate(nextDue)+'부터예요. 예정된 항목은 목록의 ‘이후 복습 예정’에서 볼 수 있습니다.':state.review?'기억 안 난 항목은 오늘 다시 보고, 기억난 항목은 날짜를 두고 다시 확인합니다.':'지역이나 표시 조건을 바꾸면 다른 항목을 볼 수 있어요.';
   $('emptyAction').textContent=state.recall?'학습으로 돌아가기':'조건 풀고 전체 지역 보기';$('emptyAction').onclick=function(){state.review=false;state.recall=false;if(!mastered)state.region='all';state.filter='all';syncControls();rebuildQueue()};return;
  }
 
@@ -291,21 +303,24 @@ function renderCard(){
  $('markAgain').disabled=hidden;$('markLater').disabled=hidden;$('markKnown').disabled=hidden;$('gradingHint').hidden=hidden;
  $('gradingHint').textContent='기억남 → '+shortDate(plannedReview(it.id).due)+' 재확인 · 완전히 익힘 → 복습에서 제외';
  $('markAgain').textContent='기억 안 남';$('markLater').textContent='기억남';
- $('markKnown').textContent=known.has(it.id)&&!state.recall&&!state.review?'익힘 취소 · 퀴즈에 다시 포함':'완전히 익힘 · 복습에서 제외';
+ $('markKnown').textContent=known.has(it.id)&&!state.recall&&!state.review?'오늘 복습에 복구':'완전히 익힘 · 복습에서 제외';
  $('position').textContent=(state.index+1)+' / '+state.queue.length;$('prevButton').disabled=state.index<=0;$('nextButton').disabled=state.index>=state.queue.length-1;
 }
 function searchText(value){return String(value||'').toLocaleLowerCase().replace(/\s+/g,'')}
 function renderList(){
- var query=searchText($('searchInput').value),base=query?available():((state.review||state.recall)?state.queue.map(function(id){return byId.get(id)}):scopeItems()),arr=base.filter(passFilter).filter(quizEligible);
+ var query=searchText($('searchInput').value),base=query?available():((state.review||state.recall)?state.queue.map(function(id){return byId.get(id)}):scopeItems()),arr=query?base:base.filter(passFilter).filter(quizEligible);
  if(query)arr=arr.filter(function(it){return searchText([it.name,(it.aliases||[]).join(' '),it.country||'',it.memo,it.quick,(it.facts||[]).flat().join(' '),(it.notes||[]).join(' '),it.relations.map(function(x){return x.memo}).join(' ')].join(' ')).includes(query)});
- $('listTitle').textContent=state.review?'복습 목록':'학습 목록';$('listInfo').textContent=(query?(state.recall?'퀴즈 대상 검색':'전체 지도 검색'):state.review?'복습 목록':topicName(state.topic)+' · '+regions.find(function(x){return x.id===state.region}).name)+' · '+arr.length+'개';
+ $('listTitle').textContent='목록·검색';$('listInfo').textContent=(query?'전체 검색 · 제외·예정 항목 포함':state.filter==='known'?'제외한 항목':state.review?'복습 목록':topicName(state.topic)+' · '+regions.find(function(x){return x.id===state.region}).name)+' · '+arr.length+'개';
  $('itemList').replaceChildren();var fragment=document.createDocumentFragment();
  arr.forEach(function(it){var button=document.createElement('button');button.type='button';button.className='listItem'+(it.id===state.selected?' current':'')+(again.has(it.id)?' again':'');button.dataset.id=it.id;
   button.dataset.continent=it.continent;button.dataset.kind=it.featureKind;
   var wrapper=document.createElement('span');wrapper.className='itemText';var title=document.createElement('strong');title.textContent=it.name;var sub=document.createElement('small');sub.textContent=featureStyles[it.featureKind].name+' · '+(it.country||it.subcat);wrapper.append(title,sub);
-  var status=document.createElement('span');status.className='statusDot';status.textContent=known.has(it.id)?'익힘':again.has(it.id)?(isDue(it.id)?'오늘 복습':shortDate(reviewSchedule[it.id].due)):'';button.append(wrapper,status);button.onclick=function(){setSelected(it.id,true)};fragment.appendChild(button)
+  var status=document.createElement('span');status.className='statusDot';status.textContent=known.has(it.id)?'복습 제외':again.has(it.id)?(isDue(it.id)?'오늘 복습':shortDate(reviewSchedule[it.id].due)):'';button.append(wrapper,status);button.onclick=function(){setSelected(it.id,true)};
+  if(known.has(it.id)){
+   var row=document.createElement('div'),restore=document.createElement('button');row.className='listRow';restore.type='button';restore.className='listRestore';restore.dataset.restoreId=it.id;restore.textContent='복습 복구';restore.setAttribute('aria-label',it.name+' 오늘 복습에 복구');restore.onclick=function(){restoreReview(it.id)};row.append(button,restore);fragment.appendChild(row);
+  }else fragment.appendChild(button)
  });
- if(!arr.length){var p=document.createElement('p');p.className='small muted';p.style.padding='12px';p.textContent=query?'일치하는 대상이 없습니다. 학습 화면에서는 익힌 항목과 이후 복습 항목도 검색할 수 있습니다.':'표시 조건에 맞는 항목이 없습니다.';fragment.appendChild(p)}
+ if(!arr.length){var p=document.createElement('p');p.className='small muted';p.style.padding='12px';p.textContent=query?'일치하는 항목이 없습니다. 다른 표기나 국가 이름으로 검색해 보세요.':state.filter==='known'?'제외한 항목이 없습니다.':'표시 조건에 맞는 항목이 없습니다. 검색하면 제외한 항목도 찾을 수 있습니다.';fragment.appendChild(p)}
  $('itemList').appendChild(fragment);
 }
 function syncControls(){$('topicSelect').value=state.topic;$('regionSelect').value=state.region;$('regionSelect').disabled=state.topic==='coords';$('statusFilter').value=state.filter;$('contextToggle').checked=state.context;$('gridToggle').checked=state.grid;$('supplementToggle').checked=state.supplement}
@@ -425,10 +440,10 @@ $('topicSelect').onchange=function(){state.topic=this.value;if(state.topic==='co
 $('regionSelect').onchange=function(){state.region=this.value;state.review=false;state.filter='all';syncControls();rebuildQueue()};
 $('listButton').onclick=function(){openDrawer('listDrawer')};$('closeList').onclick=closeDrawer;$('closeSettings').onclick=closeDrawer;$('backdrop').onclick=closeDrawer;$('settingsButton').onclick=function(){openDrawer('settingsDrawer')};
 $('reviewButton').onclick=function(){if(state.review){state.review=false;state.recall=false;rebuildQueue()}else startReview()};
-$('searchInput').oninput=renderList;$('statusFilter').onchange=function(){state.filter=this.value;if(state.review)state.reviewIds=null;rebuildQueue(state.selected)};
+$('searchInput').oninput=renderList;$('statusFilter').onchange=function(){state.filter=this.value;if(state.review)state.reviewIds=null;if(state.filter==='known'){state.recall=false;state.review=false;state.reviewIds=null;state.topic='all';state.region='all'}$('searchInput').value='';syncControls();rebuildQueue(state.selected)};
 $('shuffleButton').onclick=function(){state.quizOrder='random';state.queue=state.queue.filter(function(id){return quizEligible(byId.get(id))});shuffleQueue();state.index=0;state.selected=state.queue[0]||null;state.revealed=!state.recall;closeDrawer();renderAll();if(state.topic==='all'||state.recall)fitFocus();else fitScope();saveView();toast('현재 범위를 무작위 순서로 바꿨어요')};
 $('quizOrder').onchange=function(){state.quizOrder=this.value;rebuildQueue();toast(state.quizOrder==='nearby'?'대륙별로 가까운 장소부터 이어집니다':'현재 범위를 무작위로 섞었어요')};
-$('recallButton').onclick=function(){var preferred=state.quizOrder==='nearby'&&current()&&!(state.topic==='all'&&current().topic==='coords')?state.selected:null;state.recall=!state.recall;if(!state.recall)state.review=false;rebuildQueue(state.recall?preferred:state.selected)};$('revealButton').onclick=reveal;
+$('recallButton').onclick=function(){var preferred=state.quizOrder==='nearby'&&current()&&!(state.topic==='all'&&current().topic==='coords')?state.selected:null;state.recall=!state.recall;if(!state.recall)state.review=false;if(state.recall&&state.filter==='known'){state.filter='all';syncControls()}rebuildQueue(state.recall?preferred:state.selected)};$('revealButton').onclick=reveal;
 $('markKnown').onclick=function(){mark('known')};$('markAgain').onclick=function(){mark('again')};$('markLater').onclick=function(){mark('later')};$('prevButton').onclick=function(){next(-1)};$('nextButton').onclick=function(){next(1)};
 $('scopeFit').onclick=fitScope;$('focusFit').onclick=fitFocus;$('worldFit').onclick=function(){fitBox([-180,-90,180,90])};$('zoomIn').onclick=function(){var d=mapSize();zoom(1.35,d.w/2,d.h/2)};$('zoomOut').onclick=function(){var d=mapSize();zoom(1/1.35,d.w/2,d.h/2)};
 $('contextToggle').onchange=function(){state.context=this.checked;renderMap();saveView()};$('gridToggle').onchange=function(){state.grid=this.checked;renderMap();saveView()};$('supplementToggle').onchange=function(){state.supplement=this.checked;rebuildQueue(state.selected)};
