@@ -111,7 +111,7 @@ header{height:52px;padding:5px 12px;gap:6px}header h1{font-size:15px}header butt
  <div class="scrollBody">
   <h3>지도 표시</h3><label class="switchLine"><input id="contextToggle" type="checkbox" checked>주변 항목도 옅게 표시</label><label class="switchLine"><input id="gridToggle" type="checkbox">적도·회귀선·본초 자오선</label><label class="switchLine"><input id="supplementToggle" type="checkbox">기존 보충 항목도 포함</label><label class="switchLine"><input id="climateToggle" type="checkbox">기후 참고 지명도 학습·퀴즈·복습에 포함</label><p class="small muted">도시는 원, 국가는 깃발, 산업 지역은 공장, 문화·갈등 지역은 마름모로 표시합니다. 지도의 아래쪽에서 현재 기호의 뜻을 확인할 수 있습니다. 음영과 점선은 학습을 위한 대략적인 범위이며, 국경·분쟁 경계의 확정선이 아닙니다.</p>
   <h3>학습 기록</h3><p id="totalProgress"></p><div id="storageMessage" role="status" hidden></div><p id="migrationMessage" class="small muted" hidden>이전 묶음 항목의 익힘 기록은 내보내기에 보관합니다. 새로 나뉜 장소는 각각 확인하며, 이전에 ‘다시 보기’로 표시한 묶음은 해당 장소들의 복습으로 옮겼습니다.</p><p class="small muted">기존 익힘·복습 기록은 유지됩니다. ‘기억남’을 누른 항목부터 다음 복습일이 생깁니다. 복습 날짜는 기기의 날짜를 따릅니다. 기록은 이 브라우저에 저장됩니다. 기기나 파일을 바꿀 때는 기록 파일로 옮길 수 있습니다.</p><div class="buttonRow"><button id="exportButton">기록 내보내기</button><button id="importButton">기록 가져오기</button><input id="importInput" type="file" accept="application/json,.json" hidden></div>
-  <h3>학습 방법</h3><p>종류에서 <b>전체 통합</b>을 고르면 도시·국가·강·산맥 등을 함께 학습합니다. <b>퀴즈 시작</b>을 누르면 이름을 가리고 종류만 알려 줍니다. 기본은 <b>대륙별 · 가까운 순</b>으로, 선택한 장소부터 같은 대륙의 가까운 항목을 이어 봅니다. 퀴즈의 순서 선택에서 <b>전체 무작위</b>로 바꿀 수 있습니다. 정답을 확인한 뒤 <b>기억남</b> 또는 <b>기억 안 남</b>을 누릅니다. 기억난 항목은 오늘 퀴즈·복습에서 빠지고, 처음에는 다음 날 다시 나옵니다. 예정된 날에도 기억나면 다음 간격을 3일·7일·14일·30일로 늘립니다. 같은 날 여러 번 확인하거나 예정일 전에 확인해도 간격은 더 늘리지 않습니다. 기억 안 난 항목은 오늘 다시 볼 대상으로 남깁니다. <b>완전히 익힘</b>은 이후 퀴즈·복습에서 제외할 때만 사용하세요. 목록·검색에서는 제외한 항목도 검색할 수 있습니다. 검색 결과의 ‘복습 복구’를 누르면 오늘 복습으로 돌아옵니다. 표시 메뉴의 ‘제외한 항목’에서 모아 볼 수도 있습니다. 기후 비교용 지명은 ‘기후 참고 지명’에서 따로 볼 수 있습니다. 이름 암기까지 연습하려면 위의 ‘기후 참고 지명도 포함’을 켜세요.</p><p class="small muted">위쪽 지역 선택에서 한 대륙만 골라 학습·퀴즈할 수 있습니다. 북·중앙아메리카에는 멕시코와 카리브 지역을 포함합니다. 여러 대륙에 걸친 국가·해역은 학습 묶음 한 곳에 배치했고, 세계 규모의 지형·기준선은 별도로 모았습니다. 세부 범위는 서로 겹칠 수 있습니다.</p>
+  <h3>학습 방법</h3><p>종류에서 <b>전체 통합</b>을 고르면 도시·국가·강·산맥 등을 함께 학습합니다. <b>퀴즈 시작</b>을 누르면 이름을 가리고 종류만 알려 줍니다. 기본은 <b>대륙별 · 가까운 순</b>으로, 선택한 장소부터 같은 대륙의 가까운 항목을 이어 봅니다. 퀴즈의 순서 선택에서 <b>전체 무작위</b>로 바꿀 수 있습니다. 정답을 확인한 뒤 <b>기억남</b> 또는 <b>기억 안 남</b>을 누릅니다. 기억난 항목은 오늘 퀴즈·복습에서 빠지고, 처음에는 다음 날 다시 나옵니다. 예정된 날에도 기억나면 다음 간격을 3일·7일·14일·30일로 늘립니다. 30일 뒤 복습에서도 기억나면, 처음 응답을 포함해 6회 연속 성공한 항목을 자동으로 제외합니다. 같은 날 여러 번 확인하거나 예정일 전에 확인해도 단계는 올라가지 않습니다. 복습이 늦어지면 실제 응답한 날부터 다음 간격을 계산합니다. 기억 안 난 항목은 오늘 다시 볼 대상으로 남기며, 연속 성공 단계가 초기화되어 다음 기억남부터 1일 간격으로 다시 시작합니다. <b>완전히 익힘</b>은 이후 퀴즈·복습에서 제외할 때만 사용하세요. 목록·검색에서는 제외한 항목도 검색할 수 있습니다. 검색 결과의 ‘복습 복구’를 누르면 오늘 복습으로 돌아옵니다. 표시 메뉴의 ‘제외한 항목’에서 모아 볼 수도 있습니다. 기후 비교용 지명은 ‘기후 참고 지명’에서 따로 볼 수 있습니다. 이름 암기까지 연습하려면 위의 ‘기후 참고 지명도 포함’을 켜세요.</p><p class="small muted">위쪽 지역 선택에서 한 대륙만 골라 학습·퀴즈할 수 있습니다. 북·중앙아메리카에는 멕시코와 카리브 지역을 포함합니다. 여러 대륙에 걸친 국가·해역은 학습 묶음 한 곳에 배치했고, 세계 규모의 지형·기준선은 별도로 모았습니다. 세부 범위는 서로 겹칠 수 있습니다.</p>
   <h3>수록 범위</h3><p id="coverageText"></p><p>강의 1·2권(P00–P11)의 위치 설명과 지역 비교를 바탕으로 보완했습니다. 도시 안 명소와 세부 지형 사례는 관련 국가·도시 설명에 함께 넣어 검색할 수 있습니다. 모든 사례명이 독립 퀴즈인 것은 아닙니다. 이름 없는 관측 지점에는 새 도시명을 붙이지 않았습니다.</p><p class="small muted">좌표와 바탕지도를 같은 위·경도에 맞췄습니다. 국가의 깃발은 국경 안쪽 대표 위치입니다. 주요 하천·호수·산맥·사막·해역은 Natural Earth 자료를 반영했으며, 세계지도 축척에 맞춰 단순화했습니다.</p>
   <p class="small"><a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">지도 자료: Natural Earth</a></p><details id="lectureCatalog"><summary>개정 강의에서 추가한 지도 항목</summary><div id="lectureCatalogBody"></div></details><details id="documentCatalog"><summary>이전 위치 선행학습 목록</summary><div id="catalogBody"></div></details>
  </div>
@@ -234,6 +234,7 @@ function validDateKey(key){if(typeof key!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test
 function daysAfter(key,days){var a=key.split('-').map(Number),d=new Date(a[0],a[1]-1,a[2],12);d.setDate(d.getDate()+days);return dateKey(d)}
 function validSchedule(row){return row&&typeof row==='object'&&Number.isInteger(row.step)&&row.step>=1&&row.step<=reviewIntervals.length&&validDateKey(row.due)&&validDateKey(row.last)&&row.due>row.last}
 function isDue(id){return !reviewSchedule[id]||reviewSchedule[id].due<=dateKey()}
+function readyToMaster(id){var row=reviewSchedule[id];return !!row&&row.step===reviewIntervals.length&&isDue(id)}
 function shortDate(key){var a=key.split('-');return Number(a[1])+'월 '+Number(a[2])+'일'}
 function plannedReview(id){var prior=reviewSchedule[id],today=dateKey();if(prior&&prior.due>today)return {step:prior.step,due:prior.due,last:prior.last};var step=Math.min((prior?prior.step:0)+1,reviewIntervals.length);return {step:step,due:daysAfter(today,reviewIntervals[step-1]),last:today}}
 var storedSchedule=readJSON('wg_review_schedule',{});
@@ -318,23 +319,28 @@ function restoreReview(id){
 }
 function mark(kind){
  var it=current();if(!it||!state.revealed||(it.referenceOnly&&!state.climate))return;
- var message='';
+ var message='',autoMastered=false;
  if(kind==='known'){
   if(!state.recall&&!state.review&&known.has(it.id)){restoreReview(it.id);return}else{known.add(it.id);message='익힌 항목으로 표시했어요. 다음 퀴즈와 복습에서 제외합니다.'}
   again.delete(it.id);delete reviewSchedule[it.id];
  }else if(kind==='later'){
-  known.delete(it.id);again.add(it.id);reviewSchedule[it.id]=plannedReview(it.id);message=shortDate(reviewSchedule[it.id].due)+'에 다시 확인해요.';
+  if(readyToMaster(it.id)){
+   known.add(it.id);again.delete(it.id);delete reviewSchedule[it.id];autoMastered=true;
+   message='30일 뒤 복습까지 연속으로 기억해서 자동 제외했어요. 목록·검색에서 복구할 수 있어요.';
+  }else{
+   known.delete(it.id);again.add(it.id);reviewSchedule[it.id]=plannedReview(it.id);message=shortDate(reviewSchedule[it.id].due)+'에 다시 확인해요.';
+  }
  }else{
   known.delete(it.id);again.add(it.id);delete reviewSchedule[it.id];message='오늘 다시 볼 항목으로 남겼어요.';
  }
  persist();renderCard();renderList();
- if(state.recall||state.review){if(state.index<state.queue.length-1)next(1);else showComplete()}else toast(message);
+ if(state.recall||state.review){if(state.index<state.queue.length-1)next(1);else showComplete();if(autoMastered)toast(message)}else toast(message);
 }
 
 function showComplete(){
  $('learningCard').hidden=true;$('emptyCard').hidden=false;$('emptyTitle').textContent='이번 범위를 마쳤어요';
  var remaining=state.queue.filter(function(id){return again.has(id)&&isDue(id)}),scheduled=state.queue.filter(function(id){return again.has(id)&&!isDue(id)}).length;
- $('emptyText').textContent='이번 범위 '+state.queue.length+'개 · 오늘 다시 볼 항목 '+remaining.length+'개 · 이후 복습 예정 '+scheduled+'개. 기억난 항목은 예정된 날 다시 나옵니다.';
+ $('emptyText').textContent='이번 범위 '+state.queue.length+'개 · 오늘 다시 볼 항목 '+remaining.length+'개 · 이후 복습 예정 '+scheduled+'개. 복습 예정 항목은 해당 날짜에 다시 나오고, 완전히 익힌 항목은 제외됩니다.';
  $('emptyAction').textContent=remaining.length?'기억 안 난 항목 다시 보기':'학습으로 돌아가기';$('emptyAction').onclick=function(){if(remaining.length)startReview(remaining);else{state.review=false;state.recall=false;rebuildQueue()}};
 }
 function startReview(ids){state.review=true;state.reviewIds=Array.isArray(ids)?ids:null;state.recall=true;state.filter='all';syncControls();closeDrawer();rebuildQueue()}
@@ -369,7 +375,7 @@ function renderCard(){
  $('detailBody').textContent=details.join('\n\n');$('details').hidden=hidden||!details.length;
  $('referenceNotice').hidden=!reference;
  $('markAgain').disabled=hidden||reference;$('markLater').disabled=hidden||reference;$('markKnown').disabled=hidden||reference;$('answerButtons').hidden=hidden||reference;$('markKnown').hidden=hidden||reference;
- $('markLaterHint').textContent=shortDate(plannedReview(it.id).due)+' 다시';
+ $('markLaterHint').textContent=readyToMaster(it.id)?'기억나면 자동 제외':shortDate(plannedReview(it.id).due)+' 다시';
  $('markKnown').textContent=known.has(it.id)&&!state.recall&&!state.review?'오늘 복습에 복구':'완전히 익힘 · 제외';
  $('position').textContent=(state.index+1)+' / '+state.queue.length;$('prevButton').disabled=state.index<=0;$('nextButton').disabled=state.index>=state.queue.length-1;
 }
