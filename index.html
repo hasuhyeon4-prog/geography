@@ -551,9 +551,9 @@ var lastSize=null;function resizeMap(){var d=mapSize();if(!lastSize){lastSize=d;
 if(typeof ResizeObserver!=='undefined')new ResizeObserver(resizeMap).observe(map);else window.addEventListener('resize',resizeMap);
 document.addEventListener('visibilitychange',function(){if(!document.hidden){updateProgress();renderList()}});
 function applyRequestedFullReview(){
- var url=new URL(location.href),request='all-20260928';
- if(url.searchParams.get('review')!==request)return false;
- var marker='wg_review_all_20260928',already=readJSON(marker,false)===true;
+ var url=new URL(location.href),request=url.searchParams.get('review');
+ if(!['all-20260928','all-20260930'].includes(request))return false;
+ var resetDate=request.slice(4),marker='wg_review_all_'+resetDate,already=readJSON(marker,false)===true;
  if(!storageOK)return false;
  if(!already){
   var targets=items.filter(function(it){return state.climate||!it.referenceOnly}),targetIds=new Set(targets.map(function(it){return it.id}));
@@ -562,7 +562,7 @@ function applyRequestedFullReview(){
   var keys=['wg33_known','wg33_wrong','wg_review_schedule',marker],previous=[];
   try{
    previous=keys.map(function(key){return localStorage.getItem(key)});
-   localStorage.setItem('wg_review_all_backup_20260928',JSON.stringify({app:'world-geography-location',version:2,exportedAt:new Date().toISOString(),known:Array.from(known),again:Array.from(again),schedule:reviewSchedule}));
+   localStorage.setItem('wg_review_all_backup_'+resetDate,JSON.stringify({app:'world-geography-location',version:2,exportedAt:new Date().toISOString(),known:Array.from(known),again:Array.from(again),schedule:reviewSchedule}));
    localStorage.setItem(keys[0],JSON.stringify(nextKnown));
    localStorage.setItem(keys[1],JSON.stringify(Array.from(nextAgain)));
    localStorage.setItem(keys[2],JSON.stringify(nextSchedule));
