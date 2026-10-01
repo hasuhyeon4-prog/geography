@@ -68,7 +68,7 @@ header{height:52px;padding:5px 12px;gap:6px}header h1{font-size:15px}header butt
 .quizStartControls{display:flex;align-items:center;gap:5px;flex-shrink:0}#quizType{width:105px;min-height:36px;padding:4px;font-size:11px;border-radius:8px}#cardMeta{min-width:0;line-height:1.4}#cardTop{gap:5px}#map.placing{cursor:crosshair}#locationResult{padding:7px 9px;margin:4px 0 7px;border-radius:8px;background:#fff3e7;color:#8f4711;font-size:12px;line-height:1.5}@media(max-width:340px){#quizType{width:95px;font-size:10px}#recallButton{font-size:11px;padding:5px 7px}}
 .emptyModeLabel{display:flex;align-items:center;gap:8px;margin-bottom:12px;font-size:12px;color:var(--muted)}#emptyQuizType{width:140px;min-height:36px;font-size:12px}
 #locationResult[data-status=correct]{background:#e6f2f0;color:#075c56}#locationResult[data-status=wrong]{background:#fff0e9;color:#943c20}#locationResult[data-status=uncertain]{background:#fff6df;color:#765415}#locationNext{background:var(--accent);color:white;border-color:var(--accent)}#locationOverride{color:var(--muted);background:#f4f7f7}.locationHint{display:block;font-size:11px;line-height:1.4;margin-top:3px}
-#cityLocation{display:flex;align-items:flex-start;gap:7px;margin:0 0 8px;font-size:13px;line-height:1.55}#cityLocationType{flex-shrink:0;font-size:11px;font-weight:750;padding:2px 7px;border-radius:5px;background:#edf2f4;color:#435664}#cityLocation[data-kind=coast] #cityLocationType,#cityLocation[data-kind=coastalRegion] #cityLocationType{background:#e4f2f9;color:#096b91}#cityLocation[data-kind=lake] #cityLocationType,#cityLocation[data-kind=closedSea] #cityLocationType{background:#e9effb;color:#425a94}#cityLocationDetail{min-width:0;overflow-wrap:anywhere}
+#mapNote.cityMapNote{flex-wrap:wrap}.cityLegend{display:flex;align-items:center;flex-wrap:wrap;gap:4px 9px}#mapNote .cityLegend b{font-size:11px}#mapNote .cityLegend span{display:inline-flex;align-items:center;gap:3px;font-size:11px;line-height:1.4;white-space:nowrap}#mapNote .cityLegend svg{width:17px;height:17px;flex:0 0 17px}
 </style></head><body>
 <div id="bootNotice" role="status"><b>지도를 준비하고 있어요.</b><br>이 안내가 계속 보이고 버튼이 반응하지 않으면 파일을 다운로드해 Chrome 또는 삼성 인터넷에서 열어 주세요.</div>
 <div id="app">
@@ -83,7 +83,7 @@ header{height:52px;padding:5px 12px;gap:6px}header h1{font-size:15px}header butt
    <div id="cardTop"><span id="cardMeta"></span><div class="quizStartControls"><select id="quizType" aria-label="퀴즈 방식"><option value="name">이름 맞히기</option><option value="location">이름 → 위치</option><option value="description">설명 → 위치</option></select><button id="recallButton" aria-pressed="false">퀴즈 시작</button></div></div>
    <div id="studyContent" tabindex="0" aria-label="지명 설명">
     <div id="quizTools" hidden><span id="groupProgress" aria-live="polite"></span><label for="quizOrder">순서<select id="quizOrder"><option value="nearby">대륙별 · 가까운 순</option><option value="random">전체 무작위</option></select></label></div>
-    <div id="locationResult" role="status" hidden></div><h2 id="itemName"></h2><div id="cityLocation" hidden><span id="cityLocationType"></span><span id="cityLocationDetail"></span></div><div id="description"></div><dl id="riverFacts" hidden></dl><dl id="keyFacts" hidden></dl>
+    <div id="locationResult" role="status" hidden></div><h2 id="itemName"></h2><div id="description"></div><dl id="riverFacts" hidden></dl><dl id="keyFacts" hidden></dl>
     <details id="details"><summary>추가 설명</summary><div id="detailBody"></div></details>
    </div>
    <div id="answerDock">
@@ -260,7 +260,7 @@ function topicName(id){return (topics.find(function(x){return x[0]===id})||['','
 function current(){return state.selected?byId.get(state.selected):null}
 function locationQuiz(){return state.recall&&state.quizType!=='name'}
 function resetAnswer(){state.guess=null;state.grade=null;state.manualGrade=false;state.answerRecorded=false;state.revealed=!state.recall}
-function locationClue(it){var clue=(it.country&&!it.memo.includes(it.country)?it.country+' · ':'')+(it.cityLocation?it.cityLocation.label+' · '+it.cityLocation.detail+'\n':'')+it.memo;if(state.quizType==='description')Array.from(new Set([it.name].concat(it.aliases||[]))).filter(function(name){return name.length>1}).sort(function(a,b){return b.length-a.length}).forEach(function(name){clue=clue.split(name).join('이곳')});return clue}
+function locationClue(it){var clue=(it.country&&!it.memo.includes(it.country)?it.country+' · ':'')+it.memo;if(state.quizType==='description')Array.from(new Set([it.name].concat(it.aliases||[]))).filter(function(name){return name.length>1}).sort(function(a,b){return b.length-a.length}).forEach(function(name){clue=clue.split(name).join('이곳')});return clue}
 
 function available(includeReference){return items.filter(function(it){return (state.supplement||it.source!=='보충')&&(includeReference||state.climate||!it.referenceOnly)})}
 function geometry(it){var g=it.geometry;if(it.topic==='country'){var boundary=window.WGCountryShapes&&window.WGCountryShapes.byName[it.name];if(locationQuiz()&&state.revealed&&boundary)return {type:'polygons',polygons:boundary.polygons,anchor:[g.lon,g.lat]};var b=bbox(g);return {type:'point',lon:(b[0]+b[2])/2,lat:(b[1]+b[3])/2}}return g}
@@ -381,8 +381,6 @@ function renderCard(){
  $('groupProgress').dataset.continent=it.continent;
  $('itemName').textContent=hidden&&locating?(state.quizType==='description'?'설명 속 장소를 지도에 찍어보세요':it.name):hidden?(it.topic==='coords'?'표시한 번호·선의 이름과 의미는?':'표시한 '+style.name+'의 이름은?'):it.name;
  $('description').textContent=hidden&&locating?locationClue(it):hidden?'이름을 떠올린 뒤 정답을 확인하세요.':((it.country&&!it.memo.includes(it.country)?it.country+' · ':'')+it.memo);
- $('cityLocation').hidden=hidden||!it.cityLocation;
- $('cityLocationType').textContent=it.cityLocation?it.cityLocation.label:'';$('cityLocationDetail').textContent=it.cityLocation?it.cityLocation.detail:'';$('cityLocation').dataset.kind=it.cityLocation?it.cityLocation.kind:'';
  $('locationResult').hidden=!locating||!state.revealed;
  if(locating&&state.revealed){var grade=state.grade||{status:'uncertain',reason:'정답 범위를 보고 기억 여부를 직접 골라 주세요.'},title={correct:'정답',wrong:'오답',uncertain:'판정 보류'}[grade.status];$('locationResult').dataset.status=grade.status;$('locationResult').textContent=title+' · '+grade.reason+(grade.distance!==null&&grade.distance!==undefined&&it.topic!=='country'&&grade.distance>0?' 약 '+grade.distance.toLocaleString()+' km.':'')+(grade.status==='uncertain'?' 기억 여부를 직접 골라 주세요.':state.manualGrade?' 기억 여부를 직접 수정하세요.':' 다음을 누르면 '+(grade.status==='correct'?'기억남':'기억 안 남')+'으로 기록합니다.')}
  $('revealButton').textContent=locating?(state.guess?'이 위치로 확인':'모르겠어요 · 정답 보기'):'정답 보기';
@@ -414,7 +412,7 @@ function renderList(){
  $('itemList').replaceChildren();var fragment=document.createDocumentFragment();
  arr.forEach(function(it){var button=document.createElement('button');button.type='button';button.className='listItem'+(it.id===state.selected?' current':'')+(again.has(it.id)?' again':'');button.dataset.id=it.id;
   button.dataset.continent=it.continent;button.dataset.kind=it.featureKind;
-   var wrapper=document.createElement('span');wrapper.className='itemText';var title=document.createElement('strong');title.textContent=it.name;var sub=document.createElement('small');sub.textContent=featureStyles[it.featureKind].name+' · '+(it.country||it.subcat)+(it.cityLocation?' · '+it.cityLocation.label:'');wrapper.append(title,sub);
+  var wrapper=document.createElement('span');wrapper.className='itemText';var title=document.createElement('strong');title.textContent=it.name;var sub=document.createElement('small');sub.textContent=featureStyles[it.featureKind].name+' · '+(it.country||it.subcat);wrapper.append(title,sub);
   var status=document.createElement('span');status.className='statusDot';status.textContent=it.referenceOnly&&!state.climate?'기후 참고':known.has(it.id)?'복습 제외':again.has(it.id)?(isDue(it.id)?'오늘 복습':shortDate(reviewSchedule[it.id].due)):'';button.append(wrapper,status);button.onclick=function(){setSelected(it.id,true)};
   if(known.has(it.id)&&(!it.referenceOnly||state.climate)){
    var row=document.createElement('div'),restore=document.createElement('button');row.className='listRow';restore.type='button';restore.className='listRestore';restore.dataset.restoreId=it.id;restore.textContent='복습 복구';restore.setAttribute('aria-label',it.name+' 오늘 복습에 복구');restore.onclick=function(){restoreReview(it.id)};row.append(button,restore);fragment.appendChild(row);
@@ -452,6 +450,16 @@ function svg(tag,attrs,parent,text){var e=document.createElementNS('http://www.w
 function pointsPath(points,closed){return points.map(function(p,i){var a=project(p[0],p[1]);return (i?'L':'M')+a.x+' '+a.y}).join(' ')+(closed?' Z':'')}
 function label(lon,lat,name,parent,dx,dy,color){var p=project(lon,lat);svg('text',{x:p.x+(dx||0)/state.scale,y:p.y+(dy===undefined?-14:dy)/state.scale,'font-size':13/state.scale,'stroke-width':4/state.scale,class:'mapLabel','text-anchor':'middle',style:color?'fill:'+color:''},parent||$('labelLayer'),name)}
 function dot(lon,lat,parent,selected,color){var p=project(lon,lat);svg('circle',{cx:p.x,cy:p.y,r:(selected?7:3.5)/state.scale,fill:color||(selected?'#08797d':'#456978'),stroke:'#fff','stroke-width':selected?2:1,class:'geoStroke',opacity:selected?1:.5},parent)}
+function cityMapStyle(kind){
+ var styles={inland:['#763fa4','내륙'],coast:['#087fbd','해안'],coastalRegion:['#763fa4','해안권'],lake:['#087f86','호숫가'],closedSea:['#087f86','호숫가'],unknown:['#71818a','입지 미확인']},key=styles[kind]?kind:'unknown',row=styles[key];
+ return Object.assign({},featureStyles.city,{color:row[0],siting:key,sitingLabel:row[1]});
+}
+function mapStyle(it){return it.featureKind==='city'?cityMapStyle(it.cityLocation&&it.cityLocation.kind):featureStyles[it.featureKind]}
+function appendCityLegend(){
+ $('mapNote').classList.add('cityMapNote');var legend=document.createElement('div'),title=document.createElement('b'),kinds=['inland','coast','coastalRegion','lake'];legend.className='cityLegend';legend.setAttribute('aria-label','도시 입지 범례');title.textContent='도시';legend.appendChild(title);
+ if($('mapSVG').querySelector('.mapMarker[data-siting="unknown"]'))kinds.push('unknown');
+ kinds.forEach(function(kind){var row=document.createElement('span'),style=cityMapStyle(kind),key=svg('svg',{viewBox:'-12 -12 24 24',width:17,height:17,'aria-hidden':'true'},row);drawSymbol(key,style);row.appendChild(document.createTextNode(style.sitingLabel));legend.appendChild(row)});$('mapNote').appendChild(legend);
+}
 function drawSymbol(parent,style){
  var paths={
   flag:'M-7 11V-10 M-6-9H9L5-3L9 3H-6Z',
@@ -476,9 +484,11 @@ function drawSymbol(parent,style){
   area:'M-10-8L0-11L11-3L8 10L-5 11L-12 2Z',
   globe:'M-11 0H11 M0-11C-7-6-7 6 0 11C7 6 7-6 0-11Z'
  },attrs={'stroke-linejoin':'round','stroke-linecap':'round'};
- if(style.symbol==='city'){
-  svg('circle',{cx:0,cy:0,r:8,fill:'#fff',stroke:style.color,'stroke-width':2},parent);
-  svg('circle',{cx:0,cy:0,r:4.5,fill:style.color},parent);return;
+  if(style.symbol==='city'){
+   svg('circle',{cx:0,cy:0,r:8,fill:'#fff',stroke:style.color,'stroke-width':2},parent);
+   if(style.siting==='lake'||style.siting==='closedSea')svg('circle',{cx:0,cy:0,r:4.5,fill:'#fff',stroke:style.color,'stroke-width':2},parent);
+   else{svg('circle',{cx:0,cy:0,r:4.5,fill:style.color},parent);if(style.siting==='coastalRegion')svg('path',{d:'M0 -4.5 A4.5 4.5 0 0 1 0 4.5 Z',fill:'#087fbd'},parent)}
+   if(style.sitingLabel)svg('title',{},parent,style.siting==='coastalRegion'?'해안권 · 도심은 내륙':style.sitingLabel);return;
  }
  if(style.symbol==='globe')svg('circle',{cx:0,cy:0,r:11,fill:'#fff',stroke:style.color,'stroke-width':2},parent);
  var d=paths[style.symbol];
@@ -486,11 +496,11 @@ function drawSymbol(parent,style){
  svg('path',Object.assign({d:d,fill:['flag','mountain','plateau','lake','island','factory','diamond','leaf','peninsula','tree','heritage'].includes(style.symbol)?'#fff':'none',stroke:style.color,'stroke-width':2},attrs),parent);
 }
 function marker(lon,lat,parent,selected,style,kind){
- var p=project(lon,lat),group=svg('g',{class:'mapMarker','data-kind':kind,'data-lon':lon,'data-lat':lat,transform:'translate('+p.x+' '+p.y+') scale('+((selected?1:.6)/state.scale)+')',opacity:selected?1:.5},parent);
+ var p=project(lon,lat),group=svg('g',{class:'mapMarker','data-kind':kind,'data-siting':style.siting||'','data-lon':lon,'data-lat':lat,transform:'translate('+p.x+' '+p.y+') scale('+((selected?1:kind==='city'?.7:.6)/state.scale)+')',opacity:selected?1:kind==='city'?.85:.5},parent);
  drawSymbol(group,style);
 }
 function drawGeom(it,selected){
- var g=geometry(it),style=featureStyles[it.featureKind],parent=svg('g',{class:'mapFeature','data-kind':it.featureKind,'data-id':it.id},selected?$('selectedLayer'):$('contextLayer')),color=style.color,stroke=selected?3:1.2,opacity=selected?1:.28,showName=selected&&state.revealed;
+ var g=geometry(it),style=mapStyle(it),parent=svg('g',{class:'mapFeature','data-kind':it.featureKind,'data-id':it.id},selected?$('selectedLayer'):$('contextLayer')),color=style.color,stroke=selected?3:1.2,opacity=selected?1:.28,showName=selected&&state.revealed;
  if(g.type==='point'){marker(g.lon,g.lat,parent,selected,style,it.featureKind);if(showName)label(g.lon,g.lat,it.name,null,0,-21,color);return}
  if(g.type==='multipoint'){g.points.forEach(function(p,i){dot(p[0],p[1],parent,selected);if(selected)label(p[0],p[1],String(i+1),$('labelLayer'),0,-13)});return}
  if(g.type==='worldlabels'){g.points.forEach(function(p,i){var lat=p[0]==='남극 대륙'?-78:p[2];dot(p[1],lat,parent,selected);if(showName)label(p[1],lat,p[0]);else if(selected)label(p[1],lat,String(i+1))});return}
@@ -518,9 +528,10 @@ function renderMap(){
  if(state.context&&!state.recall&&!state.review)scopeItems().forEach(function(x){if((state.topic!=='all'||x.topic!=='coords')&&(!it||x.id!==it.id))drawGeom(x,false)});
  if(it&&!(locationQuiz()&&!state.revealed))drawGeom(it,true);
  if(locationQuiz()&&state.guess)drawGuess(it);
- $('mapNote').replaceChildren();
- if(it&&locationQuiz()){$('mapNote').textContent=state.revealed?(state.guess?'주황색: 내가 찍은 곳 · 정답은 종류별 기호·범위':'정답 위치·범위를 확인하세요'):state.guess?'다른 곳을 눌러 수정 · 아래 버튼으로 확인':'지도를 눌러 위치 선택 · 확대·이동 가능';return}
- if(it){var style=featureStyles[it.featureKind],key=svg('svg',{viewBox:'-15 -15 30 30',width:26,height:26,'aria-hidden':'true'},$('mapNote'));drawSymbol(key,style);var note=document.createElement('span'),title=document.createElement('b');title.textContent=style.name;note.append(title,document.createElement('br'),style.hint);$('mapNote').append(note)}else $('mapNote').textContent='표시할 항목이 없습니다';
+ $('mapNote').replaceChildren();$('mapNote').classList.remove('cityMapNote');var hasCities=!!$('mapSVG').querySelector('.mapMarker[data-kind="city"]');
+ if(it&&locationQuiz()){$('mapNote').textContent=state.revealed?(state.guess?'주황색: 내가 찍은 곳 · 정답은 종류별 기호·범위':'정답 위치·범위를 확인하세요'):state.guess?'다른 곳을 눌러 수정 · 아래 버튼으로 확인':'지도를 눌러 위치 선택 · 확대·이동 가능';if(hasCities)appendCityLegend();return}
+ if(it&&it.featureKind==='city')appendCityLegend();
+ else if(it){var style=featureStyles[it.featureKind],key=svg('svg',{viewBox:'-15 -15 30 30',width:26,height:26,'aria-hidden':'true'},$('mapNote'));drawSymbol(key,style);var note=document.createElement('span'),title=document.createElement('b');title.textContent=style.name;note.append(title,document.createElement('br'),style.hint);$('mapNote').append(note);if(hasCities)appendCityLegend()}else $('mapNote').textContent='표시할 항목이 없습니다';
 }
 function drawGuess(it){
  var p=project(state.guess.lon,state.guess.lat),parent=$('guessLayer');
