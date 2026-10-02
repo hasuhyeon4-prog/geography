@@ -42,12 +42,12 @@ test('freshwater lakes, the Caspian basin, and inland cities near lakes stay dis
   assert.match(siting.byName['이르쿠츠크'].detail,/바이칼호에서.*떨어져/);
 });
 
-test('coastal urban regions explicitly distinguish the inland centre',()=>{
-  for(const [name,place] of Object.entries(siting.byName))if(place.kind==='coastalRegion'){
-    assert.match(place.detail,/도심은.*내륙/,name);
-    assert.match(place.detail,/연안|해안/,name);
-  }
-  for(const name of ['로마','아테네','방콕','호찌민','상하이','로스앤젤레스','휴스턴'])assert.equal(siting.byName[name].kind,'coastalRegion',name);
+test('study markers use one location category, without a mixed coastal region',()=>{
+  for(const name of ['로테르담','아테네','로스앤젤레스','퍼스','브리즈번','크라이스트처치','상하이','푸저우'])assert.equal(siting.byName[name].kind,'coast',name);
+  for(const name of ['로마','방콕','호찌민','휴스턴','산호세'])assert.equal(siting.byName[name].kind,'inland',name);
+  for(const place of Object.values(siting.byName))assert.notEqual(place.kind,'coastalRegion');
+  assert.match(siting.byName['로마'].detail,/오스티아/);
+  assert.match(siting.byName['로스앤젤레스'].detail,/태평양/);
 });
 
 test('nearby coasts and offshore seas are not assigned to inland cities',()=>{

@@ -1,5 +1,8 @@
-/* City siting audit, 2026-10-01.
- * The city centre and the wider coastal city/port are distinguished explicitly.
+/* City siting audit, 2026-10-02.
+ * Study-map categories describe the city at regional map scale, not a CBD point.
+ * Continuous coastal urban areas and coastal estuary ports are coastal.
+ * A distant coastal administrative extension alone does not change an inland core.
+ * These are map aids, not separate exam facts; local nuances stay in the detail.
  * A river port or tidal river alone does not make a city a seaside city.
  * Freshwater lakes and the closed Caspian basin are distinguished from the ocean.
  */
@@ -9,12 +12,12 @@
   else root.WGCityLocations=data;
 })(typeof window!=='undefined'?window:globalThis,function(){
   'use strict';
-  var labels={coast:'해안',coastalRegion:'해안권',inland:'내륙',lake:'내륙 · 호숫가',closedSea:'내륙수역 연안'};
+  var labels={coast:'해안',inland:'내륙',lake:'호수 연안',closedSea:'호수 연안'};
   var rows=[
     ['런던','inland','템스강변의 내륙 도시 · 강을 따라 북해로 연결되는 항구','london'],
     ['파리','inland','프랑스 북부 내륙 · 센강변'],
     ['브뤼셀','inland','벨기에 중부 내륙'],
-    ['로테르담','coastalRegion','도심은 내륙의 니우어마스강변 · 항만은 라인강 하구권에서 북해 연안까지 이어짐','rotterdam'],
+    ['로테르담','coast','도심은 내륙의 니우어마스강변 · 항만은 라인강 하구권에서 북해 연안까지 이어짐','rotterdam'],
     ['함부르크','inland','엘베강 하류의 내륙 항구 · 북해 해안에서 강을 거슬러 올라온 위치','hamburg'],
     ['바젤','inland','스위스 북서부 내륙 · 라인강변의 하항'],
     ['베를린','inland','독일 북동부 내륙 · 슈프레강 주변'],
@@ -33,10 +36,10 @@
     ['뒤스부르크','inland','라인강·루르강 합류부의 내륙 하항'],
     ['에센','inland','독일 서부 내륙 · 루르 공업 지역'],
     ['상트페테르부르크','coast','핀란드만(발트해) 연안 · 네바강 하구'],
-    ['로마','coastalRegion','도심은 테베레강변 내륙 · 행정구역의 오스티아는 티레니아해(지중해) 연안','rome'],
+    ['로마','inland','도심은 테베레강변 내륙 · 행정구역의 오스티아는 티레니아해(지중해) 연안','rome'],
     ['모스크바','inland','러시아 서부 내륙 · 모스크바강변'],
     ['뒤셀도르프','inland','독일 서부 내륙 · 라인강변'],
-    ['아테네','coastalRegion','도심은 내륙 분지 · 피레우스를 포함한 도시권은 사로니코스만(지중해) 연안','athens'],
+    ['아테네','coast','도심은 내륙 분지 · 피레우스를 포함한 도시권은 사로니코스만(지중해) 연안','athens'],
     ['이스탄불','coast','보스포루스 해협·마르마라해 연안 · 흑해와 지중해를 잇는 길목'],
     ['앙카라','inland','아나톨리아고원 중앙의 내륙'],
     ['테헤란','inland','이란 북부 내륙 · 엘부르즈산맥 남쪽 산기슭'],
@@ -61,9 +64,9 @@
     ['울란바토르','inland','몽골 내륙 · 톨강 계곡'],
     ['네피도','inland','미얀마 중앙 내륙'],
     ['양곤','inland','양곤강변의 내륙 항구 · 강을 따라 안다만해로 연결','yangon'],
-    ['방콕','coastalRegion','도심은 차오프라야강변 내륙 · 남쪽 방쿤티안은 타이만 연안','bangkok'],
+    ['방콕','inland','도심은 차오프라야강변 내륙 · 남쪽 방쿤티안은 타이만 연안','bangkok'],
     ['하노이','inland','베트남 북부 내륙 · 홍강변, 삼각주 안쪽'],
-    ['호찌민','coastalRegion','도심은 사이공강변 내륙 · 남쪽 껀저는 남중국해 연안','hcmc'],
+    ['호찌민','inland','도심은 사이공강변 내륙 · 남쪽 껀저는 남중국해 연안','hcmc'],
     ['비엔티안','inland','라오스 내륙 · 메콩강변'],
     ['프놈펜','inland','캄보디아 내륙 · 메콩강·톤레사프강 합류부'],
     ['쿠알라룸푸르','inland','말레이반도 내륙 · 클랑강·곰박강 합류부'],
@@ -82,10 +85,10 @@
     ['더반','coast','인도양 연안 · 남아프리카 공화국 동해안'],
     ['시애틀','coast','퓌젓사운드(태평양에 연결되는 만) 연안'],
     ['샌프란시스코','coast','태평양·샌프란시스코만 연안의 반도 도시'],
-    ['로스앤젤레스','coastalRegion','도심은 내륙 · 서쪽·남쪽의 해안 지구는 태평양 연안','la'],
+    ['로스앤젤레스','coast','도심은 내륙 · 서쪽·남쪽의 해안 지구는 태평양 연안','la'],
     ['포틀랜드','inland','윌라멧강·컬럼비아강 합류부의 내륙 항구 · 태평양과는 강으로 연결'],
     ['라스베이거스','inland','미국 남서부 모하비 사막의 내륙 분지'],
-    ['휴스턴','coastalRegion','도심은 내륙 · 항만·도시권은 갤버스턴만과 멕시코만 해안으로 이어짐','houston'],
+    ['휴스턴','inland','도심은 내륙 · 항만·도시권은 갤버스턴만과 멕시코만 해안으로 이어짐','houston'],
     ['뉴올리언스','inland','미시시피강 하류의 내륙 항구 · 멕시코만과 강으로 연결, 북쪽은 폰차트레인호','neworleans'],
     ['시카고','lake','미시간호 남서안 · 오대호의 담수 호숫가','chicago'],
     ['디트로이트','inland','디트로이트강변 · 오대호 사이를 잇는 담수 수로'],
@@ -117,12 +120,12 @@
     ['칸쿤(캉쿤)','coast','카리브해 연안 · 유카탄반도 북동쪽'],
     ['람사르','closedSea','카스피해 남안 · 대양으로 흘러나가지 않는 폐쇄성 내륙 호수','caspian'],
     ['멜버른','coast','포트필립만 연안 · 도심은 야라강 하구권, 만은 배스 해협과 연결'],
-    ['퍼스','coastalRegion','도심은 스완강변 내륙 · 서쪽 도시권은 인도양 연안','perth'],
+    ['퍼스','coast','도심은 스완강변 내륙 · 서쪽 도시권은 인도양 연안','perth'],
     ['다윈','coast','인도양의 티모르해 연안 · 다윈항 주변'],
     ['캔버라','inland','오스트레일리아 남동부 내륙 · 인공 호수 벌리그리핀호 주변'],
-    ['브리즈번','coastalRegion','도심은 브리즈번강변 내륙 · 하구·동쪽 도시권은 모턴만(태평양) 연안','brisbane'],
+    ['브리즈번','coast','도심은 브리즈번강변 내륙 · 하구·동쪽 도시권은 모턴만(태평양) 연안','brisbane'],
     ['오클랜드','coast','태평양 쪽 와이테마타항과 태즈먼해 쪽 마누카우항 사이의 지협'],
-    ['크라이스트처치','coastalRegion','도심은 캔터베리 평야 내륙 · 동쪽 해안 지구는 태평양 연안','christchurch'],
+    ['크라이스트처치','coast','도심은 캔터베리 평야 내륙 · 동쪽 해안 지구는 태평양 연안','christchurch'],
     ['로토루아','lake','뉴질랜드 북섬 내륙 · 로토루아호 남안'],
     ['타우포','lake','뉴질랜드 북섬 내륙 · 타우포호 북동안'],
     ['밴쿠버','coast','태평양 연안 · 버라드만·조지아 해협 주변'],
@@ -132,7 +135,7 @@
     ['필라델피아','inland','델라웨어강변의 내륙 항구 · 델라웨어만·대서양과 강으로 연결','philadelphia'],
     ['오타와','inland','캐나다 남동부 내륙 · 오타와강변'],
     ['에드먼턴','inland','캐나다 서부 내륙 · 노스서스캐처원강변'],
-    ['산호세','coastalRegion','도심은 산타클라라 계곡 내륙 · 북쪽 알비소 지구는 샌프란시스코만 연안','sanjose'],
+    ['산호세','inland','도심은 산타클라라 계곡 내륙 · 북쪽 알비소 지구는 샌프란시스코만 연안','sanjose'],
     ['과달라하라','inland','멕시코 서부의 내륙 고지대'],
     ['상파울루','inland','브라질 남동부 내륙 고원 · 대서양 해안산맥의 안쪽'],
     ['로차','inland','우루과이 남동부 내륙 · 로차주 해변들과 달리 도시 자체는 해안에서 안쪽','rocha'],
@@ -142,11 +145,11 @@
     ['수크레','inland','볼리비아 안데스산맥의 내륙 고지대'],
     ['코르도바','inland','아르헨티나 중앙 내륙 · 팜파스 서쪽 가장자리'],
     ['블라디보스토크','coast','동해 연안 · 표트르대제만의 항구'],
-    ['상하이','coastalRegion','도심은 황푸강변 내륙 · 도시권은 창장 하구·동중국해 연안','shanghai'],
+    ['상하이','coast','도심은 황푸강변 내륙 · 도시권은 창장 하구·동중국해 연안','shanghai'],
     ['바마코','inland','말리 남서부 내륙 · 니제르강변'],
     ['발릭파판','coast','보르네오섬 동해안 · 마카사르 해협 연안'],
     ['시안','inland','중국 중부 내륙 · 웨이허강 분지'],
-    ['푸저우','coastalRegion','도심은 민강 하류의 내륙 강변 · 동쪽 해안은 타이완 해협 연안','fuzhou'],
+    ['푸저우','coast','도심은 민강 하류의 내륙 강변 · 동쪽 해안은 타이완 해협 연안','fuzhou'],
     ['칭다오','coast','황해 연안 · 산둥반도 남쪽, 자오저우만 주변'],
     ['쿤밍','inland','중국 남서부 윈난고원 내륙 · 뎬츠호 북쪽'],
     ['선양','inland','중국 동북부 내륙 · 랴오허강 평원'],
@@ -237,5 +240,5 @@
   };
   var byName=Object.create(null);
   rows.forEach(function(row){byName[row[0]]={kind:row[1],label:labels[row[1]],detail:row[2],source:row[3]||'map'}});
-  return {auditedAt:'2026-10-01',labels:labels,byName:byName,sources:sources};
+  return {auditedAt:'2026-10-02',labels:labels,byName:byName,sources:sources};
 });
