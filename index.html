@@ -69,12 +69,19 @@ header{height:52px;padding:5px 12px;gap:6px}header h1{font-size:15px}header butt
 .emptyModeLabel{display:flex;align-items:center;gap:8px;margin-bottom:12px;font-size:12px;color:var(--muted)}#emptyQuizType{width:140px;min-height:36px;font-size:12px}
 #locationResult[data-status=correct]{background:#e6f2f0;color:#075c56}#locationResult[data-status=wrong]{background:#fff0e9;color:#943c20}#locationResult[data-status=uncertain]{background:#fff6df;color:#765415}#locationNext{background:var(--accent);color:white;border-color:var(--accent)}#locationOverride{color:var(--muted);background:#f4f7f7}.locationHint{display:block;font-size:11px;line-height:1.4;margin-top:3px}
 #mapNote.cityMapNote{flex-wrap:wrap}.cityLegend{display:flex;align-items:center;flex-wrap:wrap;gap:4px 9px}#mapNote .cityLegend b{font-size:11px}#mapNote .cityLegend span{display:inline-flex;align-items:center;gap:3px;font-size:11px;line-height:1.4;white-space:nowrap}#mapNote .cityLegend svg{width:17px;height:17px;flex:0 0 17px}
+#comparisonLinks{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+#comparisonLinks button{min-height:40px;padding:7px 10px;font-size:12px;color:var(--accent);background:var(--pale)}
+#comparisonLinks button[aria-pressed=true]{color:white;background:var(--accent)}
+#comparisonDetail{padding:10px;border-left:3px solid var(--accent);background:#f0f7f6;font-size:13px;line-height:1.6;white-space:pre-line;margin:8px 0}
+#extentNote{font-size:12px;line-height:1.5;color:#607125;margin:6px 0}
+#allReviewButton{margin:6px 0;width:100%;min-height:44px}#emptyAllReview{margin-top:8px;width:100%}
+#mapNote .extentMapNote{font-size:11px;line-height:1.4}
 </style></head><body>
 <div id="bootNotice" role="status"><b>지도를 준비하고 있어요.</b><br>이 안내가 계속 보이고 버튼이 반응하지 않으면 파일을 다운로드해 Chrome 또는 삼성 인터넷에서 열어 주세요.</div>
 <div id="app">
  <header><h1>세계지리 위치 학습</h1><button id="reviewButton" aria-pressed="false">오늘 복습 <span id="reviewCount">0</span></button><button id="listButton" aria-controls="listDrawer" aria-expanded="false">목록·검색</button></header>
  <div class="scope"><label for="topicSelect">종류<select id="topicSelect"></select></label><label for="regionSelect">지역<select id="regionSelect"></select></label></div>
- <main id="map" aria-label="확대하거나 이동할 수 있는 세계 지도"><div id="mapScene"><div id="baseMap" role="img" aria-label="국경과 주요 하천이 표시된 세계 백지도" style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:minmax(0,966fr) minmax(0,967fr) minmax(0,967fr)"><img src="assets/map-0-0.webp" width="1200" height="966" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-0-1.webp" width="1200" height="966" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-0-2.webp" width="1200" height="966" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-0-3.webp" width="1200" height="966" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-0-4.webp" width="1200" height="966" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-0-5.webp" width="1200" height="966" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-1-0.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-1-1.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-1-2.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-1-3.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-1-4.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-1-5.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-2-0.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-2-1.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-2-2.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-2-3.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-2-4.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-2-5.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"></div><svg id="mapSVG" viewBox="0 0 3600 1800" aria-hidden="true"><g id="polarLayer"></g><g id="gridLayer"></g><g id="contextLayer"></g><g id="selectedLayer"></g><g id="labelLayer"></g><g id="guessLayer"></g></svg></div>
+ <main id="map" aria-label="확대하거나 이동할 수 있는 세계 지도"><div id="mapScene"><div id="baseMap" role="img" aria-label="국경과 주요 하천이 표시된 세계 백지도" style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:minmax(0,966fr) minmax(0,967fr) minmax(0,967fr)"><img src="assets/map-0-0.webp" width="1200" height="966" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-0-1.webp" width="1200" height="966" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-0-2.webp" width="1200" height="966" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-0-3.webp" width="1200" height="966" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-0-4.webp" width="1200" height="966" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-0-5.webp" width="1200" height="966" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-1-0.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-1-1.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-1-2.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-1-3.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-1-4.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-1-5.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-2-0.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-2-1.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-2-2.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-2-3.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-2-4.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"><img src="assets/map-2-5.webp" width="1200" height="967" decoding="async" alt="" draggable="false" style="display:block;width:100%;height:100%"></div><svg id="mapSVG" viewBox="0 0 3600 1800" aria-hidden="true"><g id="polarLayer"></g><g id="gridLayer"></g><g id="contextLayer"></g><g id="comparisonLayer"></g><g id="selectedLayer"></g><g id="labelLayer"></g><g id="guessLayer"></g></svg></div>
   <div class="mapTools"><button id="scopeFit" title="현재 학습 범위를 한눈에 보기">범위 보기</button><button id="focusFit" title="선택한 지명 주변 보기">주변 보기</button></div>
   <div class="mapControls"><button id="zoomIn" aria-label="지도 확대">＋</button><button id="zoomOut" aria-label="지도 축소">−</button><button id="worldFit" aria-label="세계 전체 보기">세계</button></div><div id="mapNote"></div>
  </main>
@@ -83,7 +90,7 @@ header{height:52px;padding:5px 12px;gap:6px}header h1{font-size:15px}header butt
    <div id="cardTop"><span id="cardMeta"></span><div class="quizStartControls"><select id="quizType" aria-label="퀴즈 방식"><option value="name">이름 맞히기</option><option value="location">이름 → 위치</option><option value="description">설명 → 위치</option></select><button id="recallButton" aria-pressed="false">퀴즈 시작</button></div></div>
    <div id="studyContent" tabindex="0" aria-label="지명 설명">
     <div id="quizTools" hidden><span id="groupProgress" aria-live="polite"></span><label for="quizOrder">순서<select id="quizOrder"><option value="nearby">대륙별 · 가까운 순</option><option value="random">전체 무작위</option></select></label></div>
-    <div id="locationResult" role="status" hidden></div><h2 id="itemName"></h2><div id="description"></div><dl id="riverFacts" hidden></dl><dl id="keyFacts" hidden></dl>
+    <div id="locationResult" role="status" hidden></div><h2 id="itemName"></h2><div id="description"></div><p id="extentNote" hidden></p><div id="comparisonLinks" aria-label="관련 지명 함께 보기" hidden></div><div id="comparisonDetail" hidden></div><dl id="riverFacts" hidden></dl><dl id="keyFacts" hidden></dl>
     <details id="details"><summary>추가 설명</summary><div id="detailBody"></div></details>
    </div>
    <div id="answerDock">
@@ -105,20 +112,20 @@ header{height:52px;padding:5px 12px;gap:6px}header h1{font-size:15px}header butt
     </div>
    </div>
   </div>
-  <div id="emptyCard" hidden><label class="emptyModeLabel">퀴즈 방식<select id="emptyQuizType" aria-label="퀴즈 방식"><option value="name">이름 맞히기</option><option value="location">이름 → 위치</option><option value="description">설명 → 위치</option></select></label><h2 id="emptyTitle"></h2><p id="emptyText"></p><button id="emptyAction" class="primary"></button></div>
+  <div id="emptyCard" hidden><label class="emptyModeLabel">퀴즈 방식<select id="emptyQuizType" aria-label="퀴즈 방식"><option value="name">이름 맞히기</option><option value="location">이름 → 위치</option><option value="description">설명 → 위치</option></select></label><h2 id="emptyTitle"></h2><p id="emptyText"></p><button id="emptyAction" class="primary"></button><button id="emptyAllReview">복습 대상 전체 퀴즈 · 날짜 무관</button></div>
  </section>
 </div>
 <div id="backdrop" class="backdrop" hidden></div>
 <aside id="listDrawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="listTitle" hidden>
  <div class="drawerHeader"><h2 id="listTitle">학습 목록</h2><button id="closeList" aria-label="목록 닫기">닫기</button></div>
- <div class="drawerControls"><input id="searchInput" type="search" placeholder="모든 지도 항목에서 검색" aria-label="지명 검색" autocomplete="off"><div class="filterRow"><label for="statusFilter">표시<select id="statusFilter"><option value="all">전체</option><option value="known">제외한 항목</option><option value="new">아직 익히지 않은 항목</option><option value="again">복습 대상 전체</option><option value="scheduled">이후 복습 예정</option><option value="added">이번에 추가한 지명</option><option value="reference">기후 참고 지명</option></select></label><button id="shuffleButton">순서 섞기</button></div><div id="listInfo" class="listInfo"></div></div>
+ <div class="drawerControls"><input id="searchInput" type="search" placeholder="모든 지도 항목에서 검색" aria-label="지명 검색" autocomplete="off"><div class="filterRow"><label for="statusFilter">표시<select id="statusFilter"><option value="all">전체</option><option value="known">제외한 항목</option><option value="new">아직 익히지 않은 항목</option><option value="again">복습 대상 전체</option><option value="scheduled">이후 복습 예정</option><option value="added">이번에 추가한 지명</option><option value="reference">기후 참고 지명</option></select></label><button id="shuffleButton">순서 섞기</button></div><button id="allReviewButton">복습 대상 전체 퀴즈 · 날짜 무관</button><div id="listInfo" class="listInfo"></div></div>
  <div id="itemList"></div><div class="drawerFooter"><div id="scopeProgress"></div><button id="settingsButton" class="quiet">표시 설정·기록·수록 범위</button></div>
 </aside>
 <aside id="settingsDrawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" hidden>
  <div class="drawerHeader"><h2 id="settingsTitle">표시와 학습 기록</h2><button id="closeSettings">닫기</button></div>
  <div class="scrollBody">
   <h3>지도 표시</h3><label class="switchLine"><input id="contextToggle" type="checkbox" checked>주변 항목도 옅게 표시</label><label class="switchLine"><input id="gridToggle" type="checkbox">적도·회귀선·본초 자오선</label><label class="switchLine"><input id="supplementToggle" type="checkbox">기존 보충 항목도 포함</label><label class="switchLine"><input id="climateToggle" type="checkbox">기후 참고 지명도 학습·퀴즈·복습에 포함</label><p class="small muted">도시는 원, 국가는 깃발, 산업 지역은 공장, 문화·갈등 지역은 마름모로 표시합니다. 지도의 아래쪽에서 현재 기호의 뜻을 확인할 수 있습니다. 음영과 점선은 학습을 위한 대략적인 범위이며, 국경·분쟁 경계의 확정선이 아닙니다.</p>
-  <h3>학습 기록</h3><p id="totalProgress"></p><div id="storageMessage" role="status" hidden></div><p id="migrationMessage" class="small muted" hidden>이전 묶음 항목의 익힘 기록은 내보내기에 보관합니다. 새로 나뉜 장소는 각각 확인하며, 이전에 ‘다시 보기’로 표시한 묶음은 해당 장소들의 복습으로 옮겼습니다.</p><p class="small muted">기존 익힘·복습 기록은 유지됩니다. ‘기억남’ 또는 ‘기억 안 남’을 누르면 다음 복습일이 생깁니다. 복습 날짜는 기기의 날짜를 따릅니다. 기록은 이 브라우저에 저장됩니다. 기기나 파일을 바꿀 때는 기록 파일로 옮길 수 있습니다.</p><div class="buttonRow"><button id="exportButton">기록 내보내기</button><button id="importButton">기록 가져오기</button><input id="importInput" type="file" accept="application/json,.json" hidden></div>
+  <h3>학습 기록</h3><p id="totalProgress"></p><div id="storageMessage" role="status" hidden></div><p id="migrationMessage" class="small muted" hidden>이전 묶음 항목의 익힘 기록은 내보내기에 보관합니다. 새로 나뉜 장소는 각각 확인하며, 이전에 ‘다시 보기’로 표시한 묶음은 해당 장소들의 복습으로 옮겼습니다.</p><p class="small muted">기존 익힘·복습 기록은 유지됩니다. ‘기억남’ 또는 ‘기억 안 남’을 누르면 다음 복습일이 생깁니다. ‘복습 대상 전체 퀴즈’는 완전히 제외한 항목을 빼고 예정일과 무관하게 연습합니다. 미리 풀어서 기억난 항목은 기존 예정일을 유지하며, 기억 안 난 항목은 내일로 바뀝니다. 복습 날짜는 기기의 날짜를 따릅니다. 기록은 이 브라우저에 저장됩니다. 기기나 파일을 바꿀 때는 기록 파일로 옮길 수 있습니다.</p><div class="buttonRow"><button id="exportButton">기록 내보내기</button><button id="importButton">기록 가져오기</button><input id="importInput" type="file" accept="application/json,.json" hidden></div>
   <h3>학습 방법</h3><p>종류에서 <b>전체 통합</b>을 고르면 도시·국가·강·산맥 등을 함께 학습합니다. <b>퀴즈 방식</b>에서 이름 맞히기·이름 → 위치·설명 → 위치를 고른 뒤 <b>퀴즈 시작</b>을 누릅니다. 이름 맞히기는 이름을 가리고 지도에 위치를 표시합니다. 위치 찍기는 이름 또는 설명을 보고 지도를 눌러 답합니다. 확대·이동한 뒤 점을 찍을 수 있고, 확인 전에는 다른 곳을 눌러 수정할 수 있습니다. <b>이 위치로 확인</b>을 누르면 주황색으로 찍은 점과 정답 위치·범위를 함께 보여 줍니다. 모르면 <b>모르겠어요 · 정답 보기</b>를 누르세요. 도시는 거리와 인접 도시, 국가는 실제 국경, 강은 경로, 산맥·사막·해역은 범위로 자동 판정합니다. 좁은 지형·국경 부근·분쟁 지역·대략적인 대표 위치만 있는 항목·확대가 부족한 답은 판정을 보류하고 기억 여부를 직접 고르게 합니다. 정답·오답 결과에서 <b>다음</b>을 누르면 각각 기억남·기억 안 남으로 복습 기록에 반영합니다. <b>판정 수정</b>으로 직접 고를 수도 있습니다. 정답 확인만으로는 기록되지 않습니다. 국가의 깃발은 대표 위치이고, 위치 퀴즈 결과에는 실제 범위를 함께 표시합니다. 세 퀴즈 방식은 같은 복습 기록을 사용합니다. 여러 대륙·대양·기준선을 함께 묻는 5개 묶음은 이름 맞히기에서만 연습합니다. 기본은 <b>대륙별 · 가까운 순</b>으로, 선택한 장소부터 같은 대륙의 가까운 항목을 이어 봅니다. 퀴즈의 순서 선택에서 <b>전체 무작위</b>로 바꿀 수 있습니다. 정답을 확인한 뒤 <b>기억남</b> 또는 <b>기억 안 남</b>을 누릅니다. 기억난 항목은 오늘 퀴즈·복습에서 빠지고, 처음에는 다음 날 다시 나옵니다. 예정된 날에도 기억나면 다음 간격을 3일·7일·14일·30일로 늘립니다. 30일 뒤 복습에서도 기억나면, 처음 응답을 포함해 6회 연속 성공한 항목을 자동으로 제외합니다. 같은 날 여러 번 확인하거나 예정일 전에 확인해도 단계는 올라가지 않습니다. 복습이 늦어지면 실제 응답한 날부터 다음 간격을 계산합니다. 기억 안 난 항목도 오늘 퀴즈·복습에서 빠지고 다음 날 다시 나옵니다. 연속 성공 단계는 초기화되어 다음 기억남부터 1일 간격으로 다시 시작합니다. <b>완전히 익힘</b>은 이후 퀴즈·복습에서 제외할 때만 사용하세요. 목록·검색에서는 제외한 항목도 검색할 수 있습니다. 검색 결과의 ‘복습 복구’를 누르면 오늘 복습으로 돌아옵니다. 표시 메뉴의 ‘제외한 항목’에서 모아 볼 수도 있습니다. 기후 비교용 지명은 ‘기후 참고 지명’에서 따로 볼 수 있습니다. 이름 암기까지 연습하려면 위의 ‘기후 참고 지명도 포함’을 켜세요.</p><p class="small muted">위쪽 지역 선택에서 한 대륙만 골라 학습·퀴즈할 수 있습니다. 북·중앙아메리카에는 멕시코와 카리브 지역을 포함합니다. 여러 대륙에 걸친 국가·해역은 학습 묶음 한 곳에 배치했고, 세계 규모의 지형·기준선은 별도로 모았습니다. 세부 범위는 서로 겹칠 수 있습니다.</p>
   <h3>수록 범위</h3><p id="coverageText"></p><p>강의 1·2권(P00–P11)의 위치 설명과 지역 비교를 바탕으로 보완했습니다. 도시 안 명소와 세부 지형 사례는 관련 국가·도시 설명에 함께 넣어 검색할 수 있습니다. 모든 사례명이 독립 퀴즈인 것은 아닙니다. 이름 없는 관측 지점에는 새 도시명을 붙이지 않았습니다.</p><p class="small muted">좌표와 바탕지도를 같은 위·경도에 맞췄습니다. 국가의 깃발은 국경 안쪽 대표 위치입니다. 주요 하천·호수·산맥·사막·해역은 Natural Earth 자료를 반영했으며, 세계지도 축척에 맞춰 단순화했습니다.</p>
   <p class="small"><a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">지도 자료: Natural Earth</a></p><details id="lectureCatalog"><summary>개정 강의에서 추가한 지도 항목</summary><div id="lectureCatalogBody"></div></details><details id="documentCatalog"><summary>이전 위치 선행학습 목록</summary><div id="catalogBody"></div></details>
@@ -132,6 +139,7 @@ header{height:52px;padding:5px 12px;gap:6px}header h1{font-size:15px}header butt
 <script src="assets/country-boundaries.js?v=20260930-1"></script>
 <script src="assets/location-grading.js?v=20260930-1"></script>
 <script src="assets/city-locations.js?v=20261002-1"></script>
+<script src="assets/study-content.js?v=20261003-1"></script>
 <script>
 (function(){
 'use strict';
@@ -227,6 +235,7 @@ items.forEach(function(it){if(it.topic==='city'&&window.WGCityLocations)it.cityL
 Object.keys(content.migrations).forEach(function(id){var targets=content.migrations[id];if(targets.length===1)aliases[id]=targets[0]});
 var climateReferenceIds=new Set(content.studyPolicy.referenceOnly.map(function(rule){return rule.id}));
 items.forEach(function(it){it.referenceOnly=climateReferenceIds.has(it.id)});
+if(window.WGStudyContent)window.WGStudyContent.apply(items);
 var byId=new Map(items.map(function(it){return [it.id,it]}));
 items.forEach(function(it){it.continent=continentOf(it);it.featureKind=featureKind(it);it.mapCenter=center(it.geometry)});
 function canon(id){return aliases[id]||id}
@@ -253,13 +262,13 @@ var storedSchedule=readJSON('wg_review_schedule',{});
 if(storedSchedule&&typeof storedSchedule==='object'&&!Array.isArray(storedSchedule))Object.keys(storedSchedule).forEach(function(id){var row=storedSchedule[id];if(!validSchedule(row)){recordDamaged=true;return}recordIds(id,'again').forEach(function(target){if(!byId.has(target)||known.has(target))return;reviewSchedule[target]={step:row.step,due:row.due,last:row.last};again.add(target)})});else recordDamaged=true;
 
 var saved=readJSON('wg_study_view2',{});if(!saved||typeof saved!=='object'||Array.isArray(saved))saved={};
-var state={topic:topics.some(function(x){return x[0]===saved.topic})?saved.topic:'all',region:regions.some(function(x){return x.id===saved.region})?saved.region:'all',quizOrder:saved.quizOrder==='random'?'random':'nearby',quizType:['location','description'].includes(saved.quizType)?saved.quizType:'name',guess:null,selected:null,queue:[],index:0,review:false,reviewIds:null,recall:false,revealed:true,scale:1,x:0,y:0,drawer:null,context:saved.context!==false,grid:saved.grid===true,supplement:saved.supplement===true,climate:saved.climate===true,filter:['all','known','new','again','scheduled','added','reference'].includes(saved.filter)?saved.filter:'all'};
+var state={topic:topics.some(function(x){return x[0]===saved.topic})?saved.topic:'all',region:regions.some(function(x){return x.id===saved.region})?saved.region:'all',quizOrder:saved.quizOrder==='random'?'random':'nearby',quizType:['location','description'].includes(saved.quizType)?saved.quizType:'name',guess:null,selected:null,queue:[],index:0,review:false,reviewIds:null,reviewAll:false,comparisonId:null,recall:false,revealed:true,scale:1,x:0,y:0,drawer:null,context:saved.context!==false,grid:saved.grid===true,supplement:saved.supplement===true,climate:saved.climate===true,filter:['all','known','new','again','scheduled','added','reference'].includes(saved.filter)?saved.filter:'all'};
 if(state.topic==='coords')state.region='all';
 var map=$('map'),scene=$('mapScene'),W=3600,H=1800,raf=0,toastTimer=0,lastFocus=null;
 function topicName(id){return (topics.find(function(x){return x[0]===id})||['',''])[1]}
 function current(){return state.selected?byId.get(state.selected):null}
 function locationQuiz(){return state.recall&&state.quizType!=='name'}
-function resetAnswer(){state.guess=null;state.grade=null;state.manualGrade=false;state.answerRecorded=false;state.revealed=!state.recall}
+function resetAnswer(){state.comparisonId=null;state.guess=null;state.grade=null;state.manualGrade=false;state.answerRecorded=false;state.revealed=!state.recall}
 function locationClue(it){var clue=(it.country&&!it.memo.includes(it.country)?it.country+' · ':'')+it.memo;if(state.quizType==='description')Array.from(new Set([it.name].concat(it.aliases||[]))).filter(function(name){return name.length>1}).sort(function(a,b){return b.length-a.length}).forEach(function(name){clue=clue.split(name).join('이곳')});return clue}
 
 function available(includeReference){return items.filter(function(it){return (state.supplement||it.source!=='보충')&&(includeReference||state.climate||!it.referenceOnly)})}
@@ -296,9 +305,9 @@ function orderQuiz(preferred){
  state.queue=ordered;
 }
 function passFilter(it){return state.filter==='all'||(state.filter==='reference'&&it.referenceOnly)||(state.filter==='known'&&known.has(it.id))||(state.filter==='new'&&!known.has(it.id))||(state.filter==='again'&&again.has(it.id))||(state.filter==='scheduled'&&again.has(it.id)&&!isDue(it.id))||(state.filter==='added'&&it.addedVersion===content.lectureAudit.version)}
-function quizEligible(it){return !state.recall||((!locationQuiz()||it.topic!=='coords')&&(state.climate||!it.referenceOnly)&&!known.has(it.id)&&(state.filter==='scheduled'||isDue(it.id)))}
+function quizEligible(it){return !state.recall||((!locationQuiz()||it.topic!=='coords')&&(state.climate||!it.referenceOnly)&&!known.has(it.id)&&((state.review&&state.reviewAll)||state.filter==='scheduled'||isDue(it.id)))}
 function rebuildQueue(preferred){
- state.queue=(state.review?available().filter(function(it){return again.has(it.id)&&(state.filter==='scheduled'||isDue(it.id))&&(!state.reviewIds||state.reviewIds.includes(it.id))}):scopeItems()).filter(passFilter).filter(quizEligible).map(function(it){return it.id});
+ state.queue=(state.review?available().filter(function(it){return again.has(it.id)&&!known.has(it.id)&&((state.review&&state.reviewAll)||state.filter==='scheduled'||isDue(it.id))&&(!state.reviewIds||state.reviewIds.includes(it.id))}):scopeItems()).filter(passFilter).filter(quizEligible).map(function(it){return it.id});
  if(state.recall)orderQuiz(preferred);
  var index=state.queue.indexOf(preferred);state.index=index<0?0:index;state.selected=state.queue[state.index]||null;resetAnswer();renderAll();if(state.selected){if(state.topic==='all'||state.recall)fitFocus();else fitScope()}saveView();
 }
@@ -309,6 +318,7 @@ function storageMessage(){var el=$('storageMessage');el.hidden=storageOK&&!recor
 function toast(message){$('toast').textContent=message;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(function(){$('toast').hidden=true},2200)}
 function updateProgress(){
  var avail=available(),reviewCount=avail.filter(function(it){return again.has(it.id)&&isDue(it.id)}).length,scheduledCount=avail.filter(function(it){return again.has(it.id)&&!isDue(it.id)}).length,scope=scopeItems(),count=scope.filter(function(it){return known.has(it.id)}).length;
+ $('allReviewButton').disabled=!avail.some(function(it){return again.has(it.id)&&!known.has(it.id)});$('emptyAllReview').disabled=$('allReviewButton').disabled;
  $('reviewCount').textContent=reviewCount;$('reviewButton').setAttribute('aria-pressed',String(state.review));
  $('scopeProgress').textContent=state.filter==='reference'?'기후 참고 지명 '+scope.length+'개':'현재 범위 '+scope.length+'개 중 '+count+'개 익힘';
  $('totalProgress').textContent='전체 '+avail.length+'개 중 '+avail.filter(function(it){return known.has(it.id)}).length+'개 익힘 · 오늘 복습 '+reviewCount+'개 · 이후 복습 '+scheduledCount+'개';
@@ -360,7 +370,7 @@ function showComplete(){
  $('emptyText').textContent='이번 범위 '+state.queue.length+'개 · 오늘 다시 볼 항목 '+remaining.length+'개 · 이후 복습 예정 '+scheduled+'개. 복습 예정 항목은 해당 날짜에 다시 나오고, 완전히 익힌 항목은 제외됩니다.';
  $('emptyAction').textContent=remaining.length?'기억 안 난 항목 다시 보기':'학습으로 돌아가기';$('emptyAction').onclick=function(){if(remaining.length)startReview(remaining);else{state.review=false;state.recall=false;rebuildQueue()}};
 }
-function startReview(ids){state.review=true;state.reviewIds=Array.isArray(ids)?ids:null;state.recall=true;state.filter='all';syncControls();closeDrawer();rebuildQueue()}
+function startReview(ids,allDates){state.review=true;state.reviewAll=allDates===true;state.reviewIds=Array.isArray(ids)?ids:null;state.recall=true;state.filter='all';syncControls();closeDrawer();rebuildQueue()}
 
 function riverFor(it){return it.riverInfo||doc.rivers[it.name]||null}
 function renderCard(){
@@ -368,14 +378,14 @@ function renderCard(){
  if(!it){
   var scope=state.review?available().filter(function(x){return again.has(x.id)}):scopeItems(),scheduled=scope.filter(function(x){return again.has(x.id)&&!isDue(x.id)}),mastered=state.recall&&!state.review&&scope.length>0&&scope.every(function(x){return known.has(x.id)}),nextDue=scheduled.map(function(x){return reviewSchedule[x.id].due}).sort()[0],omittedCoords=locationQuiz()?scope.filter(function(x){return x.topic==='coords'&&!known.has(x.id)&&(state.filter==='scheduled'||isDue(x.id))}).length:0;
   $('emptyTitle').textContent=omittedCoords?'기준선 '+omittedCoords+'개는 이름 맞히기로 연습하세요':mastered?'이 범위의 항목을 모두 익혔어요':state.recall&&nextDue?'오늘 볼 항목을 마쳤어요':state.review?'오늘 복습할 항목이 없어요':'이 범위에는 항목이 없어요';
-  $('emptyText').textContent=omittedCoords?'여러 대륙·대양·선을 함께 묻는 항목은 한 점으로 답하기 어려워 위치 찍기에서 제외합니다. 이름 맞히기로 바꾸면 남은 기준선을 이어서 연습할 수 있어요.':mastered?'목록·검색에서 지명을 검색하거나 ‘제외한 항목’을 선택한 뒤 ‘복습 복구’를 누르면 다시 포함됩니다.':state.recall&&nextDue?'다음 복습은 '+shortDate(nextDue)+'부터예요. 예정된 항목은 목록의 ‘이후 복습 예정’에서 볼 수 있습니다.':state.review?'기억 안 난 항목은 내일 다시 보고, 기억난 항목은 날짜를 두고 다시 확인합니다.':'지역이나 표시 조건을 바꾸면 다른 항목을 볼 수 있어요.';
+  $('emptyText').textContent=omittedCoords?'여러 대륙·대양·선을 함께 묻는 항목은 한 점으로 답하기 어려워 위치 찍기에서 제외합니다. 이름 맞히기로 바꾸면 남은 기준선을 이어서 연습할 수 있어요.':mastered?'목록·검색에서 지명을 검색하거나 ‘제외한 항목’을 선택한 뒤 ‘복습 복구’를 누르면 다시 포함됩니다.':state.recall&&nextDue?'다음 복습은 '+shortDate(nextDue)+'부터예요. ‘복습 대상 전체 퀴즈’를 누르면 예정일과 무관하게 다시 풀 수 있습니다.':state.review?'기억 안 난 항목은 내일 다시 보고, 기억난 항목은 날짜를 두고 다시 확인합니다.':'지역이나 표시 조건을 바꾸면 다른 항목을 볼 수 있어요.';
   $('emptyAction').textContent=omittedCoords?'기준선 이름 맞히기':state.recall?'학습으로 돌아가기':'조건 풀고 전체 지역 보기';$('emptyAction').onclick=function(){if(omittedCoords){state.quizType='name';syncControls();rebuildQueue();return}state.review=false;state.recall=false;if(!mastered)state.region='all';state.filter='all';syncControls();rebuildQueue()};return;
  }
 
  var hidden=state.recall&&!state.revealed,river=riverFor(it),reference=it.referenceOnly&&!state.climate,locating=locationQuiz();
  $('recallButton').textContent=reference?'기본 퀴즈':state.recall?'학습으로':'퀴즈 시작';
  var style=featureStyles[it.featureKind],group=continents.find(function(x){return x.id===it.continent}),groupIds=state.queue.filter(function(id){return byId.get(id).continent===it.continent});
- $('cardMeta').textContent=(reference?'기후 참고 · ':state.review?'복습 · ':state.recall?'퀴즈 · ':'학습 · ')+style.name;
+ $('cardMeta').textContent=(reference?'기후 참고 · ':state.review?(state.reviewAll?'전체 복습 · ':'오늘 복습 · '):state.recall?'퀴즈 · ':'학습 · ')+style.name;
  $('quizTools').hidden=!state.recall;$('quizOrder').value=state.quizOrder;
  $('groupProgress').textContent=locating?(state.review||state.region==='all'?'전 세계':regions.find(function(r){return r.id===state.region}).name)+' · '+(state.index+1)+' / '+state.queue.length:group.name+(state.quizOrder==='nearby'?' · '+(groupIds.indexOf(it.id)+1)+' / '+groupIds.length:'');
  $('groupProgress').dataset.continent=it.continent;
@@ -387,6 +397,7 @@ function renderCard(){
  $('focusFit').disabled=hidden&&locating;
  map.setAttribute('aria-label',hidden&&locating?'확대·이동한 뒤 원하는 위치를 눌러 답하는 세계 지도':'확대하거나 이동할 수 있는 세계 지도');
  map.classList.toggle('placing',hidden&&locating);
+ renderComparisons(it,hidden);
  $('keyFacts').replaceChildren();$('keyFacts').hidden=hidden||!(it.facts&&it.facts.length);
  if(!hidden)(it.facts||[]).forEach(function(row){var dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=row[0];dd.textContent=row[1];$('keyFacts').append(dt,dd)});
  $('riverFacts').replaceChildren();$('riverFacts').hidden=hidden||!river;
@@ -403,6 +414,19 @@ function renderCard(){
  $('locationNextHint').textContent=state.grade&&state.grade.status==='correct'?(readyToMaster(it.id)?'정답 · 자동 제외':'정답 · '+shortDate(plannedReview(it.id).due)+' 다시'):'오답 · 내일 다시';
  $('markKnown').textContent=known.has(it.id)&&!state.recall&&!state.review?'오늘 복습에 복구':'완전히 익힘 · 제외';
  $('position').textContent=(state.index+1)+' / '+state.queue.length;$('prevButton').disabled=state.index<=0;$('nextButton').disabled=state.index>=state.queue.length-1;
+}
+function renderComparisons(it,hidden){
+ var targets=(it.compareIds||[]).map(function(id){return byId.get(id)}).filter(Boolean),active=targets.find(function(x){return x.id===state.comparisonId});
+ $('extentNote').hidden=hidden||!it.extentNote;$('extentNote').textContent=it.extentNote||'';
+ $('comparisonLinks').replaceChildren();$('comparisonLinks').hidden=hidden||!targets.length;
+ $('comparisonDetail').hidden=hidden||!active;$('comparisonDetail').replaceChildren();
+ if(hidden)return;
+ targets.forEach(function(target){var button=document.createElement('button');button.type='button';button.dataset.compareId=target.id;button.textContent=target.name+' 함께 보기';button.setAttribute('aria-pressed',String(!!active&&active.id===target.id));button.onclick=function(){state.comparisonId=state.comparisonId===target.id?null:target.id;renderComparisons(it,false);if(state.comparisonId){fitComparison();$('comparisonDetail').scrollIntoView({block:'nearest'})}else if(locationQuiz()&&state.revealed)fitLocationResult();else fitFocus()};$('comparisonLinks').appendChild(button)});
+ if(active){var title=document.createElement('strong'),body=document.createElement('div');title.textContent=active.name+(active.referenceOnly?' · 기후 참고':'');body.textContent=(active.country&&!active.memo.includes(active.country)?active.country+' · ':'')+active.memo;$('comparisonDetail').append(title,body)}
+}
+function fitComparison(){
+ var it=current(),other=byId.get(state.comparisonId);if(!it||!other)return;
+ var a=bbox(it.geometry),b=bbox(other.geometry);fitBox([Math.max(-180,Math.min(a[0],b[0])-5),Math.max(-90,Math.min(a[1],b[1])-4),Math.min(180,Math.max(a[2],b[2])+5),Math.min(90,Math.max(a[3],b[3])+4)]);
 }
 function searchText(value){return String(value||'').toLocaleLowerCase().replace(/\s+/g,'')}
 function renderList(){
@@ -499,16 +523,16 @@ function marker(lon,lat,parent,selected,style,kind){
  var p=project(lon,lat),group=svg('g',{class:'mapMarker','data-kind':kind,'data-siting':style.siting||'','data-lon':lon,'data-lat':lat,transform:'translate('+p.x+' '+p.y+') scale('+((selected?1:kind==='city'?.7:.6)/state.scale)+')',opacity:selected?1:kind==='city'?.85:.5},parent);
  drawSymbol(group,style);
 }
-function drawGeom(it,selected){
- var g=geometry(it),style=mapStyle(it),parent=svg('g',{class:'mapFeature','data-kind':it.featureKind,'data-id':it.id},selected?$('selectedLayer'):$('contextLayer')),color=style.color,stroke=selected?3:1.2,opacity=selected?1:.28,showName=selected&&state.revealed;
+function drawGeom(it,selected,comparison){
+ var g=geometry(it),style=mapStyle(it),parent=svg('g',{class:'mapFeature','data-kind':it.featureKind,'data-id':it.id},comparison?$('comparisonLayer'):selected?$('selectedLayer'):$('contextLayer')),color=style.color,stroke=selected?3:1.2,opacity=selected?1:.28,showName=selected&&state.revealed;
  if(g.type==='point'){marker(g.lon,g.lat,parent,selected,style,it.featureKind);if(showName)label(g.lon,g.lat,it.name,null,0,-21,color);return}
  if(g.type==='multipoint'){g.points.forEach(function(p,i){dot(p[0],p[1],parent,selected);if(selected)label(p[0],p[1],String(i+1),$('labelLayer'),0,-13)});return}
  if(g.type==='worldlabels'){g.points.forEach(function(p,i){var lat=p[0]==='남극 대륙'?-78:p[2];dot(p[1],lat,parent,selected);if(showName)label(p[1],lat,p[0]);else if(selected)label(p[1],lat,String(i+1))});return}
  if(g.type==='hemispheres'){svg('rect',{x:0,y:0,width:W,height:900,fill:'#dbeaf7',opacity:.3},parent);svg('rect',{x:0,y:900,width:W,height:900,fill:'#f4e6d7',opacity:.3},parent);svg('path',{d:pointsPath([[-180,0],[180,0]]),stroke:color,'stroke-width':2,class:'geoStroke'},parent);if(showName){label(-100,35,'북반구');label(-100,-35,'남반구')}return}
  if(g.type==='latlines'){g.lats.forEach(function(lat){svg('path',{d:pointsPath([[-180,lat],[180,lat]]),stroke:color,'stroke-width':stroke,class:'geoStroke'},parent);if(showName)label(0,lat,lat===0?'적도 0°':lat>0?'북회귀선 23.5°N':'남회귀선 23.5°S')});return}
  if(g.type==='lonlines'){g.lons.forEach(function(lon){svg('path',{d:pointsPath([[lon,-90],[lon,90]]),stroke:color,'stroke-width':stroke,class:'geoStroke'},parent)});if(showName){label(0,45,'본초 자오선 0°');if(g.eastwest){label(-80,0,'서경 W');label(80,0,'동경 E')}}return}
- var attrs={stroke:color,'stroke-width':stroke,opacity:opacity,class:'geoStroke',fill:'none','stroke-dasharray':style.dash||'none'};
- if(g.type==='line'||g.type==='poly'){attrs.d=pointsPath(g.pts,g.type==='poly');if(g.type==='poly'){attrs.fill=color;attrs['fill-opacity']=.09}svg('path',attrs,parent)}
+ var attrs={stroke:color,'stroke-width':stroke,opacity:opacity,class:'geoStroke',fill:'none','stroke-dasharray':g.approximate?'7 5':style.dash||'none'};
+ if(g.type==='line'||g.type==='poly'){attrs.d=pointsPath(g.pts,g.type==='poly');if(g.type==='poly'){attrs.fill=color;attrs['fill-opacity']=g.approximate?.18:.09}svg('path',attrs,parent)}
  if(g.type==='multiline')svg('path',Object.assign({},attrs,{d:g.lines.map(function(p){return pointsPath(p)}).join(' ')}),parent);
  if(g.type==='polygons')svg('path',Object.assign({},attrs,{d:g.polygons.flat().map(function(p){return pointsPath(p,true)}).join(' '),fill:color,'fill-opacity':selected?.12:.035,'fill-rule':'evenodd'}),parent);
  if(g.type==='ellipse'){var p=project(g.lon,g.lat);svg('ellipse',Object.assign({},attrs,{cx:p.x,cy:p.y,rx:g.rx*10,ry:g.ry*10,fill:color,'fill-opacity':.09,transform:g.rot?'rotate('+g.rot+' '+p.x+' '+p.y+')':''}),parent)}
@@ -521,14 +545,17 @@ function drawGeom(it,selected){
  }
 }
 function renderMap(){
- ['gridLayer','contextLayer','selectedLayer','labelLayer','guessLayer'].forEach(function(id){$(id).replaceChildren()});
+ ['gridLayer','contextLayer','selectedLayer','comparisonLayer','labelLayer','guessLayer'].forEach(function(id){$(id).replaceChildren()});
  // The raster's true extent is 85N to 60S; Antarctic coast continues in WGS84.
  if(!$('polarLayer').children.length)svg('path',{d:geo.antarctica.polygons.flat().map(function(p){return pointsPath(p,true)}).join(' '),fill:'#f3f0e7',stroke:'#82929c','stroke-width':.7,class:'geoStroke','fill-rule':'evenodd'},$('polarLayer'));
  var it=current();if(state.grid&&!(it&&it.topic==='coords'&&!state.revealed)){[0,23.5,-23.5].forEach(function(lat){svg('path',{d:pointsPath([[-180,lat],[180,lat]]),stroke:'#627b86','stroke-width':.8,'stroke-dasharray':'5 7',opacity:.5,class:'geoStroke'},$('gridLayer'))});svg('path',{d:pointsPath([[0,-90],[0,90]]),stroke:'#627b86','stroke-width':.8,'stroke-dasharray':'5 7',opacity:.5,class:'geoStroke'},$('gridLayer'))}
- if(state.context&&!state.recall&&!state.review)scopeItems().forEach(function(x){if((state.topic!=='all'||x.topic!=='coords')&&(!it||x.id!==it.id))drawGeom(x,false)});
+ if(state.context&&!state.recall&&!state.review&&!state.comparisonId)scopeItems().forEach(function(x){if((state.topic!=='all'||x.topic!=='coords')&&(!it||x.id!==it.id))drawGeom(x,false)});
+ if(it&&state.revealed&&state.comparisonId&&byId.has(state.comparisonId))drawGeom(byId.get(state.comparisonId),true,true);
  if(it&&!(locationQuiz()&&!state.revealed))drawGeom(it,true);
  if(locationQuiz()&&state.guess)drawGuess(it);
  $('mapNote').replaceChildren();$('mapNote').classList.remove('cityMapNote');var hasCities=!!$('mapSVG').querySelector('.mapMarker[data-kind="city"]');
+ if(it&&state.revealed&&state.comparisonId){$('mapNote').textContent='두 지명의 위치를 함께 표시';if(hasCities)appendCityLegend();return}
+ if(it&&state.revealed&&it.extentNote){var areaNote=document.createElement('span');areaNote.className='extentMapNote';areaNote.textContent='점선·음영: 학습용 개략 범위';$('mapNote').appendChild(areaNote);return}
  if(it&&locationQuiz()){$('mapNote').textContent=state.revealed?(state.guess?'주황색: 내가 찍은 곳 · 정답은 종류별 기호·범위':'정답 위치·범위를 확인하세요'):state.guess?'다른 곳을 눌러 수정 · 아래 버튼으로 확인':'지도를 눌러 위치 선택 · 확대·이동 가능';if(hasCities)appendCityLegend();return}
  if(it&&it.featureKind==='city')appendCityLegend();
  else if(it){var style=featureStyles[it.featureKind],key=svg('svg',{viewBox:'-15 -15 30 30',width:26,height:26,'aria-hidden':'true'},$('mapNote'));drawSymbol(key,style);var note=document.createElement('span'),title=document.createElement('b');title.textContent=style.name;note.append(title,document.createElement('br'),style.hint);$('mapNote').append(note);if(hasCities)appendCityLegend()}else $('mapNote').textContent='표시할 항목이 없습니다';
@@ -591,7 +618,8 @@ $('shuffleButton').onclick=function(){state.quizOrder='random';state.queue=state
 function changeQuizType(){state.quizType=this.value;syncControls();if(state.recall)rebuildQueue(state.selected);else{state.guess=null;renderAll();saveView()}}
 $('quizType').onchange=changeQuizType;$('emptyQuizType').onchange=changeQuizType;
 $('quizOrder').onchange=function(){state.quizOrder=this.value;rebuildQueue();toast(state.quizOrder==='nearby'?'대륙별로 가까운 장소부터 이어집니다':'현재 범위를 무작위로 섞었어요')};
-$('recallButton').onclick=function(){var preferred=state.quizOrder==='nearby'&&current()&&!(state.topic==='all'&&current().topic==='coords')?state.selected:null;state.recall=!state.recall;if(!state.recall)state.review=false;if(state.recall&&(state.filter==='known'||state.filter==='reference'&&!state.climate)){state.filter='all';syncControls()}rebuildQueue(state.recall?preferred:state.selected)};$('revealButton').onclick=reveal;
+$('allReviewButton').onclick=$('emptyAllReview').onclick=function(){startReview(null,true)};
+$('recallButton').onclick=function(){state.reviewAll=false;var preferred=state.quizOrder==='nearby'&&current()&&!(state.topic==='all'&&current().topic==='coords')?state.selected:null;state.recall=!state.recall;if(!state.recall)state.review=false;if(state.recall&&(state.filter==='known'||state.filter==='reference'&&!state.climate)){state.filter='all';syncControls()}rebuildQueue(state.recall?preferred:state.selected)};$('revealButton').onclick=reveal;
 $('markKnown').onclick=function(){mark('known')};$('markAgain').onclick=function(){mark('again')};$('markLater').onclick=function(){mark('later')};$('prevButton').onclick=function(){next(-1)};$('nextButton').onclick=advance;
 $('locationOverride').onclick=function(){state.manualGrade=true;renderCard()};$('locationNext').onclick=advance;
 $('scopeFit').onclick=fitScope;$('focusFit').onclick=fitFocus;$('worldFit').onclick=function(){fitBox([-180,-90,180,90])};$('zoomIn').onclick=function(){var d=mapSize();zoom(1.35,d.w/2,d.h/2)};$('zoomOut').onclick=function(){var d=mapSize();zoom(1/1.35,d.w/2,d.h/2)};
