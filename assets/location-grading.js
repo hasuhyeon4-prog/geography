@@ -70,35 +70,36 @@
   function usablePoint(p) {
     return p && Number.isFinite(p.lon) && Number.isFinite(p.lat) && Math.abs(p.lon) <= 180 && Math.abs(p.lat) <= 90;
   }
+  function tapRadius(guess, minimum, maximum) {
+    // precisionKm represents six CSS pixels at the scale where the answer was
+    // placed. Allow twelve pixels, with a geographic floor and a finite cap.
+    // Nearby reference places must never shrink a learner's acceptance area.
+    var precision = Number.isFinite(guess.precisionKm) ? Math.max(0, guess.precisionKm) : 0;
+    return Math.round(Math.max(minimum, Math.min(maximum, precision * 2)));
+  }
   function grade(item, guess, options) {
     options = options || {};
     if (!guess) return result('wrong', '위치를 선택하지 않아 내일 다시 복습합니다.');
     if (!usablePoint(guess) || !item || !item.geometry) return result('uncertain', '위치를 안전하게 판정할 수 없습니다.');
     var g = item.geometry;
-    var data = options.countries || {}, peers = options.items || [], kind = item.featureKind || item.topic;
+    var data = options.countries || {}, kind = item.featureKind || item.topic;
     if (item.topic === 'country') {
       var boundary = data.byName && data.byName[item.name];
       if (!boundary) return result('uncertain', '국경 자료가 없어 대표점만 표시합니다.');
       g = { type: 'polygons', polygons: boundary.polygons };
     }
     if (g.type === 'point') {
-      var radii = { city: 50, peak: 25, heritage: 20, park: 40, canal: 15, strait: 20 };
-      var target = { lon: g.lon, lat: g.lat }, d = distance(guess, target), radius = radii[kind] || 100;
-      peers.forEach(function (peer) {
-        if (peer.id === item.id || peer.featureKind !== kind || !peer.geometry || peer.geometry.type !== 'point') return;
-        var q = peer.geometry, separation = distance(target, q);
-        if (separation < 1) return;
-        radius = Math.min(radius, Math.max(2, separation / 3));
-      });
+      var radii = { city: 80, peak: 75, heritage: 75, park: 100, canal: 75, strait: 75 };
+      var target = { lon: g.lon, lat: g.lat }, d = distance(guess, target), radius = tapRadius(guess, radii[kind] || 100, 180);
       return result(d <= radius ? 'correct' : 'wrong', '대표 위치의 허용 거리(' + Math.round(radius) + ' km) ' + (d <= radius ? '안' : '밖') + '에 찍었습니다.', d);
     }
     if (g.type === 'multipoint') {
-      var nearest = Math.min.apply(null, g.points.map(function (p) { return distance(guess, { lon: p[0], lat: p[1] }); }));
-      return result(nearest <= 50 ? 'correct' : 'wrong', '대표 위치의 허용 거리(50 km) ' + (nearest <= 50 ? '안' : '밖') + '에 찍었습니다.', nearest);
+      var nearest = Math.min.apply(null, g.points.map(function (p) { return distance(guess, { lon: p[0], lat: p[1] }); })), pointRadius = tapRadius(guess, 80, 180);
+      return result(nearest <= pointRadius ? 'correct' : 'wrong', '대표 위치의 허용 거리(' + pointRadius + ' km) ' + (nearest <= pointRadius ? '안' : '밖') + '에 찍었습니다.', nearest);
     }
     if (g.type === 'line' || g.type === 'multiline') {
-      var lines = g.lines || [g.pts], dline = lineDistance(guess, lines), radius = kind === 'river' ? 25 : 20;
-      if (['mountain', 'fault', 'rift', 'belt', 'industry'].includes(kind)) radius = 100;
+      var lines = g.lines || [g.pts], dline = lineDistance(guess, lines);
+      var radius = tapRadius(guess, ['mountain', 'fault', 'rift', 'belt', 'industry'].includes(kind) ? 150 : 75, 200);
       return result(dline <= radius ? 'correct' : 'wrong', '표시된 경로의 허용 거리(' + radius + ' km) ' + (dline <= radius ? '안' : '밖') + '에 찍었습니다.', dline);
     }
     var inside;
