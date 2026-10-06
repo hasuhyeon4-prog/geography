@@ -20,7 +20,7 @@ test('comparison repair preserves identities and resolves every comparison targe
   assert.ok(list.find(it=>it.name==='필바라').compareIds.includes(list.find(it=>it.name==='퍼스').id));
   assert.ok(list.find(it=>it.name==='카카두 국립공원').compareIds.includes(list.find(it=>it.name==='울루루-카타추타 국립공원').id));
 });
-test('prairie and subcontinent extents cover distinct locations, with schematic grading',()=>{
+test('prairie and subcontinent extents cover distinct locations, with automatic area grading',()=>{
   const list=items();contentFix.apply(list);
   for(const [name,inside,outside] of [
     ['프레리',[[-106.7,52.1],[-97.3,37.7]],[[-123.1,49.3],[-74,40.7]]],
@@ -29,7 +29,7 @@ test('prairie and subcontinent extents cover distinct locations, with schematic 
     const it=list.find(it=>it.name===name),poly=[[it.geometry.pts]];
     for(const [lon,lat] of inside)assert.ok(grading.inPolygons({lon,lat},poly),`${name}: ${lon},${lat}`);
     for(const [lon,lat] of outside)assert.ok(!grading.inPolygons({lon,lat},poly),`${name}: ${lon},${lat}`);
-    assert.equal(grading.grade(it,{lon:inside[0][0],lat:inside[0][1]}).status,'uncertain');
+    assert.equal(grading.grade(it,{lon:inside[0][0],lat:inside[0][1]}).status,'correct');
     assert.match(it.extentNote,/개략/);
   }
 });
