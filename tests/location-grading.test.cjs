@@ -54,11 +54,39 @@ test('point answers use geographic proximity independently of zoom', () => {
   assert.equal(grade(london, 2.3522, 48.8566).status, 'wrong');
   assert.equal(grade(london, -0.1278, 51.5074, 400).status, 'correct');
 });
-test('a nearby different city cannot silently count as the target city', () => {
+test('nearby reference cities never shrink the learning tolerance', () => {
   const target = { id: 'a', geometry: { type: 'point', lon: 0, lat: 0 }, topic: 'city', featureKind: 'city' };
   const neighbor = { id: 'b', geometry: { type: 'point', lon: 0.1, lat: 0 }, topic: 'city', featureKind: 'city' };
-  assert.notEqual(grade(target, 0.1, 0, 1, [target, neighbor]).status, 'correct');
+  assert.equal(grade(target, 0.1, 0, 1, [target, neighbor]).status, 'correct');
+  assert.equal(grade(target, 0, 0.42, 1, [target, neighbor]).status, 'correct');
+  assert.deepEqual(grade(target, 0, 0.42, 1, [target, neighbor]), grade(target, 0, 0.42));
   assert.equal(grade(target, 0, 0, 1, [target, neighbor]).status, 'correct');
+});
+test('Kandy accepts the reported 47 km miss without a neighbor-induced 12 km limit', () => {
+  const kandy = item('캔디', 'city');
+  const near = {id: 'nearby-reference', featureKind: 'city', geometry: {...kandy.geometry, lat: kandy.geometry.lat - 0.32}};
+  const answer = grade(kandy, kandy.geometry.lon, kandy.geometry.lat + 0.42, 1, [kandy, near]);
+  assert.equal(answer.distance, 47);
+  assert.equal(answer.status, 'correct');
+  assert.match(answer.reason, /80 km/);
+});
+test('tolerance adapts to the answer-time scale but never accepts distant guesses', () => {
+  const target = {id: 'a', topic: 'city', featureKind: 'city', geometry: {type: 'point', lon: 0, lat: 0}};
+  assert.equal(grade(target, 0, 1, 1).status, 'wrong');
+  assert.equal(grade(target, 0, 1, 60).status, 'correct');
+  assert.equal(grade(target, 0, 2, 10000).status, 'wrong');
+  assert.equal(grade(target, 0, 0.5, NaN).status, 'correct');
+  assert.equal(grade(target, 0, 0.5, -100).status, 'correct');
+});
+test('all point kinds and rivers accept ordinary tapping error', () => {
+  for (const kind of ['city','peak','heritage','park','canal','strait','industry']) {
+    const target = {id: kind, topic: 'place', featureKind: kind, geometry: {type: 'point', lon: 0, lat: 0}};
+    assert.equal(grade(target, 0, 0.42).status, 'correct', kind);
+    assert.equal(grade(target, 0, 4, 10000).status, 'wrong', kind);
+  }
+  const river = {id: 'r', topic: 'river', featureKind: 'river', geometry: {type: 'line', pts: [[0, 0], [0, 10]]}};
+  assert.equal(grade(river, 0.42, 5).status, 'correct');
+  assert.equal(grade(river, 3, 5, 10000).status, 'wrong');
 });
 test('rivers grade distance to any segment, not their midpoint', () => {
   const river = { id: 'r', topic: 'river', featureKind: 'river', geometry: { type: 'multiline', lines: [[[0, 0], [0, 10]], [[0, 10], [0, 20]]] } };
