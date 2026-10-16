@@ -739,7 +739,7 @@
    "audit": {
     "checkedAt": "2026-10-17",
     "status": "checked",
-    "warning": "강의에 수록된 해당 연도·범위의 자료. 최근 순위로 일반화하지 않습니다.",
+    "warning": "UN 2024 표면적의 정의·해외영토 분리 기준으로 계산한 표입니다. 다른 집계 범위의 수치와 구별하세요.",
     "sourceUrls": [
      "https://unstats.un.org/unsd/demographic-social/products/dyb/documents/DYB2024/table03.xls"
     ],
@@ -780,7 +780,7 @@
    "audit": {
     "checkedAt": "2026-10-17",
     "status": "checked",
-    "warning": "강의에 수록된 해당 연도·범위의 자료. 최근 순위로 일반화하지 않습니다.",
+    "warning": "UN 2024 표면적의 정의·해외영토 분리 기준으로 계산한 표입니다. 다른 집계 범위의 수치와 구별하세요.",
     "sourceUrls": [
      "https://unstats.un.org/unsd/demographic-social/products/dyb/documents/DYB2024/table03.xls",
      "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&date=2023"
@@ -913,7 +913,7 @@
    "audit": {
     "checkedAt": "2026-10-17",
     "status": "checked",
-    "warning": "강의에 수록된 해당 연도·범위의 자료. 최근 순위로 일반화하지 않습니다.",
+    "warning": "UN 2024 표면적의 정의·해외영토 분리 기준으로 계산한 표입니다. 다른 집계 범위의 수치와 구별하세요.",
     "sourceUrls": [
      "https://unstats.un.org/unsd/demographic-social/products/dyb/documents/DYB2024/table03.xls"
     ],
@@ -962,7 +962,7 @@
    "audit": {
     "checkedAt": "2026-10-17",
     "status": "checked",
-    "warning": "강의에 수록된 해당 연도·범위의 자료. 최근 순위로 일반화하지 않습니다.",
+    "warning": "UN 2024 표면적의 정의·해외영토 분리 기준으로 계산한 표입니다. 다른 집계 범위의 수치와 구별하세요.",
     "sourceUrls": [
      "https://unstats.un.org/unsd/demographic-social/products/dyb/documents/DYB2024/table03.xls",
      "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&date=2023"
@@ -2082,7 +2082,7 @@
     "status": "checked",
     "warning": "표시한 연도·출처·집계 범위 기준으로 비교하세요.",
     "sourceUrls": [
-     "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&date=2025"
+     "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&date=2023"
     ],
     "unstablePairs": [],
     "latest": {
@@ -2178,7 +2178,7 @@
    "audit": {
     "checkedAt": "2026-10-17",
     "status": "checked",
-    "warning": "강의에 수록된 해당 연도·범위의 자료. 최근 순위로 일반화하지 않습니다.",
+    "warning": "UN 2024 표면적의 정의·해외영토 분리 기준으로 계산한 표입니다. 다른 집계 범위의 수치와 구별하세요.",
     "sourceUrls": [
      "https://unstats.un.org/unsd/demographic-social/products/dyb/documents/DYB2024/table03.xls"
     ],
@@ -2241,7 +2241,7 @@
     "status": "checked",
     "warning": "연도·판본에 따라 순서가 뒤집힌 비교가 있습니다. 기본 문제에서는 이 비교를 제외합니다.",
     "sourceUrls": [
-     "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.CD?format=json&date=2025"
+     "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.CD?format=json&date=2023"
     ],
     "unstablePairs": [
      [
@@ -3956,7 +3956,7 @@
    "audit": {
     "checkedAt": "2026-10-17",
     "status": "historical",
-    "warning": "원문 연도의 강의 자료입니다. 최근 동일 정의의 전체 원자료 대조를 마치지 않아 기본 문제에서 제외합니다.",
+    "warning": "기존 기준표의 해당 연도 자료입니다. 최근 동일 정의의 전체 원자료 대조를 마치지 않아 기본 문제에서 제외합니다.",
     "sourceUrls": [
      "강의 2권 P06"
     ],
@@ -4049,7 +4049,7 @@
    "audit": {
     "checkedAt": "2026-10-17",
     "status": "historical",
-    "warning": "원문 연도의 강의 자료입니다. 최근 동일 정의의 전체 원자료 대조를 마치지 않아 기본 문제에서 제외합니다.",
+    "warning": "기존 기준표의 해당 연도 자료입니다. 최근 동일 정의의 전체 원자료 대조를 마치지 않아 기본 문제에서 제외합니다.",
     "sourceUrls": [
      "강의 2권 P06"
     ],
@@ -4090,7 +4090,7 @@
    "audit": {
     "checkedAt": "2026-10-17",
     "status": "historical",
-    "warning": "원문 연도의 강의 자료입니다. 최근 동일 정의의 전체 원자료 대조를 마치지 않아 기본 문제에서 제외합니다.",
+    "warning": "기존 기준표의 해당 연도 자료입니다. 최근 동일 정의의 전체 원자료 대조를 마치지 않아 기본 문제에서 제외합니다.",
     "sourceUrls": [
      "강의 2권 P06"
     ],
@@ -4127,7 +4127,7 @@
    "audit": {
     "checkedAt": "2026-10-17",
     "status": "historical",
-    "warning": "원문 연도의 강의 자료입니다. 최근 동일 정의의 전체 원자료 대조를 마치지 않아 기본 문제에서 제외합니다.",
+    "warning": "기존 기준표의 해당 연도 자료입니다. 최근 동일 정의의 전체 원자료 대조를 마치지 않아 기본 문제에서 제외합니다.",
     "sourceUrls": [
      "강의 2권 P06"
     ],
@@ -4172,7 +4172,7 @@
    "audit": {
     "checkedAt": "2026-10-17",
     "status": "historical",
-    "warning": "원문 연도의 강의 자료입니다. 최근 동일 정의의 전체 원자료 대조를 마치지 않아 기본 문제에서 제외합니다.",
+    "warning": "기존 기준표의 해당 연도 자료입니다. 최근 동일 정의의 전체 원자료 대조를 마치지 않아 기본 문제에서 제외합니다.",
     "sourceUrls": [
      "강의 2권 P06"
     ],
@@ -4205,7 +4205,7 @@
    "audit": {
     "checkedAt": "2026-10-17",
     "status": "historical",
-    "warning": "원문 연도의 강의 자료입니다. 최근 동일 정의의 전체 원자료 대조를 마치지 않아 기본 문제에서 제외합니다.",
+    "warning": "기존 기준표의 해당 연도 자료입니다. 최근 동일 정의의 전체 원자료 대조를 마치지 않아 기본 문제에서 제외합니다.",
     "sourceUrls": [
      "강의 2권 P06"
     ],

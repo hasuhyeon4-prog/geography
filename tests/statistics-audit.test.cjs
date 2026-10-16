@@ -92,3 +92,11 @@ test('omitted climate anchors and question-time reference periods are included',
  assert.match(F.items.find(x=>x.id==='e18').period,/2021년/);
  for(const r of R.rankings)assert.ok(r.audit.checkedAt&&r.audit.sourceUrls.length,r.id);
 });
+test('WDI source links point to the displayed data year for both base and recent tables',()=>{
+ for(const r of R.rankings){
+  for(const table of [{year:r.year,sourceUrls:r.audit.sourceUrls},r.audit.latest].filter(Boolean)){
+   const year=table.year.match(/^20\d{2}$/)?.[0];if(!year)continue;
+   for(const u of table.sourceUrls||[])if(u.startsWith('https://api.worldbank.org/'))assert.equal(new URL(u).searchParams.get('date'),year,r.id+' '+u);
+  }
+ }
+});
