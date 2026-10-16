@@ -473,6 +473,139 @@
         '중국':'차 세계 최대 생산국(2027학년도 6월 16번). 차마고도.',
         '케냐':'아프리카 안에서 차 생산 비중이 높음 — 세계 1위가 아님.'
       }
+    },
+    {
+      id:'climateCities',title:'기출 도시의 기후',lecture:'1권 P02',kind:'points',
+      paintPhrase:'{x} 기후 지점을',
+      assignQuestion:'표시된 지점의 기후는?',
+      basis:'강의가 기후형을 명시한 기출 지점. 위도·대륙 동안/서안·해안/내륙·고도와 함께 기억합니다. 남반구는 계절이 6개월 뒤집힙니다.',
+      view:[-170,-80,180,78],
+      options:[
+        {id:'af',label:'열대 우림 Af',color:'#1b7a3d'},
+        {id:'am',label:'열대 몬순 Am',color:'#5c940d'},
+        {id:'aw',label:'사바나 Aw',color:'#a3a22a'},
+        {id:'bs',label:'스텝 BS',color:'#c98612'},
+        {id:'cs',label:'지중해성 Cs',color:'#c4441c'},
+        {id:'cfb',label:'서안 해양성 Cfb',color:'#1c7ed6'},
+        {id:'cfa',label:'온난 습윤 Cfa',color:'#0b7285'},
+        {id:'cw',label:'온대 겨울 건조 Cw',color:'#5f3dc4'},
+        {id:'df',label:'냉대 습윤 Df',color:'#364fc7'},
+        {id:'dw',label:'냉대 겨울 건조 Dw',color:'#9c36b5'},
+        {id:'et',label:'툰드라 ET',color:'#748089'},
+        {id:'ef',label:'빙설 EF',color:'#343a40'},
+        {id:'h',label:'고산 H',color:'#8a5a2b'}
+      ],
+      points:{
+        '양곤':[96.1735,16.8409,'asia'],'발릭파판':[116.83,-1.25,'asia'],'다윈':[130.85,-12.425,'oceania'],'배로(우트키아빅)':[-156.789,71.291,'americas'],
+        '퍼스':[115.838,-31.953,'oceania'],'오클랜드':[174.763,-36.848,'oceania'],'파리':[2.3522,48.8566,'europe'],'케이프타운':[18.4241,-33.9249,'africa'],
+        '푸저우':[119.298,26.082,'asia'],'키토':[-78.4678,-0.1807,'americas'],'보고타':[-74.0721,4.711,'americas'],'런던':[-0.1278,51.5074,'europe'],
+        '마르세유':[5.373,43.292,'europe'],'마나우스':[-60.0217,-3.119,'americas'],'딕슨':[80.545,73.507,null],'치타':[113.465,52.055,null],
+        '몬트리올':[-73.5673,45.5017,'americas'],'상파울루':[-46.627,-23.557,'americas'],'라바트':[-6.836,34.025,'africa'],'쿤밍':[102.678,25.072,'asia'],
+        '크라이스트처치':[172.63,-43.535,'oceania'],'샌프란시스코':[-122.4194,37.7749,'americas'],'선양':[123.448,41.807,'asia'],'덴버':[-104.986,39.741,'americas'],
+        '로차':[-54.333,-34.483,'americas'],'더블린':[-6.2509,53.335,'europe'],'메시나':[15.55,38.2,'europe'],'브리즈번':[153.033,-27.453,'oceania'],
+        '창춘':[125.338,43.867,'asia'],'디트로이트':[-83.0458,42.3314,'americas'],'블라디보스토크':[131.91,43.13,null],'로마':[12.4964,41.9028,'europe'],
+        '보스토크(남극)':[106.837,-78.464,null],'아부자':[7.3986,9.0765,'africa'],'그린란드 내륙':[-40,72.5,null]
+      },
+      values:assign(assign(assign(assign(assign(assign(assign(assign(assign(assign(assign(assign(assign({},
+        'af','발릭파판,마나우스'),'am','양곤'),'aw','다윈,아부자'),'bs','덴버'),
+        'cs','퍼스,케이프타운,마르세유,라바트,샌프란시스코,메시나,로마'),
+        'cfb','오클랜드,파리,런던,크라이스트처치,더블린'),
+        'cfa','푸저우,상파울루,로차,브리즈번'),'cw','쿤밍'),
+        'df','몬트리올,디트로이트'),'dw','치타,선양,창춘,블라디보스토크'),
+        'et','배로(우트키아빅),딕슨'),'ef','보스토크(남극),그린란드 내륙'),'h','키토,보고타'),
+      mixed:{},
+      notes:{
+        '양곤':'북반구 열대 몬순 — 여름 강수가 많고 겨울에 건기.',
+        '발릭파판':'보르네오섬, 적도 가까운 열대 우림 — 연중 습윤.',
+        '다윈':'남반구 사바나 — 12~2월 우기, 6~8월 건조.',
+        '배로(우트키아빅)':'알래스카 북극해 연안 툰드라 — 최난월 약 5.5℃(10℃ 미만, 2025학년도 수능 13번). 연교차는 내륙 이르쿠츠크보다 작음.',
+        '퍼스':'남반구 지중해성 — 6~8월(겨울)에 비, 포도·올리브 수목 농업.',
+        '오클랜드':'뉴질랜드 북섬 서안 해양성 — 연중 습윤, 목초·낙농업.',
+        '파리':'서안 해양성 — 매달 강수가 비슷해 누적 강수가 고르게 증가.',
+        '케이프타운':'남반구 지중해성 — 6~8월 누적 강수 급증. 브리즈번보다 겨울 강수 집중률이 높음.',
+        '푸저우':'북반구 온난 습윤 — 1월 약 11℃, 7월 약 29℃.',
+        '키토':'적도 부근 해발 약 2,850m 열대 고산 — 연중 온화. 7월 기온은 아마존 저지대 이키토스가 더 높음.',
+        '보고타':'콜롬비아의 고산 수도 — 아부자보다 적도에 가깝지만 고도가 높아 연평균 기온이 낮음.',
+        '런던':'서안 해양성 — 연중 강수가 고르고, 마르세유·모스크바보다 연교차가 작음.',
+        '마르세유':'북반구 지중해성 — 겨울 기온이 런던·모스크바보다 높음. 같은 Cs인 퍼스와 우기가 반대.',
+        '마나우스':'아마존 저지대 열대 우림 — 연중 강수량이 많음.',
+        '딕슨':'러시아 북극해 연안 툰드라 — 짧은 여름에만 0℃ 이상.',
+        '치타':'러시아 내륙 냉대 — 겨울이 매우 춥고 건조, 몬트리올보다 연교차가 큼.',
+        '몬트리올':'캐나다 동부 냉대 습윤 — 북극해 연안 딕슨보다 연 강수량이 많음.',
+        '상파울루':'남반구 온난 습윤 — 여름이 덥다는 이유만으로 열대가 아님. 퍼스보다 연 강수량이 많음.',
+        '라바트':'모로코 대서양 연안 지중해성 — 지중해에 직접 닿지 않아도 나타남.',
+        '쿤밍':'중국 남서부 고지의 온대 겨울 건조 — 네 도시 중 여름 강수 집중률이 가장 높음(2024학년도 수능).',
+        '크라이스트처치':'뉴질랜드 남섬 서안 해양성 — 연중 강수가 비교적 고름.',
+        '샌프란시스코':'북반구 지중해성 — 퍼스와 우기의 달이 반대.',
+        '선양':'대륙 동안 냉대 겨울 건조 — 1월 강수 적고 7월 많음(2026학년도 9월).',
+        '덴버':'미국 내륙 스텝(2026학년도 수능).',
+        '로차':'우루과이 온난 습윤 — 세 지점 중 1월 강수량이 가장 많음(2026학년도 수능).',
+        '더블린':'아일랜드 서안 해양성 — 연중 편서풍의 영향.',
+        '메시나':'시칠리아섬 지중해성 — 7월이 건조한 여름.',
+        '브리즈번':'오스트레일리아 동안 온난 습윤.',
+        '창춘':'동아시아 대륙 동안 냉대 겨울 건조(2027학년도 9월).',
+        '디트로이트':'오대호 연안 냉대 습윤(2027학년도 9월).',
+        '블라디보스토크':'냉대 겨울 건조 — 여름에 강수가 집중.',
+        '로마':'1월 강수 74mm, 7월 8.5mm — 여름 건조·겨울 다우(2024학년도 9월 6번).',
+        '보스토크(남극)':'남극 내륙 빙설(2026학년도 수능).',
+        '아부자':'나이지리아 내륙 수도 — 사바나 기후와 연결.',
+        '그린란드 내륙':'최난월도 0℃ 미만인 빙설 — 북극해 연안은 짧은 여름의 툰드라(2024학년도 9월 16번).'
+      }
+    },
+    {
+      id:'treatyCities',title:'환경 협약 채택 도시',lecture:'2권 P09',kind:'points',multi:true,
+      paintPhrase:'{x}이(가) 채택된 도시를',
+      assignQuestion:'표시된 도시에서 채택된 협약을 모두 고르세요.',
+      basis:'채택 연도 순: 람사르(1971)·런던(1972)·장거리 이동 대기 오염(1979)·몬트리올(1987)·바젤(1989)·사막화 방지(1994)·교토(1997)·파리 협정(2015). 발효 연도와 구별합니다.',
+      view:[-90,20,150,62],
+      options:[
+        {id:'ramsar',label:'람사르 협약 1971',color:'#25864f'},
+        {id:'london',label:'런던 협약 1972',color:'#1c7ed6'},
+        {id:'lrtap',label:'장거리 대기 오염 1979',color:'#748089'},
+        {id:'montreal',label:'몬트리올 의정서 1987',color:'#7b4bb3'},
+        {id:'basel',label:'바젤 협약 1989',color:'#8a5a2b'},
+        {id:'unccd',label:'사막화 방지 1994',color:'#c98612'},
+        {id:'kyoto',label:'교토 의정서 1997',color:'#b23b3b'},
+        {id:'parisAgreement',label:'파리 협정 2015',color:'#0b7285'}
+      ],
+      points:{'람사르':[50.64,36.92,'westasia'],'런던':[-0.1278,51.5074,'europe'],'제네바':[6.14,46.21,'europe'],'몬트리올':[-73.5673,45.5017,'americas'],'바젤':[7.5886,47.5596,'europe'],'파리':[2.3522,48.8566,'europe'],'교토':[135.748,35.032,'asia']},
+      values:collect({ramsar:'람사르',london:'런던',lrtap:'제네바',montreal:'몬트리올',basel:'바젤',unccd:'파리',kyoto:'교토',parisAgreement:'파리'}),
+      mixed:{},
+      notes:{
+        '람사르':'이란 북부 카스피해 연안 — 습지 보전. 수도 아님.',
+        '런던':'영국 수도 — 폐기물 등의 해양 투기 규제.',
+        '제네바':'스위스(연방 도시는 베른) — 국경을 넘는 대기 오염·산성 강수 협력.',
+        '몬트리올':'캐나다 동부(수도는 오타와) — 오존층 파괴 물질(CFCs) 생산·소비 규제.',
+        '바젤':'스위스 — 유해 폐기물의 국가 간 이동·처분 규제. 스웨덴 도시가 아님.',
+        '파리':'프랑스 수도 — 사막화 방지 협약(1994)과 파리 협정(2015)이 같은 도시에서 채택(2022학년도 수능 20번).',
+        '교토':'일본 긴키 지방(현재 수도는 도쿄) — 선진국의 수량적 온실가스 감축 의무.'
+      }
+    },
+    {
+      id:'capitalCity',title:'수도와 최대 도시',lecture:'1권 P05',
+      paintPhrase:'{x}인 나라를',
+      assignQuestion:'색칠된 나라의 수도는 최대 도시와 같은가?',
+      basis:'수도(정치 중심)·수위 도시(인구 1위)·종주 도시(압도적 집중)·세계 도시는 서로 다른 기준입니다. 수도 이전은 최대 도시 지위를 옮기지 않습니다.',
+      universe:'listed',
+      options:[
+        {id:'same',label:'수도 = 최대 도시',color:'#0b7285'},
+        {id:'diff',label:'수도 ≠ 최대 도시',color:'#c4441c'}
+      ],
+      values:assign(assign({},'same','타이,멕시코,아르헨티나,칠레'),'diff','브라질,오스트레일리아,나이지리아,파키스탄,미국,미얀마,베트남'),
+      mixed:{},
+      notes:{
+        '타이':'방콕이 수도이자 최대 도시.',
+        '멕시코':'멕시코시티 — 과달라하라보다 인구가 2배 이상 많은 종주 도시. 테노치티틀란 위에 건설.',
+        '아르헨티나':'부에노스아이레스 — 제2도시 코르도바보다 인구가 훨씬 많은 종주 도시.',
+        '칠레':'산티아고 — 수도에 인구와 기능이 크게 집중.',
+        '브라질':'수도 브라질리아(1960년 리우데자네이루에서 이전한 내륙 계획 수도), 수위 도시 상파울루.',
+        '오스트레일리아':'수도 캔버라, 대도시 시드니·멜버른 — 시드니는 수도가 아님.',
+        '나이지리아':'내륙 계획 수도 아부자, 해안 대도시 라고스.',
+        '파키스탄':'수도 이슬라마바드, 항구·경제 도시 카라치.',
+        '미국':'수도 워싱턴 D.C., UN 본부·금융은 뉴욕.',
+        '미얀마':'수도 네피도, 남부의 구 수도·최대 도시 양곤.',
+        '베트남':'북부의 수도 하노이, 남부의 최대 도시 호찌민.'
+      }
     }
   ];
   var byId={};sets.forEach(function(set){byId[set.id]=set});
@@ -482,6 +615,7 @@
   function displayName(set,name){return (set.displayNames&&set.displayNames[name])||name}
   // Countries a paint answer is checked against; other drawn countries are "not this category".
   function universe(set,allNames){
+    if(set.points)return Object.keys(set.points);
     if(set.universe==='listed')return Object.keys(set.values).concat(Object.keys(set.mixed));
     return allNames.slice();
   }
@@ -497,15 +631,20 @@
     return want.length===got.length&&want.every(function(v,i){return v===got[i]});
   }
   function has(set,name,id){return entry(set,name).values.indexOf(id)>=0}
-  function inRegion(name,regionId){return regionId==='all'||regionOf[name]===regionId}
+  // Point sets carry their own region (null: shown only for the whole world).
+  function inRegion(name,regionId,set){
+    if(regionId==='all')return true;
+    if(set&&set.points)return !!set.points[name]&&set.points[name][2]===regionId;
+    return regionOf[name]===regionId;
+  }
   // Countries that one-at-a-time questions are drawn from.
   function assignPool(set,regionId){
-    return Object.keys(set.values).filter(function(name){return inRegion(name,regionId)});
+    return Object.keys(set.values).filter(function(name){return inRegion(name,regionId,set)});
   }
   function gradePaint(set,target,selected,names,regionId){
     var picked=new Set(selected),result={correct:[],missed:[],wrong:[],excluded:[]};
     universe(set,names).forEach(function(name){
-      if(!inRegion(name,regionId))return;
+      if(!inRegion(name,regionId,set))return;
       var e=entry(set,name),isTarget=e.status==='graded'&&e.values.indexOf(target)>=0,chosen=picked.has(name);
       if(e.status==='mixed'){if(chosen)result.excluded.push(name);return}
       if(isTarget&&chosen)result.correct.push(name);

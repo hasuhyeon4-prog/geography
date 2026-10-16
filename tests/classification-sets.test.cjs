@@ -13,13 +13,14 @@ test('every boundary country belongs to exactly one study region', () => {
 test('set entries name drawable countries, valid options, and never overlap', () => {
   for (const set of C.sets) {
     const ids = new Set(C.optionsFor(set).map(o => o.id));
+    const drawable = name => set.points ? Array.isArray(set.points[name]) && set.points[name].length === 3 : !!shapes.byName[name];
     for (const [name, value] of Object.entries(set.values)) {
-      assert.ok(shapes.byName[name], set.id + ': ' + name);
+      assert.ok(drawable(name), set.id + ': ' + name);
       assert.equal(Array.isArray(value), !!set.multi, set.id + ': ' + name + ' value shape');
       for (const v of [].concat(value)) assert.ok(ids.has(v), set.id + ': ' + name + ' → ' + v);
       assert.ok(!(name in set.mixed), set.id + ': ' + name + ' is both graded and mixed');
     }
-    for (const name of Object.keys(set.mixed)) assert.ok(shapes.byName[name], set.id + ' mixed: ' + name);
+    for (const name of Object.keys(set.mixed)) assert.ok(drawable(name), set.id + ' mixed: ' + name);
     for (const name of Object.keys(set.notes)) assert.ok(name in set.values || name in set.mixed, set.id + ' note without entry: ' + name);
     for (const o of set.options) assert.ok(C.assignPool(set, 'all').some(n => C.has(set, n, o.id)), set.id + ' option unused: ' + o.id);
   }
@@ -85,7 +86,7 @@ test('paint grading separates correct, missed, wrong and ungraded picks', () => 
 test('every set can phrase its paint question and explain non-members', () => {
   for (const set of C.sets) {
     assert.match(set.paintPhrase, /\{x\}/, set.id);
-    if (!set.noneOption && set.universe !== 'listed') assert.ok(set.otherLabel, set.id + ' needs otherLabel');
+    if (!set.noneOption && set.universe !== 'listed' && !set.points) assert.ok(set.otherLabel, set.id + ' needs otherLabel');
   }
 });
 
@@ -128,4 +129,26 @@ test('multi-category answers must name every category and nothing else', () => {
   const paint = C.gradePaint(set, 'wheat', ['미국', '중국'], names, 'all');
   assert.ok(paint.correct.includes('미국'));
   assert.deepEqual(paint.wrong, [], '중국 is outside this listed set and cannot be picked');
+});
+
+test('point sets place every graded city and keep lecture climate anchors', () => {
+  const regionIds = new Set(C.regions.map(r => r.id));
+  for (const set of C.sets.filter(x => x.points)) {
+    for (const [name, [lon, lat, region]] of Object.entries(set.points)) {
+      assert.ok(lon >= -180 && lon <= 180 && lat >= -90 && lat <= 90, set.id + ' ' + name);
+      assert.ok(region === null || regionIds.has(region), set.id + ' ' + name + ' region');
+      assert.ok(name in set.values || name in set.mixed, set.id + ' point without answer: ' + name);
+    }
+  }
+  const v = C.byId.climateCities.values;
+  for (const n of ['퍼스', '케이프타운', '라바트', '샌프란시스코', '로마']) assert.equal(v[n], 'cs', n);
+  for (const n of ['런던', '파리', '오클랜드', '크라이스트처치']) assert.equal(v[n], 'cfb', n);
+  assert.equal(v['쿤밍'], 'cw');
+  assert.equal(v['상파울루'], 'cfa', 'a hot summer does not make it tropical');
+  assert.equal(v['키토'], 'h');
+  assert.equal(v['배로(우트키아빅)'], 'et');
+  assert.ok(C.isCorrect(C.byId.treatyCities, '파리', ['parisAgreement', 'unccd']));
+  assert.equal(C.byId.capitalCity.values['브라질'], 'diff');
+  assert.ok(C.inRegion('퍼스', 'oceania', C.byId.climateCities));
+  assert.ok(!C.inRegion('치타', 'europe', C.byId.climateCities), 'null-region points appear only worldwide');
 });
