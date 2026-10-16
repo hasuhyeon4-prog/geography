@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>세계지리 분류 퀴즈</title>
+<style>
+:root{--ink:#142d39;--muted:#60727b;--line:#dce4e6;--accent:#086b70;--pale:#e6f2f0;--paper:#fff;--sea:#eff7fa;--warm:#a25015;--pick:#e8590c;--good:#2b8a3e;--bad:#d9480f}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;color:var(--ink);background:var(--paper);font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;font-size:15px}
+button,select{font:inherit;color:inherit;border:1px solid var(--line);border-radius:10px;background:#fff}button{cursor:pointer;min-height:44px;padding:8px 12px;font-weight:700;touch-action:manipulation}button:hover{background:#f3f7f7}button:disabled{opacity:.4;cursor:default}
+button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #52b4c2;outline-offset:2px}[hidden]{display:none!important}
+.primary{background:var(--accent);border-color:var(--accent);color:#fff}.primary:hover{background:#05595d}
+#app{height:100%;height:100dvh;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:52px 52px minmax(0,1fr) clamp(270px,48dvh,390px);padding-top:env(safe-area-inset-top)}
+header{display:flex;align-items:center;gap:10px;padding:5px 12px;border-bottom:1px solid var(--line)}header h1{font-size:15px;margin:0;flex:1;white-space:nowrap}
+.back{font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border:1px solid #badcd5;background:var(--pale);border-radius:10px;padding:9px 10px;white-space:nowrap}
+.scope{display:grid;grid-template-columns:1.25fr 1fr;gap:10px;padding:5px 12px;background:#fafcfc;border-bottom:1px solid var(--line)}.scope label{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);white-space:nowrap;min-width:0}
+select{min-height:40px;min-width:0;width:100%;padding:6px;font-size:13px;font-weight:650;color:var(--ink)}
+#map{position:relative;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;background:var(--sea)}
+#mapScene{position:absolute;width:3600px;height:1800px;transform-origin:0 0;will-change:transform}
+#baseMap{position:absolute;left:0;top:50px;width:3600px;height:1450px;pointer-events:none}#baseMap img{min-width:0;min-height:0}
+#mapSVG{position:absolute;inset:0;width:3600px;height:1800px;overflow:visible;pointer-events:none}
+.country,.marker{vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.mapLabel{font-weight:750;fill:var(--ink);paint-order:stroke;stroke:#fff;stroke-linejoin:round}
+.mapControls{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:6px}.mapControls button{width:44px;height:44px;padding:0;background:rgba(255,255,255,.95);box-shadow:0 2px 7px #142d3911}
+#mapNote{position:absolute;left:8px;bottom:8px;right:62px;width:fit-content;max-width:calc(100% - 72px);pointer-events:none;display:flex;flex-wrap:wrap;gap:4px 9px;font-size:11px;line-height:1.3;color:#40535d;background:#ffffffe6;padding:5px 8px;border-radius:6px}
+.key{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}.swatch{width:12px;height:12px;border-radius:3px;border:1px solid #0002;flex:0 0 12px}.swatch.hatch{background:repeating-linear-gradient(45deg,#adb5bd 0 2px,#f1f3f5 2px 5px)}
+#card{min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr);border-top:1px solid var(--line);background:#fff;padding:8px 12px calc(8px + env(safe-area-inset-bottom))}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:#eef3f4;padding:3px;border-radius:11px}.tabs button{min-height:36px;padding:4px;font-size:13px;border:0;background:transparent;border-radius:8px;color:var(--muted)}.tabs button[aria-selected=true]{background:#fff;color:var(--accent);box-shadow:0 1px 4px #142d391a}
+#panel{min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:8px 2px 4px}
+.meta{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin-bottom:4px}
+.meta label{display:flex;align-items:center;gap:5px;white-space:nowrap}.meta input{width:17px;height:17px;margin:0}
+h2{font-size:19px;line-height:1.35;margin:2px 0 8px;word-break:keep-all}
+.basis{font-size:12px;line-height:1.55;color:var(--muted);margin:4px 0 8px}
+.options{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:7px;margin:6px 0}
+.options button{min-height:50px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:15px;padding:6px 8px}
+.options button:disabled{opacity:1;cursor:default}.options button:disabled:not(.right):not(.chosenWrong){opacity:.45}
+.options.compact{grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:5px}.options.compact button{min-height:40px;font-size:14px;padding:4px 6px}
+.options button[aria-pressed=true]{border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent);background:var(--pale)}
+.options button.right{border-color:var(--good);box-shadow:inset 0 0 0 2px var(--good);background:#ebfbee}.options button.chosenWrong{border-color:var(--bad);box-shadow:inset 0 0 0 2px var(--bad);background:#fff4e6}
+.result{border-radius:10px;padding:9px 11px;margin:8px 0;font-size:13px;line-height:1.55}.result b{font-size:15px}.result.good{background:#ebfbee;color:#1f5f2c}.result.bad{background:#fff4e6;color:#8a3a0c}.result.info{background:#f1f6f7;color:var(--ink)}
+.actions{display:flex;gap:8px;margin-top:8px}.actions button{flex:1}
+.big{min-height:56px;font-size:17px;border-radius:13px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:650;padding:5px 9px;border-radius:999px;background:#f1f5f6}
+.nameList{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0 8px}.nameList button{min-height:32px;padding:3px 9px;font-size:12px;font-weight:650;border-radius:999px}
+.nameList.missed button{border-color:#f3b8a5;background:#fff5f2}.nameList.wrong button{border-color:#ffd8a8;background:#fff9f0}.nameList.excluded button{background:#f4f6f7}
+.small{font-size:12px;line-height:1.5}.muted{color:var(--muted)}
+#toast{position:fixed;z-index:40;bottom:calc(16px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);max-width:calc(100% - 24px);padding:10px 15px;background:var(--ink);color:#fff;border-radius:10px;font-size:13px;pointer-events:none;box-shadow:0 4px 24px #0002}
+#bootNotice{position:fixed;z-index:50;left:16px;right:16px;top:80px;max-width:520px;margin:auto;padding:16px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 50px #0003;font-size:14px;line-height:1.6}
+@media(min-width:900px){
+ #app{grid-template-columns:minmax(400px,1fr) 400px;grid-template-rows:60px 60px minmax(0,1fr)}
+ header{grid-column:1/3;padding:8px 24px}header h1{font-size:18px}.scope{grid-column:1/3;grid-template-columns:320px 260px;align-items:center;padding:8px 24px}
+ #map{grid-column:1;grid-row:3}#card{grid-column:2;grid-row:3;border-top:0;border-left:1px solid var(--line);padding:16px}
+}
+@media(max-height:580px) and (max-width:899px){#app{grid-template-rows:46px 46px minmax(0,1fr) clamp(230px,47dvh,280px)}.options button{min-height:42px}}
+@media(max-height:500px) and (min-width:600px) and (max-width:899px){
+ #app{grid-template-columns:minmax(0,1fr) 355px;grid-template-rows:44px 46px minmax(0,1fr)}
+ header{grid-column:1/3}.scope{grid-column:1/3}#map{grid-column:1;grid-row:3}#card{grid-column:2;grid-row:3;border-top:0;border-left:1px solid var(--line)}
+}
+@media(max-width:360px){.scope{gap:6px;padding:5px 8px}.scope label{font-size:11px;gap:4px}#card{padding-left:9px;padding-right:9px}.options{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div id="bootNotice" role="status">지도를 준비하고 있어요.</div>
+<div id="app">
+ <header><a class="back" href="index.html">← 위치 학습</a><h1>분류 퀴즈</h1></header>
+ <div class="scope"><label for="setSelect">분류<select id="setSelect"></select></label><label for="regionSelect">지역<select id="regionSelect"></select></label></div>
+ <main id="map" aria-label="국가를 눌러 고르거나 확대·이동할 수 있는 세계 지도">
+  <div id="mapScene"><div id="baseMap" role="img" aria-label="국경이 표시된 세계 백지도" style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:minmax(0,966fr) minmax(0,967fr) minmax(0,967fr)"></div>
+   <svg id="mapSVG" viewBox="0 0 3600 1800" aria-hidden="true"><defs><pattern id="hatch" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(45)"><rect width="7" height="7" fill="#ced4da" fill-opacity=".35"/><line x1="0" y1="0" x2="0" y2="7" stroke="#868e96" stroke-width="2.5"/></pattern></defs><g id="countryLayer"></g><g id="markerLayer"></g><g id="labelLayer"></g></svg></div>
+  <div class="mapControls"><button id="zoomIn" aria-label="지도 확대">＋</button><button id="zoomOut" aria-label="지도 축소">−</button><button id="fitButton" aria-label="현재 지역 전체 보기" style="font-size:12px">범위</button></div>
+  <div id="mapNote"></div>
+ </main>
+ <section id="card" aria-label="분류 학습">
+  <div class="tabs" role="tablist" aria-label="학습 방식"><button role="tab" data-mode="study">분포 보기</button><button role="tab" data-mode="assign">하나씩 맞히기</button><button role="tab" data-mode="paint">모두 칠하기</button></div>
+  <div id="panel" role="tabpanel" tabindex="-1"></div>
+ </section>
+</div>
+<div id="toast" role="status" hidden></div>
+<script src="assets/country-boundaries.js?v=20260930-1"></script>
+<script src="assets/location-grading.js?v=20261006-2"></script>
+<script src="assets/classification-sets.js?v=20261016-1"></script>
+<script>
+(function(){
+'use strict';
+var $=function(id){return document.getElementById(id)};
+var C=window.WGClassification,S=window.WGCountryShapes,G=window.WGLocationGrading;
+if(!C||!S||!G){$('bootNotice').textContent='지도 자료를 불러오지 못했어요. 새로고침하거나 파일을 내려받아 열어 주세요.';return}
+var W=3600,names=Object.keys(S.byName),countries=Object.create(null),map=$('map'),scene=$('mapScene');
+// Region views keep a continent readable even when one country (e.g. Russia) spans far.
+var regionViews={europe:[-25,34,45,71],africa:[-20,-36,53,38],westasia:[25,10,80,56],asia:[60,-11,146,54],americas:[-170,-56,-34,72],oceania:[110,-48,180,0]};
+
+for(var r=0;r<3;r++)for(var c=0;c<6;c++){var img=document.createElement('img');img.src='assets/map-'+r+'-'+c+'.webp';img.alt='';img.decoding='async';img.draggable=false;img.style.cssText='display:block;width:100%;height:100%';$('baseMap').appendChild(img)}
+
+function project(lon,lat){return {x:(lon+180)*10,y:(90-lat)*10}}
+function box(points){var b=[180,90,-180,-90];points.forEach(function(p){if(p[0]<b[0])b[0]=p[0];if(p[1]<b[1])b[1]=p[1];if(p[0]>b[2])b[2]=p[0];if(p[1]>b[3])b[3]=p[1]});return b}
+function union(a,b){return a?[Math.min(a[0],b[0]),Math.min(a[1],b[1]),Math.max(a[2],b[2]),Math.max(a[3],b[3])]:b.slice()}
+function svg(tag,attrs,parent,text){var e=document.createElementNS('http://www.w3.org/2000/svg',tag);Object.keys(attrs).forEach(function(k){e.setAttribute(k,attrs[k])});if(text!==undefined)e.textContent=text;parent.appendChild(e);return e}
+// Display-only thinning; taps are graded against the full boundary.
+function thin(ring,tol){var out=[ring[0]],last=ring[0];for(var i=1;i<ring.length-1;i++){var p=ring[i];if(Math.abs(p[0]-last[0])>tol||Math.abs(p[1]-last[1])>tol){out.push(p);last=p}}out.push(ring[ring.length-1]);return out.length<4?ring:out}
+names.forEach(function(name){
+ var polygons=S.byName[name].polygons,main=null,area=-1,all=null;
+ polygons.forEach(function(poly){var b=box(poly[0]),a=(b[2]-b[0])*(b[3]-b[1]);all=union(all,b);if(a>area){area=a;main=b}});
+ var d=polygons.map(function(poly){return poly.map(function(ring){return thin(ring,.03).map(function(p,i){var a=project(p[0],p[1]);return (i?'L':'M')+a.x.toFixed(1)+' '+a.y.toFixed(1)}).join('')+'Z'}).join('')}).join('');
+ var path=svg('path',{d:d,class:'country','fill-rule':'evenodd','data-name':name},$('countryLayer'));
+ countries[name]={polygons:polygons,box:all,main:main,anchor:[(main[0]+main[2])/2,(main[1]+main[3])/2],tiny:all[2]-all[0]<1.6&&all[3]-all[1]<1.6,path:path};
+});
+
+function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_classify_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
+var store=readStore();if(!store.history||typeof store.history!=='object')store.history={};
+function save(){try{localStorage.setItem('wg_classify_v1',JSON.stringify({set:state.setId,region:state.region,mode:state.mode,showNames:state.showNames,history:store.history}))}catch(e){}}
+var state={setId:C.byId[store.set]?store.set:'religion',region:store.region==='all'||C.regions.some(function(r){return r.id===store.region})?store.region:'all',mode:['study','assign','paint'].includes(store.mode)?store.mode:'study',showNames:store.showNames===true,focus:null,queue:[],index:0,answer:null,right:0,wrongNames:[],target:null,picked:new Set(),graded:null,scale:1,x:0,y:0,lastScale:0};
+function set(){return C.byId[state.setId]}
+function shown(){var s=set();return C.universe(s,names).filter(function(n){return countries[n]&&C.inRegion(n,state.region)})}
+function label(name){return C.displayName(set(),name)}
+function optionLabel(id){var o=C.option(set(),id);return o?o.label:''}
+function color(id){var o=C.option(set(),id);return o&&o.color}
+function toast(message){$('toast').textContent=message;$('toast').hidden=false;clearTimeout(toast.timer);toast.timer=setTimeout(function(){$('toast').hidden=true},2200)}
+
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function history(){return store.history[state.setId]||(store.history[state.setId]={})}
+function buildQueue(only){
+ var h=history(),pool=only||C.assignPool(set(),state.region);
+ // Last-missed countries come first, then unseen ones, then the rest.
+ var missed=shuffle(pool.filter(function(n){return h[n]&&h[n].last===false})),fresh=shuffle(pool.filter(function(n){return !h[n]})),rest=shuffle(pool.filter(function(n){return h[n]&&h[n].last!==false}));
+ state.queue=only?shuffle(pool.slice()):missed.concat(fresh,rest);state.index=0;state.answer=null;state.right=0;state.wrongNames=[];
+}
+function resetPaint(){var opts=set().options;if(!opts.some(function(o){return o.id===state.target}))state.target=opts[0].id;state.picked=new Set();state.graded=null}
+function resetMode(){state.focus=null;if(state.mode==='assign')buildQueue();if(state.mode==='paint')resetPaint()}
+
+function styleCountry(name,path,visible){
+ var s=set(),inView=visible.has(name),e=C.entry(s,name),fill='none',opacity=0,stroke='#36505e',width=.6,strokeOpacity=.0;
+ if(inView){
+  strokeOpacity=.3;
+  if(state.mode==='study'){if(e.status==='mixed'){fill='url(#hatch)';opacity=1}else if(color(e.value)){fill=color(e.value);opacity=.55}}
+  else if(state.mode==='paint'){
+   if(!state.graded){if(state.picked.has(name)){fill='#e8590c';opacity=.6}}
+   else{var g=state.graded;if(g.correct.includes(name)){fill='#2b8a3e';opacity=.6}else if(g.missed.includes(name)){fill='#e03131';opacity=.5}else if(g.wrong.includes(name)){fill='#f08c00';opacity=.7;stroke='#8a3a0c';width=1.6;strokeOpacity=.9}else if(e.status==='mixed'){fill='url(#hatch)';opacity=1}}
+  }else if(state.mode==='assign'){var q=state.queue[state.index];if(name===q){fill=state.answer?color(set().values[q])||'#868e96':'#0b7285';opacity=state.answer?.7:.55;stroke='#0b4f57';width=2;strokeOpacity=1}else strokeOpacity=.15}
+  if(name===state.focus){stroke='#0b4f57';width=2.2;strokeOpacity=1}
+ }
+ path.setAttribute('fill',fill);path.setAttribute('fill-opacity',opacity);path.setAttribute('stroke',stroke);path.setAttribute('stroke-width',width);path.setAttribute('stroke-opacity',strokeOpacity);
+}
+function renderCountries(){var visible=new Set(shown());names.forEach(function(n){styleCountry(n,countries[n].path,visible)})}
+function markerFill(name){var p=countries[name].path;return {fill:p.getAttribute('fill')==='none'?'#fff':p.getAttribute('fill'),opacity:Math.max(.85,+p.getAttribute('fill-opacity'))}}
+function labelsToShow(){
+ var list=[];
+ if(state.mode==='assign'){var q=state.queue[state.index];if(q&&(state.answer||state.showNames))list.push(q)}
+ else if(state.mode==='paint'&&state.graded)list=state.graded.missed.concat(state.graded.wrong);
+ if(state.focus&&!list.includes(state.focus))list.push(state.focus);
+ return list;
+}
+function renderOverlay(){
+ $('markerLayer').replaceChildren();$('labelLayer').replaceChildren();
+ var k=1/state.scale,visible=shown();
+ visible.forEach(function(name){var c=countries[name];if(!c.tiny)return;var p=project(c.anchor[0],c.anchor[1]),m=markerFill(name);svg('circle',{cx:p.x,cy:p.y,r:7*k,fill:m.fill,'fill-opacity':m.opacity,stroke:'#36505e','stroke-width':1.2,class:'marker'},$('markerLayer'))});
+ labelsToShow().forEach(function(name){var c=countries[name],p=project(c.anchor[0],c.anchor[1]);svg('text',{x:p.x,y:p.y-(c.tiny?12:4)*k,'font-size':13*k,'stroke-width':4*k,class:'mapLabel','text-anchor':'middle'},$('labelLayer'),label(name))});
+}
+function renderNote(){
+ var note=$('mapNote');note.replaceChildren();
+ function key(text,colorValue,hatch){var span=document.createElement('span'),sw=document.createElement('span');span.className='key';sw.className='swatch'+(hatch?' hatch':'');if(colorValue)sw.style.background=colorValue;span.append(sw,document.createTextNode(text));note.appendChild(span)}
+ if(state.mode==='study'){set().options.forEach(function(o){key(o.label,o.color)});if(shown().some(function(n){return C.entry(set(),n).status==='mixed'}))key('혼재·채점 제외',null,true)}
+ else if(state.mode==='paint'){if(!state.graded)key('내가 칠한 나라','#e8590c');else{key('맞음','#2b8a3e');key('놓침','#e03131');key('잘못 칠함','#f08c00');key('채점 제외',null,true)}}
+ else{key(state.answer?'정답 분류 색':'문제 국가',state.answer?color(set().values[state.queue[state.index]])||'#868e96':'#0b7285')}
+}
+function renderMap(){renderCountries();renderOverlay();renderNote()}
+
+function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(ch){if(ch)e.appendChild(ch)});return e}
+function swatch(id){var s=el('span',{className:'swatch'});var col=color(id);if(col)s.style.background=col;return s}
+function nameButtons(list,className){return el('div',{className:'nameList '+className},list.map(function(n){return el('button',{type:'button',text:label(n),onclick:function(){state.focus=n;focusCountry(n);renderPanel();renderMap()}})}))}
+function countryInfo(name){
+ var s=set(),e=C.entry(s,name),title=el('b',{text:label(name)}),line;
+ if(e.status==='mixed')line='채점하지 않는 혼재 국가 · '+e.note;
+ else if(e.status==='graded')line=optionLabel(e.value)+(e.note?' · '+e.note:'');
+ else line=(s.noneOption?s.noneOption.label:s.otherLabel)+(e.note?' · '+e.note:'');
+ return el('div',{className:'result info'},[title,el('div',{text:line})]);
+}
+function renderPanel(){
+ var panel=$('panel'),s=set();panel.replaceChildren();
+ Array.from(document.querySelectorAll('.tabs button')).forEach(function(b){b.setAttribute('aria-selected',String(b.dataset.mode===state.mode))});
+ if(state.mode==='study'){
+  var counts=s.options.map(function(o){return el('span',{className:'chip'},[swatch(o.id),document.createTextNode(o.label+' '+shown().filter(function(n){return C.entry(s,n).status==='graded'&&s.values[n]===o.id}).length)])});
+  panel.append(el('div',{className:'meta'},[el('span',{text:s.title+' · '+s.lecture})]),el('div',{className:'chips'},counts),el('p',{className:'basis',text:s.basis}));
+  panel.append(state.focus?countryInfo(state.focus):el('p',{className:'small muted',text:'지도에서 나라를 누르면 분류와 설명을 볼 수 있어요. 빗금 친 나라는 비중이 비슷하거나 통계마다 달라 퀴즈에서 채점하지 않아요.'}));
+  panel.append(el('div',{className:'actions'},[el('button',{type:'button',className:'primary',text:'하나씩 맞히기',onclick:function(){setMode('assign')}}),el('button',{type:'button',text:'모두 칠하기',onclick:function(){setMode('paint')}})]));
+  return;
+ }
+ if(state.mode==='assign'){
+  if(!state.queue.length){panel.append(el('h2',{text:'이 지역에는 물을 나라가 없어요'}),el('p',{className:'basis',text:'지역을 ‘전 세계’로 바꾸거나 다른 분류를 골라 주세요.'}));return}
+  if(state.index>=state.queue.length){
+   var total=state.queue.length;
+   panel.append(el('h2',{text:total+'개 중 '+state.right+'개 맞혔어요'}));
+   if(state.wrongNames.length)panel.append(el('p',{className:'small muted',text:'틀린 나라'}),nameButtons(state.wrongNames,'missed'));
+   panel.append(el('div',{className:'actions'},[state.wrongNames.length?el('button',{type:'button',className:'primary big',text:'틀린 '+state.wrongNames.length+'개 다시',onclick:function(){buildQueue(state.wrongNames.slice());renderAll();focusQuestion()}}):null,el('button',{type:'button',className:state.wrongNames.length?'big':'primary big',text:'처음부터',onclick:function(){buildQueue();renderAll();focusQuestion()}})]));
+   return;
+  }
+  var q=state.queue[state.index],answer=s.values[q],toggle=el('input',{type:'checkbox'});toggle.checked=state.showNames;toggle.onchange=function(){state.showNames=this.checked;save();renderPanel();renderOverlay()};
+  panel.append(el('div',{className:'meta'},[el('span',{text:s.title+' · '+(state.index+1)+' / '+state.queue.length+' · 정답 '+state.right}),el('label',{},[toggle,document.createTextNode('나라 이름 보기')])]));
+  panel.append(el('h2',{text:(state.answer||state.showNames?label(q)+' — ':'')+s.assignQuestion}));
+  var grid=el('div',{className:'options'});
+  C.optionsFor(s).forEach(function(o,i){var b=el('button',{type:'button','data-option':o.id},[o.color?swatch(o.id):null,document.createTextNode(o.label)]);b.title='단축키 '+(i+1);if(state.answer){b.disabled=true;if(o.id===answer)b.className='right';else if(o.id===state.answer)b.className='chosenWrong'}else b.onclick=function(){answerWith(o.id)};grid.appendChild(b)});
+  panel.append(grid);
+  if(state.answer){
+   var ok=state.answer===answer,note=s.notes[q];
+   panel.append(el('div',{className:'result '+(ok?'good':'bad'),role:'status'},[el('b',{text:(ok?'정답':'오답')+' · '+label(q)+' — '+optionLabel(answer)}),note?el('div',{text:note}):null]));
+   panel.append(el('button',{type:'button',className:'primary big',style:'width:100%',text:state.index<state.queue.length-1?'다음':'결과 보기',onclick:nextQuestion}));
+  }
+  return;
+ }
+ // paint
+ var opts=el('div',{className:'options compact'});
+ s.options.forEach(function(o){var b=el('button',{type:'button','aria-pressed':String(o.id===state.target)},[swatch(o.id),document.createTextNode(o.label)]);b.onclick=function(){if(state.target===o.id)return;state.target=o.id;state.picked=new Set();state.graded=null;renderAll()};opts.appendChild(b)});
+ var regionName=state.region==='all'?'':(C.regions.find(function(r){return r.id===state.region}).name+'에서 ');
+ panel.append(el('div',{className:'meta'},[el('span',{text:s.title+' · 칠할 분류'})]),opts);
+ if(!state.graded){
+  panel.append(el('h2',{text:regionName+s.paintPhrase.replace('{x}',optionLabel(state.target))+' 모두 누르세요'}));
+  panel.append(el('p',{className:'small muted',text:'선택 '+state.picked.size+'개 · 다시 누르면 취소돼요. 작은 나라는 동그라미로 표시돼요.'}));
+  if(state.focus)panel.append(el('p',{className:'small muted',text:'방금 누른 나라: '+label(state.focus)}));
+  panel.append(el('div',{className:'actions'},[el('button',{type:'button',text:'모두 지우기',onclick:function(){state.picked=new Set();state.focus=null;renderAll()}}),el('button',{type:'button',className:'primary',text:'채점하기',onclick:gradeNow})]));
+  return;
+ }
+ var g=state.graded,need=g.correct.length+g.missed.length,perfect=!g.missed.length&&!g.wrong.length;
+ panel.append(el('h2',{text:perfect?(need?'모두 맞혔어요':'해당 나라가 없는 게 정답이에요'):(need+'개 중 '+g.correct.length+'개 · 잘못 칠함 '+g.wrong.length+'개')}));
+ if(g.missed.length)panel.append(el('p',{className:'small muted',text:'놓친 나라'}),nameButtons(g.missed,'missed'));
+ if(g.wrong.length)panel.append(el('p',{className:'small muted',text:'잘못 칠한 나라'}),nameButtons(g.wrong,'wrong'));
+ if(g.excluded.length)panel.append(el('p',{className:'small muted',text:'채점하지 않은 혼재 국가'}),nameButtons(g.excluded,'excluded'));
+ if(state.focus)panel.append(countryInfo(state.focus));else panel.append(el('p',{className:'small muted',text:'나라 이름이나 지도를 누르면 설명을 볼 수 있어요.'}));
+ panel.append(el('div',{className:'actions'},[el('button',{type:'button',className:'primary',text:'다시 칠하기',onclick:function(){state.picked=new Set();state.graded=null;state.focus=null;renderAll()}})]));
+}
+function renderAll(){renderPanel();renderMap();save()}
+
+function answerWith(id){
+ var q=state.queue[state.index];if(!q||state.answer)return;
+ state.answer=id;var ok=id===set().values[q],h=history(),row=h[q]||(h[q]={right:0,wrong:0});
+ row[ok?'right':'wrong']++;row.last=ok;if(ok)state.right++;else state.wrongNames.push(q);
+ renderAll();
+ // Bring the verdict and the next button into view on short phone cards.
+ var panel=$('panel');panel.scrollTop=panel.scrollHeight;
+}
+function nextQuestion(){state.index++;state.answer=null;renderAll();if(state.index<state.queue.length)focusQuestion();else fitRegion()}
+function gradeNow(){state.graded=C.gradePaint(set(),state.target,Array.from(state.picked),names,state.region);state.focus=null;renderAll()}
+
+function regionBox(){
+ if(state.region!=='all')return regionViews[state.region];
+ if(set().view)return set().view;
+ var b=null;shown().forEach(function(n){b=union(b,countries[n].main)});return b||[-170,-56,180,80];
+}
+function mapSize(){return {w:Math.max(1,map.clientWidth),h:Math.max(1,map.clientHeight)}}
+function minScale(){var d=mapSize();return Math.min(d.w/W,d.h/1800)}
+function clamp(n,a,b){return Math.max(a,Math.min(b,n))}
+function apply(){scene.style.transform='translate('+state.x+'px,'+state.y+'px) scale('+state.scale+')';if(state.scale!==state.lastScale){state.lastScale=state.scale;renderOverlay()}}
+function fitBox(b){var d=mapSize(),pad=Math.min(36,d.w*.08,d.h*.08),a=project(b[0],b[3]),z=project(b[2],b[1]);state.scale=clamp(Math.min((d.w-pad*2)/Math.max(z.x-a.x,10),(d.h-pad*2)/Math.max(z.y-a.y,10)),minScale(),14);state.x=d.w/2-(a.x+z.x)/2*state.scale;state.y=d.h/2-(a.y+z.y)/2*state.scale;apply()}
+function fitRegion(){fitBox(regionBox())}
+function focusCountry(name){var b=countries[name].main,dx=Math.max(9,(b[2]-b[0])/2+4),dy=Math.max(6,(b[3]-b[1])/2+3),cx=(b[0]+b[2])/2,cy=(b[1]+b[3])/2;fitBox([cx-dx,cy-dy,cx+dx,cy+dy])}
+function focusQuestion(){var q=state.queue[state.index];if(!q)return;
+ // Keep the question country in its regional context instead of zooming to the answer outline.
+ var b=countries[q].main,r=state.region!=='all'?regionViews[state.region]:null,cx=(b[0]+b[2])/2,cy=(b[1]+b[3])/2,dx=Math.max(22,(b[2]-b[0])/2+10),dy=Math.max(14,(b[3]-b[1])/2+7);
+ if(r&&cx>=r[0]&&cx<=r[2]&&cy>=r[1]&&cy<=r[3])fitBox(r);else fitBox([cx-dx,cy-dy,cx+dx,cy+dy])}
+function zoom(f,x,y){var s=clamp(state.scale*f,minScale(),20),mx=(x-state.x)/state.scale,my=(y-state.y)/state.scale;state.scale=s;state.x=x-mx*s;state.y=y-my*s;apply()}
+
+function countryAt(x,y){
+ var rect=map.getBoundingClientRect(),sx=x-rect.left,sy=y-rect.top,lon=(sx-state.x)/state.scale/10-180,lat=90-(sy-state.y)/state.scale/10,best=null,min=Infinity,list=shown();
+ list.forEach(function(n){var c=countries[n];if(!c.tiny)return;var p=project(c.anchor[0],c.anchor[1]),d=Math.hypot(p.x*state.scale+state.x-sx,p.y*state.scale+state.y-sy);if(d<16&&d<min){min=d;best=n}});
+ if(best)return best;
+ var pt={lon:lon,lat:lat};
+ for(var i=0;i<list.length;i++){var c=countries[list[i]],b=c.box;if(lon<b[0]-1||lon>b[2]+1||lat<b[1]-1||lat>b[3]+1)continue;if(G.inPolygons(pt,c.polygons))return list[i]}
+ // Coast-hugging taps: accept the nearest border within about 10 screen pixels.
+ var tolKm=10/(state.scale*10)*111.2;min=Infinity;
+ list.forEach(function(n){var c=countries[n],b=c.box,pad=tolKm/80+1;if(lon<b[0]-pad||lon>b[2]+pad||lat<b[1]-pad||lat>b[3]+pad)return;var d=G.polygonDistance(pt,c.polygons);if(d<tolKm&&d<min){min=d;best=n}});
+ return best;
+}
+function mapTap(x,y){
+ if(state.mode==='assign')return;
+ var name=countryAt(x,y);
+ if(!name){if(state.mode==='paint'&&!state.graded)toast('이 분류에서 고를 수 있는 나라가 아니에요');return}
+ if(state.mode==='paint'&&!state.graded){var e=C.entry(set(),name);if(state.picked.has(name))state.picked.delete(name);else{state.picked.add(name);if(e.status==='mixed')toast(label(name)+'은(는) 혼재 국가라 채점하지 않아요')}state.focus=name;renderPanel();renderMap();return}
+ state.focus=state.focus===name?null:name;renderPanel();renderMap();
+}
+var pointers=new Map(),start=null,last=null,pinch=null,moved=false;
+function beginPinch(){var a=Array.from(pointers.values()),r=map.getBoundingClientRect(),x=(a[0].x+a[1].x)/2-r.left,y=(a[0].y+a[1].y)/2-r.top;pinch={d:Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y),scale:state.scale,x:(x-state.x)/state.scale,y:(y-state.y)/state.scale};moved=true}
+map.addEventListener('pointerdown',function(e){if(e.target.closest('button')||e.pointerType==='mouse'&&e.button!==0)return;e.preventDefault();try{map.setPointerCapture(e.pointerId)}catch(ignore){}pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pointers.size===1){start={x:e.clientX,y:e.clientY,t:Date.now()};last={x:e.clientX,y:e.clientY};moved=false}else beginPinch()});
+map.addEventListener('pointermove',function(e){if(!pointers.has(e.pointerId))return;e.preventDefault();pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});var a=Array.from(pointers.values());if(a.length===1){if(Math.hypot(e.clientX-start.x,e.clientY-start.y)>7)moved=true;state.x+=e.clientX-last.x;state.y+=e.clientY-last.y;last={x:e.clientX,y:e.clientY};apply()}else if(pinch&&pinch.d>0){var r=map.getBoundingClientRect();state.scale=clamp(pinch.scale*Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y)/pinch.d,minScale(),20);state.x=(a[0].x+a[1].x)/2-r.left-pinch.x*state.scale;state.y=(a[0].y+a[1].y)/2-r.top-pinch.y*state.scale;apply()}});
+function release(e,cancel){if(!pointers.has(e.pointerId))return;pointers.delete(e.pointerId);if(!pointers.size){if(!cancel&&!moved&&start&&Date.now()-start.t<600)mapTap(e.clientX,e.clientY);pinch=null}else{moved=true;last=Array.from(pointers.values())[0];if(pointers.size>=2)beginPinch();else pinch=null}}
+map.addEventListener('pointerup',function(e){release(e,false)});map.addEventListener('pointercancel',function(e){release(e,true)});map.addEventListener('lostpointercapture',function(e){release(e,true)});
+map.addEventListener('wheel',function(e){if(e.target.closest('button'))return;e.preventDefault();var r=map.getBoundingClientRect();zoom(e.deltaY<0?1.16:1/1.16,e.clientX-r.left,e.clientY-r.top)},{passive:false});
+$('zoomIn').onclick=function(){var d=mapSize();zoom(1.35,d.w/2,d.h/2)};$('zoomOut').onclick=function(){var d=mapSize();zoom(1/1.35,d.w/2,d.h/2)};$('fitButton').onclick=fitRegion;
+
+function setMode(mode){state.mode=mode;resetMode();renderAll();if(mode==='assign'&&state.queue.length)focusQuestion();else fitRegion();$('panel').scrollTop=0}
+Array.from(document.querySelectorAll('.tabs button')).forEach(function(b){b.onclick=function(){if(b.dataset.mode!==state.mode)setMode(b.dataset.mode)}});
+C.sets.forEach(function(s){var o=document.createElement('option');o.value=s.id;o.textContent=s.title;$('setSelect').appendChild(o)});
+[{id:'all',name:'전 세계'}].concat(C.regions).forEach(function(r){var o=document.createElement('option');o.value=r.id;o.textContent=r.name;$('regionSelect').appendChild(o)});
+$('setSelect').onchange=function(){state.setId=this.value;state.target=null;setMode(state.mode)};
+$('regionSelect').onchange=function(){state.region=this.value;setMode(state.mode)};
+document.addEventListener('keydown',function(e){
+ if(['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;
+ if(state.mode!=='assign'||state.index>=state.queue.length)return;
+ var opts=C.optionsFor(set()),n=parseInt(e.key,10);
+ if(!state.answer&&n>=1&&n<=opts.length){e.preventDefault();answerWith(opts[n-1].id)}
+ else if(state.answer&&(e.key==='Enter'||e.key==='ArrowRight')&&e.target.tagName!=='BUTTON'){e.preventDefault();nextQuestion()}
+});
+var lastSize=null;function resize(){var d=mapSize();if(lastSize){state.x+=(d.w-lastSize.w)/2;state.y+=(d.h-lastSize.h)/2;if(state.scale<minScale())state.scale=minScale();apply()}lastSize=d}
+if(typeof ResizeObserver!=='undefined')new ResizeObserver(resize).observe(map);else window.addEventListener('resize',resize);
+$('setSelect').value=state.setId;$('regionSelect').value=state.region;
+setMode(state.mode);lastSize=mapSize();$('bootNotice').hidden=true;
+})();
+</script>
+</body></html>
