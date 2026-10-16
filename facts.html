@@ -10,6 +10,7 @@ button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #52b
 .primary{background:var(--accent);border-color:var(--accent);color:#fff}.primary:hover{background:#05595d}
 header{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:8px;min-height:52px;padding:5px 12px;padding-top:calc(5px + env(safe-area-inset-top));background:#fff;border-bottom:1px solid var(--line)}
 header h1{font-size:15px;margin:0;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.nav{display:flex;gap:4px;margin-left:auto}.nav a{font-size:12px;font-weight:700;color:var(--muted);text-decoration:none;padding:9px 8px;border-radius:9px;white-space:nowrap}.nav a[aria-current=page]{background:var(--ink);color:#fff}@media(max-width:360px){.nav a{padding:8px 5px;font-size:11px}}
 .navLink{flex-shrink:0;font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border:1px solid #badcd5;background:var(--pale);border-radius:10px;padding:9px 10px;white-space:nowrap}
 .scope{display:grid;grid-template-columns:1.3fr 1fr;gap:10px;padding:8px 12px;background:#fafcfc;border-bottom:1px solid var(--line)}.scope label{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);white-space:nowrap;min-width:0}
 select{min-height:40px;min-width:0;width:100%;padding:6px;font-size:13px;font-weight:650;color:var(--ink)}
@@ -34,7 +35,7 @@ h2{font-size:21px;margin:2px 0 10px}
 </style>
 </head>
 <body>
-<header><a class="navLink" href="index.html">← 위치 학습</a><h1>통계·순위 OX</h1><a class="navLink" href="classify.html">분류 퀴즈</a></header>
+<header><a class="navLink" href="index.html">← 위치</a><h1 class="sr">통계 OX</h1><nav class="nav" aria-label="퀴즈 종류"><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html" aria-current="page">OX</a></nav></header>
 <div class="scope"><label for="topicSelect">주제<select id="topicSelect"></select></label><label for="orderSelect">출제<select id="orderSelect"><option value="weak">틀린 것 먼저</option><option value="random">무작위</option><option value="wrongOnly">최근 틀린 것만</option></select></label></div>
 <main><section class="card" id="card" aria-live="polite"></section><p class="hint">키보드: O·X(또는 1·2)로 답하고 Enter로 다음</p></main>
 <script src="assets/fact-statements.js?v=20261016-1"></script>

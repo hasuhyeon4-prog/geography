@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>세계지리 순위표</title>
+<style>
+:root{--ink:#142d39;--muted:#60727b;--line:#dce4e6;--accent:#086b70;--pale:#e6f2f0;--good:#2b8a3e;--bad:#c4441c}
+*{box-sizing:border-box}html,body{margin:0;width:100%;min-height:100%;color:var(--ink);background:#f6f9f9;font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;font-size:15px}
+button,select{font:inherit;color:inherit;border:1px solid var(--line);border-radius:10px;background:#fff}button{cursor:pointer;min-height:44px;padding:8px 12px;font-weight:700;touch-action:manipulation}button:hover{background:#f3f7f7}button:disabled{cursor:default}
+button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #52b4c2;outline-offset:2px}[hidden]{display:none!important}
+.primary{background:var(--accent);border-color:var(--accent);color:#fff}.primary:hover{background:#05595d}
+header{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:6px;min-height:52px;padding:5px 10px;padding-top:calc(5px + env(safe-area-inset-top));background:#fff;border-bottom:1px solid var(--line)}
+.navLink{flex-shrink:0;font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border:1px solid #badcd5;background:var(--pale);border-radius:10px;padding:9px 9px;white-space:nowrap}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.rows li.tieRow{display:block;padding:0}.nav{display:flex;gap:4px;margin-left:auto}.nav a{font-size:12px;font-weight:700;color:var(--muted);text-decoration:none;padding:9px 8px;border-radius:9px;white-space:nowrap}.nav a[aria-current=page]{background:var(--ink);color:#fff}
+.scope{display:grid;grid-template-columns:1.2fr 1fr;gap:10px;padding:8px 12px;background:#fafcfc;border-bottom:1px solid var(--line)}.scope label{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);white-space:nowrap;min-width:0}
+select{min-height:40px;min-width:0;width:100%;padding:6px;font-size:13px;font-weight:650;color:var(--ink)}
+main{max-width:720px;margin:0 auto;padding:12px 12px calc(28px + env(safe-area-inset-bottom))}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 14px 12px;box-shadow:0 2px 10px #142d390d;margin-bottom:12px}
+.card h2{font-size:17px;margin:0 0 3px;word-break:keep-all}.meta{font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.5}
+.rows{list-style:none;margin:0;padding:0}.rows li{display:grid;grid-template-columns:22px 8.6em minmax(40px,1fr) 7.4em;align-items:center;gap:8px;padding:5px 0;font-size:14px}
+.rank{color:var(--muted);font-size:12px;font-weight:700;text-align:right}.rows .name{font-weight:700;word-break:keep-all;line-height:1.3}
+.bar{height:10px;border-radius:5px;background:#e9eff0;overflow:hidden}.bar span{display:block;height:100%;background:#4d9da1}.bar span.neg{background:#e8590c}
+.val{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+.tie{display:block;margin:-2px 0 2px 30px;font-size:11px;color:#9c6b00}
+.note{font-size:12px;line-height:1.55;color:var(--muted);margin:8px 0 0}
+.groupTitle{font-size:13px;color:var(--muted);margin:16px 4px 8px;font-weight:700}
+.q{font-size:19px;line-height:1.5;font-weight:750;margin:6px 0 14px;word-break:keep-all}
+.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.choices button{min-height:58px;font-size:16px;border-width:2px;border-radius:13px}
+.choices button.right{border-color:var(--good);background:#ebfbee;color:#1f5f2c}.choices button.chosenWrong{border-color:var(--bad);background:#fff4e6;color:#8a3a0c}
+.choices button.picked{border-color:var(--accent);background:var(--pale)}.choices button .order{display:inline-block;min-width:22px;margin-right:4px;border-radius:11px;background:var(--accent);color:#fff;font-size:12px;line-height:22px}
+.result{border-radius:12px;padding:11px 13px;margin:12px 0 8px;font-size:14px;line-height:1.6}.result.good{background:#ebfbee;color:#1f5f2c}.result.bad{background:#fff4e6;color:#8a3a0c}
+.big{width:100%;min-height:54px;font-size:17px;border-radius:13px;margin-top:8px}
+.progress{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.actions{display:flex;gap:8px}.actions button{flex:1}
+.small{font-size:12px;line-height:1.5}.muted{color:var(--muted)}
+@media(max-width:360px){.navLink{padding:8px 6px;font-size:11px}.nav a{padding:8px 5px;font-size:11px}.rows li{grid-template-columns:20px 7.6em minmax(30px,1fr) 6.6em;gap:6px;font-size:13px}}
+</style>
+</head>
+<body>
+<header><a class="navLink" href="index.html">← 위치</a><h1 class="sr">순위표</h1><nav class="nav" aria-label="퀴즈 종류"><a href="classify.html">분류 지도</a><a href="rankings.html" aria-current="page">순위표</a><a href="facts.html">OX</a></nav></header>
+<div class="scope"><label for="groupSelect">주제<select id="groupSelect"></select></label><label for="modeSelect">방식<select id="modeSelect"><option value="study">순위표 보기</option><option value="quiz">순위 문제</option></select></label></div>
+<main id="main" aria-live="polite"></main>
+<script src="assets/rankings.js?v=20261016-1"></script>
+<script>
+(function(){
+'use strict';
+var R=window.WGRankings,$=function(id){return document.getElementById(id)};
+if(!R){$('main').textContent='순위 자료를 불러오지 못했어요. 새로고침해 주세요.';return}
+var byId={};R.rankings.forEach(function(r){byId[r.id]=r});
+// Values within 5% of each other can swap with the data year or unit, so they are never asked head to head.
+function close(a,b){var m=Math.max(Math.abs(a),Math.abs(b));return m===0||Math.abs(a-b)<=0.05*m}
+function ranked(r){return r.unit==='순위'}
+function fmt(r,x){return ranked(r)?'':x.toLocaleString('ko-KR',{maximumFractionDigits:r.digits})+' '+r.unit}
+function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_rankings_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
+var store=readStore();if(!store.miss||typeof store.miss!=='object')store.miss={};
+var state={group:R.groups.some(function(g){return g.id===store.group})?store.group:'all',mode:store.mode==='quiz'?'quiz':'study',queue:[],index:0,q:null,answer:null,picked:[],right:0,wrong:[]};
+function save(){try{localStorage.setItem('wg_rankings_v1',JSON.stringify({group:state.group,mode:state.mode,miss:store.miss}))}catch(e){}}
+function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(c){if(c!=null&&c!==false)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
+function pool(){return R.rankings.filter(function(r){return state.group==='all'||r.group===state.group})}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function head(r){return r.title+' ('+r.year+')'}
+
+function renderStudy(){
+ var main=$('main');main.replaceChildren();var last=null;
+ pool().forEach(function(r){
+  if(state.group==='all'&&r.group!==last){last=r.group;main.append(el('div',{className:'groupTitle',text:R.groups.find(function(g){return g.id===r.group}).name}))}
+  var max=Math.max.apply(null,r.items.map(function(i){return Math.abs(i.value)}))||1,ul=el('ol',{className:'rows'});
+  r.items.forEach(function(it,i){
+   var bar=el('span',{className:it.value<0?'neg':null});bar.style.width=(ranked(r)?(r.items.length-i)/r.items.length*100:Math.abs(it.value)/max*100)+'%';
+   ul.append(el('li',{},[el('span',{className:'rank',text:String(i+1)}),el('span',{className:'name',text:it.name}),el('span',{className:'bar'},[bar]),el('span',{className:'val',text:fmt(r,it.value)})]));
+   var nx=r.items[i+1];if(nx&&!ranked(r)&&close(it.value,nx.value))ul.append(el('li',{className:'tieRow'},[el('span',{className:'tie',text:'≈ '+it.name+'와(과) '+nx.name+'는 근소한 차이 — 자료 연도에 따라 바뀔 수 있음'})]));
+  });
+  main.append(el('section',{className:'card'},[el('h2',{text:r.title}),el('div',{className:'meta',text:r.year+' · '+r.source}),ul,r.note?el('p',{className:'note',text:r.note}):null]));
+ });
+ main.append(el('button',{type:'button',className:'primary big',text:'이 주제로 순위 문제 풀기',onclick:function(){state.mode='quiz';$('modeSelect').value='quiz';save();startQuiz()}}));
+}
+
+// Question generators read the whole ranking, so any pair or order can be asked.
+function pairQ(r){
+ var pairs=[];r.items.forEach(function(a,i){r.items.forEach(function(b,j){if(i<j&&(ranked(r)||!close(a.value,b.value)))pairs.push([a,b])})});
+ if(!pairs.length)return null;var p=pick(pairs),low=r.low&&Math.random()<.35;
+ return {type:'pair',r:r,text:head(r)+' — 둘 중 '+(low?r.low:r.phrase)+' 쪽은?',options:shuffle([p[0].name,p[1].name]),answer:[low?p[1].name:p[0].name]};
+}
+function extremeQ(r){
+ var it=r.items,n=it.length;if(n<3)return null;
+ var topOk=ranked(r)||!close(it[0].value,it[1].value),bottomOk=ranked(r)||!close(it[n-1].value,it[n-2].value);
+ if(!topOk&&!bottomOk)return null;var top=topOk&&(!bottomOk||Math.random()<.65),target=top?it[0]:it[n-1];
+ var others=shuffle(it.filter(function(x){return x!==target})).slice(0,Math.min(3,n-1));
+ return {type:'pick',r:r,text:head(r)+' — '+(top?'1위':'가장 낮은 곳')+'는?',options:shuffle([target.name].concat(others.map(function(x){return x.name}))),answer:[target.name]};
+}
+function orderQ(r){
+ var n=r.items.length;if(n<3)return null;var subset=n>5?shuffle(r.items.slice()).slice(0,4):r.items.slice();
+ subset.sort(function(a,b){return b.value-a.value});
+ return {type:'order',r:r,text:head(r)+' — 큰 순서대로 누르세요.',options:shuffle(subset.map(function(x){return x.name})),answer:subset.map(function(x){return x.name})};
+}
+function makeQuestion(r){var gens=shuffle([pairQ,pairQ,extremeQ,orderQ]);for(var i=0;i<gens.length;i++){var q=gens[i](r);if(q)return q}return null}
+function startQuiz(only){
+ // Rankings missed before are drawn more often.
+ var list=only||pool(),bag=[];list.forEach(function(r){var w=1+Math.min(3,store.miss[r.id]||0);for(var i=0;i<w;i++)bag.push(r)});
+ var n=only?only.length:Math.min(12,Math.max(6,list.length)),queue=[];shuffle(bag);
+ for(var i=0;queue.length<n&&i<bag.length*3;i++){var q=makeQuestion(bag[i%bag.length]);if(q)queue.push(q)}
+ state.queue=queue;state.index=0;state.answer=null;state.picked=[];state.right=0;state.wrong=[];renderQuiz();
+}
+function orderCorrect(q,seq){
+ var val={};q.r.items.forEach(function(i){val[i.name]=i.value});
+ for(var i=0;i<seq.length-1;i++){var a=val[seq[i]],b=val[seq[i+1]];if(a<b&&!close(a,b))return false}return true;
+}
+function judge(q,ans){return q.type==='order'?orderCorrect(q,ans):ans[0]===q.answer[0]}
+function submit(ans){
+ var q=state.queue[state.index];state.answer=ans;var ok=judge(q,ans);
+ if(ok)state.right++;else{state.wrong.push(q.r);store.miss[q.r.id]=(store.miss[q.r.id]||0)+1}
+ if(ok&&store.miss[q.r.id])store.miss[q.r.id]--;save();renderQuiz();
+}
+function tableOf(r,highlight){
+ var ul=el('ol',{className:'rows'}),max=Math.max.apply(null,r.items.map(function(i){return Math.abs(i.value)}))||1;
+ r.items.forEach(function(it,i){var bar=el('span',{className:it.value<0?'neg':null});bar.style.width=(ranked(r)?(r.items.length-i)/r.items.length*100:Math.abs(it.value)/max*100)+'%';
+  var li=el('li',{},[el('span',{className:'rank',text:String(i+1)}),el('span',{className:'name',text:it.name}),el('span',{className:'bar'},[bar]),el('span',{className:'val',text:fmt(r,it.value)})]);
+  if(highlight.indexOf(it.name)<0)li.style.opacity='.55';ul.append(li)});
+ return ul;
+}
+function renderQuiz(){
+ var main=$('main');main.replaceChildren();
+ if(!state.queue.length){main.append(el('section',{className:'card'},[el('h2',{text:'문제를 만들 수 없어요'}),el('p',{className:'small muted',text:'다른 주제를 골라 주세요.'})]));return}
+ if(state.index>=state.queue.length){
+  var seen={},wrong=state.wrong.filter(function(r){return seen[r.id]?false:(seen[r.id]=true)});
+  var card=el('section',{className:'card'},[el('h2',{text:state.queue.length+'문제 중 '+state.right+'개 맞혔어요'})]);
+  wrong.forEach(function(r){card.append(el('div',{className:'groupTitle',text:head(r)}),tableOf(r,r.items.map(function(i){return i.name})))});
+  card.append(el('div',{className:'actions'},[wrong.length?el('button',{type:'button',className:'primary big',text:'틀린 순위표로 다시',onclick:function(){startQuiz(wrong.concat(wrong))}}):null,el('button',{type:'button',className:wrong.length?'big':'primary big',text:'새 문제',onclick:function(){startQuiz()}})]));
+  main.append(card);return;
+ }
+ var q=state.queue[state.index],card=el('section',{className:'card'});
+ card.append(el('div',{className:'progress'},[el('span',{text:R.groups.find(function(g){return g.id===q.r.group}).name}),el('span',{text:(state.index+1)+' / '+state.queue.length+' · 정답 '+state.right})]),el('p',{className:'q',text:q.text}));
+ var grid=el('div',{className:'choices'});
+ q.options.forEach(function(name){
+  var b=el('button',{type:'button'});
+  if(q.type==='order'){var at=(state.answer||state.picked).indexOf(name);if(at>=0)b.append(el('span',{className:'order',text:String(at+1)}))}
+  b.append(name);
+  if(state.answer){b.disabled=true;if(q.type!=='order'){if(name===q.answer[0])b.className='right';else if(name===state.answer[0])b.className='chosenWrong'}else b.className='picked'}
+  else if(q.type==='order'){if(state.picked.indexOf(name)>=0)b.className='picked';b.onclick=function(){var i=state.picked.indexOf(name);if(i>=0)state.picked.splice(i,1);else state.picked.push(name);if(state.picked.length===q.options.length)submit(state.picked.slice());else renderQuiz()}}
+  else b.onclick=function(){submit([name])};
+  grid.append(b);
+ });
+ card.append(grid);
+ if(q.type==='order'&&!state.answer)card.append(el('p',{className:'small muted',text:'다시 누르면 취소돼요. 근소한 차이(≈)인 둘은 어느 순서든 정답.'}));
+ if(state.answer){
+  var ok=judge(q,state.answer);
+  card.append(el('div',{className:'result '+(ok?'good':'bad'),role:'status'},[el('b',{text:ok?'정답':'오답'}),q.type==='order'&&!ok?el('div',{text:'정답 순서: '+q.answer.join(' > ')}):null,el('div',{className:'small',text:q.r.source+(q.r.note?' · '+q.r.note:'')})]));
+  card.append(tableOf(q.r,q.options));
+  var next=el('button',{type:'button',className:'primary big',text:state.index<state.queue.length-1?'다음':'결과 보기',onclick:function(){state.index++;state.answer=null;state.picked=[];renderQuiz();window.scrollTo({top:0})}});
+  card.append(next);
+ }
+ main.append(card);if(state.answer){var n=main.querySelector('.big');n.focus({preventScroll:true});n.scrollIntoView({block:'nearest'})}
+}
+function render(){if(state.mode==='study')renderStudy();else startQuiz()}
+$('groupSelect').append(el('option',{value:'all',text:'전체 ('+R.rankings.length+')'}));
+R.groups.forEach(function(g){$('groupSelect').append(el('option',{value:g.id,text:g.name+' ('+R.rankings.filter(function(r){return r.group===g.id}).length+')'}))});
+$('groupSelect').value=state.group;$('modeSelect').value=state.mode;
+$('groupSelect').onchange=function(){state.group=this.value;save();render();window.scrollTo({top:0})};
+$('modeSelect').onchange=function(){state.mode=this.value;save();render();window.scrollTo({top:0})};
+render();
+})();
+</script>
+</body></html>
