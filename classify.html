@@ -9,7 +9,7 @@ button,select{font:inherit;color:inherit;border:1px solid var(--line);border-rad
 button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #52b4c2;outline-offset:2px}[hidden]{display:none!important}
 .primary{background:var(--accent);border-color:var(--accent);color:#fff}.primary:hover{background:#05595d}
 #app{height:100%;height:100dvh;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:52px 52px minmax(0,1fr) clamp(270px,48dvh,390px);padding-top:env(safe-area-inset-top)}
-header{display:flex;align-items:center;gap:10px;padding:5px 12px;border-bottom:1px solid var(--line)}header h1{font-size:15px;margin:0;flex:1;white-space:nowrap}
+header{display:flex;align-items:center;gap:10px;padding:5px 12px;border-bottom:1px solid var(--line)}header h1{font-size:15px;margin:0;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .back{font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border:1px solid #badcd5;background:var(--pale);border-radius:10px;padding:9px 10px;white-space:nowrap}
 .scope{display:grid;grid-template-columns:1.25fr 1fr;gap:10px;padding:5px 12px;background:#fafcfc;border-bottom:1px solid var(--line)}.scope label{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);white-space:nowrap;min-width:0}
 select{min-height:40px;min-width:0;width:100%;padding:6px;font-size:13px;font-weight:650;color:var(--ink)}
@@ -38,7 +38,7 @@ h2{font-size:19px;line-height:1.35;margin:2px 0 8px;word-break:keep-all}
 .result{border-radius:10px;padding:9px 11px;margin:8px 0;font-size:13px;line-height:1.55}.result b{font-size:15px}.result.good{background:#ebfbee;color:#1f5f2c}.result.bad{background:#fff4e6;color:#8a3a0c}.result.info{background:#f1f6f7;color:var(--ink)}
 .actions{display:flex;gap:8px;margin-top:8px}.actions button{flex:1}
 .big{min-height:56px;font-size:17px;border-radius:13px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:650;padding:5px 9px;border-radius:999px;background:#f1f5f6}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}button.chip{min-height:36px;border:1px solid var(--line)}button.chip[aria-pressed=true]{border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent);background:var(--pale)}.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:650;padding:5px 9px;border-radius:999px;background:#f1f5f6}
 .nameList{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0 8px}.nameList button{min-height:32px;padding:3px 9px;font-size:12px;font-weight:650;border-radius:999px}
 .nameList.missed button{border-color:#f3b8a5;background:#fff5f2}.nameList.wrong button{border-color:#ffd8a8;background:#fff9f0}.nameList.excluded button{background:#f4f6f7}
 .small{font-size:12px;line-height:1.5}.muted{color:var(--muted)}
@@ -60,7 +60,7 @@ h2{font-size:19px;line-height:1.35;margin:2px 0 8px;word-break:keep-all}
 <body>
 <div id="bootNotice" role="status">지도를 준비하고 있어요.</div>
 <div id="app">
- <header><a class="back" href="index.html">← 위치 학습</a><h1>분류 퀴즈</h1></header>
+ <header><a class="back" href="index.html">← 위치 학습</a><h1>분류 퀴즈</h1><a class="back" href="facts.html">통계 OX</a></header>
  <div class="scope"><label for="setSelect">분류<select id="setSelect"></select></label><label for="regionSelect">지역<select id="regionSelect"></select></label></div>
  <main id="map" aria-label="국가를 눌러 고르거나 확대·이동할 수 있는 세계 지도">
   <div id="mapScene"><div id="baseMap" role="img" aria-label="국경이 표시된 세계 백지도" style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:minmax(0,966fr) minmax(0,967fr) minmax(0,967fr)"></div>
@@ -106,7 +106,7 @@ names.forEach(function(name){
 function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_classify_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
 var store=readStore();if(!store.history||typeof store.history!=='object')store.history={};
 function save(){try{localStorage.setItem('wg_classify_v1',JSON.stringify({set:state.setId,region:state.region,mode:state.mode,showNames:state.showNames,history:store.history}))}catch(e){}}
-var state={setId:C.byId[store.set]?store.set:'religion',region:store.region==='all'||C.regions.some(function(r){return r.id===store.region})?store.region:'all',mode:['study','assign','paint'].includes(store.mode)?store.mode:'study',showNames:store.showNames===true,focus:null,queue:[],index:0,answer:null,right:0,wrongNames:[],target:null,picked:new Set(),graded:null,scale:1,x:0,y:0,lastScale:0};
+var state={setId:C.byId[store.set]?store.set:'religion',region:store.region==='all'||C.regions.some(function(r){return r.id===store.region})?store.region:'all',mode:['study','assign','paint'].includes(store.mode)?store.mode:'study',showNames:store.showNames===true,focus:null,studyTarget:null,draft:new Set(),queue:[],index:0,answer:null,right:0,wrongNames:[],target:null,picked:new Set(),graded:null,scale:1,x:0,y:0,lastScale:0};
 function set(){return C.byId[state.setId]}
 function shown(){var s=set();return C.universe(s,names).filter(function(n){return countries[n]&&C.inRegion(n,state.region)})}
 function label(name){return C.displayName(set(),name)}
@@ -120,20 +120,22 @@ function buildQueue(only){
  var h=history(),pool=only||C.assignPool(set(),state.region);
  // Last-missed countries come first, then unseen ones, then the rest.
  var missed=shuffle(pool.filter(function(n){return h[n]&&h[n].last===false})),fresh=shuffle(pool.filter(function(n){return !h[n]})),rest=shuffle(pool.filter(function(n){return h[n]&&h[n].last!==false}));
- state.queue=only?shuffle(pool.slice()):missed.concat(fresh,rest);state.index=0;state.answer=null;state.right=0;state.wrongNames=[];
+ state.queue=only?shuffle(pool.slice()):missed.concat(fresh,rest);state.index=0;state.answer=null;state.draft=new Set();state.right=0;state.wrongNames=[];
 }
 function resetPaint(){var opts=set().options;if(!opts.some(function(o){return o.id===state.target}))state.target=opts[0].id;state.picked=new Set();state.graded=null}
-function resetMode(){state.focus=null;if(state.mode==='assign')buildQueue();if(state.mode==='paint')resetPaint()}
+function answerColor(name){var v=C.entry(set(),name).values;return color(v[0])||'#868e96'}
+function answerText(list){return (Array.isArray(list)?list:[list]).map(optionLabel).join('·')}
+function resetMode(){var opts=set().options;if(!opts.some(function(o){return o.id===state.studyTarget}))state.studyTarget=opts[0].id;state.focus=null;if(state.mode==='assign')buildQueue();if(state.mode==='paint')resetPaint()}
 
 function styleCountry(name,path,visible){
  var s=set(),inView=visible.has(name),e=C.entry(s,name),fill='none',opacity=0,stroke='#36505e',width=.6,strokeOpacity=.0;
  if(inView){
   strokeOpacity=.3;
-  if(state.mode==='study'){if(e.status==='mixed'){fill='url(#hatch)';opacity=1}else if(color(e.value)){fill=color(e.value);opacity=.55}}
+  if(state.mode==='study'){if(e.status==='mixed'){fill='url(#hatch)';opacity=1}else if(s.multi){if(C.has(s,name,state.studyTarget)){fill=color(state.studyTarget);opacity=.6}}else if(color(e.value)){fill=color(e.value);opacity=.55}}
   else if(state.mode==='paint'){
    if(!state.graded){if(state.picked.has(name)){fill='#e8590c';opacity=.6}}
    else{var g=state.graded;if(g.correct.includes(name)){fill='#2b8a3e';opacity=.6}else if(g.missed.includes(name)){fill='#e03131';opacity=.5}else if(g.wrong.includes(name)){fill='#f08c00';opacity=.7;stroke='#8a3a0c';width=1.6;strokeOpacity=.9}else if(e.status==='mixed'){fill='url(#hatch)';opacity=1}}
-  }else if(state.mode==='assign'){var q=state.queue[state.index];if(name===q){fill=state.answer?color(set().values[q])||'#868e96':'#0b7285';opacity=state.answer?.7:.55;stroke='#0b4f57';width=2;strokeOpacity=1}else strokeOpacity=.15}
+  }else if(state.mode==='assign'){var q=state.queue[state.index];if(name===q){fill=state.answer?answerColor(q):'#0b7285';opacity=state.answer?.7:.55;stroke='#0b4f57';width=2;strokeOpacity=1}else strokeOpacity=.15}
   if(name===state.focus){stroke='#0b4f57';width=2.2;strokeOpacity=1}
  }
  path.setAttribute('fill',fill);path.setAttribute('fill-opacity',opacity);path.setAttribute('stroke',stroke);path.setAttribute('stroke-width',width);path.setAttribute('stroke-opacity',strokeOpacity);
@@ -156,19 +158,19 @@ function renderOverlay(){
 function renderNote(){
  var note=$('mapNote');note.replaceChildren();
  function key(text,colorValue,hatch){var span=document.createElement('span'),sw=document.createElement('span');span.className='key';sw.className='swatch'+(hatch?' hatch':'');if(colorValue)sw.style.background=colorValue;span.append(sw,document.createTextNode(text));note.appendChild(span)}
- if(state.mode==='study'){set().options.forEach(function(o){key(o.label,o.color)});if(shown().some(function(n){return C.entry(set(),n).status==='mixed'}))key('혼재·채점 제외',null,true)}
+ if(state.mode==='study'){(set().multi?set().options.filter(function(o){return o.id===state.studyTarget}):set().options).forEach(function(o){key(o.label,o.color)});if(shown().some(function(n){return C.entry(set(),n).status==='mixed'}))key('혼재·채점 제외',null,true)}
  else if(state.mode==='paint'){if(!state.graded)key('내가 칠한 나라','#e8590c');else{key('맞음','#2b8a3e');key('놓침','#e03131');key('잘못 칠함','#f08c00');key('채점 제외',null,true)}}
- else{key(state.answer?'정답 분류 색':'문제 국가',state.answer?color(set().values[state.queue[state.index]])||'#868e96':'#0b7285')}
+ else{key(state.answer?'정답 분류 색':'문제 국가',state.answer?answerColor(state.queue[state.index]):'#0b7285')}
 }
 function renderMap(){renderCountries();renderOverlay();renderNote()}
 
-function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(ch){if(ch)e.appendChild(ch)});return e}
+function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]===null||props[k]===undefined)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(ch){if(ch)e.appendChild(ch)});return e}
 function swatch(id){var s=el('span',{className:'swatch'});var col=color(id);if(col)s.style.background=col;return s}
 function nameButtons(list,className){return el('div',{className:'nameList '+className},list.map(function(n){return el('button',{type:'button',text:label(n),onclick:function(){state.focus=n;focusCountry(n);renderPanel();renderMap()}})}))}
 function countryInfo(name){
  var s=set(),e=C.entry(s,name),title=el('b',{text:label(name)}),line;
  if(e.status==='mixed')line='채점하지 않는 혼재 국가 · '+e.note;
- else if(e.status==='graded')line=optionLabel(e.value)+(e.note?' · '+e.note:'');
+ else if(e.status==='graded')line=answerText(e.values)+(e.note?' · '+e.note:'');
  else line=(s.noneOption?s.noneOption.label:s.otherLabel)+(e.note?' · '+e.note:'');
  return el('div',{className:'result info'},[title,el('div',{text:line})]);
 }
@@ -176,7 +178,10 @@ function renderPanel(){
  var panel=$('panel'),s=set();panel.replaceChildren();
  Array.from(document.querySelectorAll('.tabs button')).forEach(function(b){b.setAttribute('aria-selected',String(b.dataset.mode===state.mode))});
  if(state.mode==='study'){
-  var counts=s.options.map(function(o){return el('span',{className:'chip'},[swatch(o.id),document.createTextNode(o.label+' '+shown().filter(function(n){return C.entry(s,n).status==='graded'&&s.values[n]===o.id}).length)])});
+  var counts=s.options.map(function(o){var text=o.label+' '+shown().filter(function(n){return C.entry(s,n).status==='graded'&&C.has(s,n,o.id)}).length;
+   if(!s.multi)return el('span',{className:'chip'},[swatch(o.id),document.createTextNode(text)]);
+   // One category at a time: a country can belong to several.
+   var b=el('button',{type:'button',className:'chip','aria-pressed':String(o.id===state.studyTarget)},[swatch(o.id),document.createTextNode(text)]);b.onclick=function(){state.studyTarget=o.id;renderAll()};return b});
   panel.append(el('div',{className:'meta'},[el('span',{text:s.title+' · '+s.lecture})]),el('div',{className:'chips'},counts),el('p',{className:'basis',text:s.basis}));
   panel.append(state.focus?countryInfo(state.focus):el('p',{className:'small muted',text:'지도에서 나라를 누르면 분류와 설명을 볼 수 있어요. 빗금 친 나라는 비중이 비슷하거나 통계마다 달라 퀴즈에서 채점하지 않아요.'}));
   panel.append(el('div',{className:'actions'},[el('button',{type:'button',className:'primary',text:'하나씩 맞히기',onclick:function(){setMode('assign')}}),el('button',{type:'button',text:'모두 칠하기',onclick:function(){setMode('paint')}})]));
@@ -191,15 +196,20 @@ function renderPanel(){
    panel.append(el('div',{className:'actions'},[state.wrongNames.length?el('button',{type:'button',className:'primary big',text:'틀린 '+state.wrongNames.length+'개 다시',onclick:function(){buildQueue(state.wrongNames.slice());renderAll();focusQuestion()}}):null,el('button',{type:'button',className:state.wrongNames.length?'big':'primary big',text:'처음부터',onclick:function(){buildQueue();renderAll();focusQuestion()}})]));
    return;
   }
-  var q=state.queue[state.index],answer=s.values[q],toggle=el('input',{type:'checkbox'});toggle.checked=state.showNames;toggle.onchange=function(){state.showNames=this.checked;save();renderPanel();renderOverlay()};
+  var q=state.queue[state.index],answer=C.entry(s,q).values,toggle=el('input',{type:'checkbox'});toggle.checked=state.showNames;toggle.onchange=function(){state.showNames=this.checked;save();renderPanel();renderOverlay()};
   panel.append(el('div',{className:'meta'},[el('span',{text:s.title+' · '+(state.index+1)+' / '+state.queue.length+' · 정답 '+state.right}),el('label',{},[toggle,document.createTextNode('나라 이름 보기')])]));
   panel.append(el('h2',{text:(state.answer||state.showNames?label(q)+' — ':'')+s.assignQuestion}));
   var grid=el('div',{className:'options'});
-  C.optionsFor(s).forEach(function(o,i){var b=el('button',{type:'button','data-option':o.id},[o.color?swatch(o.id):null,document.createTextNode(o.label)]);b.title='단축키 '+(i+1);if(state.answer){b.disabled=true;if(o.id===answer)b.className='right';else if(o.id===state.answer)b.className='chosenWrong'}else b.onclick=function(){answerWith(o.id)};grid.appendChild(b)});
+  var chosen=state.answer?[].concat(state.answer):[];
+  C.optionsFor(s).forEach(function(o,i){var b=el('button',{type:'button','data-option':o.id},[o.color?swatch(o.id):null,document.createTextNode(o.label)]);b.title='단축키 '+(i+1);
+   if(state.answer){b.disabled=true;if(answer.indexOf(o.id)>=0)b.className='right';else if(chosen.indexOf(o.id)>=0)b.className='chosenWrong'}
+   else if(s.multi){b.setAttribute('aria-pressed',String(state.draft.has(o.id)));b.onclick=function(){toggleDraft(o.id)}}
+   else b.onclick=function(){answerWith(o.id)};grid.appendChild(b)});
   panel.append(grid);
+  if(s.multi&&!state.answer)panel.append(el('button',{type:'button',className:'primary big',style:'width:100%',text:state.draft.size?'선택한 '+state.draft.size+'개로 확인':'해당하는 것을 모두 고르세요',disabled:state.draft.size?null:'disabled',onclick:function(){if(state.draft.size)answerWith(Array.from(state.draft))}}));
   if(state.answer){
-   var ok=state.answer===answer,note=s.notes[q];
-   panel.append(el('div',{className:'result '+(ok?'good':'bad'),role:'status'},[el('b',{text:(ok?'정답':'오답')+' · '+label(q)+' — '+optionLabel(answer)}),note?el('div',{text:note}):null]));
+   var ok=C.isCorrect(s,q,state.answer),note=s.notes[q];
+   panel.append(el('div',{className:'result '+(ok?'good':'bad'),role:'status'},[el('b',{text:(ok?'정답':'오답')+' · '+label(q)+' — '+answerText(answer)}),!ok&&s.multi?el('div',{text:'내 답: '+answerText(chosen)}):null,note?el('div',{text:note}):null]));
    panel.append(el('button',{type:'button',className:'primary big',style:'width:100%',text:state.index<state.queue.length-1?'다음':'결과 보기',onclick:nextQuestion}));
   }
   return;
@@ -226,15 +236,16 @@ function renderPanel(){
 }
 function renderAll(){renderPanel();renderMap();save()}
 
+function toggleDraft(id){if(state.answer)return;if(state.draft.has(id))state.draft.delete(id);else state.draft.add(id);renderPanel()}
 function answerWith(id){
  var q=state.queue[state.index];if(!q||state.answer)return;
- state.answer=id;var ok=id===set().values[q],h=history(),row=h[q]||(h[q]={right:0,wrong:0});
+ state.answer=id;var ok=C.isCorrect(set(),q,id),h=history(),row=h[q]||(h[q]={right:0,wrong:0});
  row[ok?'right':'wrong']++;row.last=ok;if(ok)state.right++;else state.wrongNames.push(q);
  renderAll();
  // Bring the verdict and the next button into view on short phone cards.
  var panel=$('panel');panel.scrollTop=panel.scrollHeight;
 }
-function nextQuestion(){state.index++;state.answer=null;renderAll();if(state.index<state.queue.length)focusQuestion();else fitRegion()}
+function nextQuestion(){state.index++;state.answer=null;state.draft=new Set();renderAll();if(state.index<state.queue.length)focusQuestion();else fitRegion()}
 function gradeNow(){state.graded=C.gradePaint(set(),state.target,Array.from(state.picked),names,state.region);state.focus=null;renderAll()}
 
 function regionBox(){
@@ -292,7 +303,8 @@ document.addEventListener('keydown',function(e){
  if(['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;
  if(state.mode!=='assign'||state.index>=state.queue.length)return;
  var opts=C.optionsFor(set()),n=parseInt(e.key,10);
- if(!state.answer&&n>=1&&n<=opts.length){e.preventDefault();answerWith(opts[n-1].id)}
+ if(!state.answer&&n>=1&&n<=opts.length){e.preventDefault();if(set().multi)toggleDraft(opts[n-1].id);else answerWith(opts[n-1].id)}
+ else if(!state.answer&&set().multi&&e.key==='Enter'&&state.draft.size&&e.target.tagName!=='BUTTON'){e.preventDefault();answerWith(Array.from(state.draft))}
  else if(state.answer&&(e.key==='Enter'||e.key==='ArrowRight')&&e.target.tagName!=='BUTTON'){e.preventDefault();nextQuestion()}
 });
 var lastSize=null;function resize(){var d=mapSize();if(lastSize){state.x+=(d.w-lastSize.w)/2;state.y+=(d.h-lastSize.h)/2;if(state.scale<minScale())state.scale=minScale();apply()}lastSize=d}

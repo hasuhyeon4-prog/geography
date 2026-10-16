@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>세계지리 통계·순위 OX</title>
+<style>
+:root{--ink:#142d39;--muted:#60727b;--line:#dce4e6;--accent:#086b70;--pale:#e6f2f0;--paper:#fff;--good:#2b8a3e;--bad:#c4441c}
+*{box-sizing:border-box}html,body{margin:0;width:100%;min-height:100%;color:var(--ink);background:#f6f9f9;font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;font-size:15px}
+button,select{font:inherit;color:inherit;border:1px solid var(--line);border-radius:10px;background:#fff}button{cursor:pointer;min-height:44px;padding:8px 12px;font-weight:700;touch-action:manipulation}button:hover{background:#f3f7f7}button:disabled{opacity:.45;cursor:default}
+button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #52b4c2;outline-offset:2px}[hidden]{display:none!important}
+.primary{background:var(--accent);border-color:var(--accent);color:#fff}.primary:hover{background:#05595d}
+header{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:8px;min-height:52px;padding:5px 12px;padding-top:calc(5px + env(safe-area-inset-top));background:#fff;border-bottom:1px solid var(--line)}
+header h1{font-size:15px;margin:0;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.navLink{flex-shrink:0;font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border:1px solid #badcd5;background:var(--pale);border-radius:10px;padding:9px 10px;white-space:nowrap}
+.scope{display:grid;grid-template-columns:1.3fr 1fr;gap:10px;padding:8px 12px;background:#fafcfc;border-bottom:1px solid var(--line)}.scope label{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);white-space:nowrap;min-width:0}
+select{min-height:40px;min-width:0;width:100%;padding:6px;font-size:13px;font-weight:650;color:var(--ink)}
+main{max-width:680px;margin:0 auto;padding:14px 14px calc(24px + env(safe-area-inset-bottom))}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 2px 10px #142d390d}
+.meta{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted);margin-bottom:10px}
+.bar{height:5px;border-radius:5px;background:#e9eff0;overflow:hidden;margin-bottom:14px}.bar span{display:block;height:100%;background:var(--accent);transition:width .2s}
+.claim{font-size:20px;line-height:1.55;font-weight:700;margin:4px 0 18px;word-break:keep-all}
+.ox{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ox button{min-height:84px;font-size:34px;border-radius:16px;border-width:2px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.ox button small{font-size:12px;font-weight:600;color:var(--muted)}
+.ox button.right{border-color:var(--good);background:#ebfbee;color:#1f5f2c}.ox button.chosenWrong{border-color:var(--bad);background:#fff4e6;color:#8a3a0c}.ox button:disabled{opacity:1}.ox button:disabled:not(.right):not(.chosenWrong){opacity:.4}
+.result{border-radius:12px;padding:11px 13px;margin:14px 0 10px;font-size:14px;line-height:1.6}.result b{font-size:16px}.result.good{background:#ebfbee;color:#1f5f2c}.result.bad{background:#fff4e6;color:#8a3a0c}
+.source{display:block;margin-top:5px;font-size:12px;opacity:.85}
+.big{width:100%;min-height:54px;font-size:17px;border-radius:13px}
+.actions{display:flex;gap:8px;margin-top:10px}.actions button{flex:1}
+h2{font-size:21px;margin:2px 0 10px}
+.wrongList{list-style:none;padding:0;margin:10px 0}.wrongList li{border-top:1px solid var(--line);padding:10px 0;font-size:14px;line-height:1.55}.wrongList b{color:var(--bad)}
+.small{font-size:12px;line-height:1.5}.muted{color:var(--muted)}
+.hint{margin-top:12px;font-size:12px;color:var(--muted);text-align:center}
+@media(min-width:700px){.scope{grid-template-columns:320px 220px;justify-content:center}.claim{font-size:22px}}
+</style>
+</head>
+<body>
+<header><a class="navLink" href="index.html">← 위치 학습</a><h1>통계·순위 OX</h1><a class="navLink" href="classify.html">분류 퀴즈</a></header>
+<div class="scope"><label for="topicSelect">주제<select id="topicSelect"></select></label><label for="orderSelect">출제<select id="orderSelect"><option value="weak">틀린 것 먼저</option><option value="random">무작위</option><option value="wrongOnly">최근 틀린 것만</option></select></label></div>
+<main><section class="card" id="card" aria-live="polite"></section><p class="hint">키보드: O·X(또는 1·2)로 답하고 Enter로 다음</p></main>
+<script src="assets/fact-statements.js?v=20261016-1"></script>
+<script>
+(function(){
+'use strict';
+var $=function(id){return document.getElementById(id)},F=window.WGFacts;
+if(!F){$('card').textContent='문항 자료를 불러오지 못했어요. 새로고침해 주세요.';return}
+var byId={};F.items.forEach(function(it){byId[it.id]=it});
+function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_facts_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
+var store=readStore();if(!store.history||typeof store.history!=='object')store.history={};
+var state={topic:F.topics.some(function(t){return t.id===store.topic})?store.topic:'all',order:['weak','random','wrongOnly'].includes(store.order)?store.order:'weak',queue:[],index:0,answer:null,right:0,wrong:[]};
+function save(){try{localStorage.setItem('wg_facts_v1',JSON.stringify({topic:state.topic,order:state.order,history:store.history}))}catch(e){}}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function pool(){return F.items.filter(function(it){return state.topic==='all'||it.topic===state.topic})}
+function build(only){
+ var h=store.history,list=only||pool().map(function(it){return it.id});
+ if(only)state.queue=shuffle(list.slice());
+ else if(state.order==='random')state.queue=shuffle(list);
+ else if(state.order==='wrongOnly')state.queue=shuffle(list.filter(function(id){return h[id]&&h[id].last===false}));
+ // Last-missed first, then unseen, then the rest.
+ else state.queue=shuffle(list.filter(function(id){return h[id]&&h[id].last===false})).concat(shuffle(list.filter(function(id){return !h[id]})),shuffle(list.filter(function(id){return h[id]&&h[id].last!==false})));
+ state.index=0;state.answer=null;state.right=0;state.wrong=[];render();
+}
+function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(c){if(c)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
+function topicName(id){var t=F.topics.find(function(x){return x.id===id});return t?t.name:''}
+function render(){
+ var card=$('card');card.replaceChildren();
+ if(!state.queue.length){card.append(el('h2',{text:state.order==='wrongOnly'?'최근 틀린 문항이 없어요':'문항이 없어요'}),el('p',{className:'small muted',text:state.order==='wrongOnly'?'다른 출제 방식으로 풀어 보세요.':'주제를 바꿔 주세요.'}));return}
+ if(state.index>=state.queue.length){
+  var total=state.queue.length;
+  card.append(el('h2',{text:total+'문항 중 '+state.right+'개 맞혔어요'}));
+  if(state.wrong.length){
+   var ul=el('ul',{className:'wrongList'});
+   state.wrong.forEach(function(id){var it=byId[id];ul.append(el('li',{},[el('b',{text:(it.answer?'O':'X')+' '}),it.claim,el('span',{className:'source muted',text:it.explain+' · '+it.source})]))});
+   card.append(el('p',{className:'small muted',text:'틀린 문항과 정답'}),ul);
+  }
+  card.append(el('div',{className:'actions'},[state.wrong.length?el('button',{type:'button',className:'primary big',text:'틀린 '+state.wrong.length+'개 다시',onclick:function(){build(state.wrong.slice())}}):null,el('button',{type:'button',className:state.wrong.length?'big':'primary big',text:'처음부터',onclick:function(){build()}})]));
+  return;
+ }
+ var it=byId[state.queue[state.index]];
+ card.append(el('div',{className:'meta'},[el('span',{text:topicName(it.topic)}),el('span',{text:(state.index+1)+' / '+state.queue.length+' · 정답 '+state.right})]));
+ var bar=el('div',{className:'bar'},[el('span',{})]);bar.firstChild.style.width=(state.index/state.queue.length*100)+'%';card.append(bar);
+ card.append(el('p',{className:'claim',text:it.claim}));
+ var ox=el('div',{className:'ox'});
+ [[true,'O','맞다'],[false,'X','틀리다']].forEach(function(row){
+  var b=el('button',{type:'button','aria-label':row[2]},[row[1],el('small',{text:row[2]})]);
+  if(state.answer!==null){b.disabled=true;if(row[0]===it.answer)b.className='right';else if(row[0]===state.answer)b.className='chosenWrong'}
+  else b.onclick=function(){answer(row[0])};
+  ox.append(b);
+ });
+ card.append(ox);
+ if(state.answer!==null){
+  var ok=state.answer===it.answer;
+  card.append(el('div',{className:'result '+(ok?'good':'bad'),role:'status'},[el('b',{text:(ok?'정답':'오답')+' · 이 진술은 '+(it.answer?'O':'X')}),el('div',{text:it.explain}),el('span',{className:'source',text:'근거: '+it.source})]));
+  var next=el('button',{type:'button',className:'primary big',text:state.index<state.queue.length-1?'다음':'결과 보기',onclick:nextItem});card.append(next);next.focus({preventScroll:true});
+  next.scrollIntoView({block:'nearest'});
+ }
+}
+function answer(value){
+ var id=state.queue[state.index];if(!id||state.answer!==null)return;
+ state.answer=value;var ok=value===byId[id].answer,row=store.history[id]||(store.history[id]={right:0,wrong:0});
+ row[ok?'right':'wrong']++;row.last=ok;if(ok)state.right++;else state.wrong.push(id);
+ save();render();
+}
+function nextItem(){state.index++;state.answer=null;render();window.scrollTo({top:0})}
+var all=el('option',{value:'all',text:'전체 ('+F.items.length+')'});$('topicSelect').append(all);
+F.topics.forEach(function(t){$('topicSelect').append(el('option',{value:t.id,text:t.name+' ('+F.items.filter(function(i){return i.topic===t.id}).length+')'}))});
+$('topicSelect').value=state.topic;$('orderSelect').value=state.order;
+$('topicSelect').onchange=function(){state.topic=this.value;save();build()};
+$('orderSelect').onchange=function(){state.order=this.value;save();build()};
+document.addEventListener('keydown',function(e){
+ if(e.target.tagName==='SELECT'||e.altKey||e.ctrlKey||e.metaKey)return;
+ var k=e.key.toLowerCase();
+ if(state.answer===null&&state.index<state.queue.length){if(k==='o'||k==='1'){e.preventDefault();answer(true)}else if(k==='x'||k==='2'){e.preventDefault();answer(false)}}
+});
+build();
+})();
+</script>
+</body></html>

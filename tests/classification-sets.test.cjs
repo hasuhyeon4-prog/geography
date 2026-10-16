@@ -15,12 +15,13 @@ test('set entries name drawable countries, valid options, and never overlap', ()
     const ids = new Set(C.optionsFor(set).map(o => o.id));
     for (const [name, value] of Object.entries(set.values)) {
       assert.ok(shapes.byName[name], set.id + ': ' + name);
-      assert.ok(ids.has(value), set.id + ': ' + name + ' → ' + value);
+      assert.equal(Array.isArray(value), !!set.multi, set.id + ': ' + name + ' value shape');
+      for (const v of [].concat(value)) assert.ok(ids.has(v), set.id + ': ' + name + ' → ' + v);
       assert.ok(!(name in set.mixed), set.id + ': ' + name + ' is both graded and mixed');
     }
     for (const name of Object.keys(set.mixed)) assert.ok(shapes.byName[name], set.id + ' mixed: ' + name);
     for (const name of Object.keys(set.notes)) assert.ok(name in set.values || name in set.mixed, set.id + ' note without entry: ' + name);
-    for (const o of set.options) assert.ok(C.assignPool(set, 'all').some(n => set.values[n] === o.id), set.id + ' option unused: ' + o.id);
+    for (const o of set.options) assert.ok(C.assignPool(set, 'all').some(n => C.has(set, n, o.id)), set.id + ' option unused: ' + o.id);
   }
 });
 
@@ -99,4 +100,32 @@ test('the quiz page parses, loads existing assets, and is linked from the main a
   assert.equal(inline.length, 1);
   new vm.Script(inline[0]);
   assert.match(fs.readFileSync(path.join(root, 'index.html'), 'utf8'), /href="classify\.html"/);
+});
+
+test('trade and resource sets keep the lecture rankings and net trade directions', () => {
+  const members = (set, id) => Object.keys(C.byId[set].values).filter(n => C.has(C.byId[set], n, id)).sort();
+  assert.deepEqual(members('grainExportTop', 'wheat'), ['러시아', '미국', '캐나다']);
+  assert.deepEqual(members('grainExportTop', 'rice'), ['베트남', '인도', '타이']);
+  assert.deepEqual(members('grainExportTop', 'maize'), ['미국', '브라질', '아르헨티나']);
+  assert.deepEqual(members('grainProductionTop', 'rice'), ['방글라데시', '인도', '중국']);
+  assert.deepEqual(members('grainProductionTop', 'wheat'), ['러시아', '인도', '중국']);
+  assert.ok(!C.has(C.byId.grainExportTop, '중국', 'rice'), 'rice production leader is not an export leader');
+  assert.equal(C.byId.grainNet.values['중국'], 'netImport');
+  assert.equal(C.byId.grainNet.values['인도'], 'netExport');
+  assert.equal(C.byId.grainNet.values['이집트'], 'netImport');
+  assert.ok(C.has(C.byId.fossil, '오스트레일리아', 'coalExport'));
+  assert.ok(!C.has(C.byId.fossil, '중국', 'coalExport'), 'largest producer is not the export example');
+  assert.equal(C.byId.beverage.values['코트디부아르'], 'cacao');
+  assert.equal(C.byId.beverage.values['케냐'], 'tea');
+  assert.ok('브라질' in C.byId.exportType.mixed);
+});
+
+test('multi-category answers must name every category and nothing else', () => {
+  const set = C.byId.grainExportTop;
+  assert.equal(C.isCorrect(set, '미국', ['maize', 'wheat']), true);
+  assert.equal(C.isCorrect(set, '미국', ['wheat']), false);
+  assert.equal(C.isCorrect(set, '미국', ['wheat', 'maize', 'rice']), false);
+  const paint = C.gradePaint(set, 'wheat', ['미국', '중국'], names, 'all');
+  assert.ok(paint.correct.includes('미국'));
+  assert.deepEqual(paint.wrong, [], '중국 is outside this listed set and cannot be picked');
 });

@@ -13,6 +13,8 @@
   'use strict';
   function list(text){return text.split(/\s*,\s*/).filter(Boolean)}
   function assign(target,value,names){list(names).forEach(function(name){target[name]=value});return target}
+  // Several categories per country (e.g. 미국 in both 밀 and 옥수수 export top 3).
+  function collect(groups){var out={};Object.keys(groups).forEach(function(id){list(groups[id]).forEach(function(name){(out[name]=out[name]||[]).push(id)})});return out}
 
   var regions=[
     {id:'europe',name:'유럽',countries:list('영국,아일랜드,아이슬란드,포르투갈,에스파냐,안도라,프랑스,벨기에,네덜란드,룩셈부르크,독일,스위스,리히텐슈타인,오스트리아,이탈리아,바티칸,산마리노,몰타,덴마크,노르웨이,스웨덴,핀란드,에스토니아,라트비아,리투아니아,폴란드,체코,슬로바키아,헝가리,슬로베니아,크로아티아,보스니아 헤르체고비나,세르비아,루마니아,불가리아,그리스,키프로스,우크라이나,러시아')},
@@ -293,6 +295,184 @@
         '파라과이':'에스파냐어와 원주민 언어인 과라니어가 공용어.',
         '멕시코':'에스파냐어. 원주민 언어 사용 인구도 많음.'
       }
+    },
+    {
+      id:'exportType',title:'수출 구조 유형',lecture:'2권 P08',
+      paintPhrase:'{x} 수출 비중이 높은 나라를',
+      assignQuestion:'색칠된 나라의 수출에서 비중이 큰 품목군은?',
+      basis:'평가원 삼각 그래프의 세 꼭짓점(원재료·연료 / 농축산물·식료품 / 공업 제품)으로 나눈 수출 구조. 여러 품목군이 함께 큰 나라는 혼재로 두고 채점하지 않습니다.',
+      universe:'listed',
+      options:[
+        {id:'raw',label:'원재료·연료',color:'#8a5a2b'},
+        {id:'food',label:'농축산물',color:'#25864f'},
+        {id:'manufactured',label:'공업 제품',color:'#2f62b0'}
+      ],
+      values:assign(assign(assign({},
+        'raw','사우디아라비아,나이지리아,카타르,칠레,오스트레일리아'),
+        'food','케냐,아르헨티나'),
+        'manufactured','중국,일본,독일,멕시코,튀르키예'),
+      mixed:{
+        '브라질':'대두 11.6%·원유 10.7%·철광석 10.1%(2019) — 농산물·광물·공업 제품을 모두 수출. 한 품목으로만 기억하지 않음.',
+        '인도네시아':'석탄 등 자원과 팜유 등 농림축수산물, 여러 공산품이 혼합(2027학년도 6월 7번).',
+        '콜롬비아':'원유·석탄과 커피·화훼류가 함께 나타남(2021학년도 6월 8번).'
+      },
+      notes:{
+        '사우디아라비아':'원재료·연료 수출 집중, 공업 제품 수입 비중 높음(2016학년도 9월 13번). 2024년 총수출액은 나이지리아보다 훨씬 큼.',
+        '나이지리아':'2019년 원유 76.5%·천연가스 10.1% — 원유·가스 수출 의존이 큼(2022학년도 수능 3번).',
+        '카타르':'페르시아만의 천연가스와 LNG 수출.',
+        '칠레':'2019년 구리 26.5%·구리 제품 19.2%·어패류 3.9% — 안데스 광물과 태평양 수산업.',
+        '오스트레일리아':'철광석·석탄 등 원재료·연료 수출 비중이 높고 식료품 수출도 함께 나타남.',
+        '케냐':'2019년 차 19.1%·화훼류 10.0% — 고원 농업과 수출 원예. 석유 제품 수출은 원유 매장의 증거가 아님.',
+        '아르헨티나':'농축산물 비중이 큼(2024학년도 9월 7번·2026학년도 6월 16번).',
+        '중국':'기계·전자 제품을 포함한 공업 제품 수출, 원재료·연료 수입.',
+        '일본':'기계·운송 장비 등 공업 제품 수출, 원료·에너지 수입.',
+        '독일':'기계·자동차 등 공업 제품 수출 — 무역 흑자국(2016학년도 6월 10번).',
+        '멕시코':'자동차·전자 등 제조업 공급망과 연결된 공산품 비중이 높음 — ‘라틴 아메리카는 원료만 수출’이 아님.',
+        '튀르키예':'공산품 비중이 높고 EU로 가는 1위 품목은 운송 장비(2025학년도 수능 6번).'
+      }
+    },
+    {
+      id:'grainNet',title:'곡물 순수출·순수입',lecture:'2권 P06',
+      paintPhrase:'곡물 {x}국을',
+      assignQuestion:'색칠된 나라는 곡물 순수출국인가, 순수입국인가?',
+      basis:'순수출 = 수출량 − 수입량 > 0. 2026학년도 수능 12번(2023년)의 대륙별 대표 국가에 일본(2018~2022년 순수입 상위권)과 이집트(밀 순수입국)를 더했습니다. 생산 대국이 곧 순수출국은 아닙니다.',
+      universe:'listed',
+      options:[
+        {id:'netExport',label:'순수출',color:'#2f62b0'},
+        {id:'netImport',label:'순수입',color:'#c4441c'}
+      ],
+      values:assign(assign({},
+        'netExport','인도,미국,프랑스'),
+        'netImport','중국,멕시코,에스파냐,일본,이집트'),
+      mixed:{},
+      notes:{
+        '인도':'아시아의 대표 곡물 순수출국 — 쌀 수출량이 중국보다 많음.',
+        '중국':'주요 곡물 생산량이 많지만 곡물 전체로는 대표적인 순수입국.',
+        '미국':'아메리카의 대표 순수출국. 2018~2022년 곡물 순수출량 1위.',
+        '멕시코':'아메리카의 대표 곡물 순수입국.',
+        '프랑스':'유럽의 대표 곡물 순수출국 — 밀 수출.',
+        '에스파냐':'유럽의 대표 곡물 순수입국.',
+        '일본':'2018~2022년 곡물 순수입량 상위권.',
+        '이집트':'밀 순수입국(2025학년도 9월 7번) — 나일강 관개 농업이 국내 수요 전체를 충족한다는 뜻이 아님.'
+      }
+    },
+    {
+      id:'grainExportTop',title:'곡물 수출 상위 3국',lecture:'2권 P06',multi:true,
+      paintPhrase:'{x} 수출액 상위 3개국을',
+      assignQuestion:'색칠된 나라가 수출액 상위 3개국에 드는 곡물을 모두 고르세요.',
+      basis:'2016~2020년 평균 수출액 상위 3개국(2024학년도 수능 6번). 수출액 순위는 생산 순위와 다릅니다. 미국은 밀과 옥수수 모두에 들어갑니다.',
+      universe:'listed',
+      options:[
+        {id:'wheat',label:'밀',color:'#c98612'},
+        {id:'rice',label:'쌀',color:'#25864f'},
+        {id:'maize',label:'옥수수',color:'#b23b3b'}
+      ],
+      values:collect({wheat:'러시아,캐나다,미국',rice:'인도,타이,베트남',maize:'브라질,아르헨티나,미국'}),
+      mixed:{},
+      notes:{
+        '미국':'밀·옥수수 모두 수출 상위. 2018~2022년 옥수수 수출 비중 30.3%로 1위.',
+        '러시아':'2018~2022년 밀 수출 비중 16.5%로 1위.',
+        '인도':'쌀 수출량이 중국보다 많음 — 쌀 생산 1위는 중국.',
+        '브라질':'옥수수 수출 상위. 2018~2022년 비중 17.1%.',
+        '아르헨티나':'옥수수 수출 상위. 2018~2022년 비중 17.5%.'
+      }
+    },
+    {
+      id:'grainProductionTop',title:'곡물 생산 상위 3국',lecture:'2권 P06',multi:true,
+      paintPhrase:'{x} 생산 상위 3개국을',
+      assignQuestion:'색칠된 나라가 생산 상위 3개국에 드는 곡물을 모두 고르세요.',
+      basis:'2023년 생산 상위 3개국. 중국은 세 곡물 모두 상위지만 곡물 전체로는 순수입국이고, 쌀 수출은 인도가 더 많습니다.',
+      universe:'listed',
+      options:[
+        {id:'maize',label:'옥수수',color:'#b23b3b'},
+        {id:'rice',label:'쌀',color:'#25864f'},
+        {id:'wheat',label:'밀',color:'#c98612'}
+      ],
+      values:collect({maize:'미국,중국,브라질',rice:'중국,인도,방글라데시',wheat:'중국,인도,러시아'}),
+      mixed:{},
+      notes:{
+        '중국':'세 곡물 모두 생산 상위 — 밀·쌀 최대 생산국이지만 곡물 순수입국.',
+        '인도':'쌀·밀 생산 상위. 인도의 밀 생산량은 프랑스보다 많음(2026학년도 수능 12번).',
+        '미국':'옥수수 최대 생산국이자 곡물 순수출량 1위.',
+        '방글라데시':'쌀 생산 3위 — 수출 상위국은 아님.'
+      }
+    },
+    {
+      id:'minerals',title:'광물 자원 산지',lecture:'2권 P07',multi:true,
+      paintPhrase:'{x}의 대표 산지 국가를',
+      assignQuestion:'색칠된 나라가 대표 산지인 광물을 모두 고르세요.',
+      basis:'강의의 광물별 지리적 기준점. 철광석은 오래된 안정 지괴, 구리는 안데스와 코퍼 벨트, 보크사이트는 강한 풍화와 연결됩니다.',
+      universe:'listed',
+      options:[
+        {id:'iron',label:'철광석',color:'#8a5a2b'},
+        {id:'copper',label:'구리',color:'#c26a17'},
+        {id:'bauxite',label:'보크사이트',color:'#b23b3b'},
+        {id:'diamond',label:'다이아몬드',color:'#2f62b0'},
+        {id:'cobalt',label:'코발트',color:'#7b4bb3'}
+      ],
+      values:collect({iron:'오스트레일리아,브라질',copper:'칠레,페루,콩고 민주 공화국,잠비아',bauxite:'오스트레일리아,기니',diamond:'보츠와나,앙골라,남아프리카 공화국',cobalt:'콩고 민주 공화국'}),
+      mixed:{},
+      notes:{
+        '오스트레일리아':'철광석·보크사이트. 2020년 철광석 최대 수입국은 중국(2026학년도 9월 11번).',
+        '브라질':'철광석. 세 나라 비교(2022년)에서 철광석 최댓값은 브라질.',
+        '칠레':'구리 — 안데스. 세 나라 비교(2022년)에서 은·구리 최댓값은 칠레.',
+        '콩고 민주 공화국':'코퍼 벨트의 구리, 배터리 재료인 코발트.',
+        '잠비아':'코퍼 벨트의 구리.',
+        '기니':'보크사이트 — 보크사이트를 많이 캐는 나라가 알루미늄도 가장 많이 만드는 것은 아님.',
+        '보츠와나':'다이아몬드. 총 GDP는 나이지리아가 크지만 1인당 GDP는 보츠와나가 더 큼.'
+      }
+    },
+    {
+      id:'fossil',title:'화석 연료 상위국',lecture:'2권 P07',multi:true,
+      paintPhrase:'{x} 국가를',
+      assignQuestion:'색칠된 나라에 해당하는 것을 모두 고르세요.',
+      basis:'석탄·천연가스는 2013년 생산 상위 5개국(2016학년도 6월 12번), 석유는 2022년 생산 상위국(2024학년도 수능 18번), 석탄 수출은 강의의 대표 수출국입니다. 수출이 많다고 최대 생산국은 아닙니다.',
+      universe:'listed',
+      options:[
+        {id:'coal',label:'석탄 생산 상위',color:'#495057'},
+        {id:'coalExport',label:'석탄 수출 대표국',color:'#8a5a2b'},
+        {id:'oil',label:'석유 생산 상위',color:'#b23b3b'},
+        {id:'gas',label:'천연가스 생산 상위',color:'#2f62b0'}
+      ],
+      values:collect({coal:'중국,인도,인도네시아,오스트레일리아,미국',coalExport:'오스트레일리아,인도네시아',oil:'미국,사우디아라비아,러시아',gas:'러시아,캐나다,이란,카타르,미국'}),
+      mixed:{},
+      notes:{
+        '중국':'석탄 생산 최대 — 국내 수요가 커서 석탄을 수입하기도 함.',
+        '오스트레일리아':'대표적인 석탄 수출국. 수출이 많다는 사실을 최대 생산국으로 바꾸지 않음.',
+        '인도네시아':'석탄 생산 상위이자 대표 수출국.',
+        '미국':'석탄·석유·천연가스 모두 상위. 2011년 석유 소비량이 생산량보다 많았음(2014학년도 9월 15번).',
+        '사우디아라비아':'석유. 세 나라 비교에서 석유는 사우디아라비아, 천연가스는 이란이 가장 큼(2022학년도 수능 10번).',
+        '이란':'천연가스 생산과 국내 소비가 큼. 1차 에너지 소비에서 천연가스 비중이 가장 큼(2018년).',
+        '러시아':'석유·천연가스. 넓은 가스전과 관로 — 1차 에너지 소비에서도 천연가스 비중이 가장 큼(2018년).',
+        '카타르':'페르시아만의 천연가스와 LNG 수출.',
+        '캐나다':'천연가스 생산 상위.'
+      }
+    },
+    {
+      id:'beverage',title:'기호 작물 주요 생산국',lecture:'2권 P06',
+      paintPhrase:'{x}의 주요 생산국을',
+      assignQuestion:'색칠된 나라와 연결되는 기호 작물은?',
+      basis:'기출이 제시한 대표 생산국. 세계 1위와 대륙 안 1위를 구별합니다.',
+      universe:'listed',
+      options:[
+        {id:'coffee',label:'커피',color:'#8a5a2b'},
+        {id:'cacao',label:'카카오',color:'#c4441c'},
+        {id:'tea',label:'차',color:'#25864f'}
+      ],
+      values:assign(assign(assign({},
+        'coffee','브라질,에티오피아,베트남'),
+        'cacao','코트디부아르,가나'),
+        'tea','중국,케냐'),
+      mixed:{},
+      notes:{
+        '브라질':'커피 세계 최대 생산국(기출 자료).',
+        '에티오피아':'아프리카 최대 커피 생산국(2026학년도 6월 19번) — 세계 1위는 브라질.',
+        '베트남':'아시아 최대 커피 생산국(2027학년도 6월 16번).',
+        '코트디부아르':'카카오 세계 최대 생산국(2016~2017년 기출).',
+        '가나':'카카오 대표 생산국.',
+        '중국':'차 세계 최대 생산국(2027학년도 6월 16번). 차마고도.',
+        '케냐':'아프리카 안에서 차 생산 비중이 높음 — 세계 1위가 아님.'
+      }
     }
   ];
   var byId={};sets.forEach(function(set){byId[set.id]=set});
@@ -306,10 +486,17 @@
     return allNames.slice();
   }
   function entry(set,name){
-    if(Object.prototype.hasOwnProperty.call(set.mixed,name))return {status:'mixed',value:null,note:set.mixed[name]};
-    if(Object.prototype.hasOwnProperty.call(set.values,name))return {status:'graded',value:set.values[name],note:set.notes[name]||''};
-    return {status:'other',value:set.noneOption?set.noneOption.id:null,note:set.notes[name]||''};
+    if(Object.prototype.hasOwnProperty.call(set.mixed,name))return {status:'mixed',value:null,values:[],note:set.mixed[name]};
+    if(Object.prototype.hasOwnProperty.call(set.values,name)){var v=set.values[name];return {status:'graded',value:v,values:Array.isArray(v)?v.slice():[v],note:set.notes[name]||''}}
+    var none=set.noneOption?set.noneOption.id:null;
+    return {status:'other',value:none,values:none?[none]:[],note:set.notes[name]||''};
   }
+  // An answer is right when it names exactly the country's categories.
+  function isCorrect(set,name,answer){
+    var want=entry(set,name).values.slice().sort(),got=(Array.isArray(answer)?answer:[answer]).slice().sort();
+    return want.length===got.length&&want.every(function(v,i){return v===got[i]});
+  }
+  function has(set,name,id){return entry(set,name).values.indexOf(id)>=0}
   function inRegion(name,regionId){return regionId==='all'||regionOf[name]===regionId}
   // Countries that one-at-a-time questions are drawn from.
   function assignPool(set,regionId){
@@ -319,7 +506,7 @@
     var picked=new Set(selected),result={correct:[],missed:[],wrong:[],excluded:[]};
     universe(set,names).forEach(function(name){
       if(!inRegion(name,regionId))return;
-      var e=entry(set,name),isTarget=e.status==='graded'&&e.value===target,chosen=picked.has(name);
+      var e=entry(set,name),isTarget=e.status==='graded'&&e.values.indexOf(target)>=0,chosen=picked.has(name);
       if(e.status==='mixed'){if(chosen)result.excluded.push(name);return}
       if(isTarget&&chosen)result.correct.push(name);
       else if(isTarget)result.missed.push(name);
@@ -327,5 +514,5 @@
     });
     return result;
   }
-  return {sets:sets,byId:byId,regions:regions,regionOf:regionOf,optionsFor:optionsFor,option:option,displayName:displayName,universe:universe,entry:entry,inRegion:inRegion,assignPool:assignPool,gradePaint:gradePaint};
+  return {sets:sets,byId:byId,regions:regions,regionOf:regionOf,optionsFor:optionsFor,option:option,displayName:displayName,universe:universe,entry:entry,isCorrect:isCorrect,has:has,inRegion:inRegion,assignPool:assignPool,gradePaint:gradePaint};
 });
