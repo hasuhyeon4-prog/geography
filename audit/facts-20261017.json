@@ -1238,7 +1238,7 @@
    "topic": "population",
    "claim": "노년층 비율이 높은 나라는 노년층 인구 수도 반드시 더 많다.",
    "answer": false,
-   "explain": "비율과 총량은 총인구가 같을 때만 바로 비교할 수 있다.",
+   "explain": "노년층 인구 수 = 총인구 × 노년층 비율이다. 비율만으로 총인구가 다른 나라의 인구 수를 정할 수 없다.",
    "source": "1권 P05 함정 교정",
    "auditStatus": "lecture-concept"
   },
@@ -1328,7 +1328,7 @@
    "topic": "climate",
    "claim": "상파울루는 여름이 덥기 때문에 열대 기후로 분류한다.",
    "answer": false,
-   "explain": "최한월 −3℃ 이상 18℃ 미만이면 온대. 상파울루는 남반구 온난 습윤 기후이다.",
+   "explain": "상파울루는 최한월 평균 기온이 18℃ 미만인 온난 습윤 기후이다. 여름 기온 하나만으로 열대 여부를 판정하지 않는다.",
    "source": "1권 P02",
    "auditStatus": "lecture-concept"
   },
