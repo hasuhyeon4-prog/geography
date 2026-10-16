@@ -42,7 +42,7 @@ test('lecture anchors are graded as the lecture states', () => {
   assert.equal(v('religion', '필리핀'), 'christianity');
   assert.equal(v('religion', '우즈베키스탄'), 'islam');
   assert.equal(v('religion', '이스라엘'), 'judaism');
-  assert.ok('나이지리아' in C.byId.religion.mixed);
+  assert.equal(v('religion', '나이지리아'), 'islam');
   for (const n of ['포르투갈', '에스파냐', '이탈리아', '필리핀']) assert.equal(v('christianity', n), 'catholic', n);
   for (const n of ['러시아', '그리스', '세르비아']) assert.equal(v('christianity', n), 'orthodox', n);
   for (const n of ['이란', '이라크', '아제르바이잔']) assert.equal(v('islam', n), 'shia', n);
@@ -71,11 +71,11 @@ test('bloc and currency membership matches the lecture counts', () => {
 
 test('paint grading separates correct, missed, wrong and ungraded picks', () => {
   const set = C.byId.religion;
-  const r = C.gradePaint(set, 'hinduism', ['인도', '스리랑카', '나이지리아'], names, 'all');
+  const r = C.gradePaint(set, 'hinduism', ['인도', '스리랑카', '타이완'], names, 'all');
   assert.deepEqual(r.correct, ['인도']);
   assert.deepEqual(r.missed, ['네팔']);
   assert.deepEqual(r.wrong, ['스리랑카']);
-  assert.deepEqual(r.excluded, ['나이지리아']);
+  assert.deepEqual(r.excluded, ['타이완']);
   const europe = C.gradePaint(set, 'hinduism', [], names, 'europe');
   assert.deepEqual(europe, {correct: [], missed: [], wrong: [], excluded: []}, 'a region can have no targets');
   const latin = C.gradePaint(C.byId.latinLanguage, 'french', ['아이티'], names, 'all');

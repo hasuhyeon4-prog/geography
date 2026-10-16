@@ -1,0 +1,2031 @@
+{
+ "checkedAt": "2026-10-17",
+ "sourceUrl": "https://www.pewresearch.org/wp-content/uploads/sites/20/2025/06/Religious-Composition-2010-2020-dataset.zip",
+ "countries": {
+  "영국": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "United Kingdom",
+   "values": {
+    "christianity": 49.37041092,
+    "islam": 6.369117737,
+    "buddhism": 0.457109183,
+    "hinduism": 1.695444226,
+    "judaism": 0.440775841
+   },
+   "unaffiliated": 40.21815872,
+   "otherReligions": 1.448984146
+  },
+  "포르투갈": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Portugal",
+   "values": {
+    "christianity": 85.07437134,
+    "islam": 0.40882951,
+    "buddhism": 0.199211225,
+    "hinduism": 0.219034374,
+    "judaism": 0.03268465
+   },
+   "unaffiliated": 13.78093719,
+   "otherReligions": 0.284928471
+  },
+  "에스파냐": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Spain",
+   "values": {
+    "christianity": 69.45676422,
+    "islam": 3.575252533,
+    "buddhism": 0.01773273,
+    "hinduism": 0.12520808,
+    "judaism": 0.027235987
+   },
+   "unaffiliated": 26.35974312,
+   "otherReligions": 0.4380669
+  },
+  "프랑스": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "France",
+   "values": {
+    "christianity": 46.46761322,
+    "islam": 9.097817421,
+    "buddhism": 0.71300137,
+    "hinduism": 0.127766788,
+    "judaism": 0.691686749
+   },
+   "unaffiliated": 42.64575195,
+   "otherReligions": 0.256361872
+  },
+  "벨기에": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Belgium",
+   "values": {
+    "christianity": 50.97150421,
+    "islam": 6.811327934,
+    "buddhism": 0.178415298,
+    "hinduism": 0.232221946,
+    "judaism": 0.250827819
+   },
+   "unaffiliated": 38.98344803,
+   "otherReligions": 2.572257042
+  },
+  "네덜란드": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Netherlands",
+   "values": {
+    "christianity": 35.10305786,
+    "islam": 5.500672817,
+    "buddhism": 0.298789322,
+    "hinduism": 0.562808275,
+    "judaism": 0.175035015
+   },
+   "unaffiliated": 54.11624146,
+   "otherReligions": 4.243393421
+  },
+  "독일": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Germany",
+   "values": {
+    "christianity": 56.23487854,
+    "islam": 6.548741341,
+    "buddhism": 0.343751937,
+    "hinduism": 0.156519756,
+    "judaism": 0.141607389
+   },
+   "unaffiliated": 36.14769745,
+   "otherReligions": 0.426800668
+  },
+  "덴마크": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Denmark",
+   "values": {
+    "christianity": 76.90623474,
+    "islam": 4.219104767,
+    "buddhism": 0.656479597,
+    "hinduism": 0.435123563,
+    "judaism": 0.106127203
+   },
+   "unaffiliated": 16.63090706,
+   "otherReligions": 1.046020389
+  },
+  "노르웨이": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Norway",
+   "values": {
+    "christianity": 71.42243958,
+    "islam": 4.113745213,
+    "buddhism": 0.687752903,
+    "hinduism": 0.230490178,
+    "judaism": 0.096250214
+   },
+   "unaffiliated": 22.4515419,
+   "otherReligions": 0.997784615
+  },
+  "스웨덴": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Sweden",
+   "values": {
+    "christianity": 60.7713089,
+    "islam": 8.099198341,
+    "buddhism": 0.839671671,
+    "hinduism": 0.45201534,
+    "judaism": 0.158362478
+   },
+   "unaffiliated": 28.90637589,
+   "otherReligions": 0.773067355
+  },
+  "핀란드": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Finland",
+   "values": {
+    "christianity": 72.28497314,
+    "islam": 1.610194445,
+    "buddhism": 0.314537853,
+    "hinduism": 0.147366583,
+    "judaism": 0.062084887
+   },
+   "unaffiliated": 25.04721832,
+   "otherReligions": 0.533625603
+  },
+  "스위스": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Switzerland",
+   "values": {
+    "christianity": 61.58049774,
+    "islam": 6.083072662,
+    "buddhism": 0.619091868,
+    "hinduism": 0.539418042,
+    "judaism": 0.226010546
+   },
+   "unaffiliated": 30.76514435,
+   "otherReligions": 0.186763957
+  },
+  "오스트리아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Austria",
+   "values": {
+    "christianity": 68.19069672,
+    "islam": 8.302758217,
+    "buddhism": 0.296996266,
+    "hinduism": 0.11324697,
+    "judaism": 0.060347393
+   },
+   "unaffiliated": 22.39739227,
+   "otherReligions": 0.638559401
+  },
+  "이탈리아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Italy",
+   "values": {
+    "christianity": 80.47179413,
+    "islam": 4.419428349,
+    "buddhism": 0.613567829,
+    "hinduism": 0.425853163,
+    "judaism": 0.071020424
+   },
+   "unaffiliated": 13.27242947,
+   "otherReligions": 0.725903451
+  },
+  "폴란드": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Poland",
+   "values": {
+    "christianity": 91.18841553,
+    "islam": 0.007315581,
+    "buddhism": 0.010713195,
+    "hinduism": 0.005204489,
+    "judaism": 0.0117101
+   },
+   "unaffiliated": 8.645580292,
+   "otherReligions": 0.131059557
+  },
+  "크로아티아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Croatia",
+   "values": {
+    "christianity": 90.85782623,
+    "islam": 1.372602701,
+    "buddhism": 0.022288118,
+    "hinduism": 0.011706879,
+    "judaism": 0.015337282
+   },
+   "unaffiliated": 6.657827854,
+   "otherReligions": 1.062411189
+  },
+  "그리스": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Greece",
+   "values": {
+    "christianity": 89.47636414,
+    "islam": 5.120216846,
+    "buddhism": 0.024676016,
+    "hinduism": 0.085614547,
+    "judaism": 0.039002184
+   },
+   "unaffiliated": 4.742371082,
+   "otherReligions": 0.511751652
+  },
+  "우크라이나": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Ukraine",
+   "values": {
+    "christianity": 83.42977142,
+    "islam": 0.567826331,
+    "buddhism": 0.334418237,
+    "hinduism": 0.01266236,
+    "judaism": 0.095710993
+   },
+   "unaffiliated": 15.14456844,
+   "otherReligions": 0.415044874
+  },
+  "러시아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Russia",
+   "values": {
+    "christianity": 69.92578888,
+    "islam": 8.193008423,
+    "buddhism": 0.35243994,
+    "hinduism": 0.071238369,
+    "judaism": 0.084050812
+   },
+   "unaffiliated": 20.19824409,
+   "otherReligions": 1.175231457
+  },
+  "튀르키예": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Turkey",
+   "values": {
+    "christianity": 0.13598159,
+    "islam": 97.10687256,
+    "buddhism": 0.052905586,
+    "hinduism": 0.043144707,
+    "judaism": 0.029282626
+   },
+   "unaffiliated": 2.529001713,
+   "otherReligions": 0.102810837
+  },
+  "아이슬란드": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Iceland",
+   "values": {
+    "christianity": 74.91873932,
+    "islam": 1.212648392,
+    "buddhism": 1.33994174,
+    "hinduism": 0.160479277,
+    "judaism": 0.155474246
+   },
+   "unaffiliated": 19.84541512,
+   "otherReligions": 2.367298365
+  },
+  "룩셈부르크": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Luxembourg",
+   "values": {
+    "christianity": 65.88789368,
+    "islam": 1.828941822,
+    "buddhism": 0.479477018,
+    "hinduism": 0.360089123,
+    "judaism": 0.486133814
+   },
+   "unaffiliated": 25.28631973,
+   "otherReligions": 5.671145439
+  },
+  "모로코": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Morocco",
+   "values": {
+    "christianity": 0.085476898,
+    "islam": 99.67552185,
+    "buddhism": 0.0,
+    "hinduism": 0.0,
+    "judaism": 0.006179804
+   },
+   "unaffiliated": 0.130789146,
+   "otherReligions": 0.10203585
+  },
+  "알제리": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Algeria",
+   "values": {
+    "christianity": 0.294989556,
+    "islam": 98.38234711,
+    "buddhism": 0.015000784,
+    "hinduism": 0.0,
+    "judaism": 0.000129986
+   },
+   "unaffiliated": 1.266207099,
+   "otherReligions": 0.041328549
+  },
+  "튀니지": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Tunisia",
+   "values": {
+    "christianity": 0.246675566,
+    "islam": 99.30379486,
+    "buddhism": 0.0,
+    "hinduism": 0.0,
+    "judaism": 0.008222519
+   },
+   "unaffiliated": 0.441310823,
+   "otherReligions": 0.0
+  },
+  "리비아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Libya",
+   "values": {
+    "christianity": 0.524617851,
+    "islam": 98.99452209,
+    "buddhism": 0.258001149,
+    "hinduism": 0.089997694,
+    "judaism": 0.001906484
+   },
+   "unaffiliated": 0.049393948,
+   "otherReligions": 0.081556775
+  },
+  "이집트": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Egypt",
+   "values": {
+    "christianity": 4.821415901,
+    "islam": 95.17256927,
+    "buddhism": 5.40333e-05,
+    "hinduism": 0.000170961,
+    "judaism": 0.000214229
+   },
+   "unaffiliated": 0.004652523,
+   "otherReligions": 0.000923006
+  },
+  "말리": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Mali",
+   "values": {
+    "christianity": 2.571752548,
+    "islam": 94.13371277,
+    "buddhism": 0.0,
+    "hinduism": 0.0,
+    "judaism": 0.0
+   },
+   "unaffiliated": 2.525307894,
+   "otherReligions": 0.769227386
+  },
+  "니제르": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Niger",
+   "values": {
+    "christianity": 0.556236327,
+    "islam": 98.13329315,
+    "buddhism": 0.0,
+    "hinduism": 0.0,
+    "judaism": 0.0
+   },
+   "unaffiliated": 1.2242167,
+   "otherReligions": 0.08625342
+  },
+  "차드": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Chad",
+   "values": {
+    "christianity": 38.89405441,
+    "islam": 56.35778046,
+    "buddhism": 0.010874331,
+    "hinduism": 0.009997175,
+    "judaism": 0.0
+   },
+   "unaffiliated": 3.13465786,
+   "otherReligions": 1.592638016
+  },
+  "수단": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Sudan",
+   "values": {
+    "christianity": 0.487978131,
+    "islam": 98.85551453,
+    "buddhism": 0.0,
+    "hinduism": 0.00123761,
+    "judaism": 0.0
+   },
+   "unaffiliated": 0.563212574,
+   "otherReligions": 0.092053778
+  },
+  "남수단": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "South Sudan",
+   "values": {
+    "christianity": 60.50164413,
+    "islam": 6.223001957,
+    "buddhism": 0.002269128,
+    "hinduism": 0.00200112,
+    "judaism": 0.0
+   },
+   "unaffiliated": 0.440300107,
+   "otherReligions": 32.83078384
+  },
+  "시에라리온": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Sierra Leone",
+   "values": {
+    "christianity": 19.82931328,
+    "islam": 80.14663696,
+    "buddhism": 0.0,
+    "hinduism": 0.009715848,
+    "judaism": 0.0
+   },
+   "unaffiliated": 0.012038952,
+   "otherReligions": 0.002295798
+  },
+  "라이베리아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Liberia",
+   "values": {
+    "christianity": 85.16896057,
+    "islam": 12.72352505,
+    "buddhism": 0.0,
+    "hinduism": 0.005896708,
+    "judaism": 0.0
+   },
+   "unaffiliated": 1.066497684,
+   "otherReligions": 1.035118818
+  },
+  "베냉": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Benin",
+   "values": {
+    "christianity": 53.23115921,
+    "islam": 31.40122795,
+    "buddhism": 0.008225815,
+    "hinduism": 0.008297001,
+    "judaism": 6.32755e-05
+   },
+   "unaffiliated": 4.885910034,
+   "otherReligions": 10.46511555
+  },
+  "나이지리아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Nigeria",
+   "values": {
+    "christianity": 43.35137558,
+    "islam": 56.06650925,
+    "buddhism": 0.000480014,
+    "hinduism": 0.000144004,
+    "judaism": 4.80014e-05
+   },
+   "unaffiliated": 0.379311502,
+   "otherReligions": 0.202133209
+  },
+  "에티오피아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Ethiopia",
+   "values": {
+    "christianity": 61.57827377,
+    "islam": 36.24017715,
+    "buddhism": 0.001163285,
+    "hinduism": 0.002422591,
+    "judaism": 0.004776543
+   },
+   "unaffiliated": 0.062328301,
+   "otherReligions": 2.110861063
+  },
+  "소말리아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Somalia",
+   "values": {
+    "christianity": 0.026225021,
+    "islam": 99.83339691,
+    "buddhism": 0.0,
+    "hinduism": 0.039998192,
+    "judaism": 0.0
+   },
+   "unaffiliated": 0.016120082,
+   "otherReligions": 0.08425606
+  },
+  "케냐": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Kenya",
+   "values": {
+    "christianity": 85.67028809,
+    "islam": 10.93115425,
+    "buddhism": 0.000961802,
+    "hinduism": 0.127907932,
+    "judaism": 0.000577081
+   },
+   "unaffiliated": 1.603437185,
+   "otherReligions": 1.665675163
+  },
+  "우간다": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Uganda",
+   "values": {
+    "christianity": 87.74430084,
+    "islam": 11.41293049,
+    "buddhism": 0.000800483,
+    "hinduism": 0.005336556,
+    "judaism": 0.001040628
+   },
+   "unaffiliated": 0.094881155,
+   "otherReligions": 0.740711689
+  },
+  "탄자니아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Tanzania",
+   "values": {
+    "christianity": 64.69165802,
+    "islam": 29.86781693,
+    "buddhism": 0.000178269,
+    "hinduism": 0.006482508,
+    "judaism": 0.000178269
+   },
+   "unaffiliated": 3.478159189,
+   "otherReligions": 1.955531359
+  },
+  "콩고 민주 공화국": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Democratic Republic of the Congo",
+   "values": {
+    "christianity": 96.26151276,
+    "islam": 1.270551205,
+    "buddhism": 0.000153266,
+    "hinduism": 0.001197573,
+    "judaism": 0.000107697
+   },
+   "unaffiliated": 1.175555229,
+   "otherReligions": 1.290924907
+  },
+  "앙골라": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Angola",
+   "values": {
+    "christianity": 93.04470825,
+    "islam": 0.255656004,
+    "buddhism": 0.002393168,
+    "hinduism": 0.009273528,
+    "judaism": 0.001196584
+   },
+   "unaffiliated": 6.114808083,
+   "otherReligions": 0.571967721
+  },
+  "잠비아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Zambia",
+   "values": {
+    "christianity": 98.28038025,
+    "islam": 0.511289477,
+    "buddhism": 0.001901973,
+    "hinduism": 0.016061105,
+    "judaism": 0.001003819
+   },
+   "unaffiliated": 0.059753649,
+   "otherReligions": 1.129607677
+  },
+  "짐바브웨": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Zimbabwe",
+   "values": {
+    "christianity": 87.20018768,
+    "islam": 0.529105365,
+    "buddhism": 0.037205644,
+    "hinduism": 0.038111851,
+    "judaism": 0.001276351
+   },
+   "unaffiliated": 10.53988743,
+   "otherReligions": 1.654226065
+  },
+  "나미비아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Namibia",
+   "values": {
+    "christianity": 90.53588104,
+    "islam": 0.11899709,
+    "buddhism": 0.028122637,
+    "hinduism": 0.052227754,
+    "judaism": 0.00401752
+   },
+   "unaffiliated": 5.631341934,
+   "otherReligions": 3.629415035
+  },
+  "보츠와나": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Botswana",
+   "values": {
+    "christianity": 82.29058838,
+    "islam": 0.33039239,
+    "buddhism": 0.228216156,
+    "hinduism": 0.137448832,
+    "judaism": 0.00392711
+   },
+   "unaffiliated": 14.72220898,
+   "otherReligions": 2.287216187
+  },
+  "남아프리카 공화국": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "South Africa",
+   "values": {
+    "christianity": 85.25711823,
+    "islam": 1.604882717,
+    "buddhism": 0.035529964,
+    "hinduism": 1.065007329,
+    "judaism": 0.065178007
+   },
+   "unaffiliated": 3.122110128,
+   "otherReligions": 8.850171089
+  },
+  "마다가스카르": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Madagascar",
+   "values": {
+    "christianity": 74.2053833,
+    "islam": 1.159488678,
+    "buddhism": 0.027457755,
+    "hinduism": 0.063666567,
+    "judaism": 0.000354294
+   },
+   "unaffiliated": 22.29583359,
+   "otherReligions": 2.247811079
+  },
+  "시리아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Syria",
+   "values": {
+    "christianity": 3.840747118,
+    "islam": 94.16599274,
+    "buddhism": 0.0,
+    "hinduism": 0.009999624,
+    "judaism": 0.000559979
+   },
+   "unaffiliated": 1.980045676,
+   "otherReligions": 0.002657043
+  },
+  "이스라엘": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Israel",
+   "values": {
+    "christianity": 1.879276514,
+    "islam": 14.73149681,
+    "buddhism": 0.042839181,
+    "hinduism": 0.166129664,
+    "judaism": 77.0493927
+   },
+   "unaffiliated": 4.374664307,
+   "otherReligions": 1.756201863
+  },
+  "이라크": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Iraq",
+   "values": {
+    "christianity": 0.374980688,
+    "islam": 99.49835968,
+    "buddhism": 0.0,
+    "hinduism": 0.000493456,
+    "judaism": 0.0
+   },
+   "unaffiliated": 0.000798929,
+   "otherReligions": 0.125364259
+  },
+  "이란": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Iran",
+   "values": {
+    "christianity": 0.14260982,
+    "islam": 99.77310944,
+    "buddhism": 1.87587e-05,
+    "hinduism": 0.000219217,
+    "judaism": 0.009242157
+   },
+   "unaffiliated": 5.01292e-05,
+   "otherReligions": 0.074749671
+  },
+  "사우디아라비아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Saudi Arabia",
+   "values": {
+    "christianity": 4.377707958,
+    "islam": 92.69380188,
+    "buddhism": 0.07348647,
+    "hinduism": 2.622116566,
+    "judaism": 0.002747443
+   },
+   "unaffiliated": 0.112103462,
+   "otherReligions": 0.118037276
+  },
+  "카타르": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Qatar",
+   "values": {
+    "christianity": 12.54836273,
+    "islam": 75.89176178,
+    "buddhism": 0.218447864,
+    "hinduism": 10.62953568,
+    "judaism": 0.010868053
+   },
+   "unaffiliated": 0.273621351,
+   "otherReligions": 0.427404314
+  },
+  "아랍 에미리트": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "United Arab Emirates",
+   "values": {
+    "christianity": 14.31364155,
+    "islam": 72.94023132,
+    "buddhism": 0.167142332,
+    "hinduism": 11.75353146,
+    "judaism": 0.015009754
+   },
+   "unaffiliated": 0.335835189,
+   "otherReligions": 0.474605411
+  },
+  "오만": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Oman",
+   "values": {
+    "christianity": 8.071033478,
+    "islam": 81.78730011,
+    "buddhism": 0.112074755,
+    "hinduism": 9.531416893,
+    "judaism": 0.0070652
+   },
+   "unaffiliated": 0.140269518,
+   "otherReligions": 0.3508389
+  },
+  "카자흐스탄": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Kazakhstan",
+   "values": {
+    "christianity": 19.29185677,
+    "islam": 77.90452576,
+    "buddhism": 0.091090441,
+    "hinduism": 0.0,
+    "judaism": 0.042062771
+   },
+   "unaffiliated": 2.534446478,
+   "otherReligions": 0.13601622
+  },
+  "우즈베키스탄": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Uzbekistan",
+   "values": {
+    "christianity": 2.775307417,
+    "islam": 95.62223053,
+    "buddhism": 0.014764371,
+    "hinduism": 0.027500505,
+    "judaism": 0.008351563
+   },
+   "unaffiliated": 0.551984191,
+   "otherReligions": 0.999862552
+  },
+  "키르기스스탄": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Kyrgyzstan",
+   "values": {
+    "christianity": 5.753356934,
+    "islam": 91.71746826,
+    "buddhism": 0.032685466,
+    "hinduism": 0.009338705,
+    "judaism": 0.004669352
+   },
+   "unaffiliated": 1.16977489,
+   "otherReligions": 1.312705517
+  },
+  "아프가니스탄": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Afghanistan",
+   "values": {
+    "christianity": 0.019379199,
+    "islam": 99.86196899,
+    "buddhism": 0.020000853,
+    "hinduism": 0.000128296,
+    "judaism": 2.56593e-05
+   },
+   "unaffiliated": 0.008456565,
+   "otherReligions": 0.090042546
+  },
+  "파키스탄": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Pakistan",
+   "values": {
+    "christianity": 1.271847963,
+    "islam": 96.54430389,
+    "buddhism": 0.010499283,
+    "hinduism": 2.139701843,
+    "judaism": 9.09027e-05
+   },
+   "unaffiliated": 0.012734034,
+   "otherReligions": 0.020821461
+  },
+  "인도": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "India",
+   "values": {
+    "christianity": 2.214620113,
+    "islam": 15.19001579,
+    "buddhism": 0.680662572,
+    "hinduism": 79.36618805,
+    "judaism": 0.000301379
+   },
+   "unaffiliated": 0.003259997,
+   "otherReligions": 2.544952393
+  },
+  "네팔": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Nepal",
+   "values": {
+    "christianity": 1.758354902,
+    "islam": 5.08394146,
+    "buddhism": 8.208739281,
+    "hinduism": 81.18401337,
+    "judaism": 0.0
+   },
+   "unaffiliated": 0.001294779,
+   "otherReligions": 3.763658047
+  },
+  "방글라데시": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Bangladesh",
+   "values": {
+    "christianity": 0.300090015,
+    "islam": 91.06732178,
+    "buddhism": 0.61018306,
+    "hinduism": 7.90237093,
+    "judaism": 0.0
+   },
+   "unaffiliated": 0.0,
+   "otherReligions": 0.120036013
+  },
+  "스리랑카": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Sri Lanka",
+   "values": {
+    "christianity": 5.590357304,
+    "islam": 10.20240116,
+    "buddhism": 69.59994507,
+    "hinduism": 14.53492832,
+    "judaism": 0.000276306
+   },
+   "unaffiliated": 0.069881201,
+   "otherReligions": 0.002210445
+  },
+  "중국": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "China",
+   "values": {
+    "christianity": 1.78475678,
+    "islam": 1.821801543,
+    "buddhism": 3.742975712,
+    "hinduism": 0.00204179,
+    "judaism": 0.000213027
+   },
+   "unaffiliated": 89.6231308,
+   "otherReligions": 3.025080681
+  },
+  "몽골": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Mongolia",
+   "values": {
+    "christianity": 1.342484832,
+    "islam": 3.526082993,
+    "buddhism": 51.1350975,
+    "hinduism": 0.003035514,
+    "judaism": 0.0
+   },
+   "unaffiliated": 40.82786942,
+   "otherReligions": 3.165430069
+  },
+  "대한민국": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "South Korea",
+   "values": {
+    "christianity": 31.9855442,
+    "islam": 0.310002804,
+    "buddhism": 19.0005722,
+    "hinduism": 0.091812678,
+    "judaism": 0.000192884
+   },
+   "unaffiliated": 48.26361847,
+   "otherReligions": 0.34825626
+  },
+  "일본": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Japan",
+   "values": {
+    "christianity": 2.249630213,
+    "islam": 0.16997391,
+    "buddhism": 37.20560837,
+    "hinduism": 0.031737354,
+    "judaism": 0.001376222
+   },
+   "unaffiliated": 57.45616913,
+   "otherReligions": 2.885504961
+  },
+  "타이완": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Taiwan",
+   "values": {
+    "christianity": 5.539291382,
+    "islam": 0.497803152,
+    "buddhism": 19.18875122,
+    "hinduism": 0.0,
+    "judaism": 0.0
+   },
+   "unaffiliated": 23.09183502,
+   "otherReligions": 51.68231964
+  },
+  "미얀마": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Myanmar",
+   "values": {
+    "christianity": 6.135730743,
+    "islam": 3.345355749,
+    "buddhism": 89.05110168,
+    "hinduism": 0.439414382,
+    "judaism": 0.000187185
+   },
+   "unaffiliated": 0.058647044,
+   "otherReligions": 0.969559908
+  },
+  "타이": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Thailand",
+   "values": {
+    "christianity": 1.033611178,
+    "islam": 4.514589787,
+    "buddhism": 94.39245605,
+    "hinduism": 0.040371645,
+    "judaism": 0.000279816
+   },
+   "unaffiliated": 0.012629814,
+   "otherReligions": 0.006059419
+  },
+  "라오스": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Laos",
+   "values": {
+    "christianity": 1.539444566,
+    "islam": 0.022150202,
+    "buddhism": 64.16296387,
+    "hinduism": 0.0,
+    "judaism": 0.0
+   },
+   "unaffiliated": 0.052833665,
+   "otherReligions": 34.22260666
+  },
+  "캄보디아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Cambodia",
+   "values": {
+    "christianity": 0.316419482,
+    "islam": 2.0429039,
+    "buddhism": 97.09085846,
+    "hinduism": 0.000792835,
+    "judaism": 0.0
+   },
+   "unaffiliated": 0.079039522,
+   "otherReligions": 0.469986796
+  },
+  "베트남": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Vietnam",
+   "values": {
+    "christianity": 8.330019951,
+    "islam": 0.072078042,
+    "buddhism": 23.02081871,
+    "hinduism": 0.041288089,
+    "judaism": 0.000127164
+   },
+   "unaffiliated": 67.67364502,
+   "otherReligions": 0.862020373
+  },
+  "말레이시아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Malaysia",
+   "values": {
+    "christianity": 9.153184891,
+    "islam": 64.11719513,
+    "buddhism": 18.87560844,
+    "hinduism": 6.122179031,
+    "judaism": 0.0
+   },
+   "unaffiliated": 0.844678819,
+   "otherReligions": 0.887154043
+  },
+  "싱가포르": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Singapore",
+   "values": {
+    "christianity": 18.75891685,
+    "islam": 16.13864326,
+    "buddhism": 30.80149078,
+    "hinduism": 5.29460001,
+    "judaism": 0.015228762
+   },
+   "unaffiliated": 19.89608192,
+   "otherReligions": 9.095038414
+  },
+  "인도네시아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Indonesia",
+   "values": {
+    "christianity": 10.26230717,
+    "islam": 86.96417999,
+    "buddhism": 0.677527726,
+    "hinduism": 1.584296703,
+    "judaism": 0.001059009
+   },
+   "unaffiliated": 0.092005208,
+   "otherReligions": 0.418626547
+  },
+  "필리핀": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Philippines",
+   "values": {
+    "christianity": 91.46120453,
+    "islam": 6.462348461,
+    "buddhism": 0.036360435,
+    "hinduism": 0.001328647,
+    "judaism": 0.000452259
+   },
+   "unaffiliated": 0.041135743,
+   "otherReligions": 1.997168183
+  },
+  "캐나다": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Canada",
+   "values": {
+    "christianity": 53.32112503,
+    "islam": 4.887863159,
+    "buddhism": 1.73734796,
+    "hinduism": 1.524757147,
+    "judaism": 0.923046291
+   },
+   "unaffiliated": 34.62942886,
+   "otherReligions": 2.976430178
+  },
+  "미국": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "United States",
+   "values": {
+    "christianity": 64.01000214,
+    "islam": 1.192380905,
+    "buddhism": 1.29174602,
+    "hinduism": 0.894285679,
+    "judaism": 1.689206362
+   },
+   "unaffiliated": 29.72999954,
+   "otherReligions": 1.192380905
+  },
+  "멕시코": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Mexico",
+   "values": {
+    "christianity": 89.17308044,
+    "islam": 0.006285933,
+    "buddhism": 0.018263193,
+    "hinduism": 0.00391715,
+    "judaism": 0.046796679
+   },
+   "unaffiliated": 10.63434982,
+   "otherReligions": 0.117304102
+  },
+  "코스타리카": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Costa Rica",
+   "values": {
+    "christianity": 87.85917664,
+    "islam": 0.025180042,
+    "buddhism": 0.048993725,
+    "hinduism": 0.009369318,
+    "judaism": 0.050750472
+   },
+   "unaffiliated": 10.09859562,
+   "otherReligions": 1.907937527
+  },
+  "아이티": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Haiti",
+   "values": {
+    "christianity": 88.71865845,
+    "islam": 0.001857289,
+    "buddhism": 0.003183924,
+    "hinduism": 0.0,
+    "judaism": 0.002122616
+   },
+   "unaffiliated": 9.434687614,
+   "otherReligions": 1.839487433
+  },
+  "콜롬비아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Colombia",
+   "values": {
+    "christianity": 86.2469635,
+    "islam": 0.003926908,
+    "buddhism": 0.009221531,
+    "hinduism": 0.001024615,
+    "judaism": 0.004137866
+   },
+   "unaffiliated": 9.943602562,
+   "otherReligions": 3.791124821
+  },
+  "에콰도르": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Ecuador",
+   "values": {
+    "christianity": 88.52362061,
+    "islam": 0.018136753,
+    "buddhism": 0.022002894,
+    "hinduism": 0.007959703,
+    "judaism": 0.003411301
+   },
+   "unaffiliated": 8.391396523,
+   "otherReligions": 3.033472061
+  },
+  "페루": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Peru",
+   "values": {
+    "christianity": 94.49199677,
+    "islam": 0.021588508,
+    "buddhism": 0.031947389,
+    "hinduism": 0.009488135,
+    "judaism": 0.005704891
+   },
+   "unaffiliated": 5.106701851,
+   "otherReligions": 0.332569689
+  },
+  "볼리비아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Bolivia",
+   "values": {
+    "christianity": 88.92559814,
+    "islam": 0.009802146,
+    "buddhism": 0.01885028,
+    "hinduism": 0.003686277,
+    "judaism": 0.004188951
+   },
+   "unaffiliated": 9.547657967,
+   "otherReligions": 1.490216374
+  },
+  "브라질": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Brazil",
+   "values": {
+    "christianity": 80.65506744,
+    "islam": 0.017701255,
+    "buddhism": 0.103137359,
+    "hinduism": 0.000770417,
+    "judaism": 0.044158481
+   },
+   "unaffiliated": 13.47328377,
+   "otherReligions": 5.705881596
+  },
+  "우루과이": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Uruguay",
+   "values": {
+    "christianity": 44.4913063,
+    "islam": 0.089302436,
+    "buddhism": 0.0,
+    "hinduism": 0.0,
+    "judaism": 0.478261471
+   },
+   "unaffiliated": 52.4098053,
+   "otherReligions": 2.531326056
+  },
+  "칠레": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Chile",
+   "values": {
+    "christianity": 68.32601929,
+    "islam": 0.066993728,
+    "buddhism": 0.038323306,
+    "hinduism": 0.005335507,
+    "judaism": 0.081571691
+   },
+   "unaffiliated": 30.26606369,
+   "otherReligions": 1.215691566
+  },
+  "아르헨티나": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Argentina",
+   "values": {
+    "christianity": 88.45394135,
+    "islam": 0.929196358,
+    "buddhism": 0.031062234,
+    "hinduism": 0.002573854,
+    "judaism": 0.384978116
+   },
+   "unaffiliated": 9.232909203,
+   "otherReligions": 0.96533829
+  },
+  "오스트레일리아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Australia",
+   "values": {
+    "christianity": 46.75042343,
+    "islam": 3.503147364,
+    "buddhism": 2.611551523,
+    "hinduism": 2.963423014,
+    "judaism": 0.420412093
+   },
+   "unaffiliated": 42.34402084,
+   "otherReligions": 1.40702188
+  },
+  "뉴질랜드": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "New Zealand",
+   "values": {
+    "christianity": 40.32331467,
+    "islam": 1.359425902,
+    "buddhism": 1.192508101,
+    "hinduism": 2.788676023,
+    "judaism": 0.110793501
+   },
+   "unaffiliated": 51.35481262,
+   "otherReligions": 2.870469809
+  },
+  "바레인": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Bahrain",
+   "values": {
+    "christianity": 13.6735096,
+    "islam": 74.02146912,
+    "buddhism": 0.159597144,
+    "hinduism": 11.20584488,
+    "judaism": 0.014348853
+   },
+   "unaffiliated": 0.320074171,
+   "otherReligions": 0.605156124
+  },
+  "아일랜드": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Ireland",
+   "values": {
+    "christianity": 81.21601868,
+    "islam": 1.691199064,
+    "buddhism": 0.193803862,
+    "hinduism": 0.694914162,
+    "judaism": 0.054588255
+   },
+   "unaffiliated": 15.6012392,
+   "otherReligions": 0.548237681
+  },
+  "모리타니": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Mauritania",
+   "values": {
+    "christianity": 0.233780533,
+    "islam": 99.18540192,
+    "buddhism": 0.0,
+    "hinduism": 0.0,
+    "judaism": 0.002222912
+   },
+   "unaffiliated": 0.106502414,
+   "otherReligions": 0.472091347
+  },
+  "모잠비크": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Mozambique",
+   "values": {
+    "christianity": 61.33995056,
+    "islam": 19.427248,
+    "buddhism": 0.001603683,
+    "hinduism": 0.032073654,
+    "judaism": 0.0
+   },
+   "unaffiliated": 14.28753757,
+   "otherReligions": 4.911586761
+  },
+  "코트디부아르": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Ivory Coast",
+   "values": {
+    "christianity": 44.91496658,
+    "islam": 46.32071686,
+    "buddhism": 0.0,
+    "hinduism": 0.0,
+    "judaism": 0.0
+   },
+   "unaffiliated": 5.564354897,
+   "otherReligions": 3.19996047
+  },
+  "가나": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Ghana",
+   "values": {
+    "christianity": 71.28790283,
+    "islam": 19.87060738,
+    "buddhism": 0.0,
+    "hinduism": 0.0,
+    "judaism": 0.0
+   },
+   "unaffiliated": 1.068349838,
+   "otherReligions": 7.773138046
+  },
+  "세네갈": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Senegal",
+   "values": {
+    "christianity": 2.403386593,
+    "islam": 97.55647278,
+    "buddhism": 0.000304208,
+    "hinduism": 0.0,
+    "judaism": 0.000304208
+   },
+   "unaffiliated": 0.020703293,
+   "otherReligions": 0.018828791
+  },
+  "기니": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Guinea",
+   "values": {
+    "christianity": 11.70807648,
+    "islam": 86.80789185,
+    "buddhism": 0.085958868,
+    "hinduism": 0.0,
+    "judaism": 0.0
+   },
+   "unaffiliated": 1.319620252,
+   "otherReligions": 0.078451402
+  },
+  "카메룬": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Cameroon",
+   "values": {
+    "christianity": 69.8339386,
+    "islam": 25.15727043,
+    "buddhism": 0.00181991,
+    "hinduism": 0.007430334,
+    "judaism": 0.00637948
+   },
+   "unaffiliated": 2.079864502,
+   "otherReligions": 2.913296461
+  },
+  "슬로베니아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Slovenia",
+   "values": {
+    "christianity": 65.41543579,
+    "islam": 1.608627558,
+    "buddhism": 0.038389336,
+    "hinduism": 0.010602368,
+    "judaism": 0.023140971
+   },
+   "unaffiliated": 32.26738739,
+   "otherReligions": 0.636416554
+  },
+  "슬로바키아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Slovakia",
+   "values": {
+    "christianity": 73.74530029,
+    "islam": 0.054791708,
+    "buddhism": 0.122730501,
+    "hinduism": 0.017808132,
+    "judaism": 0.037891094
+   },
+   "unaffiliated": 25.32966995,
+   "otherReligions": 0.691805959
+  },
+  "세르비아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Serbia",
+   "values": {
+    "christianity": 91.5355072,
+    "islam": 4.420050621,
+    "buddhism": 0.014541986,
+    "hinduism": 0.003533567,
+    "judaism": 0.009566501
+   },
+   "unaffiliated": 4.008869648,
+   "otherReligions": 0.007928411
+  },
+  "보스니아 헤르체고비나": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Bosnia-Herzegovina",
+   "values": {
+    "christianity": 44.67794418,
+    "islam": 53.64897919,
+    "buddhism": 0.002712135,
+    "hinduism": 0.0,
+    "judaism": 0.015067414
+   },
+   "unaffiliated": 1.045740604,
+   "otherReligions": 0.609558046
+  },
+  "체코": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Czech Republic",
+   "values": {
+    "christianity": 26.41275787,
+    "islam": 0.327130884,
+    "buddhism": 0.068411015,
+    "hinduism": 0.016849395,
+    "judaism": 0.025813967
+   },
+   "unaffiliated": 72.81342316,
+   "otherReligions": 0.335610092
+  },
+  "헝가리": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Hungary",
+   "values": {
+    "christianity": 72.36884308,
+    "islam": 0.139223918,
+    "buddhism": 0.192222267,
+    "hinduism": 0.057621021,
+    "judaism": 0.132964462
+   },
+   "unaffiliated": 26.97590637,
+   "otherReligions": 0.133217916
+  },
+  "루마니아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Romania",
+   "values": {
+    "christianity": 98.54199982,
+    "islam": 0.355796516,
+    "buddhism": 0.029729392,
+    "hinduism": 0.019956755,
+    "judaism": 0.045262743
+   },
+   "unaffiliated": 0.939600706,
+   "otherReligions": 0.067656629
+  },
+  "불가리아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Bulgaria",
+   "values": {
+    "christianity": 79.49707794,
+    "islam": 10.25873566,
+    "buddhism": 0.026466111,
+    "hinduism": 0.002907086,
+    "judaism": 0.045989148
+   },
+   "unaffiliated": 10.0321579,
+   "otherReligions": 0.136665002
+  },
+  "에스토니아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Estonia",
+   "values": {
+    "christianity": 52.61386108,
+    "islam": 0.598115027,
+    "buddhism": 0.196146205,
+    "hinduism": 0.062808216,
+    "judaism": 0.135394946
+   },
+   "unaffiliated": 43.60287857,
+   "otherReligions": 2.790795803
+  },
+  "라트비아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Latvia",
+   "values": {
+    "christianity": 77.26760101,
+    "islam": 0.670408607,
+    "buddhism": 0.069054514,
+    "hinduism": 0.043224961,
+    "judaism": 0.226667479
+   },
+   "unaffiliated": 16.97382164,
+   "otherReligions": 4.749224663
+  },
+  "리투아니아": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Lithuania",
+   "values": {
+    "christianity": 92.15046692,
+    "islam": 0.089217022,
+    "buddhism": 0.025529502,
+    "hinduism": 0.018437974,
+    "judaism": 0.037046697
+   },
+   "unaffiliated": 7.080081463,
+   "otherReligions": 0.599219263
+  },
+  "키프로스": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Cyprus",
+   "values": {
+    "christianity": 67.7487793,
+    "islam": 24.3588028,
+    "buddhism": 0.557559073,
+    "hinduism": 0.266658694,
+    "judaism": 0.043770704
+   },
+   "unaffiliated": 6.57008934,
+   "otherReligions": 0.454339713
+  },
+  "브루나이": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Brunei",
+   "values": {
+    "christianity": 6.693441868,
+    "islam": 82.15075684,
+    "buddhism": 6.296775341,
+    "hinduism": 1.335672617,
+    "judaism": 0.0
+   },
+   "unaffiliated": 0.156205788,
+   "otherReligions": 3.367149591
+  },
+  "동티모르": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Timor-Leste",
+   "values": {
+    "christianity": 99.5353241,
+    "islam": 0.256671906,
+    "buddhism": 0.030312831,
+    "hinduism": 0.012914566,
+    "judaism": 0.0
+   },
+   "unaffiliated": 0.063858345,
+   "otherReligions": 0.100920439
+  },
+  "투르크메니스탄": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Turkmenistan",
+   "values": {
+    "christianity": 5.615219593,
+    "islam": 94.28793335,
+    "buddhism": 0.006719529,
+    "hinduism": 0.001599888,
+    "judaism": 0.003199776
+   },
+   "unaffiliated": 0.071888015,
+   "otherReligions": 0.013439058
+  },
+  "타지키스탄": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Tajikistan",
+   "values": {
+    "christianity": 1.000219822,
+    "islam": 98.91412354,
+    "buddhism": 0.004191463,
+    "hinduism": 0.00366753,
+    "judaism": 0.0
+   },
+   "unaffiliated": 0.074550293,
+   "otherReligions": 0.003248384
+  },
+  "아제르바이잔": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Azerbaijan",
+   "values": {
+    "christianity": 0.419673085,
+    "islam": 94.72725677,
+    "buddhism": 0.002041818,
+    "hinduism": 0.006806061,
+    "judaism": 0.084269956
+   },
+   "unaffiliated": 4.759952545,
+   "otherReligions": 0.0
+  },
+  "쿠웨이트": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Kuwait",
+   "values": {
+    "christianity": 10.53036976,
+    "islam": 80.23990631,
+    "buddhism": 0.121455498,
+    "hinduism": 8.504200935,
+    "judaism": 0.010824583
+   },
+   "unaffiliated": 0.248254478,
+   "otherReligions": 0.34498772
+  },
+  "요르단": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Jordan",
+   "values": {
+    "christianity": 2.809163332,
+    "islam": 97.08689117,
+    "buddhism": 0.018849416,
+    "hinduism": 0.027908115,
+    "judaism": 0.0
+   },
+   "unaffiliated": 0.047398046,
+   "otherReligions": 0.009790716
+  },
+  "레바논": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Lebanon",
+   "values": {
+    "christianity": 27.906147,
+    "islam": 67.78356171,
+    "buddhism": 0.00663968,
+    "hinduism": 0.017323207,
+    "judaism": 0.005650791
+   },
+   "unaffiliated": 0.018806541,
+   "otherReligions": 4.261873722
+  },
+  "파푸아뉴기니": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Papua New Guinea",
+   "values": {
+    "christianity": 99.08984375,
+    "islam": 0.074771993,
+    "buddhism": 0.002769333,
+    "hinduism": 0.002256494,
+    "judaism": 0.001025679
+   },
+   "unaffiliated": 0.310512781,
+   "otherReligions": 0.518817782
+  },
+  "파라과이": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Paraguay",
+   "values": {
+    "christianity": 93.52775574,
+    "islam": 0.011331539,
+    "buddhism": 0.022663077,
+    "hinduism": 0.0,
+    "judaism": 0.016619591
+   },
+   "unaffiliated": 4.247684002,
+   "otherReligions": 2.173946381
+  },
+  "베네수엘라": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Venezuela",
+   "values": {
+    "christianity": 88.11541748,
+    "islam": 0.049069069,
+    "buddhism": 0.021340482,
+    "hinduism": 0.0,
+    "judaism": 0.017549738
+   },
+   "unaffiliated": 9.727750778,
+   "otherReligions": 2.068873405
+  },
+  "가이아나": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Guyana",
+   "values": {
+    "christianity": 65.87551117,
+    "islam": 6.504891396,
+    "buddhism": 0.03135968,
+    "hinduism": 23.3990097,
+    "judaism": 0.037631616
+   },
+   "unaffiliated": 2.908345699,
+   "otherReligions": 1.243247032
+  },
+  "수리남": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Suriname",
+   "values": {
+    "christianity": 52.78678131,
+    "islam": 13.09019852,
+    "buddhism": 0.383813918,
+    "hinduism": 22.45373917,
+    "judaism": 0.032945402
+   },
+   "unaffiliated": 8.109276772,
+   "otherReligions": 3.14324522
+  },
+  "쿠바": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Cuba",
+   "values": {
+    "christianity": 60.65393448,
+    "islam": 0.079992004,
+    "buddhism": 0.049995001,
+    "hinduism": 0.209978998,
+    "judaism": 0.009999
+   },
+   "unaffiliated": 21.60783958,
+   "otherReligions": 17.3882618
+  },
+  "도미니카 공화국": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Dominican Republic",
+   "values": {
+    "christianity": 77.63658142,
+    "islam": 0.024818942,
+    "buddhism": 0.042546757,
+    "hinduism": 0.006363831,
+    "judaism": 0.000909119
+   },
+   "unaffiliated": 19.60108948,
+   "otherReligions": 2.687689304
+  },
+  "자메이카": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Jamaica",
+   "values": {
+    "christianity": 68.61232758,
+    "islam": 0.015954982,
+    "buddhism": 0.001242755,
+    "hinduism": 0.036873739,
+    "judaism": 0.017727759
+   },
+   "unaffiliated": 23.74363899,
+   "otherReligions": 7.57223177
+  },
+  "엘살바도르": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "El Salvador",
+   "values": {
+    "christianity": 87.10838318,
+    "islam": 0.003496097,
+    "buddhism": 0.006674367,
+    "hinduism": 0.001906962,
+    "judaism": 0.001589135
+   },
+   "unaffiliated": 11.88199902,
+   "otherReligions": 0.995953739
+  },
+  "파나마": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Panama",
+   "values": {
+    "christianity": 91.15790558,
+    "islam": 0.053109758,
+    "buddhism": 0.171386138,
+    "hinduism": 0.093144633,
+    "judaism": 0.232861593
+   },
+   "unaffiliated": 6.21044302,
+   "otherReligions": 2.081149578
+  },
+  "몰타": {
+   "year": "2020",
+   "source": "Pew Research Center, 2025 release",
+   "sourceUrl": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+   "country": "Malta",
+   "values": {
+    "christianity": 88.59967804,
+    "islam": 3.643014431,
+    "buddhism": 0.606907308,
+    "hinduism": 1.415327311,
+    "judaism": 0.286915153
+   },
+   "unaffiliated": 5.24495554,
+   "otherReligions": 0.203198671
+  }
+ }
+}

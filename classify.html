@@ -77,7 +77,7 @@ h2{font-size:19px;line-height:1.35;margin:2px 0 8px;word-break:keep-all}
 <div id="toast" role="status" hidden></div>
 <script src="assets/country-boundaries.js?v=20260930-1"></script>
 <script src="assets/location-grading.js?v=20261006-2"></script>
-<script src="assets/classification-sets.js?v=20261016-1"></script>
+<script src="assets/classification-sets.js?v=20261017-1"></script>
 <script>
 (function(){
 'use strict';
@@ -96,12 +96,16 @@ function union(a,b){return a?[Math.min(a[0],b[0]),Math.min(a[1],b[1]),Math.max(a
 function svg(tag,attrs,parent,text){var e=document.createElementNS('http://www.w3.org/2000/svg',tag);Object.keys(attrs).forEach(function(k){e.setAttribute(k,attrs[k])});if(text!==undefined)e.textContent=text;parent.appendChild(e);return e}
 // Display-only thinning; taps are graded against the full boundary.
 function thin(ring,tol){var out=[ring[0]],last=ring[0];for(var i=1;i<ring.length-1;i++){var p=ring[i];if(Math.abs(p[0]-last[0])>tol||Math.abs(p[1]-last[1])>tol){out.push(p);last=p}}out.push(ring[ring.length-1]);return out.length<4?ring:out}
-names.forEach(function(name){
- var polygons=S.byName[name].polygons,main=null,area=-1,all=null;
+function geometry(polygons){
+ var main=null,area=-1,all=null;
  polygons.forEach(function(poly){var b=box(poly[0]),a=(b[2]-b[0])*(b[3]-b[1]);all=union(all,b);if(a>area){area=a;main=b}});
  var d=polygons.map(function(poly){return poly.map(function(ring){return thin(ring,.03).map(function(p,i){var a=project(p[0],p[1]);return (i?'L':'M')+a.x.toFixed(1)+' '+a.y.toFixed(1)}).join('')+'Z'}).join('')}).join('');
- var path=svg('path',{d:d,class:'country','fill-rule':'evenodd','data-name':name},$('countryLayer'));
- countries[name]={polygons:polygons,box:all,main:main,anchor:[(main[0]+main[2])/2,(main[1]+main[3])/2],tiny:all[2]-all[0]<1.6&&all[3]-all[1]<1.6,path:path};
+ return {polygons:polygons,box:all,main:main,anchor:[(main[0]+main[2])/2,(main[1]+main[3])/2],tiny:all[2]-all[0]<1.6&&all[3]-all[1]<1.6,d:d};
+}
+names.forEach(function(name){
+ var c=geometry(S.byName[name].polygons);
+ c.path=svg('path',{d:c.d,class:'country','fill-rule':'evenodd','data-name':name},$('countryLayer'));
+ countries[name]=c;
 });
 
 function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_classify_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
@@ -114,7 +118,11 @@ function noun(){return isPoints()?'곳':'나라'}
 // Point sets (e.g. 기출 도시 기후) reuse the country code paths through a small box around the point.
 var pointCache=Object.create(null);
 function geo(name){
- if(!isPoints())return countries[name];
+ if(!isPoints()){
+  if(!set().geometryBounds||!set().geometryBounds[name])return countries[name];
+  var territory=state.setId+'|'+name;
+  return pointCache[territory]||(pointCache[territory]=geometry(C.polygonsFor(set(),name,S.byName[name])));
+ }
  var key=state.setId+'|'+name,p=set().points[name];
  return pointCache[key]||(pointCache[key]={anchor:[p[0],p[1]],main:[p[0]-.6,p[1]-.6,p[0]+.6,p[1]+.6],box:[p[0],p[1],p[0],p[1]],tiny:true,point:true});
 }
@@ -152,7 +160,7 @@ function styleFor(name,visible){
 }
 function applyStyle(path,st){path.setAttribute('fill',st.fill);path.setAttribute('fill-opacity',st.opacity);path.setAttribute('stroke',st.stroke);path.setAttribute('stroke-width',st.width);path.setAttribute('stroke-opacity',st.strokeOpacity)}
 var hiddenStyle={fill:'none',opacity:0,stroke:'#36505e',width:.6,strokeOpacity:0};
-function renderCountries(){var visible=new Set(isPoints()?[]:shown());names.forEach(function(n){applyStyle(countries[n].path,isPoints()?hiddenStyle:styleFor(n,visible))})}
+function renderCountries(){var visible=new Set(isPoints()?[]:shown());names.forEach(function(n){var c=countries[n];c.path.setAttribute('d',isPoints()?c.d:geo(n).d);applyStyle(c.path,isPoints()?hiddenStyle:styleFor(n,visible))})}
 function markerFill(st){return {fill:st.fill==='none'?'#fff':st.fill,opacity:Math.max(.85,+st.opacity)}}
 function labelsToShow(){
  var list=[];
@@ -173,7 +181,7 @@ function renderNote(){
  function key(text,colorValue,hatch){var span=document.createElement('span'),sw=document.createElement('span');span.className='key';sw.className='swatch'+(hatch?' hatch':'');if(colorValue)sw.style.background=colorValue;span.append(sw,document.createTextNode(text));note.appendChild(span)}
  if(state.mode==='study'){var opts=set().multi?set().options.filter(function(o){return o.id===state.studyTarget}):set().options;
   // Long legends (e.g. 13 climate types) would cover the map; the panel chips carry the colors.
-  if(opts.length>6){var tip=document.createElement('span');tip.textContent='색 구분은 아래 목록 참고';note.appendChild(tip)}else opts.forEach(function(o){key(o.label,o.color)});if(shown().some(function(n){return C.entry(set(),n).status==='mixed'}))key('혼재·채점 제외',null,true)}
+  if(opts.length>6){var tip=document.createElement('span');tip.textContent='색 구분은 아래 목록 참고';note.appendChild(tip)}else opts.forEach(function(o){key(o.label,o.color)});if(shown().some(function(n){return C.entry(set(),n).status==='mixed'}))key('참고·채점 제외',null,true)}
  else if(state.mode==='paint'){if(!state.graded)key(isPoints()?'내가 고른 곳':'내가 칠한 나라','#e8590c');else{key('맞음','#2b8a3e');key('놓침','#e03131');key('잘못 칠함','#f08c00');key('채점 제외',null,true)}}
  else{key(state.answer?'정답 분류 색':isPoints()?'문제 지점':'문제 국가',state.answer?answerColor(state.queue[state.index]):'#0b7285')}
 }
@@ -184,13 +192,15 @@ function swatch(id){var s=el('span',{className:'swatch'});var col=color(id);if(c
 function nameButtons(list,className){return el('div',{className:'nameList '+className},list.map(function(n){return el('button',{type:'button',text:label(n),onclick:function(){state.focus=n;focusCountry(n);renderPanel();renderMap()}})}))}
 function countryInfo(name){
  var s=set(),e=C.entry(s,name),title=el('b',{text:label(name)}),line;
- if(e.status==='mixed')line='채점하지 않는 혼재 국가 · '+e.note;
+ if(e.status==='mixed')line='참고 · 이 세트에서 채점 제외 · '+e.note;
  else if(e.status==='graded')line=answerText(e.values)+(e.note?' · '+e.note:'');
  else line=(s.noneOption?s.noneOption.label:s.otherLabel)+(e.note?' · '+e.note:'');
  return el('div',{className:'result info'},[title,el('div',{text:line})]);
 }
 function renderPanel(){
  var panel=$('panel'),s=set();panel.replaceChildren();
+ var period=state.mode==='assign'&&s.itemPeriods&&s.itemPeriods[state.queue[state.index]]||s.period;
+ panel.append(el('p',{className:'basis',text:period}));
  Array.from(document.querySelectorAll('.tabs button')).forEach(function(b){b.setAttribute('aria-selected',String(b.dataset.mode===state.mode))});
  if(state.mode==='study'){
   var counts=s.options.map(function(o){var text=o.label+' '+shown().filter(function(n){return C.entry(s,n).status==='graded'&&C.has(s,n,o.id)}).length;
@@ -198,7 +208,7 @@ function renderPanel(){
    // One category at a time: a country can belong to several.
    var b=el('button',{type:'button',className:'chip','aria-pressed':String(o.id===state.studyTarget)},[swatch(o.id),document.createTextNode(text)]);b.onclick=function(){state.studyTarget=o.id;renderAll()};return b});
   panel.append(el('div',{className:'meta'},[el('span',{text:s.title+' · '+s.lecture})]),el('div',{className:'chips'},counts),el('p',{className:'basis',text:s.basis}));
-  panel.append(state.focus?countryInfo(state.focus):el('p',{className:'small muted',text:(isPoints()?'지도의 지점을 누르면 분류와 설명을 볼 수 있어요.':'지도에서 나라를 누르면 분류와 설명을 볼 수 있어요. 빗금 친 나라는 비중이 비슷하거나 통계마다 달라 퀴즈에서 채점하지 않아요.')}));
+  panel.append(state.focus?countryInfo(state.focus):el('p',{className:'small muted',text:(isPoints()?'지도의 지점을 누르면 분류와 설명을 볼 수 있어요.':'지도에서 나라를 누르면 분류와 설명을 볼 수 있어요. 빗금 친 곳은 분류 범위나 근거가 달라 이 세트에서는 채점하지 않아요. 누르면 이유가 나와요.')}));
   panel.append(el('div',{className:'actions'},[el('button',{type:'button',className:'primary',text:'하나씩 맞히기',onclick:function(){setMode('assign')}}),el('button',{type:'button',text:'모두 칠하기',onclick:function(){setMode('paint')}})]));
   return;
  }
@@ -287,17 +297,17 @@ function countryAt(x,y){
  list.forEach(function(n){var c=geo(n);if(!c.tiny)return;var p=project(c.anchor[0],c.anchor[1]),d=Math.hypot(p.x*state.scale+state.x-sx,p.y*state.scale+state.y-sy);if(d<reach&&d<min){min=d;best=n}});
  if(best||isPoints())return best;
  var pt={lon:lon,lat:lat};
- for(var i=0;i<list.length;i++){var c=countries[list[i]],b=c.box;if(lon<b[0]-1||lon>b[2]+1||lat<b[1]-1||lat>b[3]+1)continue;if(G.inPolygons(pt,c.polygons))return list[i]}
+ for(var i=0;i<list.length;i++){var c=geo(list[i]),b=c.box;if(lon<b[0]-1||lon>b[2]+1||lat<b[1]-1||lat>b[3]+1)continue;if(G.inPolygons(pt,c.polygons))return list[i]}
  // Coast-hugging taps: accept the nearest border within about 10 screen pixels.
  var tolKm=10/(state.scale*10)*111.2;min=Infinity;
- list.forEach(function(n){var c=countries[n],b=c.box,pad=tolKm/80+1;if(lon<b[0]-pad||lon>b[2]+pad||lat<b[1]-pad||lat>b[3]+pad)return;var d=G.polygonDistance(pt,c.polygons);if(d<tolKm&&d<min){min=d;best=n}});
+ list.forEach(function(n){var c=geo(n),b=c.box,pad=tolKm/80+1;if(lon<b[0]-pad||lon>b[2]+pad||lat<b[1]-pad||lat>b[3]+pad)return;var d=G.polygonDistance(pt,c.polygons);if(d<tolKm&&d<min){min=d;best=n}});
  return best;
 }
 function mapTap(x,y){
  if(state.mode==='assign')return;
  var name=countryAt(x,y);
  if(!name){if(state.mode==='paint'&&!state.graded)toast(isPoints()?'지도의 동그라미를 눌러 주세요':'이 분류에서 고를 수 있는 나라가 아니에요');return}
- if(state.mode==='paint'&&!state.graded){var e=C.entry(set(),name);if(state.picked.has(name))state.picked.delete(name);else{state.picked.add(name);if(e.status==='mixed')toast(label(name)+'은(는) 혼재 국가라 채점하지 않아요')}state.focus=name;renderPanel();renderMap();return}
+ if(state.mode==='paint'&&!state.graded){var e=C.entry(set(),name);if(state.picked.has(name))state.picked.delete(name);else{state.picked.add(name);if(e.status==='mixed')toast(label(name)+'은(는) 이 세트의 참고 항목이라 채점하지 않아요')}state.focus=name;renderPanel();renderMap();return}
  state.focus=state.focus===name?null:name;renderPanel();renderMap();
 }
 var pointers=new Map(),start=null,last=null,pinch=null,moved=false;

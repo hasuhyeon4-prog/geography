@@ -39,27 +39,30 @@ main{max-width:720px;margin:0 auto;padding:12px 12px calc(28px + env(safe-area-i
 <body>
 <header><a class="navLink" href="index.html">← 위치</a><h1 class="sr">순위표</h1><nav class="nav" aria-label="퀴즈 종류"><a href="classify.html">분류 지도</a><a href="rankings.html" aria-current="page">순위표</a><a href="facts.html">OX</a></nav></header>
 <div class="scope"><label for="groupSelect">주제<select id="groupSelect"></select></label><label for="modeSelect">방식<select id="modeSelect"><option value="study">순위표 보기</option><option value="quiz">순위 문제</option></select></label></div>
+<div class="scope"><label for="policySelect">출제 범위<select id="policySelect"><option value="basic">기본 비교 · 변동 항목 제외</option><option value="dated">연도 지정 전체 · 기출 포함</option></select></label><span class="small muted">문제의 연도·단위·범위가 우선입니다.</span></div>
+<p class="note" style="max-width:720px;margin:10px auto;padding:0 12px">2027학년도 수능의 통계 연도는 미리 확정할 수 없어요. 2027학년도 6·9평에서도 여러 연도의 자료가 쓰였어요. 문제의 연도·단위·범위를 우선하세요. 검수: 2026-10-17.</p>
 <main id="main" aria-live="polite"></main>
-<script src="assets/rankings.js?v=20261016-1"></script>
+<script src="assets/rankings.js?v=20261017-1"></script>
+<script src="assets/ranking-policy.js?v=20261017-1"></script>
 <script>
 (function(){
 'use strict';
-var R=window.WGRankings,$=function(id){return document.getElementById(id)};
+var R=window.WGRankings,P=window.WGRankingPolicy,$=function(id){return document.getElementById(id)};
 if(!R){$('main').textContent='순위 자료를 불러오지 못했어요. 새로고침해 주세요.';return}
 var byId={};R.rankings.forEach(function(r){byId[r.id]=r});
-// Values within 5% of each other can swap with the data year or unit, so they are never asked head to head.
-function close(a,b){var m=Math.max(Math.abs(a),Math.abs(b));return m===0||Math.abs(a-b)<=0.05*m}
 function ranked(r){return r.unit==='순위'}
 function fmt(r,x){return ranked(r)?'':x.toLocaleString('ko-KR',{maximumFractionDigits:r.digits})+' '+r.unit}
 function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_rankings_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
 var store=readStore();if(!store.miss||typeof store.miss!=='object')store.miss={};
-var state={group:R.groups.some(function(g){return g.id===store.group})?store.group:'all',mode:store.mode==='quiz'?'quiz':'study',queue:[],index:0,q:null,answer:null,picked:[],right:0,wrong:[]};
+var state={group:R.groups.some(function(g){return g.id===store.group})?store.group:'all',mode:store.mode==='quiz'?'quiz':'study',explicit:false,queue:[],index:0,q:null,answer:null,picked:[],right:0,wrong:[]};
 function save(){try{localStorage.setItem('wg_rankings_v1',JSON.stringify({group:state.group,mode:state.mode,miss:store.miss}))}catch(e){}}
 function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(c){if(c!=null&&c!==false)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
 function pool(){return R.rankings.filter(function(r){return state.group==='all'||r.group===state.group})}
 function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
 function pick(a){return a[Math.floor(Math.random()*a.length)]}
 function head(r){return r.title+' ('+r.year+')'}
+function sources(urls){var p=el('p',{className:'small muted'});(urls||[]).filter(function(u){return /^https:\/\//.test(u)}).forEach(function(u,i){p.append(el('a',{href:u,target:'_blank',rel:'noopener',text:(i?' · ':'')+'출처 '+(i+1)}))});return p}
+function auditNote(r,quiz){return r.audit?el('p',{className:'note',text:quiz?'표시한 연도·출처·범위로 답하세요. 다른 연도나 판본의 순위로 채점하지 않아요.':r.audit.warning}):null}
 
 function renderStudy(){
  var main=$('main');main.replaceChildren();var last=null;
@@ -69,42 +72,45 @@ function renderStudy(){
   r.items.forEach(function(it,i){
    var bar=el('span',{className:it.value<0?'neg':null});bar.style.width=(ranked(r)?(r.items.length-i)/r.items.length*100:Math.abs(it.value)/max*100)+'%';
    ul.append(el('li',{},[el('span',{className:'rank',text:String(i+1)}),el('span',{className:'name',text:it.name}),el('span',{className:'bar'},[bar]),el('span',{className:'val',text:fmt(r,it.value)})]));
-   var nx=r.items[i+1];if(nx&&!ranked(r)&&close(it.value,nx.value))ul.append(el('li',{className:'tieRow'},[el('span',{className:'tie',text:'≈ '+it.name+'와(과) '+nx.name+'는 근소한 차이 — 자료 연도에 따라 바뀔 수 있음'})]));
+   var nx=r.items[i+1];if(nx&&!ranked(r)&&P.equal(r,it,nx))ul.append(el('li',{className:'tieRow'},[el('span',{className:'tie',text:'표시값 동률 · 이 표에서는 두 항목의 순서를 구별하지 않음'})]));
   });
-  main.append(el('section',{className:'card'},[el('h2',{text:r.title}),el('div',{className:'meta',text:r.year+' · '+r.source}),ul,r.note?el('p',{className:'note',text:r.note}):null]));
+  var card=el('section',{className:'card'},[el('h2',{text:r.title}),el('div',{className:'meta',text:r.year+' · '+r.source+(r.scope?' · '+r.scope:'')}),auditNote(r),ul,r.note?el('p',{className:'note',text:r.note}):null,sources(r.audit&&r.audit.sourceUrls)]);
+  if(r.audit&&r.audit.latest){var latest=r.audit.latest,view=Object.assign({},r,latest);card.append(el('details',{},[el('summary',{text:'최근 자료와 비교 · '+latest.year}),el('p',{className:'meta',text:latest.source}),tableOf(view,latest.items.map(function(i){return i.name})),latest.note?el('p',{className:'note',text:latest.note}):null,sources(latest.sourceUrls)]))}
+  main.append(card);
  });
  main.append(el('button',{type:'button',className:'primary big',text:'이 주제로 순위 문제 풀기',onclick:function(){state.mode='quiz';$('modeSelect').value='quiz';save();startQuiz()}}));
 }
 
 // Question generators read the whole ranking, so any pair or order can be asked.
 function pairQ(r){
- var pairs=[];r.items.forEach(function(a,i){r.items.forEach(function(b,j){if(i<j&&(ranked(r)||!close(a.value,b.value)))pairs.push([a,b])})});
+ var pairs=[];r.items.forEach(function(a,i){r.items.forEach(function(b,j){if(i<j&&P.allowed(r,a,b,state.explicit))pairs.push([a,b])})});
  if(!pairs.length)return null;var p=pick(pairs),low=r.low&&Math.random()<.35;
  return {type:'pair',r:r,text:head(r)+' — 둘 중 '+(low?r.low:r.phrase)+' 쪽은?',options:shuffle([p[0].name,p[1].name]),answer:[low?p[1].name:p[0].name]};
 }
 function extremeQ(r){
  var it=r.items,n=it.length;if(n<3)return null;
- var topOk=ranked(r)||!close(it[0].value,it[1].value),bottomOk=ranked(r)||!close(it[n-1].value,it[n-2].value);
+ var topOk=it.slice(1).every(function(x){return P.allowed(r,it[0],x,state.explicit)}),bottomOk=it.slice(0,-1).every(function(x){return P.allowed(r,it[n-1],x,state.explicit)});
  if(!topOk&&!bottomOk)return null;var top=topOk&&(!bottomOk||Math.random()<.65),target=top?it[0]:it[n-1];
  var others=shuffle(it.filter(function(x){return x!==target})).slice(0,Math.min(3,n-1));
- return {type:'pick',r:r,text:head(r)+' — '+(top?'1위':'가장 낮은 곳')+'는?',options:shuffle([target.name].concat(others.map(function(x){return x.name}))),answer:[target.name]};
+ return {type:'pick',r:r,text:head(r)+' — 이 표에 나온 항목 중 '+(top?'1위':'가장 낮은 곳')+'는?',options:shuffle([target.name].concat(others.map(function(x){return x.name}))),answer:[target.name]};
 }
 function orderQ(r){
- var n=r.items.length;if(n<3)return null;var subset=n>5?shuffle(r.items.slice()).slice(0,4):r.items.slice();
+ var n=r.items.length;if(n<3)return null;var subset=[];
+ shuffle(r.items.slice()).forEach(function(x){if(subset.length<4&&subset.every(function(y){return state.explicit||!P.unstable(r,x,y)}))subset.push(x)});
+ if(subset.length<3)return null;
  subset.sort(function(a,b){return b.value-a.value});
  return {type:'order',r:r,text:head(r)+' — 큰 순서대로 누르세요.',options:shuffle(subset.map(function(x){return x.name})),answer:subset.map(function(x){return x.name})};
 }
 function makeQuestion(r){var gens=shuffle([pairQ,pairQ,extremeQ,orderQ]);for(var i=0;i<gens.length;i++){var q=gens[i](r);if(q)return q}return null}
 function startQuiz(only){
  // Rankings missed before are drawn more often.
- var list=only||pool(),bag=[];list.forEach(function(r){var w=1+Math.min(3,store.miss[r.id]||0);for(var i=0;i<w;i++)bag.push(r)});
+ var list=(only||pool()).filter(function(r){return P.canQuiz(r,state.explicit)}),bag=[];list.forEach(function(r){var w=1+Math.min(3,store.miss[r.id]||0);for(var i=0;i<w;i++)bag.push(r)});
  var n=only?only.length:Math.min(12,Math.max(6,list.length)),queue=[];shuffle(bag);
  for(var i=0;queue.length<n&&i<bag.length*3;i++){var q=makeQuestion(bag[i%bag.length]);if(q)queue.push(q)}
  state.queue=queue;state.index=0;state.answer=null;state.picked=[];state.right=0;state.wrong=[];renderQuiz();
 }
 function orderCorrect(q,seq){
- var val={};q.r.items.forEach(function(i){val[i.name]=i.value});
- for(var i=0;i<seq.length-1;i++){var a=val[seq[i]],b=val[seq[i+1]];if(a<b&&!close(a,b))return false}return true;
+ return P.orderCorrect(q.r,q.options,seq);
 }
 function judge(q,ans){return q.type==='order'?orderCorrect(q,ans):ans[0]===q.answer[0]}
 function submit(ans){
@@ -121,7 +127,7 @@ function tableOf(r,highlight){
 }
 function renderQuiz(){
  var main=$('main');main.replaceChildren();
- if(!state.queue.length){main.append(el('section',{className:'card'},[el('h2',{text:'문제를 만들 수 없어요'}),el('p',{className:'small muted',text:'다른 주제를 골라 주세요.'})]));return}
+ if(!state.queue.length){main.append(el('section',{className:'card'},[el('h2',{text:'이 범위는 참고표로 볼 수 있어요'}),el('p',{className:'small muted',text:'‘순위표 보기’로 확인하거나, 과거 자료를 연습하려면 ‘연도 지정 전체’를 골라 주세요.'})]));return}
  if(state.index>=state.queue.length){
   var seen={},wrong=state.wrong.filter(function(r){return seen[r.id]?false:(seen[r.id]=true)});
   var card=el('section',{className:'card'},[el('h2',{text:state.queue.length+'문제 중 '+state.right+'개 맞혔어요'})]);
@@ -130,7 +136,7 @@ function renderQuiz(){
   main.append(card);return;
  }
  var q=state.queue[state.index],card=el('section',{className:'card'});
- card.append(el('div',{className:'progress'},[el('span',{text:R.groups.find(function(g){return g.id===q.r.group}).name}),el('span',{text:(state.index+1)+' / '+state.queue.length+' · 정답 '+state.right})]),el('p',{className:'q',text:q.text}));
+ card.append(el('div',{className:'progress'},[el('span',{text:R.groups.find(function(g){return g.id===q.r.group}).name}),el('span',{text:(state.index+1)+' / '+state.queue.length+' · 정답 '+state.right})]),el('p',{className:'meta',text:q.r.source+' · '+q.r.year+(q.r.scope?' · '+q.r.scope:'')}),auditNote(q.r,true),el('p',{className:'q',text:q.text}));
  var grid=el('div',{className:'choices'});
  q.options.forEach(function(name){
   var b=el('button',{type:'button'});
@@ -142,7 +148,7 @@ function renderQuiz(){
   grid.append(b);
  });
  card.append(grid);
- if(q.type==='order'&&!state.answer)card.append(el('p',{className:'small muted',text:'다시 누르면 취소돼요. 근소한 차이(≈)인 둘은 어느 순서든 정답.'}));
+ if(q.type==='order'&&!state.answer)card.append(el('p',{className:'small muted',text:'다시 누르면 취소돼요. 표시된 연도 기준으로 채점해요. 표의 표시값이 같은 경우만 순서를 구별하지 않아요.'}));
  if(state.answer){
   var ok=judge(q,state.answer);
   card.append(el('div',{className:'result '+(ok?'good':'bad'),role:'status'},[el('b',{text:ok?'정답':'오답'}),q.type==='order'&&!ok?el('div',{text:'정답 순서: '+q.answer.join(' > ')}):null,el('div',{className:'small',text:q.r.source+(q.r.note?' · '+q.r.note:'')})]));
@@ -158,6 +164,7 @@ R.groups.forEach(function(g){$('groupSelect').append(el('option',{value:g.id,tex
 $('groupSelect').value=state.group;$('modeSelect').value=state.mode;
 $('groupSelect').onchange=function(){state.group=this.value;save();render();window.scrollTo({top:0})};
 $('modeSelect').onchange=function(){state.mode=this.value;save();render();window.scrollTo({top:0})};
+$('policySelect').onchange=function(){state.explicit=this.value==='dated';render();window.scrollTo({top:0})};
 render();
 })();
 </script>
