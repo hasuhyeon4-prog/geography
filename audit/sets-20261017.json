@@ -124,7 +124,8 @@
    "sourceRefs": [
     "개정 강의 2권 P06"
    ],
-   "reviewScope": "기준 연도·집계 범위·강의 기준점 검토"
+   "reviewScope": "기준 연도·집계 범위·강의 기준점 검토",
+   "practice": "provided-data"
   },
   {
    "id": "grainProductionTop",
@@ -135,7 +136,8 @@
    "sourceRefs": [
     "개정 강의 2권 P06"
    ],
-   "reviewScope": "기준 연도·집계 범위·강의 기준점 검토"
+   "reviewScope": "기준 연도·집계 범위·강의 기준점 검토",
+   "practice": "stable-recall"
   },
   {
    "id": "minerals",
@@ -150,14 +152,16 @@
   },
   {
    "id": "fossil",
-   "title": "화석 연료 상위국",
-   "period": "석탄·가스 2013 / 석유 2022 · 선택지의 연도 기준",
-   "gradedCount": 10,
-   "referenceCount": 0,
+   "title": "화석 연료 생산 상위 3국·수출국",
+   "period": "EI 2026판 · 2023·2025년 생산 상위 3국 교차 확인 · 석탄 수출은 강의 대표국",
+   "gradedCount": 8,
+   "referenceCount": 2,
    "sourceRefs": [
-    "개정 강의 2권 P07"
+    "2권 P07",
+    "https://catalog.ourworldindata.org/energy/owid_energy/owid_energy.csv"
    ],
-   "reviewScope": "기준 연도·집계 범위·강의 기준점 검토"
+   "reviewScope": "생산 상위 3국을 EI 2023·2025에서 교차 확인. 2013년 상위 5국 목록 회상 제거.",
+   "practice": "stable-recall"
   },
   {
    "id": "beverage",

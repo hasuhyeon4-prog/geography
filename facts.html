@@ -30,6 +30,7 @@ main{max-width:680px;margin:0 auto;padding:14px 14px calc(24px + env(safe-area-i
 h2{font-size:21px;margin:2px 0 10px}
 .wrongList{list-style:none;padding:0;margin:10px 0}.wrongList li{border-top:1px solid var(--line);padding:10px 0;font-size:14px;line-height:1.55}.wrongList b{color:var(--bad)}
 .small{font-size:12px;line-height:1.5}.muted{color:var(--muted)}
+.given{width:100%;border-collapse:collapse;margin:12px 0 16px;font-size:13px}.given caption{text-align:left;color:var(--muted);font-size:12px;margin-bottom:6px}.given th,.given td{padding:8px;text-align:left;border:1px solid var(--line)}
 .hint{margin-top:12px;font-size:12px;color:var(--muted);text-align:center}
 @media(min-width:700px){.scope{grid-template-columns:320px 220px;justify-content:center}.claim{font-size:22px}}
 </style>
@@ -38,7 +39,7 @@ h2{font-size:21px;margin:2px 0 10px}
 <header><a class="navLink" href="index.html">← 위치</a><h1 class="sr">통계 OX</h1><nav class="nav" aria-label="퀴즈 종류"><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html" aria-current="page">OX</a></nav></header>
 <div class="scope"><label for="topicSelect">주제<select id="topicSelect"></select></label><label for="orderSelect">출제<select id="orderSelect"><option value="weak">틀린 것 먼저</option><option value="random">무작위</option><option value="wrongOnly">최근 틀린 것만</option></select></label></div>
 <main><section class="card" id="card" aria-live="polite"></section><p class="hint">키보드: O·X(또는 1·2)로 답하고 Enter로 다음</p></main>
-<script src="assets/fact-statements.js?v=20261017-2"></script>
+<script src="assets/fact-statements.js?v=20261017-3"></script>
 <script>
 (function(){
 'use strict';
@@ -79,7 +80,7 @@ function render(){
  var it=byId[state.queue[state.index]];
  card.append(el('div',{className:'meta'},[el('span',{text:topicName(it.topic)}),el('span',{text:(state.index+1)+' / '+state.queue.length+' · 정답 '+state.right})]));
  var bar=el('div',{className:'bar'},[el('span',{})]);bar.firstChild.style.width=(state.index/state.queue.length*100)+'%';card.append(bar);
- if(it.period)card.append(el('p',{className:'small muted',text:'기준: '+it.period}));
+ if(it.data){var table=el('table',{className:'given'},[el('caption',{text:it.data.caption}),el('thead',{},[el('tr',{},it.data.headers.map(function(h){return el('th',{scope:'col',text:h})}))]),el('tbody',{},it.data.rows.map(function(row){return el('tr',{},row.map(function(v){return el('td',{text:v})}))}))]);card.append(el('p',{className:'small muted',text:'자료를 보고 판단하세요. 수치와 옛 순위를 외울 필요는 없어요.'}),table)}
  card.append(el('p',{className:'claim',text:it.claim}));
  var ox=el('div',{className:'ox'});
  [[true,'O','맞다'],[false,'X','틀리다']].forEach(function(row){
@@ -91,7 +92,7 @@ function render(){
  card.append(ox);
  if(state.answer!==null){
   var ok=state.answer===it.answer;
-  card.append(el('div',{className:'result '+(ok?'good':'bad'),role:'status'},[el('b',{text:(ok?'정답':'오답')+' · 이 진술은 '+(it.answer?'O':'X')}),el('div',{text:it.explain}),el('span',{className:'source',text:'근거: '+it.source})]));
+  card.append(el('div',{className:'result '+(ok?'good':'bad'),role:'status'},[el('b',{text:(ok?'정답':'오답')+' · 이 진술은 '+(it.answer?'O':'X')}),el('div',{text:it.explain})]),el('details',{className:'small muted'},[el('summary',{text:'출처·검수 근거'}),el('p',{text:it.source+(it.period?' · '+it.period:'')})]));
   var next=el('button',{type:'button',className:'primary big',text:state.index<state.queue.length-1?'다음':'결과 보기',onclick:nextItem});card.append(next);next.focus({preventScroll:true});
   next.scrollIntoView({block:'nearest'});
  }

@@ -77,7 +77,7 @@ h2{font-size:19px;line-height:1.35;margin:2px 0 8px;word-break:keep-all}
 <div id="toast" role="status" hidden></div>
 <script src="assets/country-boundaries.js?v=20260930-1"></script>
 <script src="assets/location-grading.js?v=20261006-2"></script>
-<script src="assets/classification-sets.js?v=20261017-1"></script>
+<script src="assets/classification-sets.js?v=20261017-2"></script>
 <script>
 (function(){
 'use strict';
@@ -200,14 +200,16 @@ function countryInfo(name){
 function renderPanel(){
  var panel=$('panel'),s=set();panel.replaceChildren();
  var period=state.mode==='assign'&&s.itemPeriods&&s.itemPeriods[state.queue[state.index]]||s.period;
- panel.append(el('p',{className:'basis',text:period}));
+ var scope=state.mode==='assign'&&s.scopeByName&&s.scopeByName[state.queue[state.index]]||s.scopeNote;
+ if(scope)panel.append(el('p',{className:'basis',text:scope}));
+ if(s.givenData&&state.mode!=='study'){var d=s.givenData;panel.append(el('div',{className:'basis'},[el('p',{text:d.caption})].concat(d.rows.map(function(row){return el('p',{text:row[0]+' — '+row[1]})}))))}
  Array.from(document.querySelectorAll('.tabs button')).forEach(function(b){b.setAttribute('aria-selected',String(b.dataset.mode===state.mode))});
  if(state.mode==='study'){
   var counts=s.options.map(function(o){var text=o.label+' '+shown().filter(function(n){return C.entry(s,n).status==='graded'&&C.has(s,n,o.id)}).length;
    if(!s.multi)return el('span',{className:'chip'},[swatch(o.id),document.createTextNode(text)]);
    // One category at a time: a country can belong to several.
    var b=el('button',{type:'button',className:'chip','aria-pressed':String(o.id===state.studyTarget)},[swatch(o.id),document.createTextNode(text)]);b.onclick=function(){state.studyTarget=o.id;renderAll()};return b});
-  panel.append(el('div',{className:'meta'},[el('span',{text:s.title+' · '+s.lecture})]),el('div',{className:'chips'},counts),el('p',{className:'basis',text:s.basis}));
+  panel.append(el('div',{className:'meta'},[el('span',{text:s.title+' · '+s.lecture})]),el('div',{className:'chips'},counts),el('details',{className:'basis'},[el('summary',{text:'분류 기준·출처'}),el('p',{text:s.basis}),el('p',{text:period})]));
   panel.append(state.focus?countryInfo(state.focus):el('p',{className:'small muted',text:(isPoints()?'지도의 지점을 누르면 분류와 설명을 볼 수 있어요.':'지도에서 나라를 누르면 분류와 설명을 볼 수 있어요. 빗금 친 곳은 분류 범위나 근거가 달라 이 세트에서는 채점하지 않아요. 누르면 이유가 나와요.')}));
   panel.append(el('div',{className:'actions'},[el('button',{type:'button',className:'primary',text:'하나씩 맞히기',onclick:function(){setMode('assign')}}),el('button',{type:'button',text:'모두 칠하기',onclick:function(){setMode('paint')}})]));
   return;
@@ -235,6 +237,7 @@ function renderPanel(){
   if(state.answer){
    var ok=C.isCorrect(s,q,state.answer),note=s.notes[q];
    panel.append(el('div',{className:'result '+(ok?'good':'bad'),role:'status'},[el('b',{text:(ok?'정답':'오답')+' · '+label(q)+' — '+answerText(answer)}),!ok&&s.multi?el('div',{text:'내 답: '+answerText(chosen)}):null,note?el('div',{text:note}):null]));
+   panel.append(el('details',{className:'basis'},[el('summary',{text:'분류 기준·출처'}),el('p',{text:s.basis}),el('p',{text:period})]));
    panel.append(el('button',{type:'button',className:'primary big',style:'width:100%',text:state.index<state.queue.length-1?'다음':'결과 보기',onclick:nextQuestion}));
   }
   return;

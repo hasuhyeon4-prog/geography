@@ -866,6 +866,26 @@
     fossil:'석탄·가스 2013 / 석유 2022 · 선택지의 연도 기준',beverage:'강의·기출의 대표 생산국 · 최신 전체 순위 아님',climateCities:'강의의 기출 기후형 · 평년·관측점에 따라 경계 분류 차이 가능',
     treatyCities:'협약 채택 연도 기준 · 발효 연도와 구별',capitalCity:'강의의 수도·최대 도시 비교 · 행정 경계와 대도시권 구별'};
   sets.forEach(function(s){if(!s.period)s.period=periods[s.id]});
+  // Dataset vintages are audit metadata. Keep only answer-defining scope in front.
+  var fossil=sets.find(function(s){return s.id==='fossil'});
+  fossil.title='화석 연료 생산 상위 3국·수출국';
+  fossil.basis='석탄·석유·천연가스의 생산 상위 3개국과 대표 석탄 수출국을 구별합니다. 생산량·수출량·매장량은 다른 지표입니다.';
+  fossil.period='EI 2026판 · 2023·2025년 생산 상위 3국 교차 확인 · 석탄 수출은 강의 대표국';
+  fossil.options.forEach(function(o){o.label={coal:'석탄 생산 상위 3국',coalExport:'석탄 수출 대표국',oil:'석유 생산 상위 3국',gas:'천연가스 생산 상위 3국'}[o.id]});
+  fossil.values=collect({coal:'중국,인도,인도네시아',coalExport:'오스트레일리아,인도네시아',oil:'미국,사우디아라비아,러시아',gas:'미국,러시아,이란'});
+  fossil.mixed={'캐나다':'천연가스의 주요 생산국이지만 이 세트의 생산 상위 3국에는 들지 않습니다.','카타르':'천연가스 수출이 중요한 국가. 옛 생산 상위 5국 목록을 현재 생산 상위 3국과 혼동하지 않습니다.'};
+  Object.assign(fossil.notes,{'미국':'석유·천연가스 생산 상위 3국. 석탄도 많이 생산하지만 이 세트의 석탄 상위 3국에는 들지 않음.','러시아':'석유·천연가스 생산 상위 3국.','이란':'천연가스 생산 상위 3국.','인도':'석탄 생산 상위 3국.','인도네시아':'석탄 생산 상위 3국이며 대표 석탄 수출국.','오스트레일리아':'대표 석탄 수출국. 생산 최대국인 중국과 구별.'});
+  var exports=sets.find(function(s){return s.id==='grainExportTop'});
+  exports.givenData={caption:'기출 제공 자료 · 2016~2020년 평균 수출액 상위 3국',rows:[['밀','러시아·캐나다·미국'],['쌀','인도·타이·베트남'],['옥수수','브라질·아르헨티나·미국']]};
+  exports.scopeNote='아래 자료를 보고 분류하세요. 옛 상위 3국 목록을 외우는 문제가 아닙니다.';
+  exports.notes['인도']='쌀의 주요 수출국. 생산량과 수출량은 다른 지표.';
+  var production=sets.find(function(s){return s.id==='grainProductionTop'});
+  production.basis='세 곡물의 생산 상위 3개국 구성을 묻습니다. 3개국 안의 나열 순서는 묻지 않습니다. 중국은 세 곡물 모두 상위지만 곡물 전체로는 순수입국입니다.';
+  production.notes['중국']='세 곡물 모두 생산 상위 3국. 밀 최대 생산국이지만 곡물 전체로는 순수입국. 쌀의 인도·중국 순서는 묻지 않음.';
+  production.notes['미국']='옥수수 최대 생산국이자 주요 곡물 순수출국.';
+  production.notes['방글라데시']='쌀 생산 상위 3국. 주요 쌀 수출국 목록과 구별.';
+  sets.find(function(s){return s.id==='religion'}).scopeNote='무종교를 제외한 개별 종교 중 신자 수 1위를 묻습니다. 국민 과반과는 다릅니다.';
+  sets.find(function(s){return s.id==='grainNet'}).scopeByName={'이집트':'밀의 순수출·순수입을 판단하세요.'};
   var byId={};sets.forEach(function(set){byId[set.id]=set});
 
   function optionsFor(set){return set.options.concat(set.noneOption?[set.noneOption]:[])}
