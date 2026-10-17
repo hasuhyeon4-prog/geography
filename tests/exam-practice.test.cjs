@@ -25,9 +25,8 @@ test('core questions have explicit targets and distinguish scope without memoriz
  assert.match(q('coffee-africa').text,/아프리카/);
  assert.equal(q('country-pop-second').answer[0],'중국');
  assert.ok(!E.questions.some(x=>x.rid==='rice-prod'));
- assert.match(q('chicago-change').text,/1950년.*2020년/);
- assert.match(q('chicago-change').text,/미국 내/);
- assert.match(q('australia-change').text,/1950년.*2020년/);
+ assert.equal(q('population-africa').answer[0],'나이지리아');
+ assert.equal(q('population-americas').answer[0],'미국');
 });
 
 test('world-leader recall agrees with both audited snapshots, rather than the arbitrary top-N tail',()=>{
@@ -43,7 +42,9 @@ test('OX preserves historical change, supplies fragile data and keeps existing a
  const get=id=>F.items.find(x=>x.id===id);
  assert.doesNotMatch(get('g15').claim,/2023|강의의/);
  assert.doesNotMatch(get('p07').claim,/2015|가장/);
- assert.match(get('p17').claim,/미국 내.*1950년.*2020년/);
+ assert.match(get('p17').claim,/1950년.*2020년/);
+ assert.match(get('p17').claim,/미국 내/);
+ assert.deepEqual(get('p17').data.rows,[['1950년','500','2위'],['2020년','887','3위']]);
  assert.match(get('p03').claim,/1950~1955/);
  assert.match(get('v19').claim,/1950년.*2010년/);
  for(const id of ['g09','g24','e05','e06','e18','t15','t17']){
