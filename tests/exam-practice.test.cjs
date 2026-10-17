@@ -51,6 +51,10 @@ test('OX preserves historical change, supplies fragile data and keeps existing a
   assert.doesNotMatch(x.claim,/(?:19|20)\d{2}/,id);
  }
  const x=get('g26');assert.equal(x.practice,'reading');assert.ok(88/260<47/80);assert.equal(x.answer,false);
+ assert.match(get('t17').claim,/4배 이상/);
+ assert.match(get('t09').claim,/캐나다는 무역 흑자/);
+ assert.match(get('t15').claim,/1인당 GDP/);
+ assert.equal(get('t17').revision,2);
  const old=require('../audit/facts-20261017.json').items;
  assert.equal(F.items.length,old.length);
  for(const x of old)assert.equal(get(x.id).answer,x.answer,x.id);
@@ -78,6 +82,7 @@ class Node{
  setAttribute(k,v){this.attributes[k]=v}
  get textContent(){return this.ownText||this.children.map(x=>typeof x==='string'?x:x.textContent).join(' ')}
  set textContent(s){this.ownText=s;this.children=[]}
+ get firstChild(){return this.children[0]}
  querySelector(s){return this.all().find(x=>s==='.big'?x.className.includes('big'):false)||null}
  all(){return this.children.flatMap(x=>typeof x==='object'?[x,...x.all()]:[])}
  focus(){} scrollIntoView(){}
@@ -98,4 +103,16 @@ test('actual default quiz uses yearless curated questions; full ranking orders a
  n.policySelect.value='dated';n.policySelect.onchange.call(n.policySelect);
  assert.ok(n.main.all().some(x=>x.className==='rows'));
  assert.match(n.main.textContent,/아래 표/);
+});
+test('changed OX objectives retain old history separately and leave other learning records intact',()=>{
+ const html=fs.readFileSync(require.resolve('../facts.html'),'utf8'),nodes={};
+ for(const id of ['card','topicSelect','orderSelect'])nodes[id]=new Node('div');
+ const original={topic:'trade',order:'weak',history:{t17:{right:3,wrong:2,last:false},g01:{right:4,wrong:0,last:true}}};
+ let saved;
+ const context={window:{WGFacts:F,scrollTo(){}},document:{getElementById:id=>nodes[id],createElement:tag=>new Node(tag),createTextNode:s=>s,addEventListener(){}},localStorage:{getItem:()=>JSON.stringify(original),setItem:(k,v)=>{saved=JSON.parse(v)}},Math,Set};
+ vm.runInNewContext([...html.matchAll(/<script>([\s\S]*?)<\/script>/g)][0][1],context);
+ nodes.orderSelect.value='random';nodes.orderSelect.onchange.call(nodes.orderSelect);
+ assert.equal(saved.history.t17,undefined);
+ assert.deepEqual(saved.retiredHistory['t17@1'],original.history.t17);
+ assert.deepEqual(saved.history.g01,original.history.g01);
 });
