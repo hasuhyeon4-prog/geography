@@ -77,7 +77,7 @@ h2{font-size:19px;line-height:1.35;margin:2px 0 8px;word-break:keep-all}
 <div id="toast" role="status" hidden></div>
 <script src="assets/country-boundaries.js?v=20260930-1"></script>
 <script src="assets/location-grading.js?v=20261006-2"></script>
-<script src="assets/classification-sets.js?v=20261017-2"></script>
+<script src="assets/classification-sets.js?v=20261019-1"></script>
 <script>
 (function(){
 'use strict';
@@ -111,7 +111,7 @@ names.forEach(function(name){
 function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_classify_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
 var store=readStore();if(!store.history||typeof store.history!=='object')store.history={};
 function save(){try{localStorage.setItem('wg_classify_v1',JSON.stringify({set:state.setId,region:state.region,mode:state.mode,showNames:state.showNames,history:store.history}))}catch(e){}}
-var state={setId:C.byId[store.set]?store.set:'religion',region:store.region==='all'||C.regions.some(function(r){return r.id===store.region})?store.region:'all',mode:['study','assign','paint'].includes(store.mode)?store.mode:'study',showNames:store.showNames===true,focus:null,studyTarget:null,draft:new Set(),queue:[],index:0,answer:null,right:0,wrongNames:[],target:null,picked:new Set(),graded:null,scale:1,x:0,y:0,lastScale:0};
+var state={setId:C.resolveSetId(store.set),region:store.region==='all'||C.regions.some(function(r){return r.id===store.region})?store.region:'all',mode:['study','assign','paint'].includes(store.mode)?store.mode:'study',showNames:store.showNames===true,focus:null,studyTarget:null,draft:new Set(),religionChoice:null,queue:[],index:0,answer:null,right:0,wrongNames:[],target:null,picked:new Set(),graded:null,scale:1,x:0,y:0,lastScale:0};
 function set(){return C.byId[state.setId]}
 function isPoints(){return !!set().points}
 function noun(){return isPoints()?'곳':'나라'}
@@ -133,23 +133,29 @@ function color(id){var o=C.option(set(),id);return o&&o.color}
 function toast(message){$('toast').textContent=message;$('toast').hidden=false;clearTimeout(toast.timer);toast.timer=setTimeout(function(){$('toast').hidden=true},2200)}
 
 function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
-function history(){return store.history[state.setId]||(store.history[state.setId]={})}
+function history(){var id=set().hierarchy?'religionCombined_v1':state.setId;return store.history[id]||(store.history[id]={})}
+function wasMissed(name,h){
+ if(h[name])return h[name].last===false;
+ if(!set().hierarchy)return false;
+ var p=C.religionProfile(name),big=store.history.religion&&store.history.religion[name],small=p.group&&store.history[p.group.id]&&store.history[p.group.id][name];
+ return !!(big&&big.last===false||p.detailRequired&&small&&small.last===false);
+}
 function buildQueue(only){
  var h=history(),pool=only||C.assignPool(set(),state.region);
  // Last-missed countries come first, then unseen ones, then the rest.
- var missed=shuffle(pool.filter(function(n){return h[n]&&h[n].last===false})),fresh=shuffle(pool.filter(function(n){return !h[n]})),rest=shuffle(pool.filter(function(n){return h[n]&&h[n].last!==false}));
- state.queue=only?shuffle(pool.slice()):missed.concat(fresh,rest);state.index=0;state.answer=null;state.draft=new Set();state.right=0;state.wrongNames=[];
+ var missed=shuffle(pool.filter(function(n){return wasMissed(n,h)})),fresh=shuffle(pool.filter(function(n){return !h[n]&&!wasMissed(n,h)})),rest=shuffle(pool.filter(function(n){return h[n]&&!wasMissed(n,h)}));
+ state.queue=only?shuffle(pool.slice()):missed.concat(fresh,rest);state.index=0;state.answer=null;state.religionChoice=null;state.draft=new Set();state.right=0;state.wrongNames=[];
 }
-function resetPaint(){var opts=set().options;if(!opts.some(function(o){return o.id===state.target}))state.target=opts[0].id;state.picked=new Set();state.graded=null}
+function resetPaint(){var opts=C.paintOptions(set());if(!opts.some(function(o){return o.id===state.target}))state.target=opts[0].id;state.picked=new Set();state.graded=null}
 function answerColor(name){var v=C.entry(set(),name).values;return color(v[0])||'#868e96'}
 function answerText(list){return (Array.isArray(list)?list:[list]).map(optionLabel).join('·')}
-function resetMode(){var opts=set().options;if(!opts.some(function(o){return o.id===state.studyTarget}))state.studyTarget=opts[0].id;state.focus=null;if(state.mode==='assign')buildQueue();if(state.mode==='paint')resetPaint()}
+function resetMode(){var opts=C.paintOptions(set());if(!opts.some(function(o){return o.id===state.studyTarget}))state.studyTarget=set().hierarchy?null:opts[0].id;state.focus=null;state.religionChoice=null;if(state.mode==='assign')buildQueue();if(state.mode==='paint')resetPaint()}
 
 function styleFor(name,visible){
- var s=set(),inView=visible.has(name),e=C.entry(s,name),fill='none',opacity=0,stroke='#36505e',width=.6,strokeOpacity=.0;
+ var s=set(),inView=visible.has(name),e=C.targetEntry(s,name,state.mode==='paint'?state.target:state.mode==='study'?state.studyTarget:null),fill='none',opacity=0,stroke='#36505e',width=.6,strokeOpacity=.0;
  if(inView){
   strokeOpacity=.3;
-  if(state.mode==='study'){if(e.status==='mixed'){fill='url(#hatch)';opacity=1}else if(s.multi){if(C.has(s,name,state.studyTarget)){fill=color(state.studyTarget);opacity=.6}}else if(color(e.value)){fill=color(e.value);opacity=.55}}
+  if(state.mode==='study'){if(e.status==='mixed'){fill='url(#hatch)';opacity=1}else if(s.multi||s.hierarchy&&state.studyTarget){if(C.has(s,name,state.studyTarget)){fill=color(state.studyTarget);opacity=.6}}else if(color(e.value)){fill=color(e.value);opacity=.55}}
   else if(state.mode==='paint'){
    if(!state.graded){if(state.picked.has(name)){fill='#e8590c';opacity=.6}}
    else{var g=state.graded;if(g.correct.includes(name)){fill='#2b8a3e';opacity=.6}else if(g.missed.includes(name)){fill='#e03131';opacity=.5}else if(g.wrong.includes(name)){fill='#f08c00';opacity=.7;stroke='#8a3a0c';width=1.6;strokeOpacity=.9}else if(e.status==='mixed'){fill='url(#hatch)';opacity=1}}
@@ -179,9 +185,9 @@ function renderOverlay(){
 function renderNote(){
  var note=$('mapNote');note.replaceChildren();
  function key(text,colorValue,hatch){var span=document.createElement('span'),sw=document.createElement('span');span.className='key';sw.className='swatch'+(hatch?' hatch':'');if(colorValue)sw.style.background=colorValue;span.append(sw,document.createTextNode(text));note.appendChild(span)}
- if(state.mode==='study'){var opts=set().multi?set().options.filter(function(o){return o.id===state.studyTarget}):set().options;
+ if(state.mode==='study'){var opts=set().multi||set().hierarchy&&state.studyTarget?C.paintOptions(set()).filter(function(o){return o.id===state.studyTarget}):set().options;
   // Long legends (e.g. 13 climate types) would cover the map; the panel chips carry the colors.
-  if(opts.length>6){var tip=document.createElement('span');tip.textContent='색 구분은 아래 목록 참고';note.appendChild(tip)}else opts.forEach(function(o){key(o.label,o.color)});if(shown().some(function(n){return C.entry(set(),n).status==='mixed'}))key('참고·채점 제외',null,true)}
+  if(opts.length>6){var tip=document.createElement('span');tip.textContent='색 구분은 아래 목록 참고';note.appendChild(tip)}else opts.forEach(function(o){key(o.label,o.color)});if(shown().some(function(n){return C.targetEntry(set(),n,state.studyTarget).status==='mixed'}))key('참고·채점 제외',null,true)}
  else if(state.mode==='paint'){if(!state.graded)key(isPoints()?'내가 고른 곳':'내가 칠한 나라','#e8590c');else{key('맞음','#2b8a3e');key('놓침','#e03131');key('잘못 칠함','#f08c00');key('채점 제외',null,true)}}
  else{key(state.answer?'정답 분류 색':isPoints()?'문제 지점':'문제 국가',state.answer?answerColor(state.queue[state.index]):'#0b7285')}
 }
@@ -191,11 +197,49 @@ function el(tag,props,children){var e=document.createElement(tag);Object.keys(pr
 function swatch(id){var s=el('span',{className:'swatch'});var col=color(id);if(col)s.style.background=col;return s}
 function nameButtons(list,className){return el('div',{className:'nameList '+className},list.map(function(n){return el('button',{type:'button',text:label(n),onclick:function(){state.focus=n;focusCountry(n);renderPanel();renderMap()}})}))}
 function countryInfo(name){
- var s=set(),e=C.entry(s,name),title=el('b',{text:label(name)}),line;
+ var s=set(),target=state.mode==='paint'?state.target:state.studyTarget,family=s.hierarchy&&religionFamily(target),e=family?C.targetEntry(s,name,target):C.entry(s,name),title=el('b',{text:label(name)}),line;
  if(e.status==='mixed')line='참고 · 이 세트에서 채점 제외 · '+e.note;
- else if(e.status==='graded')line=answerText(e.values)+(e.note?' · '+e.note:'');
- else line=(s.noneOption?s.noneOption.label:s.otherLabel)+(e.note?' · '+e.note:'');
+ else if(e.status==='graded')line=(family?answerText(e.values):s.hierarchy?religionText(name):answerText(e.values))+(e.note?' · '+e.note:'')+(s.hierarchy&&!family&&C.religionProfile(name).note?' · '+C.religionProfile(name).note:'');
+ else line=(family?family.otherLabel:s.noneOption?s.noneOption.label:s.otherLabel)+(e.note?' · '+e.note:'');
+ if(family&&C.religionProfile(name).graded)line+=' · 신자 수 1위 종교: '+optionLabel(C.religionProfile(name).religion);
  return el('div',{className:'result info'},[title,el('div',{text:line})]);
+}
+function religionFamily(id){return [C.byId.christianity,C.byId.islam,C.byId.buddhism].find(function(group){return group.options.some(function(o){return o.id===id})})}
+function religionText(name){var p=C.religionProfile(name);return optionLabel(p.religion)+(p.detailRequired?' → '+optionLabel(p.detail):'')}
+function religionPicker(value,all,onchange){
+ var select=el('select',{id:'religionTargetSelect','aria-label':all?'종교 분포 선택':'칠할 종교 분류'});
+ if(all)select.append(el('option',{value:'',text:'큰 종교 전체'}));
+ [set(),C.byId.christianity,C.byId.islam,C.byId.buddhism].forEach(function(s){
+  var group=el('optgroup',{label:s.id==='religion'?'큰 종교':s.title});s.options.forEach(function(o){group.append(el('option',{value:o.id,text:o.label}))});select.append(group);
+ });
+ select.value=value||'';select.onchange=function(){onchange(this.value||null)};
+ return el('label',{className:'basis'},[document.createTextNode(all?'분포 선택':'칠할 분류'),select]);
+}
+function renderReligionQuestion(panel,q){
+ var p=C.religionProfile(q),major=set().options;
+ if(!state.religionChoice){
+  panel.append(el('h2',{text:(state.showNames?label(q)+' — ':'')+'1. 신자 수 1위 종교는?'}));
+  panel.append(el('div',{className:'options'},major.map(function(o,i){var b=el('button',{type:'button','data-option':o.id},[swatch(o.id),document.createTextNode(o.label)]);b.title='단축키 '+(i+1);b.onclick=function(){chooseReligion(o.id)};return b})));
+  return;
+ }
+ var bigOk=state.religionChoice===p.religion;
+ panel.append(el('div',{className:'result '+(bigOk?'good':'bad'),role:'status'},[
+  el('b',{text:'큰 분류 '+(bigOk?'정답':'오답')+' · '+optionLabel(p.religion)}),!bigOk?el('div',{text:'내 답: '+optionLabel(state.religionChoice)}):null
+ ]));
+ if(!state.answer){
+  panel.append(el('h2',{text:'2. '+p.group.assignQuestion.replace('색칠된 나라에서','이 나라에서').replace('색칠된 나라의','이 나라의')}));
+  panel.append(el('div',{className:'options'},p.group.options.map(function(o,i){var b=el('button',{type:'button','data-detail':o.id},[swatch(o.id),document.createTextNode(o.label)]);b.title='단축키 '+(i+1);b.onclick=function(){chooseReligionDetail(o.id)};return b})));
+  return;
+ }
+ var g=C.religionGrade(q,state.answer);
+ panel.append(el('h2',{text:label(q)+' — '+religionText(q)}));
+ if(p.detailRequired)panel.append(el('div',{className:'result '+(g.detailCorrect?'good':'bad'),role:'status'},[
+  el('b',{text:'세부 분류 '+(g.detailCorrect?'정답':'오답')+' · '+optionLabel(p.detail)}),!g.detailCorrect?el('div',{text:'내 답: '+optionLabel(state.answer.detail)}):null,p.note?el('div',{text:p.note}):null
+ ]));
+ else if(p.group)panel.append(el('p',{className:'small muted',text:'큰 종교만 채점했어요. '+(p.note||'이 나라는 단일 세부 분류를 확정하지 않습니다.')}));
+ panel.append(el('p',{className:'small',text:g.correct?'이번 나라 정답':'이번 나라 오답 · 다시 복습해요'}));
+ panel.append(el('details',{className:'basis'},[el('summary',{text:'분류 기준·출처'}),el('p',{text:set().basis}),el('p',{text:set().period}),el('p',{text:set().notes[q]||''}),p.group?el('p',{text:p.group.basis+' · '+p.group.period}):null]));
+ panel.append(el('button',{type:'button',className:'primary big',style:'width:100%',text:state.index<state.queue.length-1?'다음':'결과 보기',onclick:nextQuestion}));
 }
 function renderPanel(){
  var panel=$('panel'),s=set();panel.replaceChildren();
@@ -210,6 +254,7 @@ function renderPanel(){
    // One category at a time: a country can belong to several.
    var b=el('button',{type:'button',className:'chip','aria-pressed':String(o.id===state.studyTarget)},[swatch(o.id),document.createTextNode(text)]);b.onclick=function(){state.studyTarget=o.id;renderAll()};return b});
   panel.append(el('div',{className:'meta'},[el('span',{text:s.title+' · '+s.lecture})]),el('div',{className:'chips'},counts),el('details',{className:'basis'},[el('summary',{text:'분류 기준·출처'}),el('p',{text:s.basis}),el('p',{text:period})]));
+  if(s.hierarchy)panel.append(religionPicker(state.studyTarget,true,function(id){state.studyTarget=id;state.focus=null;renderAll()}));
   panel.append(state.focus?countryInfo(state.focus):el('p',{className:'small muted',text:(isPoints()?'지도의 지점을 누르면 분류와 설명을 볼 수 있어요.':'지도에서 나라를 누르면 분류와 설명을 볼 수 있어요. 빗금 친 곳은 분류 범위나 근거가 달라 이 세트에서는 채점하지 않아요. 누르면 이유가 나와요.')}));
   panel.append(el('div',{className:'actions'},[el('button',{type:'button',className:'primary',text:'하나씩 맞히기',onclick:function(){setMode('assign')}}),el('button',{type:'button',text:'모두 칠하기',onclick:function(){setMode('paint')}})]));
   return;
@@ -225,6 +270,7 @@ function renderPanel(){
   }
   var q=state.queue[state.index],answer=C.entry(s,q).values,toggle=el('input',{type:'checkbox'});toggle.checked=state.showNames;toggle.onchange=function(){state.showNames=this.checked;save();renderPanel();renderOverlay()};
   panel.append(el('div',{className:'meta'},[el('span',{text:s.title+' · '+(state.index+1)+' / '+state.queue.length+' · 정답 '+state.right}),el('label',{},[toggle,document.createTextNode(isPoints()?'이름 보기':'나라 이름 보기')])]));
+  if(s.hierarchy){renderReligionQuestion(panel,q);return}
   panel.append(el('h2',{text:(state.answer||state.showNames?label(q)+' — ':'')+s.assignQuestion}));
   var grid=el('div',{className:'options'});
   var chosen=state.answer?[].concat(state.answer):[];
@@ -244,11 +290,14 @@ function renderPanel(){
  }
  // paint
  var opts=el('div',{className:'options compact'});
- s.options.forEach(function(o){var b=el('button',{type:'button','aria-pressed':String(o.id===state.target)},[swatch(o.id),document.createTextNode(o.label)]);b.onclick=function(){if(state.target===o.id)return;state.target=o.id;state.picked=new Set();state.graded=null;renderAll()};opts.appendChild(b)});
+ if(s.hierarchy)opts=religionPicker(state.target,false,function(id){state.target=id;state.picked=new Set();state.graded=null;state.focus=null;renderAll()});
+ else s.options.forEach(function(o){var b=el('button',{type:'button','aria-pressed':String(o.id===state.target)},[swatch(o.id),document.createTextNode(o.label)]);b.onclick=function(){if(state.target===o.id)return;state.target=o.id;state.picked=new Set();state.graded=null;renderAll()};opts.appendChild(b)});
  var regionName=state.region==='all'?'':(C.regions.find(function(r){return r.id===state.region}).name+'에서 ');
+ var paintPhrase=s.paintPhrase;
+ if(s.hierarchy){var family=religionFamily(state.target);if(family)paintPhrase=family.paintPhrase}
  panel.append(el('div',{className:'meta'},[el('span',{text:s.title+' · 칠할 분류'})]),opts);
  if(!state.graded){
-  panel.append(el('h2',{text:regionName+s.paintPhrase.replace('{x}',optionLabel(state.target))+' 모두 누르세요'}));
+  panel.append(el('h2',{text:regionName+paintPhrase.replace('{x}',optionLabel(state.target))+' 모두 누르세요'}));
   panel.append(el('p',{className:'small muted',text:'선택 '+state.picked.size+'개 · 다시 누르면 취소돼요. '+(isPoints()?'지도의 동그라미를 누르세요.':'작은 나라는 동그라미로 표시돼요.')}));
   if(state.focus)panel.append(el('p',{className:'small muted',text:'방금 누른 '+noun()+': '+label(state.focus)}));
   panel.append(el('div',{className:'actions'},[el('button',{type:'button',text:'모두 지우기',onclick:function(){state.picked=new Set();state.focus=null;renderAll()}}),el('button',{type:'button',className:'primary',text:'채점하기',onclick:gradeNow})]));
@@ -265,6 +314,18 @@ function renderPanel(){
 function renderAll(){renderPanel();renderMap();save()}
 
 function toggleDraft(id){if(state.answer)return;if(state.draft.has(id))state.draft.delete(id);else state.draft.add(id);renderPanel()}
+function recordPart(id,name,ok){var h=store.history[id]||(store.history[id]={}),row=h[name]||(h[name]={right:0,wrong:0});row[ok?'right':'wrong']++;row.last=ok}
+function chooseReligion(id){
+ var q=state.queue[state.index];if(!q||state.answer||state.religionChoice||!set().hierarchy||!set().options.some(function(o){return o.id===id}))return;
+ var p=C.religionProfile(q);state.religionChoice=id;recordPart('religion',q,id===p.religion);
+ if(!p.detailRequired){answerWith({religion:id,detail:null});return}
+ renderAll();$('panel').scrollTop=0;
+}
+function chooseReligionDetail(id){
+ var q=state.queue[state.index];if(!q||state.answer||!state.religionChoice||!set().hierarchy)return;
+ var p=C.religionProfile(q);if(!p.detailRequired||!p.group.options.some(function(o){return o.id===id}))return;
+ recordPart(p.group.id,q,id===p.detail);answerWith({religion:state.religionChoice,detail:id});
+}
 function answerWith(id){
  var q=state.queue[state.index];if(!q||state.answer)return;
  state.answer=id;var ok=C.isCorrect(set(),q,id),h=history(),row=h[q]||(h[q]={right:0,wrong:0});
@@ -273,7 +334,7 @@ function answerWith(id){
  // Bring the verdict and the next button into view on short phone cards.
  var panel=$('panel');panel.scrollTop=panel.scrollHeight;
 }
-function nextQuestion(){state.index++;state.answer=null;state.draft=new Set();renderAll();if(state.index<state.queue.length)focusQuestion();else fitRegion()}
+function nextQuestion(){state.index++;state.answer=null;state.religionChoice=null;state.draft=new Set();renderAll();$('panel').scrollTop=0;if(state.index<state.queue.length)focusQuestion();else fitRegion()}
 function gradeNow(){state.graded=C.gradePaint(set(),state.target,Array.from(state.picked),names,state.region);state.focus=null;renderAll()}
 
 function regionBox(){
@@ -310,7 +371,7 @@ function mapTap(x,y){
  if(state.mode==='assign')return;
  var name=countryAt(x,y);
  if(!name){if(state.mode==='paint'&&!state.graded)toast(isPoints()?'지도의 동그라미를 눌러 주세요':'이 분류에서 고를 수 있는 나라가 아니에요');return}
- if(state.mode==='paint'&&!state.graded){var e=C.entry(set(),name);if(state.picked.has(name))state.picked.delete(name);else{state.picked.add(name);if(e.status==='mixed')toast(label(name)+'은(는) 이 세트의 참고 항목이라 채점하지 않아요')}state.focus=name;renderPanel();renderMap();return}
+ if(state.mode==='paint'&&!state.graded){var e=C.targetEntry(set(),name,state.target);if(state.picked.has(name))state.picked.delete(name);else{state.picked.add(name);if(e.status==='mixed')toast(label(name)+'은(는) 이 세트의 참고 항목이라 채점하지 않아요')}state.focus=name;renderPanel();renderMap();return}
  state.focus=state.focus===name?null:name;renderPanel();renderMap();
 }
 var pointers=new Map(),start=null,last=null,pinch=null,moved=false;
@@ -324,15 +385,15 @@ $('zoomIn').onclick=function(){var d=mapSize();zoom(1.35,d.w/2,d.h/2)};$('zoomOu
 
 function setMode(mode){state.mode=mode;resetMode();renderAll();if(mode==='assign'&&state.queue.length)focusQuestion();else fitRegion();$('panel').scrollTop=0}
 Array.from(document.querySelectorAll('.tabs button')).forEach(function(b){b.onclick=function(){if(b.dataset.mode!==state.mode)setMode(b.dataset.mode)}});
-C.sets.forEach(function(s){var o=document.createElement('option');o.value=s.id;o.textContent=s.title;$('setSelect').appendChild(o)});
+C.visibleSets().forEach(function(s){var o=document.createElement('option');o.value=s.id;o.textContent=s.title;$('setSelect').appendChild(o)});
 [{id:'all',name:'전 세계'}].concat(C.regions).forEach(function(r){var o=document.createElement('option');o.value=r.id;o.textContent=r.name;$('regionSelect').appendChild(o)});
 $('setSelect').onchange=function(){state.setId=this.value;state.target=null;setMode(state.mode)};
 $('regionSelect').onchange=function(){state.region=this.value;setMode(state.mode)};
 document.addEventListener('keydown',function(e){
  if(['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;
  if(state.mode!=='assign'||state.index>=state.queue.length)return;
- var opts=C.optionsFor(set()),n=parseInt(e.key,10);
- if(!state.answer&&n>=1&&n<=opts.length){e.preventDefault();if(set().multi)toggleDraft(opts[n-1].id);else answerWith(opts[n-1].id)}
+ var opts=set().hierarchy&&state.religionChoice&&!state.answer?C.religionProfile(state.queue[state.index]).group.options:C.optionsFor(set()),n=parseInt(e.key,10);
+ if(!state.answer&&n>=1&&n<=opts.length){e.preventDefault();if(set().hierarchy){if(state.religionChoice)chooseReligionDetail(opts[n-1].id);else chooseReligion(opts[n-1].id)}else if(set().multi)toggleDraft(opts[n-1].id);else answerWith(opts[n-1].id)}
  else if(!state.answer&&set().multi&&e.key==='Enter'&&state.draft.size&&e.target.tagName!=='BUTTON'){e.preventDefault();answerWith(Array.from(state.draft))}
  else if(state.answer&&(e.key==='Enter'||e.key==='ArrowRight')&&e.target.tagName!=='BUTTON'){e.preventDefault();nextQuestion()}
 });

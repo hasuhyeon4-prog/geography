@@ -887,9 +887,37 @@
   sets.find(function(s){return s.id==='religion'}).scopeNote='무종교를 제외한 개별 종교 중 신자 수 1위를 묻습니다. 국민 과반과는 다릅니다.';
   sets.find(function(s){return s.id==='grainNet'}).scopeByName={'이집트':'밀의 순수출·순수입을 판단하세요.'};
   var byId={};sets.forEach(function(set){byId[set.id]=set});
+  // Keep the source sets for provenance and existing records, expose one religion quiz.
+  byId.religion.title='종교 · 큰 분류와 세부 분류';
+  byId.religion.hierarchy=true;
+  byId.religion.assignQuestion='이 나라에서 신자 수가 가장 많은 종교는?';
+  byId.religion.scopeNote='무종교를 제외한 1위 종교를 고른 뒤, 주요 교파·종파도 이어서 맞혀요.';
+  var religionChildren=['christianity','islam','buddhism'];
+  function visibleSets(){return sets.filter(function(s){return !religionChildren.includes(s.id)})}
+  function resolveSetId(id){return religionChildren.includes(id)?'religion':byId[id]?id:'religion'}
+  function religionProfile(name){
+    var major=entry(byId.religion,name),group=religionChildren.includes(major.value)?byId[major.value]:null;
+    var detail=group?entry(group,name):null;
+    return {religion:major.value,graded:major.status==='graded',group:group,
+      detail:detail&&detail.status==='graded'?detail.value:null,
+      note:detail?detail.note:'',detailRequired:!!detail&&detail.status==='graded'};
+  }
+  function religionGrade(name,answer){
+    var p=religionProfile(name),a=answer||{},major=p.graded&&a.religion===p.religion;
+    var detail=p.detailRequired?a.detail===p.detail:null;
+    return {correct:major&&(!p.detailRequired||detail),religionCorrect:major,detailCorrect:detail,detailRequired:p.detailRequired};
+  }
+  function paintOptions(set){return set.hierarchy?set.options.concat(religionChildren.flatMap(function(id){return byId[id].options})):set.options}
+  function detailParent(id){return religionChildren.find(function(k){return byId[k].options.some(function(o){return o.id===id})})}
+  function targetEntry(set,name,target){
+    var e=entry(set,name),parent=set.hierarchy&&detailParent(target);
+    // A tradition's map can include a country where another religion ranks first.
+    // The combined country quiz still uses only the ranked religion's detail.
+    return parent?entry(byId[parent],name):e;
+  }
 
   function optionsFor(set){return set.options.concat(set.noneOption?[set.noneOption]:[])}
-  function option(set,id){return optionsFor(set).find(function(o){return o.id===id})||null}
+  function option(set,id){return (set.hierarchy?paintOptions(set):optionsFor(set)).find(function(o){return o.id===id})||null}
   function displayName(set,name){return (set.displayNames&&set.displayNames[name])||name}
   // Countries a paint answer is checked against; other drawn countries are "not this category".
   function universe(set,allNames){
@@ -905,10 +933,11 @@
   }
   // An answer is right when it names exactly the country's categories.
   function isCorrect(set,name,answer){
+    if(set.hierarchy&&answer&&typeof answer==='object'&&!Array.isArray(answer))return religionGrade(name,answer).correct;
     var want=entry(set,name).values.slice().sort(),got=(Array.isArray(answer)?answer:[answer]).slice().sort();
     return want.length===got.length&&want.every(function(v,i){return v===got[i]});
   }
-  function has(set,name,id){return entry(set,name).values.indexOf(id)>=0}
+  function has(set,name,id){return targetEntry(set,name,id).values.indexOf(id)>=0}
   // Point sets carry their own region (null: shown only for the whole world).
   function inRegion(name,regionId,set){
     if(regionId==='all')return true;
@@ -929,7 +958,7 @@
     var picked=new Set(selected),result={correct:[],missed:[],wrong:[],excluded:[]};
     universe(set,names).forEach(function(name){
       if(!inRegion(name,regionId,set))return;
-      var e=entry(set,name),isTarget=e.status==='graded'&&e.values.indexOf(target)>=0,chosen=picked.has(name);
+      var e=targetEntry(set,name,target),isTarget=e.status==='graded'&&e.values.indexOf(target)>=0,chosen=picked.has(name);
       if(e.status==='mixed'){if(chosen)result.excluded.push(name);return}
       if(isTarget&&chosen)result.correct.push(name);
       else if(isTarget)result.missed.push(name);
@@ -937,5 +966,5 @@
     });
     return result;
   }
-  return {sets:sets,byId:byId,regions:regions,regionOf:regionOf,optionsFor:optionsFor,option:option,displayName:displayName,universe:universe,entry:entry,isCorrect:isCorrect,has:has,inRegion:inRegion,polygonsFor:polygonsFor,assignPool:assignPool,gradePaint:gradePaint};
+  return {sets:sets,byId:byId,visibleSets:visibleSets,resolveSetId:resolveSetId,religionProfile:religionProfile,religionGrade:religionGrade,paintOptions:paintOptions,targetEntry:targetEntry,regions:regions,regionOf:regionOf,optionsFor:optionsFor,option:option,displayName:displayName,universe:universe,entry:entry,isCorrect:isCorrect,has:has,inRegion:inRegion,polygonsFor:polygonsFor,assignPool:assignPool,gradePaint:gradePaint};
 });
