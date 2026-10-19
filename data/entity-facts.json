@@ -1,0 +1,28 @@
+{
+ "about": "Hand-maintained facts that cannot be derived from the map or the statistics files. Every entry needs a source. Lists are complete only when 'complete' is true; otherwise the engine only asserts what is listed and never infers absence.",
+ "facts": {
+  "seas": {
+   "label": "접한 바다",
+   "complete": false,
+   "source": "강의 2권 P10·P11 (2027학년도 9월 13번 해설), 1권 P00",
+   "values": {
+    "사우디아라비아": ["홍해", "페르시아만"],
+    "나이지리아": ["기니만"],
+    "튀르키예": ["지중해", "흑해"],
+    "이란": ["카스피해", "페르시아만"]
+   }
+  },
+  "landlocked": {
+   "label": "바다와 접하지 않은 내륙국",
+   "complete": false,
+   "source": "TODO: 다른 세션에서 출처와 함께 채움",
+   "values": {}
+  },
+  "opec": {
+   "label": "OPEC 회원국",
+   "complete": false,
+   "source": "TODO: OPEC 공식 회원 목록과 기준 시점을 함께 기록",
+   "values": {}
+  }
+ }
+}

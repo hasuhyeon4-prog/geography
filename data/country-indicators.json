@@ -1,0 +1,1958 @@
+{
+ "meta": {
+  "year": "2023",
+  "source": "세계은행 WDI",
+  "retrieved": "2026-10-16",
+  "sourceUrl": "https://api.worldbank.org/v2/country/all/indicator/{code}?date=2018:2024&format=json",
+  "indicators": {
+   "pop": [
+    "SP.POP.TOTL",
+    "만 명"
+   ],
+   "urban": [
+    "SP.URB.TOTL ÷ SP.POP.TOTL",
+    "%"
+   ],
+   "old": [
+    "SP.POP.65UP.TO ÷ SP.POP.TOTL",
+    "%"
+   ],
+   "young": [
+    "SP.POP.0014.TO ÷ SP.POP.TOTL",
+    "%"
+   ],
+   "nir": [
+    "SP.DYN.CBRT.IN − SP.DYN.CDRT.IN",
+    "‰"
+   ],
+   "gdp": [
+    "NY.GDP.MKTP.CD",
+    "십억 달러"
+   ],
+   "gdppc": [
+    "NY.GDP.MKTP.CD ÷ SP.POP.TOTL",
+    "천 달러"
+   ],
+   "netmig": [
+    "SM.POP.NETM",
+    "만 명"
+   ],
+   "exports": [
+    "TX.VAL.MRCH.CD.WT",
+    "십억 달러"
+   ]
+  }
+ },
+ "countries": {
+  "가나": {
+   "iso3": "GHA",
+   "values": {
+    "pop": 3379,
+    "urban": 57.8,
+    "old": 3.6,
+    "young": 36.2,
+    "gdppc": 2.38,
+    "nir": 19.3,
+    "gdp": 80.5,
+    "netmig": -1.0,
+    "exports": 16.7
+   }
+  },
+  "가이아나": {
+   "iso3": "GUY",
+   "values": {
+    "pop": 83,
+    "urban": 26.5,
+    "old": 6.5,
+    "young": 29.3,
+    "gdppc": 20.47,
+    "nir": 13.0,
+    "gdp": 16.9,
+    "netmig": -0.6,
+    "exports": 13.2
+   }
+  },
+  "그리스": {
+   "iso3": "GRC",
+   "values": {
+    "pop": 1041,
+    "urban": 78.8,
+    "old": 23.5,
+    "young": 13.6,
+    "gdppc": 23.34,
+    "nir": -5.4,
+    "gdp": 242.9,
+    "netmig": -15.9,
+    "exports": 55.2
+   }
+  },
+  "기니": {
+   "iso3": "GIN",
+   "values": {
+    "pop": 1441,
+    "urban": 37.6,
+    "old": 3.4,
+    "young": 41.2,
+    "gdppc": 1.56,
+    "nir": 24.7,
+    "gdp": 22.4,
+    "netmig": -0.4,
+    "exports": 9.2
+   }
+  },
+  "나미비아": {
+   "iso3": "NAM",
+   "values": {
+    "pop": 296,
+    "urban": 50.0,
+    "old": 3.6,
+    "young": 37.3,
+    "gdppc": 4.23,
+    "nir": 19.7,
+    "gdp": 12.5,
+    "netmig": 1.2,
+    "exports": 5.5
+   }
+  },
+  "나이지리아": {
+   "iso3": "NGA",
+   "values": {
+    "pop": 22788,
+    "urban": 62.2,
+    "old": 3.0,
+    "young": 41.5,
+    "gdppc": 2.14,
+    "nir": 21.2,
+    "gdp": 487.4,
+    "netmig": -5.8,
+    "exports": 55.2
+   }
+  },
+  "남수단": {
+   "iso3": "SDS",
+   "values": {}
+  },
+  "남아프리카 공화국": {
+   "iso3": "ZAF",
+   "values": {
+    "pop": 6321,
+    "urban": 63.6,
+    "old": 6.5,
+    "young": 26.1,
+    "gdppc": 6.03,
+    "nir": 9.5,
+    "gdp": 381.4,
+    "netmig": 22.8,
+    "exports": 110.9
+   }
+  },
+  "네덜란드": {
+   "iso3": "NLD",
+   "values": {
+    "pop": 1788,
+    "urban": 95.3,
+    "old": 20.2,
+    "young": 15.2,
+    "gdppc": 63.52,
+    "nir": -0.3,
+    "gdp": 1135.5,
+    "netmig": 14.5,
+    "exports": 935.0
+   }
+  },
+  "네팔": {
+   "iso3": "NPL",
+   "values": {
+    "pop": 2969,
+    "urban": 66.5,
+    "old": 6.4,
+    "young": 28.7,
+    "gdppc": 1.38,
+    "nir": 12.4,
+    "gdp": 41.0,
+    "netmig": -41.0,
+    "exports": 1.1
+   }
+  },
+  "노르웨이": {
+   "iso3": "NOR",
+   "values": {
+    "pop": 552,
+    "urban": 83.1,
+    "old": 18.5,
+    "young": 16.5,
+    "gdppc": 90.98,
+    "nir": 1.5,
+    "gdp": 502.2,
+    "netmig": 5.4,
+    "exports": 178.6
+   }
+  },
+  "뉴질랜드": {
+   "iso3": "NZL",
+   "values": {
+    "pop": 520,
+    "urban": 83.9,
+    "old": 16.8,
+    "young": 18.4,
+    "gdppc": 49.3,
+    "nir": 3.7,
+    "gdp": 256.4,
+    "netmig": 2.1,
+    "exports": 41.4
+   }
+  },
+  "니제르": {
+   "iso3": "NER",
+   "values": {
+    "pop": 2616,
+    "urban": 17.8,
+    "old": 2.6,
+    "young": 47.0,
+    "gdppc": 0.65,
+    "nir": 33.0,
+    "gdp": 16.9,
+    "netmig": 0.1,
+    "exports": 1.0
+   }
+  },
+  "대한민국": {
+   "iso3": "KOR",
+   "values": {
+    "pop": 5171,
+    "urban": 81.2,
+    "old": 18.3,
+    "young": 11.0,
+    "gdppc": 35.67,
+    "nir": -2.4,
+    "gdp": 1844.8,
+    "netmig": 8.8,
+    "exports": 632.2
+   }
+  },
+  "덴마크": {
+   "iso3": "DNK",
+   "values": {
+    "pop": 595,
+    "urban": 88.6,
+    "old": 20.6,
+    "young": 15.9,
+    "gdppc": 68.04,
+    "nir": -0.1,
+    "gdp": 404.7,
+    "netmig": 3.1,
+    "exports": 129.1
+   }
+  },
+  "도미니카 공화국": {
+   "iso3": "DOM",
+   "values": {
+    "pop": 1133,
+    "urban": 72.4,
+    "old": 7.6,
+    "young": 26.9,
+    "gdppc": 10.63,
+    "nir": 11.7,
+    "gdp": 120.5,
+    "netmig": -3.5,
+    "exports": 12.9
+   }
+  },
+  "독일": {
+   "iso3": "DEU",
+   "values": {
+    "pop": 8329,
+    "urban": 81.9,
+    "old": 22.8,
+    "young": 13.9,
+    "gdppc": 54.78,
+    "nir": -4.0,
+    "gdp": 4562.2,
+    "netmig": 61.0,
+    "exports": 1702.3
+   }
+  },
+  "동티모르": {
+   "iso3": "TLS",
+   "values": {
+    "pop": 138,
+    "urban": 28.6,
+    "old": 5.3,
+    "young": 34.2,
+    "gdppc": 1.5,
+    "nir": 14.8,
+    "gdp": 2.1,
+    "netmig": -0.6,
+    "exports": 0.2
+   }
+  },
+  "라오스": {
+   "iso3": "LAO",
+   "values": {
+    "pop": 766,
+    "urban": 38.8,
+    "old": 4.5,
+    "young": 30.6,
+    "gdppc": 2.07,
+    "nir": 15.1,
+    "gdp": 15.8,
+    "netmig": -1.0,
+    "exports": 8.4
+   }
+  },
+  "라이베리아": {
+   "iso3": "LBR",
+   "values": {
+    "pop": 549,
+    "urban": 55.0,
+    "old": 3.3,
+    "young": 40.0,
+    "gdppc": 0.8,
+    "nir": 22.9,
+    "gdp": 4.4,
+    "netmig": -0.5,
+    "exports": 1.1
+   }
+  },
+  "라트비아": {
+   "iso3": "LVA",
+   "values": {
+    "pop": 188,
+    "urban": 68.4,
+    "old": 21.3,
+    "young": 15.7,
+    "gdppc": 22.71,
+    "nir": -7.2,
+    "gdp": 42.8,
+    "netmig": 0.8,
+    "exports": 22.6
+   }
+  },
+  "러시아": {
+   "iso3": "RUS",
+   "values": {
+    "pop": 14383,
+    "urban": 75.0,
+    "old": 16.6,
+    "young": 17.5,
+    "gdppc": 14.23,
+    "nir": -3.5,
+    "gdp": 2046.3,
+    "netmig": 2.8,
+    "exports": 424.7
+   }
+  },
+  "레바논": {
+   "iso3": "LBN",
+   "values": {
+    "pop": 577,
+    "urban": 90.5,
+    "old": 9.8,
+    "young": 26.7,
+    "gdppc": 3.48,
+    "nir": 10.2,
+    "gdp": 20.1,
+    "netmig": -3.4,
+    "exports": 4.1
+   }
+  },
+  "루마니아": {
+   "iso3": "ROU",
+   "values": {
+    "pop": 1906,
+    "urban": 52.2,
+    "old": 19.8,
+    "young": 15.9,
+    "gdppc": 18.24,
+    "nir": -4.4,
+    "gdp": 347.8,
+    "netmig": -2.8,
+    "exports": 100.6
+   }
+  },
+  "룩셈부르크": {
+   "iso3": "LUX",
+   "values": {
+    "pop": 67,
+    "urban": 94.8,
+    "old": 15.1,
+    "young": 15.8,
+    "gdppc": 133.23,
+    "nir": 2.9,
+    "gdp": 88.8,
+    "netmig": 0.6,
+    "exports": 17.2
+   }
+  },
+  "리비아": {
+   "iso3": "LBY",
+   "values": {
+    "pop": 731,
+    "urban": 87.9,
+    "old": 4.9,
+    "young": 28.0,
+    "gdppc": 6.03,
+    "nir": 10.4,
+    "gdp": 44.0,
+    "netmig": -0.2,
+    "exports": 33.1
+   }
+  },
+  "리투아니아": {
+   "iso3": "LTU",
+   "values": {
+    "pop": 287,
+    "urban": 68.6,
+    "old": 19.9,
+    "young": 14.9,
+    "gdppc": 27.98,
+    "nir": -5.7,
+    "gdp": 80.4,
+    "netmig": 4.5,
+    "exports": 43.0
+   }
+  },
+  "리히텐슈타인": {
+   "iso3": "LIE",
+   "values": {
+    "pop": 4,
+    "urban": 14.7,
+    "old": 20.2,
+    "young": 14.3,
+    "gdppc": 206.78,
+    "nir": 2.3,
+    "gdp": 8.2,
+    "netmig": 0.0
+   }
+  },
+  "마다가스카르": {
+   "iso3": "MDG",
+   "values": {
+    "pop": 3120,
+    "urban": 32.0,
+    "old": 3.3,
+    "young": 39.6,
+    "gdppc": 0.51,
+    "nir": 24.6,
+    "gdp": 16.0,
+    "netmig": -0.1,
+    "exports": 3.2
+   }
+  },
+  "말레이시아": {
+   "iso3": "MYS",
+   "values": {
+    "pop": 3513,
+    "urban": 76.4,
+    "old": 7.5,
+    "young": 22.3,
+    "gdppc": 11.39,
+    "nir": 7.3,
+    "gdp": 399.9,
+    "netmig": 18.1,
+    "exports": 313.0
+   }
+  },
+  "말리": {
+   "iso3": "MLI",
+   "values": {
+    "pop": 2377,
+    "urban": 31.0,
+    "old": 2.4,
+    "young": 46.5,
+    "gdppc": 1.04,
+    "nir": 31.4,
+    "gdp": 24.8,
+    "netmig": -4.0,
+    "exports": 5.7
+   }
+  },
+  "멕시코": {
+   "iso3": "MEX",
+   "values": {
+    "pop": 12974,
+    "urban": 79.5,
+    "old": 8.0,
+    "young": 24.9,
+    "gdppc": 13.83,
+    "nir": 9.5,
+    "gdp": 1794.4,
+    "netmig": -10.1,
+    "exports": 593.0
+   }
+  },
+  "모로코": {
+   "iso3": "MAR",
+   "values": {
+    "pop": 3771,
+    "urban": 62.7,
+    "old": 7.8,
+    "young": 26.0,
+    "gdppc": 3.87,
+    "nir": 11.1,
+    "gdp": 146.0,
+    "netmig": -4.0,
+    "exports": 41.6
+   }
+  },
+  "모리타니": {
+   "iso3": "MRT",
+   "values": {
+    "pop": 502,
+    "urban": 59.7,
+    "old": 3.2,
+    "young": 43.0,
+    "gdppc": 2.13,
+    "nir": 28.9,
+    "gdp": 10.7,
+    "netmig": 0.3,
+    "exports": 4.1
+   }
+  },
+  "모잠비크": {
+   "iso3": "MOZ",
+   "values": {
+    "pop": 3364,
+    "urban": 35.7,
+    "old": 2.8,
+    "young": 44.8,
+    "gdppc": 0.62,
+    "nir": 30.5,
+    "gdp": 20.9,
+    "netmig": -3.6,
+    "exports": 8.3
+   }
+  },
+  "몰타": {
+   "iso3": "MLT",
+   "values": {
+    "pop": 55,
+    "urban": 95.6,
+    "old": 19.8,
+    "young": 13.2,
+    "gdppc": 40.93,
+    "nir": 0.8,
+    "gdp": 22.6,
+    "netmig": 0.7,
+    "exports": 3.5
+   }
+  },
+  "몽골": {
+   "iso3": "MNG",
+   "values": {
+    "pop": 348,
+    "urban": 70.4,
+    "old": 4.9,
+    "young": 32.6,
+    "gdppc": 5.84,
+    "nir": 13.5,
+    "gdp": 20.3,
+    "netmig": 0.0,
+    "exports": 15.2
+   }
+  },
+  "미국": {
+   "iso3": "USA",
+   "values": {
+    "pop": 33676,
+    "urban": 80.1,
+    "old": 17.4,
+    "young": 17.6,
+    "gdppc": 82.59,
+    "nir": 1.5,
+    "gdp": 27811.5,
+    "netmig": 132.3,
+    "exports": 2018.1
+   }
+  },
+  "미얀마": {
+   "iso3": "MMR",
+   "values": {
+    "pop": 5413,
+    "urban": 30.4,
+    "old": 7.1,
+    "young": 24.5,
+    "gdppc": 1.23,
+    "nir": 7.5,
+    "gdp": 66.8,
+    "netmig": -3.5,
+    "exports": 14.8
+   }
+  },
+  "바레인": {
+   "iso3": "BHR",
+   "values": {
+    "pop": 158,
+    "urban": 100.0,
+    "old": 3.6,
+    "young": 19.0,
+    "gdppc": 29.29,
+    "nir": 10.4,
+    "gdp": 46.2,
+    "netmig": 2.0,
+    "exports": 24.8
+   }
+  },
+  "바티칸": {
+   "iso3": "VAT",
+   "values": {}
+  },
+  "방글라데시": {
+   "iso3": "BGD",
+   "values": {
+    "pop": 17147,
+    "urban": 32.2,
+    "old": 6.3,
+    "young": 28.4,
+    "gdppc": 2.55,
+    "nir": 15.3,
+    "gdp": 437.4,
+    "netmig": -55.0,
+    "exports": 44.2
+   }
+  },
+  "베냉": {
+   "iso3": "BEN",
+   "values": {
+    "pop": 1411,
+    "urban": 51.7,
+    "old": 3.1,
+    "young": 41.8,
+    "gdppc": 1.39,
+    "nir": 25.1,
+    "gdp": 19.7,
+    "netmig": -0.0,
+    "exports": 4.0
+   }
+  },
+  "베네수엘라": {
+   "iso3": "VEN",
+   "values": {
+    "pop": 2830,
+    "urban": 89.2,
+    "old": 9.3,
+    "young": 26.2,
+    "gdppc": 3.62,
+    "nir": 7.5,
+    "gdp": 102.4,
+    "netmig": -11.3,
+    "exports": 7.8
+   }
+  },
+  "베트남": {
+   "iso3": "VNM",
+   "values": {
+    "pop": 10035,
+    "urban": 38.1,
+    "old": 8.6,
+    "young": 23.6,
+    "gdppc": 4.32,
+    "nir": 7.3,
+    "gdp": 433.8,
+    "netmig": -8.2,
+    "exports": 353.8
+   }
+  },
+  "벨기에": {
+   "iso3": "BEL",
+   "values": {
+    "pop": 1178,
+    "urban": 87.6,
+    "old": 20.1,
+    "young": 16.3,
+    "gdppc": 55.24,
+    "nir": 0.0,
+    "gdp": 650.8,
+    "netmig": 4.2,
+    "exports": 578.5
+   }
+  },
+  "보스니아 헤르체고비나": {
+   "iso3": "BIH",
+   "values": {
+    "pop": 319,
+    "urban": 51.6,
+    "old": 21.6,
+    "young": 13.2,
+    "gdppc": 8.66,
+    "nir": -5.7,
+    "gdp": 27.6,
+    "netmig": -0.0,
+    "exports": 9.2
+   }
+  },
+  "보츠와나": {
+   "iso3": "BWA",
+   "values": {
+    "pop": 248,
+    "urban": 67.0,
+    "old": 4.0,
+    "young": 32.3,
+    "gdppc": 7.83,
+    "nir": 19.0,
+    "gdp": 19.4,
+    "netmig": -0.6,
+    "exports": 5.8
+   }
+  },
+  "볼리비아": {
+   "iso3": "BOL",
+   "values": {
+    "pop": 1224,
+    "urban": 70.9,
+    "old": 5.6,
+    "young": 30.1,
+    "gdppc": 4.27,
+    "nir": 14.1,
+    "gdp": 52.3,
+    "netmig": -0.3,
+    "exports": 10.9
+   }
+  },
+  "불가리아": {
+   "iso3": "BGR",
+   "values": {
+    "pop": 645,
+    "urban": 73.7,
+    "old": 21.8,
+    "young": 14.5,
+    "gdppc": 15.85,
+    "nir": -6.8,
+    "gdp": 102.2,
+    "netmig": 0.5,
+    "exports": 48.0
+   }
+  },
+  "브라질": {
+   "iso3": "BRA",
+   "values": {
+    "pop": 21114,
+    "urban": 87.6,
+    "old": 10.6,
+    "young": 19.9,
+    "gdppc": 10.38,
+    "nir": 5.2,
+    "gdp": 2191.1,
+    "netmig": -24.0,
+    "exports": 339.7
+   }
+  },
+  "브루나이": {
+   "iso3": "BRN",
+   "values": {
+    "pop": 46,
+    "urban": 74.8,
+    "old": 6.5,
+    "young": 21.0,
+    "gdppc": 32.89,
+    "nir": 8.4,
+    "gdp": 15.1,
+    "netmig": 0.0,
+    "exports": 11.2
+   }
+  },
+  "사우디아라비아": {
+   "iso3": "SAU",
+   "values": {
+    "pop": 3370,
+    "urban": 84.3,
+    "old": 2.8,
+    "young": 24.1,
+    "gdppc": 36.16,
+    "nir": 14.1,
+    "gdp": 1218.6,
+    "netmig": 32.6,
+    "exports": 320.0
+   }
+  },
+  "산마리노": {
+   "iso3": "SMR",
+   "values": {
+    "pop": 3,
+    "urban": 97.1,
+    "old": 21.7,
+    "young": 12.7,
+    "gdppc": 59.87,
+    "nir": -2.7,
+    "gdp": 2.0,
+    "netmig": -0.0
+   }
+  },
+  "세네갈": {
+   "iso3": "SEN",
+   "values": {
+    "pop": 1808,
+    "urban": 54.7,
+    "old": 3.6,
+    "young": 38.6,
+    "gdppc": 1.7,
+    "nir": 23.8,
+    "gdp": 30.7,
+    "netmig": -1.0,
+    "exports": 5.3
+   }
+  },
+  "세르비아": {
+   "iso3": "SRB",
+   "values": {
+    "pop": 662,
+    "urban": 62.1,
+    "old": 22.3,
+    "young": 14.4,
+    "gdppc": 12.28,
+    "nir": -5.5,
+    "gdp": 81.3,
+    "netmig": 0.4,
+    "exports": 30.9
+   }
+  },
+  "소말리아": {
+   "iso3": "SOM",
+   "values": {
+    "pop": 1836,
+    "urban": 54.1,
+    "old": 2.6,
+    "young": 46.7,
+    "gdppc": 0.6,
+    "nir": 33.1,
+    "gdp": 11.0,
+    "netmig": 4.6,
+    "exports": 1.0
+   }
+  },
+  "수단": {
+   "iso3": "SDN",
+   "values": {
+    "pop": 5004,
+    "urban": 34.8,
+    "old": 3.2,
+    "young": 40.6,
+    "gdppc": 0.8,
+    "nir": 27.2,
+    "gdp": 39.9,
+    "netmig": -135.0,
+    "exports": 3.6
+   }
+  },
+  "수리남": {
+   "iso3": "SUR",
+   "values": {
+    "pop": 63,
+    "urban": 65.8,
+    "old": 7.6,
+    "young": 25.9,
+    "gdppc": 5.52,
+    "nir": 10.6,
+    "gdp": 3.5,
+    "netmig": -0.1,
+    "exports": 2.3
+   }
+  },
+  "스리랑카": {
+   "iso3": "LKA",
+   "values": {
+    "pop": 2204,
+    "urban": 20.1,
+    "old": 11.7,
+    "young": 22.4,
+    "gdppc": 3.82,
+    "nir": 3.0,
+    "gdp": 84.1,
+    "netmig": -2.8,
+    "exports": 11.9
+   }
+  },
+  "스웨덴": {
+   "iso3": "SWE",
+   "values": {
+    "pop": 1054,
+    "urban": 88.6,
+    "old": 20.5,
+    "young": 17.2,
+    "gdppc": 54.95,
+    "nir": 0.5,
+    "gdp": 579.0,
+    "netmig": 5.5,
+    "exports": 197.5
+   }
+  },
+  "스위스": {
+   "iso3": "CHE",
+   "values": {
+    "pop": 889,
+    "urban": 85.2,
+    "old": 19.6,
+    "young": 15.0,
+    "gdppc": 104.45,
+    "nir": 0.9,
+    "gdp": 928.4,
+    "netmig": 4.5,
+    "exports": 420.0
+   }
+  },
+  "슬로바키아": {
+   "iso3": "SVK",
+   "values": {
+    "pop": 543,
+    "urban": 53.2,
+    "old": 18.1,
+    "young": 15.9,
+    "gdppc": 24.61,
+    "nir": -1,
+    "gdp": 133.6,
+    "netmig": 0.5,
+    "exports": 117.5
+   }
+  },
+  "슬로베니아": {
+   "iso3": "SVN",
+   "values": {
+    "pop": 212,
+    "urban": 55.5,
+    "old": 21.3,
+    "young": 14.9,
+    "gdppc": 32.66,
+    "nir": -2.2,
+    "gdp": 69.3,
+    "netmig": 0.5,
+    "exports": 73.0
+   }
+  },
+  "시리아": {
+   "iso3": "SYR",
+   "values": {
+    "pop": 2359,
+    "urban": 72.2,
+    "old": 4.7,
+    "young": 30.3,
+    "nir": 17.1,
+    "netmig": 75.7,
+    "exports": 3.2
+   }
+  },
+  "시에라리온": {
+   "iso3": "SLE",
+   "values": {
+    "pop": 846,
+    "urban": 44.8,
+    "old": 3.2,
+    "young": 38.5,
+    "gdppc": 0.76,
+    "nir": 22.3,
+    "gdp": 6.4,
+    "netmig": -0.4,
+    "exports": 1.3
+   }
+  },
+  "싱가포르": {
+   "iso3": "SGP",
+   "values": {
+    "pop": 592,
+    "urban": 100.0,
+    "old": 13.1,
+    "young": 11.8,
+    "gdppc": 86.38,
+    "nir": 1.2,
+    "gdp": 511.2,
+    "netmig": 2.7,
+    "exports": 476.3
+   }
+  },
+  "아랍 에미리트": {
+   "iso3": "ARE",
+   "values": {
+    "pop": 1048,
+    "urban": 85.7,
+    "old": 1.7,
+    "young": 16.3,
+    "gdppc": 49.85,
+    "nir": 8.8,
+    "gdp": 522.6,
+    "netmig": 30.0,
+    "exports": 570.2
+   }
+  },
+  "아르헨티나": {
+   "iso3": "ARG",
+   "values": {
+    "pop": 4554,
+    "urban": 92.2,
+    "old": 12.2,
+    "young": 22.2,
+    "gdppc": 14.26,
+    "nir": 3.4,
+    "gdp": 649.5,
+    "netmig": 0.4,
+    "exports": 67.0
+   }
+  },
+  "아이슬란드": {
+   "iso3": "ISL",
+   "values": {
+    "pop": 39,
+    "urban": 94.2,
+    "old": 15.3,
+    "young": 18.1,
+    "gdppc": 82.2,
+    "nir": 4.5,
+    "gdp": 31.7,
+    "netmig": 0.5,
+    "exports": 6.8
+   }
+  },
+  "아이티": {
+   "iso3": "HTI",
+   "values": {
+    "pop": 1164,
+    "urban": 54.4,
+    "old": 4.6,
+    "young": 31.6,
+    "gdppc": 1.68,
+    "nir": 14.4,
+    "gdp": 19.6,
+    "netmig": -3.2,
+    "exports": 1.0
+   }
+  },
+  "아일랜드": {
+   "iso3": "IRL",
+   "values": {
+    "pop": 531,
+    "urban": 64.1,
+    "old": 15.5,
+    "young": 19.0,
+    "gdppc": 106.82,
+    "nir": 3.7,
+    "gdp": 567.4,
+    "netmig": 4.4,
+    "exports": 208.3
+   }
+  },
+  "아제르바이잔": {
+   "iso3": "AZE",
+   "values": {
+    "pop": 1015,
+    "urban": 58.5,
+    "old": 8.0,
+    "young": 22.3,
+    "gdppc": 7.13,
+    "nir": 5.2,
+    "gdp": 72.4,
+    "netmig": -8.4,
+    "exports": 33.9
+   }
+  },
+  "아프가니스탄": {
+   "iso3": "AFG",
+   "values": {
+    "pop": 4145,
+    "urban": 25.5,
+    "old": 2.4,
+    "young": 43.2,
+    "gdppc": 0.41,
+    "nir": 29.6,
+    "gdp": 17.2,
+    "netmig": -4.9,
+    "exports": 0.9
+   }
+  },
+  "안도라": {
+   "iso3": "AND",
+   "values": {
+    "pop": 8,
+    "urban": 88.8,
+    "old": 15.4,
+    "young": 12.2,
+    "gdppc": 46.81,
+    "nir": 0.8,
+    "gdp": 3.8,
+    "netmig": 0.1,
+    "exports": 0.3
+   }
+  },
+  "알제리": {
+   "iso3": "DZA",
+   "values": {
+    "pop": 4616,
+    "urban": 74.7,
+    "old": 6.4,
+    "young": 30.6,
+    "gdppc": 5.37,
+    "nir": 15.0,
+    "gdp": 247.9,
+    "netmig": -2.6,
+    "exports": 55.6
+   }
+  },
+  "앙골라": {
+   "iso3": "AGO",
+   "values": {
+    "pop": 3675,
+    "urban": 69.9,
+    "old": 2.8,
+    "young": 44.6,
+    "gdppc": 2.89,
+    "nir": 30.7,
+    "gdp": 106.0,
+    "netmig": -0.1,
+    "exports": 39.5
+   }
+  },
+  "에스토니아": {
+   "iso3": "EST",
+   "values": {
+    "pop": 137,
+    "urban": 70.7,
+    "old": 20.9,
+    "young": 16.0,
+    "gdppc": 30.26,
+    "nir": -3.7,
+    "gdp": 41.5,
+    "netmig": 0.6,
+    "exports": 19.6
+   }
+  },
+  "에스파냐": {
+   "iso3": "ESP",
+   "values": {
+    "pop": 4835,
+    "urban": 80.1,
+    "old": 20.7,
+    "young": 13.3,
+    "gdppc": 33.49,
+    "nir": -2.4,
+    "gdp": 1619.5,
+    "netmig": 11.9,
+    "exports": 422.5
+   }
+  },
+  "에콰도르": {
+   "iso3": "ECU",
+   "values": {
+    "pop": 1798,
+    "urban": 63.1,
+    "old": 8.1,
+    "young": 25.0,
+    "gdppc": 6.72,
+    "nir": 9.9,
+    "gdp": 120.8,
+    "netmig": -2.2,
+    "exports": 31.1
+   }
+  },
+  "에티오피아": {
+   "iso3": "ETH",
+   "values": {
+    "pop": 12869,
+    "urban": 23.1,
+    "old": 3.2,
+    "young": 39.4,
+    "gdppc": 1.06,
+    "nir": 25.9,
+    "gdp": 135.9,
+    "netmig": -1.2,
+    "exports": 3.5
+   }
+  },
+  "엘살바도르": {
+   "iso3": "SLV",
+   "values": {
+    "pop": 631,
+    "urban": 74.6,
+    "old": 8.0,
+    "young": 25.2,
+    "gdppc": 5.32,
+    "nir": 8.2,
+    "gdp": 33.6,
+    "netmig": -2.3,
+    "exports": 6.5
+   }
+  },
+  "영국": {
+   "iso3": "GBR",
+   "values": {
+    "pop": 6853,
+    "urban": 83.2,
+    "old": 19.2,
+    "young": 17.4,
+    "gdppc": 49.92,
+    "nir": 0.5,
+    "gdp": 3420.8,
+    "netmig": 44.6,
+    "exports": 525.0
+   }
+  },
+  "오만": {
+   "iso3": "OMN",
+   "values": {
+    "pop": 505,
+    "urban": 79.6,
+    "old": 2.7,
+    "young": 25.2,
+    "gdppc": 21.03,
+    "nir": 14.9,
+    "gdp": 106.2,
+    "netmig": 15.6,
+    "exports": 59.0
+   }
+  },
+  "오스트레일리아": {
+   "iso3": "AUS",
+   "values": {
+    "pop": 2666,
+    "urban": 87.5,
+    "old": 17.4,
+    "young": 18.0,
+    "gdppc": 65.06,
+    "nir": 3.9,
+    "gdp": 1734.5,
+    "netmig": 14.0,
+    "exports": 371.4
+   }
+  },
+  "오스트리아": {
+   "iso3": "AUT",
+   "values": {
+    "pop": 913,
+    "urban": 69.2,
+    "old": 20.2,
+    "young": 14.3,
+    "gdppc": 56.58,
+    "nir": -1.3,
+    "gdp": 516.7,
+    "netmig": 0.5,
+    "exports": 224.1
+   }
+  },
+  "요르단": {
+   "iso3": "JOR",
+   "values": {
+    "pop": 1144,
+    "urban": 92.7,
+    "old": 4.3,
+    "young": 31.2,
+    "gdppc": 4.91,
+    "nir": 17.6,
+    "gdp": 56.1,
+    "netmig": -1.7,
+    "exports": 12.6
+   }
+  },
+  "우간다": {
+   "iso3": "UGA",
+   "values": {
+    "pop": 4866,
+    "urban": 30.6,
+    "old": 2.2,
+    "young": 43.9,
+    "gdppc": 1.0,
+    "nir": 30.4,
+    "gdp": 48.8,
+    "netmig": -12.6,
+    "exports": 6.3
+   }
+  },
+  "우루과이": {
+   "iso3": "URY",
+   "values": {
+    "pop": 339,
+    "urban": 95.5,
+    "old": 15.8,
+    "young": 18.7,
+    "gdppc": 23.38,
+    "nir": 0.1,
+    "gdp": 79.2,
+    "netmig": -0.2,
+    "exports": 9.2
+   }
+  },
+  "우즈베키스탄": {
+   "iso3": "UZB",
+   "values": {
+    "pop": 3565,
+    "urban": 51.0,
+    "old": 5.7,
+    "young": 30.9,
+    "gdppc": 3.02,
+    "nir": 20.3,
+    "gdp": 107.5,
+    "netmig": -0.6,
+    "exports": 19.2
+   }
+  },
+  "우크라이나": {
+   "iso3": "UKR",
+   "values": {
+    "pop": 3773,
+    "urban": 69.5,
+    "old": 18.6,
+    "young": 14.3,
+    "gdppc": 4.8,
+    "nir": -7.5,
+    "gdp": 181.2,
+    "netmig": -30.0,
+    "exports": 37.6
+   }
+  },
+  "이라크": {
+   "iso3": "IRQ",
+   "values": {
+    "pop": 4507,
+    "urban": 69.9,
+    "old": 3.4,
+    "young": 37.1,
+    "gdppc": 5.97,
+    "nir": 21.6,
+    "gdp": 268.9,
+    "netmig": -0.6,
+    "exports": 99.1
+   }
+  },
+  "이란": {
+   "iso3": "IRN",
+   "values": {
+    "pop": 9061,
+    "urban": 76.7,
+    "old": 7.9,
+    "young": 22.8,
+    "gdppc": 5.05,
+    "nir": 8.3,
+    "gdp": 457.5,
+    "netmig": 26.2,
+    "exports": 97.4
+   }
+  },
+  "이스라엘": {
+   "iso3": "ISR",
+   "values": {
+    "pop": 985,
+    "urban": 91.5,
+    "old": 12.4,
+    "young": 27.6,
+    "gdppc": 52.13,
+    "nir": 13.4,
+    "gdp": 513.4,
+    "netmig": 1.0,
+    "exports": 63.3
+   }
+  },
+  "이집트": {
+   "iso3": "EGY",
+   "values": {
+    "pop": 11454,
+    "urban": 42.7,
+    "old": 5.0,
+    "young": 32.4,
+    "gdppc": 3.46,
+    "nir": 15.5,
+    "gdp": 395.9,
+    "netmig": 30.5,
+    "exports": 42.1
+   }
+  },
+  "이탈리아": {
+   "iso3": "ITA",
+   "values": {
+    "pop": 5898,
+    "urban": 69.5,
+    "old": 24.2,
+    "young": 12.1,
+    "gdppc": 39.28,
+    "nir": -5.0,
+    "gdp": 2316.9,
+    "netmig": 15.0,
+    "exports": 676.7
+   }
+  },
+  "인도": {
+   "iso3": "IND",
+   "values": {
+    "pop": 143807,
+    "urban": 35.1,
+    "old": 6.9,
+    "young": 25.1,
+    "gdppc": 2.43,
+    "nir": 9.5,
+    "gdp": 3500.9,
+    "netmig": -97.9,
+    "exports": 431.6
+   }
+  },
+  "인도네시아": {
+   "iso3": "IDN",
+   "values": {
+    "pop": 28119,
+    "urban": 58.1,
+    "old": 7.0,
+    "young": 24.9,
+    "gdppc": 4.88,
+    "nir": 8.4,
+    "gdp": 1371.2,
+    "netmig": -3.8,
+    "exports": 258.9
+   }
+  },
+  "일본": {
+   "iso3": "JPN",
+   "values": {
+    "pop": 12452,
+    "urban": 92.1,
+    "old": 29.6,
+    "young": 11.6,
+    "gdppc": 35.22,
+    "nir": -7,
+    "gdp": 4384.9,
+    "netmig": 17.5,
+    "exports": 717.3
+   }
+  },
+  "자메이카": {
+   "iso3": "JAM",
+   "values": {
+    "pop": 284,
+    "urban": 58.5,
+    "old": 7.9,
+    "young": 19.1,
+    "gdppc": 7.54,
+    "nir": 3.5,
+    "gdp": 21.4,
+    "netmig": -1.0,
+    "exports": 2.0
+   }
+  },
+  "잠비아": {
+   "iso3": "ZMB",
+   "values": {
+    "pop": 2072,
+    "urban": 45.0,
+    "old": 1.9,
+    "young": 42.0,
+    "gdppc": 1.33,
+    "nir": 27.9,
+    "gdp": 27.6,
+    "netmig": 1.0,
+    "exports": 10.4
+   }
+  },
+  "중국": {
+   "iso3": "CHN",
+   "values": {
+    "pop": 141071,
+    "urban": 65.5,
+    "old": 14.3,
+    "young": 16.6,
+    "gdppc": 12.95,
+    "nir": -1.5,
+    "gdp": 18270.4,
+    "netmig": -56.8,
+    "exports": 3379.0
+   }
+  },
+  "짐바브웨": {
+   "iso3": "ZWE",
+   "values": {
+    "pop": 1634,
+    "urban": 39.3,
+    "old": 3.6,
+    "young": 41.3,
+    "gdppc": 2.2,
+    "nir": 22.8,
+    "gdp": 35.9,
+    "netmig": -9.7,
+    "exports": 7.2
+   }
+  },
+  "차드": {
+   "iso3": "TCD",
+   "values": {
+    "pop": 1932,
+    "urban": 26.3,
+    "old": 2.1,
+    "young": 46.7,
+    "gdppc": 0.95,
+    "nir": 31.4,
+    "gdp": 18.4,
+    "netmig": 49.7,
+    "exports": 4.6
+   }
+  },
+  "체코": {
+   "iso3": "CZE",
+   "values": {
+    "pop": 1086,
+    "urban": 72.7,
+    "old": 20.5,
+    "young": 15.7,
+    "gdppc": 31.76,
+    "nir": -2.0,
+    "gdp": 345.1,
+    "netmig": -1.5,
+    "exports": 255.5
+   }
+  },
+  "칠레": {
+   "iso3": "CHL",
+   "values": {
+    "pop": 1966,
+    "urban": 88.8,
+    "old": 13.7,
+    "young": 17.4,
+    "gdppc": 17.08,
+    "nir": 2.5,
+    "gdp": 335.8,
+    "netmig": 6.3,
+    "exports": 93.0
+   }
+  },
+  "카메룬": {
+   "iso3": "CMR",
+   "values": {
+    "pop": 2837,
+    "urban": 55.1,
+    "old": 2.8,
+    "young": 41.8,
+    "gdppc": 1.72,
+    "nir": 26.6,
+    "gdp": 48.8,
+    "netmig": -0.5,
+    "exports": 4.9
+   }
+  },
+  "카자흐스탄": {
+   "iso3": "KAZ",
+   "values": {
+    "pop": 2033,
+    "urban": 61.8,
+    "old": 8.3,
+    "young": 29.5,
+    "gdppc": 12.88,
+    "nir": 13.4,
+    "gdp": 261.8,
+    "netmig": -0.5,
+    "exports": 78.5
+   }
+  },
+  "카타르": {
+   "iso3": "QAT",
+   "values": {
+    "pop": 266,
+    "urban": 99.3,
+    "old": 1.6,
+    "young": 15.2,
+    "gdppc": 80.2,
+    "nir": 9.0,
+    "gdp": 213.0,
+    "netmig": 4.0,
+    "exports": 97.8
+   }
+  },
+  "캄보디아": {
+   "iso3": "KHM",
+   "values": {
+    "pop": 1742,
+    "urban": 40.6,
+    "old": 6.0,
+    "young": 30.1,
+    "gdppc": 2.43,
+    "nir": 14.4,
+    "gdp": 42.3,
+    "netmig": -3.2,
+    "exports": 23.2
+   }
+  },
+  "캐나다": {
+   "iso3": "CAN",
+   "values": {
+    "pop": 4005,
+    "urban": 82.5,
+    "old": 19.4,
+    "young": 15.3,
+    "gdppc": 54.85,
+    "nir": 0.6,
+    "gdp": 2196.6,
+    "netmig": 43.4,
+    "exports": 570.1
+   }
+  },
+  "케냐": {
+   "iso3": "KEN",
+   "values": {
+    "pop": 5534,
+    "urban": 31.6,
+    "old": 2.9,
+    "young": 37.4,
+    "gdppc": 1.94,
+    "nir": 19.9,
+    "gdp": 107.5,
+    "netmig": -1.0,
+    "exports": 7.2
+   }
+  },
+  "코스타리카": {
+   "iso3": "CRI",
+   "values": {
+    "pop": 511,
+    "urban": 78.9,
+    "old": 11.7,
+    "young": 19.3,
+    "gdppc": 17.14,
+    "nir": 4.7,
+    "gdp": 87.5,
+    "netmig": 0.1,
+    "exports": 19.0
+   }
+  },
+  "코트디부아르": {
+   "iso3": "CIV",
+   "values": {
+    "pop": 3117,
+    "urban": 53.4,
+    "old": 2.6,
+    "young": 41.3,
+    "gdppc": 2.59,
+    "nir": 24.3,
+    "gdp": 80.8,
+    "netmig": 0.6,
+    "exports": 18.4
+   }
+  },
+  "콜롬비아": {
+   "iso3": "COL",
+   "values": {
+    "pop": 5232,
+    "urban": 78.3,
+    "old": 9.4,
+    "young": 20.6,
+    "gdppc": 7.01,
+    "nir": 8.1,
+    "gdp": 366.9,
+    "netmig": 15.5,
+    "exports": 49.5
+   }
+  },
+  "콩고 민주 공화국": {
+   "iso3": "COD",
+   "values": {
+    "pop": 10579,
+    "urban": 44.4,
+    "old": 3.1,
+    "young": 46.1,
+    "gdppc": 0.66,
+    "nir": 32.8,
+    "gdp": 69.8,
+    "netmig": -1.5,
+    "exports": 27.7
+   }
+  },
+  "쿠바": {
+   "iso3": "CUB",
+   "values": {
+    "pop": 1102,
+    "urban": 77.1,
+    "old": 16.2,
+    "young": 15.5,
+    "nir": -1.4,
+    "netmig": -2.3,
+    "exports": 1.6
+   }
+  },
+  "쿠웨이트": {
+   "iso3": "KWT",
+   "values": {
+    "pop": 485,
+    "urban": 100.0,
+    "old": 3.0,
+    "young": 18.6,
+    "gdppc": 34.09,
+    "nir": 8.8,
+    "gdp": 165.5,
+    "netmig": 5.0,
+    "exports": 84.0
+   }
+  },
+  "크로아티아": {
+   "iso3": "HRV",
+   "values": {
+    "pop": 386,
+    "urban": 57.2,
+    "old": 22.8,
+    "young": 14.1,
+    "gdppc": 22.18,
+    "nir": -5.0,
+    "gdp": 85.6,
+    "netmig": 1.0,
+    "exports": 25.0
+   }
+  },
+  "키르기스스탄": {
+   "iso3": "KGZ",
+   "values": {
+    "pop": 710,
+    "urban": 34.7,
+    "old": 5.4,
+    "young": 32.7,
+    "gdppc": 2.14,
+    "nir": 16.2,
+    "gdp": 15.2,
+    "netmig": 0.6,
+    "exports": 3.4
+   }
+  },
+  "키프로스": {
+   "iso3": "CYP",
+   "values": {
+    "pop": 134,
+    "urban": 66.7,
+    "old": 14.3,
+    "young": 16.1,
+    "gdppc": 26.08,
+    "nir": 3.7,
+    "gdp": 35.1,
+    "netmig": 0.9,
+    "exports": 5.1
+   }
+  },
+  "타이": {
+   "iso3": "THA",
+   "values": {
+    "pop": 7170,
+    "urban": 60.9,
+    "old": 14.7,
+    "young": 15.1,
+    "gdppc": 7.21,
+    "nir": -0.6,
+    "gdp": 517.0,
+    "netmig": 2.0,
+    "exports": 285.1
+   }
+  },
+  "타이완": {
+   "iso3": "TWN",
+   "values": {}
+  },
+  "타지키스탄": {
+   "iso3": "TJK",
+   "values": {
+    "pop": 1039,
+    "urban": 26.2,
+    "old": 3.7,
+    "young": 36.5,
+    "gdppc": 1.18,
+    "nir": 21.5,
+    "gdp": 12.2,
+    "netmig": -2.0,
+    "exports": 2.4
+   }
+  },
+  "탄자니아": {
+   "iso3": "TZA",
+   "values": {
+    "pop": 6662,
+    "urban": 35.5,
+    "old": 3.0,
+    "young": 42.7,
+    "gdppc": 1.19,
+    "nir": 29.4,
+    "gdp": 79.0,
+    "netmig": -3.9,
+    "exports": 7.3
+   }
+  },
+  "투르크메니스탄": {
+   "iso3": "TKM",
+   "values": {
+    "pop": 736,
+    "urban": 47.1,
+    "old": 4.3,
+    "young": 31.7,
+    "gdppc": 5.3,
+    "nir": 16.0,
+    "gdp": 39.0,
+    "netmig": 1.5,
+    "exports": 16.2
+   }
+  },
+  "튀니지": {
+   "iso3": "TUN",
+   "values": {
+    "pop": 1220,
+    "urban": 70.0,
+    "old": 9.2,
+    "young": 24.4,
+    "gdppc": 3.95,
+    "nir": 7.7,
+    "gdp": 48.2,
+    "netmig": -1.4,
+    "exports": 20.0
+   }
+  },
+  "튀르키예": {
+   "iso3": "TUR",
+   "values": {
+    "pop": 8533,
+    "urban": 89.0,
+    "old": 10.0,
+    "young": 21.8,
+    "gdppc": 13.38,
+    "nir": 5.0,
+    "gdp": 1141.2,
+    "netmig": -31.8,
+    "exports": 255.6
+   }
+  },
+  "파나마": {
+   "iso3": "PAN",
+   "values": {
+    "pop": 446,
+    "urban": 65.9,
+    "old": 9.1,
+    "young": 25.3,
+    "gdppc": 18.8,
+    "nir": 11.3,
+    "gdp": 83.8,
+    "netmig": 0.7,
+    "exports": 16.7
+   }
+  },
+  "파라과이": {
+   "iso3": "PRY",
+   "values": {
+    "pop": 684,
+    "urban": 69.3,
+    "old": 6.4,
+    "young": 28.8,
+    "gdppc": 6.3,
+    "nir": 14.3,
+    "gdp": 43.1,
+    "netmig": -1.2,
+    "exports": 11.9
+   }
+  },
+  "파키스탄": {
+   "iso3": "PAK",
+   "values": {
+    "pop": 24750,
+    "urban": 38.8,
+    "old": 4.2,
+    "young": 37.0,
+    "gdppc": 1.36,
+    "nir": 21.3,
+    "gdp": 336.7,
+    "netmig": -162.0,
+    "exports": 28.5
+   }
+  },
+  "파푸아뉴기니": {
+   "iso3": "PNG",
+   "values": {
+    "pop": 1039,
+    "urban": 15.1,
+    "old": 3.3,
+    "young": 33.8,
+    "gdppc": 2.97,
+    "nir": 18.1,
+    "gdp": 30.8,
+    "netmig": -0.1,
+    "exports": 12.8
+   }
+  },
+  "페루": {
+   "iso3": "PER",
+   "values": {
+    "pop": 3385,
+    "urban": 84.8,
+    "old": 9.0,
+    "young": 24.4,
+    "gdppc": 7.92,
+    "nir": 10.5,
+    "gdp": 268.0,
+    "netmig": 2.5,
+    "exports": 64.7
+   }
+  },
+  "포르투갈": {
+   "iso3": "PRT",
+   "values": {
+    "pop": 1058,
+    "urban": 61.2,
+    "old": 24.1,
+    "young": 12.9,
+    "gdppc": 27.63,
+    "nir": -3.1,
+    "gdp": 292.3,
+    "netmig": 2.9,
+    "exports": 83.6
+   }
+  },
+  "폴란드": {
+   "iso3": "POL",
+   "values": {
+    "pop": 3669,
+    "urban": 59.9,
+    "old": 19.6,
+    "young": 15.1,
+    "gdppc": 22.15,
+    "nir": -3.7,
+    "gdp": 812.5,
+    "netmig": -0.8,
+    "exports": 381.5
+   }
+  },
+  "프랑스": {
+   "iso3": "FRA",
+   "values": {
+    "pop": 6837,
+    "urban": 78.8,
+    "old": 21.7,
+    "young": 16.8,
+    "gdppc": 44.7,
+    "nir": 0.5,
+    "gdp": 3056.3,
+    "netmig": 9.2,
+    "exports": 651.1
+   }
+  },
+  "핀란드": {
+   "iso3": "FIN",
+   "values": {
+    "pop": 558,
+    "urban": 74.0,
+    "old": 23.6,
+    "young": 14.9,
+    "gdppc": 52.86,
+    "nir": -3.2,
+    "gdp": 295.2,
+    "netmig": 3.8,
+    "exports": 82.6
+   }
+  },
+  "필리핀": {
+   "iso3": "PHL",
+   "values": {
+    "pop": 11489,
+    "urban": 55.1,
+    "old": 5.3,
+    "young": 28.6,
+    "gdppc": 3.8,
+    "nir": 9.8,
+    "gdp": 437.1,
+    "netmig": -16.4,
+    "exports": 73.5
+   }
+  },
+  "헝가리": {
+   "iso3": "HUN",
+   "values": {
+    "pop": 959,
+    "urban": 70.3,
+    "old": 20.8,
+    "young": 14.5,
+    "gdppc": 22.21,
+    "nir": -4.3,
+    "gdp": 213.0,
+    "netmig": 4.9,
+    "exports": 164.4
+   }
+  }
+ }
+}

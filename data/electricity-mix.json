@@ -1,0 +1,1281 @@
+{
+ "meta": {
+  "year": "2023",
+  "source": "Ember·Energy Institute (Our World in Data)",
+  "retrieved": "2026-10-16",
+  "sourceUrl": "https://github.com/owid/energy-data",
+  "unit": "% of electricity generation"
+ },
+ "countries": {
+  "가나": {
+   "coal": 0.0,
+   "gas": 59.2,
+   "oil": 2.3,
+   "nuclear": 0.0,
+   "hydro": 37.8,
+   "wind": 0.0,
+   "solar": 0.6,
+   "other": 0.1
+  },
+  "가이아나": {
+   "coal": 0.0,
+   "gas": 0.7,
+   "oil": 96.4,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 0.0,
+   "solar": 1.4,
+   "other": 1.5
+  },
+  "그리스": {
+   "coal": 9.4,
+   "gas": 32.7,
+   "oil": 8.1,
+   "nuclear": 0.0,
+   "hydro": 7.8,
+   "wind": 22.5,
+   "solar": 18.2,
+   "other": 1.3
+  },
+  "기니": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 25.5,
+   "nuclear": 0.0,
+   "hydro": 73.8,
+   "wind": 0.0,
+   "solar": 0.8,
+   "other": 0.0
+  },
+  "나미비아": {
+   "coal": 1.6,
+   "gas": 0.0,
+   "oil": 0.5,
+   "nuclear": 0.0,
+   "hydro": 69.8,
+   "wind": 1.1,
+   "solar": 27.0,
+   "other": 0.0
+  },
+  "나이지리아": {
+   "coal": 0.0,
+   "gas": 77.3,
+   "oil": 0.0,
+   "nuclear": 0.0,
+   "hydro": 22.3,
+   "wind": 0.0,
+   "solar": 0.3,
+   "other": 0.1
+  },
+  "남아프리카 공화국": {
+   "coal": 82.5,
+   "gas": 0.0,
+   "oil": 1.6,
+   "nuclear": 3.5,
+   "hydro": 0.9,
+   "wind": 5.0,
+   "solar": 6.4,
+   "other": 0.1
+  },
+  "네덜란드": {
+   "coal": 7.3,
+   "gas": 38.4,
+   "oil": 3.6,
+   "nuclear": 3.3,
+   "hydro": 0.1,
+   "wind": 24.6,
+   "solar": 16.3,
+   "other": 6.4
+  },
+  "네팔": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 0.0,
+   "nuclear": 0.0,
+   "hydro": 99.0,
+   "wind": 0.1,
+   "solar": 0.9,
+   "other": 0.0
+  },
+  "노르웨이": {
+   "coal": 0.0,
+   "gas": 1.0,
+   "oil": 0.5,
+   "nuclear": 0.0,
+   "hydro": 89.0,
+   "wind": 9.1,
+   "solar": 0.2,
+   "other": 0.2
+  },
+  "뉴질랜드": {
+   "coal": 1.2,
+   "gas": 7.8,
+   "oil": 1.3,
+   "nuclear": 0.0,
+   "hydro": 61.0,
+   "wind": 8.2,
+   "solar": 0.9,
+   "other": 19.6
+  },
+  "니제르": {
+   "coal": 17.5,
+   "gas": 5.2,
+   "oil": 75.3,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 0.0,
+   "solar": 2.1,
+   "other": 0.0
+  },
+  "대한민국": {
+   "coal": 32.6,
+   "gas": 27.5,
+   "oil": 1.1,
+   "nuclear": 29.2,
+   "hydro": 0.6,
+   "wind": 0.5,
+   "solar": 5.4,
+   "other": 3.1
+  },
+  "덴마크": {
+   "coal": 7.5,
+   "gas": 3.0,
+   "oil": 3.2,
+   "nuclear": 0.0,
+   "hydro": 0.1,
+   "wind": 57.2,
+   "solar": 10.8,
+   "other": 18.2
+  },
+  "도미니카 공화국": {
+   "coal": 31.4,
+   "gas": 29.7,
+   "oil": 21.6,
+   "nuclear": 0.0,
+   "hydro": 6.0,
+   "wind": 4.9,
+   "solar": 5.5,
+   "other": 0.9
+  },
+  "독일": {
+   "coal": 24.6,
+   "gas": 15.1,
+   "oil": 4.1,
+   "nuclear": 1.4,
+   "hydro": 4.2,
+   "wind": 27.7,
+   "solar": 12.6,
+   "other": 10.3
+  },
+  "동티모르": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 100.0,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 0.0,
+   "solar": 0.0,
+   "other": 0.0
+  },
+  "라오스": {
+   "coal": 23.3,
+   "gas": 0.0,
+   "oil": 0.0,
+   "nuclear": 0.0,
+   "hydro": 76.5,
+   "wind": 0.0,
+   "solar": 0.2,
+   "other": 0.0
+  },
+  "라이베리아": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 42.6,
+   "nuclear": 0.0,
+   "hydro": 57.4,
+   "wind": 0.0,
+   "solar": 0.0,
+   "other": 0.0
+  },
+  "라트비아": {
+   "coal": 0.0,
+   "gas": 22.3,
+   "oil": 0.0,
+   "nuclear": 0.0,
+   "hydro": 59.4,
+   "wind": 4.2,
+   "solar": 3.8,
+   "other": 10.3
+  },
+  "러시아": {
+   "coal": 17.3,
+   "gas": 45.3,
+   "oil": 1.2,
+   "nuclear": 18.4,
+   "hydro": 17.0,
+   "wind": 0.4,
+   "solar": 0.2,
+   "other": 0.2
+  },
+  "레바논": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 65.9,
+   "nuclear": 0.0,
+   "hydro": 11.1,
+   "wind": 0.2,
+   "solar": 22.3,
+   "other": 0.5
+  },
+  "루마니아": {
+   "coal": 14.2,
+   "gas": 16.1,
+   "oil": 0.3,
+   "nuclear": 19.6,
+   "hydro": 31.9,
+   "wind": 13.3,
+   "solar": 3.9,
+   "other": 0.7
+  },
+  "룩셈부르크": {
+   "coal": 0.0,
+   "gas": 6.4,
+   "oil": 4.3,
+   "nuclear": 0.0,
+   "hydro": 6.4,
+   "wind": 35.5,
+   "solar": 20.6,
+   "other": 26.8
+  },
+  "리비아": {
+   "coal": 0.0,
+   "gas": 73.8,
+   "oil": 26.2,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 0.0,
+   "solar": 0.0,
+   "other": 0.0
+  },
+  "리투아니아": {
+   "coal": 0.0,
+   "gas": 10.9,
+   "oil": 5.3,
+   "nuclear": 0.0,
+   "hydro": 8.5,
+   "wind": 47.9,
+   "solar": 13.0,
+   "other": 14.4
+  },
+  "마다가스카르": {
+   "coal": 20.6,
+   "gas": 0.0,
+   "oil": 35.5,
+   "nuclear": 0.0,
+   "hydro": 39.5,
+   "wind": 0.0,
+   "solar": 3.2,
+   "other": 1.2
+  },
+  "말레이시아": {
+   "coal": 43.3,
+   "gas": 36.9,
+   "oil": 0.6,
+   "nuclear": 0.0,
+   "hydro": 16.8,
+   "wind": 0.0,
+   "solar": 1.7,
+   "other": 0.7
+  },
+  "말리": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 80.2,
+   "nuclear": 0.0,
+   "hydro": 16.1,
+   "wind": 0.0,
+   "solar": 2.5,
+   "other": 1.2
+  },
+  "멕시코": {
+   "coal": 3.8,
+   "gas": 62.3,
+   "oil": 10.0,
+   "nuclear": 3.5,
+   "hydro": 5.9,
+   "wind": 5.9,
+   "solar": 6.6,
+   "other": 2.0
+  },
+  "모로코": {
+   "coal": 63.9,
+   "gas": 10.0,
+   "oil": 4.3,
+   "nuclear": 0.0,
+   "hydro": 1.2,
+   "wind": 15.4,
+   "solar": 5.0,
+   "other": 0.2
+  },
+  "모리타니": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 78.5,
+   "nuclear": 0.0,
+   "hydro": 10.0,
+   "wind": 4.8,
+   "solar": 6.7,
+   "other": 0.0
+  },
+  "모잠비크": {
+   "coal": 0.0,
+   "gas": 15.6,
+   "oil": 0.8,
+   "nuclear": 0.0,
+   "hydro": 82.6,
+   "wind": 0.0,
+   "solar": 0.4,
+   "other": 0.6
+  },
+  "몰타": {
+   "coal": 0.0,
+   "gas": 85.5,
+   "oil": 0.9,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 0.0,
+   "solar": 13.2,
+   "other": 0.4
+  },
+  "몽골": {
+   "coal": 85.2,
+   "gas": 0.0,
+   "oil": 5.7,
+   "nuclear": 0.0,
+   "hydro": 0.7,
+   "wind": 6.2,
+   "solar": 2.3,
+   "other": 0.0
+  },
+  "미국": {
+   "coal": 15.9,
+   "gas": 42.5,
+   "oil": 0.8,
+   "nuclear": 18.2,
+   "hydro": 5.6,
+   "wind": 9.9,
+   "solar": 5.6,
+   "other": 1.5
+  },
+  "미얀마": {
+   "coal": 5.3,
+   "gas": 47.6,
+   "oil": 0.6,
+   "nuclear": 0.0,
+   "hydro": 44.7,
+   "wind": 0.0,
+   "solar": 0.5,
+   "other": 1.3
+  },
+  "바레인": {
+   "coal": 0.0,
+   "gas": 99.8,
+   "oil": 0.0,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 0.0,
+   "solar": 0.2,
+   "other": 0.0
+  },
+  "방글라데시": {
+   "coal": 10.6,
+   "gas": 65.9,
+   "oil": 21.7,
+   "nuclear": 0.0,
+   "hydro": 0.6,
+   "wind": 0.0,
+   "solar": 1.1,
+   "other": 0.1
+  },
+  "베냉": {
+   "coal": 0.0,
+   "gas": 73.0,
+   "oil": 24.0,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 0.0,
+   "solar": 3.0,
+   "other": 0.0
+  },
+  "베네수엘라": {
+   "coal": 0.0,
+   "gas": 5.1,
+   "oil": 4.5,
+   "nuclear": 0.0,
+   "hydro": 90.3,
+   "wind": 0.0,
+   "solar": 0.0,
+   "other": 0.1
+  },
+  "베트남": {
+   "coal": 46.9,
+   "gas": 9.5,
+   "oil": 0.6,
+   "nuclear": 0.0,
+   "hydro": 29.1,
+   "wind": 4.2,
+   "solar": 9.3,
+   "other": 0.4
+  },
+  "벨기에": {
+   "coal": 0.0,
+   "gas": 22.3,
+   "oil": 4.2,
+   "nuclear": 40.1,
+   "hydro": 0.5,
+   "wind": 18.8,
+   "solar": 9.5,
+   "other": 4.6
+  },
+  "보스니아 헤르체고비나": {
+   "coal": 56.5,
+   "gas": 0.1,
+   "oil": 0.4,
+   "nuclear": 0.0,
+   "hydro": 39.3,
+   "wind": 2.1,
+   "solar": 1.5,
+   "other": 0.1
+  },
+  "보츠와나": {
+   "coal": 98.8,
+   "gas": 0.0,
+   "oil": 0.9,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 0.0,
+   "solar": 0.3,
+   "other": 0.0
+  },
+  "볼리비아": {
+   "coal": 0.0,
+   "gas": 65.2,
+   "oil": 1.5,
+   "nuclear": 0.0,
+   "hydro": 23.7,
+   "wind": 3.5,
+   "solar": 2.8,
+   "other": 3.3
+  },
+  "불가리아": {
+   "coal": 29.3,
+   "gas": 4.8,
+   "oil": 0.5,
+   "nuclear": 40.3,
+   "hydro": 7.7,
+   "wind": 3.9,
+   "solar": 8.8,
+   "other": 4.7
+  },
+  "브라질": {
+   "coal": 1.9,
+   "gas": 5.5,
+   "oil": 1.6,
+   "nuclear": 2.0,
+   "hydro": 60.2,
+   "wind": 13.5,
+   "solar": 7.2,
+   "other": 8.1
+  },
+  "브루나이": {
+   "coal": 20.4,
+   "gas": 78.9,
+   "oil": 0.7,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 0.0,
+   "solar": 0.0,
+   "other": 0.0
+  },
+  "세네갈": {
+   "coal": 1.1,
+   "gas": 0.2,
+   "oil": 81.7,
+   "nuclear": 0.0,
+   "hydro": 3.8,
+   "wind": 4.6,
+   "solar": 7.2,
+   "other": 1.4
+  },
+  "세르비아": {
+   "coal": 59.9,
+   "gas": 5.0,
+   "oil": 0.2,
+   "nuclear": 0.0,
+   "hydro": 31.5,
+   "wind": 2.7,
+   "solar": 0.1,
+   "other": 0.6
+  },
+  "소말리아": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 81.0,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 2.4,
+   "solar": 16.7,
+   "other": 0.0
+  },
+  "수단": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 19.0,
+   "nuclear": 0.0,
+   "hydro": 79.3,
+   "wind": 0.0,
+   "solar": 1.0,
+   "other": 0.7
+  },
+  "수리남": {
+   "coal": 0.0,
+   "gas": 1.2,
+   "oil": 45.7,
+   "nuclear": 0.0,
+   "hydro": 52.0,
+   "wind": 0.0,
+   "solar": 0.6,
+   "other": 0.5
+  },
+  "스웨덴": {
+   "coal": 0.0,
+   "gas": 0.1,
+   "oil": 1.3,
+   "nuclear": 29.2,
+   "hydro": 39.9,
+   "wind": 20.6,
+   "solar": 1.9,
+   "other": 7.0
+  },
+  "스위스": {
+   "coal": 0.0,
+   "gas": 0.4,
+   "oil": 1.7,
+   "nuclear": 34.8,
+   "hydro": 53.4,
+   "wind": 0.2,
+   "solar": 6.6,
+   "other": 2.9
+  },
+  "슬로바키아": {
+   "coal": 4.1,
+   "gas": 7.7,
+   "oil": 3.4,
+   "nuclear": 62.1,
+   "hydro": 15.9,
+   "wind": 0.0,
+   "solar": 2.1,
+   "other": 4.7
+  },
+  "슬로베니아": {
+   "coal": 20.2,
+   "gas": 3.2,
+   "oil": 0.1,
+   "nuclear": 36.0,
+   "hydro": 32.3,
+   "wind": 0.1,
+   "solar": 6.3,
+   "other": 1.8
+  },
+  "시리아": {
+   "coal": 0.0,
+   "gas": 51.8,
+   "oil": 44.7,
+   "nuclear": 0.0,
+   "hydro": 3.0,
+   "wind": 0.0,
+   "solar": 0.4,
+   "other": 0.1
+  },
+  "시에라리온": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 4.8,
+   "nuclear": 0.0,
+   "hydro": 85.7,
+   "wind": 0.0,
+   "solar": 9.5,
+   "other": 0.0
+  },
+  "아르헨티나": {
+   "coal": 1.2,
+   "gas": 51.4,
+   "oil": 6.6,
+   "nuclear": 6.0,
+   "hydro": 21.2,
+   "wind": 9.7,
+   "solar": 2.2,
+   "other": 1.7
+  },
+  "아이슬란드": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 0.0,
+   "nuclear": 0.0,
+   "hydro": 71.2,
+   "wind": 0.1,
+   "solar": 0.0,
+   "other": 28.7
+  },
+  "아이티": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 77.6,
+   "nuclear": 0.0,
+   "hydro": 22.4,
+   "wind": 0.0,
+   "solar": 0.0,
+   "other": 0.0
+  },
+  "아일랜드": {
+   "coal": 3.8,
+   "gas": 48.7,
+   "oil": 2.2,
+   "nuclear": 0.0,
+   "hydro": 3.0,
+   "wind": 37.6,
+   "solar": 2.1,
+   "other": 2.6
+  },
+  "아제르바이잔": {
+   "coal": 0.0,
+   "gas": 93.1,
+   "oil": 0.4,
+   "nuclear": 0.0,
+   "hydro": 5.6,
+   "wind": 0.3,
+   "solar": 0.2,
+   "other": 0.4
+  },
+  "아프가니스탄": {
+   "coal": 3.1,
+   "gas": 0.0,
+   "oil": 10.3,
+   "nuclear": 0.0,
+   "hydro": 77.3,
+   "wind": 0.0,
+   "solar": 9.3,
+   "other": 0.0
+  },
+  "알제리": {
+   "coal": 0.0,
+   "gas": 98.7,
+   "oil": 0.3,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 0.0,
+   "solar": 0.9,
+   "other": 0.1
+  },
+  "앙골라": {
+   "coal": 0.0,
+   "gas": 8.8,
+   "oil": 17.1,
+   "nuclear": 0.0,
+   "hydro": 71.2,
+   "wind": 0.0,
+   "solar": 2.5,
+   "other": 0.4
+  },
+  "에스토니아": {
+   "coal": 0.0,
+   "gas": 0.3,
+   "oil": 50.9,
+   "nuclear": 0.0,
+   "hydro": 0.3,
+   "wind": 11.8,
+   "solar": 12.5,
+   "other": 24.2
+  },
+  "에스파냐": {
+   "coal": 1.3,
+   "gas": 23.1,
+   "oil": 3.8,
+   "nuclear": 20.4,
+   "hydro": 9.0,
+   "wind": 23.0,
+   "solar": 17.4,
+   "other": 2.0
+  },
+  "에콰도르": {
+   "coal": 0.0,
+   "gas": 2.7,
+   "oil": 23.7,
+   "nuclear": 0.0,
+   "hydro": 71.8,
+   "wind": 0.6,
+   "solar": 0.1,
+   "other": 1.1
+  },
+  "에티오피아": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 0.0,
+   "nuclear": 0.0,
+   "hydro": 96.4,
+   "wind": 3.2,
+   "solar": 0.2,
+   "other": 0.2
+  },
+  "영국": {
+   "coal": 1.3,
+   "gas": 34.8,
+   "oil": 3.7,
+   "nuclear": 13.9,
+   "hydro": 1.9,
+   "wind": 28.1,
+   "solar": 4.7,
+   "other": 11.6
+  },
+  "오만": {
+   "coal": 0.0,
+   "gas": 91.6,
+   "oil": 3.6,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 0.2,
+   "solar": 4.7,
+   "other": 0.0
+  },
+  "오스트레일리아": {
+   "coal": 46.0,
+   "gas": 17.1,
+   "oil": 2.1,
+   "nuclear": 0.0,
+   "hydro": 5.5,
+   "wind": 11.7,
+   "solar": 16.5,
+   "other": 1.1
+  },
+  "오스트리아": {
+   "coal": 0.0,
+   "gas": 10.6,
+   "oil": 4.7,
+   "nuclear": 0.0,
+   "hydro": 57.3,
+   "wind": 11.3,
+   "solar": 9.7,
+   "other": 6.4
+  },
+  "요르단": {
+   "coal": 0.0,
+   "gas": 61.7,
+   "oil": 16.3,
+   "nuclear": 0.0,
+   "hydro": 0.1,
+   "wind": 7.4,
+   "solar": 14.5,
+   "other": 0.0
+  },
+  "우간다": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 2.9,
+   "nuclear": 0.0,
+   "hydro": 86.3,
+   "wind": 0.0,
+   "solar": 2.6,
+   "other": 8.2
+  },
+  "우루과이": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 7.6,
+   "nuclear": 0.0,
+   "hydro": 27.5,
+   "wind": 37.1,
+   "solar": 3.8,
+   "other": 24.0
+  },
+  "우즈베키스탄": {
+   "coal": 7.4,
+   "gas": 80.7,
+   "oil": 2.0,
+   "nuclear": 0.0,
+   "hydro": 8.6,
+   "wind": 0.7,
+   "solar": 0.6,
+   "other": 0.0
+  },
+  "이라크": {
+   "coal": 0.0,
+   "gas": 52.2,
+   "oil": 46.6,
+   "nuclear": 0.0,
+   "hydro": 1.0,
+   "wind": 0.0,
+   "solar": 0.3,
+   "other": 0.0
+  },
+  "이란": {
+   "coal": 0.2,
+   "gas": 84.3,
+   "oil": 7.3,
+   "nuclear": 1.7,
+   "hydro": 6.0,
+   "wind": 0.3,
+   "solar": 0.2,
+   "other": 0.0
+  },
+  "이스라엘": {
+   "coal": 16.9,
+   "gas": 70.6,
+   "oil": 0.6,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 0.6,
+   "solar": 11.1,
+   "other": 0.2
+  },
+  "이집트": {
+   "coal": 0.0,
+   "gas": 80.8,
+   "oil": 7.5,
+   "nuclear": 0.0,
+   "hydro": 6.8,
+   "wind": 2.7,
+   "solar": 2.2,
+   "other": 0.0
+  },
+  "이탈리아": {
+   "coal": 5.1,
+   "gas": 45.5,
+   "oil": 4.9,
+   "nuclear": 0.0,
+   "hydro": 15.5,
+   "wind": 9.0,
+   "solar": 11.7,
+   "other": 8.3
+  },
+  "인도": {
+   "coal": 75.4,
+   "gas": 2.6,
+   "oil": 0.2,
+   "nuclear": 2.5,
+   "hydro": 7.8,
+   "wind": 4.3,
+   "solar": 6.0,
+   "other": 1.2
+  },
+  "인도네시아": {
+   "coal": 61.8,
+   "gas": 17.7,
+   "oil": 1.9,
+   "nuclear": 0.0,
+   "hydro": 7.0,
+   "wind": 0.1,
+   "solar": 0.2,
+   "other": 11.3
+  },
+  "일본": {
+   "coal": 32.5,
+   "gas": 34.5,
+   "oil": 3.2,
+   "nuclear": 7.7,
+   "hydro": 7.4,
+   "wind": 1.0,
+   "solar": 9.6,
+   "other": 4.1
+  },
+  "자메이카": {
+   "coal": 0.0,
+   "gas": 58.9,
+   "oil": 28.9,
+   "nuclear": 0.0,
+   "hydro": 2.5,
+   "wind": 5.7,
+   "solar": 2.7,
+   "other": 1.3
+  },
+  "잠비아": {
+   "coal": 10.9,
+   "gas": 0.0,
+   "oil": 0.1,
+   "nuclear": 0.0,
+   "hydro": 87.8,
+   "wind": 0.0,
+   "solar": 0.8,
+   "other": 0.4
+  },
+  "중국": {
+   "coal": 60.8,
+   "gas": 3.1,
+   "oil": 0.8,
+   "nuclear": 4.6,
+   "hydro": 13.0,
+   "wind": 9.4,
+   "solar": 6.2,
+   "other": 2.1
+  },
+  "짐바브웨": {
+   "coal": 43.8,
+   "gas": 0.0,
+   "oil": 0.0,
+   "nuclear": 0.0,
+   "hydro": 54.7,
+   "wind": 0.0,
+   "solar": 0.3,
+   "other": 1.2
+  },
+  "차드": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 94.4,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 2.8,
+   "solar": 0.0,
+   "other": 2.8
+  },
+  "체코": {
+   "coal": 39.5,
+   "gas": 4.9,
+   "oil": 0.8,
+   "nuclear": 40.1,
+   "hydro": 3.1,
+   "wind": 0.9,
+   "solar": 3.8,
+   "other": 6.9
+  },
+  "칠레": {
+   "coal": 16.2,
+   "gas": 18.8,
+   "oil": 1.8,
+   "nuclear": 0.0,
+   "hydro": 26.1,
+   "wind": 10.6,
+   "solar": 20.1,
+   "other": 6.4
+  },
+  "카메룬": {
+   "coal": 0.0,
+   "gas": 22.0,
+   "oil": 4.7,
+   "nuclear": 0.0,
+   "hydro": 72.4,
+   "wind": 0.0,
+   "solar": 0.3,
+   "other": 0.6
+  },
+  "카자흐스탄": {
+   "coal": 57.4,
+   "gas": 29.3,
+   "oil": 0.6,
+   "nuclear": 0.0,
+   "hydro": 7.7,
+   "wind": 3.3,
+   "solar": 1.6,
+   "other": 0.1
+  },
+  "카타르": {
+   "coal": 0.0,
+   "gas": 96.4,
+   "oil": 0.0,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 0.0,
+   "solar": 3.3,
+   "other": 0.3
+  },
+  "캐나다": {
+   "coal": 3.7,
+   "gas": 16.0,
+   "oil": 1.1,
+   "nuclear": 13.8,
+   "hydro": 56.2,
+   "wind": 6.3,
+   "solar": 1.3,
+   "other": 1.6
+  },
+  "케냐": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 10.2,
+   "nuclear": 0.0,
+   "hydro": 20.9,
+   "wind": 15.7,
+   "solar": 4.5,
+   "other": 48.7
+  },
+  "코스타리카": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 0.1,
+   "nuclear": 0.0,
+   "hydro": 72.9,
+   "wind": 12.7,
+   "solar": 0.8,
+   "other": 13.5
+  },
+  "코트디부아르": {
+   "coal": 0.0,
+   "gas": 69.7,
+   "oil": 0.2,
+   "nuclear": 0.0,
+   "hydro": 29.1,
+   "wind": 0.0,
+   "solar": 0.2,
+   "other": 0.8
+  },
+  "콜롬비아": {
+   "coal": 10.6,
+   "gas": 18.7,
+   "oil": 3.7,
+   "nuclear": 0.0,
+   "hydro": 62.6,
+   "wind": 0.3,
+   "solar": 1.6,
+   "other": 2.5
+  },
+  "콩고 민주 공화국": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 0.0,
+   "nuclear": 0.0,
+   "hydro": 85.9,
+   "wind": 0.0,
+   "solar": 14.1,
+   "other": 0.0
+  },
+  "쿠바": {
+   "coal": 0.0,
+   "gas": 12.7,
+   "oil": 83.7,
+   "nuclear": 0.0,
+   "hydro": 0.6,
+   "wind": 0.3,
+   "solar": 1.1,
+   "other": 1.6
+  },
+  "쿠웨이트": {
+   "coal": 0.0,
+   "gas": 61.3,
+   "oil": 36.5,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 1.9,
+   "solar": 0.2,
+   "other": 0.1
+  },
+  "크로아티아": {
+   "coal": 7.6,
+   "gas": 22.1,
+   "oil": 0.1,
+   "nuclear": 0.0,
+   "hydro": 46.8,
+   "wind": 14.9,
+   "solar": 2.4,
+   "other": 6.1
+  },
+  "키르기스스탄": {
+   "coal": 11.7,
+   "gas": 1.5,
+   "oil": 0.4,
+   "nuclear": 0.0,
+   "hydro": 86.5,
+   "wind": 0.0,
+   "solar": 0.0,
+   "other": 0.0
+  },
+  "키프로스": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 79.5,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 3.9,
+   "solar": 15.6,
+   "other": 1.0
+  },
+  "타이": {
+   "coal": 16.0,
+   "gas": 67.9,
+   "oil": 0.5,
+   "nuclear": 0.0,
+   "hydro": 3.5,
+   "wind": 2.0,
+   "solar": 2.7,
+   "other": 7.4
+  },
+  "타이완": {
+   "coal": 43.1,
+   "gas": 40.4,
+   "oil": 1.4,
+   "nuclear": 6.3,
+   "hydro": 1.4,
+   "wind": 2.2,
+   "solar": 4.6,
+   "other": 0.6
+  },
+  "타지키스탄": {
+   "coal": 4.8,
+   "gas": 1.0,
+   "oil": 0.0,
+   "nuclear": 0.0,
+   "hydro": 94.2,
+   "wind": 0.0,
+   "solar": 0.0,
+   "other": 0.0
+  },
+  "탄자니아": {
+   "coal": 0.0,
+   "gas": 69.8,
+   "oil": 3.7,
+   "nuclear": 0.0,
+   "hydro": 25.5,
+   "wind": 0.0,
+   "solar": 0.3,
+   "other": 0.7
+  },
+  "투르크메니스탄": {
+   "coal": 0.0,
+   "gas": 100.0,
+   "oil": 0.0,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 0.0,
+   "solar": 0.0,
+   "other": 0.0
+  },
+  "튀니지": {
+   "coal": 0.0,
+   "gas": 95.1,
+   "oil": 1.0,
+   "nuclear": 0.0,
+   "hydro": 0.0,
+   "wind": 1.6,
+   "solar": 2.3,
+   "other": 0.0
+  },
+  "튀르키예": {
+   "coal": 36.9,
+   "gas": 20.8,
+   "oil": 0.3,
+   "nuclear": 0.0,
+   "hydro": 19.9,
+   "wind": 10.6,
+   "solar": 5.8,
+   "other": 5.7
+  },
+  "파나마": {
+   "coal": 3.5,
+   "gas": 21.3,
+   "oil": 14.6,
+   "nuclear": 0.0,
+   "hydro": 46.9,
+   "wind": 6.8,
+   "solar": 6.6,
+   "other": 0.3
+  },
+  "파라과이": {
+   "coal": 0.0,
+   "gas": 0.0,
+   "oil": 0.0,
+   "nuclear": 0.0,
+   "hydro": 99.5,
+   "wind": 0.0,
+   "solar": 0.0,
+   "other": 0.5
+  },
+  "파키스탄": {
+   "coal": 15.4,
+   "gas": 26.5,
+   "oil": 11.9,
+   "nuclear": 13.0,
+   "hydro": 22.0,
+   "wind": 3.5,
+   "solar": 6.6,
+   "other": 1.1
+  },
+  "파푸아뉴기니": {
+   "coal": 0.0,
+   "gas": 19.2,
+   "oil": 57.1,
+   "nuclear": 0.0,
+   "hydro": 21.1,
+   "wind": 0.0,
+   "solar": 0.2,
+   "other": 2.4
+  },
+  "페루": {
+   "coal": 0.1,
+   "gas": 45.1,
+   "oil": 0.5,
+   "nuclear": 0.0,
+   "hydro": 48.8,
+   "wind": 3.2,
+   "solar": 1.4,
+   "other": 0.9
+  },
+  "포르투갈": {
+   "coal": 0.0,
+   "gas": 22.6,
+   "oil": 2.9,
+   "nuclear": 0.0,
+   "hydro": 26.1,
+   "wind": 28.5,
+   "solar": 11.2,
+   "other": 8.7
+  },
+  "폴란드": {
+   "coal": 59.7,
+   "gas": 10.0,
+   "oil": 2.6,
+   "nuclear": 0.0,
+   "hydro": 1.5,
+   "wind": 14.6,
+   "solar": 6.7,
+   "other": 4.9
+  },
+  "프랑스": {
+   "coal": 0.3,
+   "gas": 5.8,
+   "oil": 1.8,
+   "nuclear": 65.2,
+   "hydro": 10.8,
+   "wind": 9.7,
+   "solar": 4.4,
+   "other": 2.0
+  },
+  "핀란드": {
+   "coal": 1.9,
+   "gas": 0.8,
+   "oil": 3.3,
+   "nuclear": 42.1,
+   "hydro": 18.6,
+   "wind": 18.4,
+   "solar": 0.9,
+   "other": 14.0
+  },
+  "필리핀": {
+   "coal": 63.2,
+   "gas": 14.3,
+   "oil": 1.1,
+   "nuclear": 0.0,
+   "hydro": 8.6,
+   "wind": 1.2,
+   "solar": 1.6,
+   "other": 10.0
+  },
+  "헝가리": {
+   "coal": 7.0,
+   "gas": 20.5,
+   "oil": 1.3,
+   "nuclear": 44.8,
+   "hydro": 0.6,
+   "wind": 1.8,
+   "solar": 19.5,
+   "other": 4.5
+  }
+ }
+}

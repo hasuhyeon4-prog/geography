@@ -10,7 +10,7 @@ button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #52b
 .primary{background:var(--accent);border-color:var(--accent);color:#fff}.primary:hover{background:#05595d}
 #app{height:100%;height:100dvh;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:52px 52px minmax(0,1fr) clamp(270px,48dvh,390px);padding-top:env(safe-area-inset-top)}
 header{display:flex;align-items:center;gap:10px;padding:5px 12px;border-bottom:1px solid var(--line)}header h1{font-size:15px;margin:0;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.nav{display:flex;gap:4px;margin-left:auto}.nav a{font-size:12px;font-weight:700;color:var(--muted);text-decoration:none;padding:9px 8px;border-radius:9px;white-space:nowrap}.nav a[aria-current=page]{background:var(--ink);color:#fff}@media(max-width:360px){.nav a{padding:8px 5px;font-size:11px}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.nav{display:flex;gap:4px;margin-left:auto}.nav a{font-size:12px;font-weight:700;color:var(--muted);text-decoration:none;padding:9px 7px;border-radius:9px;white-space:nowrap}.nav a[aria-current=page]{background:var(--ink);color:#fff}@media(max-width:360px){.nav a{padding:8px 4px;font-size:11px}}
 .back{font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border:1px solid #badcd5;background:var(--pale);border-radius:10px;padding:9px 10px;white-space:nowrap}
 .scope{display:grid;grid-template-columns:1.25fr 1fr;gap:10px;padding:5px 12px;background:#fafcfc;border-bottom:1px solid var(--line)}.scope label{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);white-space:nowrap;min-width:0}
 select{min-height:40px;min-width:0;width:100%;padding:6px;font-size:13px;font-weight:650;color:var(--ink)}
@@ -61,7 +61,7 @@ h2{font-size:19px;line-height:1.35;margin:2px 0 8px;word-break:keep-all}
 <body>
 <div id="bootNotice" role="status">지도를 준비하고 있어요.</div>
 <div id="app">
- <header><a class="back" href="index.html">← 위치</a><h1 class="sr">분류 지도 퀴즈</h1><nav class="nav" aria-label="퀴즈 종류"><a href="classify.html" aria-current="page">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html">OX</a></nav></header>
+ <header><a class="back" href="index.html">← 위치</a><h1 class="sr">분류 지도 퀴즈</h1><nav class="nav" aria-label="퀴즈 종류"><a href="classify.html" aria-current="page">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html">OX</a><a href="exam.html">기출형</a></nav></header>
  <div class="scope"><label for="setSelect">분류<select id="setSelect"></select></label><label for="regionSelect">지역<select id="regionSelect"></select></label></div>
  <main id="map" aria-label="국가를 눌러 고르거나 확대·이동할 수 있는 세계 지도">
   <div id="mapScene"><div id="baseMap" role="img" aria-label="국경이 표시된 세계 백지도" style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:minmax(0,966fr) minmax(0,967fr) minmax(0,967fr)"></div>
