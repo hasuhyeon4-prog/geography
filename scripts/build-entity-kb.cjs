@@ -23,11 +23,13 @@ const C = require(path.join(ROOT, 'assets/classification-sets.js'));
 const R = require(path.join(ROOT, 'assets/rankings.js'));
 const read = f => JSON.parse(fs.readFileSync(path.join(ROOT, f), 'utf8'));
 const stats = read('data/country-indicators.json');
+const economy = read('data/economy-indicators.json');
 const groupSeries = read('data/group-series.json');
 const extra = read('data/entity-facts.json');
 const electricity = read('data/electricity-mix.json');
 const religion = read('data/religion-composition.json');
 const REL = read('data/exam-relations.json');
+if (economy.meta.baseYear !== stats.meta.baseYear) throw new Error('economy and country totals have different base years');
 
 // Margins a recalled relation must keep in every year of REL.check.window, not just once.
 const COUNTRY_INDICATORS = {
@@ -39,6 +41,11 @@ const COUNTRY_INDICATORS = {
   gdp: {label: 'GDP', unit: '십억 달러', more: 'GDP가 많다', compare: {type: 'ratio', min: 1.3}},
   gdppc: {label: '1인당 GDP', unit: '천 달러', more: '1인당 GDP가 많다', compare: {type: 'ratio', min: 1.3}},
   exports: {label: '상품 수출액', unit: '십억 달러', more: '상품 수출액이 많다', compare: {type: 'ratio', min: 1.3}},
+  manufacturing: {label: 'GDP 중 제조업 비중', unit: '%', more: 'GDP 중 제조업 비중이 높다', compare: {type: 'diff', min: 3}},
+  agriculture: {label: 'GDP 중 1차 산업 비중', unit: '%', more: 'GDP 중 1차 산업 비중이 높다', compare: {type: 'diff', min: 3}},
+  industry: {label: 'GDP 중 2차 산업 비중(건설업 포함)', unit: '%', more: 'GDP 중 2차 산업 비중이 높다', compare: {type: 'diff', min: 5}},
+  services: {label: 'GDP 중 서비스업 비중', unit: '%', more: 'GDP 중 서비스업 비중이 높다', compare: {type: 'diff', min: 5}},
+  industryEmployment: {label: '2차 산업 종사자 비율', unit: '%', more: '2차 산업 종사자 비율이 높다', compare: {type: 'diff', min: 5}},
 };
 // Bloc and continent tables of assets/rankings.js: yearly series key in data/group-series.json
 // and its scale to the table unit. Static tables have no yearly series.
@@ -109,7 +116,7 @@ for (const name of Object.keys(shapes.byName)) {
     region: C.regionOf[name] || null, regionName: regionName[C.regionOf[name]] || null,
     ...hemispheres(name), facts,
     // Only indicators with a comparison margin; yearly net migration of a country is too volatile.
-    values: s ? Object.fromEntries(Object.entries(s.values).filter(([k]) => k in COUNTRY_INDICATORS)) : {},
+    values: Object.assign(s ? Object.fromEntries(Object.entries(s.values).filter(([k]) => k in COUNTRY_INDICATORS)) : {}, (economy.countries[name] || {}).values || {}),
   };
 }
 
@@ -117,7 +124,7 @@ const indicators = {};
 const seriesOf = {};  // seriesOf[ind][name] = {year: value} in the unit of the shown table
 for (const [id, meta] of Object.entries(COUNTRY_INDICATORS)) {
   indicators[id] = {...meta, entityType: 'country', year: stats.meta.baseYear, source: stats.meta.source, disabled: false, unstablePairs: []};
-  seriesOf[id] = Object.fromEntries(Object.entries(stats.countries).map(([n, c]) => [n, (c.series || {})[id] || {}]));
+  seriesOf[id] = Object.fromEntries(Object.entries(stats.countries).map(([n, c]) => [n, (c.series || {})[id] || (((economy.countries[n] || {}).series || {})[id]) || {}]));
 }
 // Bloc and continent indicators reuse the audited ranking tables, including their
 // disabled tables and pairs whose order flips between years.
@@ -149,6 +156,20 @@ for (const r of R.rankings) {
 }
 
 // --- multi-year check of the whitelist (data/exam-relations.json) ---
+// An ageing index is a ratio of the two age groups, not the elderly share itself.
+indicators['cont-agingIndex'] = {label:'노령화 지수(노년층÷유소년층×100)',unit:'유소년 100명당 노년 인구',more:'노령화 지수가 높다',
+  entityType:'continent',year:stats.meta.baseYear,source:'세계은행 WDI 연령별 인구',compare:{type:'ratio',min:1.1},static:false,disabled:false,unstablePairs:[]};
+seriesOf['cont-agingIndex'] = {};
+for (const [name, c] of Object.entries(groupSeries.groups)) {
+  if (!entities[name] || entities[name].type !== 'continent') continue;
+  const ser = {};
+  for (const [y, old] of Object.entries(c.series.old || {})) {
+    const young = (c.series.young || {})[y];
+    if (young > 0) ser[y] = old / young * 100;
+  }
+  seriesOf['cont-agingIndex'][name] = ser;
+  if (ser[stats.meta.baseYear] != null) entities[name].values['cont-agingIndex'] = ser[stats.meta.baseYear];
+}
 const [Y0, Y1] = REL.check.window, MIN_YEARS = REL.check.minYears;
 const gapOf = (cmp, hi, lo) => (cmp.type === 'ratio' ? (hi > 0 && lo > 0 ? hi / lo : 0) : hi - lo);
 const gapUnit = (cmp, unit) => (cmp.type === 'ratio' ? '배' : unit === '%' ? '%p' : unit);
@@ -215,6 +236,11 @@ for (const r of REL.relations) {
 // Compositions used as identification data. Shares are percentages of the stated total;
 // `orderMargin` is the gap every year must keep between ranked categories.
 const compositions = {
+  exports: {year: economy.meta.baseYear, source: '세계은행 WDI(UN Comtrade 비중·WTO 상품수출 총액)', unit: '% (상품 수출액 대비)', orderMargin: 10, rankExclude: [],
+    categories: [['fuel', '연료'], ['ores', '광석·금속'], ['food', '식료품'], ['agriculturalRaw', '농업 원료'], ['manufactures', '공산품'], ['other', '기타']],
+    values: Object.fromEntries(Object.entries(economy.exports).map(([n, c]) => [n, c.values])),
+    total: {indicator: 'exports', label: '상품 수출 총액', unit: '십억 달러', year: economy.meta.baseYear, source: '세계은행 WDI(WTO)',
+      values: Object.fromEntries(Object.entries(economy.exports).map(([n, c]) => [n, c.total]))}},
   electricity: {year: electricity.meta.baseYear, source: electricity.meta.source, unit: '% (발전량 비중)', orderMargin: 10, rankExclude: [],
     categories: [['coal', '석탄'], ['gas', '천연가스'], ['oil', '석유'], ['nuclear', '원자력'], ['hydro', '수력'], ['wind', '풍력'], ['solar', '태양광'], ['other', '기타(바이오·지열 등)']],
     values: Object.fromEntries(Object.entries(electricity.countries).map(([n, c]) => [n, c.values]))},
@@ -226,6 +252,7 @@ const compositions = {
       values: Object.fromEntries(Object.entries(religion.countries).map(([n, c]) => [n, c.population]))}},
 };
 const compositionSeries = {
+  exports: Object.fromEntries(Object.entries(economy.exports).map(([n, c]) => [n, c.series])),
   electricity: Object.fromEntries(Object.entries(electricity.countries).map(([n, c]) => [n, c.series])),
   religion: Object.fromEntries(Object.entries(religion.countries).map(([n, c]) => [n, c.series])),
 };
@@ -262,7 +289,7 @@ for (const o of REL.orders) {
 
 const out = {
   generated: 'scripts/build-entity-kb.cjs',
-  sources: {countries: stats.meta, groups: groupSeries.meta, extraFacts: extra.about, rankingsCheckedAt: R.checkedAt || null},
+  sources: {countries: stats.meta, economy: economy.meta, groups: groupSeries.meta, extraFacts: extra.about, rankingsCheckedAt: R.checkedAt || null},
   check: REL.check,
   factSets: Object.fromEntries(FACT_SETS.filter(id => C.byId[id]).map(id => [id, {
     title: C.byId[id].title, multi: !!C.byId[id].multi, negationSafe: NEGATION_SAFE[id] === 'all', exclusive: EXCLUSIVE.includes(id),

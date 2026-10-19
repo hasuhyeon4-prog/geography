@@ -17,6 +17,7 @@ const countries = data('data/country-indicators.json');
 const groups = data('data/group-series.json');
 const electricity = data('data/electricity-mix.json');
 const religion = data('data/religion-composition.json');
+const economy = data('data/economy-indicators.json');
 const engine = E.create(K, T);
 const SEEDS = 300;
 const [Y0, Y1] = REL.check.window;
@@ -28,10 +29,11 @@ const GROUP = {'bloc-pop': ['pop', 1e8], 'bloc-gdp': ['gdp', 1e12], 'bloc-trade'
 const area = id => Object.fromEntries(R.rankings.find(r => r.id === id).items.map(i => [i.name, i.value * 1e6]));
 const MEMBERS = {2023: {EU: 27, ASEAN: 10, MERCOSUR: 4, USMCA: 3}, 2026: {EU: 27, ASEAN: 11, MERCOSUR: 5, USMCA: 3}};
 function raw(ind, name) {
-  if (countries.countries[name] && !GROUP[ind] && !ind.includes('-')) return countries.countries[name].series[ind] || {};
+  if (countries.countries[name] && !GROUP[ind] && !ind.includes('-')) return countries.countries[name].series[ind] || (economy.countries[name].series[ind]) || {};
   if (ind === 'bloc-members') return {2023: MEMBERS[2023][name], 2026: MEMBERS[2026][name]};
   if (ind.endsWith('-area')) return {2024: area(ind)[name] / 1e6};  // UN Demographic Yearbook 2024, fixed
   const g = groups.groups[name].series;
+  if (ind === 'cont-agingIndex') return Object.fromEntries(Object.entries(g.old).filter(([y]) => g.young[y] > 0).map(([y, v]) => [y, v / g.young[y] * 100]));
   if (ind === 'cont-density' || ind === 'bloc-density') {
     const a = area(ind.replace('density', 'area'))[name];
     return Object.fromEntries(Object.entries(g.pop).map(([y, v]) => [y, v / a]));
@@ -67,10 +69,11 @@ for (const o of REL.orders) {
   } else for (const [n, order] of Object.entries(o.orders)) (c[n] || (c[n] = [])).push(order);
 }
 const compositionSeries = {
+  exports: n => Object.fromEntries(Object.entries(economy.exports[n].series).filter(([y]) => y >= Y0 && y <= Y1)),
   electricity: n => Object.fromEntries(Object.entries(electricity.countries[n].series).filter(([y]) => y >= Y0 && y <= Y1)),
   religion: n => religion.countries[n].series,
 };
-const EXCLUDE = {electricity: [], religion: ['unaffiliated', 'other']};
+const EXCLUDE = {electricity: [], exports: [], religion: ['unaffiliated', 'other']};
 function orderHoldsEveryYear(cid, name, order) {
   const ser = compositionSeries[cid](name);
   return Object.values(ser).every(v => {
@@ -158,8 +161,18 @@ test('share × total uses one year and one source, and both numbers are in the t
       const c = s.check;
       let amount;
       if (c.category) {
-        assert.equal(q.theme.composition, 'religion');
-        amount = n => religion.countries[n].series['2020'][c.category] * religion.countries[n].populationSeries['2020'];
+        if (q.theme.composition === 'religion') {
+          amount = n => religion.countries[n].series['2020'][c.category] * religion.countries[n].populationSeries['2020'];
+        } else {
+          assert.equal(q.theme.composition, 'exports');
+          assert.equal(economy.meta.baseYear, countries.meta.baseYear);
+          amount = n => economy.exports[n].series[economy.meta.baseYear][c.category] * countries.countries[n].series.exports[economy.meta.baseYear];
+          assert.ok(q.display.columns.some(x => x.id === 'exports'));
+        }
+      } else if (c.indicator) {
+        assert.ok(q.shown.includes(c.indicator), 'a supplied comparison needs the indicated column');
+        const v = n => raw(c.indicator, n)[c.indicator.includes('-') ? '2023' : countries.meta.baseYear];
+        amount = n => v(n);
       } else {
         const v = (n, ind) => raw(ind, n)[countries.countries[n] && !ind.includes('-') ? countries.meta.baseYear : '2023'];
         amount = n => v(n, c.total) * v(n, c.rate) / c.per;

@@ -60,12 +60,12 @@ test('themes reference existing 대상, indicators, and compositions', () => {
   for (const t of T.themes) {
     for (const k of ['id', 'status', 'title', 'lecture', 'kind', 'entityType', 'pool', 'pick', 'prompt']) assert.ok(t[k], t.id + ' ' + k);
     assert.match(t.prompt, /\{range\}/, t.id + ' prompt must use {range} so 3- and 4-대상 questions read right');
-    assert.ok(t.pick[0] >= 3 && t.pick[1] <= 4 && t.pick[0] <= t.pick[1], t.id + ' pick');
+    assert.ok(t.pick[0] >= 2 && t.pick[1] <= 4 && t.pick[0] <= t.pick[1], t.id + ' pick');
     for (const n of t.pool) assert.equal((K.entities[n] || {}).type, t.entityType, t.id + ' ' + n);
     if (t.kind === 'indicators') {
       for (const i of t.indicators.concat(t.always || [])) assert.equal(K.indicators[i].entityType, t.entityType, t.id + ' ' + i);
       for (const d of t.derived || []) {
-        assert.ok(t.indicators.includes(d.rate) && (t.always || []).includes(d.total), t.id + ' derived amounts need a rate column and an always-shown total');
+        assert.ok(t.indicators.includes(d.rate) && t.indicators.concat(t.always || []).includes(d.total), t.id + ' derived amounts need both available columns; generated statements must show both');
         assert.ok(d.noun && [100, 1000].includes(d.per), t.id);
       }
     }
@@ -83,8 +83,9 @@ test('every ready theme builds full two-stage questions', () => {
     for (let seed = 1; seed <= SEEDS; seed++) {
       const q = engine.build({themeId: t.id, seed});
       assert.ok(q, t.id + ' seed ' + seed);
-      assert.equal(q.stage1.options.length, 5, t.id);
-      assert.equal(new Set(q.stage1.options.map(o => o.join('|'))).size, 5, t.id + ' duplicate assignment');
+      const optionCount = q.entities.length === 2 ? 2 : 5;
+      assert.equal(q.stage1.options.length, optionCount, t.id);
+      assert.equal(new Set(q.stage1.options.map(o => o.join('|'))).size, optionCount, t.id + ' duplicate assignment');
       assert.deepEqual(q.stage1.options[q.stage1.answer], q.entities, t.id);
       assert.ok(engine.identifiable(t, q.entities, q.shown), t.id + ' not identifiable');
       const st = q.stage2.statements;
@@ -130,6 +131,9 @@ test('each statement is true exactly when the knowledge base says so', () => {
           const amount = n => engine.comp(t, n)[c.category] * engine.total(t, n);
           assert.equal(amount(c.subject) > amount(c.object), s.truth, s.text);
           assert.notEqual(engine.comp(t, c.subject)[c.category] > engine.comp(t, c.object)[c.category], amount(c.subject) > amount(c.object), 'data items are share-versus-total traps');
+        } else if (s.kind === 'data' && c.indicator) {
+          assert.ok(q.shown.includes(c.indicator));
+          assert.equal(engine.value(c.subject, c.indicator) > engine.value(c.object, c.indicator), s.truth, s.text);
         } else if (s.kind === 'data') {
           const amount = n => engine.value(n, c.total) * engine.value(n, c.rate) / c.per;
           assert.equal(amount(c.subject) > amount(c.object), s.truth, s.text);

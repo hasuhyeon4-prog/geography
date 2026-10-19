@@ -25,6 +25,7 @@
  function pick(list,r){return list[Math.floor(r()*list.length)]}
  function fmt(v){var a=Math.abs(v);return v.toLocaleString('ko-KR',{maximumFractionDigits:a>=100?0:a>=10?1:2})}
  function topic(word){var c=word.charCodeAt(word.length-1);return c>=0xAC00&&c<=0xD7A3&&(c-0xAC00)%28?'은':'는'}
+ function subjectParticle(word){var c=word.charCodeAt(word.length-1);return c>=0xAC00&&c<=0xD7A3&&(c-0xAC00)%28?'이':'가'}
  function permutations(list){if(list.length<=1)return [list.slice()];var out=[];list.forEach(function(x,i){permutations(list.slice(0,i).concat(list.slice(i+1))).forEach(function(p){out.push([x].concat(p))})});return out}
 
  // Predicates follow '(가)는 …' and also '(가)와 (나)는 모두 …'.
@@ -84,7 +85,8 @@
    if(theme.kind==='indicators')return {
     relations:REL.filter(function(x){return shown.indexOf(x.indicator)>=0&&has(x.hi)&&has(x.lo)}),
     signs:SIGNS.filter(function(x){return shown.indexOf(x.indicator)>=0&&has(x.entity)})};
-   if(theme.kind==='composition')return {orders:chosen.map(function(n){return orderOf(theme,n)}).filter(Boolean)};
+   if(theme.kind==='composition'){var c=composition(theme);return {orders:chosen.map(function(n){return orderOf(theme,n)}).filter(Boolean),
+    relations:c.total&&c.total.indicator?REL.filter(function(x){return x.indicator===c.total.indicator&&has(x.hi)&&has(x.lo)}):[]};}
    return {items:chosen.map(function(n){return {entity:n,top:theme.items[n][0][0]}})};
   }
   // A row clearly breaks an order when a category ranked below beats it by the margin.
@@ -99,7 +101,8 @@
    if(theme.kind==='indicators')
     return k.relations.every(function(x){return !clearlyAbove(x.indicator,value(row[x.lo],x.indicator),value(row[x.hi],x.indicator))})&&
      k.signs.every(function(x){var v=value(row[x.entity],x.indicator),min=meta(x.indicator).sign.min;return x.positive?v>-min:v<min});
-   if(theme.kind==='composition'){var c=composition(theme);return k.orders.every(function(o){return !orderBroken(c,o.order,comp(theme,row[o.entity]))})}
+   if(theme.kind==='composition'){var c=composition(theme);return k.orders.every(function(o){return !orderBroken(c,o.order,comp(theme,row[o.entity]))})&&
+    (k.relations||[]).every(function(x){return !clearlyAbove(x.indicator,total(theme,row[x.lo]),total(theme,row[x.hi]))});}
    return k.items.every(function(x){return theme.items[row[x.entity]][0][0]===x.top});
   }
   // Identification holds when the true assignment is the only one left.
@@ -120,7 +123,7 @@
    }
    var c=composition(theme),show=theme.show||c.categories.map(function(x){return x[0]});
    var cols=show.map(function(id){return {id:id,label:catLabel(theme,id),unit:'%'}});
-   if(c.total)cols.push({id:'total',label:c.total.label,unit:c.total.unit});
+   if(c.total)cols.push({id:c.total.indicator||'total',label:c.total.label,unit:c.total.unit});
    return {columns:cols,rows:chosen.map(function(n,i){return {label:LABELS[i],cells:show.map(function(id){return fmt(comp(theme,n)[id]||0)}).concat(c.total?[fmt(total(theme,n))]:[])}}),
     source:c.year+' · '+c.source+' · '+c.unit+(c.total?' · '+c.total.label+'도 '+c.total.year+'년 같은 출처':'')};
   }
@@ -138,7 +141,8 @@
       if(chain.length>1)parts.push(meta(ind).label+' '+chain.join(' > '));
      });
      k.signs.forEach(function(x){if(x.entity===n)parts.push(meta(x.indicator).label+(x.positive?' 양(+)':' 음(−)'))});
-    }else if(theme.kind==='composition'){var o=orderOf(theme,n);if(o)parts.push(o.order.map(function(id){return catLabel(theme,id)}).join(' > ')+(o.order.length===1?' 1위':''))}
+    }else if(theme.kind==='composition'){var o=orderOf(theme,n);if(o)parts.push(o.order.map(function(id){return catLabel(theme,id)}).join(' > ')+(o.order.length===1?' 1위':''));
+     (k.relations||[]).forEach(function(x){if(x.hi===n||x.lo===n)parts.push(meta(x.indicator).label+' '+x.hi+' > '+x.lo)});}
     else parts.push(theme.items[n].slice(0,2).map(function(x){return x[0]}).join('·')+' 조합');
     return {label:LABELS[i],name:n,cue:parts.length?parts.slice(0,3).join(' · '):'나머지 대상(소거)'};
    });
@@ -202,6 +206,14 @@
      explain:x.hi+' '+fmt(value(x.hi,x.indicator))+m.unit+', '+x.lo+' '+fmt(value(x.lo,x.indicator))+m.unit+' ('+m.label+', '+m.year+', '+m.source+') · '+span(x,x.indicator)+' 같은 순서 · 근거: '+x.basis,
      check:{ind:x.indicator,subject:s[0],object:s[1]}});
    });
+   // Below-margin is not a reversal. Such relations are practised only when the
+   // relevant figures are supplied; the learner never has to recall their order.
+   (kb.relations||[]).filter(function(x){return x.status==='belowMargin'&&has(x.hi)&&has(x.lo)&&shown.indexOf(x.indicator)>=0}).forEach(function(x){
+    var m=meta(x.indicator),truth=r()<.5,s=truth?[x.hi,x.lo]:[x.lo,x.hi];
+    add({kind:'data',key:'shown|'+x.indicator+'|'+[x.hi,x.lo].sort().join('|'),text:L(s[0])+'는 '+L(s[1])+'보다 '+m.more+'.',truth:truth,
+     explain:'제시된 자료로 비교: '+x.hi+' '+fmt(value(x.hi,x.indicator))+m.unit+', '+x.lo+' '+fmt(value(x.lo,x.indicator))+m.unit+' ('+m.year+', '+m.source+')',
+     check:{indicator:x.indicator,subject:s[0],object:s[1]}});
+   });
    pairs(chosen).forEach(function(p){
     var a=entity(p[0]),b=entity(p[1]);
     Object.keys(a.facts||{}).forEach(function(set){
@@ -215,7 +227,8 @@
       if(ca[cat]<1||cb[cat]<1)return;
       var amtA=ca[cat]*ta/100,amtB=cb[cat]*tb/100,s0=trap(p,ca[cat],cb[cat],amtA,amtB,1.5);if(!s0)return;
       var truth=r()<.5,s=truth?s0:[s0[1],s0[0]],amt=function(n){return n===p[0]?amtA:amtB};
-      add({kind:'data',key:'amount|'+cat+'|'+p[0]+'|'+p[1],check:{category:cat,subject:s[0],object:s[1]},text:L(s[0])+'는 '+L(s[1])+'보다 '+catLabel(theme,cat)+' '+(theme.amountNoun||'인구')+'가 많다.',truth:truth,
+      var noun=catLabel(theme,cat)+' '+(theme.amountNoun||'인구');
+      add({kind:'data',key:'amount|'+cat+'|'+p[0]+'|'+p[1],check:{category:cat,subject:s[0],object:s[1]},text:L(s[0])+'는 '+L(s[1])+'보다 '+noun+subjectParticle(noun)+' 많다.',truth:truth,
        explain:'표의 비율 × '+c.total.label+': '+s0[0]+' 약 '+fmt(amt(s0[0]))+c.total.unit+', '+s0[1]+' 약 '+fmt(amt(s0[1]))+c.total.unit+' — 비율은 반대지만 '+c.total.label+' 차이 때문에 실제 수는 이렇다. (비율·'+c.total.label+' 모두 '+c.year+'년 '+c.source+')'});
      });
     }
@@ -268,16 +281,46 @@
   function build(opts){
    opts=opts||{};var r=opts.rng||seeded(opts.seed==null?Math.floor(Math.random()*4294967296):opts.seed);
    var pool=opts.themeId?[byId[opts.themeId]].filter(Boolean):ready;
+   var target=opts.targetKey?(kb.relations||[]).find(function(x){return x.indicator+'|'+[x.hi,x.lo].sort().join('|')===opts.targetKey&&['active','belowMargin'].indexOf(x.status)>=0}):null;
+   if(opts.targetKey&&!target)return null;
+   if(target)pool=pool.filter(function(t){return t.pool.indexOf(target.hi)>=0&&t.pool.indexOf(target.lo)>=0});
+   if(target&&target.status==='belowMargin'){
+    var original=pool.find(function(t){return t.kind==='indicators'&&t.indicators.concat(t.always||[]).indexOf(target.indicator)>=0});
+    if(!original)return null;
+    var names=shuffle([target.hi,target.lo],r),ind=target.indicator,m=meta(ind),truth=r()<.5;
+    var subject=truth?target.hi:target.lo,object=truth?target.lo:target.hi;
+    var readingTheme=Object.assign({},original,{title:'자료로 비교 · '+m.label,prompt:'표에 주어진 값을 사용해 설명을 판단하세요.'});
+    return {theme:readingTheme,readingOnly:true,labels:LABELS.slice(0,2),entities:names,shown:[ind],display:display(readingTheme,names,[ind]),
+     stage1:{options:[],answer:null,cues:[],basis:{}},
+     stage2:{question:'제시된 자료에 대한 설명이 옳은가?',statements:[{mark:'ㄱ',kind:'data',truth:truth,
+      text:LABELS[names.indexOf(subject)]+'는 '+LABELS[names.indexOf(object)]+'보다 '+m.more+'.',
+      explain:'제시된 값: '+target.hi+' '+fmt(value(target.hi,ind))+m.unit+', '+target.lo+' '+fmt(value(target.lo,ind))+m.unit+' ('+m.year+', '+m.source+')',
+      check:{indicator:ind,subject:subject,object:object}}],options:[{mark:'①',text:'옳다'},{mark:'②',text:'옳지 않다'}],answer:truth?0:1}};
+   }
    for(var attempt=0;attempt<600&&pool.length;attempt++){
     var theme=pick(pool,r),avail=theme.pool.filter(function(n){return hasData(theme,n)});
     var k=theme.pick[0]+Math.floor(r()*(theme.pick[1]-theme.pick[0]+1));if(avail.length<k)continue;
     var chosen=draw(theme,avail,k,r),shown=[];
+    if(target){
+     if(avail.indexOf(target.hi)<0||avail.indexOf(target.lo)<0)continue;
+     chosen=shuffle([target.hi,target.lo].concat(shuffle(avail.filter(function(n){return n!==target.hi&&n!==target.lo}),r).slice(0,k-2)),r);
+    }
+    if(theme.kind==='composition'&&composition(theme).total&&composition(theme).total.indicator)shown=[composition(theme).total.indicator];
     if(theme.kind==='indicators'){
      var always=theme.always||[],inds=theme.indicators.filter(function(ind){return meta(ind)&&!meta(ind).disabled&&always.indexOf(ind)<0});
      shown=always.concat(shuffle(inds,r).slice(0,theme.show));
+     if(target&&target.status==='belowMargin'&&shown.indexOf(target.indicator)<0){
+      if(inds.indexOf(target.indicator)<0)continue;
+      shown[shown.length-1]=target.indicator;
+     }
     }
     if(!identifiable(theme,chosen,shown))continue;
     var s2=chooseStatements(candidates(theme,chosen,shown,r),r);if(!s2)continue;
+    if(target){
+     var learned=(known(theme,chosen,shown).relations||[]).some(function(x){return x.indicator===target.indicator&&x.hi===target.hi&&x.lo===target.lo});
+     var asked=s2.statements.some(function(s){var c=s.check;return c&&(c.ind||c.indicator)===target.indicator&&[c.subject,c.object].indexOf(target.hi)>=0&&[c.subject,c.object].indexOf(target.lo)>=0});
+     if(target.status==='active'?!learned&&!asked:!asked)continue;
+    }
     var s1=stage1(chosen,r);
     return {theme:theme,labels:LABELS.slice(0,k),entities:chosen,shown:shown,display:display(theme,chosen,shown),
      stage1:{question:LABELS[0]+'~'+LABELS[k-1]+'에 해당하는 것으로 옳은 것은?',options:s1.options,answer:s1.answer,cues:cues(theme,chosen,shown),basis:known(theme,chosen,shown)},

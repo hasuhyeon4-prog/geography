@@ -42,9 +42,9 @@ h2{font-size:17px;line-height:1.45;margin:14px 0 8px;word-break:keep-all}.step{d
 <div class="scope"><label for="themeSelect">주제<select id="themeSelect"></select></label><span class="score" id="score"></span></div>
 <main id="main" aria-live="polite"></main>
 <div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 2015~2025년 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
-<script src="assets/entity-kb.js?v=20261019-3"></script>
-<script src="assets/exam-themes.js?v=20261019-3"></script>
-<script src="assets/exam-engine.js?v=20261019-3"></script>
+<script src="assets/entity-kb.js?v=20261019-4"></script>
+<script src="assets/exam-themes.js?v=20261019-4"></script>
+<script src="assets/exam-engine.js?v=20261019-4"></script>
 <script>
 (function(){
 'use strict';
@@ -53,12 +53,12 @@ if(!window.WGEntityKB||!window.WGExamThemes||!window.WGExamEngine){$('main').tex
 var engine=WGExamEngine.create(WGEntityKB,WGExamThemes);
 function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_exam_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
 var store=readStore();if(!store.stats||typeof store.stats!=='object')store.stats={};
-var state={theme:engine.themes.some(function(t){return t.id===store.theme})?store.theme:'all',q:null,a1:null,a2:null,session:{s1:0,s2:0,n:0}};
+var state={theme:engine.themes.some(function(t){return t.id===store.theme})?store.theme:'all',targetKey:null,q:null,a1:null,a2:null,session:{s1:0,s2:0,n1:0,n2:0}};
 function save(){try{localStorage.setItem('wg_exam_v1',JSON.stringify({theme:state.theme,stats:store.stats}))}catch(e){}}
 function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(c){if(c!=null&&c!==false)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
 function record(themeId,stage,ok){var s=store.stats[themeId]||(store.stats[themeId]={s1:[0,0],s2:[0,0]});s[stage][1]++;if(ok)s[stage][0]++;save()}
 function next(){
- state.q=engine.build({themeId:state.theme==='all'?null:state.theme});state.a1=null;state.a2=null;render();window.scrollTo({top:0});
+ state.q=engine.build({themeId:state.targetKey||state.theme==='all'?null:state.theme,targetKey:state.targetKey});state.a1=state.q&&state.q.readingOnly?0:null;state.a2=null;render();window.scrollTo({top:0});
 }
 function table(q,revealed){
  var d=q.display,head=el('tr',{},[el('th',{text:'구분'})].concat(d.columns.map(function(c){return el('th',{text:c.label+(c.unit?' ('+c.unit+')':'')})})));
@@ -68,13 +68,14 @@ function table(q,revealed){
 function assignment(q,opt){return opt.map(function(n,i){return q.labels[i]+' '+n}).join(' · ')}
 function render(){
  var main=$('main'),q=state.q;main.replaceChildren();
- $('score').textContent=state.session.n?('1차 '+state.session.s1+'/'+state.session.n+' · 후속 '+state.session.s2+'/'+state.session.n):'';
+ $('score').textContent=state.session.n1||state.session.n2?('식별 '+state.session.s1+'/'+state.session.n1+' · 판단 '+state.session.s2+'/'+state.session.n2):'';
  if(!q){main.append(el('section',{className:'card'},[el('p',{text:'이 주제로 문항을 만들지 못했어요. 다른 주제를 골라 주세요.'})]));return}
  var t=q.theme,card=el('section',{className:'card'});
+ if(state.targetKey)card.append(el('p',{className:'small',text:'선택한 비교를 집중 연습하고 있어요. 주제를 바꾸면 전체 연습으로 돌아갑니다.'}));
  card.append(el('div',{className:'meta',text:t.title+' · '+t.lecture+(t.exams&&t.exams.length?' · 기출 유형: '+t.exams.join(', '):'')}),el('p',{className:'prompt',text:t.prompt.split('{range}').join(q.labels[0]+'~'+q.labels[q.labels.length-1])}),table(q,state.a1!==null));
  if(t.note)card.append(el('p',{className:'small muted',text:t.note}));
  // Stage 1: identification.
- card.append(el('h2',{},[el('span',{className:'step',text:'1차 식별'}),q.stage1.question]));
+ if(!q.readingOnly)card.append(el('h2',{},[el('span',{className:'step',text:'1차 식별'}),q.stage1.question]));
  var c1=el('div',{className:'choices'});
  q.stage1.options.forEach(function(opt,i){
   var b=el('button',{type:'button','data-i':String(i)},['①②③④⑤'[i]+' '+assignment(q,opt)]);
@@ -82,10 +83,10 @@ function render(){
   else b.onclick=function(){answer1(i)};
   c1.append(b);
  });
- card.append(c1);
+ if(!q.readingOnly)card.append(c1);
  if(state.a1!==null){
   var ok1=state.a1===q.stage1.answer;
-  card.append(el('div',{className:'result '+(ok1?'good':'bad'),role:'status'},[el('b',{text:ok1?'식별 정답':'식별 오답'}),el('ul',{className:'cues'},q.stage1.cues.map(function(c){return el('li',{text:c.label+' '+c.name+' — '+c.cue})}))]));
+  if(!q.readingOnly)card.append(el('div',{className:'result '+(ok1?'good':'bad'),role:'status'},[el('b',{text:ok1?'식별 정답':'식별 오답'}),el('ul',{className:'cues'},q.stage1.cues.map(function(c){return el('li',{text:c.label+' '+c.name+' — '+c.cue})}))]));
   // Stage 2: judgments about the identified 대상.
   card.append(el('h2',{},[el('span',{className:'step',text:'후속 판단'}),q.stage2.question]));
   var bogi=el('div',{className:'bogi'});
@@ -95,7 +96,7 @@ function render(){
    bogi.append(line);
   });
   card.append(bogi);
-  var c2=el('div',{className:'choices combo'});
+  var c2=el('div',{className:q.readingOnly?'choices':'choices combo'});
   q.stage2.options.forEach(function(o,i){
    var b=el('button',{type:'button','aria-label':o.mark+' '+o.text},[el('span',{className:'no',text:o.mark}),el('span',{className:'pair',text:o.text})]);
    if(state.a2!==null){b.disabled=true;if(i===q.stage2.answer)b.className='right';else if(i===state.a2)b.className='chosenWrong'}
@@ -113,8 +114,8 @@ function render(){
  var focus=state.a2!==null?main.querySelector('.big'):state.a1!==null?main.querySelector('.combo button'):null;
  if(focus){focus.focus({preventScroll:true});focus.scrollIntoView({block:'nearest'})}
 }
-function answer1(i){if(state.a1!==null)return;state.a1=i;var ok=i===state.q.stage1.answer;state.session.n++;if(ok)state.session.s1++;record(state.q.theme.id,'s1',ok);render()}
-function answer2(i){if(state.a1===null||state.a2!==null)return;state.a2=i;var ok=i===state.q.stage2.answer;if(ok)state.session.s2++;record(state.q.theme.id,'s2',ok);render()}
+function answer1(i){if(state.a1!==null||i<0||i>=state.q.stage1.options.length)return;state.a1=i;var ok=i===state.q.stage1.answer;state.session.n1++;if(ok)state.session.s1++;record(state.q.theme.id,'s1',ok);render()}
+function answer2(i){if(state.a1===null||state.a2!==null||i<0||i>=state.q.stage2.options.length)return;state.a2=i;var ok=i===state.q.stage2.answer;state.session.n2++;if(ok)state.session.s2++;record(state.q.theme.id,'s2',ok);render()}
 // What the mode recalls, what it only shows as data, and why.
 function knowledge(){
  var kb=WGEntityKB,n=function(v){return Number(v).toLocaleString('ko-KR')};
@@ -122,7 +123,7 @@ function knowledge(){
  function cat(c,id){var row=c.categories.find(function(k){return k[0]===id});return row?row[1]:id}
  function title(x){
   if(x.hi)return kb.indicators[x.indicator].label+': '+x.hi+' > '+x.lo;
-  if(x.order){var c=kb.compositions[x.composition];return (x.composition==='religion'?'종교 인구':'전력 생산')+': '+x.entity+' — '+x.order.map(function(id){return cat(c,id)}).join(' > ')+(x.order.length===1?' 1위':'')}
+  if(x.order){var c=kb.compositions[x.composition];return ({religion:'종교 인구',exports:'상품 수출 구성',electricity:'전력 생산'}[x.composition]||x.composition)+': '+x.entity+' — '+x.order.map(function(id){return cat(c,id)}).join(' > ')+(x.order.length===1?' 1위':'')}
   var m=kb.indicators[x.indicator];return m.label+': '+x.entity+' — '+((x.positive?m.sign.pos:m.sign.neg)||(x.positive?'양(+)':'음(−)'));
  }
  function detail(x){
@@ -143,7 +144,8 @@ function knowledge(){
   $('knowledge').append(el('details',{},[el('summary',{text:g[0]+' ('+list.length+')'}),g[2]?el('p',{className:'small muted',text:g[2]}):null,
    el('ul',{},list.map(function(x){
     var given=x.given?'기출 자료('+x.given.source+', '+x.given.year+'년): '+Object.keys(x.given.values).map(function(k){return k+' '+x.given.values[k]+x.given.unit}).join(' · ')+' — '+x.given.note:null;
-    return el('li',{},[title(x),el('span',{text:detail(x)}),given?el('span',{text:given}):null,el('span',{text:'근거: '+x.basis})]);
+    var practice=x.hi&&['active','belowMargin'].indexOf(x.status)>=0?el('button',{type:'button',className:'small',text:x.status==='active'?'이 비교 연습':'자료로 비교 연습',onclick:function(){state.targetKey=x.indicator+'|'+[x.hi,x.lo].sort().join('|');next()}}):null;
+    return el('li',{},[title(x),el('span',{text:detail(x)}),given?el('span',{text:given}):null,el('span',{text:'근거: '+x.basis}),practice]);
    }))]));
  });
 }
@@ -151,7 +153,7 @@ knowledge();
 $('themeSelect').append(el('option',{value:'all',text:'전체 무작위 ('+engine.themes.length+'개 주제)'}));
 engine.themes.forEach(function(t){$('themeSelect').append(el('option',{value:t.id,text:t.title}))});
 $('themeSelect').value=state.theme;
-$('themeSelect').onchange=function(){state.theme=this.value;save();next()};
+$('themeSelect').onchange=function(){state.theme=this.value;state.targetKey=null;save();next()};
 document.addEventListener('keydown',function(e){
  if(e.target.tagName==='SELECT'||e.altKey||e.ctrlKey||e.metaKey||!state.q)return;
  var n=parseInt(e.key,10);
