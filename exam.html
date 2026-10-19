@@ -31,6 +31,9 @@ h2{font-size:17px;line-height:1.45;margin:14px 0 8px;word-break:keep-all}.step{d
 .cues{margin:4px 0 0;padding-left:18px;font-size:13px;line-height:1.6}
 .big{width:100%;min-height:54px;font-size:17px;border-radius:13px;margin-top:10px}
 .small{font-size:12px;line-height:1.5}.muted{color:var(--muted)}
+.below{max-width:720px;margin:0 auto;padding:0 12px calc(28px + env(safe-area-inset-bottom))}
+.kb summary{cursor:pointer;font-weight:800;font-size:15px;min-height:28px}.kb>p{margin:8px 0}.kb details{border-top:1px solid var(--line);padding:8px 0}.kb details summary{font-size:14px;font-weight:700}
+.kb ul{margin:6px 0 0;padding-left:18px;font-size:13px;line-height:1.55}.kb li{margin:4px 0;word-break:keep-all}.kb li span{display:block;font-size:12px;color:var(--muted)}
 @media(max-width:360px){.navLink{padding:8px 6px;font-size:11px}.nav a{padding:8px 4px;font-size:11px}.choices.combo button{font-size:12px}}
 </style>
 </head>
@@ -38,9 +41,10 @@ h2{font-size:17px;line-height:1.45;margin:14px 0 8px;word-break:keep-all}.step{d
 <header><a class="navLink" href="index.html">← 위치</a><h1 class="sr">기출형 연습</h1><nav class="nav" aria-label="퀴즈 종류"><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html">OX</a><a href="exam.html" aria-current="page">기출형</a></nav></header>
 <div class="scope"><label for="themeSelect">주제<select id="themeSelect"></select></label><span class="score" id="score"></span></div>
 <main id="main" aria-live="polite"></main>
-<script src="assets/entity-kb.js?v=20261019-2"></script>
-<script src="assets/exam-themes.js?v=20261019-2"></script>
-<script src="assets/exam-engine.js?v=20261019-2"></script>
+<div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 2015~2025년 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
+<script src="assets/entity-kb.js?v=20261019-3"></script>
+<script src="assets/exam-themes.js?v=20261019-3"></script>
+<script src="assets/exam-engine.js?v=20261019-3"></script>
 <script>
 (function(){
 'use strict';
@@ -111,6 +115,39 @@ function render(){
 }
 function answer1(i){if(state.a1!==null)return;state.a1=i;var ok=i===state.q.stage1.answer;state.session.n++;if(ok)state.session.s1++;record(state.q.theme.id,'s1',ok);render()}
 function answer2(i){if(state.a1===null||state.a2!==null)return;state.a2=i;var ok=i===state.q.stage2.answer;if(ok)state.session.s2++;record(state.q.theme.id,'s2',ok);render()}
+// What the mode recalls, what it only shows as data, and why.
+function knowledge(){
+ var kb=WGEntityKB,n=function(v){return Number(v).toLocaleString('ko-KR')};
+ var sample=kb.practiceSample?kb.practiceSample.seedsPerTheme*kb.practiceSample.themes.length:0;
+ function cat(c,id){var row=c.categories.find(function(k){return k[0]===id});return row?row[1]:id}
+ function title(x){
+  if(x.hi)return kb.indicators[x.indicator].label+': '+x.hi+' > '+x.lo;
+  if(x.order){var c=kb.compositions[x.composition];return (x.composition==='religion'?'종교 인구':'전력 생산')+': '+x.entity+' — '+x.order.map(function(id){return cat(c,id)}).join(' > ')+(x.order.length===1?' 1위':'')}
+  var m=kb.indicators[x.indicator];return m.label+': '+x.entity+' — '+((x.positive?m.sign.pos:m.sign.neg)||(x.positive?'양(+)':'음(−)'));
+ }
+ function detail(x){
+  if(x.status!=='active')return x.reason;
+  var m=x.indicator&&kb.indicators[x.indicator],span=m&&m.static?x.years.join('·')+'년 기준':x.years[0]+'~'+x.years[1]+'년 매년';
+  var gap=x.hi?' · 최소 차이 '+x.minGap:x.order?' · 최소 간격 '+x.minGap+'%p':' · 최소 절댓값 '+x.minAbs+m.unit;
+  return span+gap+(sample?' · 표본 '+n(sample)+'문항 중 '+n(x.practice)+'회':'');
+ }
+ var all=kb.relations.concat(kb.signs,kb.orders);
+ [['회상으로 출제',function(x){return x.status==='active'&&x.practice>0},'문항의 식별 근거나 <보기>로 나온다.'],
+  ['검증 통과 · 이 모드에서는 아직 나오지 않음',function(x){return x.status==='active'&&!x.practice},'이 대상들을 한 문항에서 함께 식별할 지표(수출 구성·제조업 비중 등)가 아직 없다. 관계는 익혀 둔다.'],
+  ['방향은 매년 같음 · 차이가 작아 회상 출제에서 제외',function(x){return x.status==='belowMargin'},'관계는 익힌다. 문제에서는 수치를 주고 판단하게 한다.'],
+  ['연도에 따라 바뀜 · 제시 자료로만 판단',function(x){return x.status==='reversed'},'어느 쪽인지 외우지 않는다. 자료가 주어지면 그 값으로 판단한다.'],
+  ['기출 제시값과 현재 자료가 다름 · 원인 확인 전',function(x){return x.status==='conflict'},'기출 자료를 그대로 읽는다. 두 시점의 순서를 따로 외우지 않는다.'],
+  ['그 밖의 제외',function(x){return x.status==='excluded'},'']
+ ].forEach(function(g){
+  var list=all.filter(g[1]);if(!list.length)return;
+  $('knowledge').append(el('details',{},[el('summary',{text:g[0]+' ('+list.length+')'}),g[2]?el('p',{className:'small muted',text:g[2]}):null,
+   el('ul',{},list.map(function(x){
+    var given=x.given?'기출 자료('+x.given.source+', '+x.given.year+'년): '+Object.keys(x.given.values).map(function(k){return k+' '+x.given.values[k]+x.given.unit}).join(' · ')+' — '+x.given.note:null;
+    return el('li',{},[title(x),el('span',{text:detail(x)}),given?el('span',{text:given}):null,el('span',{text:'근거: '+x.basis})]);
+   }))]));
+ });
+}
+knowledge();
 $('themeSelect').append(el('option',{value:'all',text:'전체 무작위 ('+engine.themes.length+'개 주제)'}));
 engine.themes.forEach(function(t){$('themeSelect').append(el('option',{value:t.id,text:t.title}))});
 $('themeSelect').value=state.theme;

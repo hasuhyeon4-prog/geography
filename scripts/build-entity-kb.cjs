@@ -151,7 +151,8 @@ for (const r of R.rankings) {
 // --- multi-year check of the whitelist (data/exam-relations.json) ---
 const [Y0, Y1] = REL.check.window, MIN_YEARS = REL.check.minYears;
 const gapOf = (cmp, hi, lo) => (cmp.type === 'ratio' ? (hi > 0 && lo > 0 ? hi / lo : 0) : hi - lo);
-const gapText = (cmp, g) => (cmp.type === 'ratio' ? g.toFixed(2) + '배' : (Math.round(g * 10) / 10) + '');
+const gapUnit = (cmp, unit) => (cmp.type === 'ratio' ? '배' : unit === '%' ? '%p' : unit);
+const gapText = (cmp, g, unit) => (cmp.type === 'ratio' ? g.toFixed(2) : String(Math.round(g * 10) / 10)) + gapUnit(cmp, unit);
 function windowYears(m, a, b) {
   return Object.keys(a).filter(y => y in b && (m.static || (y >= Y0 && y <= Y1))).sort();
 }
@@ -167,12 +168,20 @@ function checkPair(ind, hi, lo, directed) {
   if (m.unstablePairs.some(p => p.includes(hi) && p.includes(lo))) return no('순위표 감사의 불안정 쌍');
   const a = seriesOf[ind][hi] || {}, b = seriesOf[ind][lo] || {}, years = windowYears(m, a, b);
   if (!m.static && years.length < MIN_YEARS) return no(`${Y0}~${Y1}년 자료 ${years.length}개 연도(${MIN_YEARS}개 미만)`);
+  const fmtv = v => (Math.round(v * 100) / 100).toLocaleString('ko-KR') + m.unit;
   const flipped = years.filter(y => a[y] <= b[y]);
-  if (flipped.length) return Object.assign(out, {status: directed ? 'conflict' : 'excluded', reason: `${flipped.join('·')}년에 ${lo} ≥ ${hi}` + (directed ? ' (강의 방향과 다름)' : ' (연도에 따라 순서가 바뀜)')});
+  Object.assign(out, {years: [years[0], years[years.length - 1]], n: years.length});
+  // A lecture direction the data contradict in every year: report it, never guess the cause.
+  if (directed && flipped.length === years.length) return Object.assign(out, {status: 'conflict',
+    reason: `현재 자료는 ${years[0]}~${years[years.length - 1]}년 모두 ${lo} ≥ ${hi}(${years[years.length - 1]}년 ${fmtv(b[years[years.length - 1]])} 대 ${fmtv(a[years[years.length - 1]])}). 기출·강의 값과 다른 원인은 원출처 대조 전까지 정하지 않음`});
+  if (flipped.length) return Object.assign(out, {status: 'reversed',
+    reason: '순서가 바뀐 해: ' + flipped.map(y => `${y}년 ${hi} ${fmtv(a[y])}·${lo} ${fmtv(b[y])}`).join(', ')});
   const gaps = years.map(y => [y, gapOf(m.compare, a[y], b[y])]).concat([['표시값', gapOf(m.compare, va[ind], vb[ind])]]);
   const least = gaps.reduce((x, y) => (y[1] < x[1] ? y : x));
-  Object.assign(out, {years: [years[0], years[years.length - 1]], n: years.length, minGap: gapText(m.compare, least[1])});
-  if (least[1] < m.compare.min) return no(`${least[0]}${least[0] === '표시값' ? '' : '년'} 차이 ${gapText(m.compare, least[1])} < 기준 ${m.compare.min}`);
+  out.minGap = gapText(m.compare, least[1], m.unit);
+  // The margin filters what is asked from memory; it does not make the relation unstable.
+  if (least[1] < m.compare.min) return Object.assign(out, {status: 'belowMargin',
+    reason: `방향은 ${m.static ? years.join('·') + '년 기준' : '매년'} 같음. 최소 차이 ${gapText(m.compare, least[1], m.unit)}(${least[0]}${least[0] === '표시값' ? '' : '년'}) < 출제 기준 ${m.compare.min}${gapUnit(m.compare, m.unit)}`});
   return Object.assign(out, {status: 'active'});
 }
 function checkSign(ind, name) {
@@ -185,15 +194,17 @@ function checkSign(ind, name) {
   out.positive = v > 0;
   const a = seriesOf[ind][name] || {}, years = windowYears(m, a, a);
   if (years.length < MIN_YEARS) return no(`${Y0}~${Y1}년 자료 ${years.length}개 연도`);
-  const bad = years.filter(y => (a[y] > 0) !== out.positive || Math.abs(a[y]) < m.sign.min);
-  if (Math.abs(v) < m.sign.min) bad.push('표시값');
   Object.assign(out, {years: [years[0], years[years.length - 1]], n: years.length, minAbs: Math.round(Math.min(...years.map(y => Math.abs(a[y])), Math.abs(v)) * 10) / 10});
-  if (bad.length) return no(`${bad.join('·')}에서 부호가 바뀌거나 |값| < ${m.sign.min}`);
+  const flipped = years.filter(y => (a[y] > 0) !== out.positive);
+  if (flipped.length) return Object.assign(out, {status: 'reversed', reason: '부호가 바뀐 해: ' + flipped.map(y => `${y}년 ${Math.round(a[y] * 10) / 10}${m.unit}`).join(', ')});
+  const small = years.filter(y => Math.abs(a[y]) < m.sign.min).map(y => `${y}년 ${Math.round(a[y] * 10) / 10}${m.unit}`);
+  if (Math.abs(v) < m.sign.min) small.push('표시값');
+  if (small.length) return Object.assign(out, {status: 'belowMargin', reason: `부호는 매년 같음. 절댓값이 출제 기준 ${m.sign.min}${m.unit} 미만인 해: ${small.join(', ')}`});
   return Object.assign(out, {status: 'active'});
 }
 const relations = [], signs = [];
 for (const r of REL.relations) {
-  const add = (hi, lo, directed, form) => relations.push(Object.assign(checkPair(r.indicator, hi, lo, directed), {form, basis: r.basis}));
+  const add = (hi, lo, directed, form) => relations.push(Object.assign(checkPair(r.indicator, hi, lo, directed), {form, basis: r.basis}, r.given ? {given: r.given} : {}));
   for (const [hi, lo] of r.pairs || []) add(hi, lo, true, 'pairs');
   (r.tiers || []).forEach((tier, i) => r.tiers.slice(i + 1).flat().forEach(lo => tier.forEach(hi => add(hi, lo, true, 'tiers'))));
   const g = r.group || [];
@@ -228,19 +239,22 @@ function checkOrder(cid, name, order) {
   const rows = years.map(y => [y, ser[y]]).concat([['표시값', c.values[name]]]);
   const rest = c.categories.map(x => x[0]).filter(k => !order.includes(k) && !c.rankExclude.includes(k));
   let least = [null, Infinity];
+  const broken = [];
   for (const [y, v] of rows) {
     const gaps = order.map((k, i) => v[k] - (i + 1 < order.length ? v[order[i + 1]] : Math.max(...rest.map(o => v[o] || 0))));
     const g = Math.min(...gaps);
+    if (g <= 0) broken.push(y);
     if (g < least[1]) least = [y, g];
   }
   Object.assign(out, {years: [years[0], years[years.length - 1]], n: years.length, minGap: Math.round(least[1] * 10) / 10});
-  if (least[1] < c.orderMargin) return no(`${least[0]}${least[0] === '표시값' ? '' : '년'} 간격 ${Math.round(least[1] * 10) / 10}%p < 기준 ${c.orderMargin}%p`);
+  if (broken.length) return Object.assign(out, {status: 'reversed', reason: `순서가 성립하지 않는 해: ${broken.join('·')}`});
+  if (least[1] < c.orderMargin) return Object.assign(out, {status: 'belowMargin', reason: `순서는 확인한 모든 해에 같음. 최소 간격 ${Math.round(least[1] * 10) / 10}%p(${least[0]}${least[0] === '표시값' ? '' : '년'}) < 출제 기준 ${c.orderMargin}%p`});
   return Object.assign(out, {status: 'active'});
 }
 const orders = [];
 for (const o of REL.orders) {
   const list = o.fromSet
-    ? Object.keys(compositions[o.composition].values).filter(n => C.byId[o.fromSet] && C.entry(C.byId[o.fromSet], n).status === 'graded' && C.entry(C.byId[o.fromSet], n).values.length === 1)
+    ? o.entities.filter(n => C.byId[o.fromSet] && C.entry(C.byId[o.fromSet], n).status === 'graded' && C.entry(C.byId[o.fromSet], n).values.length === 1)
       .map(n => [n, C.entry(C.byId[o.fromSet], n).values.slice()])
     : Object.entries(o.orders);
   for (const [n, order] of list) orders.push(Object.assign(checkOrder(o.composition, n, order), {basis: o.basis}));
@@ -257,6 +271,30 @@ const out = {
   extraFacts: Object.fromEntries(Object.entries(extra.facts).map(([k, f]) => [k, {label: f.label, complete: f.complete, source: f.source}])),
   indicators, entities, compositions, relations, signs, orders,
 };
+// Verified is not the same as practicable: count how often each active relation reaches a
+// generated question (identification basis or <보기>) in a fixed sample of seeds.
+const PRACTICE_SEEDS = 1000;
+const engine = require(path.join(ROOT, 'assets/exam-engine.js')).create(out, require(path.join(ROOT, 'assets/exam-themes.js')));
+const uses = {}, hit = k => { uses[k] = (uses[k] || 0) + 1; };
+const pairKey = (ind, a, b) => 'r|' + ind + '|' + [a, b].sort().join('|');
+for (const t of engine.themes) for (let seed = 1; seed <= PRACTICE_SEEDS; seed++) {
+  const q = engine.build({themeId: t.id, seed});
+  if (!q) continue;
+  const b = q.stage1.basis;
+  (b.relations || []).forEach(x => hit(pairKey(x.indicator, x.hi, x.lo)));
+  (b.signs || []).forEach(x => hit('s|' + x.indicator + '|' + x.entity));
+  // A longer order implies the shorter one, so both count as practised.
+  (b.orders || []).forEach(x => hit('o|' + x.composition + '|' + x.entity));
+  for (const st of q.stage2.statements) {
+    if (st.kind === 'compare') hit(pairKey(st.check.ind, st.check.subject, st.check.object));
+    if (st.kind === 'sign') hit('s|' + st.check.ind + '|' + st.check.entity);
+  }
+}
+for (const x of relations) if (x.status === 'active') x.practice = uses[pairKey(x.indicator, x.hi, x.lo)] || 0;
+for (const x of signs) if (x.status === 'active') x.practice = uses['s|' + x.indicator + '|' + x.entity] || 0;
+for (const x of orders) if (x.status === 'active') x.practice = uses['o|' + x.composition + '|' + x.entity] || 0;
+out.practiceSample = {seedsPerTheme: PRACTICE_SEEDS, themes: engine.themes.map(t => t.id)};
+
 fs.writeFileSync(process.env.KB_OUT || path.join(ROOT, 'assets/entity-kb.js'),
   '/* Generated by scripts/build-entity-kb.cjs. Do not edit by hand. */\n' +
   "(function(root,data){if(typeof module==='object'&&module.exports)module.exports=data;else root.WGEntityKB=data})" +
@@ -267,6 +305,11 @@ console.log('entities', counts, 'indicators', Object.keys(indicators).length);
 for (const [label, list] of [['relations', relations], ['signs', signs], ['orders', orders]]) {
   const by = {};
   list.forEach(x => { by[x.status] = (by[x.status] || 0) + 1; });
-  console.log(label, by);
-  if (process.argv.includes('--report')) for (const x of list) if (x.status !== 'active') console.log('  ', x.status, x.indicator || x.composition, x.hi ? x.hi + ' > ' + x.lo : x.entity + (x.order ? ' ' + x.order.join('>') : ''), '—', x.reason);
+  const idle = list.filter(x => x.status === 'active' && !x.practice);
+  console.log(label, by, 'active but never in a sampled question:', idle.length);
+  const name = x => (x.indicator || x.composition) + ' ' + (x.hi ? x.hi + ' > ' + x.lo : x.entity + (x.order ? ' ' + x.order.join('>') : ''));
+  if (process.argv.includes('--report')) {
+    for (const x of list) if (x.status !== 'active') console.log('  ', x.status, name(x), '—', x.reason);
+    for (const x of idle) console.log('   notPractised', name(x));
+  }
 }

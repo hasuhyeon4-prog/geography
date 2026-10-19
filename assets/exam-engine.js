@@ -251,13 +251,27 @@
    return {statements:slots.map(function(c,i){return Object.assign({mark:MARKS[i]},c)}),options:COMBOS.map(function(c,i){return {mark:ROUND[i],text:c.map(function(x){return MARKS[x]}).join(', ')}}),answer:target};
   }
 
+  // Most draws start from a verified relation between two 대상 in the pool and add 대상
+  // linked to them, so questions centre on the comparisons exams make; the rest are random.
+  function draw(theme,avail,k,r){
+   var has=function(list,n){return list.indexOf(n)>=0};
+   var rels=theme.kind==='indicators'?REL.filter(function(x){return has(avail,x.hi)&&has(avail,x.lo)}):[];
+   if(!rels.length||r()<.25)return shuffle(avail,r).slice(0,k);
+   var first=pick(rels,r),chosen=[first.hi,first.lo];
+   while(chosen.length<k){
+    var linked=rels.filter(function(x){return has(chosen,x.hi)!==has(chosen,x.lo)}).map(function(x){return has(chosen,x.hi)?x.lo:x.hi});
+    chosen.push(linked.length&&r()<.8?pick(linked,r):pick(avail.filter(function(n){return !has(chosen,n)}),r));
+   }
+   return shuffle(chosen,r);
+  }
+
   function build(opts){
    opts=opts||{};var r=opts.rng||seeded(opts.seed==null?Math.floor(Math.random()*4294967296):opts.seed);
    var pool=opts.themeId?[byId[opts.themeId]].filter(Boolean):ready;
    for(var attempt=0;attempt<600&&pool.length;attempt++){
     var theme=pick(pool,r),avail=theme.pool.filter(function(n){return hasData(theme,n)});
     var k=theme.pick[0]+Math.floor(r()*(theme.pick[1]-theme.pick[0]+1));if(avail.length<k)continue;
-    var chosen=shuffle(avail,r).slice(0,k),shown=[];
+    var chosen=draw(theme,avail,k,r),shown=[];
     if(theme.kind==='indicators'){
      var always=theme.always||[],inds=theme.indicators.filter(function(ind){return meta(ind)&&!meta(ind).disabled&&always.indexOf(ind)<0});
      shown=always.concat(shuffle(inds,r).slice(0,theme.show));

@@ -46,8 +46,8 @@ test('every whitelisted relation carries a basis and a verdict with its reason',
     assert.ok(list.length > 0);
     for (const x of list) {
       assert.ok(x.basis && x.basis.length > 5, JSON.stringify(x));
-      assert.ok(['active', 'excluded', 'conflict'].includes(x.status), JSON.stringify(x));
-      if (x.status === 'active') assert.ok(x.years && x.n >= 1, JSON.stringify(x));
+      assert.ok(['active', 'belowMargin', 'reversed', 'conflict', 'excluded'].includes(x.status), JSON.stringify(x));
+      if (x.status === 'active') assert.ok(x.years && x.n >= 1 && Number.isInteger(x.practice), JSON.stringify(x));
       else assert.ok(x.reason, JSON.stringify(x));
     }
   }

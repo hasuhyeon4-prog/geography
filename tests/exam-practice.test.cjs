@@ -57,7 +57,8 @@ test('OX preserves historical change, supplies fragile data and keeps existing a
  assert.match(get('t15').claim,/1인당 GDP/);
  assert.equal(get('t17').revision,2);
  const old=require('../audit/facts-20261017.json').items;
- assert.equal(F.items.length,old.length);
+ // Every audited item keeps its ID and answer; reading items may be added (p31 keeps a 기출 table).
+ assert.ok(F.items.length>=old.length);
  for(const x of old)assert.equal(get(x.id).answer,x.answer,x.id);
 });
 

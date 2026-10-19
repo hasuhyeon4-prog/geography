@@ -60,7 +60,7 @@ const allowedOrders = {};
 for (const o of REL.orders) {
   const c = allowedOrders[o.composition] || (allowedOrders[o.composition] = {});
   if (o.fromSet) {
-    for (const n of Object.keys(K.compositions[o.composition].values)) {
+    for (const n of o.entities) {
       const e = C.entry(C.byId[o.fromSet], n);
       if (e.status === 'graded' && e.values.length === 1) (c[n] || (c[n] = [])).push(e.values);
     }
@@ -189,6 +189,36 @@ test('regressions: unstable or unneeded comparisons are never asked', () => {
   for (const q of questions()) for (const s of q.stage2.statements) if (s.kind === 'compare') asked.add(s.check.ind + '|' + [s.check.subject, s.check.object].sort().join('|'));
   assert.ok(![...asked].some(k => k.startsWith('gdppc|') && k.includes('나이지리아') && k.includes('에티오피아')));
   assert.ok(![...asked].some(k => k.startsWith('gdp|') && k.includes('네팔') && k.includes('레바논')));
+});
+
+test('labels separate a real reversal from a gap below the margin', () => {
+  // The margin filters recall questions; it must not be reported as instability.
+  for (const x of K.relations) {
+    if (!['belowMargin', 'reversed', 'conflict'].includes(x.status)) continue;
+    const {years, reversed} = yearly(x.indicator, x.hi, x.lo);
+    if (x.status === 'belowMargin') assert.deepEqual(reversed, [], `${x.indicator} ${x.hi} > ${x.lo} is labelled below margin but reverses`);
+    if (x.status === 'reversed') assert.ok(reversed.length > 0 && reversed.length < years.length, `${x.indicator} ${x.hi} > ${x.lo}`);
+    if (x.status === 'conflict') assert.equal(reversed.length, years.length, `${x.indicator} ${x.hi} > ${x.lo}`);
+  }
+  for (const x of K.signs) {
+    if (!['belowMargin', 'reversed'].includes(x.status)) continue;
+    const ser = raw(x.indicator, x.entity), flips = Object.keys(ser).filter(y => inWindow(x.indicator, y) && ser[y] > 0 !== x.positive);
+    assert.equal(flips.length > 0, x.status === 'reversed', `${x.indicator} ${x.entity}: ${x.status}`);
+  }
+  // Europe stayed a net receiver in 2022 (about +4.1만 명); only the size fell below the margin.
+  const europe = K.signs.find(x => x.indicator === 'cont-netmig' && x.entity === '유럽');
+  assert.equal(europe.status, 'belowMargin');
+  assert.ok(raw('cont-netmig', '유럽')['2022'] > 0);
+});
+
+test('a conflict with an exam table names no cause and keeps the exam values to read', () => {
+  const k = K.relations.find(x => x.indicator === 'urban' && x.hi === '멕시코' && x.lo === '독일');
+  assert.equal(k.status, 'conflict');
+  assert.doesNotMatch(k.reason, /판본 차이|정의 차이/);
+  assert.deepEqual(k.given.values, {멕시코: 79.3, 독일: 77.2, 베트남: 33.8});
+  const F = require('../assets/fact-statements.js');
+  const ox = F.items.find(i => i.id === 'p31');
+  assert.ok(ox && ox.practice === 'reading' && ox.data.rows.some(r => r.includes('79.3')), 'the 2020학년도 6월 14번 table is kept as a reading item');
 });
 
 test('a lecture direction that the current data reverse is never active', () => {
