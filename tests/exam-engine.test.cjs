@@ -41,14 +41,34 @@ test('knowledge cards carry valid facts, units, years, and comparison margins', 
   assert.equal(K.entities['브라질'].ns, null, 'countries crossing the equator get no hemisphere statement');
 });
 
+test('every whitelisted relation carries a basis and a verdict with its reason', () => {
+  for (const list of [K.relations, K.signs, K.orders]) {
+    assert.ok(list.length > 0);
+    for (const x of list) {
+      assert.ok(x.basis && x.basis.length > 5, JSON.stringify(x));
+      assert.ok(['active', 'excluded', 'conflict'].includes(x.status), JSON.stringify(x));
+      if (x.status === 'active') assert.ok(x.years && x.n >= 1, JSON.stringify(x));
+      else assert.ok(x.reason, JSON.stringify(x));
+    }
+  }
+  for (const x of K.relations) assert.ok(K.indicators[x.indicator] && K.entities[x.hi] && K.entities[x.lo], x.indicator + ' ' + x.hi + ' ' + x.lo);
+  for (const x of K.orders) assert.ok(x.order.every(c => K.compositions[x.composition].categories.some(k => k[0] === c)), x.entity);
+  assert.equal(K.compositions.religion.total.year, K.compositions.religion.year, 'religion shares and totals come from the same year');
+});
+
 test('themes reference existing 대상, indicators, and compositions', () => {
   for (const t of T.themes) {
     for (const k of ['id', 'status', 'title', 'lecture', 'kind', 'entityType', 'pool', 'pick', 'prompt']) assert.ok(t[k], t.id + ' ' + k);
     assert.match(t.prompt, /\{range\}/, t.id + ' prompt must use {range} so 3- and 4-대상 questions read right');
-    if (t.totalFrom) assert.ok(K.indicators[t.totalFrom] && t.amountNoun, t.id + ' totalFrom needs an indicator and amountNoun');
     assert.ok(t.pick[0] >= 3 && t.pick[1] <= 4 && t.pick[0] <= t.pick[1], t.id + ' pick');
     for (const n of t.pool) assert.equal((K.entities[n] || {}).type, t.entityType, t.id + ' ' + n);
-    if (t.kind === 'indicators') for (const i of t.indicators) assert.equal(K.indicators[i].entityType, t.entityType, t.id + ' ' + i);
+    if (t.kind === 'indicators') {
+      for (const i of t.indicators.concat(t.always || [])) assert.equal(K.indicators[i].entityType, t.entityType, t.id + ' ' + i);
+      for (const d of t.derived || []) {
+        assert.ok(t.indicators.includes(d.rate) && (t.always || []).includes(d.total), t.id + ' derived amounts need a rate column and an always-shown total');
+        assert.ok(d.noun && [100, 1000].includes(d.per), t.id);
+      }
+    }
     if (t.kind === 'composition') {
       const c = K.compositions[t.composition];
       assert.ok(c, t.id);
@@ -96,17 +116,24 @@ test('each statement is true exactly when the knowledge base says so', () => {
           const fa = K.entities[c.a].facts[c.set].values, fb = K.entities[c.b].facts[c.set].values;
           assert.equal(fa.includes(c.value) && fb.includes(c.value), s.truth, s.text);
         } else if (s.kind === 'sign') {
-          const v = engine.value(c.entity, c.ind);
-          assert.ok(Math.abs(v) >= K.indicators[c.ind].sign.min, s.text);
-          assert.equal(c.positive === v > 0, s.truth, s.text);
+          assert.ok(!q.shown.includes(c.ind), 'a direction the table shows is not background knowledge');
+          const k = K.signs.find(x => x.indicator === c.ind && x.entity === c.entity);
+          assert.equal(k && k.status, 'active', s.text);
+          assert.equal(c.positive === k.positive, s.truth, s.text);
         } else if (s.kind === 'compare') {
           assert.ok(!q.shown.includes(c.ind), 'background comparison must not be readable from the data');
-          assert.ok(engine.comparable(c.ind, c.subject, c.object), s.text);
+          const k = engine.relation(c.ind, c.subject, c.object);
+          assert.equal(k && k.status, 'active', s.text);
+          assert.equal(k.hi === c.subject, s.truth, s.text);
           assert.equal(engine.value(c.subject, c.ind) > engine.value(c.object, c.ind), s.truth, s.text);
-        } else if (s.kind === 'data') {
-          const amount = n => engine.comp(t, n)[c.category] * engine.value(n, t.totalFrom);
+        } else if (s.kind === 'data' && c.category) {
+          const amount = n => engine.comp(t, n)[c.category] * engine.total(t, n);
           assert.equal(amount(c.subject) > amount(c.object), s.truth, s.text);
           assert.notEqual(engine.comp(t, c.subject)[c.category] > engine.comp(t, c.object)[c.category], amount(c.subject) > amount(c.object), 'data items are share-versus-total traps');
+        } else if (s.kind === 'data') {
+          const amount = n => engine.value(n, c.total) * engine.value(n, c.rate) / c.per;
+          assert.equal(amount(c.subject) > amount(c.object), s.truth, s.text);
+          assert.notEqual(engine.value(c.subject, c.rate) > engine.value(c.object, c.rate), amount(c.subject) > amount(c.object), 'data items are rate-versus-total traps');
         } else assert.fail('unknown kind ' + s.kind);
         assert.ok(s.text.startsWith(q.labels.find(l => s.text.startsWith(l)) || '?'), s.text);
         for (const label of s.text.match(/\([가-마]\)/g)) assert.ok(name(q, label), s.text);
