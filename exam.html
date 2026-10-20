@@ -42,9 +42,9 @@ h2{font-size:17px;line-height:1.45;margin:14px 0 8px;word-break:keep-all}.step{d
 <div class="scope"><label for="themeSelect">주제<select id="themeSelect"></select></label><span class="score" id="score"></span></div>
 <main id="main" aria-live="polite"></main>
 <div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 2015~2025년 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
-<script src="assets/entity-kb.js?v=20261019-4"></script>
-<script src="assets/exam-themes.js?v=20261019-4"></script>
-<script src="assets/exam-engine.js?v=20261019-4"></script>
+<script src="assets/entity-kb.js?v=20261020-1"></script>
+<script src="assets/exam-themes.js?v=20261020-1"></script>
+<script src="assets/exam-engine.js?v=20261020-1"></script>
 <script>
 (function(){
 'use strict';
@@ -72,7 +72,7 @@ function render(){
  if(!q){main.append(el('section',{className:'card'},[el('p',{text:'이 주제로 문항을 만들지 못했어요. 다른 주제를 골라 주세요.'})]));return}
  var t=q.theme,card=el('section',{className:'card'});
  if(state.targetKey)card.append(el('p',{className:'small',text:'선택한 비교를 집중 연습하고 있어요. 주제를 바꾸면 전체 연습으로 돌아갑니다.'}));
- card.append(el('div',{className:'meta',text:t.title+' · '+t.lecture+(t.exams&&t.exams.length?' · 기출 유형: '+t.exams.join(', '):'')}),el('p',{className:'prompt',text:t.prompt.split('{range}').join(q.labels[0]+'~'+q.labels[q.labels.length-1])}),table(q,state.a1!==null));
+ card.append(el('div',{className:'meta',text:t.title+' · '+t.lecture+(t.exams&&t.exams.length?' · 기출 유형: '+t.exams.join(', '):'')}),el('p',{className:'prompt',text:q.prompt||t.prompt}),table(q,state.a1!==null));
  if(t.note)card.append(el('p',{className:'small muted',text:t.note}));
  // Stage 1: identification.
  if(!q.readingOnly)card.append(el('h2',{},[el('span',{className:'step',text:'1차 식별'}),q.stage1.question]));

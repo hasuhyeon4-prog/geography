@@ -83,9 +83,15 @@ test('every ready theme builds full two-stage questions', () => {
     for (let seed = 1; seed <= SEEDS; seed++) {
       const q = engine.build({themeId: t.id, seed});
       assert.ok(q, t.id + ' seed ' + seed);
-      const optionCount = q.entities.length === 2 ? 2 : 5;
-      assert.equal(q.stage1.options.length, optionCount, t.id);
-      assert.equal(new Set(q.stage1.options.map(o => o.join('|'))).size, optionCount, t.id + ' duplicate assignment');
+      const n = q.stage1.options.length;
+      // Two 대상 are chosen among four named candidates: three to five options, never a coin flip.
+      if (q.entities.length === 2) {
+        assert.ok(n >= 3 && n <= 5, t.id + ' two-대상 options ' + n);
+        assert.equal(q.stage1.candidates.length, 4, t.id);
+        for (const o of q.stage1.options) for (const name of o) assert.ok(q.stage1.candidates.includes(name), t.id + ' option outside the candidates');
+      } else assert.equal(n, 5, t.id);
+      assert.equal(new Set(q.stage1.options.map(o => o.join('|'))).size, n, t.id + ' duplicate assignment');
+      assert.doesNotMatch(q.prompt, /[{}]/, t.id + ' unresolved prompt');
       assert.deepEqual(q.stage1.options[q.stage1.answer], q.entities, t.id);
       assert.ok(engine.identifiable(t, q.entities, q.shown), t.id + ' not identifiable');
       const st = q.stage2.statements;
@@ -144,6 +150,38 @@ test('each statement is true exactly when the knowledge base says so', () => {
       }
     }
   }
+});
+
+test('<보기> stay on the theme and avoid free distractors', () => {
+  const holders = {};
+  for (const e of Object.values(K.entities)) for (const [set, f] of Object.entries(e.facts || {})) for (const v of f.values) (holders[set + '|' + e.region + '|' + v] = true);
+  const focusShare = {};
+  for (const t of engine.themes) {
+    let withTheme = 0;
+    for (let seed = 1; seed <= SEEDS; seed++) {
+      const q = engine.build({themeId: t.id, seed}), st = q.stage2.statements, f = t.followups || {};
+      // The column shown on every question must not identify the 대상 by itself.
+      if (t.always) assert.ok(!engine.identifiable(t, q.entities, t.always), t.id + ' identified by ' + t.always);
+      assert.ok(st.filter(s => s.kind === 'both').length <= 1, t.id + ' more than one 모두 statement');
+      for (const s of st) {
+        const c = s.check || {}, set = c.set || (c.ns ? 'hemisphere' : null);
+        if (set) {
+          assert.ok(!(t.reveals || []).includes(set), t.id + ' asks what the table shows: ' + s.text);
+          if (f.facts) assert.ok(f.facts.includes(set), t.id + ' uses ' + set + ': ' + s.text);
+        }
+        if (c.ns) assert.ok(K.entities[c.entity].eqDist <= 25, 'hemisphere far from the equator: ' + c.entity);
+        // A false claim names an option some country of the same region really has.
+        if (s.kind === 'fact' && !s.truth && c.set) assert.ok(holders[c.set + '|' + K.entities[c.entity].region + '|' + c.value], 'implausible: ' + c.entity + ' ' + s.text);
+        if (s.kind === 'both' && !s.truth) assert.ok(holders[c.set + '|' + K.entities[c.b].region + '|' + c.value], 'implausible: ' + c.b + ' ' + s.text);
+        assert.ok(!(s.kind === 'data' && c.indicator), 'a <보기> must not just compare two numbers the table shows: ' + s.text);
+      }
+      if (st.filter(s => ['compare', 'sign', 'data'].includes(s.kind) || (s.check.set && (f.focus || []).includes(s.check.set))).length >= 2) withTheme++;
+    }
+    focusShare[t.id] = withTheme / SEEDS;
+  }
+  // Themes whose data support comparisons put at least two theme <보기> in most questions.
+  for (const id of ['bloc-indicators', 'continent-indicators', 'country-population', 'country-economy', 'export-composition', 'religion-composition']) assert.ok(focusShare[id] >= 0.6, id + ' ' + focusShare[id]);
+  for (const e of Object.values(K.entities)) if (e.facts.latinLanguage) assert.equal(e.region, 'americas', e.name + ' latinLanguage');
 });
 
 test('questions are reproducible from a seed', () => {

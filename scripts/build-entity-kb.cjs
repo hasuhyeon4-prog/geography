@@ -79,6 +79,9 @@ const NEGATION_SAFE = {bloc: 'all', apec: 'all', religion: 'all'};
 // A false statement may claim another option only where options exclude each other
 // and the set decides every listed country. '대표 산지'-type sets never yield a false claim.
 const EXCLUSIVE = ['religion', 'christianity', 'islam', 'buddhism', 'bloc', 'apec', 'euro', 'latinLanguage', 'exportType', 'capitalCity'];
+// A set entry can describe a territory rather than the country itself: 프랑스's
+// latinLanguage entry is French Guiana, so it says nothing about France.
+const FACT_SCOPE = {latinLanguage: name => C.regionOf[name] === 'americas'};
 
 function ringArea(ring) {
   let a = 0;
@@ -90,8 +93,11 @@ function hemispheres(name) {
   const main = polys.reduce((best, p) => (ringArea(p[0]) > ringArea(best[0]) ? p : best));
   const lons = main[0].map(p => p[0]), lats = main[0].map(p => p[1]);
   const span = (lo, hi, pos, neg) => (lo >= 1 ? pos : hi <= -1 ? neg : null);
+  const ns = span(Math.min(...lats), Math.max(...lats), 'N', 'S');
   return {
-    ns: span(Math.min(...lats), Math.max(...lats), 'N', 'S'),
+    ns,
+    // Degrees from the equator to the nearest point; a hemisphere is worth asking only near it.
+    eqDist: ns ? Math.round(Math.min(...lats.map(Math.abs))) : 0,
     ew: Math.max(...lons) - Math.min(...lons) > 180 ? null : span(Math.min(...lons), Math.max(...lons), 'E', 'W'),
   };
 }
@@ -103,6 +109,7 @@ for (const name of Object.keys(shapes.byName)) {
   for (const id of FACT_SETS) {
     const set = C.byId[id];
     if (!set || set.points) continue;
+    if (FACT_SCOPE[id] && !FACT_SCOPE[id](name)) continue;
     const e = C.entry(set, name);
     if (e.status === 'graded') facts[id] = {values: e.values.slice(), note: e.note || ''};
     else if (e.status === 'other' && NEGATION_SAFE[id] === 'all' && e.values.length) facts[id] = {values: e.values.slice(), note: e.note || ''};
@@ -157,7 +164,7 @@ for (const r of R.rankings) {
 
 // --- multi-year check of the whitelist (data/exam-relations.json) ---
 // An ageing index is a ratio of the two age groups, not the elderly share itself.
-indicators['cont-agingIndex'] = {label:'노령화 지수(노년층÷유소년층×100)',unit:'유소년 100명당 노년 인구',more:'노령화 지수가 높다',
+indicators['cont-agingIndex'] = {label:'노령화 지수(유소년 100명당 노년 인구)',unit:'명',more:'노령화 지수가 높다',
   entityType:'continent',year:stats.meta.baseYear,source:'세계은행 WDI 연령별 인구',compare:{type:'ratio',min:1.1},static:false,disabled:false,unstablePairs:[]};
 seriesOf['cont-agingIndex'] = {};
 for (const [name, c] of Object.entries(groupSeries.groups)) {

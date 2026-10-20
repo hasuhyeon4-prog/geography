@@ -135,16 +135,18 @@ test('identification rests only on whitelisted knowledge that holds in every yea
     }
     // Every wrong assignment must break some piece of that knowledge on the shown numbers.
     const comp = n => q.display.columns.reduce((v, c, i) => Object.assign(v, {[c.id]: num(q.display.rows[q.entities.indexOf(n)].cells[i])}), {});
-    for (const p of permutations(q.entities)) {
-      if (p.join() === q.entities.join()) continue;
-      const rowOf = name => q.entities[p.indexOf(name)];
-      const broken = (b.relations || []).some(x => shownValue(rowOf(x.lo), x.indicator) > shownValue(rowOf(x.hi), x.indicator)) ||
-        (b.signs || []).some(x => (shownValue(rowOf(x.entity), x.indicator) > 0) !== x.positive) ||
+    // Two-대상 questions offer pairs drawn from four named candidates, so check those options too.
+    const wrongs = permutations(q.entities).concat(q.stage1.options).filter(p => p.join() !== q.entities.join());
+    for (const p of wrongs) {
+      const rowOf = name => q.entities[p.indexOf(name)], placed = name => p.includes(name);
+      const broken = (b.relations || []).some(x => placed(x.hi) && placed(x.lo) && shownValue(rowOf(x.lo), x.indicator) > shownValue(rowOf(x.hi), x.indicator)) ||
+        (b.signs || []).some(x => placed(x.entity) && (shownValue(rowOf(x.entity), x.indicator) > 0) !== x.positive) ||
         (b.orders || []).some(o => {
+          if (!placed(o.entity)) return false;
           const v = comp(rowOf(o.entity)), cats = t.show.filter(k => !EXCLUDE[o.composition].includes(k) && !o.order.includes(k));
           return o.order.some((k, i) => (i + 1 < o.order.length ? [o.order[i + 1]] : cats).some(c => v[c] > v[k]));
         }) ||
-        (b.items || []).some(x => t.items[rowOf(x.entity)][0][0] !== x.top);
+        (b.items || []).some(x => placed(x.entity) && t.items[rowOf(x.entity)][0][0] !== x.top);
       assert.ok(broken, `${t.id}: assignment ${p.join(',')} is not ruled out`);
     }
   }
