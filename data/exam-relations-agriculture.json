@@ -1,0 +1,492 @@
+{
+ "about": "농목업 근거가 있는 후보 관계. 기존 검수 기록에서 복구했으며 새 통계로 재검증한다. active만 회상에 사용.",
+ "check": {
+  "window": [
+   2015,
+   2025
+  ],
+  "minYears": 8,
+  "minRatio": 1.1,
+  "about": "공통 자료가 있는 모든 해에 방향이 같고 최소 1.1배. 역전과 기준 차이 미달은 구별. 연도 누락을 보충하지 않는다. 원자료 개정도 있으므로 기출값과 현재판이 다르면 제시 자료를 사용한다."
+ },
+ "relations": [
+  {
+   "id": "agri-wheat-india",
+   "indicator": "qcl-production:밀",
+   "pairs": [
+    [
+     "인도",
+     "오스트레일리아"
+    ],
+    [
+     "인도",
+     "프랑스"
+    ]
+   ],
+   "basis": "강의 2권 P06 12·15쪽 · 2023학년도 9월 16번 · 2026학년도 수능 12번: 인도의 밀 생산량이 두 나라보다 많음"
+  },
+  {
+   "id": "agri-maize-china",
+   "indicator": "qcl-production:옥수수",
+   "pairs": [
+    [
+     "중국",
+     "오스트레일리아"
+    ]
+   ],
+   "basis": "강의 2권 P06 12쪽 · 2025학년도 9월 17번: 중국의 옥수수 생산량이 오스트레일리아보다 많음"
+  },
+  {
+   "id": "agri-rice-leaders",
+   "indicator": "qcl-production:쌀",
+   "pairs": [
+    [
+     "중국",
+     "인도"
+    ]
+   ],
+   "basis": "강의 2권 P06 15쪽 · 2027학년도 9월 17번: 원문 2023년 생산량 순위 중국 1위·인도 2위. 현재 FAOSTAT 개정판과 대조 대상",
+   "given": {
+    "source": "2027학년도 9월 17번",
+    "year": "2023",
+    "kind": "ordinal",
+    "rankedEntities": [
+     "중국",
+     "인도",
+     "방글라데시"
+    ],
+    "note": "원문은 순서를 보여 주는 누적 막대. 미표기 수치를 추정하지 않음."
+   }
+  },
+  {
+   "id": "agri-rice-trade-india",
+   "indicator": "fbs-exports:쌀",
+   "pairs": [
+    [
+     "인도",
+     "중국"
+    ]
+   ],
+   "basis": "강의 2권 P06 14·15쪽 · 2025학년도 9월 11번 · 2027학년도 9월 17번: 인도의 쌀 수출량이 중국보다 많음. FBS는 가공품 환산 포함 별도 기준"
+  },
+  {
+   "id": "agri-rice-trade-thailand",
+   "indicator": "fbs-exports:쌀",
+   "pairs": [
+    [
+     "타이",
+     "미얀마"
+    ]
+   ],
+   "basis": "강의 2권 P06 10쪽 · 2024학년도 9월 9번: 미얀마의 쌀 수출량은 타이보다 적음"
+  },
+  {
+   "id": "agri-wheat-asia-europe",
+   "indicator": "qcl-production:밀",
+   "pairs": [
+    [
+     "아시아",
+     "유럽"
+    ]
+   ],
+   "basis": "강의 2권 P06 13쪽 · 2020학년도 수능 16번: 아시아의 밀 생산 총량은 유럽보다 큼"
+  },
+  {
+   "id": "agri-wheat-export-ratio",
+   "indicator": "fbs-exportRatio:밀",
+   "pairs": [
+    [
+     "북아메리카",
+     "유럽"
+    ]
+   ],
+   "basis": "강의 2권 P06 14쪽 · 2024학년도 9월 19번: 원문 유럽의 생산량 대비 수출량 비율은 북아메리카보다 낮음. 원문 생산 2019~2021년·무역 2019/20~2021/22년 평균은 이 연간 FBS와 동일 통계가 아님"
+  },
+  {
+   "id": "agri-grain-net-anglo-oceania",
+   "indicator": "fbs-netExports:곡물 전체",
+   "pairs": [
+    [
+     "앵글로아메리카",
+     "오세아니아"
+    ]
+   ],
+   "basis": "강의 2권 P06 24쪽 · 2026학년도 9월 8번: 앵글로아메리카의 곡물 순수출량이 오세아니아보다 많음"
+  },
+  {
+   "id": "agri-cattle-india-china",
+   "indicator": "qcl-stocks:소",
+   "pairs": [
+    [
+     "인도",
+     "중국"
+    ]
+   ],
+   "basis": "강의 2권 P06 15쪽 · 2026학년도 수능 12번: 인도의 소 사육 두수가 중국보다 많음. 물소 제외 항목866"
+  },
+  {
+   "id": "agri-coffee-asia",
+   "indicator": "qcl-production:커피",
+   "pairs": [
+    [
+     "베트남",
+     "인도네시아"
+    ]
+   ],
+   "basis": "강의 2권 P06 29쪽 · 2027학년도 6월 16번: 베트남은 아시아 최대 커피 생산국"
+  },
+  {
+   "id": "agri-coffee-africa",
+   "indicator": "qcl-production:커피",
+   "pairs": [
+    [
+     "에티오피아",
+     "케냐"
+    ]
+   ],
+   "basis": "강의 2권 P06 29쪽 · 2026학년도 6월 19번: 에티오피아는 아프리카 최대 커피 생산국. 케냐와의 비교 범위"
+  },
+  {
+   "id": "agri-rice-asia",
+   "indicator": "qcl-production:쌀",
+   "pairs": [
+    [
+     "아시아",
+     "아프리카"
+    ],
+    [
+     "아시아",
+     "유럽"
+    ],
+    [
+     "아시아",
+     "아메리카"
+    ],
+    [
+     "아시아",
+     "오세아니아"
+    ]
+   ],
+   "basis": "강의 2권 P06 9~10·13·17쪽: 쌀은 계절풍 아시아의 생산 집중이 가장 뚜렷한 곡물"
+  },
+  {
+   "id": "agri-grain-net-regions-pos",
+   "indicator": "fbs-netExports:곡물 전체",
+   "signs": [
+    "아메리카",
+    "오세아니아",
+    "유럽"
+   ],
+   "expectedSign": 1,
+   "basis": "강의 2권 P06 14쪽 · 2025학년도 수능 12번: 2022년 세 지역은 곡물 순수출"
+  },
+  {
+   "id": "agri-grain-net-regions-neg",
+   "indicator": "fbs-netExports:곡물 전체",
+   "signs": [
+    "아시아",
+    "아프리카"
+   ],
+   "expectedSign": -1,
+   "basis": "강의 2권 P06 14쪽 · 2025학년도 수능 12번: 2022년 두 지역은 곡물 순수입"
+  },
+  {
+   "id": "agri-grain-net-countries-pos",
+   "indicator": "fbs-netExports:곡물 전체",
+   "signs": [
+    "인도",
+    "미국",
+    "프랑스"
+   ],
+   "expectedSign": 1,
+   "basis": "강의 2권 P06 14쪽 · 2026학년도 수능 12번: 2023년 대표 곡물 순수출국"
+  },
+  {
+   "id": "agri-grain-net-countries-neg",
+   "indicator": "fbs-netExports:곡물 전체",
+   "signs": [
+    "중국",
+    "멕시코",
+    "에스파냐",
+    "일본"
+   ],
+   "expectedSign": -1,
+   "basis": "강의 2권 P06 14쪽 · 2026학년도 수능 12번(중국·멕시코·에스파냐), 2025학년도 수능 12번(일본 순수입 상위)"
+  },
+  {
+   "id": "agri-egypt-wheat-net",
+   "indicator": "fbs-netExports:밀",
+   "signs": [
+    "이집트"
+   ],
+   "expectedSign": -1,
+   "basis": "강의 2권 P06 15쪽 · 2025학년도 9월 7번: 이집트는 밀 순수입국"
+  },
+  {
+   "id": "agri-argentina-maize-net",
+   "indicator": "tcl-netExports:옥수수",
+   "signs": [
+    "아르헨티나"
+   ],
+   "expectedSign": 1,
+   "basis": "강의 2권 P06 12쪽 · 2026학년도 수능 17번: 아르헨티나는 옥수수 순수출국"
+  }
+ ],
+ "orders": [
+  {
+   "id": "agri-max-wheat",
+   "indicator": "qcl-production:밀",
+   "entity": "중국",
+   "rank": 1,
+   "basis": "강의 2권 P06 15쪽 · 2027학년도 9월 17번: 세계 최대 밀 생산국"
+  },
+  {
+   "id": "agri-max-rice",
+   "indicator": "qcl-production:쌀",
+   "entity": "중국",
+   "rank": 1,
+   "basis": "강의 2권 P06 15쪽 · 2027학년도 9월 17번: 기출의 최대 쌀 생산국, 개정판 역전 여부 검증"
+  },
+  {
+   "id": "agri-max-maize",
+   "indicator": "qcl-production:옥수수",
+   "entity": "미국",
+   "rank": 1,
+   "basis": "강의 2권 P06 15쪽 · 2027학년도 9월 17번: 세계 최대 옥수수 생산국"
+  },
+  {
+   "id": "agri-max-maize-export",
+   "indicator": "tcl-exports:옥수수",
+   "entity": "미국",
+   "rank": 1,
+   "basis": "강의 2권 P06 13·33쪽 · 2020학년도 수능 3번: 당시 최대 옥수수 수출국. 현재판 전 기간 유지 여부는 별도 검증"
+  },
+  {
+   "id": "agri-max-cattle",
+   "indicator": "qcl-stocks:소",
+   "entity": "브라질",
+   "rank": 1,
+   "basis": "강의 2권 P06 23~24쪽 · 2021학년도 수능 8번 · 2023학년도 수능 10번: 물소 제외 소 최대 사육국"
+  },
+  {
+   "id": "agri-max-pigs",
+   "indicator": "qcl-stocks:돼지",
+   "entity": "중국",
+   "rank": 1,
+   "basis": "강의 2권 P06 20·24쪽 · 2019학년도 9월 4번 · 2023학년도 수능 10번: 최대 돼지 사육국"
+  },
+  {
+   "id": "agri-max-sheep",
+   "indicator": "qcl-stocks:양",
+   "entity": "중국",
+   "rank": 1,
+   "basis": "강의 2권 P06 20·23쪽 · 2019학년도 6월 6번: 최대 양 사육국"
+  },
+  {
+   "id": "agri-max-coffee",
+   "indicator": "qcl-production:커피",
+   "entity": "브라질",
+   "rank": 1,
+   "basis": "강의 2권 P06 29~30쪽: 커피 최대 생산국 브라질"
+  },
+  {
+   "id": "agri-max-cocoa",
+   "indicator": "qcl-production:카카오",
+   "entity": "코트디부아르",
+   "rank": 1,
+   "basis": "강의 2권 P06 30쪽 · 2016~2017학년도 기출 연결: 카카오 최대 생산국"
+  },
+  {
+   "id": "agri-max-tea",
+   "indicator": "qcl-production:차(생엽)",
+   "entity": "중국",
+   "rank": 1,
+   "basis": "강의 2권 P06 30쪽 · 2027학년도 6월 16번: 차 최대 생산국 중국. 지표는 생엽이며 건조 차 중량과 다름"
+  },
+  {
+   "id": "agri-world-grain-trade",
+   "indicator": "fbs-exports",
+   "area": "세계",
+   "prefix": "fbs-exports",
+   "items": [
+    "밀",
+    "쌀"
+   ],
+   "basis": "강의 2권 P06 33쪽: 밀의 국제 이동량은 쌀보다 많음"
+  },
+  {
+   "id": "agri-world-maize-rice-trade",
+   "indicator": "fbs-exports",
+   "area": "세계",
+   "prefix": "fbs-exports",
+   "items": [
+    "옥수수",
+    "쌀"
+   ],
+   "basis": "강의 2권 P06 15·33쪽 · 2027학년도 9월 17번: 옥수수의 국제 이동량은 쌀보다 많음"
+  },
+  {
+   "id": "agri-world-yield",
+   "indicator": "qcl-yield",
+   "area": "세계",
+   "prefix": "qcl-yield",
+   "items": [
+    "옥수수",
+    "쌀",
+    "밀"
+   ],
+   "basis": "강의 2권 P06 12~13쪽 · 2020학년도 수능 3번: 세계 평균 단수 옥수수>쌀>밀. 쌀은 벼 중량 기준"
+  },
+  {
+   "id": "agri-world-stocks",
+   "indicator": "qcl-stocks",
+   "area": "세계",
+   "prefix": "qcl-stocks",
+   "items": [
+    "소",
+    "양",
+    "돼지"
+   ],
+   "basis": "강의 2권 P06 24쪽 · 2023학년도 9월 12번: 세계 사육 두수 소>양>돼지"
+  },
+  {
+   "id": "agri-world-meat",
+   "indicator": "qcl-meat",
+   "area": "세계",
+   "prefix": "qcl-meat",
+   "items": [
+    "돼지",
+    "소",
+    "양"
+   ],
+   "basis": "강의 2권 P06 24쪽 · 2023학년도 9월 12번: 육류 생산량 돼지>소>양"
+  },
+  {
+   "id": "agri-australia-stocks",
+   "indicator": "qcl-stocks",
+   "area": "오스트레일리아",
+   "prefix": "qcl-stocks",
+   "items": [
+    "양",
+    "소",
+    "돼지"
+   ],
+   "basis": "강의 2권 P06 24쪽 · 2023학년도 수능 10번: 호주 내부 세 가축 두수 순서"
+  },
+  {
+   "id": "agri-brazil-stocks",
+   "indicator": "qcl-stocks",
+   "area": "브라질",
+   "prefix": "qcl-stocks",
+   "items": [
+    "소",
+    "돼지",
+    "양"
+   ],
+   "basis": "강의 2권 P06 24쪽 · 2023학년도 수능 10번: 브라질 내부 세 가축 두수 순서"
+  },
+  {
+   "id": "agri-china-stocks",
+   "indicator": "qcl-stocks",
+   "area": "중국",
+   "prefix": "qcl-stocks",
+   "items": [
+    "돼지",
+    "양",
+    "소"
+   ],
+   "basis": "강의 2권 P06 24쪽 · 2023학년도 수능 10번: 중국 내부 세 가축 두수 순서"
+  },
+  {
+   "id": "agri-asia-stocks",
+   "indicator": "qcl-stocks",
+   "area": "아시아",
+   "prefix": "qcl-stocks",
+   "items": [
+    "양",
+    "돼지",
+    "소"
+   ],
+   "basis": "강의 2권 P06 24~25쪽 · 2027학년도 6월 10번: 아시아 두수 양>돼지>소"
+  },
+  {
+   "id": "agri-americas-stocks",
+   "indicator": "qcl-stocks",
+   "area": "아메리카",
+   "prefix": "qcl-stocks",
+   "items": [
+    "소",
+    "돼지",
+    "양"
+   ],
+   "basis": "강의 2권 P06 24~25쪽 · 2027학년도 6월 10번: 아메리카 두수 소>돼지>양"
+  },
+  {
+   "id": "agri-oceania-stocks",
+   "indicator": "qcl-stocks",
+   "area": "오세아니아",
+   "prefix": "qcl-stocks",
+   "items": [
+    "양",
+    "소",
+    "돼지"
+   ],
+   "basis": "강의 2권 P06 24~25쪽 · 2027학년도 6월 10번: 오세아니아 두수 양>소>돼지"
+  },
+  {
+   "id": "agri-africa-stocks",
+   "indicator": "qcl-stocks",
+   "area": "아프리카",
+   "prefix": "qcl-stocks",
+   "items": [
+    "소",
+    "돼지"
+   ],
+   "basis": "강의 2권 P06 24~25쪽 · 2027학년도 6월 10번: 아프리카 두수 소>돼지"
+  },
+  {
+   "id": "agri-world-rice-export-ratio-wheat",
+   "indicator": "fbs-exportRatio",
+   "area": "세계",
+   "prefix": "fbs-exportRatio",
+   "items": [
+    "밀",
+    "쌀"
+   ],
+   "basis": "강의 2권 P06 10·14쪽: 쌀은 세계 생산량에 비해 국경을 넘는 양의 비중이 낮음"
+  },
+  {
+   "id": "agri-world-rice-export-ratio-maize",
+   "indicator": "fbs-exportRatio",
+   "area": "세계",
+   "prefix": "fbs-exportRatio",
+   "items": [
+    "옥수수",
+    "쌀"
+   ],
+   "basis": "강의 2권 P06 10·14쪽: 쌀의 낮은 국제 이동 비중"
+  },
+  {
+   "id": "agri-oceania-wheat-maize",
+   "indicator": "qcl-production",
+   "area": "오세아니아",
+   "prefix": "qcl-production",
+   "items": [
+    "밀",
+    "옥수수"
+   ],
+   "basis": "강의 2권 P06 18쪽 · 2016학년도 수능 18번: 오세아니아 세 곡물 구성에서 밀이 압도적"
+  },
+  {
+   "id": "agri-oceania-wheat-rice",
+   "indicator": "qcl-production",
+   "area": "오세아니아",
+   "prefix": "qcl-production",
+   "items": [
+    "밀",
+    "쌀"
+   ],
+   "basis": "강의 2권 P06 18쪽 · 2016학년도 수능 18번: 오세아니아 세 곡물 구성에서 밀이 압도적"
+  }
+ ]
+}

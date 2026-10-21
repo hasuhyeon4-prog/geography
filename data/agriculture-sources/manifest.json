@@ -1,0 +1,341 @@
+{
+  "about": "Selected original FAOSTAT CSV records, not complete bulk archives. Source bytes, units, flags and notes retained.",
+  "retrievedAt": "2026-10-21",
+  "sources": [
+    {
+      "path": "datasets_E.json",
+      "url": "https://bulks-faostat.fao.org/production/datasets_E.json",
+      "sha256": "dd04f24ca690e7f4e693e038234460cbffe1617930c086561a1d84cf2f97e3b3",
+      "sizeBytes": 107107
+    },
+    {
+      "path": "QCL/selected.csv",
+      "url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_All_Data_(Normalized).zip",
+      "sha256": "6ee22b1486b5cf112a47725f9f1a1b8315be58372f1c4ca89f83bb6076cef289",
+      "sizeBytes": 5146081,
+      "domain": "QCL",
+      "releaseDate": "2025-12-31T00:00:00",
+      "bulkSha256": "c5835418c18f9322e7decbd6800f93a216eaae3cdfa31acb08f0518c0c6d6853",
+      "member": "Production_Crops_Livestock_E_All_Data_(Normalized).csv",
+      "filter": {
+        "yearMin": 2013,
+        "itemsAndElements": {
+          "15": [
+            "5312",
+            "5510"
+          ],
+          "27": [
+            "5312",
+            "5510"
+          ],
+          "56": [
+            "5312",
+            "5510"
+          ],
+          "44": [
+            "5312",
+            "5510"
+          ],
+          "656": [
+            "5510"
+          ],
+          "661": [
+            "5510"
+          ],
+          "667": [
+            "5510"
+          ],
+          "675": [
+            "5510"
+          ],
+          "867": [
+            "5510"
+          ],
+          "1035": [
+            "5510"
+          ],
+          "977": [
+            "5510"
+          ],
+          "866": [
+            "5111"
+          ],
+          "1034": [
+            "5111"
+          ],
+          "976": [
+            "5111"
+          ],
+          "1016": [
+            "5111"
+          ],
+          "946": [
+            "5111"
+          ],
+          "1746": [
+            "5111"
+          ]
+        }
+      },
+      "recordCount": 41944
+    },
+    {
+      "path": "QCL/Production_Crops_Livestock_E_AreaCodes.csv",
+      "url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_All_Data_(Normalized).zip",
+      "sha256": "890c3b69454a0274dc7c5c63a669db907cd13b371d44b1a76876c5499960fb28",
+      "sizeBytes": 5391,
+      "bulkSha256": "c5835418c18f9322e7decbd6800f93a216eaae3cdfa31acb08f0518c0c6d6853",
+      "member": "Production_Crops_Livestock_E_AreaCodes.csv"
+    },
+    {
+      "path": "QCL/Production_Crops_Livestock_E_Elements.csv",
+      "url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_All_Data_(Normalized).zip",
+      "sha256": "404bfb00c4f93fad8d5c633aa0a809889b37aa2182fce8c50acd7dd61066777f",
+      "sizeBytes": 404,
+      "bulkSha256": "c5835418c18f9322e7decbd6800f93a216eaae3cdfa31acb08f0518c0c6d6853",
+      "member": "Production_Crops_Livestock_E_Elements.csv"
+    },
+    {
+      "path": "QCL/Production_Crops_Livestock_E_Flags.csv",
+      "url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_All_Data_(Normalized).zip",
+      "sha256": "5add99e80e1191080671106da71a336cae08f7ad150da0fa13dd7b1ff78a7ec8",
+      "sizeBytes": 169,
+      "bulkSha256": "c5835418c18f9322e7decbd6800f93a216eaae3cdfa31acb08f0518c0c6d6853",
+      "member": "Production_Crops_Livestock_E_Flags.csv"
+    },
+    {
+      "path": "QCL/Production_Crops_Livestock_E_ItemCodes.csv",
+      "url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_All_Data_(Normalized).zip",
+      "sha256": "1f6a16d865bdd4c4895a5f52b857583adca797a1b36a829ead2cc14fe7fb65a8",
+      "sizeBytes": 10838,
+      "bulkSha256": "c5835418c18f9322e7decbd6800f93a216eaae3cdfa31acb08f0518c0c6d6853",
+      "member": "Production_Crops_Livestock_E_ItemCodes.csv"
+    },
+    {
+      "path": "FBS/selected.csv",
+      "url": "https://bulks-faostat.fao.org/production/FoodBalanceSheets_E_All_Data_(Normalized).zip",
+      "sha256": "9f9cf6f2ab950be58113c40b6474a21bae7d81c48ef2e244cd9d3d25c92aac40",
+      "sizeBytes": 7804758,
+      "domain": "FBS",
+      "releaseDate": "2025-10-28T00:00:00",
+      "bulkSha256": "26200855ed5da3d0805e34219124e241d0e0bc6959d0995ebc77a10dd84cbaf1",
+      "member": "FoodBalanceSheets_E_All_Data_(Normalized).csv",
+      "filter": {
+        "yearMin": 2013,
+        "itemsAndElements": {
+          "2511": [
+            "5511",
+            "5611",
+            "5911",
+            "5521",
+            "5142",
+            "5154"
+          ],
+          "2807": [
+            "5511",
+            "5611",
+            "5911",
+            "5521",
+            "5142",
+            "5154"
+          ],
+          "2514": [
+            "5511",
+            "5611",
+            "5911",
+            "5521",
+            "5142",
+            "5154"
+          ],
+          "2513": [
+            "5511",
+            "5611",
+            "5911",
+            "5521",
+            "5142",
+            "5154"
+          ],
+          "2905": [
+            "5511",
+            "5611",
+            "5911",
+            "5521",
+            "5142",
+            "5154"
+          ]
+        }
+      },
+      "recordCount": 60814
+    },
+    {
+      "path": "FBS/FoodBalanceSheets_E_AreaCodes.csv",
+      "url": "https://bulks-faostat.fao.org/production/FoodBalanceSheets_E_All_Data_(Normalized).zip",
+      "sha256": "496ca6b2a4ec25e917fba12b67f7768a9538000993494cb10e8e9731ee17c710",
+      "sizeBytes": 9468,
+      "bulkSha256": "26200855ed5da3d0805e34219124e241d0e0bc6959d0995ebc77a10dd84cbaf1",
+      "member": "FoodBalanceSheets_E_AreaCodes.csv"
+    },
+    {
+      "path": "FBS/FoodBalanceSheets_E_Elements.csv",
+      "url": "https://bulks-faostat.fao.org/production/FoodBalanceSheets_E_All_Data_(Normalized).zip",
+      "sha256": "ac009d54c7d90bdfda2f2d4ed47d0e6fd0a959fad28ffc18a5f435f16bdbf42f",
+      "sizeBytes": 552,
+      "bulkSha256": "26200855ed5da3d0805e34219124e241d0e0bc6959d0995ebc77a10dd84cbaf1",
+      "member": "FoodBalanceSheets_E_Elements.csv"
+    },
+    {
+      "path": "FBS/FoodBalanceSheets_E_Flags.csv",
+      "url": "https://bulks-faostat.fao.org/production/FoodBalanceSheets_E_All_Data_(Normalized).zip",
+      "sha256": "491ff165b06d9c208e92133fd85abf9614ef44cfa0124c34927e33d0ce5d6923",
+      "sizeBytes": 115,
+      "bulkSha256": "26200855ed5da3d0805e34219124e241d0e0bc6959d0995ebc77a10dd84cbaf1",
+      "member": "FoodBalanceSheets_E_Flags.csv"
+    },
+    {
+      "path": "FBS/FoodBalanceSheets_E_ItemCodes.csv",
+      "url": "https://bulks-faostat.fao.org/production/FoodBalanceSheets_E_All_Data_(Normalized).zip",
+      "sha256": "3599a809f38cef6d3018598c13b61dcb8cb46606bd7b6627d44c4ac954e44054",
+      "sizeBytes": 28,
+      "bulkSha256": "26200855ed5da3d0805e34219124e241d0e0bc6959d0995ebc77a10dd84cbaf1",
+      "member": "FoodBalanceSheets_E_ItemCodes.csv"
+    },
+    {
+      "path": "TCL/selected.csv",
+      "url": "https://bulks-faostat.fao.org/production/Trade_CropsLivestock_E_All_Data_(Normalized).zip",
+      "sha256": "4deb00c94226b5f633def27adedd1a5432ef033c43afd9f66c298318f19c2b06",
+      "sizeBytes": 15912479,
+      "domain": "TCL",
+      "releaseDate": "2026-07-24T00:00:00",
+      "bulkSha256": "effb07f6ee6c1f086e2dd4c11742d2ba9495552fb11c11ea64aa7edbd7a32380",
+      "member": "Trade_CropsLivestock_E_All_Data_(Normalized).csv",
+      "filter": {
+        "yearMin": 2013,
+        "itemsAndElements": {
+          "15": [
+            "5610",
+            "5910",
+            "5622",
+            "5922"
+          ],
+          "27": [
+            "5610",
+            "5910",
+            "5622",
+            "5922"
+          ],
+          "28": [
+            "5610",
+            "5910",
+            "5622",
+            "5922"
+          ],
+          "29": [
+            "5610",
+            "5910",
+            "5622",
+            "5922"
+          ],
+          "30": [
+            "5610",
+            "5910",
+            "5622",
+            "5922"
+          ],
+          "31": [
+            "5610",
+            "5910",
+            "5622",
+            "5922"
+          ],
+          "32": [
+            "5610",
+            "5910",
+            "5622",
+            "5922"
+          ],
+          "56": [
+            "5610",
+            "5910",
+            "5622",
+            "5922"
+          ],
+          "44": [
+            "5610",
+            "5910",
+            "5622",
+            "5922"
+          ],
+          "656": [
+            "5610",
+            "5910",
+            "5622",
+            "5922"
+          ],
+          "661": [
+            "5610",
+            "5910",
+            "5622",
+            "5922"
+          ],
+          "667": [
+            "5610",
+            "5910",
+            "5622",
+            "5922"
+          ],
+          "1672": [
+            "5610",
+            "5910",
+            "5622",
+            "5922"
+          ]
+        }
+      },
+      "recordCount": 120064
+    },
+    {
+      "path": "TCL/Trade_CropsLivestock_E_AreaCodes.csv",
+      "url": "https://bulks-faostat.fao.org/production/Trade_CropsLivestock_E_All_Data_(Normalized).zip",
+      "sha256": "36f0111ecddfeb2d33de20ed38983b7b5995c2f5fb615e81c2344ed602a680ed",
+      "sizeBytes": 7577,
+      "bulkSha256": "effb07f6ee6c1f086e2dd4c11742d2ba9495552fb11c11ea64aa7edbd7a32380",
+      "member": "Trade_CropsLivestock_E_AreaCodes.csv"
+    },
+    {
+      "path": "TCL/Trade_CropsLivestock_E_Elements.csv",
+      "url": "https://bulks-faostat.fao.org/production/Trade_CropsLivestock_E_All_Data_(Normalized).zip",
+      "sha256": "21ea21944193371c33feaff5e9bddda4a0308517b47307178d1316c0c29bf4f6",
+      "sizeBytes": 236,
+      "bulkSha256": "effb07f6ee6c1f086e2dd4c11742d2ba9495552fb11c11ea64aa7edbd7a32380",
+      "member": "Trade_CropsLivestock_E_Elements.csv"
+    },
+    {
+      "path": "TCL/Trade_CropsLivestock_E_Flags.csv",
+      "url": "https://bulks-faostat.fao.org/production/Trade_CropsLivestock_E_All_Data_(Normalized).zip",
+      "sha256": "3f73ee1d792b0934a7e3eafa0b294067a3c824bf2fa306aa8b5fe3686aa18e57",
+      "sizeBytes": 131,
+      "bulkSha256": "effb07f6ee6c1f086e2dd4c11742d2ba9495552fb11c11ea64aa7edbd7a32380",
+      "member": "Trade_CropsLivestock_E_Flags.csv"
+    },
+    {
+      "path": "TCL/Trade_CropsLivestock_E_ItemCodes.csv",
+      "url": "https://bulks-faostat.fao.org/production/Trade_CropsLivestock_E_All_Data_(Normalized).zip",
+      "sha256": "343c4ce8fec5902059f89d05c7f19bd9f698718a4f57abe114bb718744daf264",
+      "sizeBytes": 23227,
+      "bulkSha256": "effb07f6ee6c1f086e2dd4c11742d2ba9495552fb11c11ea64aa7edbd7a32380",
+      "member": "Trade_CropsLivestock_E_ItemCodes.csv"
+    },
+    {
+      "path": "m49.html",
+      "url": "https://unstats.un.org/unsd/methodology/m49/overview/",
+      "sha256": "b9048114f6e7f2abda83bf03d4263c9d7cd1bd7230e3d0461025ee7839a7a1fb",
+      "sizeBytes": 1721575
+    },
+    {
+      "path": "QCL-method.pdf",
+      "url": "https://files-faostat.fao.org/production/QCL/QCL_methodology_e.pdf",
+      "sha256": "a3a4ec502c17305ccdd84f2127fb4568168677521763466c05c00cf51fb1877f",
+      "sizeBytes": 137544
+    }
+  ]
+}
