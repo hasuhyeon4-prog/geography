@@ -21,7 +21,7 @@ test('the committed knowledge base is what the builder produces from committed i
 
 test('knowledge cards carry valid facts, units, years, and comparison margins', () => {
   for (const [name, e] of Object.entries(K.entities)) {
-    assert.ok(['country', 'bloc', 'continent'].includes(e.type), name);
+    assert.ok(['country', 'bloc', 'continent', 'site'].includes(e.type), name);
     for (const [set, f] of Object.entries(e.facts)) {
       const meta = K.factSets[set] || K.extraFacts[set];
       assert.ok(meta, name + ' ' + set);
@@ -126,6 +126,21 @@ test('each statement is true exactly when the knowledge base says so', () => {
         if (s.kind === 'fact' && c.set) {
           assert.ok(!(t.reveals || []).includes(c.set), t.id + ' asks what the data shows: ' + s.text);
           assert.equal(K.entities[c.entity].facts[c.set].values.includes(c.value), s.truth, s.text);
+        } else if (s.kind === 'graph') {
+          const v = n => {
+            const x = K.entities[n].climate, T = x.temperature;
+            return {range: x.range, coldest: Math.min(...T), warmest: Math.max(...T), annual: x.annual, summer: x.summerShare}[c.metric];
+          };
+          assert.equal(v(c.subject) > v(c.object), s.truth, s.text);
+        } else if (s.kind === 'place') {
+          const x = n => K.entities[n].climate;
+          if (c.place === 'hemisphere') assert.equal(x(c.entity).hemisphere === c.value, s.truth, s.text);
+          else if (c.place === 'lat') assert.equal(Math.abs(x(c.subject).lat) > Math.abs(x(c.object).lat), s.truth, s.text);
+          else assert.equal(x(c.subject).elevation > x(c.object).elevation, s.truth, s.text);
+        } else if (s.kind === 'climate') {
+          const x = K.entities[c.entity].climate;
+          assert.ok(x.type, 'type <보기> only for verified sites: ' + c.entity);
+          assert.equal(x.type === c.type, s.truth, s.text);
         } else if (s.kind === 'fact' && c.line) {
           const l = K.entities[c.entity].lines[c.line];
           assert.ok(!l.undecided, s.text);
@@ -188,18 +203,18 @@ test('<보기> stay on the theme and avoid free distractors', () => {
         if (s.kind === 'both' && !s.truth) assert.ok(holders[c.set + '|' + K.entities[c.b].region + '|' + c.value], 'implausible: ' + c.b + ' ' + s.text);
         assert.ok(!(s.kind === 'data' && c.indicator), 'a <보기> must not just compare two numbers the table shows: ' + s.text);
       }
-      if (st.filter(s => ['compare', 'sign', 'data'].includes(s.kind) || (s.check.set && (f.focus || []).includes(s.check.set))).length >= 2) withTheme++;
+      if (st.filter(s => ['compare', 'sign', 'data', 'graph', 'climate'].includes(s.kind) || (s.check.set && (f.focus || []).includes(s.check.set))).length >= 2) withTheme++;
     }
     focusShare[t.id] = withTheme / SEEDS;
   }
   // Themes whose data support comparisons put at least two theme <보기> in most questions.
-  for (const id of ['bloc-indicators', 'continent-indicators', 'country-population', 'country-economy', 'export-composition', 'religion-composition']) assert.ok(focusShare[id] >= 0.6, id + ' ' + focusShare[id]);
+  for (const id of ['bloc-indicators', 'continent-indicators', 'country-population', 'country-economy', 'export-composition', 'religion-composition', 'electricity-mix', 'climate-graphs']) assert.ok(focusShare[id] >= 0.6, id + ' ' + focusShare[id]);
   for (const e of Object.values(K.entities)) if (e.facts.latinLanguage) assert.equal(e.region, 'americas', e.name + ' latinLanguage');
 });
 
 test('map letters sit inside the countries they mark', () => {
   const S = require('../assets/country-boundaries.js'), G = require('../assets/location-grading.js');
-  const names = new Set(T.themes.filter(t => t.map).flatMap(t => t.pool));
+  const names = new Set(T.themes.filter(t => t.map && t.entityType === 'country').flatMap(t => t.pool));
   for (const n of names) {
     const e = K.entities[n];
     assert.ok(G.inPolygons({lon: e.label[0], lat: e.label[1]}, S.byName[n].polygons), n + ' label outside');

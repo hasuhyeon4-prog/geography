@@ -78,6 +78,15 @@
    prompt:'{range}는 {candidates} 중 하나이다. 표는 발전원별 발전량 비중(%)과 총발전량이다. 비중과 발전량을 구별한다.'
   },
   {
+   id:'climate-graphs',status:'ready',title:'기후 그래프로 지역 판별',lecture:'1권 P02',exams:['2025학년도 수능 13번','2024학년도 9월 6번','2026학년도 수능 11번'],
+   kind:'climate',entityType:'site',map:true,everyKnown:true,
+   // Stations with complete 1991~2020 monthly temperature and precipitation (data/climate-normals.json).
+   pool:['양곤','발릭파판','다윈','배로(우트키아빅)','퍼스','오클랜드','파리','케이프타운','푸저우','보고타','런던','마르세유','마나우스','딕슨','치타','몬트리올','상파울루','라바트','쿤밍','크라이스트처치','샌프란시스코','선양','덴버','로차','더블린','메시나','브리즈번','창춘','디트로이트','블라디보스토크','로마','보스토크(남극)','리마','브라질리아','아디스아바바','시안','모스크바','로스앤젤레스'],
+   pick:[3,4],
+   note:'1991~2020년 관측소 평년값이다. 연교차 = 최난월 평균 기온 − 최한월 평균 기온. 남반구는 계절이 반대이다.',
+   prompt:'{range}는 {candidates} 중 하나이다. 그래프는 월평균 기온(선)과 월 강수량(막대)이다.'
+  },
+  {
    id:'religion-composition',status:'ready',title:'국가별 종교 인구 구성',lecture:'1권 P04',exams:['2027학년도 9월 7번','2026학년도 6월 8번','2022학년도 6월 5번'],
    kind:'composition',composition:'religion',entityType:'country',map:true,
    pool:['말레이시아','네팔','스리랑카','인도','방글라데시','미얀마','필리핀','우즈베키스탄','인도네시아','이스라엘','레바논','나이지리아','파키스탄','타이'],

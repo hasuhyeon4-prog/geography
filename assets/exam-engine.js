@@ -68,6 +68,17 @@
   function total(theme,name){var c=composition(theme);return c&&c.total?c.total.values[name]:undefined}
   function catLabel(theme,id){var row=composition(theme).categories.find(function(x){return x[0]===id});return row?row[1]:id}
   function orderOf(theme,name){var c=ORDERS[theme.composition];return c&&c[name]||null}
+  // Climate themes: a site's verified climate type and its hemisphere are what a student brings.
+  var CLIMATE=kb.climate||{types:{}};
+  function cl(n){var e=entity(n);return e&&e.climate}
+  function typeLabel(t){return CLIMATE.types[t]||t}
+  // Köppen letters as the lecture writes them: Aw, BS, Cfb, ET.
+  function code(t){return t.split('').map(function(ch,i){return i===0||(i===1&&/[be]/.test(t[0]))?ch.toUpperCase():ch}).join('')}
+  // Could these monthly data be of type t? Only the code letters the data decide reliably count.
+  function climateFits(c,t){for(var i=0;i<Math.min(c.robust,t.length);i++)if(c.computed[i]!==t[i])return false;return true}
+  // Placing site n on the row that holds site d's graph is ruled out when d's data clearly
+  // contradict n's verified type, or their seasons put the row in the other hemisphere.
+  function climateBreaks(n,d){var s=cl(n),r=cl(d);return !!(s.type&&!climateFits(r,s.type))||!!(r.signal&&r.signal!==s.hemisphere)}
   // Which options each region holds. A false claim must name something a country of the same
   // region really has, so "우간다는 APEC 회원국이다" never serves as a free distractor.
   var HOLDERS={};
@@ -82,6 +93,7 @@
   function hasData(theme,name){
    if(!entity(name))return false;
    if(theme.kind==='items')return !!(theme.items&&theme.items[name]);
+   if(theme.kind==='climate')return !!cl(name);
    if(theme.kind==='composition')return !!comp(theme,name)&&(!composition(theme).total||total(theme,name)!=null);
    return (theme.always||[]).every(function(ind){return value(name,ind)!=null})&&theme.indicators.some(function(ind){return value(name,ind)!=null});
   }
@@ -96,6 +108,7 @@
     signs:SIGNS.filter(function(x){return shown.indexOf(x.indicator)>=0&&has(x.entity)})};
    if(theme.kind==='composition'){var c=composition(theme);return {orders:chosen.map(function(n){return orderOf(theme,n)}).filter(Boolean),
     relations:c.total&&c.total.indicator?REL.filter(function(x){return x.indicator===c.total.indicator&&has(x.hi)&&has(x.lo)}):[]};}
+   if(theme.kind==='climate')return {sites:chosen.map(function(n){return {entity:n,type:cl(n).type,hemisphere:cl(n).hemisphere}})};
    return {items:chosen.map(function(n){return {entity:n,top:theme.items[n][0][0]}})};
   }
   // A row clearly breaks an order when a category ranked below beats it by the margin.
@@ -110,6 +123,7 @@
    if(theme.kind==='indicators')
     return k.relations.every(function(x){return !clearlyAbove(x.indicator,value(row[x.lo],x.indicator),value(row[x.hi],x.indicator))})&&
      k.signs.every(function(x){var v=value(row[x.entity],x.indicator),min=meta(x.indicator).sign.min;return x.positive?v>-min:v<min});
+   if(theme.kind==='climate')return perm.every(function(n,i){return !climateBreaks(n,chosen[i])});
    if(theme.kind==='composition'){var c=composition(theme);return k.orders.every(function(o){return !orderBroken(c,o.order,comp(theme,row[o.entity]))})&&
     (k.relations||[]).every(function(x){return !clearlyAbove(x.indicator,total(theme,row[x.lo]),total(theme,row[x.hi]))});}
    return k.items.every(function(x){return theme.items[row[x.entity]][0][0]===x.top});
@@ -126,6 +140,13 @@
     var cols=shown.map(function(ind){var m=meta(ind);return {id:ind,label:m.label,unit:m.unit}});
     var src={};shown.forEach(function(ind){var m=meta(ind);src[m.year+' · '+m.source]=1});
     return {columns:cols,rows:chosen.map(function(n,i){return {label:LABELS[i],cells:shown.map(function(ind){return fmt(value(n,ind))})}}),source:Object.keys(src).join(' / ')};
+   }
+   if(theme.kind==='climate'){
+    // All graphs share one scale, as on an exam page, so they can be compared by eye.
+    var T=[],P=[];chosen.forEach(function(n){T=T.concat(cl(n).temperature);P=P.concat(cl(n).precipitation)});
+    return {kind:'climate',columns:[],rows:chosen.map(function(n,i){var c=cl(n);return {label:LABELS[i],temperature:c.temperature,precipitation:c.precipitation,cells:[]}}),
+     scale:{tMin:Math.min(0,Math.floor(Math.min.apply(null,T)/10)*10),tMax:Math.max(10,Math.ceil(Math.max.apply(null,T)/10)*10),pMax:Math.max(100,Math.ceil(Math.max.apply(null,P)/100)*100)},
+     source:CLIMATE.period.join('~')+'년 평년값 · '+CLIMATE.source};
    }
    if(theme.kind==='items'){
     return {columns:[{id:'items',label:'수출 상위 품목(비중, %)',unit:''}],rows:chosen.map(function(n,i){return {label:LABELS[i],cells:[theme.items[n].map(function(x){return x[0]+' '+fmt(x[1])}).join(', ')]}}),source:theme.year+' · '+theme.source};
@@ -152,6 +173,7 @@
      k.signs.forEach(function(x){if(x.entity===n)parts.push(meta(x.indicator).label+(x.positive?' 양(+)':' 음(−)'))});
     }else if(theme.kind==='composition'){var o=orderOf(theme,n);if(o)parts.push(o.order.map(function(id){return catLabel(theme,id)}).join(' > ')+(o.order.length===1?' 1위':''));
      (k.relations||[]).forEach(function(x){if(x.hi===n||x.lo===n)parts.push(meta(x.indicator).label+' '+x.hi+' > '+x.lo)});}
+    else if(theme.kind==='climate'){var c=cl(n);if(c.type)parts.push(typeLabel(c.type));if(c.signal)parts.push((c.signal==='S'?'남반구':'북반구')+'(최한월 '+c.coldest+'월)')}
     else parts.push(theme.items[n].slice(0,2).map(function(x){return x[0]}).join('·')+' 조합');
     return {label:LABELS[i],name:n,cue:parts.length?parts.slice(0,3).join(' · '):'나머지 대상(소거)'};
    });
@@ -181,7 +203,52 @@
    return amtA>amtB?[p[0],p[1]]:[p[1],p[0]];
   }
 
+  // Climate <보기>: readings of the graphs, the map position, and the verified climate type.
+  var GRAPH=[
+   ['range','기온의 연교차','가 크다',3,'℃',function(c){return c.range}],
+   ['coldest','최한월 평균 기온','이 높다',3,'℃',function(c){return Math.min.apply(null,c.temperature)}],
+   ['warmest','최난월 평균 기온','이 높다',3,'℃',function(c){return Math.max.apply(null,c.temperature)}],
+   ['annual','연 강수량','이 많다',0,'mm',function(c){return c.annual}],
+   ['summer','연 강수량 중 6~8월 강수량의 비중','이 높다',15,'%',function(c){return c.summerShare}]
+  ];
+  function climateExplain(n){var c=cl(n);return n+' — 강의 기후형 '+typeLabel(c.lecture)+'('+code(c.lecture)+'), 관측소 평년값 분류 '+code(c.computed)+' · '+c.station.replace(/_\d+$/,'')}
+  function climateCandidates(theme,chosen,r){
+   var out=[],L=function(n){return LABELS[chosen.indexOf(n)]};
+   function add(c){if(!out.some(function(x){return x.text===c.text}))out.push(c)}
+   function ordered(p,va,vb){var hi=va>vb?p[0]:p[1],lo=hi===p[0]?p[1]:p[0],truth=r()<.5;return {hi:hi,lo:lo,truth:truth,s:truth?[hi,lo]:[lo,hi]}}
+   pairs(chosen).forEach(function(p){
+    var a=cl(p[0]),b=cl(p[1]);
+    // A reading is asked only when the graphs show it plainly (3℃, 15%p, or 1.3배·150mm apart).
+    GRAPH.forEach(function(g){
+     var va=g[5](a),vb=g[5](b),clear=g[0]==='annual'?Math.max(va,vb)>=1.3*Math.min(va,vb)&&Math.abs(va-vb)>=150:Math.abs(va-vb)>=g[3];
+     if(!clear)return;
+     var o=ordered(p,va,vb);
+     add({kind:'graph',key:'graph|'+g[0]+'|'+p.join('|'),text:L(o.s[0])+'는 '+L(o.s[1])+'보다 '+g[1]+g[2]+'.',truth:o.truth,
+      explain:'그래프 읽기: '+o.hi+' '+fmt(g[5](cl(o.hi)))+g[4]+', '+o.lo+' '+fmt(g[5](cl(o.lo)))+g[4]+(g[0]==='range'?' (최난월 − 최한월)':''),check:{metric:g[0],subject:o.s[0],object:o.s[1]}});
+    });
+    var la=Math.abs(a.lat),lb=Math.abs(b.lat);
+    if(Math.abs(la-lb)>=8){var o=ordered(p,la,lb);
+     add({kind:'place',key:'lat|'+p.join('|'),text:L(o.s[0])+'는 '+L(o.s[1])+'보다 고위도에 위치한다.',truth:o.truth,explain:o.hi+' 위도 '+fmt(Math.abs(cl(o.hi).lat))+'°, '+o.lo+' '+fmt(Math.abs(cl(o.lo).lat))+'°',check:{place:'lat',subject:o.s[0],object:o.s[1]}})}
+    if(a.elevation!=null&&b.elevation!=null&&Math.abs(a.elevation-b.elevation)>=800){var e=ordered(p,a.elevation,b.elevation);
+     add({kind:'place',key:'alt|'+p.join('|'),text:L(e.s[0])+'는 '+L(e.s[1])+'보다 해발 고도가 높다.',truth:e.truth,explain:e.hi+' 관측소 해발 '+fmt(cl(e.hi).elevation)+'m, '+e.lo+' '+fmt(cl(e.lo).elevation)+'m',check:{place:'alt',subject:e.s[0],object:e.s[1]}})}
+   });
+   chosen.forEach(function(n){
+    var c=cl(n);
+    if(Math.abs(c.lat)>=5){var south=c.hemisphere==='S',t=r()<.5;
+     add({kind:'place',key:'hemi|'+n,text:L(n)+'는 '+(south===t?'남반구':'북반구')+'에 위치한다.',truth:t,explain:n+' 위도 '+fmt(c.lat)+'° — '+(south?'남반구':'북반구'),check:{place:'hemisphere',entity:n,value:south===t?'S':'N'}})}
+    if(!c.type)return;
+    add({kind:'climate',key:'type|'+n,text:L(n)+'는 '+typeLabel(c.type)+'가 나타난다.',truth:true,explain:climateExplain(n),check:{type:c.type,entity:n}});
+    // A wrong type the data clearly rule out: another site's type in this question, else one of the same group.
+    var others=chosen.map(function(o){return cl(o).type}).filter(function(t){return t&&t!==c.type&&!climateFits(c,t)});
+    var group=Object.keys(CLIMATE.types).filter(function(t){return t!=='h'&&t!==c.type&&t[0]===c.type[0]&&!climateFits(c,t)});
+    var w=others.length?pick(others,r):group.length?pick(group,r):null;
+    if(w)add({kind:'climate',key:'type|'+n,text:L(n)+'는 '+typeLabel(w)+'가 나타난다.',truth:false,explain:climateExplain(n),check:{type:w,entity:n}});
+   });
+   return out;
+  }
+
   function candidates(theme,chosen,shown,r){
+   if(theme.kind==='climate')return climateCandidates(theme,chosen,r);
    var out=[],L=function(n){return LABELS[chosen.indexOf(n)]},has=function(n){return chosen.indexOf(n)>=0};
    function add(c){if(c.text&&!out.some(function(x){return x.text===c.text}))out.push(c)}
    chosen.forEach(function(n){
@@ -262,7 +329,7 @@
   // rest are background facts, with at most one '(가)와 (나)는 모두 …'.
   function chooseStatements(theme,cands,r){
    var focusSets=(theme.followups&&theme.followups.focus)||[];
-   function isFocus(c){return c.kind==='compare'||c.kind==='sign'||c.kind==='data'||!!(c.check&&c.check.set&&focusSets.indexOf(c.check.set)>=0)}
+   function isFocus(c){return c.kind==='compare'||c.kind==='sign'||c.kind==='data'||c.kind==='graph'||c.kind==='climate'||!!(c.check&&c.check.set&&focusSets.indexOf(c.check.set)>=0)}
    var picked=[],used={},kinds={},both=0;
    function take(pool,truth,need){
     var list=shuffle(pool.filter(function(c){return c.truth===truth}),r),got=0;
@@ -297,7 +364,7 @@
   function markerStage(theme,chosen,shown,avail,r){
    var k=chosen.length,room=Math.min(5,avail.length)-k,right=chosen.join('|');
    var known1=function(n){return theme.kind==='indicators'?REL.some(function(x){return shown.indexOf(x.indicator)>=0&&(x.hi===n&&chosen.indexOf(x.lo)>=0||x.lo===n&&chosen.indexOf(x.hi)>=0)}):
-    theme.kind==='composition'?!!orderOf(theme,n):!!(theme.items&&theme.items[n])};
+    theme.kind==='composition'?!!orderOf(theme,n):theme.kind==='climate'?!!cl(n).type:!!(theme.items&&theme.items[n])};
    var region=function(n){return chosen.some(function(c){return entity(c).region===entity(n).region})};
    // Countries a learner can rule out by what they know come first, then neighbours.
    var others=shuffle(avail.filter(function(n){return chosen.indexOf(n)<0}),r).map(function(n){return [(known1(n)?2:0)+(region(n)?1:0),n]})
@@ -361,7 +428,8 @@
     var theme=pick(pool,r),avail=theme.pool.filter(function(n){return hasData(theme,n)});
     var k=theme.pick[0]+Math.floor((attempt<400?size:r())*(theme.pick[1]-theme.pick[0]+1));if(avail.length<k)continue;
     // everyKnown themes draw the 대상 from those with verified knowledge; extras on the map may be any.
-    var known0=theme.everyKnown&&theme.kind==='composition'?avail.filter(function(n){return orderOf(theme,n)}):avail;
+    var own=function(n){return theme.kind==='composition'?!!orderOf(theme,n):theme.kind==='climate'?!!cl(n).type:true};
+    var known0=theme.everyKnown&&theme.kind!=='indicators'?avail.filter(own):avail;
     if(known0.length<k)continue;
     var chosen=draw(theme,known0,k,r),shown=[];
     if(target){
@@ -378,7 +446,7 @@
     // identified the 대상, the theme's own indicators would be decoration.
     if(theme.always&&theme.always.length&&identifiable(theme,chosen,theme.always))continue;
     // everyKnown: each 대상 is identified by its own verified knowledge, never by elimination.
-    if(theme.everyKnown&&chosen.some(function(n){return theme.kind==='composition'?!orderOf(theme,n):!REL.some(function(x){return shown.indexOf(x.indicator)>=0&&(x.hi===n||x.lo===n)&&chosen.indexOf(x.hi)>=0&&chosen.indexOf(x.lo)>=0})}))continue;
+    if(theme.everyKnown&&chosen.some(function(n){return theme.kind!=='indicators'?!own(n):!REL.some(function(x){return shown.indexOf(x.indicator)>=0&&(x.hi===n||x.lo===n)&&chosen.indexOf(x.hi)>=0&&chosen.indexOf(x.lo)>=0})}))continue;
     var pair=theme.map?markerStage(theme,chosen,shown,avail,r):null;if(theme.map&&!pair)continue;
     var s2=chooseStatements(theme,candidates(theme,chosen,shown,r),r);if(!s2)continue;
     if(target){
@@ -391,10 +459,11 @@
     var names=pair?pair.candidates:chosen.slice().sort(koSort),basis=known(theme,pair?names:chosen,shown),cueList=cues(theme,chosen,shown);
     // Say how each extra candidate is ruled out.
     if(pair)pair.extra.forEach(function(n){
-     var o=theme.kind==='composition'&&orderOf(theme,n),it=theme.kind==='items'&&theme.items[n];
+     var o=theme.kind==='composition'&&orderOf(theme,n),it=theme.kind==='items'&&theme.items[n],ct=theme.kind==='climate'&&cl(n);
      var why=(basis.relations||[]).filter(function(x){return x.hi===n||x.lo===n}).map(function(x){return meta(x.indicator).label+' '+x.hi+' > '+x.lo})
       .concat((basis.signs||[]).filter(function(x){return x.entity===n}).map(function(x){return meta(x.indicator).label+(x.positive?' 양(+)':' 음(−)')}))
-      .concat(o?[o.order.map(function(id){return catLabel(theme,id)}).join(' > ')+(o.order.length===1?' 1위':'')]:[],it?[it[0][0]+' 1위 품목']:[]);
+      .concat(o?[o.order.map(function(id){return catLabel(theme,id)}).join(' > ')+(o.order.length===1?' 1위':'')]:[],it?[it[0][0]+' 1위 품목']:[],
+       ct?[ct.type?typeLabel(ct.type):null,ct.hemisphere==='S'?'남반구':'북반구'].filter(Boolean):[]);
      var inOptions=s1.options.some(function(o){return o.indexOf(n)>=0});
      cueList.push({label:'후보',name:n,cue:!inOptions?'선택지에 나오지 않음':why.length?why.slice(0,3).join(' · '):'다른 선택지로 소거'});
     });

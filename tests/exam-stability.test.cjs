@@ -135,6 +135,7 @@ test('identification rests only on whitelisted knowledge that holds in every yea
     }
     // Every wrong assignment must break some piece of that knowledge on the shown numbers.
     const comp = n => q.display.columns.reduce((v, c, i) => Object.assign(v, {[c.id]: num(q.display.rows[q.entities.indexOf(n)].cells[i])}), {});
+    if (t.kind === 'climate') continue;  // checked against the station data in its own test below
     // Two-대상 questions offer pairs drawn from four named candidates, so check those options too.
     const wrongs = permutations(q.entities).concat(q.stage1.options).filter(p => p.join() !== q.entities.join());
     for (const p of wrongs) {
@@ -265,4 +266,69 @@ test('equator and prime-meridian statements agree with geography', () => {
     assert.equal(list.includes(s.check.entity), s.truth, s.text + ' ' + s.check.entity);
     assert.match(s.text, s.check.line === 'equator' ? /적도가 지난다/ : /본초 자오선이 지난다/);
   }
+});
+
+// Köppen letters re-derived here from data/climate-normals.json with the lecture's thresholds
+// (1권 P02), each with whether the deciding values clear 1℃ / 10mm / 15% of the limit.
+const climateData = data('data/climate-normals.json');
+const station = Object.fromEntries(climateData.sites.map(x => [x.name, x]));
+function letters(T, P, lat) {
+  const sum = a => a.reduce((x, y) => x + y, 0), hot = Math.max(...T), cold = Math.min(...T), mean = sum(T) / 12, rain = sum(P);
+  const sm = lat >= 0 ? [3, 4, 5, 6, 7, 8] : [9, 10, 11, 0, 1, 2], wm = [...Array(12).keys()].filter(i => !sm.includes(i));
+  const ok = (v, lim, unit) => (unit === '%' ? Math.abs(v - lim) / Math.max(Math.abs(lim), 1) >= 0.15 : Math.abs(v - lim) >= (unit === 'mm' ? 10 : 1));
+  const out = [];
+  if (hot < 10) return [['e', ok(hot, 10)], [hot >= 0 ? 't' : 'f', ok(hot, 0)]];
+  const share = sum(sm.map(i => P[i])) / rain, lim = 20 * mean + (share >= 0.7 ? 280 : 1 - share >= 0.7 ? 0 : 140);
+  if (rain < lim) return [['b', ok(rain, lim, '%')], [rain >= lim / 2 ? 's' : 'w', ok(rain, lim / 2, '%')]];
+  if (cold >= 18) { const dry = Math.min(...P); return [['a', ok(cold, 18) && ok(rain, lim, '%')], [dry >= 60 ? 'f' : dry >= 100 - rain / 25 ? 'm' : 'w', ok(dry, 60, 'mm') && ok(dry, 100 - rain / 25, 'mm')]]; }
+  out.push([cold >= -3 ? 'c' : 'd', ok(cold, 18) && ok(cold, -3) && ok(rain, lim, '%')]);
+  const sDry = Math.min(...sm.map(i => P[i])), wWet = Math.max(...wm.map(i => P[i])), wDry = Math.min(...wm.map(i => P[i])), sWet = Math.max(...sm.map(i => P[i]));
+  const s = sDry < 40 && sDry < wWet / 3, w = wDry < sWet / 10;
+  const sClear = s ? ok(sDry, 40, 'mm') && ok(sDry, wWet / 3, '%') : (sDry >= 40 && ok(sDry, 40, 'mm')) || (sDry >= wWet / 3 && ok(sDry, wWet / 3, '%'));
+  out.push([s && !w ? 's' : w && !s ? 'w' : s && w ? 'x' : 'f', sClear && ok(wDry, sWet / 10, '%')]);
+  out.push([hot >= 22 ? 'a' : 'b', ok(hot, 22)]);
+  return out;
+}
+// The type's letters that the data clearly decide and that differ from it.
+const clashes = (n, type) => { const x = station[n], L = letters(x.temperatureC, x.precipitationMm, x.station.latitude); return [...type].some((ch, i) => L[i] && L[i][1] && L.slice(0, i).every(l => l[1]) && L[i][0] !== ch); };
+// Every letter of the type is clearly decided by the data and agrees with it.
+const confirmed = (n, type) => { const x = station[n], L = letters(x.temperatureC, x.precipitationMm, x.station.latitude); return [...type].every((ch, i) => L[i] && L[i][1] && L[i][0] === ch); };
+const seasonOf = n => { const T = station[n].temperatureC, c = T.indexOf(Math.min(...T)) + 1; return Math.max(...T) - Math.min(...T) < 5 ? null : [12, 1, 2].includes(c) ? 'N' : [6, 7, 8].includes(c) ? 'S' : null; };
+
+test('climate questions use verified types and seasons, and every wrong option is ruled out by the data', () => {
+  let n = 0;
+  for (const q of questions()) {
+    if (q.theme.kind !== 'climate') continue;
+    n++;
+    const hemi = name => (station[name].station.latitude >= 0 ? 'N' : 'S');
+    for (const name of q.entities) {
+      const L = station[name].lectureClimate;
+      assert.ok(L !== 'h' && confirmed(name, L), name + ' identified by a type its data do not clearly confirm');
+      assert.equal(K.entities[name].climate.type, L, name + ' used without a verified type');
+    }
+    // Each graph is the data of its 대상, and the rows sit on one common scale.
+    q.display.rows.forEach((row, i) => assert.deepEqual(row.temperature, station[q.entities[i]].temperatureC));
+    for (const p of q.stage1.options) {
+      if (p.join() === q.entities.join()) continue;
+      const broken = p.some((name, i) => {
+        const row = q.entities[i], type = K.entities[name].climate.type;
+        return (type && clashes(row, type)) || (seasonOf(row) && seasonOf(row) !== hemi(name));
+      });
+      assert.ok(broken, 'climate option ' + p.join(',') + ' is not ruled out');
+    }
+    for (const s of q.stage2.statements) {
+      const c = s.check;
+      if (s.kind === 'graph') {
+        const v = name => {
+          const T = station[name].temperatureC, P = station[name].precipitationMm, rain = P.reduce((a, b) => a + b, 0);
+          return {range: Math.max(...T) - Math.min(...T), coldest: Math.min(...T), warmest: Math.max(...T), annual: rain, summer: (P[5] + P[6] + P[7]) / rain * 100}[c.metric];
+        };
+        assert.equal(v(c.subject) > v(c.object), s.truth, s.text);
+      }
+      if (s.kind === 'climate') assert.equal(c.type === station[c.entity].lectureClimate, s.truth, s.text);
+      if (s.kind === 'climate' && !s.truth) assert.ok(clashes(c.entity, c.type), 'a wrong type the data do not rule out: ' + s.text);
+      if (s.kind === 'place' && c.place === 'hemisphere') assert.equal(hemi(c.entity) === c.value, s.truth, s.text);
+    }
+  }
+  assert.ok(n > 200, 'climate questions exercised: ' + n);
 });

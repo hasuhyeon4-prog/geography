@@ -341,6 +341,79 @@ for (const o of REL.orders) {
   for (const [n, order] of list) orders.push(Object.assign(checkOrder(o.composition, n, order), {basis: o.basis}));
 }
 
+// --- climate graphs: lecture climate types checked against the station normals ---
+// Lecture 1권 P02 thresholds: A 최한월 18℃ 이상, B 건조 한계 미만, C 최한월 −3~18℃·최난월 10℃ 이상,
+// D 최한월 −3℃ 미만, E 최난월 10℃ 미만. A type counts as knowledge only when the station data give
+// the same code with every deciding gap at least CLIMATE_MARGIN.
+const climate = read('data/climate-normals.json');
+const CLIMATE_MARGIN = {'℃': 1, mm: 10, '%': 15};
+const CLIMATE_LABEL = {af: '열대 우림 기후', am: '열대 몬순 기후', aw: '사바나 기후', bw: '사막 기후', bs: '스텝 기후',
+  cs: '지중해성 기후', cfb: '서안 해양성 기후', cfa: '온난 습윤 기후', cw: '온대 겨울 건조 기후',
+  df: '냉대 습윤 기후', dw: '냉대 겨울 건조 기후', et: '툰드라 기후', ef: '빙설 기후', h: '고산 기후'};
+function koppen(T, P, lat) {
+  const sum = a => a.reduce((x, y) => x + y, 0), Tw = Math.max(...T), Tc = Math.min(...T), Tann = sum(T) / 12, Pann = sum(P);
+  const summer = lat >= 0 ? [3, 4, 5, 6, 7, 8] : [9, 10, 11, 0, 1, 2], winter = [...Array(12).keys()].filter(i => !summer.includes(i));
+  const Ps = sum(summer.map(i => P[i])), gaps = [];
+  // A deciding gap in ℃, mm, or percent of the limit, tagged with the code letter it decides.
+  const gap = (level, value, limit, unit) => gaps.push({level, size: unit === '%' ? Math.abs(value - limit) / Math.max(Math.abs(limit), 1) * 100 : Math.abs(value - limit), unit});
+  const test = (level, value, limit, unit) => { gap(level, value, limit, unit); return value >= limit; };
+  let code;
+  if (!test(1, Tw, 10, '℃')) code = test(2, Tw, 0, '℃') ? 'et' : 'ef';
+  else {
+    const dryLimit = 20 * Tann + (Ps / Pann >= 0.7 ? 280 : (Pann - Ps) / Pann >= 0.7 ? 0 : 140);
+    if (!test(1, Pann, dryLimit, '%')) code = test(2, Pann, dryLimit / 2, '%') ? 'bs' : 'bw';
+    else if (test(1, Tc, 18, '℃')) {
+      const dry = Math.min(...P);
+      code = test(2, dry, 60, 'mm') ? 'af' : test(2, dry, 100 - Pann / 25, 'mm') ? 'am' : 'aw';
+    } else {
+      const group = test(1, Tc, -3, '℃') ? 'c' : 'd';
+      const sDry = Math.min(...summer.map(i => P[i])), wWet = Math.max(...winter.map(i => P[i]));
+      const wDry = Math.min(...winter.map(i => P[i])), sWet = Math.max(...summer.map(i => P[i]));
+      // s needs both conditions; when it fails, the clearer failing condition decides the gap.
+      const a = [Math.abs(sDry - 40) / 40 * 100, Math.abs(sDry - wWet / 3) / Math.max(wWet / 3, 1) * 100];
+      const isS = sDry < 40 && sDry < wWet / 3, isW = wDry < sWet / 10;
+      gaps.push({level: 2, size: isS ? Math.min(...a) : Math.max(...[sDry >= 40 ? a[0] : 0, sDry >= wWet / 3 ? a[1] : 0]), unit: '%'});
+      gap(2, wDry, sWet / 10, '%');
+      code = group + (isS && !isW ? 's' : isW && !isS ? 'w' : isS && isW ? (wDry / sWet < sDry / wWet ? 'w' : 's') : 'f') + (test(3, Tw, 22, '℃') ? 'a' : 'b');
+    }
+  }
+  // The deepest code letter whose deciding gaps all clear the margin.
+  let robust = 0;
+  for (let level = 1; level <= 3; level++) {
+    if (gaps.filter(g => g.level === level).every(g => g.size >= CLIMATE_MARGIN[g.unit])) robust = level; else break;
+  }
+  if (robust === 2 && code.length === 2) robust = 3;
+  return {code, robust};
+}
+// Köppen letters as the lecture writes them: Aw, BS, Cfb, ET.
+const koppenCode = t => t.split('').map((ch, i) => (i === 0 || (i === 1 && /[be]/.test(t[0])) ? ch.toUpperCase() : ch)).join('');
+const climateTypes = [];
+const CLIMATE_BASIS = '강의 1권 P02 기출 도시의 기후(분류 지도 climateCities)';
+for (const s of climate.sites) {
+  if (!s.usage.climateGraph) {
+    climateTypes.push({entity: s.name, lecture: s.lectureClimate, status: 'excluded', reason: '그래프에 쓸 기온·강수 자료가 없음(' + s.status + ')', basis: CLIMATE_BASIS});
+    continue;
+  }
+  if (entities[s.name]) throw new Error('climate site name collides with an entity: ' + s.name);
+  const T = s.temperatureC, P = s.precipitationMm, lat = s.station.latitude, k = koppen(T, P, lat);
+  const coldest = T.indexOf(Math.min(...T)) + 1, range = Math.max(...T) - Math.min(...T);
+  // Hemisphere seen in the data: coldest month in 12~2월 (north) or 6~8월 (south), range ≥ 5℃.
+  const signal = range >= 5 ? ([12, 1, 2].includes(coldest) ? 'N' : [6, 7, 8].includes(coldest) ? 'S' : null) : null;
+  const hemisphere = lat >= 0 ? 'N' : 'S', L = s.lectureClimate;
+  if (signal && signal !== hemisphere) throw new Error(s.name + ': seasons disagree with the station latitude');
+  let status, reason;
+  if (L === 'h') { status = 'excluded'; reason = '고산 기후는 저온의 원인이 고도이므로 월별 기온·강수만으로 판별하지 않음'; }
+  else if (k.code.slice(0, L.length) !== L) { status = 'conflict'; reason = `관측소 평년값으로는 ${koppenCode(k.code)}(강의 ${koppenCode(L)}). 경계 지점이므로 기후형을 식별 근거로 쓰지 않음`; }
+  else if (k.robust < L.length) { status = 'belowMargin'; reason = `같은 ${koppenCode(L)}이지만 경계 기준과의 차이가 작음(기준 ${CLIMATE_MARGIN['℃']}℃·${CLIMATE_MARGIN.mm}mm·${CLIMATE_MARGIN['%']}%)`; }
+  else { status = 'active'; reason = ''; }
+  climateTypes.push({entity: s.name, lecture: L, computed: k.code, status, reason, basis: CLIMATE_BASIS});
+  entities[s.name] = {type: 'site', name: s.name, region: s.region, label: s.mapPoint, facts: {}, values: {},
+    climate: {temperature: T, precipitation: P, lat, hemisphere, elevation: s.station.elevationM, lecture: L, computed: k.code, robust: k.robust,
+      type: status === 'active' ? L : null, signal, coldest, range: Math.round(range * 10) / 10,
+      annual: Math.round(P.reduce((a, b) => a + b, 0)), summerShare: s.derived.jjaPrecipitationSharePct,
+      station: s.station.name, sourceId: s.sourceId}};
+}
+
 const out = {
   generated: 'scripts/build-entity-kb.cjs',
   sources: {countries: stats.meta, economy: economy.meta, groups: groupSeries.meta, extraFacts: extra.about, rankingsCheckedAt: R.checkedAt || null},
@@ -351,6 +424,7 @@ const out = {
   }])),
   extraFacts: Object.fromEntries(Object.entries(extra.facts).map(([k, f]) => [k, {label: f.label, complete: f.complete, source: f.source}])),
   indicators, entities, compositions, relations, signs, orders,
+  climate: {period: climate.normalPeriod, source: '관측소 월평년값(WMO 제출 자료 우선, JMA·ECCC 보충)', margin: CLIMATE_MARGIN, types: CLIMATE_LABEL, verdicts: climateTypes},
 };
 // Verified is not the same as practicable: count how often each active relation reaches a
 // generated question (identification basis or <보기>) in a fixed sample of seeds.
@@ -366,6 +440,7 @@ for (const t of engine.themes) for (let seed = 1; seed <= PRACTICE_SEEDS; seed++
   (b.signs || []).forEach(x => hit('s|' + x.indicator + '|' + x.entity));
   // A longer order implies the shorter one, so both count as practised.
   (b.orders || []).forEach(x => hit('o|' + x.composition + '|' + x.entity));
+  (b.sites || []).forEach(x => { if (x.type) hit('k|' + x.entity); });
   for (const st of q.stage2.statements) {
     if (st.kind === 'compare') hit(pairKey(st.check.ind, st.check.subject, st.check.object));
     if (st.kind === 'sign') hit('s|' + st.check.ind + '|' + st.check.entity);
@@ -374,6 +449,7 @@ for (const t of engine.themes) for (let seed = 1; seed <= PRACTICE_SEEDS; seed++
 for (const x of relations) if (x.status === 'active') x.practice = uses[pairKey(x.indicator, x.hi, x.lo)] || 0;
 for (const x of signs) if (x.status === 'active') x.practice = uses['s|' + x.indicator + '|' + x.entity] || 0;
 for (const x of orders) if (x.status === 'active') x.practice = uses['o|' + x.composition + '|' + x.entity] || 0;
+for (const x of climateTypes) if (x.status === 'active') x.practice = uses['k|' + x.entity] || 0;
 out.practiceSample = {seedsPerTheme: PRACTICE_SEEDS, themes: engine.themes.map(t => t.id)};
 
 fs.writeFileSync(process.env.KB_OUT || path.join(ROOT, 'assets/entity-kb.js'),
@@ -383,7 +459,7 @@ fs.writeFileSync(process.env.KB_OUT || path.join(ROOT, 'assets/entity-kb.js'),
 const counts = {};
 Object.values(entities).forEach(e => { counts[e.type] = (counts[e.type] || 0) + 1; });
 console.log('entities', counts, 'indicators', Object.keys(indicators).length);
-for (const [label, list] of [['relations', relations], ['signs', signs], ['orders', orders]]) {
+for (const [label, list] of [['relations', relations], ['signs', signs], ['orders', orders], ['climate types', climateTypes]]) {
   const by = {};
   list.forEach(x => { by[x.status] = (by[x.status] || 0) + 1; });
   const idle = list.filter(x => x.status === 'active' && !x.practice);

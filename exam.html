@@ -33,6 +33,10 @@ h2{font-size:17px;line-height:1.45;margin:14px 0 8px;word-break:keep-all}.step{d
 .small{font-size:12px;line-height:1.5}.muted{color:var(--muted)}
 .mapBox{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#e7f0f5;margin:8px 0}.mapBox svg{display:block;width:100%;height:auto}
 .mapBox .land{fill:#f6f7f2;stroke:#a9b6ba}.mapBox .marked{fill:#ffe3a3;stroke:#8a6a12}.mapBox .pin circle{fill:var(--ink);stroke:#fff}.mapBox .pin text{fill:#fff;font-weight:800;text-anchor:middle;dominant-baseline:central}.mapBox .pinName{fill:var(--ink);font-weight:700;paint-order:stroke;stroke:#fff;dominant-baseline:central}
+.climateGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin:6px 0}.climateFig{margin:0;border:1px solid var(--line);border-radius:10px;padding:6px 6px 2px}
+.climateFig figcaption{font-weight:800;color:var(--accent);font-size:14px}.climateFig svg{display:block;width:100%;height:auto}.climateFig text{font-size:9px;fill:var(--muted)}
+.climateFig .bar{fill:#74a9cf}.climateFig .tline{fill:none;stroke:#c4441c;stroke-width:2}.climateFig .tdot{fill:#c4441c}.climateFig .grid{stroke:#e3e9ea}.climateFig .zero{stroke:#9aa8ad}
+.numbers summary{cursor:pointer;font-size:12px;color:var(--muted)}.numbers table{font-size:11px}
 .toggle{flex:0 0 auto!important;gap:4px!important;cursor:pointer}.toggle input{width:18px;height:18px;margin:0}
 .below{max-width:720px;margin:0 auto;padding:0 12px calc(28px + env(safe-area-inset-bottom))}
 .kb summary{cursor:pointer;font-weight:800;font-size:15px;min-height:28px}.kb>p{margin:8px 0}.kb details{border-top:1px solid var(--line);padding:8px 0}.kb details summary{font-size:14px;font-weight:700}
@@ -45,9 +49,9 @@ h2{font-size:17px;line-height:1.45;margin:14px 0 8px;word-break:keep-all}.step{d
 <div class="scope"><label for="themeSelect">주제<select id="themeSelect"></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><span class="score" id="score"></span></div>
 <main id="main" aria-live="polite"></main>
 <div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 2015~2025년 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
-<script src="assets/entity-kb.js?v=20261021-1"></script>
-<script src="assets/exam-themes.js?v=20261021-1"></script>
-<script src="assets/exam-engine.js?v=20261021-1"></script>
+<script src="assets/entity-kb.js?v=20261021-2"></script>
+<script src="assets/exam-themes.js?v=20261021-2"></script>
+<script src="assets/exam-engine.js?v=20261021-2"></script>
 <script>
 (function(){
 'use strict';
@@ -63,7 +67,31 @@ function record(themeId,stage,ok){var s=store.stats[themeId]||(store.stats[theme
 function next(){
  state.q=engine.build({themeId:state.targetKey||state.theme==='all'?null:state.theme,targetKey:state.targetKey});state.a1=state.q&&state.q.readingOnly?0:null;state.a2=null;render();window.scrollTo({top:0});
 }
+// Climate graphs: precipitation bars (right scale, mm) and temperature line (left scale, ℃),
+// every graph on the same scale.
+function climateCharts(q,revealed){
+ var d=q.display,sc=d.scale,W=230,H=150,pl=26,pr=30,pt=12,pb=18,iw=W-pl-pr,ih=H-pt-pb;
+ var x=function(m){return pl+iw*(m+.5)/12},yT=function(t){return pt+ih*(sc.tMax-t)/(sc.tMax-sc.tMin)},yP=function(p){return pt+ih*(1-p/sc.pMax)};
+ var grid=el('div',{className:'climateGrid'});
+ d.rows.forEach(function(row,i){
+  var svg=svgEl('svg',{viewBox:'0 0 '+W+' '+H,role:'img','aria-label':row.label+' 기후 그래프'});
+  for(var t=sc.tMin;t<=sc.tMax;t+=10){svgEl('line',{x1:pl,x2:W-pr,y1:yT(t),y2:yT(t),class:t===0?'zero':'grid'},svg);svgEl('text',{x:pl-3,y:yT(t)+3,'text-anchor':'end'},svg,String(t))}
+  for(var k=0;k<=4;k++){var p=sc.pMax*k/4;svgEl('text',{x:W-pr+3,y:yP(p)+3},svg,String(Math.round(p)))}
+  svgEl('text',{x:pl-3,y:8,'text-anchor':'end'},svg,'℃');svgEl('text',{x:W-pr+3,y:8},svg,'mm');
+  row.precipitation.forEach(function(p,m){svgEl('rect',{x:(x(m)-iw/30).toFixed(1),y:yP(p).toFixed(1),width:(iw/15).toFixed(1),height:Math.max(0,yP(0)-yP(p)).toFixed(1),class:'bar'},svg)});
+  svgEl('polyline',{points:row.temperature.map(function(t,m){return x(m).toFixed(1)+','+yT(t).toFixed(1)}).join(' '),class:'tline'},svg);
+  row.temperature.forEach(function(t,m){svgEl('circle',{cx:x(m).toFixed(1),cy:yT(t).toFixed(1),r:1.6,class:'tdot'},svg)});
+  [1,4,7,10].forEach(function(m){svgEl('text',{x:x(m-1),y:H-5,'text-anchor':'middle'},svg,m+'월')});
+  grid.append(el('figure',{className:'climateFig'},[el('figcaption',{text:row.label+(revealed?' '+q.entities[i]:'')}),svg]));
+ });
+ // Exact monthly values, for checking a reading and for screen readers.
+ var months=[];for(var m=1;m<=12;m++)months.push(String(m));
+ var rows=[];d.rows.forEach(function(row){rows.push(el('tr',{},[el('td',{className:'name',text:row.label+' 기온(℃)'})].concat(row.temperature.map(function(v){return el('td',{text:String(v)})}))));rows.push(el('tr',{},[el('td',{className:'name',text:row.label+' 강수(mm)'})].concat(row.precipitation.map(function(v){return el('td',{text:String(Math.round(v))})}))))});
+ var numbers=el('details',{className:'numbers'},[el('summary',{text:'월별 수치 보기'}),el('div',{className:'tableWrap'},[el('table',{},[el('thead',{},[el('tr',{},[el('th',{text:'월'})].concat(months.map(function(m){return el('th',{text:m})})))]),el('tbody',{},rows)])])]);
+ return el('div',{},[grid,numbers,el('div',{className:'source',text:'자료: '+d.source})]);
+}
 function table(q,revealed){
+ if(q.display.kind==='climate')return climateCharts(q,revealed);
  var d=q.display,head=el('tr',{},[el('th',{text:'구분'})].concat(d.columns.map(function(c){return el('th',{text:c.label+(c.unit?' ('+c.unit+')':'')})})));
  var body=d.rows.map(function(r,i){return el('tr',{},[el('td',{className:'name',text:r.label+(revealed?' '+q.entities[i]:'')})].concat(r.cells.map(function(c){return el('td',{className:q.theme.kind==='items'?'items':null,text:c})})))});
  return el('div',{},[el('div',{className:'tableWrap'},[el('table',{},[el('thead',{},[head]),el('tbody',{},body)])]),el('div',{className:'source',text:'자료: '+d.source})]);
@@ -107,7 +135,8 @@ function drawMap(q,revealed){
    return out.length<3?'':out.map(function(p,i){return (i?'L':'M')+((p[0]+180)*10).toFixed(1)+' '+((90-p[1])*10).toFixed(1)}).join('')+'Z'}).join('')}).join('');
   if(d)svgEl('path',{d:d,class:marked[n]?'marked':'land','fill-rule':'evenodd','vector-effect':'non-scaling-stroke'},svg);
  });
- var r=w/55,fs=w/40;
+ // Pins keep a readable size on screen (about 9px radius) however wide the frame is.
+ var unit=w/Math.max(240,Math.min(700,(document.documentElement.clientWidth||700)-40)),r=Math.max(w/55,9*unit),fs=Math.max(w/40,13*unit);
  // Nudge pins apart so two nearby letters never cover each other.
  var pos=q.stage1.markers.map(function(m){return {x:(m.point[0]+180)*10,y:(90-m.point[1])*10}});
  for(var it=0;it<30;it++)for(var i=0;i<pos.length;i++)for(var j=i+1;j<pos.length;j++){
@@ -181,17 +210,19 @@ function knowledge(){
  var sample=kb.practiceSample?kb.practiceSample.seedsPerTheme*kb.practiceSample.themes.length:0;
  function cat(c,id){var row=c.categories.find(function(k){return k[0]===id});return row?row[1]:id}
  function title(x){
+  if(x.lecture)return '기후형: '+x.entity+' — '+(kb.climate.types[x.lecture]||x.lecture);
   if(x.hi)return kb.indicators[x.indicator].label+': '+x.hi+' > '+x.lo;
   if(x.order){var c=kb.compositions[x.composition];return ({religion:'종교 인구',exports:'상품 수출 구성',electricity:'전력 생산'}[x.composition]||x.composition)+': '+x.entity+' — '+x.order.map(function(id){return cat(c,id)}).join(' > ')+(x.order.length===1?' 1위':'')}
   var m=kb.indicators[x.indicator];return m.label+': '+x.entity+' — '+((x.positive?m.sign.pos:m.sign.neg)||(x.positive?'양(+)':'음(−)'));
  }
  function detail(x){
   if(x.status!=='active')return x.reason;
+  if(x.lecture)return '관측소 평년값으로 같은 기후형 확인('+x.computed.split('').map(function(ch,i){return i===0||(i===1&&/[be]/.test(x.computed[0]))?ch.toUpperCase():ch}).join('')+')'+(sample?' · 표본 '+n(sample)+'문항 중 '+n(x.practice)+'회':'');
   var m=x.indicator&&kb.indicators[x.indicator],span=m&&m.static?x.years.join('·')+'년 기준':x.years[0]+'~'+x.years[1]+'년 매년';
   var gap=x.hi?' · 최소 차이 '+x.minGap:x.order?' · 최소 간격 '+x.minGap+'%p':' · 최소 절댓값 '+x.minAbs+m.unit;
   return span+gap+(sample?' · 표본 '+n(sample)+'문항 중 '+n(x.practice)+'회':'');
  }
- var all=kb.relations.concat(kb.signs,kb.orders);
+ var all=kb.relations.concat(kb.signs,kb.orders,(kb.climate&&kb.climate.verdicts)||[]);
  [['회상으로 출제',function(x){return x.status==='active'&&x.practice>0},'문항의 식별 근거나 <보기>로 나온다.'],
   ['검증 통과 · 이 모드에서는 아직 나오지 않음',function(x){return x.status==='active'&&!x.practice},'이 대상들을 한 문항에서 함께 식별할 지표(수출 구성·제조업 비중 등)가 아직 없다. 관계는 익혀 둔다.'],
   ['방향은 매년 같음 · 차이가 작아 회상 출제에서 제외',function(x){return x.status==='belowMargin'},'관계는 익힌다. 문제에서는 수치를 주고 판단하게 한다.'],
