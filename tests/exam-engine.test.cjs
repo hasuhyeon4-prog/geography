@@ -21,7 +21,7 @@ test('the committed knowledge base is what the builder produces from committed i
 
 test('knowledge cards carry valid facts, units, years, and comparison margins', () => {
   for (const [name, e] of Object.entries(K.entities)) {
-    assert.ok(['country', 'bloc', 'continent', 'site'].includes(e.type), name);
+    assert.ok(['country', 'bloc', 'continent', 'site', 'crop', 'livestock'].includes(e.type), name);
     for (const [set, f] of Object.entries(e.facts)) {
       const meta = K.factSets[set] || K.extraFacts[set];
       assert.ok(meta, name + ' ' + set);
@@ -52,6 +52,8 @@ test('every whitelisted relation carries a basis and a verdict with its reason',
     }
   }
   for (const x of K.relations) assert.ok(K.indicators[x.indicator] && K.entities[x.hi] && K.entities[x.lo], x.indicator + ' ' + x.hi + ' ' + x.lo);
+  // Agriculture rows about areas that are not 대상 (아메리카 as a whole) stay out with their reason.
+  for (const x of K.outOfScope) assert.ok(x.status === 'excluded' && x.reason && x.basis && [x.hi, x.lo, x.entity].filter(Boolean).some(n => !K.entities[n]), JSON.stringify(x));
   for (const x of K.orders) assert.ok(x.order.every(c => K.compositions[x.composition].categories.some(k => k[0] === c)), x.entity);
   assert.equal(K.compositions.religion.total.year, K.compositions.religion.year, 'religion shares and totals come from the same year');
 });
@@ -181,6 +183,12 @@ test('each statement is true exactly when the knowledge base says so', () => {
           const amount = n => engine.value(n, c.total) * engine.value(n, c.rate) / c.per;
           assert.equal(amount(c.subject) > amount(c.object), s.truth, s.text);
           assert.notEqual(engine.value(c.subject, c.rate) > engine.value(c.object, c.rate), amount(c.subject) > amount(c.object), 'data items are rate-versus-total traps');
+        } else if (s.kind === 'concept') {
+          // A concept-card statement keeps the card's truth; its 대상 appear as their labels.
+          const k = K.concepts.find(x => x.id === c.concept);
+          assert.ok(k && k.about.every(n => q.entities.includes(n)), s.text);
+          assert.equal(s.truth, k.truth, s.text);
+          if (q.format !== 'columns') for (const n of k.about) assert.ok(s.text.includes(q.labels[q.entities.indexOf(n)]) && !new RegExp('(^|[^가-힣])' + n + '(?![가-힣])').test(s.text.replace(/\([가-마]\)/g, '')), s.text);
         } else assert.fail('unknown kind ' + s.kind);
         assert.ok(s.text.startsWith(q.labels.find(l => s.text.startsWith(l)) || '?'), s.text);
         for (const label of s.text.match(/\([가-마]\)/g) || []) assert.ok(name(q, label), s.text);
@@ -213,12 +221,15 @@ test('<보기> stay on the theme and avoid free distractors', () => {
         if (s.kind === 'both' && !s.truth) assert.ok(holders[c.set + '|' + K.entities[c.b].region + '|' + c.value], 'implausible: ' + c.b + ' ' + s.text);
         assert.ok(!(s.kind === 'data' && c.indicator), 'a <보기> must not just compare two numbers the table shows: ' + s.text);
       }
-      if (st.filter(s => ['compare', 'sign', 'data', 'graph', 'climate'].includes(s.kind) || (s.check.set && (f.focus || []).includes(s.check.set))).length >= 2) withTheme++;
+      // A borrowed domain (대륙 theme's grain columns) is background, as in the engine.
+      const own = s => !t.domains || !s.check.ind || (K.indicators[s.check.ind].domain || null) === t.domains[0];
+      if (st.filter(s => own(s) && (['compare', 'sign', 'data', 'graph', 'climate', 'concept'].includes(s.kind) || (s.check.set && (f.focus || []).includes(s.check.set)))).length >= 2) withTheme++;
     }
     focusShare[t.id] = withTheme / SEEDS;
   }
   // Themes whose data support comparisons put at least two theme <보기> in most questions.
-  for (const id of ['bloc-indicators', 'continent-indicators', 'country-population', 'country-economy', 'export-composition', 'religion-composition', 'electricity-mix', 'climate-graphs']) assert.ok(focusShare[id] >= 0.6, id + ' ' + focusShare[id]);
+  for (const id of ['bloc-indicators', 'continent-indicators', 'country-population', 'country-economy', 'export-composition', 'religion-composition', 'electricity-mix', 'climate-graphs',
+    'crop-identification', 'livestock-identification', 'country-agriculture']) assert.ok(focusShare[id] >= 0.6, id + ' ' + focusShare[id]);
   for (const e of Object.values(K.entities)) if (e.facts.latinLanguage) assert.equal(e.region, 'americas', e.name + ' latinLanguage');
 });
 

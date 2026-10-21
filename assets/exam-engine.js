@@ -89,6 +89,9 @@
   // A hemisphere is worth a <보기> only for a country within this many degrees of the equator.
   var NEAR_EQUATOR=25,LINE_NEAR={equator:12,meridian:8};
   function allowed(theme,set){var f=theme.followups&&theme.followups.facts;return !f||f.indexOf(set)>=0}
+  // An indicator with a domain (agriculture) is recalled only by themes listing that domain,
+  // and a theme with domains recalls only those.
+  function inScope(theme,ind){var m=meta(ind);return (theme.domains||[null]).indexOf(m&&m.domain||null)>=0}
   function koSort(a,b){return a.localeCompare(b,'ko')}
   function span(x,ind){if(!x.years)return '';var m=ind&&meta(ind);return m&&m.static?x.years.join('·')+'년 기준':x.years[0]+'~'+x.years[1]+'년 매년'}
 
@@ -248,7 +251,9 @@
    return name+' — '+(m?m.title||m.label:set)+': '+labels+(f.note?' · '+f.note:'')+(f.source?' ('+f.source+')':'');
   }
   function optionLabel(set,id){return kb.factSets[set]?kb.factSets[set].options[id]:id}
-  function predicate(set,id){var p=PREDICATES[set];return p?p(optionLabel(set,id),id):null}
+  // Concept-card sets carry their own phrase: '{value}을/를 …' takes the particle the value needs.
+  function fill(template,v){return template.replace(/\{value\}(이\/가|을\/를|과\/와|은\/는)?/,function(m,alt){if(!alt)return v;var c=v.charCodeAt(v.length-1),coda=c>=0xAC00&&c<=0xD7A3&&(c-0xAC00)%28;return v+alt.split('/')[coda?0:1]})}
+  function predicate(set,id){var p=PREDICATES[set],m=kb.factSets[set];return p?p(optionLabel(set,id),id):m&&m.template?fill(m.template,optionLabel(set,id)):null}
 
   // Share-versus-total traps read from the table: amounts differ by 1.5× (composition) or
   // 1.2× (indicators) and run against the order of the shares, so rounding never decides.
@@ -302,6 +307,22 @@
    return out;
   }
 
+  // Concept-card statements name the crop or animal; on the paper it is (가)~(다). A name is
+  // replaced only as a whole word, and the particle after it changes to suit the label. A
+  // statement must open with one of its 대상 as subject ('밀은', '쌀의'); others are general
+  // remarks ('양 사육 두수와 양모 생산량은…' would also give the answer away).
+  var SWAP={'으로':'로','은':'는','이':'가','을':'를','과':'와'};
+  function relabel(text,names,L,named){
+   var out=text,missed=false;
+   names.slice().sort(function(a,b){return b.length-a.length}).forEach(function(n){
+    var hit=false,re=new RegExp('(^|[^가-힣])'+n+'(으로|이다|은|는|이|가|을|를|과|와|의|보다|에서|에|도|만|로)?(?![가-힣])','g');
+    out=out.replace(re,function(m,pre,part){hit=true;return named?m:pre+L(n)+(part?(SWAP[part]||part):'')});
+    if(!hit)missed=true;
+   });
+   var opens=new RegExp('^('+names.join('|')+')(은|는|이|가|의|과|와)').test(text);
+   return !missed&&opens?out:null;
+  }
+
   // named: the 대상 are shown by name (항목 식별), so <보기> use names with their particles.
   function candidates(theme,chosen,shown,r,named){
    if(theme.kind==='climate')return climateCandidates(theme,chosen,r);
@@ -335,18 +356,24 @@
     if(e.ns&&e.eqDist<=NEAR_EQUATOR&&allowed(theme,'hemisphere')){var north=e.ns==='N',trueIt=r()<.5;add({kind:'fact',key:'ns|'+n,text:S(n)+' '+((north===trueIt)?'북반구':'남반구')+'에 위치한다.',truth:trueIt,explain:n+'의 국토는 '+(north?'북반구':'남반구')+'에 있다.',check:{ns:(north===trueIt)?'N':'S',entity:n}})}
    });
    SIGNS.forEach(function(x){
-    if(!has(x.entity)||shown.indexOf(x.indicator)>=0)return;
+    if(!has(x.entity)||shown.indexOf(x.indicator)>=0||!inScope(theme,x.indicator))return;
     var m=meta(x.indicator),v=value(x.entity,x.indicator),yes=x.positive?m.sign.pos:m.sign.neg,no=x.positive?m.sign.neg:m.sign.pos;
     var why=x.entity+' '+m.label+' '+fmt(v)+m.unit+' ('+m.year+', '+m.source+') · '+span(x,x.indicator)+' '+(x.positive?'양(+)':'음(−)')+' · 근거: '+x.basis;
     if(yes)add({kind:'sign',key:x.indicator+'|'+x.entity,text:S(x.entity)+' '+yes+'.',truth:true,explain:why,check:{ind:x.indicator,entity:x.entity,positive:x.positive}});
     if(no)add({kind:'sign',key:x.indicator+'|'+x.entity,text:S(x.entity)+' '+no+'.',truth:false,explain:why,check:{ind:x.indicator,entity:x.entity,positive:!x.positive}});
    });
    REL.forEach(function(x){
-    if(!has(x.hi)||!has(x.lo)||shown.indexOf(x.indicator)>=0||meta(x.indicator).entityType!==entity(x.hi).type)return;
+    if(!has(x.hi)||!has(x.lo)||shown.indexOf(x.indicator)>=0||meta(x.indicator).entityType!==entity(x.hi).type||!inScope(theme,x.indicator))return;
     var m=meta(x.indicator),truth=r()<.5,s=truth?[x.hi,x.lo]:[x.lo,x.hi];
     add({kind:'compare',key:x.indicator+'|'+[x.hi,x.lo].sort().join('|'),text:S(s[0])+' '+L(s[1])+'보다 '+m.more+'.',truth:truth,
      explain:x.hi+' '+fmt(value(x.hi,x.indicator))+m.unit+', '+x.lo+' '+fmt(value(x.lo,x.indicator))+m.unit+' ('+m.label+', '+m.year+', '+m.source+') · '+span(x,x.indicator)+' 같은 순서 · 근거: '+x.basis,
      check:{ind:x.indicator,subject:s[0],object:s[1]}});
+   });
+   // One statement per group of 대상, so a claim and its reverse never meet in a question.
+   if(theme.concepts)(kb.concepts||[]).forEach(function(c){
+    if(c.about.some(function(n){return !has(n)}))return;
+    var text=relabel(c.claim,c.about,L,named);if(!text)return;
+    add({kind:'concept',key:'concept|'+c.about.slice().sort().join('|'),text:text,truth:c.truth,explain:c.claim+' ('+c.source+')',check:{concept:c.id}});
    });
    pairs(chosen).forEach(function(p){
     var a=entity(p[0]),b=entity(p[1]);
@@ -384,8 +411,12 @@
   // Two true and two false statements, never two about the same fact. Up to three come from
   // the theme itself (comparisons, signs, data items, and the theme's focus fact sets); the
   // rest are background facts, with at most one '(가)와 (나)는 모두 …'.
-  // A theme <보기> asks about the data (compare, sign, graph, climate) or a fact the theme is about.
-  function isFocus0(theme,c){var focusSets=(theme.followups&&theme.followups.focus)||[];return c.kind==='compare'||c.kind==='sign'||c.kind==='data'||c.kind==='graph'||c.kind==='climate'||!!(c.check&&c.check.set&&focusSets.indexOf(c.check.set)>=0)}
+  // A theme <보기> asks about the data (compare, sign, graph, climate), a fact the theme is about,
+  // or a concept-card statement.
+  function isFocus0(theme,c){var focusSets=(theme.followups&&theme.followups.focus)||[];
+   // A theme that borrows another domain (대륙 곡물 with population) keeps the borrowed ones as background.
+   if(theme.domains&&c.check&&c.check.ind&&(meta(c.check.ind).domain||null)!==theme.domains[0])return false;
+   return c.kind==='concept'||c.kind==='compare'||c.kind==='sign'||c.kind==='data'||c.kind==='graph'||c.kind==='climate'||!!(c.check&&c.check.set&&focusSets.indexOf(c.check.set)>=0)}
   function chooseStatements(theme,cands,r){
    var isFocus=function(c){return isFocus0(theme,c)};
    var picked=[],used={},kinds={},both=0;
@@ -451,7 +482,7 @@
   // linked to them, so questions centre on the comparisons exams make; the rest are random.
   function draw(theme,avail,k,r,inds){
    var has=function(list,n){return list.indexOf(n)>=0};
-   var rels=theme.kind==='indicators'?REL.filter(function(x){return has(avail,x.hi)&&has(avail,x.lo)&&(!inds||has(inds,x.indicator))}):[];
+   var rels=theme.kind==='indicators'?REL.filter(function(x){return has(avail,x.hi)&&has(avail,x.lo)&&(!inds||has(inds,x.indicator))&&inScope(theme,x.indicator)}):[];
    if(!rels.length||r()<.25)return shuffle(avail,r).slice(0,k);
    // Half the draws start from a 대상 picked uniformly, so countries with many relations
    // (중국·일본·인도) do not crowd out the rest; the other half from a relation, which keeps
@@ -467,7 +498,7 @@
 
   function buildColumns(theme,avail,k,r,avoid,attempt){
    var hidden=shuffle(columnsFor(theme),r).slice(0,3),own=function(n){return theme.kind!=='composition'||!!orderOf(theme,n)};
-   var from=theme.kind==='composition'?avail.filter(own):avail;if(from.length<k)return null;
+   var from=theme.kind==='composition'?avail.filter(own):avail.filter(function(n){return hidden.every(function(ind){return value(n,ind)!=null})});if(from.length<k)return null;
    var rows=theme.kind==='indicators'?draw(theme,from,k,r,hidden):shuffle(from,r).slice(0,k);
    var shown=theme.kind==='indicators'?(theme.always||[]).concat(hidden):[];
    var signature=theme.id+'|columns|'+rows.slice().sort(koSort).join(',')+'|'+hidden.slice().sort().join(',');
@@ -528,7 +559,8 @@
     if(theme.kind==='composition'&&composition(theme).total&&composition(theme).total.indicator)shown=[composition(theme).total.indicator];
     if(theme.kind==='indicators'){
      var always=theme.always||[],inds=theme.indicators.filter(function(ind){return meta(ind)&&!meta(ind).disabled&&always.indexOf(ind)<0});
-     shown=always.concat(shuffle(inds,r).slice(0,theme.show));
+     // A source without a value for one 대상 (no coffee in France) is not shown as 0; the column is left out.
+     shown=always.concat(shuffle(inds.filter(function(ind){return chosen.every(function(n){return value(n,ind)!=null})}),r).slice(0,theme.show));
     }
     // Skip a question the learner saw recently (opts.avoid), while other ones can still be made.
     var signature=theme.id+'|'+chosen.slice().sort(koSort).join(',')+'|'+shown.slice().sort().join(',');

@@ -5,7 +5,8 @@
  * Inputs (all committed): assets/country-boundaries.js, assets/classification-sets.js,
  * assets/rankings.js, data/country-indicators.json, data/group-series.json,
  * data/electricity-mix.json, data/religion-composition.json, data/entity-facts.json,
- * data/exam-relations.json. --report lists the relations that did not pass and why.
+ * data/exam-relations.json, and the agriculture bundle (data/agriculture.json,
+ * data/exam-relations-agriculture.json, data/concepts/agriculture.json). --report lists the relations that did not pass and why.
  * The 기출형 engine (assets/exam-engine.js) reads only this file and assets/exam-themes.js.
  *
  * Nothing here is inferred: categorical facts copy graded entries of the classification
@@ -284,6 +285,146 @@ for (const r of REL.relations) {
   for (const n of r.signs || []) signs.push(Object.assign(checkSign(r.indicator, n), {basis: r.basis}));
 }
 
+// --- agriculture (R1: data/agriculture.json, docs/AGRICULTURE-DATA-HANDOFF.md) ---
+// Crops and livestock are 대상 themselves, valued by their world or regional totals;
+// countries and continents get crop and herd columns. Each column stays inside one FAOSTAT
+// domain: QCL production and herds (rice as paddy), FBS balances (processed products
+// converted), TCL trade in the raw item. The whitelist is data/exam-relations-agriculture.json,
+// checked here again with the same window as the rest; indicators carry domain 'agri' so only
+// themes that list the domain recall them.
+const agri = read('data/agriculture.json');
+const AGRI = read('data/exam-relations-agriculture.json');
+const agriAudit = read('audit/agriculture-validation-20261021.json');
+const agriCards = read('data/concepts/agriculture.json');
+const AGRI_YEAR = '2023';  // the latest year all three domains report
+const AGRI_POOL = require(path.join(ROOT, 'assets/exam-themes.js')).byId['country-agriculture'].pool;
+// The same rule as resolve() in scripts/build-agriculture-data.py: a composite region sums its
+// parts over their common years, and its ratios are recomputed from the summed totals.
+function agriSeries(name, key) {
+  const e = agri.entities[name];
+  if (!e) return {};
+  if (e.areaCodes.length > 1 && /^(fbs-exportRatio|qcl-yield):/.test(key)) {
+    const item = key.split(':')[1], [p, q, f] = key.startsWith('fbs') ? ['fbs-exports:', 'fbs-production:', 100] : ['qcl-production:', 'qcl-area:', 1000];
+    const a = agriSeries(name, p + item), b = agriSeries(name, q + item);
+    return Object.fromEntries(Object.keys(a).filter(y => b[y] > 0).map(y => [y, f * a[y] / b[y]]));
+  }
+  const cols = e.areaCodes.map(c => (agri.seriesByArea[c] || {})[key] || {});
+  return Object.fromEntries(Object.keys(cols[0]).filter(y => cols.every(c => y in c)).map(y => [y, cols.reduce((s, c) => s + c[y], 0)]));
+}
+const QCL = 'FAOSTAT QCL(생산량·사육 두수, 쌀은 벼 기준)', FBS = 'FAOSTAT FBS(식량 수급표, 가공품 환산 포함)', TCL = 'FAOSTAT TCL(원품목 교역)';
+const ratio = {type: 'ratio', min: AGRI.check.minRatio};
+// key: one FAOSTAT series for a country or continent; prefix + area: the crop or animal in that area.
+const AGRI_INDICATORS = {
+  'agri-wheat': {type: 'country', key: 'qcl-production:밀', label: '밀 생산량', unit: '만 t', scale: 1e4, more: '밀 생산량이 많다', source: QCL},
+  'agri-rice': {type: 'country', key: 'qcl-production:쌀', label: '쌀(벼) 생산량', unit: '만 t', scale: 1e4, more: '쌀 생산량이 많다', source: QCL},
+  'agri-maize': {type: 'country', key: 'qcl-production:옥수수', label: '옥수수 생산량', unit: '만 t', scale: 1e4, more: '옥수수 생산량이 많다', source: QCL},
+  'agri-coffee': {type: 'country', key: 'qcl-production:커피', label: '커피 생산량', unit: '만 t', scale: 1e4, more: '커피 생산량이 많다', source: QCL},
+  'agri-cattle': {type: 'country', key: 'qcl-stocks:소', label: '소 사육 두수(물소 제외)', unit: '만 마리', scale: 1e4, more: '소 사육 두수가 많다', source: QCL},
+  'agri-pigs': {type: 'country', key: 'qcl-stocks:돼지', label: '돼지 사육 두수', unit: '만 마리', scale: 1e4, more: '돼지 사육 두수가 많다', source: QCL},
+  'agri-sheep': {type: 'country', key: 'qcl-stocks:양', label: '양 사육 두수', unit: '만 마리', scale: 1e4, more: '양 사육 두수가 많다', source: QCL},
+  'agri-riceExports': {type: 'country', key: 'fbs-exports:쌀', label: '쌀 수출량', unit: '만 t', scale: 1e4, more: '쌀 수출량이 많다', source: FBS},
+  'agri-grainNet': {type: 'country', key: 'fbs-netExports:곡물 전체', label: '곡물 순수출량(수출−수입)', unit: '만 t', scale: 1e4, more: '곡물 순수출량이 많다', source: FBS,
+    sign: {pos: '곡물 순수출국이다', neg: '곡물 순수입국이다', min: 10}},
+  'agri-wheatNet': {type: 'country', key: 'fbs-netExports:밀', label: '밀 순수출량(수출−수입)', unit: '만 t', scale: 1e4, more: '밀 순수출량이 많다', source: FBS,
+    sign: {pos: '밀 순수출국이다', neg: '밀 순수입국이다', min: 10}},
+  'agri-maizeNet': {type: 'country', key: 'tcl-netExports:옥수수', label: '옥수수 순수출량(수출−수입)', unit: '만 t', scale: 1e4, more: '옥수수 순수출량이 많다', source: TCL,
+    sign: {pos: '옥수수 순수출국이다', neg: '옥수수 순수입국이다', min: 10}},
+  'cont-rice': {type: 'continent', key: 'qcl-production:쌀', label: '쌀(벼) 생산량', unit: '백만 t', scale: 1e6, more: '쌀 생산량이 많다', source: QCL},
+  'cont-wheat': {type: 'continent', key: 'qcl-production:밀', label: '밀 생산량', unit: '백만 t', scale: 1e6, more: '밀 생산량이 많다', source: QCL},
+  'cont-maize': {type: 'continent', key: 'qcl-production:옥수수', label: '옥수수 생산량', unit: '백만 t', scale: 1e6, more: '옥수수 생산량이 많다', source: QCL},
+  'cont-grainNet': {type: 'continent', key: 'fbs-netExports:곡물 전체', label: '곡물 순수출량(수출−수입)', unit: '백만 t', scale: 1e6, more: '곡물 순수출량이 많다', source: FBS,
+    sign: {pos: '곡물 순수출 지역이다', neg: '곡물 순수입 지역이다', min: 1}},
+  'crop-production': {type: 'crop', prefix: 'qcl-production', area: '세계', label: '세계 생산량', unit: '백만 t', scale: 1e6, more: '세계 생산량이 많다', source: QCL},
+  'crop-exports': {type: 'crop', prefix: 'fbs-exports', area: '세계', label: '세계 수출량', unit: '백만 t', scale: 1e6, more: '세계 수출량이 많다', source: FBS},
+  'crop-exportRatio': {type: 'crop', prefix: 'fbs-exportRatio', area: '세계', label: '생산량 대비 수출량 비율', unit: '%', scale: 1, more: '생산량 대비 수출량 비율이 높다', source: FBS},
+  'crop-yield': {type: 'crop', prefix: 'qcl-yield', area: '세계', label: '단위 면적당 생산량(세계 평균)', unit: 't/ha', scale: 1000, more: '단위 면적당 생산량이 많다', source: QCL},
+  'crop-oceania': {type: 'crop', prefix: 'qcl-production', area: '오세아니아', label: '오세아니아의 생산량', unit: '만 t', scale: 1e4, more: '오세아니아의 생산량이 많다', source: QCL},
+  'lv-stocks': {type: 'livestock', prefix: 'qcl-stocks', area: '세계', label: '세계 사육 두수', unit: '백만 마리', scale: 1e6, more: '세계 사육 두수가 많다', source: QCL},
+  'lv-meat': {type: 'livestock', prefix: 'qcl-meat', area: '세계', label: '세계 육류 생산량', unit: '백만 t', scale: 1e6, more: '세계 육류 생산량이 많다', source: QCL},
+  'lv-americas': {type: 'livestock', prefix: 'qcl-stocks', area: '아메리카', label: '아메리카의 사육 두수', unit: '백만 마리', scale: 1e6, more: '아메리카의 사육 두수가 많다', source: QCL},
+  'lv-oceania': {type: 'livestock', prefix: 'qcl-stocks', area: '오세아니아', label: '오세아니아의 사육 두수', unit: '백만 마리', scale: 1e6, more: '오세아니아의 사육 두수가 많다', source: QCL},
+  'lv-africa': {type: 'livestock', prefix: 'qcl-stocks', area: '아프리카', label: '아프리카의 사육 두수', unit: '백만 마리', scale: 1e6, more: '아프리카의 사육 두수가 많다', source: QCL},
+  'lv-australia': {type: 'livestock', prefix: 'qcl-stocks', area: '오스트레일리아', label: '오스트레일리아의 사육 두수', unit: '만 마리', scale: 1e4, more: '오스트레일리아의 사육 두수가 많다', source: QCL},
+  'lv-brazil': {type: 'livestock', prefix: 'qcl-stocks', area: '브라질', label: '브라질의 사육 두수', unit: '만 마리', scale: 1e4, more: '브라질의 사육 두수가 많다', source: QCL},
+  'lv-china': {type: 'livestock', prefix: 'qcl-stocks', area: '중국', label: '중국의 사육 두수', unit: '만 마리', scale: 1e4, more: '중국의 사육 두수가 많다', source: QCL},
+};
+const AGRI_ITEMS = {crop: ['밀', '쌀', '옥수수'], livestock: ['소', '돼지', '양']};
+for (const [type, names] of Object.entries(AGRI_ITEMS)) for (const name of names) {
+  const card = agriCards.entities[name];
+  if (!card || card.type !== type) throw new Error('no concept card for ' + name);
+  // `region` groups the cards so a false claim borrows a value another crop or animal has.
+  entities[name] = {type, name, region: type, facts: {}, values: {}, source: card.source};
+}
+for (const [id, m] of Object.entries(AGRI_INDICATORS)) {
+  indicators[id] = {label: m.label, unit: m.unit, more: m.more, entityType: m.type, domain: 'agri', year: AGRI_YEAR, source: m.source,
+    compare: ratio, static: false, disabled: false, unstablePairs: []};
+  if (m.sign) indicators[id].sign = m.sign;
+  seriesOf[id] = {};
+  const names = m.key ? Object.keys(entities).filter(n => entities[n].type === m.type) : AGRI_ITEMS[m.type];
+  for (const n of names) {
+    const raw = m.key ? agriSeries(n, m.key) : agriSeries(m.area, m.prefix + ':' + n);
+    if (raw[AGRI_YEAR] == null) continue;
+    seriesOf[id][n] = Object.fromEntries(Object.entries(raw).map(([y, v]) => [y, v / m.scale]));
+    entities[n].values[id] = raw[AGRI_YEAR] / m.scale;
+  }
+}
+const agriByKey = {}, agriByArea = {};
+for (const [id, m] of Object.entries(AGRI_INDICATORS)) {
+  if (m.key) agriByKey[m.type + '|' + m.key] = id;
+  else agriByArea[m.prefix + '|' + m.area] = id;
+}
+const typeOf = n => (entities[n] || {}).type;
+// Whitelist rows about areas that are not 대상 here (아메리카 as one, 북아메리카) are kept with the reason.
+const outOfScope = [], notHere = x => outOfScope.push(Object.assign(x, {status: 'excluded', reason: '기출형 대상(국가·대륙)이 아닌 지역'}));
+for (const r of AGRI.relations) {
+  for (const [hi, lo] of r.pairs || []) {
+    const ind = agriByKey[typeOf(hi) + '|' + r.indicator];
+    if (!ind || typeOf(hi) !== typeOf(lo)) notHere({indicator: r.indicator, hi, lo, form: 'pairs', basis: r.basis});
+    else relations.push(Object.assign(checkPair(ind, hi, lo, true), {form: 'pairs', basis: r.basis}, r.given ? {given: r.given} : {}));
+  }
+  for (const n of r.signs || []) {
+    const ind = agriByKey[typeOf(n) + '|' + r.indicator];
+    if (!ind) { notHere({indicator: r.indicator, entity: n, basis: r.basis}); continue; }
+    const s = Object.assign(checkSign(ind, n), {basis: r.basis});
+    if (s.status === 'active' && s.positive !== (r.expectedSign > 0)) Object.assign(s, {status: 'conflict', reason: '강의·기출의 방향과 자료의 부호가 다름'});
+    signs.push(s);
+  }
+}
+// Orders: a world first place becomes a fact about the crop or animal and, against the
+// theme's other countries, a set of pairs; an order within one area becomes pairs of items.
+const agriFactSets = {}, FIRST = {crop: ['topProducer', '세계 최대 생산국', '{value}이/가 세계 최대 생산국이다'], livestock: ['topRaiser', '세계 최대 사육국', '{value}이/가 세계 최대 사육국이다']};
+for (const o of AGRI.orders) {
+  if (o.entity) {
+    const item = o.indicator.split(':')[1], verdict = agriAudit.orders.find(x => x.id === o.id);
+    // Only a first place that held in every year, against every reporting country, is recalled.
+    if (!verdict || verdict.status !== 'active') continue;
+    const type = typeOf(item);
+    if (FIRST[type]) {
+      const [set, title, template] = FIRST[type];
+      const fs_ = agriFactSets[set] || (agriFactSets[set] = {title, multi: false, negationSafe: false, exclusive: true, template, options: {}});
+      fs_.options[o.entity] = o.entity;
+      entities[item].facts[set] = {values: [o.entity], note: '', source: o.basis};
+    }
+    const ind = agriByKey['country|' + o.indicator];
+    if (ind) for (const lo of AGRI_POOL) if (lo !== o.entity && entities[lo].values[ind] != null) relations.push(Object.assign(checkPair(ind, o.entity, lo, true), {form: 'first', basis: o.basis}));
+  } else {
+    const ind = agriByArea[o.prefix + '|' + o.area];
+    if (!ind) continue;
+    o.items.forEach((hi, i) => o.items.slice(i + 1).forEach(lo => relations.push(Object.assign(checkPair(ind, hi, lo, true), {form: 'order', basis: o.basis}))));
+  }
+}
+// Concept cards (data/concepts/agriculture.json): a set whose values are exclusive also makes
+// false claims; a non-exclusive one only true ones. Statements are kept as written.
+for (const [set, s] of Object.entries(agriCards.sets)) {
+  const holders = s.scope.filter(n => entities[n] && AGRI_ITEMS[typeOf(n)]);
+  if (!holders.length) continue;
+  agriFactSets[set] = {title: s.label, multi: !s.exclusive, negationSafe: false, exclusive: !!s.exclusive, template: s.template,
+    options: Object.fromEntries(s.options.map(o => [o, o])), source: s.source};
+  for (const n of holders) entities[n].facts[set] = {values: s.values[n].slice(), note: '', source: s.source};
+}
+const concepts = agriCards.statements.map((s, i) => ({id: 'agri-' + (i + 1), about: s.about, claim: s.claim, truth: s.truth, source: s.source}))
+  .filter(s => s.about.every(n => entities[n] && AGRI_ITEMS[typeOf(n)]));
+
 // Compositions used as identification data. Shares are percentages of the stated total;
 // `orderMargin` is the gap every year must keep between ranked categories.
 const compositions = {
@@ -418,12 +559,12 @@ const out = {
   generated: 'scripts/build-entity-kb.cjs',
   sources: {countries: stats.meta, economy: economy.meta, groups: groupSeries.meta, extraFacts: extra.about, rankingsCheckedAt: R.checkedAt || null},
   check: REL.check,
-  factSets: Object.fromEntries(FACT_SETS.filter(id => C.byId[id]).map(id => [id, {
+  factSets: Object.assign(Object.fromEntries(FACT_SETS.filter(id => C.byId[id]).map(id => [id, {
     title: C.byId[id].title, multi: !!C.byId[id].multi, negationSafe: NEGATION_SAFE[id] === 'all', exclusive: EXCLUSIVE.includes(id),
     options: Object.fromEntries(C.optionsFor(C.byId[id]).map(o => [o.id, o.label])),
-  }])),
+  }])), agriFactSets),
   extraFacts: Object.fromEntries(Object.entries(extra.facts).map(([k, f]) => [k, {label: f.label, complete: f.complete, source: f.source}])),
-  indicators, entities, compositions, relations, signs, orders,
+  indicators, entities, compositions, relations, signs, orders, concepts, outOfScope,
   climate: {period: climate.normalPeriod, source: '관측소 월평년값(WMO 제출 자료 우선, JMA·ECCC 보충)', margin: CLIMATE_MARGIN, types: CLIMATE_LABEL, verdicts: climateTypes},
 };
 // Verified is not the same as practicable: count how often each active relation reaches a

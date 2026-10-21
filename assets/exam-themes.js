@@ -19,9 +19,11 @@
    prompt:'{range}는 EU, USMCA, ASEAN, MERCOSUR 중 하나이다.'
   },
   {
-   id:'continent-indicators',status:'ready',title:'대륙(권역)별 인구·경제 지표',lecture:'1권 P05',exams:['2024학년도 수능','2020학년도 6월 17번'],
-   kind:'indicators',entityType:'continent',pool:['아시아','아프리카','유럽','라틴 아메리카','앵글로아메리카','오세아니아'],pick:[3,4],
-   always:['cont-pop'],indicators:['cont-density','cont-urban','cont-nir','cont-old','cont-young','cont-netmig','cont-agingIndex'],show:2,
+   id:'continent-indicators',status:'ready',title:'대륙(권역)별 인구·경제·곡물 지표',lecture:'1권 P05 · 2권 P06',exams:['2024학년도 수능','2020학년도 6월 17번','2025학년도 수능 12번'],
+   // The grain columns (FAOSTAT) are too few for a theme of their own; here they identify and
+   // fill <보기> as background, while population stays the theme's focus.
+   kind:'indicators',entityType:'continent',domains:[null,'agri'],pool:['아시아','아프리카','유럽','라틴 아메리카','앵글로아메리카','오세아니아'],pick:[3,4],
+   always:['cont-pop'],indicators:['cont-density','cont-urban','cont-nir','cont-old','cont-young','cont-netmig','cont-agingIndex','cont-grainNet','cont-rice'],show:2,
    derived:[{rate:'cont-urban',total:'cont-pop',per:100,noun:'도시 인구'},{rate:'cont-old',total:'cont-pop',per:100,noun:'노년층 인구'},{rate:'cont-young',total:'cont-pop',per:100,noun:'유소년층 인구'}],
    prompt:'{range}는 아시아, 아프리카, 유럽, 라틴 아메리카, 앵글로아메리카, 오세아니아 중 하나이다. 러시아는 유럽에 포함한다.'
   },
@@ -95,6 +97,34 @@
    amountNoun:'신자 수',reveals:['religion'],
    followups:{facts:['islam','buddhism','christianity','bloc','capitalCity','hemisphere','equator','meridian','seas','landlocked'],focus:['islam','buddhism','christianity']},
    prompt:'{range}는 {candidates} 중 하나이다. 표는 종교별 인구 비중(%)과 총인구이다.'
+  },
+  // 농목업 (data/agriculture.json, FAOSTAT). `domains` lets these themes recall the agriculture
+  // relations and keeps them out of the others; `concepts` adds the concept-card statements.
+  {
+   id:'crop-identification',status:'ready',title:'3대 식량 작물 식별',lecture:'2권 P06',exams:['2027학년도 9월 17번','2020학년도 수능 3번','2025학년도 9월 11번'],
+   kind:'indicators',entityType:'crop',domains:['agri'],concepts:true,
+   pool:['밀','쌀','옥수수'],pick:[3,3],always:['crop-production'],indicators:['crop-exports','crop-exportRatio','crop-yield','crop-oceania'],show:2,
+   // Only exclusive card sets: a non-exclusive one ('…와 연결된다') would be true every time.
+   followups:{facts:['originContinent','topProducer'],focus:['originContinent','topProducer']},
+   note:'쌀 생산량은 벼 기준이고, 수출량은 가공품을 환산해 포함한 수급표 값이다.',
+   prompt:'{range}는 {candidates} 중 하나이다.'
+  },
+  {
+   id:'livestock-identification',status:'ready',title:'주요 가축 식별',lecture:'2권 P06',exams:['2023학년도 9월 12번','2023학년도 수능 10번','2027학년도 6월 10번'],
+   kind:'indicators',entityType:'livestock',domains:['agri'],concepts:true,
+   pool:['소','돼지','양'],pick:[3,3],indicators:['lv-stocks','lv-meat','lv-americas','lv-oceania','lv-africa','lv-australia','lv-brazil','lv-china'],show:2,
+   followups:{facts:['topRaiser'],focus:['topRaiser']},
+   note:'소는 물소를 제외한 값이다. 육류 생산량은 사육 두수와 다른 지표이다.',
+   prompt:'{range}는 {candidates} 중 하나이다.'
+  },
+  {
+   id:'country-agriculture',status:'ready',title:'국가별 곡물 생산과 가축 사육',lecture:'2권 P06',exams:['2026학년도 수능 12번','2023학년도 9월 16번','2024학년도 9월 9번'],
+   kind:'indicators',entityType:'country',map:true,domains:['agri'],
+   pool:['중국','인도','미국','브라질','오스트레일리아','프랑스','아르헨티나','이집트','멕시코','에스파냐','타이','미얀마','베트남','인도네시아','에티오피아','케냐'],
+   pick:[3,3],indicators:['agri-wheat','agri-rice','agri-maize','agri-cattle','agri-pigs','agri-sheep','agri-riceExports','agri-coffee','agri-grainNet'],show:2,
+   followups:{facts:['grainProductionTop','beverage','religion','bloc','capitalCity','hemisphere','equator','seas','landlocked'],focus:['grainProductionTop','beverage']},
+   note:'쌀 생산량은 벼 기준이다. 곡물 순수출량은 수급표의 수출량에서 수입량을 뺀 값이다.',
+   prompt:'{range}는 {candidates} 중 하나이다.'
   }
  ];
  return {themes:themes,byId:Object.fromEntries?Object.fromEntries(themes.map(function(t){return [t.id,t]})):themes.reduce(function(o,t){o[t.id]=t;return o},{})};

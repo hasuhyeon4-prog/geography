@@ -28,7 +28,38 @@ const GROUP = {'bloc-pop': ['pop', 1e8], 'bloc-gdp': ['gdp', 1e12], 'bloc-trade'
   'cont-pop': ['pop', 1e8], 'cont-urban': ['urban', 1], 'cont-old': ['old', 1], 'cont-young': ['young', 1], 'cont-nir': ['nir', 1], 'cont-netmig': ['netmig', 1e4]};
 const area = id => Object.fromEntries(R.rankings.find(r => r.id === id).items.map(i => [i.name, i.value * 1e6]));
 const MEMBERS = {2023: {EU: 27, ASEAN: 10, MERCOSUR: 4, USMCA: 3}, 2026: {EU: 27, ASEAN: 11, MERCOSUR: 5, USMCA: 3}};
+// Agriculture (data/agriculture.json): each column is one FAOSTAT series, in the unit of the table.
+const agri = data('data/agriculture.json');
+const AGRI = data('data/exam-relations-agriculture.json');
+const CONTINENTS = ['아시아', '아프리카', '유럽', '라틴 아메리카', '앵글로아메리카', '오세아니아'];
+const AGRI_COL = {
+  'agri-wheat': ['qcl-production:밀', 1e4], 'agri-rice': ['qcl-production:쌀', 1e4], 'agri-maize': ['qcl-production:옥수수', 1e4], 'agri-coffee': ['qcl-production:커피', 1e4],
+  'agri-cattle': ['qcl-stocks:소', 1e4], 'agri-pigs': ['qcl-stocks:돼지', 1e4], 'agri-sheep': ['qcl-stocks:양', 1e4], 'agri-riceExports': ['fbs-exports:쌀', 1e4],
+  'agri-grainNet': ['fbs-netExports:곡물 전체', 1e4], 'agri-wheatNet': ['fbs-netExports:밀', 1e4], 'agri-maizeNet': ['tcl-netExports:옥수수', 1e4],
+  'cont-rice': ['qcl-production:쌀', 1e6], 'cont-wheat': ['qcl-production:밀', 1e6], 'cont-maize': ['qcl-production:옥수수', 1e6], 'cont-grainNet': ['fbs-netExports:곡물 전체', 1e6],
+};
+// The crop or animal in one area: [series prefix, area, unit].
+const AGRI_AREA = {
+  'crop-production': ['qcl-production', '세계', 1e6], 'crop-exports': ['fbs-exports', '세계', 1e6], 'crop-exportRatio': ['fbs-exportRatio', '세계', 1],
+  'crop-yield': ['qcl-yield', '세계', 1000], 'crop-oceania': ['qcl-production', '오세아니아', 1e4],
+  'lv-stocks': ['qcl-stocks', '세계', 1e6], 'lv-meat': ['qcl-meat', '세계', 1e6], 'lv-americas': ['qcl-stocks', '아메리카', 1e6], 'lv-oceania': ['qcl-stocks', '오세아니아', 1e6],
+  'lv-africa': ['qcl-stocks', '아프리카', 1e6], 'lv-australia': ['qcl-stocks', '오스트레일리아', 1e4], 'lv-brazil': ['qcl-stocks', '브라질', 1e4], 'lv-china': ['qcl-stocks', '중국', 1e4],
+};
+// A region made of several FAO areas sums them over common years; its ratios come from the sums.
+function agriSeries(area, key) {
+  const codes = agri.entities[area].areaCodes;
+  if (codes.length > 1 && /^(fbs-exportRatio|qcl-yield):/.test(key)) {
+    const item = key.split(':')[1], ratio = key.startsWith('fbs');
+    const a = agriSeries(area, (ratio ? 'fbs-exports:' : 'qcl-production:') + item), b = agriSeries(area, (ratio ? 'fbs-production:' : 'qcl-area:') + item);
+    return Object.fromEntries(Object.keys(a).filter(y => b[y] > 0).map(y => [y, a[y] / b[y] * (ratio ? 100 : 1000)]));
+  }
+  const cols = codes.map(c => agri.seriesByArea[c][key] || {});
+  return Object.fromEntries(Object.keys(cols[0]).filter(y => cols.every(c => y in c)).map(y => [y, cols.reduce((t, c) => t + c[y], 0)]));
+}
+const scaled = (ser, k) => Object.fromEntries(Object.entries(ser).map(([y, v]) => [y, v / k]));
 function raw(ind, name) {
+  if (AGRI_COL[ind]) return scaled(agriSeries(name, AGRI_COL[ind][0]), AGRI_COL[ind][1]);
+  if (AGRI_AREA[ind]) return scaled(agriSeries(AGRI_AREA[ind][1], AGRI_AREA[ind][0] + ':' + name), AGRI_AREA[ind][2]);
   if (countries.countries[name] && !GROUP[ind] && !ind.includes('-')) return countries.countries[name].series[ind] || (economy.countries[name].series[ind]) || {};
   if (ind === 'bloc-members') return {2023: MEMBERS[2023][name], 2026: MEMBERS[2026][name]};
   if (ind.endsWith('-area')) return {2024: area(ind)[name] / 1e6};  // UN Demographic Yearbook 2024, fixed
@@ -58,6 +89,20 @@ for (const r of REL.relations) {
   (r.group || []).forEach((a, i) => r.group.slice(i + 1).forEach(b => allow(a, b)));
   for (const n of r.signs || []) allowedSigns.add(r.indicator + '|' + n);
 }
+// Agriculture whitelist rows: pairs and signs of countries or continents; a world first place
+// allows its holder against any country; an order inside one area allows its items pairwise.
+const agriInd = (n, key) => Object.keys(AGRI_COL).find(id => AGRI_COL[id][0] === key && (countries.countries[n] ? id.startsWith('agri-') : CONTINENTS.includes(n) && id.startsWith('cont-')));
+const agriFirst = [];
+for (const r of AGRI.relations) {
+  for (const [hi, lo] of r.pairs || []) { const ind = agriInd(hi, r.indicator); if (ind) { allowedPairs.set(ind + '|' + [hi, lo].sort().join('|'), r.basis); lectureDirected.push([ind, hi, lo]); } }
+  for (const n of r.signs || []) { const ind = agriInd(n, r.indicator); if (ind) allowedSigns.add(ind + '|' + n); }
+}
+for (const o of AGRI.orders) {
+  if (o.entity) { const ind = agriInd(o.entity, o.indicator); if (ind) agriFirst.push([ind, o.entity]); continue; }
+  const ind = Object.keys(AGRI_AREA).find(id => AGRI_AREA[id][0] === o.prefix && AGRI_AREA[id][1] === o.area);
+  if (ind) o.items.forEach((a, i) => o.items.slice(i + 1).forEach(b => allowedPairs.set(ind + '|' + [a, b].sort().join('|'), o.basis)));
+}
+const allowedPair = (ind, a, b) => allowedPairs.has(ind + '|' + [a, b].sort().join('|')) || agriFirst.some(([i, n]) => i === ind && (n === a || n === b) && countries.countries[a] && countries.countries[b]);
 const allowedOrders = {};
 for (const o of REL.orders) {
   const c = allowedOrders[o.composition] || (allowedOrders[o.composition] = {});
@@ -92,7 +137,7 @@ test('recalled comparisons are whitelisted and hold in every year of the window'
   for (const q of questions()) {
     for (const s of q.stage2.statements.filter(x => x.kind === 'compare')) {
       const {ind, subject, object} = s.check, key = ind + '|' + [subject, object].sort().join('|');
-      assert.ok(allowedPairs.has(key), 'not in data/exam-relations.json: ' + key + ' — ' + s.text);
+      assert.ok(allowedPair(ind, subject, object), 'not whitelisted: ' + key + ' — ' + s.text);
       const [hi, lo] = s.truth ? [subject, object] : [object, subject];
       const {years, reversed} = yearly(ind, hi, lo);
       assert.deepEqual(reversed, [], `${ind} ${hi} > ${lo} reverses in ${reversed}`);
@@ -121,7 +166,7 @@ test('identification rests only on whitelisted knowledge that holds in every yea
     const t = q.theme, b = q.stage1.basis, col = ind => q.display.columns.findIndex(c => c.id === ind);
     const shownValue = (name, ind) => num(q.display.rows[q.entities.indexOf(name)].cells[col(ind)]);
     for (const x of b.relations || []) {
-      assert.ok(allowedPairs.has(x.indicator + '|' + [x.hi, x.lo].sort().join('|')), 'identification uses ' + x.indicator + ' ' + x.hi + '/' + x.lo);
+      assert.ok(allowedPair(x.indicator, x.hi, x.lo), 'identification uses ' + x.indicator + ' ' + x.hi + '/' + x.lo);
       assert.deepEqual(yearly(x.indicator, x.hi, x.lo).reversed, [], x.indicator + ' ' + x.hi + ' > ' + x.lo);
       assert.ok(q.shown.includes(x.indicator));
     }
@@ -144,7 +189,7 @@ test('identification rests only on whitelisted knowledge that holds in every yea
         if (g.join() === q.hidden.join()) continue;
         const at = id => col(q.hidden[g.indexOf(id)]);
         const broken = t.kind === 'indicators'
-          ? K.relations.some(x => x.status === 'active' && g.includes(x.indicator) && q.entities.includes(x.hi) && q.entities.includes(x.lo) && allowedPairs.has(x.indicator + '|' + [x.hi, x.lo].sort().join('|')) && cell(x.lo, at(x.indicator)) > cell(x.hi, at(x.indicator))) ||
+          ? K.relations.some(x => x.status === 'active' && g.includes(x.indicator) && q.entities.includes(x.hi) && q.entities.includes(x.lo) && allowedPair(x.indicator, x.hi, x.lo) && cell(x.lo, at(x.indicator)) > cell(x.hi, at(x.indicator))) ||
             K.signs.some(x => x.status === 'active' && g.includes(x.indicator) && q.entities.includes(x.entity) && (cell(x.entity, at(x.indicator)) > 0) !== x.positive)
           : q.entities.some(n => K.orders.filter(o => o.status === 'active' && o.composition === t.composition && o.entity === n).some(o => {
               const v = {};
@@ -351,4 +396,58 @@ test('climate questions use verified types and seasons, and every wrong option i
     }
   }
   assert.ok(n > 200, 'climate questions exercised: ' + n);
+});
+
+test('agriculture: world first places hold against every country in every year', () => {
+  const cards = data('data/concepts/agriculture.json');
+  const series = {topProducer: item => 'qcl-production:' + item, topRaiser: item => 'qcl-stocks:' + item};
+  const checked = new Set();
+  for (const q of questions()) for (const s of q.stage2.statements) {
+    const c = s.check;
+    if (!(c.set in series) && !(s.kind === 'both' && c.set in series)) continue;
+    for (const item of s.kind === 'both' ? [c.a, c.b] : [c.entity]) {
+      const key = series[c.set](item), first = K.entities[item].facts[c.set].values[0];
+      if (checked.has(key)) continue;
+      checked.add(key);
+      const firstCode = agri.entities[first].areaCodes[0];
+      for (let y = Y0; y <= 2024; y++) {
+        const v = agri.seriesByArea[firstCode][key][y];
+        assert.ok(v > 0, key + ' ' + first + ' ' + y);
+        for (const [code, a] of Object.entries(agri.sourceAreas)) {
+          if (a.kind !== 'country' || code === firstCode) continue;
+          const w = ((agri.seriesByArea[code] || {})[key] || {})[y];
+          if (w != null) assert.ok(v >= w * AGRI.check.minRatio, `${key} ${y}: ${first} ${v} vs ${a.name} ${w}`);
+        }
+      }
+    }
+    assert.ok(Object.keys(cards.entities).includes(c.entity || c.a));
+  }
+  assert.ok(checked.size >= 4, 'first places exercised: ' + [...checked]);
+});
+
+test('agriculture: concept statements keep the card truth; non-exclusive card sets stay out', () => {
+  const cards = data('data/concepts/agriculture.json');
+  let n = 0;
+  for (const q of questions()) for (const s of q.stage2.statements) {
+    if (s.kind === 'concept') {
+      const card = cards.statements.find(x => s.explain.startsWith(x.claim));
+      assert.ok(card, s.explain);
+      assert.equal(s.truth, card.truth, s.text);
+      n++;
+    }
+    // A set that is not exclusive could only ever be true, which would give the answer away.
+    if (s.check.set && cards.sets[s.check.set]) assert.ok(cards.sets[s.check.set].exclusive, s.text);
+  }
+  assert.ok(n > 50, 'concept statements exercised: ' + n);
+});
+
+test('agriculture knowledge is recalled only where a theme lists its domain', () => {
+  for (const q of questions()) {
+    const domains = q.theme.domains || [null];
+    for (const s of q.stage2.statements) {
+      const ind = s.check.ind;
+      if (!ind) continue;
+      assert.ok(domains.includes(AGRI_COL[ind] || AGRI_AREA[ind] ? 'agri' : null), q.theme.id + ': ' + s.text);
+    }
+  }
 });
