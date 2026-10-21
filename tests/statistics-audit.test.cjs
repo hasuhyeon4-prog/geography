@@ -100,3 +100,18 @@ test('WDI source links point to the displayed data year for both base and recent
   }
  }
 });
+
+test('farm tables are checked year by year against FAOSTAT, and flipping orders are marked',()=>{
+ const os=require('node:os'),path=require('node:path'),{execFileSync}=require('node:child_process');
+ const out=path.join(fs.mkdtempSync(path.join(os.tmpdir(),'rank-')),'rankings.js');
+ execFileSync('python3',[path.join(__dirname,'..','scripts','build-rankings.py'),out]);
+ assert.equal(fs.readFileSync(out,'utf8'),fs.readFileSync(require.resolve('../assets/rankings.js'),'utf8'),'assets/rankings.js is the build output');
+ // The 2018~2022 lecture average puts France above Australia; single years do not (10월 모평 복기).
+ const A=require('../data/agriculture.json'),ser=n=>A.seriesByArea[A.entities[n].areaCodes[0]]['tcl-exports:밀'];
+ const flips=Object.keys(ser('프랑스')).filter(y=>y>=2015&&y<=2024&&ser('프랑스')[y]<=ser('오스트레일리아')[y]);
+ assert.ok(flips.length>0);
+ const r=get('wheat-export');
+ assert.ok(P.unstable(r,row(r,'프랑스'),row(r,'오스트레일리아')));
+ assert.deepEqual(r.audit.yearly.flips.find(f=>f.pair.join()==='프랑스,오스트레일리아').years,flips);
+ assert.deepEqual(get('grain-trade').audit.yearly.flips,[],'밀 > 옥수수 > 쌀 holds every year');
+});

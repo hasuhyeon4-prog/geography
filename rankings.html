@@ -41,7 +41,7 @@ main{max-width:720px;margin:0 auto;padding:12px 12px calc(28px + env(safe-area-i
 <div class="scope"><label for="groupSelect">주제<select id="groupSelect"></select></label><label for="modeSelect">방식<select id="modeSelect"><option value="study">순위표 보기</option><option value="quiz">순위 문제</option></select></label></div>
 <div class="scope"><label for="policySelect">연습<select id="policySelect"><option value="basic">기출 핵심 회상</option><option value="dated">표를 보고 자료 읽기</option></select></label><span class="small muted">세계·대륙 범위와 생산·수출 지표를 구별하세요.</span></div>
 <main id="main" aria-live="polite"></main>
-<script src="assets/rankings.js?v=20261017-2"></script>
+<script src="assets/rankings.js?v=20261021-1"></script>
 <script src="assets/ranking-policy.js?v=20261017-1"></script>
 <script src="assets/exam-practice.js?v=20261017-2"></script>
 <script>
@@ -62,6 +62,15 @@ function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()
 function pick(a){return a[Math.floor(Math.random()*a.length)]}
 function head(r){return r.title}
 function sources(urls){var p=el('p',{className:'small muted'});(urls||[]).filter(function(u){return /^https:\/\//.test(u)}).forEach(function(u,i){p.append(el('a',{href:u,target:'_blank',rel:'noopener',text:(i?' · ':'')+'출처 '+(i+1)}))});return p}
+// Consecutive years read as a range: 2015, 2016, 2017 → 2015~2017.
+function spans(ys){var out=[],a=null,b=null;ys.map(Number).forEach(function(y){if(b!==null&&y===b+1){b=y}else{if(a!==null)out.push(a===b?String(a):a+'~'+b);a=b=y}});if(a!==null)out.push(a===b?String(a):a+'~'+b);return out.join('·')}
+// The year-by-year check of farm tables against FAOSTAT: which orders hold, which change.
+function yearlyNote(r){
+ var y=r.audit&&r.audit.yearly;if(!y)return null;
+ var head='연도별 확인('+y.source+', '+y.window+'년): ';
+ if(!y.flips.length)return el('p',{className:'note',text:head+'표의 순서가 매년 같아요.'});
+ return el('p',{className:'note',text:head+y.flips.map(function(f){return f.pair.join('·')+' '+spans(f.years)+'년'}).join(' / ')+'에 순서가 바뀌어요. 이 순서는 외우지 말고 문제에 주어진 자료의 연도로 판단하세요.'});
+}
 function auditNote(r,quiz){return r.audit?el('p',{className:'note',text:quiz?'표시한 연도·출처·범위로 답하세요. 다른 연도나 판본의 순위로 채점하지 않아요.':r.audit.warning}):null}
 function reference(r,q){return el('details',{className:'note'},[el('summary',{text:'출처·검수 근거'}),el('p',{text:q&&q.evidence||''}),el('p',{text:q&&q.reference||r.year+' · '+r.source+(r.scope?' · '+r.scope:'')}),sources(q&&q.sourceUrls||r.audit&&r.audit.sourceUrls)])}
 
@@ -74,11 +83,12 @@ function renderStudy(){
    var bar=el('span',{className:it.value<0?'neg':null});bar.style.width=(ranked(r)?(r.items.length-i)/r.items.length*100:Math.abs(it.value)/max*100)+'%';
    ul.append(el('li',{},[el('span',{className:'rank',text:String(i+1)}),el('span',{className:'name',text:it.name}),el('span',{className:'bar'},[bar]),el('span',{className:'val',text:fmt(r,it.value)})]));
    var nx=r.items[i+1];if(nx&&!ranked(r)&&P.equal(r,it,nx))ul.append(el('li',{className:'tieRow'},[el('span',{className:'tie',text:'표시값 동률 · 이 표에서는 두 항목의 순서를 구별하지 않음'})]));
+   else if(nx&&P.unstable(r,it,nx))ul.append(el('li',{className:'tieRow'},[el('span',{className:'tie',text:'연도에 따라 위아래가 바뀜 · 이 두 항목의 순서는 외우지 않음'})]));
   });
   var core=E.forRanking(r.id),card=el('section',{className:'card'},[el('h2',{text:r.title})]);
   core.forEach(function(q){card.append(el('p',{className:'small',text:q.text+' → '+q.answer[0]}))});
   if(!core.length)card.append(el('p',{className:'small muted',text:'참고 자료 · 표를 읽는 연습에서 사용해요.'}));
-  var stats=el('details',{},[el('summary',{text:'참고 통계표'}),el('div',{className:'meta',text:r.year+' · '+r.source+(r.scope?' · '+r.scope:'')}),auditNote(r),ul,r.note?el('p',{className:'note',text:r.note}):null,sources(r.audit&&r.audit.sourceUrls)]);card.append(stats);
+  var stats=el('details',{},[el('summary',{text:'참고 통계표'}),el('div',{className:'meta',text:r.year+' · '+r.source+(r.scope?' · '+r.scope:'')}),auditNote(r),ul,yearlyNote(r),r.note?el('p',{className:'note',text:r.note}):null,sources(r.audit&&r.audit.sourceUrls)]);card.append(stats);
   if(r.audit&&r.audit.latest){var latest=r.audit.latest,view=Object.assign({},r,latest);stats.append(el('details',{},[el('summary',{text:'최근 자료와 비교 · '+latest.year}),el('p',{className:'meta',text:latest.source}),tableOf(view,latest.items.map(function(i){return i.name})),latest.note?el('p',{className:'note',text:latest.note}):null,sources(latest.sourceUrls)]))}
   main.append(card);
  });
