@@ -31,7 +31,7 @@
    pick:[2,3],always:['pop'],indicators:['young','old','urban','nir'],show:2,
    derived:[{rate:'urban',total:'pop',per:100,noun:'도시 인구'},{rate:'old',total:'pop',per:100,noun:'노년층 인구'},{rate:'young',total:'pop',per:100,noun:'유소년층 인구'},{rate:'nir',total:'pop',per:1000,noun:'자연 증가한 인구 수'}],
    // 인구·도시 문항의 <보기>가 함께 묻는 위치·도시·블록·종교.
-   followups:{facts:['capitalCity','bloc','euro','religion','hemisphere','seas','landlocked'],focus:['capitalCity']},
+   followups:{facts:['capitalCity','bloc','euro','religion','hemisphere','equator','meridian','seas','landlocked'],focus:['capitalCity']},
    prompt:'{range}는 {candidates} 중 하나이다.'
   },
   {
@@ -40,7 +40,7 @@
    pool:['중국','일본','영국','프랑스','폴란드','알제리','나이지리아','보츠와나','콩고 민주 공화국','독일','멕시코','이집트','인도','브라질','아르헨티나','칠레','타이','탄자니아','사우디아라비아','튀르키예'],
    pick:[2,3],indicators:['pop','gdp','gdppc','manufacturing','agriculture','industry','services','industryEmployment','exports'],show:2,
    derived:[{rate:'manufacturing',total:'gdp',per:100,noun:'제조업 부가가치'}],
-   followups:{facts:['exportType','minerals','fossil','grainProductionTop','opec','bloc','apec','religion','capitalCity','hemisphere','seas','landlocked'],focus:['exportType','minerals','fossil','grainProductionTop','opec']},
+   followups:{facts:['exportType','minerals','fossil','grainProductionTop','opec','bloc','apec','religion','capitalCity','hemisphere','equator','meridian','seas','landlocked'],focus:['exportType','minerals','fossil','grainProductionTop','opec']},
    prompt:'{range}는 {candidates} 중 하나이다. 제조업·2차 산업의 GDP 비중과 종사자 비율을 구별한다.'
   },
   {
@@ -48,7 +48,7 @@
    kind:'composition',composition:'exports',entityType:'country',reveals:['exportType'],map:true,
    pool:['사우디아라비아','나이지리아','튀르키예','멕시코','칠레','아르헨티나','브라질','오스트레일리아','인도네시아','일본'],
    pick:[3,3],show:['fuel','ores','food','agriculturalRaw','manufactures','other'],amountNoun:'수출액',
-   followups:{facts:['fossil','minerals','opec','grainProductionTop','bloc','apec','latinLanguage','religion','capitalCity','hemisphere','seas','landlocked'],focus:['fossil','minerals','opec','grainProductionTop']},
+   followups:{facts:['fossil','minerals','opec','grainProductionTop','bloc','apec','latinLanguage','religion','capitalCity','hemisphere','equator','meridian','seas','landlocked'],focus:['fossil','minerals','opec','grainProductionTop']},
    note:'상품 수출의 SITC 분류이다. 광석·금속에는 다이아몬드가 포함되지 않으며, 공산품 비중을 제조업 고용 비율로 읽지 않는다. 비율과 같은 해의 총액으로 구한 금액은 근삿값이다.',
    prompt:'{range}는 {candidates} 중 하나이다. 표는 상품 수출액의 품목별 비중과 총액이다. 같은 품목의 비중과 수출 금액을 구별한다.'
   },
@@ -65,7 +65,7 @@
    note:'나이지리아의 선박에는 원문 주석에 따라 해체용 선박이 포함된다. 케냐의 석유 제품 수출은 원유 매장의 증거가 아니다.',
    // The item table already shows the export type, copper, iron ore, oil and tea.
    reveals:['exportType','minerals','fossil','beverage'],
-   followups:{facts:['opec','bloc','apec','latinLanguage','capitalCity','religion','christianity','hemisphere','seas','landlocked'],focus:['opec']},
+   followups:{facts:['opec','bloc','apec','latinLanguage','capitalCity','religion','christianity','hemisphere','equator','meridian','seas','landlocked'],focus:['opec']},
    prompt:'{range}는 {candidates} 중 하나이다. 표는 수출액 상위 세 품목과 비중(%)이다.'
   },
   {
@@ -74,7 +74,7 @@
    pool:['프랑스','노르웨이','브라질','네팔','아이슬란드','덴마크','캐나다','중국','인도','러시아','이란','독일','케냐','미국','남아프리카 공화국','오스트레일리아'],
    // The verified top sources are only 원자력·수력·풍력, so three 대상, each identified by its own.
    pick:[3,3],everyKnown:true,show:['coal','gas','nuclear','hydro','wind','other'],amountNoun:'발전량',
-   followups:{facts:['fossil','minerals','opec','bloc','euro','apec','religion','christianity','hemisphere','seas','landlocked'],focus:['fossil','minerals','opec']},
+   followups:{facts:['fossil','minerals','opec','bloc','euro','apec','religion','christianity','hemisphere','equator','meridian','seas','landlocked'],focus:['fossil','minerals','opec']},
    prompt:'{range}는 {candidates} 중 하나이다. 표는 발전원별 발전량 비중(%)과 총발전량이다. 비중과 발전량을 구별한다.'
   },
   {
@@ -83,7 +83,7 @@
    pool:['말레이시아','네팔','스리랑카','인도','방글라데시','미얀마','필리핀','우즈베키스탄','인도네시아','이스라엘','레바논','나이지리아','파키스탄','타이'],
    pick:[3,4],show:['christianity','islam','hinduism','buddhism','judaism','unaffiliated'],
    amountNoun:'신자 수',reveals:['religion'],
-   followups:{facts:['islam','buddhism','christianity','bloc','capitalCity','hemisphere','seas','landlocked'],focus:['islam','buddhism','christianity']},
+   followups:{facts:['islam','buddhism','christianity','bloc','capitalCity','hemisphere','equator','meridian','seas','landlocked'],focus:['islam','buddhism','christianity']},
    prompt:'{range}는 {candidates} 중 하나이다. 표는 종교별 인구 비중(%)과 총인구이다.'
   }
  ];

@@ -74,7 +74,7 @@
   Object.keys(kb.entities).forEach(function(n){var e=kb.entities[n];if(!e.region)return;Object.keys(e.facts||{}).forEach(function(set){var h=HOLDERS[set]||(HOLDERS[set]={}),g=h[e.region]||(h[e.region]={});e.facts[set].values.forEach(function(v){g[v]=1})})});
   function plausible(set,name,v){var e=entity(name),g=e&&e.region&&HOLDERS[set]&&HOLDERS[set][e.region];return !!(g&&g[v])}
   // A hemisphere is worth a <보기> only for a country within this many degrees of the equator.
-  var NEAR_EQUATOR=25;
+  var NEAR_EQUATOR=25,LINE_NEAR={equator:12,meridian:8};
   function allowed(theme,set){var f=theme.followups&&theme.followups.facts;return !f||f.indexOf(set)>=0}
   function koSort(a,b){return a.localeCompare(b,'ko')}
   function span(x,ind){if(!x.years)return '';var m=ind&&meta(ind);return m&&m.static?x.years.join('·')+'년 기준':x.years[0]+'~'+x.years[1]+'년 매년'}
@@ -198,6 +198,15 @@
       var o=fromOthers.length?pick(fromOthers,r):opts.length?pick(opts,r):null;
       if(o)add({kind:'fact',key:set+'|'+n,text:L(n)+'는 '+predicate(set,o)+'.',truth:false,explain:factExplain(set,n),check:{set:set,entity:n,value:o}});
      }
+    });
+    // '적도가 지난다' / '본초 자오선이 지난다': true when a landmass crosses the line; false only
+    // for a country near it (within LINE_NEAR degrees but at least half a degree away).
+    [['equator','적도'],['meridian','본초 자오선']].forEach(function(x){
+     var l=e.lines&&e.lines[x[0]];if(!l||l.undecided||!allowed(theme,x[0]))return;
+     if(!l.crosses&&(l.dist<.5||l.dist>LINE_NEAR[x[0]]))return;
+     var w=x[1]+subjectParticle(x[1]);
+     add({kind:'fact',key:x[0]+'|'+n,text:L(n)+'는 '+w+' 지난다.',truth:l.crosses,
+      explain:n+'의 국토'+(l.crosses?'를 '+w+' 지난다.':'는 '+x[1]+'에서 약 '+fmt(l.dist)+'° 떨어져 있어 '+w+' 지나지 않는다.'),check:{line:x[0],entity:n,value:true}});
     });
     if(e.ns&&e.eqDist<=NEAR_EQUATOR&&allowed(theme,'hemisphere')){var north=e.ns==='N',trueIt=r()<.5;add({kind:'fact',key:'ns|'+n,text:L(n)+'는 '+((north===trueIt)?'북반구':'남반구')+'에 위치한다.',truth:trueIt,explain:n+'의 국토는 '+(north?'북반구':'남반구')+'에 있다.',check:{ns:(north===trueIt)?'N':'S',entity:n}})}
    });

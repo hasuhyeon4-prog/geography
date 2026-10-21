@@ -250,3 +250,19 @@ test('a lecture direction that the current data reverse is never active', () => 
   // 2020학년도 6월 14번's 2015 table had Mexico above Germany; the current WDI edition does not.
   assert.ok(conflicts.some(([ind, hi, lo]) => ind === 'urban' && hi === '멕시코' && lo === '독일'));
 });
+
+test('equator and prime-meridian statements agree with geography', () => {
+  // Countries the lines cross (the ones drawn on the app's map).
+  const EQUATOR = ['브라질', '콜롬비아', '에콰도르', '가봉', '콩고', '콩고 민주 공화국', '우간다', '케냐', '소말리아', '인도네시아', '몰디브', '키리바시', '상투메 프린시페'];
+  const MERIDIAN = ['영국', '프랑스', '에스파냐', '알제리', '말리', '부르키나파소', '가나', '토고'];
+  const onMap = list => list.filter(n => K.entities[n] && K.entities[n].type === 'country').sort();
+  const crossing = line => Object.values(K.entities).filter(e => e.type === 'country' && e.lines[line].crosses).map(e => e.name).sort();
+  assert.deepEqual(crossing('equator'), onMap(EQUATOR));
+  assert.deepEqual(crossing('meridian'), onMap(MERIDIAN));
+  for (const q of questions()) for (const s of q.stage2.statements) {
+    if (!s.check.line) continue;
+    const list = s.check.line === 'equator' ? EQUATOR : MERIDIAN;
+    assert.equal(list.includes(s.check.entity), s.truth, s.text + ' ' + s.check.entity);
+    assert.match(s.text, s.check.line === 'equator' ? /적도가 지난다/ : /본초 자오선이 지난다/);
+  }
+});

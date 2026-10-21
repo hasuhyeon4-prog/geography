@@ -114,6 +114,22 @@ function labelAt(polys, p) {
   const lons = home[0].map(q => q[0]), lats = home[0].map(q => q[1]);
   return {label: p, frame: [Math.min(...lons), Math.min(...lats), Math.max(...lons), Math.max(...lats)].map(v => Math.round(v * 100) / 100)};
 }
+// Whether the equator or the prime meridian crosses the country: true only when one landmass
+// crosses the line. A country whose separate territories merely lie on both sides (프랑스:
+// 기아나 and 레위니옹) is left undecided, and no <보기> is made about it.
+function lines(name) {
+  const rings = shapes.byName[name].polygons.map(p => p[0]);
+  const lonSpan = r => { const l = r.map(p => p[0]); return Math.max(...l) - Math.min(...l); };
+  const out = {};
+  for (const [line, axis] of [['equator', 1], ['meridian', 0]]) {
+    const usable = rings.filter(r => axis === 1 || lonSpan(r) < 180);
+    const crosses = usable.some(r => r.some(p => p[axis] < 0) && r.some(p => p[axis] > 0));
+    const vals = usable.flat().map(p => p[axis]);
+    out[line] = {crosses, undecided: !crosses && Math.min(...vals) < 0 && Math.max(...vals) > 0,
+      dist: crosses ? 0 : Math.round(Math.min(...vals.map(Math.abs)) * 10) / 10};
+  }
+  return out;
+}
 function hemispheres(name) {
   const polys = shapes.byName[name].polygons;
   const main = polys.reduce((best, p) => (ringArea(p[0]) > ringArea(best[0]) ? p : best));
@@ -149,7 +165,7 @@ for (const name of Object.keys(shapes.byName)) {
   entities[name] = {
     type: 'country', name, iso3: s ? s.iso3 : shapes.byName[name].code,
     region: C.regionOf[name] || null, regionName: regionName[C.regionOf[name]] || null,
-    ...hemispheres(name), facts,
+    ...hemispheres(name), lines: lines(name), facts,
     // Only indicators with a comparison margin; yearly net migration of a country is too volatile.
     values: Object.assign(s ? Object.fromEntries(Object.entries(s.values).filter(([k]) => k in COUNTRY_INDICATORS)) : {}, (economy.countries[name] || {}).values || {}),
   };

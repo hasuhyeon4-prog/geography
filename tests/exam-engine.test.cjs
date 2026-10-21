@@ -126,6 +126,10 @@ test('each statement is true exactly when the knowledge base says so', () => {
         if (s.kind === 'fact' && c.set) {
           assert.ok(!(t.reveals || []).includes(c.set), t.id + ' asks what the data shows: ' + s.text);
           assert.equal(K.entities[c.entity].facts[c.set].values.includes(c.value), s.truth, s.text);
+        } else if (s.kind === 'fact' && c.line) {
+          const l = K.entities[c.entity].lines[c.line];
+          assert.ok(!l.undecided, s.text);
+          assert.equal(l.crosses, s.truth, s.text);
         } else if (s.kind === 'fact') {
           assert.equal(K.entities[c.entity].ns === c.ns, s.truth, s.text);
         } else if (s.kind === 'both') {
@@ -173,7 +177,7 @@ test('<보기> stay on the theme and avoid free distractors', () => {
       if (t.always) assert.ok(!engine.identifiable(t, q.entities, t.always), t.id + ' identified by ' + t.always);
       assert.ok(st.filter(s => s.kind === 'both').length <= 1, t.id + ' more than one 모두 statement');
       for (const s of st) {
-        const c = s.check || {}, set = c.set || (c.ns ? 'hemisphere' : null);
+        const c = s.check || {}, set = c.set || c.line || (c.ns ? 'hemisphere' : null);
         if (set) {
           assert.ok(!(t.reveals || []).includes(set), t.id + ' asks what the table shows: ' + s.text);
           if (f.facts) assert.ok(f.facts.includes(set), t.id + ' uses ' + set + ': ' + s.text);
