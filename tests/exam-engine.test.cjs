@@ -89,7 +89,8 @@ test('every ready theme builds full two-stage questions', () => {
       else assert.equal(n, 5, t.id);
       assert.equal(new Set(q.stage1.options.map(o => o.join('|'))).size, n, t.id + ' duplicate assignment');
       assert.doesNotMatch(q.prompt, /[{}]/, t.id + ' unresolved prompt');
-      if (t.map) {
+      assert.ok(['rows', 'columns', 'implicit'].includes(q.format), t.id + ' format ' + q.format);
+      if (t.map && q.format !== 'columns') {
         // The 대상 and extra countries are marked A~E, lettered west to east, at points inside them.
         const m = q.stage1.markers;
         assert.ok(m.length >= Math.min(4, t.pool.length) && m.length <= 5, t.id + ' markers ' + m.length);
@@ -101,8 +102,16 @@ test('every ready theme builds full two-stage questions', () => {
         assert.match(q.mapPrompt, /지도에 표시된 A~[DE]/, t.id);
         assert.doesNotMatch(q.mapPrompt, /[{}]/, t.id);
       }
-      assert.deepEqual(q.stage1.options[q.stage1.answer], q.entities, t.id);
-      assert.ok(engine.identifiable(t, q.entities, q.shown), t.id + ' not identifiable');
+      if (q.format === 'columns') {
+        // 항목 식별: the options assign the hidden columns; only the true one is consistent.
+        assert.deepEqual(q.stage1.options[q.stage1.answer], q.hidden, t.id);
+        assert.ok(engine.columnsIdentifiable(t, q.entities, q.hidden), t.id + ' columns not identifiable');
+        assert.deepEqual(q.display.columns.filter(c => c.reveal).map(c => c.label), ['A', 'B', 'C'], t.id);
+        assert.ok(!q.display.columns.some(c => c.reveal && q.prompt.indexOf(c.reveal) < 0), t.id + ' prompt lists the hidden names');
+      } else {
+        assert.deepEqual(q.stage1.options[q.stage1.answer], q.entities, t.id);
+        assert.ok(engine.identifiable(t, q.entities, q.shown), t.id + ' not identifiable');
+      }
       const st = q.stage2.statements;
       assert.equal(st.length, 4);
       assert.equal(st.filter(s => s.truth).length, 2, t.id + ' exactly two true');
@@ -174,7 +183,8 @@ test('each statement is true exactly when the knowledge base says so', () => {
           assert.notEqual(engine.value(c.subject, c.rate) > engine.value(c.object, c.rate), amount(c.subject) > amount(c.object), 'data items are rate-versus-total traps');
         } else assert.fail('unknown kind ' + s.kind);
         assert.ok(s.text.startsWith(q.labels.find(l => s.text.startsWith(l)) || '?'), s.text);
-        for (const label of s.text.match(/\([가-마]\)/g)) assert.ok(name(q, label), s.text);
+        for (const label of s.text.match(/\([가-마]\)/g) || []) assert.ok(name(q, label), s.text);
+        if (q.format === 'columns') assert.doesNotMatch(s.text, /\([가-마]\)/, '항목 식별 <보기> name the 대상: ' + s.text);
       }
     }
   }
@@ -189,7 +199,7 @@ test('<보기> stay on the theme and avoid free distractors', () => {
     for (let seed = 1; seed <= SEEDS; seed++) {
       const q = engine.build({themeId: t.id, seed}), st = q.stage2.statements, f = t.followups || {};
       // The column shown on every question must not identify the 대상 by itself.
-      if (t.always) assert.ok(!engine.identifiable(t, q.entities, t.always), t.id + ' identified by ' + t.always);
+      if (t.always && q.format !== 'columns') assert.ok(!engine.identifiable(t, q.entities, t.always), t.id + ' identified by ' + t.always);
       assert.ok(st.filter(s => s.kind === 'both').length <= 1, t.id + ' more than one 모두 statement');
       for (const s of st) {
         const c = s.check || {}, set = c.set || c.line || (c.ns ? 'hemisphere' : null);
@@ -237,4 +247,22 @@ test('the 기출형 page parses and all four quiz pages link each other', () => 
     const html = fs.readFileSync(path.join(ROOT, f), 'utf8');
     assert.match(html, /href="exam\.html"/, f);
   }
+});
+
+test('questions come in three formats and recent ones are not repeated', () => {
+  const formats = {};
+  for (const t of engine.themes) for (let seed = 1; seed <= 200; seed++) { const q = engine.build({themeId: t.id, seed}); formats[q.format] = (formats[q.format] || 0) + 1; }
+  for (const f of ['rows', 'columns', 'implicit']) assert.ok(formats[f] > 100, f + ' ' + formats[f]);
+  // With the last questions passed as avoid, a theme with enough combinations does not repeat within 20.
+  for (const id of ['country-population', 'religion-composition', 'climate-graphs', 'electricity-mix']) {
+    const recent = [];
+    for (let i = 0; i < 20; i++) {
+      const q = engine.build({themeId: id, seed: 5000 + i, avoid: recent});
+      assert.ok(!recent.includes(q.signature), id + ' repeated ' + q.signature);
+      recent.push(q.signature);
+    }
+  }
+  // Particles follow how a name is read.
+  assert.equal(E.topic('ASEAN'), '은');
+  assert.equal(E.topic('EU'), '는');
 });

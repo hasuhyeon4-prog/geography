@@ -7,6 +7,7 @@
  * `followups.focus` marks those that belong to the theme, which <보기> prefer together with
  * comparisons and data items. `map:true` marks the 대상 and extra countries as A~E on a map;
  * `{candidates}` in a prompt becomes their names, or '지도에 표시된 A~E' on the map.
+ * `hideable` lists the categories a 항목 식별 question may hide as A~C (indicator themes hide indicators).
  */
 (function(root,factory){var api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.WGExamThemes=api})(typeof globalThis!=='undefined'?globalThis:this,function(){
  'use strict';
@@ -47,7 +48,7 @@
    id:'export-composition',status:'ready',title:'상품 수출 구성과 총수출액',lecture:'2권 P08·P11',exams:['2027학년도 9월 13번','2026학년도 6월 16번','2027학년도 6월 7번'],
    kind:'composition',composition:'exports',entityType:'country',reveals:['exportType'],map:true,
    pool:['사우디아라비아','나이지리아','튀르키예','멕시코','칠레','아르헨티나','브라질','오스트레일리아','인도네시아','일본'],
-   pick:[3,3],show:['fuel','ores','food','agriculturalRaw','manufactures','other'],amountNoun:'수출액',
+   pick:[3,3],show:['fuel','ores','food','agriculturalRaw','manufactures','other'],amountNoun:'수출액',hideable:['fuel','ores','food','manufactures'],
    followups:{facts:['fossil','minerals','opec','grainProductionTop','bloc','apec','latinLanguage','religion','capitalCity','hemisphere','equator','meridian','seas','landlocked'],focus:['fossil','minerals','opec','grainProductionTop']},
    note:'상품 수출의 SITC 분류이다. 광석·금속에는 다이아몬드가 포함되지 않으며, 공산품 비중을 제조업 고용 비율로 읽지 않는다. 비율과 같은 해의 총액으로 구한 금액은 근삿값이다.',
    prompt:'{range}는 {candidates} 중 하나이다. 표는 상품 수출액의 품목별 비중과 총액이다. 같은 품목의 비중과 수출 금액을 구별한다.'
@@ -73,7 +74,7 @@
    kind:'composition',composition:'electricity',entityType:'country',reveals:[],map:true,
    pool:['프랑스','노르웨이','브라질','네팔','아이슬란드','덴마크','캐나다','중국','인도','러시아','이란','독일','케냐','미국','남아프리카 공화국','오스트레일리아'],
    // The verified top sources are only 원자력·수력·풍력, so three 대상, each identified by its own.
-   pick:[3,3],everyKnown:true,show:['coal','gas','nuclear','hydro','wind','other'],amountNoun:'발전량',
+   pick:[3,3],everyKnown:true,show:['coal','gas','nuclear','hydro','wind','other'],amountNoun:'발전량',hideable:['coal','gas','nuclear','hydro','wind'],
    followups:{facts:['fossil','minerals','opec','bloc','euro','apec','religion','christianity','hemisphere','equator','meridian','seas','landlocked'],focus:['fossil','minerals','opec']},
    prompt:'{range}는 {candidates} 중 하나이다. 표는 발전원별 발전량 비중(%)과 총발전량이다. 비중과 발전량을 구별한다.'
   },
@@ -90,7 +91,7 @@
    id:'religion-composition',status:'ready',title:'국가별 종교 인구 구성',lecture:'1권 P04',exams:['2027학년도 9월 7번','2026학년도 6월 8번','2022학년도 6월 5번'],
    kind:'composition',composition:'religion',entityType:'country',map:true,
    pool:['말레이시아','네팔','스리랑카','인도','방글라데시','미얀마','필리핀','우즈베키스탄','인도네시아','이스라엘','레바논','나이지리아','파키스탄','타이'],
-   pick:[3,4],show:['christianity','islam','hinduism','buddhism','judaism','unaffiliated'],
+   pick:[3,4],show:['christianity','islam','hinduism','buddhism','judaism','unaffiliated'],hideable:['christianity','islam','hinduism','buddhism'],
    amountNoun:'신자 수',reveals:['religion'],
    followups:{facts:['islam','buddhism','christianity','bloc','capitalCity','hemisphere','equator','meridian','seas','landlocked'],focus:['islam','buddhism','christianity']},
    prompt:'{range}는 {candidates} 중 하나이다. 표는 종교별 인구 비중(%)과 총인구이다.'

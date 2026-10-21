@@ -136,6 +136,26 @@ test('identification rests only on whitelisted knowledge that holds in every yea
     // Every wrong assignment must break some piece of that knowledge on the shown numbers.
     const comp = n => q.display.columns.reduce((v, c, i) => Object.assign(v, {[c.id]: num(q.display.rows[q.entities.indexOf(n)].cells[i])}), {});
     if (t.kind === 'climate') continue;  // checked against the station data in its own test below
+    if (q.format === 'columns') {
+      // 항목 식별: every wrong assignment of the hidden columns breaks a verified relation, sign
+      // or composition order on the shown numbers.
+      const col = id => q.display.columns.findIndex(c => c.id === id), cell = (n, j) => num(q.display.rows[q.entities.indexOf(n)].cells[j]);
+      for (const g of q.stage1.options) {
+        if (g.join() === q.hidden.join()) continue;
+        const at = id => col(q.hidden[g.indexOf(id)]);
+        const broken = t.kind === 'indicators'
+          ? K.relations.some(x => x.status === 'active' && g.includes(x.indicator) && q.entities.includes(x.hi) && q.entities.includes(x.lo) && allowedPairs.has(x.indicator + '|' + [x.hi, x.lo].sort().join('|')) && cell(x.lo, at(x.indicator)) > cell(x.hi, at(x.indicator))) ||
+            K.signs.some(x => x.status === 'active' && g.includes(x.indicator) && q.entities.includes(x.entity) && (cell(x.entity, at(x.indicator)) > 0) !== x.positive)
+          : q.entities.some(n => K.orders.filter(o => o.status === 'active' && o.composition === t.composition && o.entity === n).some(o => {
+              const v = {};
+              q.display.columns.forEach((c, j) => { if (c.id !== 'total' && c.id !== 'exports' && c.unit === '%') v[c.reveal ? g[q.hidden.indexOf(c.id)] : c.id] = cell(n, j); });
+              const others = Object.keys(v).filter(k => !o.order.includes(k));
+              return o.order.some((k, i) => (i + 1 < o.order.length ? [o.order[i + 1]] : others).some(b => v[b] > v[k]));
+            }));
+        assert.ok(broken, `${t.id}: column guess ${g.join(',')} is not ruled out`);
+      }
+      continue;
+    }
     // Two-대상 questions offer pairs drawn from four named candidates, so check those options too.
     const wrongs = permutations(q.entities).concat(q.stage1.options).filter(p => p.join() !== q.entities.join());
     for (const p of wrongs) {

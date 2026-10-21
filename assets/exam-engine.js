@@ -24,8 +24,10 @@
  function shuffle(list,r){var a=list.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(r()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
  function pick(list,r){return list[Math.floor(r()*list.length)]}
  function fmt(v){var a=Math.abs(v);return v.toLocaleString('ko-KR',{maximumFractionDigits:a>=100?0:a>=10?1:2})}
- function topic(word){var c=word.charCodeAt(word.length-1);return c>=0xAC00&&c<=0xD7A3&&(c-0xAC00)%28?'은':'는'}
- function subjectParticle(word){var c=word.charCodeAt(word.length-1);return c>=0xAC00&&c<=0xD7A3&&(c-0xAC00)%28?'이':'가'}
+ // Particles follow how a name is read: ASEAN 아세안 → 은, EU 이유 → 는.
+ var READ={ASEAN:'아세안',MERCOSUR:'메르코수르',EU:'이유',USMCA:'유에스엠씨에이',APEC:'에이펙',OPEC:'오펙'};
+ function topic(word){word=READ[word]||word;var c=word.charCodeAt(word.length-1);return c>=0xAC00&&c<=0xD7A3&&(c-0xAC00)%28?'은':'는'}
+ function subjectParticle(word){word=READ[word]||word;var c=word.charCodeAt(word.length-1);return c>=0xAC00&&c<=0xD7A3&&(c-0xAC00)%28?'이':'가'}
  function permutations(list){if(list.length<=1)return [list.slice()];var out=[];list.forEach(function(x,i){permutations(list.slice(0,i).concat(list.slice(i+1))).forEach(function(p){out.push([x].concat(p))})});return out}
 
  // Predicates follow '(가)는 …' and also '(가)와 (나)는 모두 …'.
@@ -179,6 +181,59 @@
    });
   }
 
+  // 항목 식별 (format 'columns'): the 대상 are named and three columns are labelled A~C instead
+  // of their names. The learner tells which indicator or category each column is, using the same
+  // verified knowledge: relations and signs (indicators) or composition orders.
+  var COLS=['A','B','C'];
+  function columnsFor(theme){
+   if(theme.kind==='indicators')return theme.indicators.filter(function(ind){return meta(ind)&&!meta(ind).disabled&&(theme.always||[]).indexOf(ind)<0});
+   return theme.kind==='composition'?(theme.hideable||[]):[];
+  }
+  function columnName(theme,id){return theme.kind==='indicators'?meta(id).label:catLabel(theme,id)}
+  // guess[j] is what the learner takes column j to be; the column really holds hidden[j].
+  function columnsConsistent(theme,rows,hidden,guess){
+   var has=function(n){return rows.indexOf(n)>=0},col=function(id){return hidden[guess.indexOf(id)]};
+   if(theme.kind==='indicators')
+    return REL.every(function(x){return guess.indexOf(x.indicator)<0||!has(x.hi)||!has(x.lo)||!clearlyAbove(x.indicator,value(x.lo,col(x.indicator)),value(x.hi,col(x.indicator)))})&&
+     SIGNS.every(function(x){if(guess.indexOf(x.indicator)<0||!has(x.entity))return true;var v=value(x.entity,col(x.indicator)),min=meta(x.indicator).sign.min;return x.positive?v>-min:v<min});
+   var c=composition(theme);
+   return rows.every(function(n){
+    var o=orderOf(theme,n);if(!o)return true;
+    var v=Object.assign({},comp(theme,n));guess.forEach(function(g,j){v[g]=comp(theme,n)[hidden[j]]});
+    return !orderBroken(c,o.order,v);
+   });
+  }
+  function columnsIdentifiable(theme,rows,hidden){
+   var left=permutations(hidden).filter(function(g){return columnsConsistent(theme,rows,hidden,g)});
+   return left.length===1&&left[0].join('|')===hidden.join('|');
+  }
+  function columnsDisplay(theme,rows,shown,hidden){
+   var names=function(n){return n};
+   if(theme.kind==='indicators'){
+    var named=shown.filter(function(ind){return hidden.indexOf(ind)<0});
+    var cols=named.map(function(ind){var m=meta(ind);return {id:ind,label:m.label,unit:m.unit}}).concat(hidden.map(function(id,j){return {id:id,label:COLS[j],reveal:meta(id).label,unit:''}}));
+    var src={};shown.forEach(function(ind){var m=meta(ind);src[m.year+' · '+m.source]=1});
+    return {columns:cols,rows:rows.map(function(n){return {label:names(n),cells:named.concat(hidden).map(function(ind){return fmt(value(n,ind))})}}),source:Object.keys(src).join(' / ')+' · A~C의 단위는 생략함'};
+   }
+   var c=composition(theme),visible=(theme.show||[]).filter(function(id){return hidden.indexOf(id)<0});
+   var cols=visible.map(function(id){return {id:id,label:catLabel(theme,id),unit:'%'}}).concat(hidden.map(function(id,j){return {id:id,label:COLS[j],reveal:catLabel(theme,id),unit:'%'}}));
+   if(c.total)cols.push({id:c.total.indicator||'total',label:c.total.label,unit:c.total.unit});
+   return {columns:cols,rows:rows.map(function(n){return {label:n,cells:visible.concat(hidden).map(function(id){return fmt(comp(theme,n)[id]||0)}).concat(c.total?[fmt(total(theme,n))]:[])}}),
+    source:c.year+' · '+c.source+' · '+c.unit};
+  }
+  function columnsCues(theme,rows,hidden){
+   return hidden.map(function(id,j){
+    var parts=[];
+    if(theme.kind==='indicators'){
+     // Each known relation on this indicator, as a chain where they line up.
+     var rel=REL.filter(function(x){return x.indicator===id&&rows.indexOf(x.hi)>=0&&rows.indexOf(x.lo)>=0});
+     rows.slice().sort(function(a,b){return value(b,id)-value(a,id)}).forEach(function(n){var below=rel.filter(function(x){return x.hi===n}).map(function(x){return x.lo});if(below.length)parts.push(n+' > '+below.join('·'))});
+     SIGNS.forEach(function(x){if(x.indicator===id&&rows.indexOf(x.entity)>=0)parts.push(x.entity+(x.positive?' 양(+)':' 음(−)'))});
+    }else rows.forEach(function(n){var o=orderOf(theme,n);if(o&&o.order.indexOf(id)>=0)parts.push(n+' '+o.order.map(function(k){return catLabel(theme,k)}).join(' > ')+(o.order.length===1?' 1위':''))});
+    return {label:COLS[j],name:columnName(theme,id),cue:parts.length?parts.slice(0,4).join(' · '):'나머지 항목(소거)'};
+   });
+  }
+
   function stage1(chosen,r){
    var all=permutations(chosen),key=function(p){return p.join('|')},right=key(chosen);
    var near=all.filter(function(p){var d=p.filter(function(x,i){return x!==chosen[i]}).length;return d===2}),far=all.filter(function(p){var d=p.filter(function(x,i){return x!==chosen[i]}).length;return d>2});
@@ -213,7 +268,7 @@
   ];
   function climateExplain(n){var c=cl(n);return n+' — 강의 기후형 '+typeLabel(c.lecture)+'('+code(c.lecture)+'), 관측소 평년값 분류 '+code(c.computed)+' · '+c.station.replace(/_\d+$/,'')}
   function climateCandidates(theme,chosen,r){
-   var out=[],L=function(n){return LABELS[chosen.indexOf(n)]};
+   var out=[],L=function(n){return LABELS[chosen.indexOf(n)]},S=function(n){return L(n)+'는'};
    function add(c){if(!out.some(function(x){return x.text===c.text}))out.push(c)}
    function ordered(p,va,vb){var hi=va>vb?p[0]:p[1],lo=hi===p[0]?p[1]:p[0],truth=r()<.5;return {hi:hi,lo:lo,truth:truth,s:truth?[hi,lo]:[lo,hi]}}
    pairs(chosen).forEach(function(p){
@@ -223,33 +278,35 @@
      var va=g[5](a),vb=g[5](b),clear=g[0]==='annual'?Math.max(va,vb)>=1.3*Math.min(va,vb)&&Math.abs(va-vb)>=150:Math.abs(va-vb)>=g[3];
      if(!clear)return;
      var o=ordered(p,va,vb);
-     add({kind:'graph',key:'graph|'+g[0]+'|'+p.join('|'),text:L(o.s[0])+'는 '+L(o.s[1])+'보다 '+g[1]+g[2]+'.',truth:o.truth,
+     add({kind:'graph',key:'graph|'+g[0]+'|'+p.join('|'),text:S(o.s[0])+' '+L(o.s[1])+'보다 '+g[1]+g[2]+'.',truth:o.truth,
       explain:'그래프 읽기: '+o.hi+' '+fmt(g[5](cl(o.hi)))+g[4]+', '+o.lo+' '+fmt(g[5](cl(o.lo)))+g[4]+(g[0]==='range'?' (최난월 − 최한월)':''),check:{metric:g[0],subject:o.s[0],object:o.s[1]}});
     });
     var la=Math.abs(a.lat),lb=Math.abs(b.lat);
     if(Math.abs(la-lb)>=8){var o=ordered(p,la,lb);
-     add({kind:'place',key:'lat|'+p.join('|'),text:L(o.s[0])+'는 '+L(o.s[1])+'보다 고위도에 위치한다.',truth:o.truth,explain:o.hi+' 위도 '+fmt(Math.abs(cl(o.hi).lat))+'°, '+o.lo+' '+fmt(Math.abs(cl(o.lo).lat))+'°',check:{place:'lat',subject:o.s[0],object:o.s[1]}})}
+     add({kind:'place',key:'lat|'+p.join('|'),text:S(o.s[0])+' '+L(o.s[1])+'보다 고위도에 위치한다.',truth:o.truth,explain:o.hi+' 위도 '+fmt(Math.abs(cl(o.hi).lat))+'°, '+o.lo+' '+fmt(Math.abs(cl(o.lo).lat))+'°',check:{place:'lat',subject:o.s[0],object:o.s[1]}})}
     if(a.elevation!=null&&b.elevation!=null&&Math.abs(a.elevation-b.elevation)>=800){var e=ordered(p,a.elevation,b.elevation);
-     add({kind:'place',key:'alt|'+p.join('|'),text:L(e.s[0])+'는 '+L(e.s[1])+'보다 해발 고도가 높다.',truth:e.truth,explain:e.hi+' 관측소 해발 '+fmt(cl(e.hi).elevation)+'m, '+e.lo+' '+fmt(cl(e.lo).elevation)+'m',check:{place:'alt',subject:e.s[0],object:e.s[1]}})}
+     add({kind:'place',key:'alt|'+p.join('|'),text:S(e.s[0])+' '+L(e.s[1])+'보다 해발 고도가 높다.',truth:e.truth,explain:e.hi+' 관측소 해발 '+fmt(cl(e.hi).elevation)+'m, '+e.lo+' '+fmt(cl(e.lo).elevation)+'m',check:{place:'alt',subject:e.s[0],object:e.s[1]}})}
    });
    chosen.forEach(function(n){
     var c=cl(n);
     if(Math.abs(c.lat)>=5){var south=c.hemisphere==='S',t=r()<.5;
-     add({kind:'place',key:'hemi|'+n,text:L(n)+'는 '+(south===t?'남반구':'북반구')+'에 위치한다.',truth:t,explain:n+' 위도 '+fmt(c.lat)+'° — '+(south?'남반구':'북반구'),check:{place:'hemisphere',entity:n,value:south===t?'S':'N'}})}
+     add({kind:'place',key:'hemi|'+n,text:S(n)+' '+(south===t?'남반구':'북반구')+'에 위치한다.',truth:t,explain:n+' 위도 '+fmt(c.lat)+'° — '+(south?'남반구':'북반구'),check:{place:'hemisphere',entity:n,value:south===t?'S':'N'}})}
     if(!c.type)return;
-    add({kind:'climate',key:'type|'+n,text:L(n)+'는 '+typeLabel(c.type)+'가 나타난다.',truth:true,explain:climateExplain(n),check:{type:c.type,entity:n}});
+    add({kind:'climate',key:'type|'+n,text:S(n)+' '+typeLabel(c.type)+'가 나타난다.',truth:true,explain:climateExplain(n),check:{type:c.type,entity:n}});
     // A wrong type the data clearly rule out: another site's type in this question, else one of the same group.
     var others=chosen.map(function(o){return cl(o).type}).filter(function(t){return t&&t!==c.type&&!climateFits(c,t)});
     var group=Object.keys(CLIMATE.types).filter(function(t){return t!=='h'&&t!==c.type&&t[0]===c.type[0]&&!climateFits(c,t)});
     var w=others.length?pick(others,r):group.length?pick(group,r):null;
-    if(w)add({kind:'climate',key:'type|'+n,text:L(n)+'는 '+typeLabel(w)+'가 나타난다.',truth:false,explain:climateExplain(n),check:{type:w,entity:n}});
+    if(w)add({kind:'climate',key:'type|'+n,text:S(n)+' '+typeLabel(w)+'가 나타난다.',truth:false,explain:climateExplain(n),check:{type:w,entity:n}});
    });
    return out;
   }
 
-  function candidates(theme,chosen,shown,r){
+  // named: the 대상 are shown by name (항목 식별), so <보기> use names with their particles.
+  function candidates(theme,chosen,shown,r,named){
    if(theme.kind==='climate')return climateCandidates(theme,chosen,r);
-   var out=[],L=function(n){return LABELS[chosen.indexOf(n)]},has=function(n){return chosen.indexOf(n)>=0};
+   var out=[],has=function(n){return chosen.indexOf(n)>=0};
+   var L=function(n){return named?n:LABELS[chosen.indexOf(n)]},S=function(n){return L(n)+(named?topic(n):'는')},W=function(n){return L(n)+(named?(topic(n)==='은'?'과':'와'):'와')};
    function add(c){if(c.text&&!out.some(function(x){return x.text===c.text}))out.push(c)}
    chosen.forEach(function(n){
     var e=entity(n);
@@ -258,12 +315,12 @@
      if((theme.reveals||[]).indexOf(set)>=0)return;
      if(!allowed(theme,set))return;
      var f=e.facts[set],m=kb.factSets[set];
-     f.values.forEach(function(v){var p=predicate(set,v);if(p)add({kind:'fact',key:set+'|'+n,text:L(n)+'는 '+p+'.',truth:true,explain:factExplain(set,n),check:{set:set,entity:n,value:v}})});
+     f.values.forEach(function(v){var p=predicate(set,v);if(p)add({kind:'fact',key:set+'|'+n,text:S(n)+' '+p+'.',truth:true,explain:factExplain(set,n),check:{set:set,entity:n,value:v}})});
      if(m&&m.exclusive){
       var opts=Object.keys(m.options).filter(function(o){return f.values.indexOf(o)<0&&predicate(set,o)&&plausible(set,n,o)});
       var fromOthers=[];chosen.forEach(function(o){var g=o!==n&&entity(o).facts[set];if(g)g.values.forEach(function(v){if(opts.indexOf(v)>=0)fromOthers.push(v)})});
       var o=fromOthers.length?pick(fromOthers,r):opts.length?pick(opts,r):null;
-      if(o)add({kind:'fact',key:set+'|'+n,text:L(n)+'는 '+predicate(set,o)+'.',truth:false,explain:factExplain(set,n),check:{set:set,entity:n,value:o}});
+      if(o)add({kind:'fact',key:set+'|'+n,text:S(n)+' '+predicate(set,o)+'.',truth:false,explain:factExplain(set,n),check:{set:set,entity:n,value:o}});
      }
     });
     // '적도가 지난다' / '본초 자오선이 지난다': true when a landmass crosses the line; false only
@@ -272,22 +329,22 @@
      var l=e.lines&&e.lines[x[0]];if(!l||l.undecided||!allowed(theme,x[0]))return;
      if(!l.crosses&&(l.dist<.5||l.dist>LINE_NEAR[x[0]]))return;
      var w=x[1]+subjectParticle(x[1]);
-     add({kind:'fact',key:x[0]+'|'+n,text:L(n)+'는 '+w+' 지난다.',truth:l.crosses,
+     add({kind:'fact',key:x[0]+'|'+n,text:S(n)+' '+w+' 지난다.',truth:l.crosses,
       explain:n+'의 국토'+(l.crosses?'를 '+w+' 지난다.':'는 '+x[1]+'에서 약 '+fmt(l.dist)+'° 떨어져 있어 '+w+' 지나지 않는다.'),check:{line:x[0],entity:n,value:true}});
     });
-    if(e.ns&&e.eqDist<=NEAR_EQUATOR&&allowed(theme,'hemisphere')){var north=e.ns==='N',trueIt=r()<.5;add({kind:'fact',key:'ns|'+n,text:L(n)+'는 '+((north===trueIt)?'북반구':'남반구')+'에 위치한다.',truth:trueIt,explain:n+'의 국토는 '+(north?'북반구':'남반구')+'에 있다.',check:{ns:(north===trueIt)?'N':'S',entity:n}})}
+    if(e.ns&&e.eqDist<=NEAR_EQUATOR&&allowed(theme,'hemisphere')){var north=e.ns==='N',trueIt=r()<.5;add({kind:'fact',key:'ns|'+n,text:S(n)+' '+((north===trueIt)?'북반구':'남반구')+'에 위치한다.',truth:trueIt,explain:n+'의 국토는 '+(north?'북반구':'남반구')+'에 있다.',check:{ns:(north===trueIt)?'N':'S',entity:n}})}
    });
    SIGNS.forEach(function(x){
     if(!has(x.entity)||shown.indexOf(x.indicator)>=0)return;
     var m=meta(x.indicator),v=value(x.entity,x.indicator),yes=x.positive?m.sign.pos:m.sign.neg,no=x.positive?m.sign.neg:m.sign.pos;
     var why=x.entity+' '+m.label+' '+fmt(v)+m.unit+' ('+m.year+', '+m.source+') · '+span(x,x.indicator)+' '+(x.positive?'양(+)':'음(−)')+' · 근거: '+x.basis;
-    if(yes)add({kind:'sign',key:x.indicator+'|'+x.entity,text:L(x.entity)+'는 '+yes+'.',truth:true,explain:why,check:{ind:x.indicator,entity:x.entity,positive:x.positive}});
-    if(no)add({kind:'sign',key:x.indicator+'|'+x.entity,text:L(x.entity)+'는 '+no+'.',truth:false,explain:why,check:{ind:x.indicator,entity:x.entity,positive:!x.positive}});
+    if(yes)add({kind:'sign',key:x.indicator+'|'+x.entity,text:S(x.entity)+' '+yes+'.',truth:true,explain:why,check:{ind:x.indicator,entity:x.entity,positive:x.positive}});
+    if(no)add({kind:'sign',key:x.indicator+'|'+x.entity,text:S(x.entity)+' '+no+'.',truth:false,explain:why,check:{ind:x.indicator,entity:x.entity,positive:!x.positive}});
    });
    REL.forEach(function(x){
     if(!has(x.hi)||!has(x.lo)||shown.indexOf(x.indicator)>=0||meta(x.indicator).entityType!==entity(x.hi).type)return;
     var m=meta(x.indicator),truth=r()<.5,s=truth?[x.hi,x.lo]:[x.lo,x.hi];
-    add({kind:'compare',key:x.indicator+'|'+[x.hi,x.lo].sort().join('|'),text:L(s[0])+'는 '+L(s[1])+'보다 '+m.more+'.',truth:truth,
+    add({kind:'compare',key:x.indicator+'|'+[x.hi,x.lo].sort().join('|'),text:S(s[0])+' '+L(s[1])+'보다 '+m.more+'.',truth:truth,
      explain:x.hi+' '+fmt(value(x.hi,x.indicator))+m.unit+', '+x.lo+' '+fmt(value(x.lo,x.indicator))+m.unit+' ('+m.label+', '+m.year+', '+m.source+') · '+span(x,x.indicator)+' 같은 순서 · 근거: '+x.basis,
      check:{ind:x.indicator,subject:s[0],object:s[1]}});
    });
@@ -297,7 +354,7 @@
      var m=kb.factSets[set];if(!m||!m.exclusive||!b.facts||!b.facts[set]||(theme.reveals||[]).indexOf(set)>=0||!allowed(theme,set))return;
      var va=a.facts[set].values[0],vb=b.facts[set].values[0],pr=predicate(set,va);if(!pr)return;
      if(va!==vb&&!plausible(set,p[1],va))return;
-     add({kind:'both',key:set+'|'+p[0],keys:[set+'|'+p[0],set+'|'+p[1]],text:L(p[0])+'와 '+L(p[1])+'는 모두 '+pr+'.',truth:va===vb,explain:factExplain(set,p[0])+' / '+factExplain(set,p[1]),check:{set:set,a:p[0],b:p[1],value:va}});
+     add({kind:'both',key:set+'|'+p[0],keys:[set+'|'+p[0],set+'|'+p[1]],text:W(p[0])+' '+S(p[1])+' 모두 '+pr+'.',truth:va===vb,explain:factExplain(set,p[0])+' / '+factExplain(set,p[1]),check:{set:set,a:p[0],b:p[1],value:va}});
     });
     if(theme.kind==='composition'&&composition(theme).total){
      var c=composition(theme),ca=comp(theme,p[0]),cb=comp(theme,p[1]),ta=total(theme,p[0]),tb=total(theme,p[1]);
@@ -307,7 +364,7 @@
       var amtA=ca[cat]*ta/100,amtB=cb[cat]*tb/100,s0=trap(p,ca[cat],cb[cat],amtA,amtB,1.5);if(!s0)return;
       var truth=r()<.5,s=truth?s0:[s0[1],s0[0]],amt=function(n){return n===p[0]?amtA:amtB};
       var noun=catLabel(theme,cat)+' '+(theme.amountNoun||'인구');
-      add({kind:'data',key:'amount|'+cat+'|'+p[0]+'|'+p[1],check:{category:cat,subject:s[0],object:s[1]},text:L(s[0])+'는 '+L(s[1])+'보다 '+noun+subjectParticle(noun)+' 많다.',truth:truth,
+      add({kind:'data',key:'amount|'+cat+'|'+p[0]+'|'+p[1],check:{category:cat,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+noun+subjectParticle(noun)+' 많다.',truth:truth,
        explain:'표의 비율 × '+c.total.label+': '+s0[0]+' 약 '+fmt(amt(s0[0]))+c.total.unit+', '+s0[1]+' 약 '+fmt(amt(s0[1]))+c.total.unit+' — 비율은 반대지만 '+c.total.label+' 차이 때문에 실제 '+(/수$/.test(theme.amountNoun||'')?'수':'양')+'는 이렇다. (비율·'+c.total.label+' 모두 '+c.year+'년 '+c.source+')'});
      });
     }
@@ -317,7 +374,7 @@
      var amtA=ta*ra/d.per,amtB=tb*rb/d.per,s0=trap(p,ra,rb,amtA,amtB,1.2);if(!s0)return;
      var truth=r()<.5,s=truth?s0:[s0[1],s0[0]];
      var line=function(n){return n+' '+fmt(value(n,d.total))+tm.unit+' × '+fmt(value(n,d.rate))+rm.unit+' ≈ '+fmt(value(n,d.total)*value(n,d.rate)/d.per)+tm.unit};
-     add({kind:'data',key:'derived|'+d.rate+'|'+p[0]+'|'+p[1],check:{rate:d.rate,total:d.total,per:d.per,subject:s[0],object:s[1]},text:L(s[0])+'는 '+L(s[1])+'보다 '+d.noun+'가 많다.',truth:truth,
+     add({kind:'data',key:'derived|'+d.rate+'|'+p[0]+'|'+p[1],check:{rate:d.rate,total:d.total,per:d.per,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+d.noun+'가 많다.',truth:truth,
       explain:'표의 '+tm.label+' × '+rm.label+': '+line(s0[0])+', '+line(s0[1])+' — '+rm.label+'은 반대지만 '+tm.label+' 차이 때문에 '+d.noun+'는 이렇다. ('+rm.year+', '+rm.source+')'});
     });
    });
@@ -327,9 +384,10 @@
   // Two true and two false statements, never two about the same fact. Up to three come from
   // the theme itself (comparisons, signs, data items, and the theme's focus fact sets); the
   // rest are background facts, with at most one '(가)와 (나)는 모두 …'.
+  // A theme <보기> asks about the data (compare, sign, graph, climate) or a fact the theme is about.
+  function isFocus0(theme,c){var focusSets=(theme.followups&&theme.followups.focus)||[];return c.kind==='compare'||c.kind==='sign'||c.kind==='data'||c.kind==='graph'||c.kind==='climate'||!!(c.check&&c.check.set&&focusSets.indexOf(c.check.set)>=0)}
   function chooseStatements(theme,cands,r){
-   var focusSets=(theme.followups&&theme.followups.focus)||[];
-   function isFocus(c){return c.kind==='compare'||c.kind==='sign'||c.kind==='data'||c.kind==='graph'||c.kind==='climate'||!!(c.check&&c.check.set&&focusSets.indexOf(c.check.set)>=0)}
+   var isFocus=function(c){return isFocus0(theme,c)};
    var picked=[],used={},kinds={},both=0;
    function take(pool,truth,need){
     var list=shuffle(pool.filter(function(c){return c.truth===truth}),r),got=0;
@@ -391,9 +449,9 @@
 
   // Most draws start from a verified relation between two 대상 in the pool and add 대상
   // linked to them, so questions centre on the comparisons exams make; the rest are random.
-  function draw(theme,avail,k,r){
+  function draw(theme,avail,k,r,inds){
    var has=function(list,n){return list.indexOf(n)>=0};
-   var rels=theme.kind==='indicators'?REL.filter(function(x){return has(avail,x.hi)&&has(avail,x.lo)}):[];
+   var rels=theme.kind==='indicators'?REL.filter(function(x){return has(avail,x.hi)&&has(avail,x.lo)&&(!inds||has(inds,x.indicator))}):[];
    if(!rels.length||r()<.25)return shuffle(avail,r).slice(0,k);
    // Half the draws start from a 대상 picked uniformly, so countries with many relations
    // (중국·일본·인도) do not crowd out the rest; the other half from a relation, which keeps
@@ -405,6 +463,24 @@
     chosen.push(linked.length&&r()<.8?pick(linked,r):pick(avail.filter(function(n){return !has(chosen,n)}),r));
    }
    return shuffle(chosen,r);
+  }
+
+  function buildColumns(theme,avail,k,r,avoid,attempt){
+   var hidden=shuffle(columnsFor(theme),r).slice(0,3),own=function(n){return theme.kind!=='composition'||!!orderOf(theme,n)};
+   var from=theme.kind==='composition'?avail.filter(own):avail;if(from.length<k)return null;
+   var rows=theme.kind==='indicators'?draw(theme,from,k,r,hidden):shuffle(from,r).slice(0,k);
+   var shown=theme.kind==='indicators'?(theme.always||[]).concat(hidden):[];
+   var signature=theme.id+'|columns|'+rows.slice().sort(koSort).join(',')+'|'+hidden.slice().sort().join(',');
+   if(avoid.indexOf(signature)>=0&&attempt<450)return null;
+   if(!columnsIdentifiable(theme,rows,hidden))return null;
+   var s2=chooseStatements(theme,candidates(theme,rows,shown,r,true),r);if(!s2)return null;
+   if(k<theme.pick[1]&&attempt<400&&s2.statements.filter(function(s){return isFocus0(theme,s)}).length<2)return null;
+   var s1=stage1(hidden,r),names={};hidden.forEach(function(id){names[id]=columnName(theme,id)});
+   var list=hidden.map(function(id){return names[id]}).sort(koSort).join(', ');
+   return {theme:theme,format:'columns',signature:signature,labels:rows.slice(),entities:rows,hidden:hidden,shown:shown,display:columnsDisplay(theme,rows,shown,hidden),
+    prompt:'표는 '+rows.join(', ')+'의 자료이다. A~C는 '+list+' 중 하나이다.',
+    stage1:{question:'A~C에 해당하는 것으로 옳은 것은?',labels:COLS,names:names,options:s1.options,answer:s1.answer,cues:columnsCues(theme,rows,hidden),basis:{columns:hidden}},
+    stage2:{question:'자료에 대한 설명으로 옳은 것만을 <보기>에서 고른 것은?',statements:s2.statements,options:s2.options,answer:s2.answer}};
   }
 
   function build(opts){
@@ -428,11 +504,20 @@
    }
    // The number of 대상 is drawn once, so the easier two-대상 case does not crowd out three.
    var size=r(),avoid=opts.avoid||[];
+   // One question format per build: 대상 식별 (rows), 항목 식별 (columns) where the theme has
+   // columns to hide, or 실전형 (implicit: no separate stage 1, as on the exam paper).
+   var mode=opts.format||(target?'rows':null),roll0=r();
    for(var attempt=0;attempt<600&&pool.length;attempt++){
     var theme=pick(pool,r),avail=theme.pool.filter(function(n){return hasData(theme,n)});
     var k=theme.pick[0]+Math.floor((attempt<400?size:r())*(theme.pick[1]-theme.pick[0]+1));if(avail.length<k)continue;
     // everyKnown themes draw the 대상 from those with verified knowledge; extras on the map may be any.
     var own=function(n){return theme.kind==='composition'?!!orderOf(theme,n):theme.kind==='climate'?!!cl(n).type:true};
+    // A theme without three columns to hide, or a 항목 식별 draw that keeps failing, falls back to 대상 식별.
+    // The format is fixed for the first attempts; later ones re-roll, so when the recent questions
+    // have used up one format (전력 대상 식별 has four), another format is tried instead of a repeat.
+    var canHide=columnsFor(theme).length>=3,roll=attempt<150?roll0:r();
+    var format=mode==='columns'&&!canHide?'rows':mode||(roll<.35&&canHide&&attempt<300?'columns':roll>.8?'implicit':'rows');
+    if(format==='columns'){var cq=buildColumns(theme,avail,k,r,avoid,attempt);if(cq)return cq;continue}
     var known0=theme.everyKnown&&theme.kind!=='indicators'?avail.filter(own):avail;
     if(known0.length<k)continue;
     var chosen=draw(theme,known0,k,r),shown=[];
@@ -456,6 +541,8 @@
     if(theme.everyKnown&&chosen.some(function(n){return theme.kind!=='indicators'?!own(n):!REL.some(function(x){return shown.indexOf(x.indicator)>=0&&(x.hi===n||x.lo===n)&&chosen.indexOf(x.hi)>=0&&chosen.indexOf(x.lo)>=0})}))continue;
     var pair=theme.map?markerStage(theme,chosen,shown,avail,r):null;if(theme.map&&!pair)continue;
     var s2=chooseStatements(theme,candidates(theme,chosen,shown,r),r);if(!s2)continue;
+    // Fewer 대상 leave fewer pairs to compare; such a draw whose <보기> are mostly background is redrawn.
+    if(k<theme.pick[1]&&attempt<400&&s2.statements.filter(function(s){return isFocus0(theme,s)}).length<2)continue;
     if(target){
      var learned=(known(theme,chosen,shown).relations||[]).some(function(x){return x.indicator===target.indicator&&x.hi===target.hi&&x.lo===target.lo});
      var asked=s2.statements.some(function(s){var c=s.check;return c&&(c.ind||c.indicator)===target.indicator&&[c.subject,c.object].indexOf(target.hi)>=0&&[c.subject,c.object].indexOf(target.lo)>=0});
@@ -475,15 +562,15 @@
      cueList.push({label:'후보',name:n,cue:!inOptions?'선택지에 나오지 않음':why.length?why.slice(0,3).join(' · '):'다른 선택지로 소거'});
     });
     cueList.forEach(function(c){c.letter=letterOf(c.name)});
-    return {theme:theme,signature:signature,labels:LABELS.slice(0,k),entities:chosen,shown:shown,display:display(theme,chosen,shown),
+    return {theme:theme,format:format,signature:signature,labels:LABELS.slice(0,k),entities:chosen,shown:shown,display:display(theme,chosen,shown),
      prompt:theme.prompt.split('{range}').join(range).split('{candidates}').join(names.join(', ')),
      mapPrompt:pair?theme.prompt.split('{range}').join(range).split('{candidates}').join('지도에 표시된 '+letters[0]+'~'+letters[letters.length-1]):null,
-     stage1:{question:range+'에 해당하는 것으로 옳은 것은?',options:s1.options,answer:s1.answer,candidates:pair?names:null,markers:pair?pair.markers:null,cues:cueList,basis:basis},
+     stage1:{question:range+'에 해당하는 것으로 옳은 것은?',implicit:format==='implicit',options:s1.options,answer:s1.answer,candidates:pair?names:null,markers:pair?pair.markers:null,cues:cueList,basis:basis},
      stage2:{question:range+'에 대한 설명으로 옳은 것만을 <보기>에서 고른 것은?',statements:s2.statements,options:s2.options,answer:s2.answer}};
    }
    return null;
   }
-  return {themes:ready,build:build,identifiable:identifiable,candidates:candidates,known:known,relation:relation,value:value,comp:comp,total:total,seeded:seeded,LABELS:LABELS,COMBOS:COMBOS};
+  return {themes:ready,build:build,identifiable:identifiable,columnsIdentifiable:columnsIdentifiable,columnsConsistent:columnsConsistent,candidates:candidates,known:known,relation:relation,value:value,comp:comp,total:total,seeded:seeded,LABELS:LABELS,COMBOS:COMBOS};
  }
  return {create:create,seeded:seeded,topic:topic};
 });
