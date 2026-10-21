@@ -49,9 +49,9 @@ h2{font-size:17px;line-height:1.45;margin:14px 0 8px;word-break:keep-all}.step{d
 <div class="scope"><label for="themeSelect">주제<select id="themeSelect"></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><span class="score" id="score"></span></div>
 <main id="main" aria-live="polite"></main>
 <div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 2015~2025년 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
-<script src="assets/entity-kb.js?v=20261021-2"></script>
-<script src="assets/exam-themes.js?v=20261021-2"></script>
-<script src="assets/exam-engine.js?v=20261021-2"></script>
+<script src="assets/entity-kb.js?v=20261021-3"></script>
+<script src="assets/exam-themes.js?v=20261021-3"></script>
+<script src="assets/exam-engine.js?v=20261021-3"></script>
 <script>
 (function(){
 'use strict';
@@ -59,13 +59,16 @@ var $=function(id){return document.getElementById(id)};
 if(!window.WGEntityKB||!window.WGExamThemes||!window.WGExamEngine){$('main').textContent='문항 자료를 불러오지 못했어요. 새로고침해 주세요.';return}
 var engine=WGExamEngine.create(WGEntityKB,WGExamThemes);
 function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_exam_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
-var store=readStore();if(!store.stats||typeof store.stats!=='object')store.stats={};
+var store=readStore();if(!store.stats||typeof store.stats!=='object')store.stats={};if(!Array.isArray(store.recent))store.recent=[];
 var state={theme:engine.themes.some(function(t){return t.id===store.theme})?store.theme:'all',nameMode:store.nameMode===true,targetKey:null,q:null,a1:null,a2:null,session:{s1:0,s2:0,n1:0,n2:0}};
-function save(){try{localStorage.setItem('wg_exam_v1',JSON.stringify({theme:state.theme,nameMode:state.nameMode,stats:store.stats}))}catch(e){}}
+function save(){try{localStorage.setItem('wg_exam_v1',JSON.stringify({theme:state.theme,nameMode:state.nameMode,stats:store.stats,recent:store.recent}))}catch(e){}}
+// The last questions shown are not repeated while others can be made (kept across visits).
+var RECENT=40;
 function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(c){if(c!=null&&c!==false)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
 function record(themeId,stage,ok){var s=store.stats[themeId]||(store.stats[themeId]={s1:[0,0],s2:[0,0]});s[stage][1]++;if(ok)s[stage][0]++;save()}
 function next(){
- state.q=engine.build({themeId:state.targetKey||state.theme==='all'?null:state.theme,targetKey:state.targetKey});state.a1=state.q&&state.q.readingOnly?0:null;state.a2=null;render();window.scrollTo({top:0});
+ state.q=engine.build({themeId:state.targetKey||state.theme==='all'?null:state.theme,targetKey:state.targetKey,avoid:store.recent});
+ if(state.q&&state.q.signature){store.recent=store.recent.filter(function(x){return x!==state.q.signature}).concat([state.q.signature]).slice(-RECENT);save()}state.a1=state.q&&state.q.readingOnly?0:null;state.a2=null;render();window.scrollTo({top:0});
 }
 // Climate graphs: precipitation bars (right scale, mm) and temperature line (left scale, ℃),
 // every graph on the same scale.

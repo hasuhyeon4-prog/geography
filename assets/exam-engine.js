@@ -395,9 +395,13 @@
    var has=function(list,n){return list.indexOf(n)>=0};
    var rels=theme.kind==='indicators'?REL.filter(function(x){return has(avail,x.hi)&&has(avail,x.lo)}):[];
    if(!rels.length||r()<.25)return shuffle(avail,r).slice(0,k);
-   var first=pick(rels,r),chosen=[first.hi,first.lo];
+   // Half the draws start from a 대상 picked uniformly, so countries with many relations
+   // (중국·일본·인도) do not crowd out the rest; the other half from a relation, which keeps
+   // well-connected combinations (with more comparisons for <보기>) common.
+   var ends={};rels.forEach(function(x){(ends[x.hi]||(ends[x.hi]=[])).push(x);(ends[x.lo]||(ends[x.lo]=[])).push(x)});
+   var first=r()<.5?pick(ends[pick(Object.keys(ends),r)],r):pick(rels,r),chosen=[first.hi,first.lo];
    while(chosen.length<k){
-    var linked=rels.filter(function(x){return has(chosen,x.hi)!==has(chosen,x.lo)}).map(function(x){return has(chosen,x.hi)?x.lo:x.hi});
+    var linked=[];rels.forEach(function(x){if(has(chosen,x.hi)===has(chosen,x.lo))return;var n=has(chosen,x.hi)?x.lo:x.hi;if(!has(linked,n))linked.push(n)});
     chosen.push(linked.length&&r()<.8?pick(linked,r):pick(avail.filter(function(n){return !has(chosen,n)}),r));
    }
    return shuffle(chosen,r);
@@ -423,7 +427,7 @@
       check:{indicator:ind,subject:subject,object:object}}],options:[{mark:'①',text:'옳다'},{mark:'②',text:'옳지 않다'}],answer:truth?0:1}};
    }
    // The number of 대상 is drawn once, so the easier two-대상 case does not crowd out three.
-   var size=r();
+   var size=r(),avoid=opts.avoid||[];
    for(var attempt=0;attempt<600&&pool.length;attempt++){
     var theme=pick(pool,r),avail=theme.pool.filter(function(n){return hasData(theme,n)});
     var k=theme.pick[0]+Math.floor((attempt<400?size:r())*(theme.pick[1]-theme.pick[0]+1));if(avail.length<k)continue;
@@ -441,6 +445,9 @@
      var always=theme.always||[],inds=theme.indicators.filter(function(ind){return meta(ind)&&!meta(ind).disabled&&always.indexOf(ind)<0});
      shown=always.concat(shuffle(inds,r).slice(0,theme.show));
     }
+    // Skip a question the learner saw recently (opts.avoid), while other ones can still be made.
+    var signature=theme.id+'|'+chosen.slice().sort(koSort).join(',')+'|'+shown.slice().sort().join(',');
+    if(avoid.indexOf(signature)>=0&&attempt<450)continue;
     if(!identifiable(theme,chosen,shown))continue;
     // A column shown on every question (총인구) is there for computing totals; if it alone
     // identified the 대상, the theme's own indicators would be decoration.
@@ -468,7 +475,7 @@
      cueList.push({label:'후보',name:n,cue:!inOptions?'선택지에 나오지 않음':why.length?why.slice(0,3).join(' · '):'다른 선택지로 소거'});
     });
     cueList.forEach(function(c){c.letter=letterOf(c.name)});
-    return {theme:theme,labels:LABELS.slice(0,k),entities:chosen,shown:shown,display:display(theme,chosen,shown),
+    return {theme:theme,signature:signature,labels:LABELS.slice(0,k),entities:chosen,shown:shown,display:display(theme,chosen,shown),
      prompt:theme.prompt.split('{range}').join(range).split('{candidates}').join(names.join(', ')),
      mapPrompt:pair?theme.prompt.split('{range}').join(range).split('{candidates}').join('지도에 표시된 '+letters[0]+'~'+letters[letters.length-1]):null,
      stage1:{question:range+'에 해당하는 것으로 옳은 것은?',options:s1.options,answer:s1.answer,candidates:pair?names:null,markers:pair?pair.markers:null,cues:cueList,basis:basis},
