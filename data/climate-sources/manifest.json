@@ -1,0 +1,327 @@
+{
+  "wmo-48097": {
+    "path": "data/climate-sources/wmo/Kabaaye_48097.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-2-WMO-Normals-9120/Myanmar/CSV/Kabaaye_48097.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "92a09af50ba00ddf4b79d1cf2c34b25ffabe6d985c30f13d03e769d8e87b4f33",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-96633": {
+    "path": "data/climate-sources/wmo/StasiunMeteorologiSultanAjiMuhammadSulaimanSepinggan_96633.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-5-WMO-Normals-9120/Indonesia/CSV/StasiunMeteorologiSultanAjiMuhammadSulaimanSepinggan_96633.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "be0840046b7c8db02867a9e88424bcc0099c8e4d978c30c1c2a637902b51730c",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-94120": {
+    "path": "data/climate-sources/wmo/DarwinAirport_94120.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-5-WMO-Normals-9120/Australia/CSV/DarwinAirport_94120.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "83d4b29f3cc4da4fd193235fc0bdecae4466a6f7bfa559fd2c2042b1e3f25b23",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-70026": {
+    "path": "data/climate-sources/wmo/BARROW_POST_ROGERS_AP_70026.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-4-WMO-Normals-9120/UnitedStates/CSV/BARROW_POST_ROGERS_AP_70026.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "1f38fffd291647b24e03f1477f12fd61c70285b56f6f9c2fd95e595aa95576fc",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-94608": {
+    "path": "data/climate-sources/wmo/PerthMetro_94608.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-5-WMO-Normals-9120/Australia/CSV/PerthMetro_94608.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "1fe12231443df078a950c3114ba9920569d36e4d09dec684f00e67dc633d85d9",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-93110": {
+    "path": "data/climate-sources/wmo/Auckland_Aero_AWS_93110.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-5-WMO-Normals-9120/NewZealand/CSV/Auckland_Aero_AWS_93110.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "aa246a9b73b86ba86e81ac90b24ef82c35df10ad5845abc975f79e876469b2fa",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-07156": {
+    "path": "data/climate-sources/wmo/PARIS_MONTSOURIS_07156.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-6-WMO-Normals-9120/France/CSV/PARIS_MONTSOURIS_07156.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "9c8c8a220522c8b94dc09d2a405e4ab0be8df029ba860208b751949dd031b40d",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-68816": {
+    "path": "data/climate-sources/wmo/CapeTown_68816.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-1-WMO-Normals-9120/SouthAfrica/CSV/CapeTown_68816.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "9e22d4f88b156f86160aa4849fe35c0f1dac71abfd519cbc73b4cb31afb7477a",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-58847": {
+    "path": "data/climate-sources/wmo/FUZHOU_58847.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-2-WMO-Normals-9120/China/CSV/FUZHOU_58847.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "d81bb5a9e5482d058166b1fb3bd3f0ef50431a003c7fa2390a9819ff773710e4",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-21205791": {
+    "path": "data/climate-sources/wmo/El_Dorado_Catam__AUT__21205791.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-3-WMO-Normals-9120/Colombia/CSV/El_Dorado_Catam__AUT__21205791.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "c45b0a0e64900e6d80f1460e7f9b220902c7e2e0c80880b0cbae098ca607e996",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-03770": {
+    "path": "data/climate-sources/wmo/London_03770.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-6-WMO-Normals-9120/UnitedKingdom/CSV/London_03770.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "2f4b071f7655431de3cf08bdbfcef6bbd350b37e04a209f75c928a012f975282",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-07650": {
+    "path": "data/climate-sources/wmo/MARIGNANE_07650.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-6-WMO-Normals-9120/France/CSV/MARIGNANE_07650.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "060f651afa4d7f02392d9cf29eec1dccfa7f51e5f3fd6346495733b047bc0910",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-82331": {
+    "path": "data/climate-sources/wmo/MANAUS_82331.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-3-WMO-Normals-9120/Brazil/CSV/MANAUS_82331.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "4caa767c14e9cb503287c73385f25b59ea5bc4daadb553a68709e32ae5e0aa1a",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-20674": {
+    "path": "data/climate-sources/wmo/OstrovDikson_20674.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-2-WMO-Normals-9120/RussianFederation/CSV/OstrovDikson_20674.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "6cb62e9d9a493e47de2df4e680dd436518b52b99472e6666973810ca6f718bc8",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-60135": {
+    "path": "data/climate-sources/wmo/RABATSALE_60135.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-1-WMO-Normals-9120/Morocco/CSV/RABATSALE_60135.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "6e10c4d2beb72ed9ef9a7b96d892b1b78ed792a6bd5cd45d4e804c579c4d50e1",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-56778": {
+    "path": "data/climate-sources/wmo/KUNMING_56778.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-2-WMO-Normals-9120/China/CSV/KUNMING_56778.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "cce92b1cdd018d94668b917366742ae68870defb2b00768efe60b852423eabaa",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-93781": {
+    "path": "data/climate-sources/wmo/Christchurch_Aero_AWS_93781.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-5-WMO-Normals-9120/NewZealand/CSV/Christchurch_Aero_AWS_93781.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "10bd3a513c02cef6ec2fe40c930d850b0cddd01c4cfbcb65ed556403c1f99eac",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-72494": {
+    "path": "data/climate-sources/wmo/SAN_FRANCISCO_INTL_AP_72494.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-4-WMO-Normals-9120/UnitedStates/CSV/SAN_FRANCISCO_INTL_AP_72494.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "ab584ae97263d2a1a5a6184237c808bd978463b282377548e20806ba8b6a42c3",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-54342": {
+    "path": "data/climate-sources/wmo/SHENYANG_54342.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-2-WMO-Normals-9120/China/CSV/SHENYANG_54342.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "c6ea8281d7f605be23649553d9215b24c0af226e9481c904ab6dc2325663c1a7",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-72565": {
+    "path": "data/climate-sources/wmo/DENVER_INTL_AP_72565.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-4-WMO-Normals-9120/UnitedStates/CSV/DENVER_INTL_AP_72565.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "11143af2180d9cd0cfe174d6e21ad7570c6b2e6bf5ebda8912691a1df6259afa",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-86565": {
+    "path": "data/climate-sources/wmo/Rocha_86565.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-3-WMO-Normals-9120/Uruguay/CSV/Rocha_86565.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "0d9117dfcaf11b9a524c2bffc410bc4a40700365a73dd28be37ecb56938577fa",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-03969": {
+    "path": "data/climate-sources/wmo/DublinAirport_03969.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-6-WMO-Normals-9120/Ireland/CSV/DublinAirport_03969.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "506ef09315f4a5947777497342181f7a1f636ec82a34a233f349120d702630f6",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-16420": {
+    "path": "data/climate-sources/wmo/Messina_16420.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-6-WMO-Normals-9120/Italy/CSV/Messina_16420.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "eac2d5ae142dac6db157cd18cdc89c9a6c9d38ae7299e8fffb08d7f77bf6342b",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-94578": {
+    "path": "data/climate-sources/wmo/BrisbaneAero_94578.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-5-WMO-Normals-9120/Australia/CSV/BrisbaneAero_94578.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "96bb9a5cc3e73b3e9fedd83a1361f187b7a64e0d2dc451cd8848db5ff9afe8fc",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-54161": {
+    "path": "data/climate-sources/wmo/CHANGCHUN_54161.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-2-WMO-Normals-9120/China/CSV/CHANGCHUN_54161.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "b3208a906a24ac6d49b93ac333a4b9dca5dcc3531f9783574c6918b873f5af89",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-72537": {
+    "path": "data/climate-sources/wmo/DETROIT_METRO_AP_72537.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-4-WMO-Normals-9120/UnitedStates/CSV/DETROIT_METRO_AP_72537.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "9404350849c13bc489b384366a0fba62a5f4c677326648127e1bfb634ccce45a",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-31960": {
+    "path": "data/climate-sources/wmo/Vladivostok_31960.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-2-WMO-Normals-9120/RussianFederation/CSV/Vladivostok_31960.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "d6f9772dc66b324e2cfc82cd06d80a2ecbb7a87ef199b05c4846805a7ad0425a",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-16239": {
+    "path": "data/climate-sources/wmo/Roma_Ciampino_16239.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-6-WMO-Normals-9120/Italy/CSV/Roma_Ciampino_16239.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "f1469e3eea14b08180727c380522be84c00e5c20bb2b24c3eea8b822a56e5723",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-65125": {
+    "path": "data/climate-sources/wmo/Abuja_65125.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-1-WMO-Normals-9120/Nigeria/CSV/Abuja_65125.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "a0c3944575601094788f3a2d96a706ddd40a051e70cbe51d0131f052cdd619b7",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-04419": {
+    "path": "data/climate-sources/wmo/SummitTower_04419.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-6-WMO-Normals-9120/DenmarkGreenland/CSV/SummitTower_04419.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "527dfbc802dff29f3a3773c5f57ddd9a4f83f948d0763b5e630272dd9a18da4f",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-83377": {
+    "path": "data/climate-sources/wmo/BRASILIA_83377.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-3-WMO-Normals-9120/Brazil/CSV/BRASILIA_83377.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "9dc9163968fdacee0e5b411e12f9132cc8b28f9594fe75cdaeb784ad2f116e42",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-57131": {
+    "path": "data/climate-sources/wmo/JINGHE_57131.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-2-WMO-Normals-9120/China/CSV/JINGHE_57131.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "1edea80db505d685516e5be3ed442b9af17450d63725a45773a583e202db5439",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-27612": {
+    "path": "data/climate-sources/wmo/Moskva_27612.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-6-WMO-Normals-9120/RussianFederation/CSV/Moskva_27612.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "99d83053ec2b7d7fff4c66f083ad46a6dd901199ea3acdd5c9aaa6fcd04901e1",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-72295": {
+    "path": "data/climate-sources/wmo/LOS_ANGELES_INTL_AP_72295.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-4-WMO-Normals-9120/UnitedStates/CSV/LOS_ANGELES_INTL_AP_72295.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "18f09d5cccf23b6a393b79cdfdbd0d96af6240cbfe438f8955e3aa01fcec2138",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-16242": {
+    "path": "data/climate-sources/wmo/Roma_Fiumicino_16242.csv",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-6-WMO-Normals-9120/Italy/CSV/Roma_Fiumicino_16242.csv",
+    "kind": "wmo-station-csv",
+    "sha256": "3e05296657544e8ff3fa603f0ed385488e7fcab267fa67fe58c4924524142f7c",
+    "retrievedAt": "2026-10-21"
+  },
+  "jma-30758": {
+    "path": "data/climate-sources/jma/30758.html",
+    "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/normal/parts/NrmMonth_e.php?stn=30758",
+    "kind": "jma-station-html",
+    "sha256": "31b4e3e12af16b6200c934c1020ee123c61f463b954ed9994a2c9211d05559bd",
+    "retrievedAt": "2026-10-21"
+  },
+  "jma-83781": {
+    "path": "data/climate-sources/jma/83781.html",
+    "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/normal/parts/NrmMonth_e.php?stn=83781",
+    "kind": "jma-station-html",
+    "sha256": "15e04f50e67ea517c3fd19aaa67c7318c6eedea7ba8ba8736a7f88a6afd82f82",
+    "retrievedAt": "2026-10-21"
+  },
+  "jma-63450": {
+    "path": "data/climate-sources/jma/63450.html",
+    "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/normal/parts/NrmMonth_e.php?stn=63450",
+    "kind": "jma-station-html",
+    "sha256": "87c73aa715fc096ef4ae7968710ce15fb66395906b62548d1a35721a50c6c75e",
+    "retrievedAt": "2026-10-21"
+  },
+  "jma-84628": {
+    "path": "data/climate-sources/jma/84628.html",
+    "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/normal/parts/NrmMonth_e.php?stn=84628",
+    "kind": "jma-station-html",
+    "sha256": "8f2250fc9258d601f7ba60c89cb96b7c099d8a0ca25658f88673f25f7888ed60",
+    "retrievedAt": "2026-10-21"
+  },
+  "jma-57036": {
+    "path": "data/climate-sources/jma/57036.html",
+    "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/normal/parts/NrmMonth_e.php?stn=57036",
+    "kind": "jma-station-html",
+    "sha256": "b36275576521b3517d7e30348bd7ab71f2ca997ab68c1bd7856efefff8ac54ef",
+    "retrievedAt": "2026-10-21"
+  },
+  "jma-89606": {
+    "path": "data/climate-sources/jma/89606.csv",
+    "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/climatview/download_nrm.php?n=89606",
+    "kind": "jma-station-csv",
+    "sha256": "9fc0d2ac0b6185a37c03b87d36028dbb68a4ae6411ad81922df330e5e8816a88",
+    "retrievedAt": "2026-10-21"
+  },
+  "jma-vostok-meta": {
+    "path": "data/climate-sources/jma/vostok-metadata.html",
+    "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/climatview/graph_mkhtml_nrm.php?n=89606&m=1",
+    "kind": "documentation",
+    "sha256": "c2572c7d2a01ff88d7d6a5687cbf07cf44ec820e10dc001030acecc9e9c194bf",
+    "retrievedAt": "2026-10-21"
+  },
+  "eccc-7025250": {
+    "path": "data/climate-sources/eccc/montreal-7025250.html",
+    "url": "https://climate.weather.gc.ca/climate_normals/results_1991_2020_e.html?climate_id=7025250&dispBack=0",
+    "kind": "eccc-station-html",
+    "sha256": "9d98d1463a3942b0fe9d7c0f5878cb07b70ccd40b4ab5b5c08c869bd96664473",
+    "retrievedAt": "2026-10-21"
+  },
+  "wmo-readme": {
+    "path": "data/climate-sources/documentation/wmo-readme.txt",
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/WMO-Normals-9120-Readme.pdf",
+    "kind": "pdf-text-extract",
+    "sha256": "446e7f2a9204653a1e639c03fbca49b3088e29a89cb1eaa6e9a0e44675cbfab6",
+    "retrievedAt": "2026-10-21"
+  },
+  "jma-method": {
+    "path": "data/climate-sources/documentation/jma-method.html",
+    "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/explanation/normal.html",
+    "kind": "documentation",
+    "sha256": "4fb6be40fa264a89a6bb452cc36cbf80255c110ce7a844af0be4e271f29cb5f3",
+    "retrievedAt": "2026-10-21"
+  },
+  "noaa-auckland-meta": {
+    "path": "data/climate-sources/documentation/auckland-isd-metadata.csv",
+    "url": "https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv",
+    "kind": "csv-row-extract",
+    "sha256": "9d0364d7d32f7752eaccdb2aa572e0939d0d39811e6bd208ca20aeaf1c09f99f",
+    "retrievedAt": "2026-10-21",
+    "filter": {
+      "USAF": "931100"
+    }
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "date": "2026-10-21",
+  "exam": {
+    "id": "2020-06-14",
+    "referenceYear": 2015,
+    "urbanPercent": {
+      "Mexico": 79.3,
+      "Germany": 77.2,
+      "Viet Nam": 33.8
+    },
+    "urbanPopulationMillion": {
+      "Mexico": 99.8,
+      "Germany": 63.1,
+      "Viet Nam": 31.6
+    },
+    "note": "Original footnote names the reference periods, not a statistical publication or edition. WUP2018 values match the table after rounding; this is an evidence match, not a printed source attribution.",
+    "originalPdfUrl": "https://t1.daumcdn.net/cfile/tistory/9967A4405CF87B1009",
+    "originalPdfSha256": "aab847dffb310b9b20007cd37e3b3f37aae93519c8efbb115e8bec0f8b852aed",
+    "pdfPage": 3
+  },
+  "sources": {
+    "WUP2018": {
+      "url": "https://population.un.org/wup/assets/Download/Archive/WUP2018-Excel-files.zip",
+      "sha256": "80eb71bbabb46cb2e1599b51b16133bf28b0a99a541d72de20a1248ec6170a75"
+    },
+    "WUP2025": {
+      "url": "https://population.un.org/wup/assets/Download/Countries%20and%20Aggregates/WUP2025-F15-National-Definitions_percPop_by_category.xlsx",
+      "sha256": "5fdc43a9bd9b2aa121dee5892736216643c98a3d16f987c8dc31ac45ef8e956c"
+    },
+    "WUP2025metadata": {
+      "url": "https://population.un.org/wup/assets/Download/WUP2025-M02-DataSources-National-Definitions-UrbanPercentage.xlsx",
+      "sha256": "659c3a5172ed043c6b56123a76701580040871c287604f0ff6e350cbb618059f"
+    }
+  },
+  "countries": {
+    "Mexico": {
+      "WUP2018": {
+        "2010": 77.815,
+        "2015": 79.285,
+        "2020": 80.731,
+        "2023": 81.582,
+        "2025": 82.14
+      },
+      "WUP2025national": {
+        "2010": 76.5244441414713,
+        "2015": 77.1903854182753,
+        "2020": 78.677960602824,
+        "2023": 79.4734935748046,
+        "2025": 80.0408930629723
+      },
+      "Urban_percentage": [
+        {
+          "ReferenceYearStart": 2010,
+          "DataCatalogName": "Mexico 2010 Census",
+          "DataSourceAuthor": "Centro Latinoamericano y Caribeño de Demografía (CELADE)",
+          "DataSourceYear": 2024,
+          "DataValue": 76.5229187011719
+        },
+        {
+          "ReferenceYearStart": 2020,
+          "DataCatalogName": "Mexico 2020 Census",
+          "DataSourceAuthor": "Centro Latinoamericano y Caribeño de Demografía (CELADE)",
+          "DataSourceYear": 2024,
+          "DataValue": 78.5868835449219
+        }
+      ],
+      "Urban_definitions": [
+        {
+          "Year": 2010,
+          "DataCatalogName": "Mexico 2010 Census",
+          "Urban_definition_used": "These are localities with 2,500 or more inhabitants."
+        },
+        {
+          "Year": 2020,
+          "DataCatalogName": "Mexico 2020 Census",
+          "Urban_definition_used": "Geostatistical urban locality. Each of the localities that, according to the last official national population count, has a population equal to or greater than 2,500 inhabitants or is the municipal capital. Also considered as Urban Geostatistical Localities are those that present the following characteristics: o Geostatistical Localities classified as urban in previous census events and that currently have less than 2,500 inhabitants; o Growths of the urban locality that present urban continuity with the same and exceed the territorial representation of the AGEE and/or AGEM and the independence of its spaces is maintained, even if it does not reach the number of inhabitants, and o Localities that cease to be municipal capitals, regardless of their number of inhabitants."
+        }
+      ],
+      "WUP2018urbanDefinition": "Localities with 2,500 inhabitants or more."
+    },
+    "Germany": {
+      "WUP2018": {
+        "2010": 76.966,
+        "2015": 77.2,
+        "2020": 77.453,
+        "2023": 77.765,
+        "2025": 78.037
+      },
+      "WUP2025national": {
+        "2010": 80.305702559949,
+        "2015": 80.6974371632814,
+        "2020": 81.4700055002738,
+        "2023": 81.9034366692129,
+        "2025": 82.13822205362
+      },
+      "Urban_percentage": [
+        {
+          "ReferenceYearStart": 2011,
+          "DataCatalogName": "Germany 2011 Census",
+          "DataSourceAuthor": "UNSD",
+          "DataSourceYear": 2014,
+          "DataValue": 80.3346786499023
+        },
+        {
+          "ReferenceYearStart": 2022,
+          "DataCatalogName": "Germany 2022 Census",
+          "DataSourceAuthor": "UNSD",
+          "DataSourceYear": 2024,
+          "DataValue": 81.7699966430664
+        }
+      ],
+      "Urban_definitions": [
+        {
+          "Year": 2011,
+          "DataCatalogName": "Germany 2011 Census",
+          "Urban_definition_used": "Localities with 2,000 or more inhabitants."
+        },
+        {
+          "Year": 2022,
+          "DataCatalogName": "Germany 2022 Census",
+          "Urban_definition_used": "Localities with 2,000 or more inhabitants."
+        }
+      ],
+      "WUP2018urbanDefinition": "Communes (kreisfreie Staedte and Kreise) with at least 150 inhabitants per square kilometre."
+    },
+    "Viet Nam": {
+      "WUP2018": {
+        "2010": 30.417,
+        "2015": 33.809,
+        "2020": 37.34,
+        "2023": 39.48,
+        "2025": 40.909
+      },
+      "WUP2025national": {
+        "2010": 30.2504027258526,
+        "2015": 32.3810945365679,
+        "2020": 35.5706676299742,
+        "2023": 38.1298904418945,
+        "2025": 38.8299160351294
+      },
+      "Urban_percentage": [],
+      "Urban_definitions": [
+        {
+          "Year": 2022,
+          "DataCatalogName": "All sources of estimates"
+        }
+      ],
+      "WUP2018urbanDefinition": "Places with 4,000 inhabitants or more."
+    }
+  },
+  "conclusion": {
+    "sameReferenceYearChangedAcrossEditions": true,
+    "latestWdiMatches": "WUP2025 national definitions (not international Degree of Urbanization)",
+    "germanyMetadataDefinitionChanged": true,
+    "mexicoDefinitionAloneDoesNotExplainAllRevision": true,
+    "recallPolicy": "Keep Mexico > Germany urbanization excluded; supply the specific table for reading. Do not teach two year-specific orders: both series refer to 2015."
+  }
+}

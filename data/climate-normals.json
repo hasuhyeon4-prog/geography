@@ -1,0 +1,5696 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-21",
+  "normalPeriod": [
+    1991,
+    2020
+  ],
+  "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "units": {
+    "temperatureC": "degC",
+    "precipitationMm": "mm/month"
+  },
+  "policy": {
+    "sourceType": "station",
+    "griddedFallback": false,
+    "missingValue": null,
+    "climateLabels": "lecture labels kept separately; no automatic reclassification",
+    "questionScope": "Use supplied monthly values for graphs/calculations. No memorized fine rankings or borrowed historical exam values.",
+    "annualTemperature": "derived.meanOfMonthlyTemperatureC is arithmetic mean of 12 monthly normals, not claimed identical to provider annual normal"
+  },
+  "counts": {
+    "sites": 41,
+    "completeGraphs": 38,
+    "temperatureReading": 39
+  },
+  "sourceArchive": "data/climate-source-snapshots.zip",
+  "sources": {
+    "wmo-48097": {
+      "path": "data/climate-sources/wmo/Kabaaye_48097.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-2-WMO-Normals-9120/Myanmar/CSV/Kabaaye_48097.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "92a09af50ba00ddf4b79d1cf2c34b25ffabe6d985c30f13d03e769d8e87b4f33",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-96633": {
+      "path": "data/climate-sources/wmo/StasiunMeteorologiSultanAjiMuhammadSulaimanSepinggan_96633.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-5-WMO-Normals-9120/Indonesia/CSV/StasiunMeteorologiSultanAjiMuhammadSulaimanSepinggan_96633.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "be0840046b7c8db02867a9e88424bcc0099c8e4d978c30c1c2a637902b51730c",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-94120": {
+      "path": "data/climate-sources/wmo/DarwinAirport_94120.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-5-WMO-Normals-9120/Australia/CSV/DarwinAirport_94120.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "83d4b29f3cc4da4fd193235fc0bdecae4466a6f7bfa559fd2c2042b1e3f25b23",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-70026": {
+      "path": "data/climate-sources/wmo/BARROW_POST_ROGERS_AP_70026.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-4-WMO-Normals-9120/UnitedStates/CSV/BARROW_POST_ROGERS_AP_70026.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "1f38fffd291647b24e03f1477f12fd61c70285b56f6f9c2fd95e595aa95576fc",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-94608": {
+      "path": "data/climate-sources/wmo/PerthMetro_94608.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-5-WMO-Normals-9120/Australia/CSV/PerthMetro_94608.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "1fe12231443df078a950c3114ba9920569d36e4d09dec684f00e67dc633d85d9",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-93110": {
+      "path": "data/climate-sources/wmo/Auckland_Aero_AWS_93110.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-5-WMO-Normals-9120/NewZealand/CSV/Auckland_Aero_AWS_93110.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "aa246a9b73b86ba86e81ac90b24ef82c35df10ad5845abc975f79e876469b2fa",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-07156": {
+      "path": "data/climate-sources/wmo/PARIS_MONTSOURIS_07156.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-6-WMO-Normals-9120/France/CSV/PARIS_MONTSOURIS_07156.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "9c8c8a220522c8b94dc09d2a405e4ab0be8df029ba860208b751949dd031b40d",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-68816": {
+      "path": "data/climate-sources/wmo/CapeTown_68816.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-1-WMO-Normals-9120/SouthAfrica/CSV/CapeTown_68816.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "9e22d4f88b156f86160aa4849fe35c0f1dac71abfd519cbc73b4cb31afb7477a",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-58847": {
+      "path": "data/climate-sources/wmo/FUZHOU_58847.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-2-WMO-Normals-9120/China/CSV/FUZHOU_58847.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "d81bb5a9e5482d058166b1fb3bd3f0ef50431a003c7fa2390a9819ff773710e4",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-21205791": {
+      "path": "data/climate-sources/wmo/El_Dorado_Catam__AUT__21205791.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-3-WMO-Normals-9120/Colombia/CSV/El_Dorado_Catam__AUT__21205791.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "c45b0a0e64900e6d80f1460e7f9b220902c7e2e0c80880b0cbae098ca607e996",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-03770": {
+      "path": "data/climate-sources/wmo/London_03770.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-6-WMO-Normals-9120/UnitedKingdom/CSV/London_03770.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "2f4b071f7655431de3cf08bdbfcef6bbd350b37e04a209f75c928a012f975282",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-07650": {
+      "path": "data/climate-sources/wmo/MARIGNANE_07650.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-6-WMO-Normals-9120/France/CSV/MARIGNANE_07650.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "060f651afa4d7f02392d9cf29eec1dccfa7f51e5f3fd6346495733b047bc0910",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-82331": {
+      "path": "data/climate-sources/wmo/MANAUS_82331.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-3-WMO-Normals-9120/Brazil/CSV/MANAUS_82331.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "4caa767c14e9cb503287c73385f25b59ea5bc4daadb553a68709e32ae5e0aa1a",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-20674": {
+      "path": "data/climate-sources/wmo/OstrovDikson_20674.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-2-WMO-Normals-9120/RussianFederation/CSV/OstrovDikson_20674.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "6cb62e9d9a493e47de2df4e680dd436518b52b99472e6666973810ca6f718bc8",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-60135": {
+      "path": "data/climate-sources/wmo/RABATSALE_60135.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-1-WMO-Normals-9120/Morocco/CSV/RABATSALE_60135.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "6e10c4d2beb72ed9ef9a7b96d892b1b78ed792a6bd5cd45d4e804c579c4d50e1",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-56778": {
+      "path": "data/climate-sources/wmo/KUNMING_56778.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-2-WMO-Normals-9120/China/CSV/KUNMING_56778.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "cce92b1cdd018d94668b917366742ae68870defb2b00768efe60b852423eabaa",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-93781": {
+      "path": "data/climate-sources/wmo/Christchurch_Aero_AWS_93781.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-5-WMO-Normals-9120/NewZealand/CSV/Christchurch_Aero_AWS_93781.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "10bd3a513c02cef6ec2fe40c930d850b0cddd01c4cfbcb65ed556403c1f99eac",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-72494": {
+      "path": "data/climate-sources/wmo/SAN_FRANCISCO_INTL_AP_72494.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-4-WMO-Normals-9120/UnitedStates/CSV/SAN_FRANCISCO_INTL_AP_72494.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "ab584ae97263d2a1a5a6184237c808bd978463b282377548e20806ba8b6a42c3",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-54342": {
+      "path": "data/climate-sources/wmo/SHENYANG_54342.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-2-WMO-Normals-9120/China/CSV/SHENYANG_54342.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "c6ea8281d7f605be23649553d9215b24c0af226e9481c904ab6dc2325663c1a7",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-72565": {
+      "path": "data/climate-sources/wmo/DENVER_INTL_AP_72565.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-4-WMO-Normals-9120/UnitedStates/CSV/DENVER_INTL_AP_72565.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "11143af2180d9cd0cfe174d6e21ad7570c6b2e6bf5ebda8912691a1df6259afa",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-86565": {
+      "path": "data/climate-sources/wmo/Rocha_86565.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-3-WMO-Normals-9120/Uruguay/CSV/Rocha_86565.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "0d9117dfcaf11b9a524c2bffc410bc4a40700365a73dd28be37ecb56938577fa",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-03969": {
+      "path": "data/climate-sources/wmo/DublinAirport_03969.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-6-WMO-Normals-9120/Ireland/CSV/DublinAirport_03969.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "506ef09315f4a5947777497342181f7a1f636ec82a34a233f349120d702630f6",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-16420": {
+      "path": "data/climate-sources/wmo/Messina_16420.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-6-WMO-Normals-9120/Italy/CSV/Messina_16420.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "eac2d5ae142dac6db157cd18cdc89c9a6c9d38ae7299e8fffb08d7f77bf6342b",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-94578": {
+      "path": "data/climate-sources/wmo/BrisbaneAero_94578.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-5-WMO-Normals-9120/Australia/CSV/BrisbaneAero_94578.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "96bb9a5cc3e73b3e9fedd83a1361f187b7a64e0d2dc451cd8848db5ff9afe8fc",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-54161": {
+      "path": "data/climate-sources/wmo/CHANGCHUN_54161.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-2-WMO-Normals-9120/China/CSV/CHANGCHUN_54161.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "b3208a906a24ac6d49b93ac333a4b9dca5dcc3531f9783574c6918b873f5af89",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-72537": {
+      "path": "data/climate-sources/wmo/DETROIT_METRO_AP_72537.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-4-WMO-Normals-9120/UnitedStates/CSV/DETROIT_METRO_AP_72537.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "9404350849c13bc489b384366a0fba62a5f4c677326648127e1bfb634ccce45a",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-31960": {
+      "path": "data/climate-sources/wmo/Vladivostok_31960.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-2-WMO-Normals-9120/RussianFederation/CSV/Vladivostok_31960.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "d6f9772dc66b324e2cfc82cd06d80a2ecbb7a87ef199b05c4846805a7ad0425a",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-16239": {
+      "path": "data/climate-sources/wmo/Roma_Ciampino_16239.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-6-WMO-Normals-9120/Italy/CSV/Roma_Ciampino_16239.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "f1469e3eea14b08180727c380522be84c00e5c20bb2b24c3eea8b822a56e5723",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-65125": {
+      "path": "data/climate-sources/wmo/Abuja_65125.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-1-WMO-Normals-9120/Nigeria/CSV/Abuja_65125.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "a0c3944575601094788f3a2d96a706ddd40a051e70cbe51d0131f052cdd619b7",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-04419": {
+      "path": "data/climate-sources/wmo/SummitTower_04419.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-6-WMO-Normals-9120/DenmarkGreenland/CSV/SummitTower_04419.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "527dfbc802dff29f3a3773c5f57ddd9a4f83f948d0763b5e630272dd9a18da4f",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-83377": {
+      "path": "data/climate-sources/wmo/BRASILIA_83377.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-3-WMO-Normals-9120/Brazil/CSV/BRASILIA_83377.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "9dc9163968fdacee0e5b411e12f9132cc8b28f9594fe75cdaeb784ad2f116e42",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-57131": {
+      "path": "data/climate-sources/wmo/JINGHE_57131.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-2-WMO-Normals-9120/China/CSV/JINGHE_57131.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "1edea80db505d685516e5be3ed442b9af17450d63725a45773a583e202db5439",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-27612": {
+      "path": "data/climate-sources/wmo/Moskva_27612.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-6-WMO-Normals-9120/RussianFederation/CSV/Moskva_27612.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "99d83053ec2b7d7fff4c66f083ad46a6dd901199ea3acdd5c9aaa6fcd04901e1",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-72295": {
+      "path": "data/climate-sources/wmo/LOS_ANGELES_INTL_AP_72295.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-4-WMO-Normals-9120/UnitedStates/CSV/LOS_ANGELES_INTL_AP_72295.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "18f09d5cccf23b6a393b79cdfdbd0d96af6240cbfe438f8955e3aa01fcec2138",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-16242": {
+      "path": "data/climate-sources/wmo/Roma_Fiumicino_16242.csv",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-6-WMO-Normals-9120/Italy/CSV/Roma_Fiumicino_16242.csv",
+      "kind": "wmo-station-csv",
+      "sha256": "3e05296657544e8ff3fa603f0ed385488e7fcab267fa67fe58c4924524142f7c",
+      "retrievedAt": "2026-10-21"
+    },
+    "jma-30758": {
+      "path": "data/climate-sources/jma/30758.html",
+      "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/normal/parts/NrmMonth_e.php?stn=30758",
+      "kind": "jma-station-html",
+      "sha256": "31b4e3e12af16b6200c934c1020ee123c61f463b954ed9994a2c9211d05559bd",
+      "retrievedAt": "2026-10-21"
+    },
+    "jma-83781": {
+      "path": "data/climate-sources/jma/83781.html",
+      "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/normal/parts/NrmMonth_e.php?stn=83781",
+      "kind": "jma-station-html",
+      "sha256": "15e04f50e67ea517c3fd19aaa67c7318c6eedea7ba8ba8736a7f88a6afd82f82",
+      "retrievedAt": "2026-10-21"
+    },
+    "jma-63450": {
+      "path": "data/climate-sources/jma/63450.html",
+      "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/normal/parts/NrmMonth_e.php?stn=63450",
+      "kind": "jma-station-html",
+      "sha256": "87c73aa715fc096ef4ae7968710ce15fb66395906b62548d1a35721a50c6c75e",
+      "retrievedAt": "2026-10-21"
+    },
+    "jma-84628": {
+      "path": "data/climate-sources/jma/84628.html",
+      "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/normal/parts/NrmMonth_e.php?stn=84628",
+      "kind": "jma-station-html",
+      "sha256": "8f2250fc9258d601f7ba60c89cb96b7c099d8a0ca25658f88673f25f7888ed60",
+      "retrievedAt": "2026-10-21"
+    },
+    "jma-57036": {
+      "path": "data/climate-sources/jma/57036.html",
+      "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/normal/parts/NrmMonth_e.php?stn=57036",
+      "kind": "jma-station-html",
+      "sha256": "b36275576521b3517d7e30348bd7ab71f2ca997ab68c1bd7856efefff8ac54ef",
+      "retrievedAt": "2026-10-21"
+    },
+    "jma-89606": {
+      "path": "data/climate-sources/jma/89606.csv",
+      "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/climatview/download_nrm.php?n=89606",
+      "kind": "jma-station-csv",
+      "sha256": "9fc0d2ac0b6185a37c03b87d36028dbb68a4ae6411ad81922df330e5e8816a88",
+      "retrievedAt": "2026-10-21"
+    },
+    "jma-vostok-meta": {
+      "path": "data/climate-sources/jma/vostok-metadata.html",
+      "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/climatview/graph_mkhtml_nrm.php?n=89606&m=1",
+      "kind": "documentation",
+      "sha256": "c2572c7d2a01ff88d7d6a5687cbf07cf44ec820e10dc001030acecc9e9c194bf",
+      "retrievedAt": "2026-10-21"
+    },
+    "eccc-7025250": {
+      "path": "data/climate-sources/eccc/montreal-7025250.html",
+      "url": "https://climate.weather.gc.ca/climate_normals/results_1991_2020_e.html?climate_id=7025250&dispBack=0",
+      "kind": "eccc-station-html",
+      "sha256": "9d98d1463a3942b0fe9d7c0f5878cb07b70ccd40b4ab5b5c08c869bd96664473",
+      "retrievedAt": "2026-10-21"
+    },
+    "wmo-readme": {
+      "path": "data/climate-sources/documentation/wmo-readme.txt",
+      "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/WMO-Normals-9120-Readme.pdf",
+      "kind": "pdf-text-extract",
+      "sha256": "446e7f2a9204653a1e639c03fbca49b3088e29a89cb1eaa6e9a0e44675cbfab6",
+      "retrievedAt": "2026-10-21"
+    },
+    "jma-method": {
+      "path": "data/climate-sources/documentation/jma-method.html",
+      "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/explanation/normal.html",
+      "kind": "documentation",
+      "sha256": "4fb6be40fa264a89a6bb452cc36cbf80255c110ce7a844af0be4e271f29cb5f3",
+      "retrievedAt": "2026-10-21"
+    },
+    "noaa-auckland-meta": {
+      "path": "data/climate-sources/documentation/auckland-isd-metadata.csv",
+      "url": "https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv",
+      "kind": "csv-row-extract",
+      "sha256": "9d0364d7d32f7752eaccdb2aa572e0939d0d39811e6bd208ca20aeaf1c09f99f",
+      "retrievedAt": "2026-10-21",
+      "filter": {
+        "USAF": "931100"
+      }
+    }
+  },
+  "sites": [
+    {
+      "name": "양곤",
+      "mapPoint": [
+        96.1735,
+        16.8409
+      ],
+      "region": "asia",
+      "lectureClimate": "am",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-48097",
+      "station": {
+        "id": "48097",
+        "idScheme": "source-station-id",
+        "latitude": 16.866667,
+        "longitude": 96.183333,
+        "elevationM": 20.0,
+        "name": "KABAAYE",
+        "country": "MYANMAR",
+        "wigosId": null,
+        "distanceFromMapPointKm": 3.1
+      },
+      "temperatureC": [
+        24.9,
+        26.6,
+        28.9,
+        30.6,
+        29.2,
+        27.3,
+        26.7,
+        26.6,
+        27.0,
+        27.7,
+        27.4,
+        25.4
+      ],
+      "precipitationMm": [
+        4.5,
+        3.0,
+        15.1,
+        37.9,
+        333.8,
+        554.0,
+        624.5,
+        562.2,
+        426.8,
+        217.4,
+        52.6,
+        9.2
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 27.4,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 2841.0,
+      "maximumTemperatureC": [
+        33.1,
+        35.1,
+        36.8,
+        37.7,
+        34.5,
+        31.3,
+        30.6,
+        30.3,
+        31.3,
+        32.7,
+        33.6,
+        32.9
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 33.3,
+      "minimumTemperatureC": [
+        16.6,
+        18.1,
+        20.9,
+        23.5,
+        24.0,
+        23.2,
+        22.8,
+        22.8,
+        22.8,
+        22.7,
+        21.1,
+        17.9
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 21.4,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 24.9,
+        "warmestC": 30.6,
+        "temperatureRangeC": 5.7,
+        "meanOfMonthlyTemperatureC": 27.36,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          4
+        ],
+        "annualPrecipitationFromMonthsMm": 2841.0,
+        "driestMonthMm": 3.0,
+        "wettestMonthMm": 624.5,
+        "jjaPrecipitationMm": 1740.7,
+        "djfPrecipitationMm": 16.7,
+        "jjaPrecipitationSharePct": 61.27,
+        "djfPrecipitationSharePct": 0.59
+      },
+      "issues": []
+    },
+    {
+      "name": "발릭파판",
+      "mapPoint": [
+        116.83,
+        -1.25
+      ],
+      "region": "asia",
+      "lectureClimate": "af",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-96633",
+      "station": {
+        "id": "96633",
+        "idScheme": "source-station-id",
+        "latitude": -1.26,
+        "longitude": 116.9,
+        "elevationM": 3.0,
+        "name": "Stasiun-Meteorologi-Sultan-Aji-Muhammad-Sulaiman-Sepinggan",
+        "country": "Indonesia",
+        "wigosId": "0-20000-0-96633",
+        "distanceFromMapPointKm": 7.9
+      },
+      "temperatureC": [
+        26.8,
+        26.8,
+        26.9,
+        27.1,
+        27.3,
+        26.9,
+        26.8,
+        27.0,
+        27.2,
+        27.4,
+        27.2,
+        26.9
+      ],
+      "precipitationMm": [
+        223.8,
+        222.3,
+        246.5,
+        240.8,
+        259.1,
+        295.1,
+        257.5,
+        177.1,
+        162.4,
+        169.3,
+        227.3,
+        268.9
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 65,
+      "temperatureCAnnualSource": 27.0,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 2750.1,
+      "maximumTemperatureC": [
+        31.0,
+        31.2,
+        31.3,
+        31.3,
+        31.1,
+        30.6,
+        30.3,
+        30.6,
+        31.0,
+        31.2,
+        31.3,
+        31.1
+      ],
+      "maximumTemperatureCSourceLine": 51,
+      "maximumTemperatureCAnnualSource": 31.0,
+      "minimumTemperatureC": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 26.8,
+        "warmestC": 27.4,
+        "temperatureRangeC": 0.6,
+        "meanOfMonthlyTemperatureC": 27.03,
+        "coldestMonths": [
+          1,
+          2,
+          7
+        ],
+        "warmestMonths": [
+          10
+        ],
+        "annualPrecipitationFromMonthsMm": 2750.1,
+        "driestMonthMm": 162.4,
+        "wettestMonthMm": 295.1,
+        "jjaPrecipitationMm": 729.7,
+        "djfPrecipitationMm": 715.0,
+        "jjaPrecipitationSharePct": 26.53,
+        "djfPrecipitationSharePct": 26.0
+      },
+      "issues": []
+    },
+    {
+      "name": "다윈",
+      "mapPoint": [
+        130.85,
+        -12.425
+      ],
+      "region": "oceania",
+      "lectureClimate": "aw",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-94120",
+      "station": {
+        "id": "94120",
+        "idScheme": "source-station-id",
+        "latitude": -12.423889,
+        "longitude": 130.8925,
+        "elevationM": 30.0,
+        "name": "DARWIN AIRPORT",
+        "country": "AUSTRALIA",
+        "wigosId": "0-36-9-94120",
+        "distanceFromMapPointKm": 4.6
+      },
+      "temperatureC": [
+        28.5,
+        28.3,
+        28.5,
+        28.6,
+        27.3,
+        25.6,
+        25.2,
+        25.9,
+        28.0,
+        29.3,
+        29.6,
+        29.3
+      ],
+      "precipitationMm": [
+        470.7,
+        412.4,
+        313.7,
+        105.1,
+        20.7,
+        2.2,
+        0.9,
+        0.8,
+        14.3,
+        68.9,
+        143.5,
+        279.3
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": null,
+        "precipitationYears": null,
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 27.8,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 1832.4,
+      "maximumTemperatureC": [
+        32.0,
+        31.7,
+        32.2,
+        33.0,
+        32.3,
+        31.1,
+        31.2,
+        31.9,
+        33.1,
+        33.8,
+        33.8,
+        33.0
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 32.4,
+      "minimumTemperatureC": [
+        25.0,
+        25.0,
+        24.8,
+        24.2,
+        22.3,
+        20.0,
+        19.3,
+        19.8,
+        22.9,
+        24.8,
+        25.4,
+        25.5
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 23.3,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 25.2,
+        "warmestC": 29.6,
+        "temperatureRangeC": 4.4,
+        "meanOfMonthlyTemperatureC": 27.84,
+        "coldestMonths": [
+          7
+        ],
+        "warmestMonths": [
+          11
+        ],
+        "annualPrecipitationFromMonthsMm": 1832.5,
+        "driestMonthMm": 0.8,
+        "wettestMonthMm": 470.7,
+        "jjaPrecipitationMm": 3.9,
+        "djfPrecipitationMm": 1162.4,
+        "jjaPrecipitationSharePct": 0.21,
+        "djfPrecipitationSharePct": 63.43
+      },
+      "issues": []
+    },
+    {
+      "name": "배로(우트키아빅)",
+      "mapPoint": [
+        -156.789,
+        71.291
+      ],
+      "region": "americas",
+      "lectureClimate": "et",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-70026",
+      "station": {
+        "id": "70026",
+        "idScheme": "source-station-id",
+        "latitude": 71.283333,
+        "longitude": -156.781389,
+        "elevationM": 9.0,
+        "name": "AK BARROW POST ROGERS AP",
+        "country": "United States",
+        "wigosId": "0-20000-0-70026",
+        "distanceFromMapPointKm": 0.9
+      },
+      "temperatureC": [
+        -24.2,
+        -24.4,
+        -23.6,
+        -15.5,
+        -5.2,
+        2.2,
+        5.4,
+        4.3,
+        0.9,
+        -6.0,
+        -14.6,
+        -21.3
+      ],
+      "precipitationMm": [
+        3.7,
+        5.4,
+        4.5,
+        4.5,
+        7.2,
+        10.9,
+        24.8,
+        27.6,
+        19.7,
+        13.8,
+        9.3,
+        5.7
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": null,
+        "precipitationYears": null,
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": -10.2,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 137.1,
+      "maximumTemperatureC": [
+        -20.7,
+        -20.9,
+        -19.9,
+        -11.9,
+        -2.8,
+        5.0,
+        8.7,
+        6.9,
+        2.8,
+        -3.6,
+        -11.4,
+        -18.0
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": -7.2,
+      "minimumTemperatureC": [
+        -27.7,
+        -27.9,
+        -27.3,
+        -19.2,
+        -7.5,
+        -0.5,
+        2.0,
+        1.7,
+        -1.0,
+        -8.4,
+        -17.8,
+        -24.6
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": -13.2,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": -24.4,
+        "warmestC": 5.4,
+        "temperatureRangeC": 29.8,
+        "meanOfMonthlyTemperatureC": -10.17,
+        "coldestMonths": [
+          2
+        ],
+        "warmestMonths": [
+          7
+        ],
+        "annualPrecipitationFromMonthsMm": 137.1,
+        "driestMonthMm": 3.7,
+        "wettestMonthMm": 27.6,
+        "jjaPrecipitationMm": 63.3,
+        "djfPrecipitationMm": 14.8,
+        "jjaPrecipitationSharePct": 46.17,
+        "djfPrecipitationSharePct": 10.8
+      },
+      "issues": []
+    },
+    {
+      "name": "퍼스",
+      "mapPoint": [
+        115.838,
+        -31.953
+      ],
+      "region": "oceania",
+      "lectureClimate": "cs",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-94608",
+      "station": {
+        "id": "94608",
+        "idScheme": "source-station-id",
+        "latitude": -31.919167,
+        "longitude": 115.872778,
+        "elevationM": 25.0,
+        "name": "PERTH METRO",
+        "country": "AUSTRALIA",
+        "wigosId": "0-36-9-94608",
+        "distanceFromMapPointKm": 5.0
+      },
+      "temperatureC": [
+        24.6,
+        25.0,
+        23.2,
+        19.9,
+        16.4,
+        14.1,
+        13.2,
+        13.7,
+        15.0,
+        17.6,
+        20.5,
+        22.9
+      ],
+      "precipitationMm": [
+        19.1,
+        13.4,
+        19.7,
+        35.2,
+        87.7,
+        127.3,
+        142.3,
+        124.4,
+        82.7,
+        37.1,
+        24.2,
+        10.4
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": null,
+        "precipitationYears": null,
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 18.8,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 723.4,
+      "maximumTemperatureC": [
+        31.2,
+        31.6,
+        29.6,
+        25.9,
+        22.4,
+        19.5,
+        18.5,
+        19.1,
+        20.5,
+        23.5,
+        26.7,
+        29.4
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 24.8,
+      "minimumTemperatureC": [
+        18.1,
+        18.3,
+        16.7,
+        13.8,
+        10.4,
+        8.6,
+        7.9,
+        8.3,
+        9.6,
+        11.6,
+        14.3,
+        16.4
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 12.9,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 13.2,
+        "warmestC": 25.0,
+        "temperatureRangeC": 11.8,
+        "meanOfMonthlyTemperatureC": 18.84,
+        "coldestMonths": [
+          7
+        ],
+        "warmestMonths": [
+          2
+        ],
+        "annualPrecipitationFromMonthsMm": 723.5,
+        "driestMonthMm": 10.4,
+        "wettestMonthMm": 142.3,
+        "jjaPrecipitationMm": 394.0,
+        "djfPrecipitationMm": 42.9,
+        "jjaPrecipitationSharePct": 54.46,
+        "djfPrecipitationSharePct": 5.93
+      },
+      "issues": []
+    },
+    {
+      "name": "오클랜드",
+      "mapPoint": [
+        174.763,
+        -36.848
+      ],
+      "region": "oceania",
+      "lectureClimate": "cfb",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-93110",
+      "station": {
+        "id": "93110",
+        "idScheme": "source-station-id",
+        "latitude": -37.0,
+        "longitude": 174.8,
+        "elevationM": 7.0,
+        "name": "AUCKLAND AERO AWS",
+        "country": "NEW ZEALAND",
+        "wigosId": "0-20000-0-93110",
+        "submittedCoordinates": [
+          171.803611,
+          -37.008611
+        ],
+        "coordinateSourceId": "noaa-auckland-meta",
+        "distanceFromMapPointKm": 17.2
+      },
+      "temperatureC": [
+        20.0,
+        20.5,
+        18.9,
+        16.6,
+        14.2,
+        12.1,
+        11.2,
+        11.7,
+        13.1,
+        14.6,
+        16.2,
+        18.5
+      ],
+      "precipitationMm": [
+        58.1,
+        63.1,
+        75.0,
+        87.1,
+        119.8,
+        119.4,
+        136.9,
+        117.2,
+        100.1,
+        91.6,
+        68.9,
+        81.7
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": null,
+        "precipitationYears": null,
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 15.6,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 1118.9,
+      "maximumTemperatureC": [
+        23.9,
+        24.4,
+        22.9,
+        20.4,
+        17.7,
+        15.5,
+        14.6,
+        15.2,
+        16.5,
+        17.9,
+        19.6,
+        22.0
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 19.2,
+      "minimumTemperatureC": [
+        16.1,
+        16.6,
+        14.9,
+        12.8,
+        10.8,
+        8.7,
+        7.7,
+        8.3,
+        9.7,
+        11.3,
+        12.8,
+        15.0
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 12.1,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 11.2,
+        "warmestC": 20.5,
+        "temperatureRangeC": 9.3,
+        "meanOfMonthlyTemperatureC": 15.63,
+        "coldestMonths": [
+          7
+        ],
+        "warmestMonths": [
+          2
+        ],
+        "annualPrecipitationFromMonthsMm": 1118.9,
+        "driestMonthMm": 58.1,
+        "wettestMonthMm": 136.9,
+        "jjaPrecipitationMm": 373.5,
+        "djfPrecipitationMm": 202.9,
+        "jjaPrecipitationSharePct": 33.38,
+        "djfPrecipitationSharePct": 18.13
+      },
+      "issues": [
+        {
+          "code": "COORDINATE_CORRECTED_FROM_SECOND_PRIMARY_SOURCE",
+          "detail": "WMO 제출 경도 171.804°E는 NOAA ISD의 동일 관측소 931100 경도 174.800°E와 불일치. 지도 연결 좌표만 ISD로 교체, 월별 기후값은 변경하지 않음."
+        }
+      ]
+    },
+    {
+      "name": "파리",
+      "mapPoint": [
+        2.3522,
+        48.8566
+      ],
+      "region": "europe",
+      "lectureClimate": "cfb",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-07156",
+      "station": {
+        "id": "07156",
+        "idScheme": "source-station-id",
+        "latitude": 48.821667,
+        "longitude": 2.337778,
+        "elevationM": 75.0,
+        "name": "PARIS-MONTSOURIS",
+        "country": "FRANCE",
+        "wigosId": null,
+        "distanceFromMapPointKm": 4.0
+      },
+      "temperatureC": [
+        5.4,
+        6.0,
+        9.2,
+        12.2,
+        15.6,
+        18.8,
+        20.9,
+        20.8,
+        17.2,
+        13.2,
+        8.7,
+        5.9
+      ],
+      "precipitationMm": [
+        47.6,
+        41.8,
+        45.2,
+        45.8,
+        69.0,
+        51.3,
+        59.4,
+        58.0,
+        44.7,
+        55.2,
+        54.3,
+        62.0
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 67,
+      "temperatureCAnnualSource": 12.8,
+      "precipitationMmSourceLine": 19,
+      "precipitationMmAnnualSource": 634.3,
+      "maximumTemperatureC": [
+        7.6,
+        8.8,
+        12.8,
+        16.6,
+        20.2,
+        23.4,
+        25.7,
+        25.6,
+        21.5,
+        16.5,
+        11.1,
+        8.0
+      ],
+      "maximumTemperatureCSourceLine": 43,
+      "maximumTemperatureCAnnualSource": 16.5,
+      "minimumTemperatureC": [
+        3.2,
+        3.3,
+        5.6,
+        7.9,
+        11.1,
+        14.2,
+        16.2,
+        16.0,
+        13.0,
+        9.9,
+        6.2,
+        3.8
+      ],
+      "minimumTemperatureCSourceLine": 55,
+      "minimumTemperatureCAnnualSource": 9.2,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 5.4,
+        "warmestC": 20.9,
+        "temperatureRangeC": 15.5,
+        "meanOfMonthlyTemperatureC": 12.83,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          7
+        ],
+        "annualPrecipitationFromMonthsMm": 634.3,
+        "driestMonthMm": 41.8,
+        "wettestMonthMm": 69.0,
+        "jjaPrecipitationMm": 168.7,
+        "djfPrecipitationMm": 151.4,
+        "jjaPrecipitationSharePct": 26.6,
+        "djfPrecipitationSharePct": 23.87
+      },
+      "issues": []
+    },
+    {
+      "name": "케이프타운",
+      "mapPoint": [
+        18.4241,
+        -33.9249
+      ],
+      "region": "africa",
+      "lectureClimate": "cs",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-68816",
+      "station": {
+        "id": "68816",
+        "idScheme": "source-station-id",
+        "latitude": -33.963056,
+        "longitude": 18.602222,
+        "elevationM": 42.0,
+        "name": "Cape Town International Airport_68816",
+        "country": "South Africa",
+        "wigosId": "0-20000-0-68816",
+        "distanceFromMapPointKm": 17.0
+      },
+      "temperatureC": [
+        21.8,
+        21.9,
+        20.5,
+        17.9,
+        15.4,
+        13.2,
+        12.7,
+        13.0,
+        14.5,
+        16.9,
+        18.6,
+        20.7
+      ],
+      "precipitationMm": [
+        9.4,
+        9.6,
+        12.5,
+        40.1,
+        61.1,
+        92.3,
+        84.8,
+        72.4,
+        44.3,
+        28.4,
+        25.3,
+        12.8
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 17.3,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 492.8,
+      "maximumTemperatureC": [
+        27.0,
+        27.3,
+        26.0,
+        23.6,
+        20.6,
+        18.2,
+        17.9,
+        18.0,
+        19.6,
+        22.2,
+        23.7,
+        25.8
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 22.5,
+      "minimumTemperatureC": [
+        16.6,
+        16.5,
+        15.0,
+        12.2,
+        10.2,
+        8.1,
+        7.4,
+        7.9,
+        9.4,
+        11.5,
+        13.4,
+        15.6
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 12.0,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 12.7,
+        "warmestC": 21.9,
+        "temperatureRangeC": 9.2,
+        "meanOfMonthlyTemperatureC": 17.26,
+        "coldestMonths": [
+          7
+        ],
+        "warmestMonths": [
+          2
+        ],
+        "annualPrecipitationFromMonthsMm": 493.0,
+        "driestMonthMm": 9.4,
+        "wettestMonthMm": 92.3,
+        "jjaPrecipitationMm": 249.5,
+        "djfPrecipitationMm": 31.8,
+        "jjaPrecipitationSharePct": 50.61,
+        "djfPrecipitationSharePct": 6.45
+      },
+      "issues": []
+    },
+    {
+      "name": "푸저우",
+      "mapPoint": [
+        119.298,
+        26.082
+      ],
+      "region": "asia",
+      "lectureClimate": "cfa",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-58847",
+      "station": {
+        "id": "58847",
+        "idScheme": "source-station-id",
+        "latitude": 26.079722,
+        "longitude": 119.279722,
+        "elevationM": 85.0,
+        "name": "FUZHOU",
+        "country": "CHINA",
+        "wigosId": "0-20000-0-58847",
+        "distanceFromMapPointKm": 1.8
+      },
+      "temperatureC": [
+        11.4,
+        12.0,
+        14.4,
+        19.0,
+        23.1,
+        26.6,
+        29.4,
+        28.9,
+        26.7,
+        22.7,
+        18.6,
+        13.7
+      ],
+      "precipitationMm": [
+        56.3,
+        78.6,
+        129.9,
+        139.8,
+        189.3,
+        228.7,
+        150.1,
+        193.4,
+        133.0,
+        48.7,
+        51.0,
+        43.3
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 20.5,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 1442.1,
+      "maximumTemperatureC": [
+        15.5,
+        16.6,
+        19.3,
+        24.1,
+        27.8,
+        31.2,
+        34.6,
+        33.8,
+        31.1,
+        26.9,
+        22.6,
+        17.8
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 25.1,
+      "minimumTemperatureC": [
+        8.8,
+        9.3,
+        11.3,
+        15.7,
+        20.0,
+        23.7,
+        26.0,
+        25.7,
+        23.8,
+        19.7,
+        15.8,
+        10.9
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 17.6,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 11.4,
+        "warmestC": 29.4,
+        "temperatureRangeC": 18.0,
+        "meanOfMonthlyTemperatureC": 20.54,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          7
+        ],
+        "annualPrecipitationFromMonthsMm": 1442.1,
+        "driestMonthMm": 43.3,
+        "wettestMonthMm": 228.7,
+        "jjaPrecipitationMm": 572.2,
+        "djfPrecipitationMm": 178.2,
+        "jjaPrecipitationSharePct": 39.68,
+        "djfPrecipitationSharePct": 12.36
+      },
+      "issues": []
+    },
+    {
+      "name": "키토",
+      "mapPoint": [
+        -78.4678,
+        -0.1807
+      ],
+      "region": "americas",
+      "lectureClimate": "h",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": null,
+      "station": null,
+      "temperatureC": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "precipitationMm": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "status": "missing",
+      "usage": {
+        "temperatureReading": false,
+        "precipitationReading": false,
+        "climateGraph": false,
+        "climateTypeRecall": false
+      },
+      "issues": [
+        {
+          "code": "NO_MATCHING_NORMAL",
+          "detail": "키토의 동일 지점 1991–2020 월평균 기온·강수 평년값을 확인하지 못함. WMO Ecuador 제출은 Rumipamba-Salcedo 한 지점이며 키토가 아님. 1981–2010이나 격자로 대체하지 않음."
+        }
+      ]
+    },
+    {
+      "name": "보고타",
+      "mapPoint": [
+        -74.0721,
+        4.711
+      ],
+      "region": "americas",
+      "lectureClimate": "h",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-21205791",
+      "station": {
+        "id": "21205791",
+        "idScheme": "source-station-id",
+        "latitude": 4.705556,
+        "longitude": -74.150556,
+        "elevationM": 2547.0,
+        "name": "El_Dorado_Catam__AUT__21205791",
+        "country": "COLOMBIA",
+        "wigosId": null,
+        "distanceFromMapPointKm": 8.7
+      },
+      "temperatureC": [
+        13.63,
+        13.97,
+        14.1,
+        14.29,
+        14.34,
+        14.19,
+        13.78,
+        13.83,
+        13.77,
+        13.75,
+        13.76,
+        13.73
+      ],
+      "precipitationMm": [
+        32.89,
+        51.38,
+        83.39,
+        116.71,
+        109.03,
+        57.43,
+        48.56,
+        44.33,
+        56.73,
+        108.22,
+        107.22,
+        61.37
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 13.93,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 877.25,
+      "maximumTemperatureC": [
+        20.14,
+        20.18,
+        19.79,
+        19.55,
+        19.36,
+        18.94,
+        18.54,
+        18.77,
+        19.21,
+        19.42,
+        19.41,
+        19.77
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 19.42,
+      "minimumTemperatureC": [
+        6.41,
+        7.62,
+        8.58,
+        9.56,
+        9.6,
+        9.06,
+        8.57,
+        8.38,
+        7.78,
+        8.3,
+        8.61,
+        7.53
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 8.33,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 13.63,
+        "warmestC": 14.34,
+        "temperatureRangeC": 0.71,
+        "meanOfMonthlyTemperatureC": 13.93,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          5
+        ],
+        "annualPrecipitationFromMonthsMm": 877.26,
+        "driestMonthMm": 32.89,
+        "wettestMonthMm": 116.71,
+        "jjaPrecipitationMm": 150.32,
+        "djfPrecipitationMm": 145.64,
+        "jjaPrecipitationSharePct": 17.14,
+        "djfPrecipitationSharePct": 16.6
+      },
+      "issues": []
+    },
+    {
+      "name": "런던",
+      "mapPoint": [
+        -0.1278,
+        51.5074
+      ],
+      "region": "europe",
+      "lectureClimate": "cfb",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-03770",
+      "station": {
+        "id": "03770",
+        "idScheme": "source-station-id",
+        "latitude": 51.504722,
+        "longitude": -0.131111,
+        "elevationM": 5.0,
+        "name": "LONDON, ST JAMES'S PARK",
+        "country": "UK",
+        "wigosId": null,
+        "distanceFromMapPointKm": 0.4
+      },
+      "temperatureC": [
+        6.0,
+        6.3,
+        8.5,
+        11.0,
+        14.0,
+        17.0,
+        19.2,
+        18.9,
+        16.2,
+        12.7,
+        8.8,
+        6.4
+      ],
+      "precipitationMm": [
+        58.1,
+        43.6,
+        37.0,
+        42.5,
+        44.7,
+        50.5,
+        43.1,
+        54.9,
+        49.8,
+        66.9,
+        65.7,
+        58.6
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": null,
+        "precipitationYears": null,
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 12.1,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 615.4000000000001,
+      "maximumTemperatureC": [
+        8.6,
+        9.1,
+        11.9,
+        15.1,
+        18.4,
+        21.4,
+        23.6,
+        23.3,
+        20.2,
+        15.9,
+        11.6,
+        9.0
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 15.7,
+      "minimumTemperatureC": [
+        3.5,
+        3.5,
+        5.1,
+        6.9,
+        9.7,
+        12.5,
+        14.7,
+        14.6,
+        12.3,
+        9.5,
+        6.1,
+        3.9
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 8.6,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 6.0,
+        "warmestC": 19.2,
+        "temperatureRangeC": 13.2,
+        "meanOfMonthlyTemperatureC": 12.08,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          7
+        ],
+        "annualPrecipitationFromMonthsMm": 615.4,
+        "driestMonthMm": 37.0,
+        "wettestMonthMm": 66.9,
+        "jjaPrecipitationMm": 148.5,
+        "djfPrecipitationMm": 160.3,
+        "jjaPrecipitationSharePct": 24.13,
+        "djfPrecipitationSharePct": 26.05
+      },
+      "issues": []
+    },
+    {
+      "name": "마르세유",
+      "mapPoint": [
+        5.373,
+        43.292
+      ],
+      "region": "europe",
+      "lectureClimate": "cs",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-07650",
+      "station": {
+        "id": "07650",
+        "idScheme": "source-station-id",
+        "latitude": 43.437778,
+        "longitude": 5.216111,
+        "elevationM": 9.0,
+        "name": "MARIGNANE",
+        "country": "FRANCE",
+        "wigosId": null,
+        "distanceFromMapPointKm": 20.6
+      },
+      "temperatureC": [
+        7.7,
+        8.3,
+        11.4,
+        14.3,
+        18.4,
+        22.5,
+        25.2,
+        24.9,
+        20.9,
+        17.0,
+        11.7,
+        8.4
+      ],
+      "precipitationMm": [
+        47.1,
+        29.8,
+        29.5,
+        51.6,
+        37.7,
+        27.9,
+        10.8,
+        25.8,
+        82.0,
+        73.3,
+        75.9,
+        40.9
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 67,
+      "temperatureCAnnualSource": 15.9,
+      "precipitationMmSourceLine": 19,
+      "precipitationMmAnnualSource": 532.3,
+      "maximumTemperatureC": [
+        11.8,
+        12.8,
+        16.4,
+        19.3,
+        23.5,
+        27.9,
+        30.7,
+        30.5,
+        25.9,
+        21.3,
+        15.7,
+        12.4
+      ],
+      "maximumTemperatureCSourceLine": 43,
+      "maximumTemperatureCAnnualSource": 20.7,
+      "minimumTemperatureC": [
+        3.6,
+        3.7,
+        6.5,
+        9.4,
+        13.3,
+        17.2,
+        19.7,
+        19.4,
+        15.9,
+        12.6,
+        7.7,
+        4.4
+      ],
+      "minimumTemperatureCSourceLine": 55,
+      "minimumTemperatureCAnnualSource": 11.1,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 7.7,
+        "warmestC": 25.2,
+        "temperatureRangeC": 17.5,
+        "meanOfMonthlyTemperatureC": 15.89,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          7
+        ],
+        "annualPrecipitationFromMonthsMm": 532.3,
+        "driestMonthMm": 10.8,
+        "wettestMonthMm": 82.0,
+        "jjaPrecipitationMm": 64.5,
+        "djfPrecipitationMm": 117.8,
+        "jjaPrecipitationSharePct": 12.12,
+        "djfPrecipitationSharePct": 22.13
+      },
+      "issues": []
+    },
+    {
+      "name": "마나우스",
+      "mapPoint": [
+        -60.0217,
+        -3.119
+      ],
+      "region": "americas",
+      "lectureClimate": "af",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-82331",
+      "station": {
+        "id": "82331",
+        "idScheme": "source-station-id",
+        "latitude": -3.103333,
+        "longitude": -60.016389,
+        "elevationM": 61.25,
+        "name": "MANAUS",
+        "country": "BRAZIL",
+        "wigosId": "0-20000-0-82331",
+        "distanceFromMapPointKm": 1.8
+      },
+      "temperatureC": [
+        26.6,
+        26.6,
+        26.6,
+        26.7,
+        27.0,
+        27.3,
+        27.5,
+        28.2,
+        28.6,
+        28.5,
+        28.0,
+        27.2
+      ],
+      "precipitationMm": [
+        305.6,
+        296.8,
+        320.9,
+        331.0,
+        233.3,
+        117.2,
+        67.1,
+        56.1,
+        79.0,
+        113.9,
+        188.0,
+        253.5
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          29.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 55,
+      "temperatureCAnnualSource": 27.4,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 2362.4,
+      "maximumTemperatureC": [
+        31.3,
+        31.1,
+        31.2,
+        31.3,
+        31.5,
+        31.9,
+        32.5,
+        33.6,
+        34.1,
+        34.0,
+        33.0,
+        32.0
+      ],
+      "maximumTemperatureCSourceLine": 39,
+      "maximumTemperatureCAnnualSource": 32.3,
+      "minimumTemperatureC": [
+        23.6,
+        23.6,
+        23.7,
+        23.7,
+        23.9,
+        23.8,
+        23.7,
+        24.1,
+        24.5,
+        24.6,
+        24.4,
+        24.0
+      ],
+      "minimumTemperatureCSourceLine": 47,
+      "minimumTemperatureCAnnualSource": 24.0,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 26.6,
+        "warmestC": 28.6,
+        "temperatureRangeC": 2.0,
+        "meanOfMonthlyTemperatureC": 27.4,
+        "coldestMonths": [
+          1,
+          2,
+          3
+        ],
+        "warmestMonths": [
+          9
+        ],
+        "annualPrecipitationFromMonthsMm": 2362.4,
+        "driestMonthMm": 56.1,
+        "wettestMonthMm": 331.0,
+        "jjaPrecipitationMm": 240.4,
+        "djfPrecipitationMm": 855.9,
+        "jjaPrecipitationSharePct": 10.18,
+        "djfPrecipitationSharePct": 36.23
+      },
+      "issues": [
+        {
+          "code": "LECTURE_TYPE_BOUNDARY",
+          "detail": "강의 분류 Af와 달리 이 관측소의 최건월 56.1mm는 Af의 60mm 경계 아래. 월별 제시 자료는 사용 가능하나 이 자료로 강의 Af를 정답으로 강제하지 않음(Af/Am 경계 민감)."
+        }
+      ]
+    },
+    {
+      "name": "딕슨",
+      "mapPoint": [
+        80.545,
+        73.507
+      ],
+      "region": null,
+      "lectureClimate": "et",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-20674",
+      "station": {
+        "id": "20674",
+        "idScheme": "source-station-id",
+        "latitude": 73.5,
+        "longitude": 80.4,
+        "elevationM": 42.0,
+        "name": "OSTROV DIKSON",
+        "country": "RUSSIAN FEDERATION (IN ASIA)",
+        "wigosId": null,
+        "distanceFromMapPointKm": 4.6
+      },
+      "temperatureC": [
+        -24.0,
+        -23.8,
+        -20.7,
+        -15.1,
+        -6.8,
+        1.1,
+        5.8,
+        5.9,
+        2.5,
+        -6.5,
+        -16.5,
+        -21.8
+      ],
+      "precipitationMm": [
+        36.7,
+        31.0,
+        28.0,
+        22.0,
+        24.1,
+        27.2,
+        32.2,
+        39.9,
+        42.9,
+        38.0,
+        29.0,
+        35.9
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          29.0,
+          29.0,
+          29.0,
+          28.0,
+          28.0,
+          28.0,
+          29.0,
+          29.0,
+          28.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          29.0,
+          29.0,
+          28.0,
+          29.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 51,
+      "temperatureCAnnualSource": -10.0,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 386.9,
+      "maximumTemperatureC": [
+        -20.5,
+        -20.2,
+        -16.8,
+        -11.4,
+        -4.4,
+        3.3,
+        8.6,
+        8.2,
+        4.1,
+        -4.4,
+        -13.2,
+        -18.5
+      ],
+      "maximumTemperatureCSourceLine": 37,
+      "maximumTemperatureCAnnualSource": -7.1,
+      "minimumTemperatureC": [
+        -27.3,
+        -27.2,
+        -24.0,
+        -18.4,
+        -9.0,
+        -0.4,
+        3.7,
+        4.1,
+        1.0,
+        -8.7,
+        -19.7,
+        -24.9
+      ],
+      "minimumTemperatureCSourceLine": 44,
+      "minimumTemperatureCAnnualSource": -12.6,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": -24.0,
+        "warmestC": 5.9,
+        "temperatureRangeC": 29.9,
+        "meanOfMonthlyTemperatureC": -9.99,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          8
+        ],
+        "annualPrecipitationFromMonthsMm": 386.9,
+        "driestMonthMm": 22.0,
+        "wettestMonthMm": 42.9,
+        "jjaPrecipitationMm": 99.3,
+        "djfPrecipitationMm": 103.6,
+        "jjaPrecipitationSharePct": 25.67,
+        "djfPrecipitationSharePct": 26.78
+      },
+      "issues": []
+    },
+    {
+      "name": "치타",
+      "mapPoint": [
+        113.465,
+        52.055
+      ],
+      "region": null,
+      "lectureClimate": "dw",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "jma-30758",
+      "station": {
+        "id": "30758",
+        "idScheme": "WMO",
+        "name": "CHITA - RUSSIAN FEDERATION (IN ASIA)",
+        "latitude": 52.08,
+        "longitude": 113.48,
+        "elevationM": 671.0,
+        "distanceFromMapPointKm": 3.0
+      },
+      "temperatureC": [
+        -24.5,
+        -18.2,
+        -8.1,
+        2.2,
+        10.2,
+        17.2,
+        19.5,
+        16.6,
+        9.2,
+        -0.1,
+        -12.5,
+        -22.0
+      ],
+      "precipitationMm": [
+        2.9,
+        1.8,
+        3.5,
+        11.7,
+        26.5,
+        60.8,
+        87.6,
+        85.2,
+        40.8,
+        9.4,
+        5.2,
+        5.1
+      ],
+      "coverage": {
+        "method": "JMA-GHCN-and-CLIMAT",
+        "temperatureYears": null,
+        "precipitationYears": null,
+        "minimumYearsRequiredByProvider": 8,
+        "detail": "1991–2020 내 월별 최소 8년이 JMA 채택 기준. 이 관측소의 실제 월별 연수는 이 표에 없음. 30년 완전 관측으로 표현하지 않음."
+      },
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": -24.5,
+        "warmestC": 19.5,
+        "temperatureRangeC": 44.0,
+        "meanOfMonthlyTemperatureC": -0.88,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          7
+        ],
+        "annualPrecipitationFromMonthsMm": 340.5,
+        "driestMonthMm": 1.8,
+        "wettestMonthMm": 87.6,
+        "jjaPrecipitationMm": 233.6,
+        "djfPrecipitationMm": 9.8,
+        "jjaPrecipitationSharePct": 68.6,
+        "djfPrecipitationSharePct": 2.88
+      },
+      "issues": [
+        {
+          "code": "MONTHLY_YEAR_COUNTS_UNAVAILABLE",
+          "detail": "공식 관측소 기반 1991–2020 평년값이나 실제 관측 연수 미표시. 제시 자료 읽기에만 사용하며 정밀한 지점 간 순위를 회상으로 묻지 않음."
+        }
+      ]
+    },
+    {
+      "name": "몬트리올",
+      "mapPoint": [
+        -73.5673,
+        45.5017
+      ],
+      "region": "americas",
+      "lectureClimate": "df",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "eccc-7025250",
+      "station": {
+        "id": "7025250",
+        "idScheme": "ECCC-composite-climate-id",
+        "name": "MONTREAL TRUDEAU (AIRPORT)",
+        "latitude": 45.466667,
+        "longitude": -73.75,
+        "elevationM": 36,
+        "componentStationIds": [
+          "702S006",
+          "7025251",
+          "7025250"
+        ],
+        "componentWmoIds": [
+          "71183",
+          "71627"
+        ],
+        "distanceFromMapPointKm": 14.8
+      },
+      "temperatureC": [
+        -9.2,
+        -8.0,
+        -2.0,
+        6.2,
+        13.9,
+        19.0,
+        21.7,
+        20.6,
+        16.0,
+        8.9,
+        2.3,
+        -5.0
+      ],
+      "precipitationMm": [
+        85.8,
+        65.5,
+        77.2,
+        90.0,
+        85.6,
+        83.6,
+        91.1,
+        93.6,
+        89.2,
+        103.1,
+        84.2,
+        91.9
+      ],
+      "coverage": {
+        "method": "ECCC-composite",
+        "temperatureCode": "A",
+        "precipitationCode": "C",
+        "temperatureAnalytics": {
+          "beginYear": 1991,
+          "endYear": 2020,
+          "totalYears": 30,
+          "missingYears": 2,
+          "observationsPct": 93.8
+        },
+        "precipitationAnalytics": {
+          "beginYear": 1991,
+          "endYear": 2020,
+          "totalYears": 25,
+          "missingYears": 6,
+          "observationsPct": 81.7
+        },
+        "detail": "기온 A(WMO 3-and-5 rule), 강수 C(20년 이상). 서로 다른 관측소를 연결한 공식 composite. 비가 아닌 눈을 포함한 총강수량을 사용."
+      },
+      "temperatureCAnnualSource": 7.0,
+      "precipitationMmAnnualSource": 1040.9,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": -9.2,
+        "warmestC": 21.7,
+        "temperatureRangeC": 30.9,
+        "meanOfMonthlyTemperatureC": 7.03,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          7
+        ],
+        "annualPrecipitationFromMonthsMm": 1040.8,
+        "driestMonthMm": 65.5,
+        "wettestMonthMm": 103.1,
+        "jjaPrecipitationMm": 268.3,
+        "djfPrecipitationMm": 243.2,
+        "jjaPrecipitationSharePct": 25.78,
+        "djfPrecipitationSharePct": 23.37
+      },
+      "issues": []
+    },
+    {
+      "name": "상파울루",
+      "mapPoint": [
+        -46.627,
+        -23.557
+      ],
+      "region": "americas",
+      "lectureClimate": "cfa",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "jma-83781",
+      "station": {
+        "id": "83781",
+        "idScheme": "WMO",
+        "name": "SAO PAULO - BRAZIL",
+        "latitude": -23.5,
+        "longitude": -46.62,
+        "elevationM": 792.0,
+        "distanceFromMapPointKm": 6.4
+      },
+      "temperatureC": [
+        23.2,
+        23.7,
+        22.8,
+        21.4,
+        18.5,
+        17.7,
+        17.3,
+        18.3,
+        19.3,
+        20.7,
+        21.4,
+        22.9
+      ],
+      "precipitationMm": [
+        286.6,
+        242.4,
+        196.3,
+        90.3,
+        65.5,
+        63.3,
+        53.0,
+        36.3,
+        79.5,
+        118.4,
+        143.6,
+        233.1
+      ],
+      "coverage": {
+        "method": "JMA-GHCN-and-CLIMAT",
+        "temperatureYears": null,
+        "precipitationYears": null,
+        "minimumYearsRequiredByProvider": 8,
+        "detail": "1991–2020 내 월별 최소 8년이 JMA 채택 기준. 이 관측소의 실제 월별 연수는 이 표에 없음. 30년 완전 관측으로 표현하지 않음."
+      },
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 17.3,
+        "warmestC": 23.7,
+        "temperatureRangeC": 6.4,
+        "meanOfMonthlyTemperatureC": 20.6,
+        "coldestMonths": [
+          7
+        ],
+        "warmestMonths": [
+          2
+        ],
+        "annualPrecipitationFromMonthsMm": 1608.3,
+        "driestMonthMm": 36.3,
+        "wettestMonthMm": 286.6,
+        "jjaPrecipitationMm": 152.6,
+        "djfPrecipitationMm": 762.1,
+        "jjaPrecipitationSharePct": 9.49,
+        "djfPrecipitationSharePct": 47.39
+      },
+      "issues": [
+        {
+          "code": "MONTHLY_YEAR_COUNTS_UNAVAILABLE",
+          "detail": "공식 관측소 기반 1991–2020 평년값이나 실제 관측 연수 미표시. 제시 자료 읽기에만 사용하며 정밀한 지점 간 순위를 회상으로 묻지 않음."
+        }
+      ]
+    },
+    {
+      "name": "라바트",
+      "mapPoint": [
+        -6.836,
+        34.025
+      ],
+      "region": "africa",
+      "lectureClimate": "cs",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-60135",
+      "station": {
+        "id": "60135",
+        "idScheme": "source-station-id",
+        "latitude": 34.05,
+        "longitude": -6.766667,
+        "elevationM": 75.0,
+        "name": "RABAT-SALE",
+        "country": "Morocco",
+        "wigosId": "0-20000-0-60135",
+        "distanceFromMapPointKm": 7.0
+      },
+      "temperatureC": [
+        12.3,
+        13.0,
+        14.8,
+        16.0,
+        18.5,
+        20.8,
+        22.6,
+        23.1,
+        21.7,
+        19.6,
+        15.9,
+        13.7
+      ],
+      "precipitationMm": [
+        80.9,
+        60.5,
+        62.6,
+        42.3,
+        17.9,
+        3.6,
+        0.4,
+        0.6,
+        13.7,
+        54.9,
+        94.3,
+        90.2
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          29.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 79,
+      "temperatureCAnnualSource": 17.7,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 521.9,
+      "maximumTemperatureC": [
+        17.4,
+        18.2,
+        20.2,
+        21.2,
+        23.6,
+        25.6,
+        27.2,
+        27.8,
+        26.6,
+        24.8,
+        21.1,
+        18.6
+      ],
+      "maximumTemperatureCSourceLine": 51,
+      "maximumTemperatureCAnnualSource": 22.7,
+      "minimumTemperatureC": [
+        7.2,
+        7.8,
+        9.5,
+        10.9,
+        13.3,
+        15.9,
+        17.9,
+        18.3,
+        16.8,
+        14.4,
+        10.8,
+        8.8
+      ],
+      "minimumTemperatureCSourceLine": 65,
+      "minimumTemperatureCAnnualSource": 12.6,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 12.3,
+        "warmestC": 23.1,
+        "temperatureRangeC": 10.8,
+        "meanOfMonthlyTemperatureC": 17.67,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          8
+        ],
+        "annualPrecipitationFromMonthsMm": 521.9,
+        "driestMonthMm": 0.4,
+        "wettestMonthMm": 94.3,
+        "jjaPrecipitationMm": 4.6,
+        "djfPrecipitationMm": 231.6,
+        "jjaPrecipitationSharePct": 0.88,
+        "djfPrecipitationSharePct": 44.38
+      },
+      "issues": []
+    },
+    {
+      "name": "쿤밍",
+      "mapPoint": [
+        102.678,
+        25.072
+      ],
+      "region": "asia",
+      "lectureClimate": "cw",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-56778",
+      "station": {
+        "id": "56778",
+        "idScheme": "source-station-id",
+        "latitude": 25.02,
+        "longitude": 102.68,
+        "elevationM": 1892.0,
+        "name": "KUNMING",
+        "country": "CHINA",
+        "wigosId": "0-20000-0-56778",
+        "distanceFromMapPointKm": 5.8
+      },
+      "temperatureC": [
+        9.3,
+        11.5,
+        14.8,
+        17.8,
+        19.6,
+        20.7,
+        20.5,
+        20.2,
+        18.8,
+        16.2,
+        12.5,
+        9.5
+      ],
+      "precipitationMm": [
+        23.8,
+        11.9,
+        19.6,
+        25.4,
+        80.1,
+        173.1,
+        215.7,
+        195.9,
+        119.3,
+        82.4,
+        30.1,
+        13.7
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 16.0,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 991.0,
+      "maximumTemperatureC": [
+        16.3,
+        18.5,
+        21.8,
+        24.3,
+        25.2,
+        25.4,
+        24.8,
+        25.0,
+        23.5,
+        21.1,
+        18.7,
+        16.0
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 21.7,
+      "minimumTemperatureC": [
+        4.0,
+        5.8,
+        8.9,
+        12.0,
+        14.9,
+        17.3,
+        17.6,
+        17.2,
+        15.7,
+        12.9,
+        8.2,
+        4.8
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 11.6,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 9.3,
+        "warmestC": 20.7,
+        "temperatureRangeC": 11.4,
+        "meanOfMonthlyTemperatureC": 15.95,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          6
+        ],
+        "annualPrecipitationFromMonthsMm": 991.0,
+        "driestMonthMm": 11.9,
+        "wettestMonthMm": 215.7,
+        "jjaPrecipitationMm": 584.7,
+        "djfPrecipitationMm": 49.4,
+        "jjaPrecipitationSharePct": 59.0,
+        "djfPrecipitationSharePct": 4.98
+      },
+      "issues": []
+    },
+    {
+      "name": "크라이스트처치",
+      "mapPoint": [
+        172.63,
+        -43.535
+      ],
+      "region": "oceania",
+      "lectureClimate": "cfb",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-93781",
+      "station": {
+        "id": "93781",
+        "idScheme": "source-station-id",
+        "latitude": -43.489444,
+        "longitude": 172.526667,
+        "elevationM": 37.0,
+        "name": "CHRISTCHURCH AERO AWS",
+        "country": "NEW ZEALAND",
+        "wigosId": "0-20000-0-93781",
+        "distanceFromMapPointKm": 9.8
+      },
+      "temperatureC": [
+        17.1,
+        16.9,
+        14.9,
+        11.9,
+        9.3,
+        6.4,
+        6.0,
+        7.3,
+        9.3,
+        11.3,
+        13.2,
+        15.7
+      ],
+      "precipitationMm": [
+        42.4,
+        39.8,
+        45.1,
+        57.5,
+        58.1,
+        68.3,
+        64.2,
+        58.1,
+        42.2,
+        49.1,
+        45.1,
+        47.8
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": null,
+        "precipitationYears": null,
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 11.6,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 617.7,
+      "maximumTemperatureC": [
+        22.5,
+        22.2,
+        20.3,
+        17.2,
+        14.7,
+        11.7,
+        11.2,
+        12.5,
+        14.8,
+        16.9,
+        18.8,
+        21.1
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 17.0,
+      "minimumTemperatureC": [
+        11.8,
+        11.5,
+        9.5,
+        6.6,
+        3.9,
+        1.2,
+        0.7,
+        2.0,
+        3.9,
+        5.8,
+        7.6,
+        10.4
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 6.2,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 6.0,
+        "warmestC": 17.1,
+        "temperatureRangeC": 11.1,
+        "meanOfMonthlyTemperatureC": 11.61,
+        "coldestMonths": [
+          7
+        ],
+        "warmestMonths": [
+          1
+        ],
+        "annualPrecipitationFromMonthsMm": 617.7,
+        "driestMonthMm": 39.8,
+        "wettestMonthMm": 68.3,
+        "jjaPrecipitationMm": 190.6,
+        "djfPrecipitationMm": 130.0,
+        "jjaPrecipitationSharePct": 30.86,
+        "djfPrecipitationSharePct": 21.05
+      },
+      "issues": []
+    },
+    {
+      "name": "샌프란시스코",
+      "mapPoint": [
+        -122.4194,
+        37.7749
+      ],
+      "region": "americas",
+      "lectureClimate": "cs",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-72494",
+      "station": {
+        "id": "72494",
+        "idScheme": "source-station-id",
+        "latitude": 37.619722,
+        "longitude": -122.364722,
+        "elevationM": 2.0,
+        "name": "CA SAN FRANCISCO INTL AP",
+        "country": "United States",
+        "wigosId": "0-20000-0-72494",
+        "distanceFromMapPointKm": 17.9
+      },
+      "temperatureC": [
+        10.7,
+        11.9,
+        13.0,
+        14.1,
+        15.5,
+        17.0,
+        17.8,
+        18.3,
+        18.5,
+        17.1,
+        13.6,
+        10.8
+      ],
+      "precipitationMm": [
+        98.9,
+        100.5,
+        69.4,
+        34.6,
+        12.1,
+        3.6,
+        0.0,
+        1.0,
+        1.9,
+        20.2,
+        51.8,
+        105.1
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": null,
+        "precipitationYears": null,
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 14.9,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 499.1,
+      "maximumTemperatureC": [
+        14.5,
+        16.0,
+        17.4,
+        18.7,
+        20.2,
+        21.9,
+        22.6,
+        23.0,
+        23.8,
+        22.4,
+        18.0,
+        14.5
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 19.4,
+      "minimumTemperatureC": [
+        7.0,
+        7.9,
+        8.6,
+        9.5,
+        10.9,
+        12.0,
+        13.0,
+        13.5,
+        13.3,
+        11.9,
+        9.2,
+        7.0
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 10.3,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 10.7,
+        "warmestC": 18.5,
+        "temperatureRangeC": 7.8,
+        "meanOfMonthlyTemperatureC": 14.86,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          9
+        ],
+        "annualPrecipitationFromMonthsMm": 499.1,
+        "driestMonthMm": 0.0,
+        "wettestMonthMm": 105.1,
+        "jjaPrecipitationMm": 4.6,
+        "djfPrecipitationMm": 304.5,
+        "jjaPrecipitationSharePct": 0.92,
+        "djfPrecipitationSharePct": 61.01
+      },
+      "issues": []
+    },
+    {
+      "name": "선양",
+      "mapPoint": [
+        123.448,
+        41.807
+      ],
+      "region": "asia",
+      "lectureClimate": "dw",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-54342",
+      "station": {
+        "id": "54342",
+        "idScheme": "source-station-id",
+        "latitude": 41.729722,
+        "longitude": 123.519722,
+        "elevationM": 49.0,
+        "name": "SHENYANG",
+        "country": "CHINA",
+        "wigosId": "0-20000-0-54342",
+        "distanceFromMapPointKm": 10.5
+      },
+      "temperatureC": [
+        -11.4,
+        -6.3,
+        1.7,
+        10.8,
+        17.8,
+        22.3,
+        24.9,
+        23.8,
+        17.9,
+        9.8,
+        0.3,
+        -8.4
+      ],
+      "precipitationMm": [
+        6.0,
+        9.7,
+        16.7,
+        35.2,
+        63.6,
+        92.5,
+        167.0,
+        167.1,
+        50.8,
+        44.1,
+        22.8,
+        12.0
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 8.6,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 687.5,
+      "maximumTemperatureC": [
+        -4.8,
+        0.1,
+        7.5,
+        17.1,
+        23.9,
+        27.6,
+        29.5,
+        28.8,
+        24.4,
+        16.3,
+        5.8,
+        -2.5
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 14.5,
+      "minimumTemperatureC": [
+        -17.0,
+        -12.0,
+        -3.9,
+        4.3,
+        11.5,
+        16.9,
+        20.6,
+        19.4,
+        12.1,
+        4.0,
+        -4.7,
+        -13.5
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 3.1,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": -11.4,
+        "warmestC": 24.9,
+        "temperatureRangeC": 36.3,
+        "meanOfMonthlyTemperatureC": 8.6,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          7
+        ],
+        "annualPrecipitationFromMonthsMm": 687.5,
+        "driestMonthMm": 6.0,
+        "wettestMonthMm": 167.1,
+        "jjaPrecipitationMm": 426.6,
+        "djfPrecipitationMm": 27.7,
+        "jjaPrecipitationSharePct": 62.05,
+        "djfPrecipitationSharePct": 4.03
+      },
+      "issues": []
+    },
+    {
+      "name": "덴버",
+      "mapPoint": [
+        -104.986,
+        39.741
+      ],
+      "region": "americas",
+      "lectureClimate": "bs",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-72565",
+      "station": {
+        "id": "72565",
+        "idScheme": "source-station-id",
+        "latitude": 39.832778,
+        "longitude": -104.6575,
+        "elevationM": 1650.0,
+        "name": "CO DENVER INTL AP",
+        "country": "United States",
+        "wigosId": "0-20000-0-72565",
+        "distanceFromMapPointKm": 29.9
+      },
+      "temperatureC": [
+        -0.2,
+        0.4,
+        5.3,
+        8.8,
+        14.1,
+        20.1,
+        23.9,
+        22.7,
+        18.2,
+        10.6,
+        4.1,
+        -0.5
+      ],
+      "precipitationMm": [
+        9.7,
+        10.4,
+        21.7,
+        42.6,
+        55.0,
+        49.3,
+        54.4,
+        40.2,
+        34.3,
+        25.2,
+        16.2,
+        9.0
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": null,
+        "precipitationYears": null,
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 10.6,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 368.0,
+      "maximumTemperatureC": [
+        7.0,
+        7.6,
+        13.2,
+        16.5,
+        21.8,
+        28.5,
+        32.2,
+        30.8,
+        26.5,
+        18.5,
+        11.6,
+        6.6
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 18.4,
+      "minimumTemperatureC": [
+        -7.4,
+        -6.9,
+        -2.5,
+        1.0,
+        6.4,
+        11.7,
+        15.7,
+        14.6,
+        10.0,
+        2.8,
+        -3.4,
+        -7.6
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 2.9,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": -0.5,
+        "warmestC": 23.9,
+        "temperatureRangeC": 24.4,
+        "meanOfMonthlyTemperatureC": 10.62,
+        "coldestMonths": [
+          12
+        ],
+        "warmestMonths": [
+          7
+        ],
+        "annualPrecipitationFromMonthsMm": 368.0,
+        "driestMonthMm": 9.0,
+        "wettestMonthMm": 55.0,
+        "jjaPrecipitationMm": 143.9,
+        "djfPrecipitationMm": 29.1,
+        "jjaPrecipitationSharePct": 39.1,
+        "djfPrecipitationSharePct": 7.91
+      },
+      "issues": []
+    },
+    {
+      "name": "로차",
+      "mapPoint": [
+        -54.333,
+        -34.483
+      ],
+      "region": "americas",
+      "lectureClimate": "cfa",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-86565",
+      "station": {
+        "id": "86565",
+        "idScheme": "source-station-id",
+        "latitude": -34.493333,
+        "longitude": -54.3125,
+        "elevationM": 18.16,
+        "name": "Rocha",
+        "country": "Uruguay",
+        "wigosId": "0-20000-0-86565",
+        "distanceFromMapPointKm": 2.2
+      },
+      "temperatureC": [
+        22.4,
+        22.0,
+        20.5,
+        17.6,
+        14.4,
+        11.8,
+        10.9,
+        12.3,
+        13.3,
+        15.8,
+        18.2,
+        20.9
+      ],
+      "precipitationMm": [
+        111.0,
+        109.0,
+        135.0,
+        119.0,
+        108.0,
+        114.0,
+        108.0,
+        106.0,
+        96.0,
+        103.0,
+        91.0,
+        87.0
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 16.7,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 1284.8,
+      "maximumTemperatureC": [
+        28.1,
+        27.3,
+        25.8,
+        22.6,
+        19.3,
+        16.4,
+        15.5,
+        17.2,
+        18.2,
+        20.8,
+        23.7,
+        26.7
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 21.8,
+      "minimumTemperatureC": [
+        16.7,
+        16.6,
+        15.2,
+        12.6,
+        9.6,
+        7.2,
+        6.3,
+        7.3,
+        8.4,
+        10.8,
+        12.7,
+        15.0
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 11.5,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 10.9,
+        "warmestC": 22.4,
+        "temperatureRangeC": 11.5,
+        "meanOfMonthlyTemperatureC": 16.68,
+        "coldestMonths": [
+          7
+        ],
+        "warmestMonths": [
+          1
+        ],
+        "annualPrecipitationFromMonthsMm": 1287.0,
+        "driestMonthMm": 87.0,
+        "wettestMonthMm": 135.0,
+        "jjaPrecipitationMm": 328.0,
+        "djfPrecipitationMm": 307.0,
+        "jjaPrecipitationSharePct": 25.49,
+        "djfPrecipitationSharePct": 23.85
+      },
+      "issues": []
+    },
+    {
+      "name": "더블린",
+      "mapPoint": [
+        -6.2509,
+        53.335
+      ],
+      "region": "europe",
+      "lectureClimate": "cfb",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-03969",
+      "station": {
+        "id": "3969",
+        "idScheme": "source-station-id",
+        "latitude": 53.427778,
+        "longitude": -6.240833,
+        "elevationM": 71.0,
+        "name": "Dublin_Airport",
+        "country": "Ireland",
+        "wigosId": null,
+        "distanceFromMapPointKm": 10.3
+      },
+      "temperatureC": [
+        5.2,
+        5.3,
+        6.6,
+        8.2,
+        10.7,
+        13.3,
+        15.4,
+        15.1,
+        13.2,
+        10.4,
+        7.3,
+        5.5
+      ],
+      "precipitationMm": [
+        61.8,
+        52.4,
+        51.4,
+        55.0,
+        57.0,
+        64.0,
+        61.0,
+        73.4,
+        63.3,
+        78.4,
+        82.7,
+        72.1
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 9.7,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 772.5,
+      "maximumTemperatureC": [
+        8.0,
+        8.5,
+        10.1,
+        12.3,
+        14.8,
+        17.7,
+        19.5,
+        19.1,
+        16.9,
+        13.6,
+        10.3,
+        8.3
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 13.3,
+      "minimumTemperatureC": [
+        2.3,
+        2.2,
+        3.0,
+        4.0,
+        6.6,
+        9.0,
+        11.3,
+        11.2,
+        9.5,
+        7.1,
+        4.3,
+        2.6
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 6.1,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 5.2,
+        "warmestC": 15.4,
+        "temperatureRangeC": 10.2,
+        "meanOfMonthlyTemperatureC": 9.68,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          7
+        ],
+        "annualPrecipitationFromMonthsMm": 772.5,
+        "driestMonthMm": 51.4,
+        "wettestMonthMm": 82.7,
+        "jjaPrecipitationMm": 198.4,
+        "djfPrecipitationMm": 186.3,
+        "jjaPrecipitationSharePct": 25.68,
+        "djfPrecipitationSharePct": 24.12
+      },
+      "issues": []
+    },
+    {
+      "name": "메시나",
+      "mapPoint": [
+        15.55,
+        38.2
+      ],
+      "region": "europe",
+      "lectureClimate": "cs",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-16420",
+      "station": {
+        "id": "16420",
+        "idScheme": "source-station-id",
+        "latitude": 38.199722,
+        "longitude": 15.548889,
+        "elevationM": 54.0,
+        "name": "Messina",
+        "country": "Italy",
+        "wigosId": null,
+        "distanceFromMapPointKm": 0.1
+      },
+      "temperatureC": [
+        12.36,
+        12.25,
+        13.97,
+        16.16,
+        19.97,
+        24.23,
+        27.21,
+        27.79,
+        24.4,
+        20.94,
+        17.1,
+        13.71
+      ],
+      "precipitationMm": [
+        118.45,
+        92.35,
+        94.02,
+        65.46,
+        37.12,
+        32.1,
+        19.81,
+        29.91,
+        91.84,
+        106.06,
+        126.8,
+        127.47
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          29.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          29.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 51,
+      "temperatureCAnnualSource": 19.17,
+      "precipitationMmSourceLine": 19,
+      "precipitationMmAnnualSource": 941.39,
+      "maximumTemperatureC": [
+        14.81,
+        14.97,
+        16.92,
+        19.37,
+        23.41,
+        27.79,
+        30.86,
+        31.42,
+        27.77,
+        23.96,
+        19.82,
+        16.17
+      ],
+      "maximumTemperatureCSourceLine": 35,
+      "maximumTemperatureCAnnualSource": 22.27,
+      "minimumTemperatureC": [
+        10.12,
+        9.74,
+        11.27,
+        13.31,
+        16.9,
+        21.09,
+        24.04,
+        24.75,
+        21.44,
+        18.26,
+        14.61,
+        11.43
+      ],
+      "minimumTemperatureCSourceLine": 43,
+      "minimumTemperatureCAnnualSource": 16.41,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 12.25,
+        "warmestC": 27.79,
+        "temperatureRangeC": 15.54,
+        "meanOfMonthlyTemperatureC": 19.17,
+        "coldestMonths": [
+          2
+        ],
+        "warmestMonths": [
+          8
+        ],
+        "annualPrecipitationFromMonthsMm": 941.39,
+        "driestMonthMm": 19.81,
+        "wettestMonthMm": 127.47,
+        "jjaPrecipitationMm": 81.82,
+        "djfPrecipitationMm": 338.27,
+        "jjaPrecipitationSharePct": 8.69,
+        "djfPrecipitationSharePct": 35.93
+      },
+      "issues": []
+    },
+    {
+      "name": "브리즈번",
+      "mapPoint": [
+        153.033,
+        -27.453
+      ],
+      "region": "oceania",
+      "lectureClimate": "cfa",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-94578",
+      "station": {
+        "id": "94578",
+        "idScheme": "source-station-id",
+        "latitude": -27.391667,
+        "longitude": 153.129167,
+        "elevationM": 5.0,
+        "name": "BRISBANE AERO",
+        "country": "AUSTRALIA",
+        "wigosId": "0-36-9-94578",
+        "distanceFromMapPointKm": 11.7
+      },
+      "temperatureC": [
+        25.3,
+        25.1,
+        23.8,
+        21.2,
+        18.4,
+        16.0,
+        15.2,
+        15.9,
+        18.5,
+        20.6,
+        22.6,
+        24.2
+      ],
+      "precipitationMm": [
+        125.8,
+        147.1,
+        116.1,
+        67.0,
+        87.4,
+        62.9,
+        31.2,
+        34.6,
+        31.7,
+        71.7,
+        87.4,
+        120.2
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": null,
+        "precipitationYears": null,
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 20.6,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 983.0,
+      "maximumTemperatureC": [
+        29.2,
+        28.9,
+        28.0,
+        26.0,
+        23.6,
+        21.3,
+        21.0,
+        22.0,
+        24.1,
+        25.4,
+        26.9,
+        28.2
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 25.4,
+      "minimumTemperatureC": [
+        21.5,
+        21.2,
+        19.7,
+        16.5,
+        13.2,
+        10.7,
+        9.3,
+        9.8,
+        12.8,
+        15.8,
+        18.3,
+        20.1
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 15.8,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 15.2,
+        "warmestC": 25.3,
+        "temperatureRangeC": 10.1,
+        "meanOfMonthlyTemperatureC": 20.57,
+        "coldestMonths": [
+          7
+        ],
+        "warmestMonths": [
+          1
+        ],
+        "annualPrecipitationFromMonthsMm": 983.1,
+        "driestMonthMm": 31.2,
+        "wettestMonthMm": 147.1,
+        "jjaPrecipitationMm": 128.7,
+        "djfPrecipitationMm": 393.1,
+        "jjaPrecipitationSharePct": 13.09,
+        "djfPrecipitationSharePct": 39.99
+      },
+      "issues": []
+    },
+    {
+      "name": "창춘",
+      "mapPoint": [
+        125.338,
+        43.867
+      ],
+      "region": "asia",
+      "lectureClimate": "dw",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-54161",
+      "station": {
+        "id": "54161",
+        "idScheme": "source-station-id",
+        "latitude": 43.9,
+        "longitude": 125.22,
+        "elevationM": 238.0,
+        "name": "CHANGCHUN",
+        "country": "CHINA",
+        "wigosId": "0-20000-0-54161",
+        "distanceFromMapPointKm": 10.1
+      },
+      "temperatureC": [
+        -14.3,
+        -9.3,
+        -1.0,
+        8.8,
+        16.2,
+        21.3,
+        23.7,
+        22.3,
+        16.5,
+        7.9,
+        -2.8,
+        -11.8
+      ],
+      "precipitationMm": [
+        4.4,
+        6.1,
+        13.4,
+        22.0,
+        62.6,
+        102.1,
+        147.5,
+        131.6,
+        53.9,
+        24.6,
+        16.9,
+        8.2
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 6.5,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 593.3,
+      "maximumTemperatureC": [
+        -9.3,
+        -3.9,
+        4.5,
+        14.8,
+        22.0,
+        26.5,
+        28.1,
+        26.9,
+        22.3,
+        13.7,
+        2.0,
+        -7.1
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 11.7,
+      "minimumTemperatureC": [
+        -18.6,
+        -14.3,
+        -6.1,
+        3.0,
+        10.5,
+        16.3,
+        19.7,
+        18.2,
+        11.2,
+        2.8,
+        -7.1,
+        -15.9
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 1.6,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": -14.3,
+        "warmestC": 23.7,
+        "temperatureRangeC": 38.0,
+        "meanOfMonthlyTemperatureC": 6.46,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          7
+        ],
+        "annualPrecipitationFromMonthsMm": 593.3,
+        "driestMonthMm": 4.4,
+        "wettestMonthMm": 147.5,
+        "jjaPrecipitationMm": 381.2,
+        "djfPrecipitationMm": 18.7,
+        "jjaPrecipitationSharePct": 64.25,
+        "djfPrecipitationSharePct": 3.15
+      },
+      "issues": []
+    },
+    {
+      "name": "디트로이트",
+      "mapPoint": [
+        -83.0458,
+        42.3314
+      ],
+      "region": "americas",
+      "lectureClimate": "df",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-72537",
+      "station": {
+        "id": "72537",
+        "idScheme": "source-station-id",
+        "latitude": 42.231389,
+        "longitude": -83.330833,
+        "elevationM": 192.0,
+        "name": "MI DETROIT METRO AP",
+        "country": "United States",
+        "wigosId": "0-20000-0-72537",
+        "distanceFromMapPointKm": 26.0
+      },
+      "temperatureC": [
+        -3.5,
+        -2.2,
+        2.9,
+        9.4,
+        15.7,
+        21.1,
+        23.4,
+        22.4,
+        18.3,
+        11.7,
+        5.1,
+        -0.4
+      ],
+      "precipitationMm": [
+        56.7,
+        52.9,
+        61.8,
+        82.8,
+        94.4,
+        82.9,
+        89.2,
+        82.7,
+        81.8,
+        64.2,
+        65.3,
+        57.3
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": null,
+        "precipitationYears": null,
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 10.3,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 872.0,
+      "maximumTemperatureC": [
+        0.2,
+        1.8,
+        7.7,
+        14.8,
+        21.3,
+        26.5,
+        28.7,
+        27.5,
+        23.6,
+        16.6,
+        9.2,
+        2.9
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 15.1,
+      "minimumTemperatureC": [
+        -7.1,
+        -6.2,
+        -1.9,
+        3.9,
+        10.1,
+        15.7,
+        18.0,
+        17.4,
+        13.0,
+        6.7,
+        1.0,
+        -3.7
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 5.6,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": -3.5,
+        "warmestC": 23.4,
+        "temperatureRangeC": 26.9,
+        "meanOfMonthlyTemperatureC": 10.32,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          7
+        ],
+        "annualPrecipitationFromMonthsMm": 872.0,
+        "driestMonthMm": 52.9,
+        "wettestMonthMm": 94.4,
+        "jjaPrecipitationMm": 254.8,
+        "djfPrecipitationMm": 166.9,
+        "jjaPrecipitationSharePct": 29.22,
+        "djfPrecipitationSharePct": 19.14
+      },
+      "issues": [
+        {
+          "code": "TEMPERATURE_CLASS_BOUNDARY",
+          "detail": "온대/냉대의 0℃ 또는 -3℃ 경계와 평년·관측소 선택에 민감. C/D 세부 기후형 단독 판별을 자동 허용하지 않음."
+        }
+      ]
+    },
+    {
+      "name": "블라디보스토크",
+      "mapPoint": [
+        131.91,
+        43.13
+      ],
+      "region": null,
+      "lectureClimate": "dw",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-31960",
+      "station": {
+        "id": "31960",
+        "idScheme": "source-station-id",
+        "latitude": 43.116667,
+        "longitude": 131.933333,
+        "elevationM": 187.0,
+        "name": "VLADIVOSTOK",
+        "country": "RUSSIAN FEDERATION (IN ASIA)",
+        "wigosId": null,
+        "distanceFromMapPointKm": 2.4
+      },
+      "temperatureC": [
+        -11.9,
+        -8.1,
+        -1.5,
+        5.3,
+        10.0,
+        13.8,
+        18.1,
+        20.0,
+        16.3,
+        9.2,
+        -0.7,
+        -9.2
+      ],
+      "precipitationMm": [
+        12.4,
+        16.0,
+        26.8,
+        43.2,
+        97.3,
+        104.2,
+        154.7,
+        175.9,
+        103.3,
+        67.4,
+        35.8,
+        19.1
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          29.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          29.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 51,
+      "temperatureCAnnualSource": 5.1,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 856.1,
+      "maximumTemperatureC": [
+        -7.8,
+        -3.8,
+        2.7,
+        10.1,
+        14.9,
+        18.0,
+        21.7,
+        23.3,
+        20.1,
+        13.2,
+        3.3,
+        -5.4
+      ],
+      "maximumTemperatureCSourceLine": 37,
+      "maximumTemperatureCAnnualSource": 9.2,
+      "minimumTemperatureC": [
+        -15.0,
+        -11.3,
+        -4.5,
+        2.1,
+        7.0,
+        11.4,
+        16.1,
+        17.9,
+        13.4,
+        6.2,
+        -3.5,
+        -12.1
+      ],
+      "minimumTemperatureCSourceLine": 44,
+      "minimumTemperatureCAnnualSource": 2.3,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": -11.9,
+        "warmestC": 20.0,
+        "temperatureRangeC": 31.9,
+        "meanOfMonthlyTemperatureC": 5.11,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          8
+        ],
+        "annualPrecipitationFromMonthsMm": 856.1,
+        "driestMonthMm": 12.4,
+        "wettestMonthMm": 175.9,
+        "jjaPrecipitationMm": 434.8,
+        "djfPrecipitationMm": 47.5,
+        "jjaPrecipitationSharePct": 50.79,
+        "djfPrecipitationSharePct": 5.55
+      },
+      "issues": []
+    },
+    {
+      "name": "로마",
+      "mapPoint": [
+        12.4964,
+        41.9028
+      ],
+      "region": "europe",
+      "lectureClimate": "cs",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-16242",
+      "station": {
+        "id": "16242",
+        "idScheme": "source-station-id",
+        "latitude": 41.81,
+        "longitude": 12.2525,
+        "elevationM": 5.0,
+        "name": "Roma Fiumicino",
+        "country": "Italy",
+        "wigosId": null,
+        "distanceFromMapPointKm": 22.7
+      },
+      "temperatureC": [
+        8.47,
+        8.96,
+        11.23,
+        13.82,
+        17.78,
+        21.84,
+        24.36,
+        24.74,
+        21.2,
+        17.4,
+        13.1,
+        9.41
+      ],
+      "precipitationMm": [
+        53.84,
+        57.9,
+        51.5,
+        46.72,
+        37.09,
+        18.66,
+        12.31,
+        23.33,
+        59.79,
+        89.97,
+        98.93,
+        72.61
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          28.0,
+          27.0,
+          28.0,
+          27.0,
+          27.0,
+          28.0,
+          29.0,
+          29.0,
+          30.0,
+          29.0,
+          29.0,
+          30.0
+        ],
+        "precipitationYears": [
+          26.0,
+          26.0,
+          27.0,
+          26.0,
+          26.0,
+          27.0,
+          27.0,
+          28.0,
+          29.0,
+          28.0,
+          27.0,
+          27.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 51,
+      "temperatureCAnnualSource": 16.03,
+      "precipitationMmSourceLine": 19,
+      "precipitationMmAnnualSource": 622.65,
+      "maximumTemperatureC": [
+        13.23,
+        13.93,
+        16.1,
+        18.89,
+        22.98,
+        27.09,
+        29.56,
+        30.02,
+        26.43,
+        22.43,
+        17.83,
+        14.11
+      ],
+      "maximumTemperatureCSourceLine": 35,
+      "maximumTemperatureCAnnualSource": 21.05,
+      "minimumTemperatureC": [
+        3.43,
+        3.71,
+        5.71,
+        8.2,
+        11.8,
+        15.86,
+        18.42,
+        18.89,
+        15.99,
+        12.33,
+        8.52,
+        4.85
+      ],
+      "minimumTemperatureCSourceLine": 43,
+      "minimumTemperatureCAnnualSource": 10.64,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 8.47,
+        "warmestC": 24.74,
+        "temperatureRangeC": 16.27,
+        "meanOfMonthlyTemperatureC": 16.03,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          8
+        ],
+        "annualPrecipitationFromMonthsMm": 622.65,
+        "driestMonthMm": 12.31,
+        "wettestMonthMm": 98.93,
+        "jjaPrecipitationMm": 54.3,
+        "djfPrecipitationMm": 184.35,
+        "jjaPrecipitationSharePct": 8.72,
+        "djfPrecipitationSharePct": 29.61
+      },
+      "alternativeSourceIds": [
+        "wmo-16239"
+      ],
+      "issues": [
+        {
+          "code": "REPRESENTATIVE_STATION_SELECTION",
+          "detail": "도심과 약 23km 떨어진 Fiumicino 공항. 더 가까운 Ciampino는 6~8월 강수 평년값이 공란이라 제외. 두 관측소의 월별 값을 섞지 않음."
+        }
+      ]
+    },
+    {
+      "name": "보스토크(남극)",
+      "mapPoint": [
+        106.837,
+        -78.464
+      ],
+      "region": null,
+      "lectureClimate": "ef",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "jma-89606",
+      "station": {
+        "id": "89606",
+        "idScheme": "WMO",
+        "name": "VOSTOK",
+        "latitude": -78.46,
+        "longitude": 106.87,
+        "elevationM": 3488,
+        "metadataSourceId": "jma-vostok-meta",
+        "distanceFromMapPointKm": 0.9
+      },
+      "temperatureC": [
+        -31.6,
+        -44.3,
+        -58.1,
+        -64.3,
+        -65.1,
+        -65.5,
+        -66.4,
+        -66.7,
+        -65.3,
+        -56.3,
+        -41.3,
+        -31.2
+      ],
+      "precipitationMm": [
+        2.5,
+        2.0,
+        2.5,
+        2.5,
+        3.4,
+        2.8,
+        2.4,
+        2.3,
+        2.6,
+        2.9,
+        2.1,
+        2.1
+      ],
+      "coverage": {
+        "method": "JMA-GHCN-and-CLIMAT",
+        "temperatureYears": null,
+        "precipitationYears": null,
+        "minimumYearsRequiredByProvider": 8
+      },
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": -66.7,
+        "warmestC": -31.2,
+        "temperatureRangeC": 35.5,
+        "meanOfMonthlyTemperatureC": -54.68,
+        "coldestMonths": [
+          8
+        ],
+        "warmestMonths": [
+          12
+        ],
+        "annualPrecipitationFromMonthsMm": 30.1,
+        "driestMonthMm": 2.0,
+        "wettestMonthMm": 3.4,
+        "jjaPrecipitationMm": 7.5,
+        "djfPrecipitationMm": 6.6,
+        "jjaPrecipitationSharePct": 24.92,
+        "djfPrecipitationSharePct": 21.93
+      },
+      "issues": [
+        {
+          "code": "MONTHLY_YEAR_COUNTS_UNAVAILABLE",
+          "detail": "공식 관측소 기반 1991–2020 평년값이나 실제 관측 연수 미표시. 제시 자료 읽기에만 사용하며 정밀한 지점 간 순위를 회상으로 묻지 않음."
+        }
+      ]
+    },
+    {
+      "name": "아부자",
+      "mapPoint": [
+        7.3986,
+        9.0765
+      ],
+      "region": "africa",
+      "lectureClimate": "aw",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-65125",
+      "station": {
+        "id": "65125",
+        "idScheme": "source-station-id",
+        "latitude": 9.0,
+        "longitude": 7.2,
+        "elevationM": 342.0,
+        "name": "ABUJA",
+        "country": "NIGERIA",
+        "wigosId": "0-2000-0-65125",
+        "distanceFromMapPointKm": 23.4
+      },
+      "temperatureC": [
+        35.2,
+        29.3,
+        30.7,
+        30.0,
+        28.1,
+        26.6,
+        25.7,
+        25.2,
+        25.7,
+        26.5,
+        26.9,
+        26.3
+      ],
+      "precipitationMm": [
+        0.8,
+        5.9,
+        22.4,
+        72.8,
+        156.7,
+        194.4,
+        249.8,
+        308.3,
+        229.4,
+        169.5,
+        9.7,
+        1.3
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 28.0,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 1421.1,
+      "maximumTemperatureC": [
+        35.2,
+        36.9,
+        37.3,
+        35.6,
+        32.9,
+        30.8,
+        29.5,
+        28.7,
+        29.9,
+        31.3,
+        34.2,
+        35.0
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 33.1,
+      "minimumTemperatureC": [
+        18.5,
+        21.6,
+        24.1,
+        24.4,
+        23.3,
+        22.3,
+        22.0,
+        21.8,
+        21.6,
+        21.6,
+        19.7,
+        17.7
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 21.5,
+      "status": "hold",
+      "usage": {
+        "temperatureReading": false,
+        "precipitationReading": true,
+        "climateGraph": false,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "annualPrecipitationFromMonthsMm": 1421.0,
+        "driestMonthMm": 0.8,
+        "wettestMonthMm": 308.3,
+        "jjaPrecipitationMm": 752.5,
+        "djfPrecipitationMm": 8.0,
+        "jjaPrecipitationSharePct": 52.96,
+        "djfPrecipitationSharePct": 0.56
+      },
+      "issues": [
+        {
+          "code": "SUSPECT_SOURCE_TEMPERATURE",
+          "detail": "아부자 1월 Daily_Mean=35.2℃가 Daily_Maximum=35.2℃와 동일, Daily_Minimum=18.5℃. 월평균 12개 평균 28.85℃와 원자료 연평균 28.0℃도 크게 어긋남. 오기로 의심되나 임의 교정하지 않고 기온/기후 그래프 출제 보류."
+        }
+      ]
+    },
+    {
+      "name": "그린란드 내륙",
+      "mapPoint": [
+        -40,
+        72.5
+      ],
+      "region": "americas",
+      "lectureClimate": "ef",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-04419",
+      "station": {
+        "id": "04419",
+        "idScheme": "source-station-id",
+        "latitude": 72.577222,
+        "longitude": -38.45,
+        "elevationM": 3209.0,
+        "name": "SUMMIT TOWER",
+        "country": "GREENLAND",
+        "wigosId": "0-20000-0-04418",
+        "distanceFromMapPointKm": 52.4
+      },
+      "temperatureC": [
+        -39.0,
+        -39.1,
+        -38.4,
+        -31.2,
+        -22.5,
+        -14.0,
+        -11.7,
+        -15.6,
+        -23.6,
+        -31.6,
+        -36.7,
+        -39.0
+      ],
+      "precipitationMm": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          26.0,
+          26.0,
+          26.0,
+          26.0,
+          26.0,
+          25.0,
+          25.0,
+          24.0,
+          25.0,
+          25.0,
+          25.0,
+          26.0
+        ],
+        "precipitationYears": null,
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 37,
+      "temperatureCAnnualSource": -28.5,
+      "maximumTemperatureC": [
+        -34.3,
+        -34.2,
+        -32.5,
+        -24.9,
+        -17.3,
+        -9.9,
+        -8.0,
+        -11.2,
+        -18.9,
+        -26.8,
+        -31.7,
+        -34.3
+      ],
+      "maximumTemperatureCSourceLine": 23,
+      "maximumTemperatureCAnnualSource": -23.7,
+      "minimumTemperatureC": [
+        -43.9,
+        -44.2,
+        -44.4,
+        -38.3,
+        -29.3,
+        -19.6,
+        -17.0,
+        -21.5,
+        -29.4,
+        -36.8,
+        -41.9,
+        -43.8
+      ],
+      "minimumTemperatureCSourceLine": 30,
+      "minimumTemperatureCAnnualSource": -34.2,
+      "status": "partial",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": false,
+        "climateGraph": false,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": -39.1,
+        "warmestC": -11.7,
+        "temperatureRangeC": 27.4,
+        "meanOfMonthlyTemperatureC": -28.53,
+        "coldestMonths": [
+          2
+        ],
+        "warmestMonths": [
+          7
+        ]
+      },
+      "issues": [
+        {
+          "code": "REGIONAL_PROXY_TEMPERATURE_ONLY",
+          "detail": "그린란드 내륙이라는 범위의 대표 관측소 Summit Tower, 지도 점에서 약 52km. 강수 미제공; 강수량/계절성/기온-강수 그래프 출제 불가. 제출 WIGOS ID 04418과 legacy station ID 04419를 원문대로 보존."
+        }
+      ]
+    },
+    {
+      "name": "리마",
+      "mapPoint": [
+        -77.043,
+        -12.046
+      ],
+      "region": "americas",
+      "lectureClimate": "bw",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "jma-84628",
+      "station": {
+        "id": "84628",
+        "idScheme": "WMO",
+        "name": "LIMA/CALLAO - PERU",
+        "latitude": -12.02,
+        "longitude": -77.12,
+        "elevationM": 12.0,
+        "distanceFromMapPointKm": 8.9
+      },
+      "temperatureC": [
+        22.8,
+        23.6,
+        23.1,
+        21.1,
+        19.2,
+        17.9,
+        17.3,
+        16.5,
+        16.7,
+        17.6,
+        19.0,
+        20.8
+      ],
+      "precipitationMm": [
+        0.1,
+        0.5,
+        0.3,
+        0.1,
+        0.1,
+        0.0,
+        0.1,
+        0.1,
+        0.5,
+        0.0,
+        0.1,
+        0.2
+      ],
+      "coverage": {
+        "method": "JMA-GHCN-and-CLIMAT",
+        "temperatureYears": null,
+        "precipitationYears": null,
+        "minimumYearsRequiredByProvider": 8,
+        "detail": "1991–2020 내 월별 최소 8년이 JMA 채택 기준. 이 관측소의 실제 월별 연수는 이 표에 없음. 30년 완전 관측으로 표현하지 않음."
+      },
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 16.5,
+        "warmestC": 23.6,
+        "temperatureRangeC": 7.1,
+        "meanOfMonthlyTemperatureC": 19.63,
+        "coldestMonths": [
+          8
+        ],
+        "warmestMonths": [
+          2
+        ],
+        "annualPrecipitationFromMonthsMm": 2.1,
+        "driestMonthMm": 0.0,
+        "wettestMonthMm": 0.5,
+        "jjaPrecipitationMm": 0.2,
+        "djfPrecipitationMm": 0.8,
+        "jjaPrecipitationSharePct": 9.52,
+        "djfPrecipitationSharePct": 38.1
+      },
+      "issues": [
+        {
+          "code": "MONTHLY_YEAR_COUNTS_UNAVAILABLE",
+          "detail": "공식 관측소 기반 1991–2020 평년값이나 실제 관측 연수 미표시. 제시 자료 읽기에만 사용하며 정밀한 지점 간 순위를 회상으로 묻지 않음."
+        }
+      ]
+    },
+    {
+      "name": "브라질리아",
+      "mapPoint": [
+        -47.883,
+        -15.794
+      ],
+      "region": "americas",
+      "lectureClimate": "aw",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-83377",
+      "station": {
+        "id": "83377",
+        "idScheme": "source-station-id",
+        "latitude": -15.789722,
+        "longitude": -47.925833,
+        "elevationM": 1161.42,
+        "name": "BRASILIA",
+        "country": "BRAZIL",
+        "wigosId": "0-20000-0-83377",
+        "distanceFromMapPointKm": 4.6
+      },
+      "temperatureC": [
+        21.9,
+        21.9,
+        21.8,
+        21.6,
+        20.3,
+        19.3,
+        19.3,
+        21.0,
+        22.8,
+        23.1,
+        21.7,
+        21.7
+      ],
+      "precipitationMm": [
+        206.0,
+        179.5,
+        226.0,
+        145.2,
+        26.9,
+        3.3,
+        1.5,
+        16.3,
+        38.1,
+        141.8,
+        253.1,
+        241.1
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          29.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          29.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 55,
+      "temperatureCAnnualSource": 21.4,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 1478.8,
+      "maximumTemperatureC": [
+        26.9,
+        27.2,
+        27.0,
+        26.8,
+        26.0,
+        25.3,
+        25.6,
+        27.4,
+        29.1,
+        29.0,
+        27.0,
+        26.8
+      ],
+      "maximumTemperatureCSourceLine": 39,
+      "maximumTemperatureCAnnualSource": 27.0,
+      "minimumTemperatureC": [
+        18.3,
+        18.2,
+        18.2,
+        17.7,
+        15.6,
+        14.2,
+        13.9,
+        15.3,
+        17.6,
+        18.5,
+        18.1,
+        18.3
+      ],
+      "minimumTemperatureCSourceLine": 47,
+      "minimumTemperatureCAnnualSource": 17.0,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 19.3,
+        "warmestC": 23.1,
+        "temperatureRangeC": 3.8,
+        "meanOfMonthlyTemperatureC": 21.37,
+        "coldestMonths": [
+          6,
+          7
+        ],
+        "warmestMonths": [
+          10
+        ],
+        "annualPrecipitationFromMonthsMm": 1478.8,
+        "driestMonthMm": 1.5,
+        "wettestMonthMm": 253.1,
+        "jjaPrecipitationMm": 21.1,
+        "djfPrecipitationMm": 626.6,
+        "jjaPrecipitationSharePct": 1.43,
+        "djfPrecipitationSharePct": 42.37
+      },
+      "issues": []
+    },
+    {
+      "name": "아디스아바바",
+      "mapPoint": [
+        38.7578,
+        8.9806
+      ],
+      "region": "africa",
+      "lectureClimate": "h",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "jma-63450",
+      "station": {
+        "id": "63450",
+        "idScheme": "WMO",
+        "name": "ADDIS ABABA-BOLE - ETHIOPIA",
+        "latitude": 9.03,
+        "longitude": 38.75,
+        "elevationM": null,
+        "distanceFromMapPointKm": 5.6
+      },
+      "temperatureC": [
+        16.4,
+        17.4,
+        18.4,
+        18.6,
+        18.8,
+        17.4,
+        16.1,
+        16.1,
+        16.5,
+        16.5,
+        16.0,
+        15.4
+      ],
+      "precipitationMm": [
+        15.2,
+        24.7,
+        55.4,
+        71.3,
+        110.6,
+        136.0,
+        240.4,
+        267.3,
+        151.9,
+        49.4,
+        17.7,
+        7.0
+      ],
+      "coverage": {
+        "method": "JMA-GHCN-and-CLIMAT",
+        "temperatureYears": null,
+        "precipitationYears": null,
+        "minimumYearsRequiredByProvider": 8,
+        "detail": "1991–2020 내 월별 최소 8년이 JMA 채택 기준. 이 관측소의 실제 월별 연수는 이 표에 없음. 30년 완전 관측으로 표현하지 않음."
+      },
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 15.4,
+        "warmestC": 18.8,
+        "temperatureRangeC": 3.4,
+        "meanOfMonthlyTemperatureC": 16.97,
+        "coldestMonths": [
+          12
+        ],
+        "warmestMonths": [
+          5
+        ],
+        "annualPrecipitationFromMonthsMm": 1146.9,
+        "driestMonthMm": 7.0,
+        "wettestMonthMm": 267.3,
+        "jjaPrecipitationMm": 643.7,
+        "djfPrecipitationMm": 46.9,
+        "jjaPrecipitationSharePct": 56.13,
+        "djfPrecipitationSharePct": 4.09
+      },
+      "issues": [
+        {
+          "code": "MONTHLY_YEAR_COUNTS_UNAVAILABLE",
+          "detail": "공식 관측소 기반 1991–2020 평년값이나 실제 관측 연수 미표시. 제시 자료 읽기에만 사용하며 정밀한 지점 간 순위를 회상으로 묻지 않음."
+        },
+        {
+          "code": "STATION_HEIGHT_MISSING",
+          "detail": "JMA 표의 관측소 고도가 공란. 지도 위치는 아디스아바바에 가깝지만 이 표로 해발 수치 문항을 만들 수 없음."
+        }
+      ]
+    },
+    {
+      "name": "시안",
+      "mapPoint": [
+        108.94,
+        34.34
+      ],
+      "region": "asia",
+      "lectureClimate": "cw",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "jma-57036",
+      "station": {
+        "id": "57036",
+        "idScheme": "WMO",
+        "name": "XI'AN - CHINA",
+        "latitude": 34.3,
+        "longitude": 108.93,
+        "elevationM": null,
+        "distanceFromMapPointKm": 4.5
+      },
+      "temperatureC": [
+        0.5,
+        4.0,
+        9.4,
+        15.9,
+        20.9,
+        25.8,
+        27.7,
+        25.4,
+        20.7,
+        14.2,
+        7.4,
+        1.7
+      ],
+      "precipitationMm": [
+        6.5,
+        6.0,
+        26.9,
+        36.7,
+        50.2,
+        65.0,
+        91.3,
+        79.6,
+        81.1,
+        63.4,
+        24.1,
+        8.2
+      ],
+      "coverage": {
+        "method": "JMA-GHCN-and-CLIMAT",
+        "temperatureYears": null,
+        "precipitationYears": null,
+        "minimumYearsRequiredByProvider": 8,
+        "detail": "1991–2020 내 월별 최소 8년이 JMA 채택 기준. 이 관측소의 실제 월별 연수는 이 표에 없음. 30년 완전 관측으로 표현하지 않음."
+      },
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 0.5,
+        "warmestC": 27.7,
+        "temperatureRangeC": 27.2,
+        "meanOfMonthlyTemperatureC": 14.47,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          7
+        ],
+        "annualPrecipitationFromMonthsMm": 539.0,
+        "driestMonthMm": 6.0,
+        "wettestMonthMm": 91.3,
+        "jjaPrecipitationMm": 235.9,
+        "djfPrecipitationMm": 20.7,
+        "jjaPrecipitationSharePct": 43.77,
+        "djfPrecipitationSharePct": 3.84
+      },
+      "alternativeSourceIds": [
+        "wmo-57131"
+      ],
+      "issues": [
+        {
+          "code": "MONTHLY_YEAR_COUNTS_UNAVAILABLE",
+          "detail": "공식 관측소 기반 1991–2020 평년값이나 실제 관측 연수 미표시. 제시 자료 읽기에만 사용하며 정밀한 지점 간 순위를 회상으로 묻지 않음."
+        },
+        {
+          "code": "TEMPERATURE_CLASS_BOUNDARY",
+          "detail": "온대/냉대의 0℃ 또는 -3℃ 경계와 평년·관측소 선택에 민감. C/D 세부 기후형 단독 판별을 자동 허용하지 않음."
+        },
+        {
+          "code": "SHORT_RECORD_ALTERNATIVE_REJECTED",
+          "detail": "가까운 WMO Jinghe 57131은 1991–2020 내 16년만 사용한 값이므로 완전 30년 평년으로 채택하지 않음. JMA의 시안 57036을 별도 출처로 보존했으나 이쪽도 실제 연수는 미표시."
+        }
+      ]
+    },
+    {
+      "name": "모스크바",
+      "mapPoint": [
+        37.6173,
+        55.7558
+      ],
+      "region": "europe",
+      "lectureClimate": "df",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-27612",
+      "station": {
+        "id": "27612",
+        "idScheme": "source-station-id",
+        "latitude": 55.833333,
+        "longitude": 37.616667,
+        "elevationM": 147.0,
+        "name": "MOSKVA",
+        "country": "RUSSIAN FEDERATION (IN EUROPE)",
+        "wigosId": null,
+        "distanceFromMapPointKm": 8.6
+      },
+      "temperatureC": [
+        -6.2,
+        -5.9,
+        -0.7,
+        6.9,
+        13.6,
+        17.3,
+        19.7,
+        17.6,
+        11.9,
+        5.8,
+        -0.5,
+        -4.4
+      ],
+      "precipitationMm": [
+        53.0,
+        43.9,
+        38.9,
+        36.6,
+        61.2,
+        77.1,
+        83.8,
+        78.2,
+        66.1,
+        70.0,
+        52.0,
+        50.9
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "precipitationYears": [
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          29.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0,
+          30.0
+        ],
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 51,
+      "temperatureCAnnualSource": 6.3,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 711.7,
+      "maximumTemperatureC": [
+        -3.9,
+        -3.0,
+        3.0,
+        11.7,
+        19.0,
+        22.4,
+        24.7,
+        22.7,
+        16.4,
+        8.9,
+        1.6,
+        -2.3
+      ],
+      "maximumTemperatureCSourceLine": 37,
+      "maximumTemperatureCAnnualSource": 10.1,
+      "minimumTemperatureC": [
+        -8.7,
+        -8.8,
+        -4.2,
+        2.3,
+        8.1,
+        12.2,
+        14.8,
+        13.0,
+        8.0,
+        3.0,
+        -2.4,
+        -6.5
+      ],
+      "minimumTemperatureCSourceLine": 44,
+      "minimumTemperatureCAnnualSource": 2.6,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": -6.2,
+        "warmestC": 19.7,
+        "temperatureRangeC": 25.9,
+        "meanOfMonthlyTemperatureC": 6.26,
+        "coldestMonths": [
+          1
+        ],
+        "warmestMonths": [
+          7
+        ],
+        "annualPrecipitationFromMonthsMm": 711.7,
+        "driestMonthMm": 36.6,
+        "wettestMonthMm": 83.8,
+        "jjaPrecipitationMm": 239.1,
+        "djfPrecipitationMm": 147.8,
+        "jjaPrecipitationSharePct": 33.6,
+        "djfPrecipitationSharePct": 20.77
+      },
+      "issues": []
+    },
+    {
+      "name": "로스앤젤레스",
+      "mapPoint": [
+        -118.2437,
+        34.0522
+      ],
+      "region": "americas",
+      "lectureClimate": "cs",
+      "normalPeriod": [
+        1991,
+        2020
+      ],
+      "sourceId": "wmo-72295",
+      "station": {
+        "id": "72295",
+        "idScheme": "source-station-id",
+        "latitude": 33.938056,
+        "longitude": -118.388889,
+        "elevationM": 30.0,
+        "name": "CA LOS ANGELES INTL AP",
+        "country": "United States",
+        "wigosId": "0-20000-0-72295",
+        "distanceFromMapPointKm": 18.4
+      },
+      "temperatureC": [
+        14.4,
+        14.4,
+        15.1,
+        16.2,
+        17.5,
+        19.1,
+        20.9,
+        21.5,
+        21.2,
+        19.5,
+        16.8,
+        14.2
+      ],
+      "precipitationMm": [
+        72.6,
+        76.0,
+        44.0,
+        15.3,
+        7.2,
+        1.9,
+        1.1,
+        0.1,
+        2.7,
+        12.3,
+        20.9,
+        56.8
+      ],
+      "coverage": {
+        "method": "WMO-submission",
+        "temperatureYears": null,
+        "precipitationYears": null,
+        "unreportedYearsPolicy": "NCEI min24 composite assumes 30 years when NOY is not reported; this is not an independently verified count."
+      },
+      "temperatureCSourceLine": 59,
+      "temperatureCAnnualSource": 17.6,
+      "precipitationMmSourceLine": 23,
+      "precipitationMmAnnualSource": 310.9,
+      "maximumTemperatureC": [
+        19.1,
+        18.7,
+        18.9,
+        20.1,
+        20.8,
+        22.2,
+        24.0,
+        24.8,
+        24.7,
+        23.6,
+        21.6,
+        19.0
+      ],
+      "maximumTemperatureCSourceLine": 41,
+      "maximumTemperatureCAnnualSource": 21.5,
+      "minimumTemperatureC": [
+        9.7,
+        10.1,
+        11.2,
+        12.3,
+        14.2,
+        16.0,
+        17.8,
+        18.2,
+        17.6,
+        15.4,
+        12.0,
+        9.5
+      ],
+      "minimumTemperatureCSourceLine": 50,
+      "minimumTemperatureCAnnualSource": 13.7,
+      "status": "complete",
+      "usage": {
+        "temperatureReading": true,
+        "precipitationReading": true,
+        "climateGraph": true,
+        "climateTypeRecall": false
+      },
+      "derived": {
+        "coldestC": 14.2,
+        "warmestC": 21.5,
+        "temperatureRangeC": 7.3,
+        "meanOfMonthlyTemperatureC": 17.57,
+        "coldestMonths": [
+          12
+        ],
+        "warmestMonths": [
+          8
+        ],
+        "annualPrecipitationFromMonthsMm": 310.9,
+        "driestMonthMm": 0.1,
+        "wettestMonthMm": 76.0,
+        "jjaPrecipitationMm": 3.1,
+        "djfPrecipitationMm": 205.4,
+        "jjaPrecipitationSharePct": 1.0,
+        "djfPrecipitationSharePct": 66.07
+      },
+      "issues": []
+    }
+  ]
+}
