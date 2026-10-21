@@ -62,15 +62,12 @@ test('OX preserves historical change, supplies fragile data and keeps existing a
  for(const x of old)assert.equal(get(x.id).answer,x.answer,x.id);
 });
 
-test('classification uses stable fossil groups and supplies the historical export table',()=>{
- const s=C.byId.fossil;
- for(const [cat,rid] of Object.entries({coal:'coal-prod',oil:'oil-prod',gas:'gas-prod'})){
-  const got=Object.keys(s.values).filter(n=>C.has(s,n,cat)).sort();
-  const r=R.rankings.find(r=>r.id===rid);
-  assert.deepEqual(got,r.items.slice(0,3).map(x=>x.name).sort());
-  assert.deepEqual(got,r.audit.latest.items.slice(0,3).map(x=>x.name).sort());
- }
- assert.ok(C.byId.grainExportTop.givenData.rows.length);
+test('classification keeps categories, not yearly top-3 lists',()=>{
+ // Fossil-fuel and grain top-3 membership changes between years (coal: 미국·오스트레일리아 →
+ // 인도·인도네시아; wheat exports: 캐나다·프랑스·오스트레일리아 trade places), so it is ranked in
+ // the rankings page, not painted on the classification map.
+ for(const id of ['fossil','grainExportTop','grainProductionTop'])assert.ok(!C.byId[id],id);
+ for(const rid of ['coal-prod','oil-prod','gas-prod'])assert.ok(R.rankings.some(r=>r.id===rid),rid);
  assert.match(C.byId.grainNet.scopeByName['이집트'],/밀/);
 });
 

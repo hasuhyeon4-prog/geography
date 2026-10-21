@@ -75,7 +75,7 @@ const MEMBERS_2026 = {EU: 27, ASEAN: 11, MERCOSUR: 5, USMCA: 3};
 // Set facts that may be stated about a country. Dated rank memberships (e.g. 2016~2020
 // export top 3) and wheat-only net trade stay out; see docs/EXAM-FRAMEWORK.md.
 const FACT_SETS = ['religion', 'christianity', 'islam', 'buddhism', 'bloc', 'apec', 'euro', 'latinLanguage',
-  'exportType', 'grainProductionTop', 'minerals', 'fossil', 'beverage', 'capitalCity'];
+  'exportType', 'minerals', 'beverage', 'capitalCity'];
 // Absence is meaningful only where the set lists every member of its universe.
 const NEGATION_SAFE = {bloc: 'all', apec: 'all', religion: 'all'};
 // A false statement may claim another option only where options exclude each other

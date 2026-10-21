@@ -149,7 +149,7 @@ tests/exam-stability.test.cjs 생성 문항을 원자료로 독립 재검증
 | `composition`, `show`, `amountNoun` | `composition` 주제: 구성 자료 이름, 표에 보일 항목, 비율 × 총인구 보기의 명사(예: `'신자 수'`) |
 | `reveals` | 자료가 이미 보여 주는 사실 세트. 후속 판단 보기에서 제외한다(종교 구성표의 1위 종교 등) |
 | `followups.facts` | 후속 판단에 쓸 사실 세트. 북반구·남반구 진술은 `'hemisphere'`로 적는다 |
-| `followups.focus` | 그중 주제에 속하는 세트(예: 수출 주제의 `fossil`·`minerals`·`opec`, 종교 주제의 `islam`·`buddhism`·`christianity`). 비교·방향·자료 보기와 함께 우선 고른다 |
+| `followups.focus` | 그중 주제에 속하는 세트(예: 수출 주제의 `minerals`·`opec`, 종교 주제의 `islam`·`buddhism`·`christianity`). 비교·방향·자료 보기와 함께 우선 고른다 |
 | `map` | `true`이면 대상과 추가 국가를 지도에 A~E로 표시하고 표의 (가)~(다)와 대응시킨다(국가 단위 주제 전부) |
 | `prompt` | 안내문. `{range}`는 "(가), (나)", "(가)~(다)", "(가)~(라)"로 바뀐다. `{candidates}`는 지도 모드에서 "지도에 표시된 A~E", 이름 모드에서 후보 국가 이름(가나다순)이 된다 |
 

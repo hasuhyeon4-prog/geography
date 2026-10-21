@@ -10,7 +10,8 @@ test('one religion menu replaces separate source sets and migrates their saved s
  const ids=C.visibleSets().map(s=>s.id);
  assert.equal(ids.filter(id=>id==='religion').length,1);
  for(const id of ['christianity','islam','buddhism']){assert.ok(!ids.includes(id));assert.equal(C.resolveSetId(id),'religion');assert.ok(C.byId[id])}
- assert.equal(C.resolveSetId('fossil'),'fossil');
+ assert.equal(C.resolveSetId('minerals'),'minerals');
+ assert.equal(C.resolveSetId('fossil'),'religion','a saved set that was removed opens the default set');
 });
 test('details follow the ranked religion, with exceptions kept out of detail grading',()=>{
  for(const [n,big,small] of [['브라질','christianity','catholic'],['미국','christianity','protestant'],['러시아','christianity','orthodox'],['이란','islam','shia'],['사우디아라비아','islam','sunni'],['중국','buddhism','mahayana'],['타이','buddhism','theravada'],['몽골','buddhism','tibetan']]){

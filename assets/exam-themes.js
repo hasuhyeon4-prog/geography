@@ -43,7 +43,7 @@
    pool:['중국','일본','영국','프랑스','폴란드','알제리','나이지리아','보츠와나','콩고 민주 공화국','독일','멕시코','이집트','인도','브라질','아르헨티나','칠레','타이','탄자니아','사우디아라비아','튀르키예'],
    pick:[2,3],indicators:['pop','gdp','gdppc','manufacturing','agriculture','industry','services','industryEmployment','exports'],show:2,
    derived:[{rate:'manufacturing',total:'gdp',per:100,noun:'제조업 부가가치'}],
-   followups:{facts:['exportType','minerals','fossil','grainProductionTop','opec','bloc','apec','religion','capitalCity','hemisphere','equator','meridian','seas','landlocked'],focus:['exportType','minerals','fossil','grainProductionTop','opec']},
+   followups:{facts:['exportType','minerals','opec','bloc','apec','religion','capitalCity','hemisphere','equator','meridian','seas','landlocked'],focus:['exportType','minerals','opec']},
    prompt:'{range}는 {candidates} 중 하나이다. 제조업·2차 산업의 GDP 비중과 종사자 비율을 구별한다.'
   },
   {
@@ -51,7 +51,7 @@
    kind:'composition',composition:'exports',entityType:'country',reveals:['exportType'],map:true,
    pool:['사우디아라비아','나이지리아','튀르키예','멕시코','칠레','아르헨티나','브라질','오스트레일리아','인도네시아','일본'],
    pick:[3,3],show:['fuel','ores','food','agriculturalRaw','manufactures','other'],amountNoun:'수출액',hideable:['fuel','ores','food','manufactures'],
-   followups:{facts:['fossil','minerals','opec','grainProductionTop','bloc','apec','latinLanguage','religion','capitalCity','hemisphere','equator','meridian','seas','landlocked'],focus:['fossil','minerals','opec','grainProductionTop']},
+   followups:{facts:['minerals','opec','bloc','apec','latinLanguage','religion','capitalCity','hemisphere','equator','meridian','seas','landlocked'],focus:['minerals','opec']},
    note:'상품 수출의 SITC 분류이다. 광석·금속에는 다이아몬드가 포함되지 않으며, 공산품 비중을 제조업 고용 비율로 읽지 않는다. 비율과 같은 해의 총액으로 구한 금액은 근삿값이다.',
    prompt:'{range}는 {candidates} 중 하나이다. 표는 상품 수출액의 품목별 비중과 총액이다. 같은 품목의 비중과 수출 금액을 구별한다.'
   },
@@ -67,7 +67,7 @@
    },
    note:'나이지리아의 선박에는 원문 주석에 따라 해체용 선박이 포함된다. 케냐의 석유 제품 수출은 원유 매장의 증거가 아니다.',
    // The item table already shows the export type, copper, iron ore, oil and tea.
-   reveals:['exportType','minerals','fossil','beverage'],
+   reveals:['exportType','minerals','beverage'],
    followups:{facts:['opec','bloc','apec','latinLanguage','capitalCity','religion','christianity','hemisphere','equator','meridian','seas','landlocked'],focus:['opec']},
    prompt:'{range}는 {candidates} 중 하나이다. 표는 수출액 상위 세 품목과 비중(%)이다.'
   },
@@ -77,7 +77,7 @@
    pool:['프랑스','노르웨이','브라질','네팔','아이슬란드','덴마크','캐나다','중국','인도','러시아','이란','독일','케냐','미국','남아프리카 공화국','오스트레일리아'],
    // The verified top sources are only 원자력·수력·풍력, so three 대상, each identified by its own.
    pick:[3,3],everyKnown:true,show:['coal','gas','oil','nuclear','hydro','wind','solar','other'],amountNoun:'발전량',hideable:['coal','gas','nuclear','hydro','wind'],
-   followups:{facts:['fossil','minerals','opec','bloc','euro','apec','religion','christianity','hemisphere','equator','meridian','seas','landlocked'],focus:['fossil','minerals','opec']},
+   followups:{facts:['minerals','opec','bloc','euro','apec','religion','christianity','hemisphere','equator','meridian','seas','landlocked'],focus:['minerals','opec']},
    prompt:'{range}는 {candidates} 중 하나이다. 표는 발전원별 발전량 비중(%)과 총발전량이다. 비중과 발전량을 구별한다.'
   },
   {
@@ -122,7 +122,7 @@
    kind:'indicators',entityType:'country',map:true,domains:['agri'],
    pool:['중국','인도','미국','브라질','오스트레일리아','프랑스','아르헨티나','이집트','멕시코','에스파냐','타이','미얀마','베트남','인도네시아','에티오피아','케냐'],
    pick:[3,3],indicators:['agri-wheat','agri-rice','agri-maize','agri-cattle','agri-pigs','agri-sheep','agri-riceExports','agri-coffee','agri-grainNet'],show:2,
-   followups:{facts:['grainProductionTop','beverage','religion','bloc','capitalCity','hemisphere','equator','seas','landlocked'],focus:['grainProductionTop','beverage']},
+   followups:{facts:['beverage','religion','bloc','capitalCity','hemisphere','equator','seas','landlocked'],focus:['beverage']},
    note:'쌀 생산량은 벼 기준이다. 곡물 순수출량은 수급표의 수출량에서 수입량을 뺀 값이다.',
    prompt:'{range}는 {candidates} 중 하나이다.'
   }
