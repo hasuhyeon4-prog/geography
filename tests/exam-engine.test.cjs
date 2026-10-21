@@ -84,14 +84,23 @@ test('every ready theme builds full two-stage questions', () => {
       const q = engine.build({themeId: t.id, seed});
       assert.ok(q, t.id + ' seed ' + seed);
       const n = q.stage1.options.length;
-      // Two 대상 are chosen among four named candidates: three to five options, never a coin flip.
-      if (q.entities.length === 2) {
-        assert.ok(n >= 3 && n <= 5, t.id + ' two-대상 options ' + n);
-        assert.equal(q.stage1.candidates.length, 4, t.id);
-        for (const o of q.stage1.options) for (const name of o) assert.ok(q.stage1.candidates.includes(name), t.id + ' option outside the candidates');
-      } else assert.equal(n, 5, t.id);
+      // Two 대상 still get three to five options, never a coin flip.
+      if (q.entities.length === 2) assert.ok(n >= 3 && n <= 5, t.id + ' two-대상 options ' + n);
+      else assert.equal(n, 5, t.id);
       assert.equal(new Set(q.stage1.options.map(o => o.join('|'))).size, n, t.id + ' duplicate assignment');
       assert.doesNotMatch(q.prompt, /[{}]/, t.id + ' unresolved prompt');
+      if (t.map) {
+        // The 대상 and extra countries are marked A~E, lettered west to east, at points inside them.
+        const m = q.stage1.markers;
+        assert.ok(m.length >= Math.min(4, t.pool.length) && m.length <= 5, t.id + ' markers ' + m.length);
+        assert.deepEqual(m.map(x => x.letter), 'ABCDE'.slice(0, m.length).split(''), t.id);
+        for (let i = 1; i < m.length; i++) assert.ok(m[i - 1].point[0] <= m[i].point[0], t.id + ' letters west to east');
+        for (const e of q.entities) assert.ok(m.some(x => x.name === e), t.id + ' answer not on the map');
+        for (const o of q.stage1.options) for (const name of o) assert.ok(m.some(x => x.name === name), t.id + ' option outside the map');
+        assert.deepEqual(q.stage1.candidates, m.map(x => x.name).sort((a, b) => a.localeCompare(b, 'ko')));
+        assert.match(q.mapPrompt, /지도에 표시된 A~[DE]/, t.id);
+        assert.doesNotMatch(q.mapPrompt, /[{}]/, t.id);
+      }
       assert.deepEqual(q.stage1.options[q.stage1.answer], q.entities, t.id);
       assert.ok(engine.identifiable(t, q.entities, q.shown), t.id + ' not identifiable');
       const st = q.stage2.statements;
@@ -182,6 +191,16 @@ test('<보기> stay on the theme and avoid free distractors', () => {
   // Themes whose data support comparisons put at least two theme <보기> in most questions.
   for (const id of ['bloc-indicators', 'continent-indicators', 'country-population', 'country-economy', 'export-composition', 'religion-composition']) assert.ok(focusShare[id] >= 0.6, id + ' ' + focusShare[id]);
   for (const e of Object.values(K.entities)) if (e.facts.latinLanguage) assert.equal(e.region, 'americas', e.name + ' latinLanguage');
+});
+
+test('map letters sit inside the countries they mark', () => {
+  const S = require('../assets/country-boundaries.js'), G = require('../assets/location-grading.js');
+  const names = new Set(T.themes.filter(t => t.map).flatMap(t => t.pool));
+  for (const n of names) {
+    const e = K.entities[n];
+    assert.ok(G.inPolygons({lon: e.label[0], lat: e.label[1]}, S.byName[n].polygons), n + ' label outside');
+    assert.ok(e.frame[0] <= e.label[0] && e.label[0] <= e.frame[2] && e.frame[1] <= e.label[1] && e.label[1] <= e.frame[3], n + ' frame');
+  }
 });
 
 test('questions are reproducible from a seed', () => {

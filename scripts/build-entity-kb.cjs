@@ -21,6 +21,7 @@ const ROOT = path.join(__dirname, '..');
 const shapes = require(path.join(ROOT, 'assets/country-boundaries.js'));
 const C = require(path.join(ROOT, 'assets/classification-sets.js'));
 const R = require(path.join(ROOT, 'assets/rankings.js'));
+const G = require(path.join(ROOT, 'assets/location-grading.js'));
 const read = f => JSON.parse(fs.readFileSync(path.join(ROOT, f), 'utf8'));
 const stats = read('data/country-indicators.json');
 const economy = read('data/economy-indicators.json');
@@ -88,6 +89,31 @@ function ringArea(ring) {
   for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) a += (ring[j][0] + ring[i][0]) * (ring[j][1] - ring[i][1]);
   return Math.abs(a / 2);
 }
+// A point well inside the largest polygon, where a map letter (A~E) can sit: the grid point
+// farthest from the border. Distances use a thinned ring; the point is checked on the full one.
+function labelPoint(main) {
+  const ring = main[0], lons = ring.map(p => p[0]), lats = ring.map(p => p[1]);
+  const b = [Math.min(...lons), Math.min(...lats), Math.max(...lons), Math.max(...lats)];
+  const step = Math.max(1, Math.floor(ring.length / 150)), coarse = [[ring.filter((_, i) => i % step === 0)]];
+  let best = null;
+  for (let i = 1; i < 14; i++) for (let j = 1; j < 14; j++) {
+    const p = {lon: b[0] + (b[2] - b[0]) * i / 14, lat: b[1] + (b[3] - b[1]) * j / 14};
+    if (!G.inPolygons(p, coarse)) continue;
+    const d = G.polygonDistance(p, coarse);
+    if (!best || d > best.d) best = {p, d};
+  }
+  const p = best && G.inPolygons(best.p, [main]) ? best.p : {lon: (b[0] + b[2]) / 2, lat: (b[1] + b[3]) / 2};
+  return {label: [Math.round(p.lon * 100) / 100, Math.round(p.lat * 100) / 100], frame: b.map(v => Math.round(v * 100) / 100)};
+}
+// Where exam maps put the letter when the largest landmass misleads: both countries' largest
+// polygons are on Borneo, which would stack their letters together.
+const LABEL_AT = {말레이시아: [102.2, 4.0], 인도네시아: [110.2, -7.3]};
+function labelAt(polys, p) {
+  const home = polys.find(poly => G.inPolygons({lon: p[0], lat: p[1]}, [poly]));
+  if (!home) throw new Error('LABEL_AT point is outside the country: ' + p);
+  const lons = home[0].map(q => q[0]), lats = home[0].map(q => q[1]);
+  return {label: p, frame: [Math.min(...lons), Math.min(...lats), Math.max(...lons), Math.max(...lats)].map(v => Math.round(v * 100) / 100)};
+}
 function hemispheres(name) {
   const polys = shapes.byName[name].polygons;
   const main = polys.reduce((best, p) => (ringArea(p[0]) > ringArea(best[0]) ? p : best));
@@ -99,6 +125,8 @@ function hemispheres(name) {
     // Degrees from the equator to the nearest point; a hemisphere is worth asking only near it.
     eqDist: ns ? Math.round(Math.min(...lats.map(Math.abs))) : 0,
     ew: Math.max(...lons) - Math.min(...lons) > 180 ? null : span(Math.min(...lons), Math.max(...lons), 'E', 'W'),
+    ...labelPoint(main),
+    ...(LABEL_AT[name] ? labelAt(polys, LABEL_AT[name]) : {}),
   };
 }
 

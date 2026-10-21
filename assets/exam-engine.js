@@ -275,26 +275,41 @@
    return {statements:slots.map(function(c,i){return Object.assign({mark:MARKS[i]},c)}),options:COMBOS.map(function(c,i){return {mark:ROUND[i],text:c.map(function(x){return MARKS[x]}).join(', ')}}),answer:target};
   }
 
-  // With two 대상 the answer is chosen among four named countries, so stage 1 has five options:
-  // the right pair and four pairs that the shown data and verified relations rule out. When no
-  // four can be ruled out, the best set with at least two is used (three or four options).
-  function pairStage(theme,chosen,shown,avail,r){
-   // Try first the countries tied to the pair by a verified relation on the shown columns.
-   var ties=function(n){return REL.filter(function(x){return shown.indexOf(x.indicator)>=0&&(x.hi===n&&chosen.indexOf(x.lo)>=0||x.lo===n&&chosen.indexOf(x.hi)>=0)}).length};
-   var others=shuffle(avail.filter(function(n){return chosen.indexOf(n)<0}),r).map(function(n){return [ties(n),n]}).sort(function(a,b){return b[0]-a[0]}).slice(0,8).map(function(x){return x[1]});
+  // Map stage (theme.map): the 대상 and extra countries, five places in all, are marked A~E
+  // on a map, lettered west to east. Wrong options are assignments that the shown data and
+  // verified knowledge rule out. Three or more 대상 always have enough among permutations;
+  // two 대상 need at least two ruled-out pairs (three options).
+  function injective(names,k){
+   if(!k)return [[]];var out=[];
+   names.forEach(function(n,i){injective(names.slice(0,i).concat(names.slice(i+1)),k-1).forEach(function(rest){out.push([n].concat(rest))})});
+   return out;
+  }
+  function markerStage(theme,chosen,shown,avail,r){
+   var k=chosen.length,room=Math.min(5,avail.length)-k,right=chosen.join('|');
+   var known1=function(n){return theme.kind==='indicators'?REL.some(function(x){return shown.indexOf(x.indicator)>=0&&(x.hi===n&&chosen.indexOf(x.lo)>=0||x.lo===n&&chosen.indexOf(x.hi)>=0)}):
+    theme.kind==='composition'?!!orderOf(theme,n):!!(theme.items&&theme.items[n])};
+   var region=function(n){return chosen.some(function(c){return entity(c).region===entity(n).region})};
+   // Countries a learner can rule out by what they know come first, then neighbours.
+   var others=shuffle(avail.filter(function(n){return chosen.indexOf(n)<0}),r).map(function(n){return [(known1(n)?2:0)+(region(n)?1:0),n]})
+    .sort(function(a,b){return b[0]-a[0]}).map(function(x){return x[1]});
+   var sets=[];
+   (function choose(start,acc){if(sets.length>=12)return;if(acc.length===room){sets.push(acc.slice());return}for(var i=start;i<others.length&&i<7;i++){acc.push(others[i]);choose(i+1,acc);acc.pop()}})(0,[]);
    var best=null;
-   search:for(var i=0;i<others.length;i++)for(var j=i+1;j<others.length;j++){
-    var names=chosen.concat([others[i],others[j]]),wrong=[];
-    names.forEach(function(a){names.forEach(function(b){
-     if(a===b||a===chosen[0]&&b===chosen[1])return;
-     if(!consistent(theme,chosen,known(theme,[a,b],shown),[a,b]))wrong.push([a,b]);
-    })});
-    if(!best||wrong.length>best.wrong.length)best={names:names,extra:[others[i],others[j]],wrong:wrong};
-    if(wrong.length>=4)break search;
+   for(var si=0;si<sets.length;si++){
+    var names=chosen.concat(sets[si]),wrong=injective(names,k).filter(function(a){return a.join('|')!==right&&!consistent(theme,chosen,known(theme,a,shown),a)});
+    var viaMap=wrong.filter(function(a){return a.some(function(n){return chosen.indexOf(n)<0})});
+    var score=Math.min(viaMap.length,2)*10+Math.min(wrong.length,4);
+    if(!best||score>best.score)best={names:names,extra:sets[si],wrong:wrong,viaMap:viaMap,score:score};
+    if(best.score>=24)break;
    }
-   if(!best||best.wrong.length<2)return null;
-   var options=shuffle([chosen].concat(shuffle(best.wrong,r).slice(0,4)),r);
-   return {candidates:best.names.slice().sort(koSort),extra:best.extra,options:options,answer:options.map(function(p){return p.join('|')}).indexOf(chosen.join('|'))};
+   if(!best||best.wrong.length<(k===2?2:4))return null;
+   // Up to two wrong options use a marked country outside the answer, so the map matters.
+   var useMap=shuffle(best.viaMap,r).slice(0,2),key=function(a){return a.join('|')};
+   var rest=shuffle(best.wrong.filter(function(a){return useMap.map(key).indexOf(key(a))<0}),r);
+   var options=shuffle([chosen].concat(useMap,rest).slice(0,5),r);
+   var markers=best.names.map(function(n){return {name:n,point:entity(n).label}}).sort(function(a,b){return a.point[0]-b.point[0]});
+   markers.forEach(function(m,i){m.letter='ABCDE'[i]});
+   return {markers:markers,candidates:best.names.slice().sort(koSort),extra:best.extra,options:options,answer:options.map(key).indexOf(right)};
   }
 
   // Most draws start from a verified relation between two 대상 in the pool and add 대상
@@ -349,7 +364,7 @@
     // A column shown on every question (총인구) is there for computing totals; if it alone
     // identified the 대상, the theme's own indicators would be decoration.
     if(theme.always&&theme.always.length&&identifiable(theme,chosen,theme.always))continue;
-    var pair=k===2?pairStage(theme,chosen,shown,avail,r):null;if(k===2&&!pair)continue;
+    var pair=theme.map?markerStage(theme,chosen,shown,avail,r):null;if(theme.map&&!pair)continue;
     var s2=chooseStatements(theme,candidates(theme,chosen,shown,r),r);if(!s2)continue;
     if(target){
      var learned=(known(theme,chosen,shown).relations||[]).some(function(x){return x.indicator===target.indicator&&x.hi===target.hi&&x.lo===target.lo});
@@ -357,17 +372,22 @@
      if(!learned&&!asked)continue;
     }
     var s1=pair||stage1(chosen,r),range=k===2?LABELS[0]+', '+LABELS[1]:LABELS[0]+'~'+LABELS[k-1];
+    var letters=pair?pair.markers.map(function(m){return m.letter}):[],letterOf=function(n){var m=pair&&pair.markers.find(function(x){return x.name===n});return m?m.letter:null};
     var names=pair?pair.candidates:chosen.slice().sort(koSort),basis=known(theme,pair?names:chosen,shown),cueList=cues(theme,chosen,shown);
     // Say how each extra candidate is ruled out.
     if(pair)pair.extra.forEach(function(n){
-     var why=basis.relations.filter(function(x){return x.hi===n||x.lo===n}).map(function(x){return meta(x.indicator).label+' '+x.hi+' > '+x.lo})
-      .concat(basis.signs.filter(function(x){return x.entity===n}).map(function(x){return meta(x.indicator).label+(x.positive?' 양(+)':' 음(−)')}));
+     var o=theme.kind==='composition'&&orderOf(theme,n),it=theme.kind==='items'&&theme.items[n];
+     var why=(basis.relations||[]).filter(function(x){return x.hi===n||x.lo===n}).map(function(x){return meta(x.indicator).label+' '+x.hi+' > '+x.lo})
+      .concat((basis.signs||[]).filter(function(x){return x.entity===n}).map(function(x){return meta(x.indicator).label+(x.positive?' 양(+)':' 음(−)')}))
+      .concat(o?[o.order.map(function(id){return catLabel(theme,id)}).join(' > ')+(o.order.length===1?' 1위':'')]:[],it?[it[0][0]+' 1위 품목']:[]);
      var inOptions=s1.options.some(function(o){return o.indexOf(n)>=0});
      cueList.push({label:'후보',name:n,cue:!inOptions?'선택지에 나오지 않음':why.length?why.slice(0,3).join(' · '):'다른 선택지로 소거'});
     });
+    cueList.forEach(function(c){c.letter=letterOf(c.name)});
     return {theme:theme,labels:LABELS.slice(0,k),entities:chosen,shown:shown,display:display(theme,chosen,shown),
      prompt:theme.prompt.split('{range}').join(range).split('{candidates}').join(names.join(', ')),
-     stage1:{question:range+'에 해당하는 것으로 옳은 것은?',options:s1.options,answer:s1.answer,candidates:pair?names:null,cues:cueList,basis:basis},
+     mapPrompt:pair?theme.prompt.split('{range}').join(range).split('{candidates}').join('지도에 표시된 '+letters[0]+'~'+letters[letters.length-1]):null,
+     stage1:{question:range+'에 해당하는 것으로 옳은 것은?',options:s1.options,answer:s1.answer,candidates:pair?names:null,markers:pair?pair.markers:null,cues:cueList,basis:basis},
      stage2:{question:range+'에 대한 설명으로 옳은 것만을 <보기>에서 고른 것은?',statements:s2.statements,options:s2.options,answer:s2.answer}};
    }
    return null;
