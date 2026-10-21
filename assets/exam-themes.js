@@ -76,7 +76,7 @@
    kind:'composition',composition:'electricity',entityType:'country',reveals:[],map:true,
    pool:['프랑스','노르웨이','브라질','네팔','아이슬란드','덴마크','캐나다','중국','인도','러시아','이란','독일','케냐','미국','남아프리카 공화국','오스트레일리아'],
    // The verified top sources are only 원자력·수력·풍력, so three 대상, each identified by its own.
-   pick:[3,3],everyKnown:true,show:['coal','gas','nuclear','hydro','wind','other'],amountNoun:'발전량',hideable:['coal','gas','nuclear','hydro','wind'],
+   pick:[3,3],everyKnown:true,show:['coal','gas','oil','nuclear','hydro','wind','solar','other'],amountNoun:'발전량',hideable:['coal','gas','nuclear','hydro','wind'],
    followups:{facts:['fossil','minerals','opec','bloc','euro','apec','religion','christianity','hemisphere','equator','meridian','seas','landlocked'],focus:['fossil','minerals','opec']},
    prompt:'{range}는 {candidates} 중 하나이다. 표는 발전원별 발전량 비중(%)과 총발전량이다. 비중과 발전량을 구별한다.'
   },
@@ -93,7 +93,7 @@
    id:'religion-composition',status:'ready',title:'국가별 종교 인구 구성',lecture:'1권 P04',exams:['2027학년도 9월 7번','2026학년도 6월 8번','2022학년도 6월 5번'],
    kind:'composition',composition:'religion',entityType:'country',map:true,
    pool:['말레이시아','네팔','스리랑카','인도','방글라데시','미얀마','필리핀','우즈베키스탄','인도네시아','이스라엘','레바논','나이지리아','파키스탄','타이'],
-   pick:[3,4],show:['christianity','islam','hinduism','buddhism','judaism','unaffiliated'],hideable:['christianity','islam','hinduism','buddhism'],
+   pick:[3,4],show:['christianity','islam','hinduism','buddhism','judaism','unaffiliated','other'],hideable:['christianity','islam','hinduism','buddhism'],
    amountNoun:'신자 수',reveals:['religion'],
    followups:{facts:['islam','buddhism','christianity','bloc','capitalCity','hemisphere','equator','meridian','seas','landlocked'],focus:['islam','buddhism','christianity']},
    prompt:'{range}는 {candidates} 중 하나이다. 표는 종교별 인구 비중(%)과 총인구이다.'
