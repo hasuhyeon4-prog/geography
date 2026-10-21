@@ -165,6 +165,11 @@ test('share × total uses one year and one source, and both numbers are in the t
       if (c.category) {
         if (q.theme.composition === 'religion') {
           amount = n => religion.countries[n].series['2020'][c.category] * religion.countries[n].populationSeries['2020'];
+        } else if (q.theme.composition === 'electricity') {
+          // Shares and total generation come from the same OWID row.
+          const y = electricity.meta.baseYear;
+          amount = n => electricity.countries[n].series[y][c.category] * electricity.countries[n].generationSeries[y];
+          assert.ok(q.display.columns.some(x => x.label === '총발전량'));
         } else {
           assert.equal(q.theme.composition, 'exports');
           assert.equal(economy.meta.baseYear, countries.meta.baseYear);

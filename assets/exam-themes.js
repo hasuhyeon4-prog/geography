@@ -72,9 +72,10 @@
    id:'electricity-mix',status:'ready',title:'국가별 전력 생산 구성',lecture:'2권 P07',exams:['2025학년도 수능 9번','2027학년도 6월 8번'],
    kind:'composition',composition:'electricity',entityType:'country',reveals:[],map:true,
    pool:['프랑스','노르웨이','브라질','네팔','아이슬란드','덴마크','캐나다','중국','인도','러시아','이란','독일','케냐','미국','남아프리카 공화국','오스트레일리아'],
-   pick:[3,4],show:['coal','gas','nuclear','hydro','wind','other'],
+   // The verified top sources are only 원자력·수력·풍력, so three 대상, each identified by its own.
+   pick:[3,3],everyKnown:true,show:['coal','gas','nuclear','hydro','wind','other'],amountNoun:'발전량',
    followups:{facts:['fossil','minerals','opec','bloc','euro','apec','religion','christianity','hemisphere','seas','landlocked'],focus:['fossil','minerals','opec']},
-   prompt:'{range}는 {candidates} 중 하나이다. 표는 발전원별 발전량 비중(%)이다.'
+   prompt:'{range}는 {candidates} 중 하나이다. 표는 발전원별 발전량 비중(%)과 총발전량이다. 비중과 발전량을 구별한다.'
   },
   {
    id:'religion-composition',status:'ready',title:'국가별 종교 인구 구성',lecture:'1권 P04',exams:['2027학년도 9월 7번','2026학년도 6월 8번','2022학년도 6월 5번'],

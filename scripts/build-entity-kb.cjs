@@ -278,7 +278,10 @@ const compositions = {
       values: Object.fromEntries(Object.entries(economy.exports).map(([n, c]) => [n, c.total]))}},
   electricity: {year: electricity.meta.baseYear, source: electricity.meta.source, unit: '% (발전량 비중)', orderMargin: 10, rankExclude: [],
     categories: [['coal', '석탄'], ['gas', '천연가스'], ['oil', '석유'], ['nuclear', '원자력'], ['hydro', '수력'], ['wind', '풍력'], ['solar', '태양광'], ['other', '기타(바이오·지열 등)']],
-    values: Object.fromEntries(Object.entries(electricity.countries).map(([n, c]) => [n, c.values]))},
+    values: Object.fromEntries(Object.entries(electricity.countries).map(([n, c]) => [n, c.values])),
+    // Same OWID rows as the shares, so share × total is one source and one year.
+    total: {label: '총발전량', unit: 'TWh', year: electricity.meta.baseYear, source: electricity.meta.source,
+      values: Object.fromEntries(Object.entries(electricity.countries).filter(([, c]) => c.generation != null).map(([n, c]) => [n, c.generation]))}},
   religion: {year: religion.meta.baseYear, source: religion.meta.source, unit: '% (인구 대비)', orderMargin: 2, rankExclude: ['unaffiliated', 'other'],
     categories: [['christianity', '크리스트교'], ['islam', '이슬람교'], ['hinduism', '힌두교'], ['buddhism', '불교'], ['judaism', '유대교'], ['unaffiliated', '무종교'], ['other', '기타 종교']],
     values: Object.fromEntries(Object.entries(religion.countries).map(([n, c]) => [n, c.values])),

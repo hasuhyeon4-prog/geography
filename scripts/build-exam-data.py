@@ -155,15 +155,25 @@ json.dump({'meta': {'source': '세계은행 WDI', 'retrieved': RETRIEVED, 'cover
 # --- electricity shares ---
 energy = [r for r in csv.DictReader(open(RAW / 'owid_energy.csv', encoding='utf-8')) if r['iso_code']]
 SOURCES = ['coal', 'gas', 'oil', 'nuclear', 'hydro', 'wind', 'solar']
-by = defaultdict(dict)
+by, twh = defaultdict(dict), defaultdict(dict)
 for r in energy:
     if r['year'] in YEARS and all(r.get(s + '_share_elec') for s in SOURCES):
         shares = {s: round(float(r[s + '_share_elec']), 1) for s in SOURCES}
         shares['other'] = round(max(0.0, 100 - sum(shares.values())), 1)  # bioenergy, geothermal and other
         by[r['iso_code']][r['year']] = shares
-mix = {name: {'values': by[iso][BASE_YEAR], 'series': by[iso]} for name, iso in sorted(codes.items()) if BASE_YEAR in by.get(iso, {})}
+        # Total generation from the same row, so share × total stays one source and one year.
+        if r.get('electricity_generation'):
+            twh[r['iso_code']][r['year']] = round(float(r['electricity_generation']), 1)
+mix = {}
+for name, iso in sorted(codes.items()):
+    if BASE_YEAR not in by.get(iso, {}):
+        continue
+    mix[name] = {'values': by[iso][BASE_YEAR], 'series': by[iso]}
+    if BASE_YEAR in twh.get(iso, {}):
+        mix[name].update({'generation': twh[iso][BASE_YEAR], 'generationSeries': twh[iso]})
 json.dump({'meta': {'baseYear': BASE_YEAR, 'source': 'Ember·Energy Institute (Our World in Data)', 'retrieved': '2026-10-16',
-                    'sourceUrl': 'https://github.com/owid/energy-data', 'unit': '% of electricity generation'},
+                    'sourceUrl': 'https://github.com/owid/energy-data', 'unit': '% of electricity generation',
+                    'generationUnit': 'TWh (electricity_generation, same row as the shares)'},
            'countries': mix}, open(ROOT / 'data/electricity-mix.json', 'w', encoding='utf-8'), ensure_ascii=False)
 
 # --- religion: Pew 2010 and 2020, names as in audit/religion-2020.json ---

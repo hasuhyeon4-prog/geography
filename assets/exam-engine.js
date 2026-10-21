@@ -226,12 +226,13 @@
     if(theme.kind==='composition'&&composition(theme).total){
      var c=composition(theme),ca=comp(theme,p[0]),cb=comp(theme,p[1]),ta=total(theme,p[0]),tb=total(theme,p[1]);
      (theme.show||Object.keys(ca)).forEach(function(cat){
-      if(ca[cat]<1||cb[cat]<1)return;
+      // A catch-all category ('기타') names no single thing whose amount could be compared.
+      if(cat==='other'||ca[cat]<1||cb[cat]<1)return;
       var amtA=ca[cat]*ta/100,amtB=cb[cat]*tb/100,s0=trap(p,ca[cat],cb[cat],amtA,amtB,1.5);if(!s0)return;
       var truth=r()<.5,s=truth?s0:[s0[1],s0[0]],amt=function(n){return n===p[0]?amtA:amtB};
       var noun=catLabel(theme,cat)+' '+(theme.amountNoun||'인구');
       add({kind:'data',key:'amount|'+cat+'|'+p[0]+'|'+p[1],check:{category:cat,subject:s[0],object:s[1]},text:L(s[0])+'는 '+L(s[1])+'보다 '+noun+subjectParticle(noun)+' 많다.',truth:truth,
-       explain:'표의 비율 × '+c.total.label+': '+s0[0]+' 약 '+fmt(amt(s0[0]))+c.total.unit+', '+s0[1]+' 약 '+fmt(amt(s0[1]))+c.total.unit+' — 비율은 반대지만 '+c.total.label+' 차이 때문에 실제 수는 이렇다. (비율·'+c.total.label+' 모두 '+c.year+'년 '+c.source+')'});
+       explain:'표의 비율 × '+c.total.label+': '+s0[0]+' 약 '+fmt(amt(s0[0]))+c.total.unit+', '+s0[1]+' 약 '+fmt(amt(s0[1]))+c.total.unit+' — 비율은 반대지만 '+c.total.label+' 차이 때문에 실제 '+(/수$/.test(theme.amountNoun||'')?'수':'양')+'는 이렇다. (비율·'+c.total.label+' 모두 '+c.year+'년 '+c.source+')'});
      });
     }
     if(theme.kind==='indicators')(theme.derived||[]).forEach(function(d){
@@ -350,7 +351,10 @@
    for(var attempt=0;attempt<600&&pool.length;attempt++){
     var theme=pick(pool,r),avail=theme.pool.filter(function(n){return hasData(theme,n)});
     var k=theme.pick[0]+Math.floor((attempt<400?size:r())*(theme.pick[1]-theme.pick[0]+1));if(avail.length<k)continue;
-    var chosen=draw(theme,avail,k,r),shown=[];
+    // everyKnown themes draw the 대상 from those with verified knowledge; extras on the map may be any.
+    var known0=theme.everyKnown&&theme.kind==='composition'?avail.filter(function(n){return orderOf(theme,n)}):avail;
+    if(known0.length<k)continue;
+    var chosen=draw(theme,known0,k,r),shown=[];
     if(target){
      if(avail.indexOf(target.hi)<0||avail.indexOf(target.lo)<0)continue;
      chosen=shuffle([target.hi,target.lo].concat(shuffle(avail.filter(function(n){return n!==target.hi&&n!==target.lo}),r).slice(0,k-2)),r);
@@ -364,6 +368,8 @@
     // A column shown on every question (총인구) is there for computing totals; if it alone
     // identified the 대상, the theme's own indicators would be decoration.
     if(theme.always&&theme.always.length&&identifiable(theme,chosen,theme.always))continue;
+    // everyKnown: each 대상 is identified by its own verified knowledge, never by elimination.
+    if(theme.everyKnown&&chosen.some(function(n){return theme.kind==='composition'?!orderOf(theme,n):!REL.some(function(x){return shown.indexOf(x.indicator)>=0&&(x.hi===n||x.lo===n)&&chosen.indexOf(x.hi)>=0&&chosen.indexOf(x.lo)>=0})}))continue;
     var pair=theme.map?markerStage(theme,chosen,shown,avail,r):null;if(theme.map&&!pair)continue;
     var s2=chooseStatements(theme,candidates(theme,chosen,shown,r),r);if(!s2)continue;
     if(target){
