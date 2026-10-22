@@ -105,7 +105,16 @@ for (const o of AGRI.orders) {
 }
 const allowedPair = (ind, a, b) => allowedPairs.has(ind + '|' + [a, b].sort().join('|')) || agriFirst.some(([i, n]) => i === ind && (n === a || n === b) && countries.countries[a] && countries.countries[b]);
 const allowedOrders = {};
-for (const o of REL.orders) {
+// 1차 에너지 구성 (R2): shares from data/energy-series.json, renewables = wind + solar + biofuel + other.
+const energy = data('data/energy-series.json');
+const ENERGY_REL = data('data/exam-relations-energy.json');
+const energyShare = (n, y) => {
+  const c = energy.countries[n].series, g = k => (c[k + '_share_energy'] || {})[y];
+  const parts = {coal: [g('coal')], oil: [g('oil')], gas: [g('gas')], nuclear: [g('nuclear')], hydro: [g('hydro')], renewables: ['wind', 'solar', 'biofuel', 'other_renewables'].map(g)};
+  if (Object.values(parts).flat().some(x => x == null)) return null;
+  return Object.fromEntries(Object.entries(parts).map(([k, xs]) => [k, xs.reduce((a, b) => a + b, 0)]));
+};
+for (const o of REL.orders.concat(ENERGY_REL.orders)) {
   const c = allowedOrders[o.composition] || (allowedOrders[o.composition] = {});
   if (o.fromSet) {
     for (const n of o.entities) {
@@ -118,8 +127,9 @@ const compositionSeries = {
   exports: n => Object.fromEntries(Object.entries(economy.exports[n].series).filter(([y]) => y >= Y0 && y <= Y1)),
   electricity: n => Object.fromEntries(Object.entries(electricity.countries[n].series).filter(([y]) => y >= Y0 && y <= Y1)),
   religion: n => religion.countries[n].series,
+  primaryEnergy: n => Object.fromEntries(Object.keys(energy.countries[n].series.coal_share_energy).filter(y => y >= Y0 && y <= Y1 && energyShare(n, y)).map(y => [y, energyShare(n, y)])),
 };
-const EXCLUDE = {electricity: [], exports: [], religion: ['unaffiliated', 'other']};
+const EXCLUDE = {electricity: [], exports: [], religion: ['unaffiliated', 'other'], primaryEnergy: []};
 function orderHoldsEveryYear(cid, name, order) {
   const ser = compositionSeries[cid](name);
   return Object.values(ser).every(v => {
@@ -245,6 +255,10 @@ test('share × total uses one year and one source, and both numbers are in the t
       if (c.category) {
         if (q.theme.composition === 'religion') {
           amount = n => religion.countries[n].series['2020'][c.category] * religion.countries[n].populationSeries['2020'];
+        } else if (q.theme.composition === 'primaryEnergy') {
+          // Shares and primary energy consumption come from the same OWID rows.
+          amount = n => energyShare(n, '2023')[c.category] * energy.countries[n].series.primary_energy_consumption['2023'];
+          assert.ok(q.display.columns.some(x => x.label === '1차 에너지 소비량'));
         } else if (q.theme.composition === 'electricity') {
           // Shares and total generation come from the same OWID row.
           const y = electricity.meta.baseYear;

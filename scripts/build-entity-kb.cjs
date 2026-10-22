@@ -472,6 +472,25 @@ for (const c of clueSentences) {
   (entities[c.country].clues = entities[c.country].clues || []).push({text: c.text, shown: c.particle === '의' ? '이 나라의 ' + rest : rest, keys: own, source: c.source});
 }
 
+// Primary energy shares by year; a year counts only when every source is reported.
+const energy = read('data/energy-series.json');
+const ENERGY = read('data/exam-relations-energy.json');
+const ENERGY_YEAR = '2023';
+const ENERGY_PARTS = {coal: ['coal'], oil: ['oil'], gas: ['gas'], nuclear: ['nuclear'], hydro: ['hydro'], renewables: ['wind', 'solar', 'biofuel', 'other_renewables']};
+const energyShares = {};
+for (const [n, c] of Object.entries(energy.countries)) {
+  const years = Object.keys(c.series.coal_share_energy || {});
+  for (const y of years) {
+    const v = {};
+    for (const [cat, parts] of Object.entries(ENERGY_PARTS)) {
+      const xs = parts.map(k => (c.series[k + '_share_energy'] || {})[y]);
+      if (xs.some(x => x == null)) { v.missing = true; break; }
+      v[cat] = Math.round(xs.reduce((a, b) => a + b, 0) * 10) / 10;
+    }
+    if (!v.missing) (energyShares[n] = energyShares[n] || {})[y] = v;
+  }
+}
+
 // Compositions used as identification data. Shares are percentages of the stated total;
 // `orderMargin` is the gap every year must keep between ranked categories.
 const compositions = {
@@ -486,6 +505,14 @@ const compositions = {
     // Same OWID rows as the shares, so share × total is one source and one year.
     total: {label: '총발전량', unit: 'TWh', year: electricity.meta.baseYear, source: electricity.meta.source,
       values: Object.fromEntries(Object.entries(electricity.countries).filter(([, c]) => c.generation != null).map(([n, c]) => [n, c.generation]))}},
+  // 1차 에너지 소비 구성 (R2, data/energy-series.json: OWID, substitution method). Shares and the
+  // total come from the same rows. The margin is 5%p: Brazil's oil leads hydro by about 7%p.
+  primaryEnergy: {year: ENERGY_YEAR, source: 'Energy Institute·EIA (OWID 에너지 자료)', unit: '% (1차 에너지 소비 비중)', orderMargin: 5, rankExclude: [],
+    categories: [['coal', '석탄'], ['oil', '석유'], ['gas', '천연가스'], ['nuclear', '원자력'], ['hydro', '수력'], ['renewables', '신재생(수력 제외)']],
+    values: Object.fromEntries(Object.entries(energyShares).filter(([, s]) => s[ENERGY_YEAR]).map(([n, s]) => [n, s[ENERGY_YEAR]])),
+    total: {label: '1차 에너지 소비량', unit: 'TWh', year: ENERGY_YEAR, source: 'Energy Institute·EIA (OWID 에너지 자료)',
+      values: Object.fromEntries(Object.entries(energy.countries).filter(([n, c]) => energyShares[n] && energyShares[n][ENERGY_YEAR] && (c.series.primary_energy_consumption || {})[ENERGY_YEAR] != null)
+        .map(([n, c]) => [n, c.series.primary_energy_consumption[ENERGY_YEAR]]))}},
   religion: {year: religion.meta.baseYear, source: religion.meta.source, unit: '% (인구 대비)', orderMargin: 2, rankExclude: ['unaffiliated', 'other'],
     categories: [['christianity', '크리스트교'], ['islam', '이슬람교'], ['hinduism', '힌두교'], ['buddhism', '불교'], ['judaism', '유대교'], ['unaffiliated', '무종교'], ['other', '기타 종교']],
     values: Object.fromEntries(Object.entries(religion.countries).map(([n, c]) => [n, c.values])),
@@ -497,6 +524,7 @@ const compositionSeries = {
   exports: Object.fromEntries(Object.entries(economy.exports).map(([n, c]) => [n, c.series])),
   electricity: Object.fromEntries(Object.entries(electricity.countries).map(([n, c]) => [n, c.series])),
   religion: Object.fromEntries(Object.entries(religion.countries).map(([n, c]) => [n, c.series])),
+  primaryEnergy: energyShares,
 };
 function checkOrder(cid, name, order) {
   const c = compositions[cid], out = {composition: cid, entity: name, order};
@@ -528,6 +556,8 @@ for (const o of REL.orders) {
     : Object.entries(o.orders);
   for (const [n, order] of list) orders.push(Object.assign(checkOrder(o.composition, n, order), {basis: o.basis}));
 }
+// The energy whitelist (R2) names each country's leading sources in primary energy.
+for (const o of ENERGY.orders) for (const [n, order] of Object.entries(o.orders)) orders.push(Object.assign(checkOrder(o.composition, n, order), {basis: o.basis}));
 
 // --- climate graphs: lecture climate types checked against the station normals ---
 // Lecture 1권 P02 thresholds: A 최한월 18℃ 이상, B 건조 한계 미만, C 최한월 −3~18℃·최난월 10℃ 이상,

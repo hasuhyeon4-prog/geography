@@ -404,7 +404,7 @@
       var truth=r()<.5,s=truth?s0:[s0[1],s0[0]],amt=function(n){return n===p[0]?amtA:amtB};
       var noun=catLabel(theme,cat)+' '+(theme.amountNoun||'인구');
       add({kind:'data',key:'amount|'+cat+'|'+p[0]+'|'+p[1],check:{category:cat,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+noun+subjectParticle(noun)+' 많다.',truth:truth,
-       explain:'표의 비율 × '+c.total.label+': '+s0[0]+' 약 '+fmt(amt(s0[0]))+c.total.unit+', '+s0[1]+' 약 '+fmt(amt(s0[1]))+c.total.unit+' — 비율은 반대지만 '+c.total.label+' 차이 때문에 실제 '+(/수$/.test(theme.amountNoun||'')?'수':'양')+'는 이렇다. (비율·'+c.total.label+' 모두 '+c.year+'년 '+c.source+')'});
+       explain:'표의 비율 × '+c.total.label+': '+s0[0]+' 약 '+fmt(amt(s0[0]))+c.total.unit+', '+s0[1]+' 약 '+fmt(amt(s0[1]))+c.total.unit+' — 비율은 반대지만 '+c.total.label+' 차이 때문에 실제 '+(/수$/.test(theme.amountNoun||'')?'수는':'양은')+' 이렇다. (비율·'+c.total.label+' 모두 '+c.year+'년 '+c.source+')'});
      });
     }
     if(theme.kind==='indicators')(theme.derived||[]).forEach(function(d){

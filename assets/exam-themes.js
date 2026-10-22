@@ -98,6 +98,16 @@
    followups:{facts:['islam','buddhism','christianity','bloc','capitalCity','hemisphere','equator','meridian','seas','landlocked'],focus:['islam','buddhism','christianity']},
    prompt:'{range}는 {candidates} 중 하나이다. 표는 종교별 인구 비중(%)과 총인구이다.'
   },
+  // 1차 에너지 소비 구성 (R2). Every 대상 has a lecture-named leading source verified every year.
+  {
+   id:'primary-energy',status:'ready',title:'국가별 1차 에너지 소비 구성',lecture:'2권 P07',exams:['2024학년도 6월 10번','2022학년도 6월 15번','2020학년도 수능 4번'],
+   kind:'composition',composition:'primaryEnergy',entityType:'country',map:true,everyKnown:true,
+   pool:['중국','인도','러시아','이란','브라질','남아프리카 공화국'],
+   pick:[3,3],show:['coal','oil','gas','nuclear','hydro','renewables'],hideable:['coal','oil','gas','hydro'],amountNoun:'소비량',
+   followups:{facts:['minerals','bloc','apec','religion','christianity','islam','capitalCity','hemisphere','equator','seas','landlocked'],focus:['minerals']},
+   note:'1차 에너지는 발전에 쓰인 에너지와 수송·난방 등에 직접 쓰인 에너지를 모두 포함한다. 전력 생산 구성과 다르다.',
+   prompt:'{range}는 {candidates} 중 하나이다. 표는 1차 에너지 소비량의 에너지원별 비중(%)과 1차 에너지 소비량이다.'
+  },
   // 지역지리: (가)~(다) are described by lecture sentences (data/country-clues.json, filtered in
   // scripts/build-entity-kb.cjs) and found on the map. The pool is every country with a clue.
   {
