@@ -381,6 +381,9 @@
      if((theme.reveals||[]).indexOf(set)>=0||stated(n,set))return;
      if(!allowed(theme,set))return;
      var f=e.facts[set],m=kb.factSets[set];
+     // A set that cannot also make a false statement (광물 산지, 음료, 접한 바다, 내륙국: lists that
+     // are not complete) would make every such <보기> true, which teaches the pattern, not the fact.
+     if(!m||!m.exclusive)return;
      f.values.forEach(function(v){var p=predicate(set,v);if(p)add({kind:'fact',key:set+'|'+n,text:S(n)+' '+p+'.',truth:true,explain:factExplain(set,n),check:{set:set,entity:n,value:v}})});
      if(m&&m.exclusive){
       var opts=Object.keys(m.options).filter(function(o){return f.values.indexOf(o)<0&&predicate(set,o)&&plausible(set,n,o)});

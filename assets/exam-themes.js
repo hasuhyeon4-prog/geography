@@ -34,7 +34,7 @@
    pick:[2,3],always:['pop'],indicators:['young','old','urban','nir'],show:2,
    derived:[{rate:'urban',total:'pop',per:100,noun:'도시 인구'},{rate:'old',total:'pop',per:100,noun:'노년층 인구'},{rate:'young',total:'pop',per:100,noun:'유소년층 인구'},{rate:'nir',total:'pop',per:1000,noun:'자연 증가한 인구 수'}],
    // 인구·도시 문항의 <보기>가 함께 묻는 위치·도시·블록·종교.
-   followups:{facts:['capitalCity','bloc','euro','religion','hemisphere','equator','meridian','seas','landlocked'],focus:['capitalCity']},
+   followups:{facts:['capitalCity','bloc','euro','religion','hemisphere','equator','meridian'],focus:['capitalCity']},
    prompt:'{range}는 {candidates} 중 하나이다.'
   },
   // 두 시점 도시화 (R7, UN WUP 2025). The two year columns identify through relations the lecture
@@ -50,7 +50,7 @@
    changes:[{from:'wup-share@1970',to:'wup-share@2020',noun:'1970~2020년 도시화율 상승 폭',min:3}],
    changeSigns:[{from:'wup-rural@1970',to:'wup-rural@2020',noun:'1970~2020년 촌락 인구',min:5}],
    majority:['wup-share@1970','wup-share@2020'],
-   followups:{facts:['capitalCity','bloc','euro','religion','hemisphere','equator','meridian','seas','landlocked'],focus:[]},
+   followups:{facts:['capitalCity','bloc','euro','religion','hemisphere','equator','meridian'],focus:[]},
    note:'UN WUP 2025의 추정치(국가별 도시 정의)이다. 기출 자료의 판본과 값이 조금 다를 수 있다. 도시화율 50%를 넘으면 도시 인구가 촌락 인구보다 많다.',
    prompt:'{range}는 {candidates} 중 하나이다. 표는 1970년과 2020년의 도시화율과 인구이다.'
   },
@@ -72,7 +72,7 @@
    pool:['중국','일본','영국','프랑스','폴란드','알제리','나이지리아','보츠와나','콩고 민주 공화국','독일','멕시코','이집트','인도','브라질','아르헨티나','칠레','타이','탄자니아','사우디아라비아','튀르키예'],
    pick:[2,3],indicators:['pop','gdp','gdppc','manufacturing','agriculture','industry','services','industryEmployment','exports'],show:2,
    derived:[{rate:'manufacturing',total:'gdp',per:100,noun:'제조업 부가가치'}],
-   followups:{facts:['exportType','minerals','opec','bloc','apec','religion','capitalCity','hemisphere','equator','meridian','seas','landlocked'],focus:['exportType','minerals','opec']},
+   followups:{facts:['exportType','opec','bloc','apec','religion','capitalCity','hemisphere','equator','meridian'],focus:['exportType','opec']},
    prompt:'{range}는 {candidates} 중 하나이다. 제조업·2차 산업의 GDP 비중과 종사자 비율을 구별한다.'
   },
   {
@@ -80,7 +80,7 @@
    kind:'composition',composition:'exports',entityType:'country',reveals:['exportType'],map:true,
    pool:['사우디아라비아','나이지리아','튀르키예','멕시코','칠레','아르헨티나','브라질','오스트레일리아','인도네시아','일본'],
    pick:[3,3],show:['fuel','ores','food','agriculturalRaw','manufactures','other'],amountNoun:'수출액',hideable:['fuel','ores','food','manufactures'],
-   followups:{facts:['minerals','opec','bloc','apec','latinLanguage','religion','capitalCity','hemisphere','equator','meridian','seas','landlocked'],focus:['minerals','opec']},
+   followups:{facts:['opec','bloc','apec','latinLanguage','religion','capitalCity','hemisphere','equator','meridian'],focus:['opec']},
    note:'상품 수출의 SITC 분류이다. 광석·금속에는 다이아몬드가 포함되지 않으며, 공산품 비중을 제조업 고용 비율로 읽지 않는다. 비율과 같은 해의 총액으로 구한 금액은 근삿값이다.',
    prompt:'{range}는 {candidates} 중 하나이다. 표는 상품 수출액의 품목별 비중과 총액이다. 같은 품목의 비중과 수출 금액을 구별한다.'
   },
@@ -97,7 +97,7 @@
    note:'나이지리아의 선박에는 원문 주석에 따라 해체용 선박이 포함된다. 케냐의 석유 제품 수출은 원유 매장의 증거가 아니다.',
    // The item table already shows the export type, copper, iron ore, oil and tea.
    reveals:['exportType','minerals','beverage'],
-   followups:{facts:['opec','bloc','apec','latinLanguage','capitalCity','religion','christianity','hemisphere','equator','meridian','seas','landlocked'],focus:['opec']},
+   followups:{facts:['opec','bloc','apec','latinLanguage','capitalCity','religion','christianity','hemisphere','equator','meridian'],focus:['opec']},
    prompt:'{range}는 {candidates} 중 하나이다. 표는 수출액 상위 세 품목과 비중(%)이다.'
   },
   {
@@ -106,7 +106,7 @@
    pool:['프랑스','노르웨이','브라질','네팔','아이슬란드','덴마크','캐나다','중국','인도','러시아','이란','독일','케냐','미국','남아프리카 공화국','오스트레일리아'],
    // The verified top sources are only 원자력·수력·풍력, so three 대상, each identified by its own.
    pick:[3,3],everyKnown:true,show:['coal','gas','oil','nuclear','hydro','wind','solar','other'],amountNoun:'발전량',hideable:['coal','gas','nuclear','hydro','wind'],
-   followups:{facts:['minerals','opec','bloc','euro','apec','religion','christianity','hemisphere','equator','meridian','seas','landlocked'],focus:['minerals','opec']},
+   followups:{facts:['opec','bloc','euro','apec','religion','christianity','hemisphere','equator','meridian'],focus:['opec']},
    prompt:'{range}는 {candidates} 중 하나이다. 표는 발전원별 발전량 비중(%)과 총발전량이다. 비중과 발전량을 구별한다.'
   },
   {
@@ -129,7 +129,7 @@
    amountNoun:'신자 수',reveals:['religion'],
    // 동시 식별: countries and three religions both hidden (2026학년도 수능 13번·6월 8번).
    joint:true,jointPrompt:'{range}는 {candidates} 중 하나이고, A~C는 {columns} 중 하나이다. 표는 종교별 인구 비중(%)과 총인구이다.',
-   followups:{facts:['islam','buddhism','christianity','bloc','capitalCity','hemisphere','equator','meridian','seas','landlocked'],focus:['islam','buddhism','christianity']},
+   followups:{facts:['islam','buddhism','christianity','bloc','capitalCity','hemisphere','equator','meridian'],focus:['islam','buddhism','christianity']},
    prompt:'{range}는 {candidates} 중 하나이다. 표는 종교별 인구 비중(%)과 총인구이다.'
   },
   // 1차 에너지 소비 구성 (R2). Every 대상 has a lecture-named leading source verified every year.
@@ -138,7 +138,7 @@
    kind:'composition',composition:'primaryEnergy',entityType:'country',map:true,everyKnown:true,
    pool:['중국','인도','러시아','이란','브라질','남아프리카 공화국'],
    pick:[3,3],show:['coal','oil','gas','nuclear','hydro','renewables'],hideable:['coal','oil','gas','hydro'],amountNoun:'소비량',
-   followups:{facts:['minerals','bloc','apec','religion','christianity','islam','capitalCity','hemisphere','equator','seas','landlocked'],focus:['minerals']},
+   followups:{facts:['bloc','apec','religion','christianity','islam','capitalCity','hemisphere','equator'],focus:[]},
    note:'1차 에너지는 발전에 쓰인 에너지와 수송·난방 등에 직접 쓰인 에너지를 모두 포함한다. 전력 생산 구성과 다르다.',
    prompt:'{range}는 {candidates} 중 하나이다. 표는 1차 에너지 소비량의 에너지원별 비중(%)과 1차 에너지 소비량이다.'
   },
@@ -150,8 +150,8 @@
    // 덴마크·잠비아·에콰도르·페루·오스트레일리아 left with their only sentences (KB cluesDropped).
    pool:['에스파냐','프랑스','스웨덴','그리스','러시아','튀르키예','아이슬란드','이집트','에티오피아','콩고 민주 공화국','보츠와나','사우디아라비아','카타르','아랍 에미리트','아프가니스탄','인도','스리랑카','몽골','일본','미얀마','말레이시아','아르헨티나','세네갈'],
    pick:[3,3],
-   followups:{facts:['religion','christianity','islam','buddhism','bloc','apec','euro','latinLanguage','capitalCity','exportType','minerals','beverage','hemisphere','equator','meridian','seas','landlocked'],
-    focus:['religion','christianity','islam','buddhism','bloc','apec','euro','latinLanguage','capitalCity','exportType','minerals','beverage','seas','landlocked']},
+   followups:{facts:['religion','christianity','islam','buddhism','bloc','apec','euro','latinLanguage','capitalCity','exportType','hemisphere','equator','meridian'],
+    focus:['religion','christianity','islam','buddhism','bloc','apec','euro','latinLanguage','capitalCity','exportType']},
    prompt:'{range}는 {candidates} 중 하나이다. 표의 문장은 강의에서 각 나라를 설명한 것이다.'
   },
   // 농목업 (data/agriculture.json, FAOSTAT). `domains` lets these themes recall the agriculture
@@ -178,7 +178,7 @@
    kind:'indicators',entityType:'country',map:true,domains:['agri'],
    pool:['중국','인도','미국','브라질','오스트레일리아','프랑스','아르헨티나','이집트','멕시코','에스파냐','타이','미얀마','베트남','인도네시아','에티오피아','케냐'],
    pick:[3,3],indicators:['agri-wheat','agri-rice','agri-maize','agri-cattle','agri-pigs','agri-sheep','agri-riceExports','agri-coffee','agri-grainNet'],show:2,
-   followups:{facts:['beverage','religion','bloc','capitalCity','hemisphere','equator','seas','landlocked'],focus:['beverage']},
+   followups:{facts:['religion','bloc','capitalCity','hemisphere','equator'],focus:[]},
    note:'쌀 생산량은 벼 기준이다. 곡물 순수출량은 수급표의 수출량에서 수입량을 뺀 값이다.',
    prompt:'{range}는 {candidates} 중 하나이다.'
   }

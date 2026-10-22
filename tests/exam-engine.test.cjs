@@ -279,9 +279,20 @@ test('<보기> stay on the theme and avoid free distractors', () => {
     focusShare[t.id] = withTheme / SEEDS;
   }
   // Themes whose data support comparisons put at least two theme <보기> in most questions.
-  for (const id of ['bloc-indicators', 'continent-indicators', 'country-population', 'country-economy', 'export-composition', 'religion-composition', 'electricity-mix', 'climate-graphs',
+  // 상품 수출 구성 has only share × total traps and total-export comparisons of its own; its 0.6 came
+  // partly from 광물 산지 statements that could only be true, removed on 2026-10-22.
+  assert.ok(focusShare['export-composition'] >= 0.5, 'export-composition ' + focusShare['export-composition']);
+  for (const id of ['bloc-indicators', 'continent-indicators', 'country-population', 'country-economy', 'religion-composition', 'electricity-mix', 'climate-graphs',
     'crop-identification', 'livestock-identification', 'country-agriculture', 'country-clues', 'country-urban-change', 'continent-urban-change']) assert.ok(focusShare[id] >= 0.6, id + ' ' + focusShare[id]);
   for (const e of Object.values(K.entities)) if (e.facts.latinLanguage) assert.equal(e.region, 'americas', e.name + ' latinLanguage');
+});
+
+test('fact <보기> come only from sets that can also make a false statement', () => {
+  for (const t of engine.themes) for (let seed = 1; seed <= SEEDS; seed++) {
+    for (const s of engine.build({themeId: t.id, seed}).stage2.statements) {
+      if ((s.kind === 'fact' || s.kind === 'both') && s.check.set) assert.ok(K.factSets[s.check.set] && K.factSets[s.check.set].exclusive, t.id + ' true-only set ' + s.check.set + ': ' + s.text);
+    }
+  }
 });
 
 test('map letters sit inside the countries they mark', () => {
