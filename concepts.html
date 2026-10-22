@@ -32,7 +32,7 @@ tr.hit td{background:#fff8db}td.name{font-weight:700;white-space:nowrap;min-widt
 <header><a class="navLink" href="index.html">← 위치</a><h1 class="sr">강의 표</h1><nav class="nav" aria-label="퀴즈 종류"><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html">OX</a><a href="concepts.html" aria-current="page">강의 표</a><a href="exam.html">기출형</a></nav></header>
 <div class="scope"><label for="domainSelect">영역<select id="domainSelect"></select></label><label for="modeSelect">방식<select id="modeSelect"><option value="which">설명 → 대상</option><option value="what">대상 → 설명</option><option value="study">표 보기</option></select></label></div>
 <main id="main" aria-live="polite"></main>
-<script src="assets/concept-tables.js?v=20261022-1"></script>
+<script src="assets/concept-tables.js?v=20261022-2"></script>
 <script>
 (function(){
 'use strict';
@@ -58,8 +58,10 @@ function examsEl(t){return t.exams.length?el('p',{className:'small muted',text:'
 function items(){
  var out=[];
  tables().forEach(function(t){
+  // A table of two rows, or of rows that are not the same kind of thing, is for reading only.
+  if(t.studyOnly)return;
   t.rows.forEach(function(r,i){
-   if(state.mode==='which'){if(t.columns.some(function(c){return c.cells[i]}))out.push({t:t,row:i,key:'which|'+t.id+'|'+r})}
+   if(state.mode==='which'){if(t.columns.some(function(c){return c.askable&&c.cells[i]}))out.push({t:t,row:i,key:'which|'+t.id+'|'+r})}
    else t.columns.forEach(function(c,j){if(c.askable)out.push({t:t,row:i,col:j,key:'what|'+t.id+'|'+r+'|'+c.label})});
   });
  });
@@ -73,16 +75,23 @@ function draw(){
  for(var i=0;i<list.length;i++){pick-=weight(list[i]);if(pick<=0)return list[i]}
  return list[list.length-1];
 }
-// Up to five options from the same table, always including the answer.
-function options(all,answer){var others=shuffle(all.filter(function(x){return x!==answer})).slice(0,4);return shuffle(others.concat([answer]))}
-// The row's own name inside its cells would give the answer away.
-function mask(text,name){return text.split(name).join('○○')}
+// Up to five options from the same table, always including the answer (as row numbers).
+function options(n,answer){var others=shuffle(Array.from({length:n},function(_,i){return i}).filter(function(x){return x!==answer})).slice(0,4);return shuffle(others.concat([answer]))}
+// A row's name or a part of it inside a cell would give the answer away (t.tokens, built with
+// the tables): the row asked about becomes ○○ and any other row △△. With own=-1 every row is ○○.
+function mask(text,t,own){
+ var list=[];t.tokens.forEach(function(ts,j){ts.forEach(function(x){list.push([x,own<0||j===own?'○○':'△△'])})});
+ list.sort(function(a,b){return b[0].length-a[0].length});
+ var parts=[text];
+ list.forEach(function(x){parts=parts.map(function(p){return typeof p!=='string'?p:p.split(x[0]).reduce(function(acc,seg,k){if(k)acc.push({m:x[1]});acc.push(seg);return acc},[])}).reduce(function(a,b){return a.concat(b)},[])});
+ return parts.map(function(p){return typeof p==='string'?p:p.m}).join('');
+}
+function particle(w){var c=w.charCodeAt(w.length-1);return c>=0xAC00&&c<=0xD7A3&&(c-0xAC00)%28?'은':'는'}
 function next(){
  var it=draw();state.answer=null;
  if(!it){state.q=null;render();return}
  var t=it.t;
- if(state.mode==='which')state.q={it:it,options:options(t.rows,t.rows[it.row]),answer:t.rows[it.row]};
- else{var c=t.columns[it.col];state.q={it:it,options:options(c.cells,c.cells[it.row]),answer:c.cells[it.row]}}
+state.q={it:it,options:options(t.rows.length,it.row),answer:it.row};
  render();window.scrollTo({top:0});
 }
 function choose(opt){
@@ -91,8 +100,9 @@ function choose(opt){
 }
 function renderStudy(main){
  var list=tables();
+ var noteOf=function(t){return t.studyOnly?el('p',{className:'small muted',text:'표 보기 전용: '+t.studyOnly}):null};
  main.append(el('p',{className:'small muted',text:'강의 표 '+list.length+'개. 각 표는 강의가 대상끼리 비교한 그대로입니다. 연습에서는 같은 표 안에서만 고릅니다.'}));
- list.forEach(function(t){main.append(el('section',{className:'card'},[el('div',{className:'meta',text:title(t)}),el('h2',{text:t.rows.join(' · ')}),tableEl(t,-1),examsEl(t)]))});
+ list.forEach(function(t){main.append(el('section',{className:'card'},[el('div',{className:'meta',text:title(t)}),el('h2',{text:t.rows.join(' · ')}),tableEl(t,-1),examsEl(t),noteOf(t)]))});
 }
 function renderQuiz(main){
  var q=state.q;
@@ -101,18 +111,20 @@ function renderQuiz(main){
  card.append(el('div',{className:'meta',text:title(t)+(state.total?' · 이번 '+state.right+'/'+state.total:'')}));
  if(state.mode==='which'){
   card.append(el('p',{className:'q',text:'강의 표에서 다음 설명에 해당하는 것은?'}));
-  card.append(el('ul',{className:'desc'},t.columns.filter(function(c){return c.cells[i]}).map(function(c){return el('li',{},[el('b',{text:c.label}),mask(c.cells[i],name)])})));
- }else card.append(el('p',{className:'q',text:name+'의 「'+t.columns[q.it.col].label+'」는?'}));
+  // Only columns whose cells differ row by row describe the row; the rest stay in the table view.
+  card.append(el('ul',{className:'desc'},t.columns.filter(function(c){return c.askable&&c.cells[i]}).map(function(c){return el('li',{},[el('b',{text:c.label}),mask(c.cells[i],t,i)])})));
+ }else{var label=t.columns[q.it.col].label;card.append(el('p',{className:'q',text:name+'의 「'+label+'」'+particle(label)+'?'}))}
  var box=el('div',{className:'choices'});
+ var optText=function(o){return state.mode==='which'?t.rows[o]:mask(t.columns[q.it.col].cells[o],t,-1)};
  q.options.forEach(function(o,k){
-  var b=el('button',{type:'button',text:(k+1)+'. '+o,onclick:function(){choose(o)}});
+  var b=el('button',{type:'button',text:(k+1)+'. '+optText(o),onclick:function(){choose(o)}});
   if(state.answer!==null){b.disabled=true;if(o===q.answer)b.className='right';else if(o===state.answer)b.className='wrong'}
   box.append(b);
  });
  card.append(box);
  if(state.answer!==null){
   var ok=state.answer===q.answer;
-  card.append(el('div',{className:'result '+(ok?'good':'bad'),role:'status'},[el('b',{text:ok?'정답':'오답 — 정답: '+q.answer})]));
+  card.append(el('div',{className:'result '+(ok?'good':'bad'),role:'status'},[el('b',{text:ok?'정답':'오답 — 정답: '+(state.mode==='which'?t.rows[q.answer]:t.columns[q.it.col].cells[q.answer])})]));
   card.append(tableEl(t,i),examsEl(t));
   card.append(el('button',{type:'button',className:'primary big',text:'다음 문항',onclick:next}));
  }
