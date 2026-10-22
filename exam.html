@@ -50,9 +50,9 @@ td.text{white-space:normal;text-align:left;line-height:1.55;word-break:keep-all;
 <div class="scope"><label for="themeSelect">주제<select id="themeSelect"></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><span class="score" id="score"></span></div>
 <main id="main" aria-live="polite"></main>
 <div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 2015~2025년 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
-<script src="assets/entity-kb.js?v=20261022-3"></script>
-<script src="assets/exam-themes.js?v=20261022-3"></script>
-<script src="assets/exam-engine.js?v=20261022-3"></script>
+<script src="assets/entity-kb.js?v=20261022-4"></script>
+<script src="assets/exam-themes.js?v=20261022-4"></script>
+<script src="assets/exam-engine.js?v=20261022-4"></script>
 <script>
 (function(){
 'use strict';
@@ -158,6 +158,8 @@ function drawMap(q,revealed){
 }
 function assignment(q,opt,revealed){
  if(q.format==='columns')return opt.map(function(id,i){return q.stage1.labels[i]+' '+q.stage1.names[id]}).join(' · ');
+ // 동시 식별: the 대상 of each row, then the name of each column A~C.
+ if(q.format==='joint')return opt.slice(0,q.stage1.rows).map(function(n,i){return q.labels[i]+' '+n}).join(' · ')+'  /  '+opt.slice(q.stage1.rows).map(function(id,j){return q.stage1.labels[j]+' '+q.stage1.names[id]}).join(' · ');
  return opt.map(function(n,i){var l=mapMode(q)&&letterOf(q,n);return q.labels[i]+' '+(l?l+(revealed?' '+n:''):n)}).join(' · ');
 }
 function render(){
@@ -168,7 +170,7 @@ function render(){
  if(state.targetKey)card.append(el('p',{className:'small',text:'선택한 비교를 집중 연습하고 있어요. 주제를 바꾸면 전체 연습으로 돌아갑니다.'}));
  // 실전형 asks the <보기> straight away, as on the exam paper; the identification is shown afterwards.
  var implicit=!!q.stage1.implicit&&!q.readingOnly,revealed=implicit?state.a2!==null:state.a1!==null;
- var kind=q.readingOnly?'':q.format==='columns'?'항목 식별 · ':implicit?'실전형 · ':'대상 식별 · ';
+ var kind=q.readingOnly?'':q.format==='columns'?'항목 식별 · ':q.format==='joint'?'동시 식별 · ':implicit?'실전형 · ':'대상 식별 · ';
  card.append.apply(card,[el('div',{className:'meta',text:kind+t.title+' · '+t.lecture+(t.exams&&t.exams.length?' · 기출 유형: '+t.exams.join(', '):'')}),el('p',{className:'prompt',text:(mapMode(q)&&q.mapPrompt)||q.prompt||t.prompt}),mapMode(q)?drawMap(q,revealed):null,table(q,revealed)].filter(Boolean));
  if(t.note)card.append(el('p',{className:'small muted',text:t.note}));
  // Stage 1: identification.
@@ -222,6 +224,7 @@ function knowledge(){
  function cat(c,id){var row=c.categories.find(function(k){return k[0]===id});return row?row[1]:id}
  function title(x){
   if(x.lecture)return '기후형: '+x.entity+' — '+(kb.climate.types[x.lecture]||x.lecture);
+  if(x.trait){var cc=kb.compositions[x.composition];return '종교의 특징 · '+x.label+': '+(x.kind==='order'?x.order.map(function(id){return cat(cc,id)}).join(' > ')+(x.id==='founded'?' (먼저 발생한 순)':''):Object.keys(x.values).map(function(id){return cat(cc,id)+' '+x.values[id]}).join(' · '))}
   if(x.first)return kb.indicators[x.indicator].label+': '+x.hi+' 세계 1위 — 이 주제의 다른 '+x.count+'개국보다 많음';
   if(x.hi)return kb.indicators[x.indicator].label+': '+x.hi+' > '+x.lo;
   if(x.order){var c=kb.compositions[x.composition];return ({religion:'종교 인구',exports:'상품 수출 구성',electricity:'전력 생산'}[x.composition]||x.composition)+': '+x.entity+' — '+x.order.map(function(id){return cat(c,id)}).join(' > ')+(x.order.length===1?' 1위':'')}
@@ -229,6 +232,7 @@ function knowledge(){
  }
  function detail(x){
   if(x.status!=='active')return x.reason;
+  if(x.trait)return (x.years?x.years.join('·')+'년 '+x.source+' · 최소 간격 '+x.minGap+'%p · ':'강의 설명 · ')+'A~C를 식별한 뒤 묻는 <보기>'+(sample?' · 표본 '+n(sample)+'문항 중 '+n(x.practice)+'회':'');
   if(x.lecture)return '관측소 평년값으로 같은 기후형 확인('+x.computed.split('').map(function(ch,i){return i===0||(i===1&&/[be]/.test(x.computed[0]))?ch.toUpperCase():ch}).join('')+')'+(sample?' · 표본 '+n(sample)+'문항 중 '+n(x.practice)+'회':'');
   var m=x.indicator&&kb.indicators[x.indicator],span=m&&m.static?x.years.join('·')+'년 기준':x.years[0]+'~'+x.years[1]+'년 매년';
   var gap=x.first?'':x.hi?' · 최소 차이 '+x.minGap:x.order?' · 최소 간격 '+x.minGap+'%p':' · 최소 절댓값 '+x.minAbs+m.unit;
@@ -240,7 +244,8 @@ function knowledge(){
   var g=firsts[x.indicator+'|'+x.hi]||(firsts[x.indicator+'|'+x.hi]=Object.assign({},x,{first:true,count:0,practice:0}));
   g.count++;g.practice+=x.practice||0;return false;
  });
- var all=rels.concat(Object.keys(firsts).map(function(k){return firsts[k]}),kb.signs,kb.orders,(kb.climate&&kb.climate.verdicts)||[]);
+ var traits=[];Object.keys(kb.categoryFacts||{}).forEach(function(cid){kb.categoryFacts[cid].forEach(function(f){traits.push(Object.assign({trait:true},f))})});
+ var all=rels.concat(Object.keys(firsts).map(function(k){return firsts[k]}),kb.signs,kb.orders,traits,(kb.climate&&kb.climate.verdicts)||[]);
  [['회상으로 출제',function(x){return x.status==='active'&&x.practice>0},'문항의 식별 근거나 <보기>로 나온다.'],
   ['검증 통과 · 이 모드에서는 아직 나오지 않음',function(x){return x.status==='active'&&!x.practice},'이 대상들을 한 문항에서 함께 식별할 지표(수출 구성·제조업 비중 등)가 아직 없다. 관계는 익혀 둔다.'],
   ['방향은 매년 같음 · 차이가 작아 회상 출제에서 제외',function(x){return x.status==='belowMargin'},'관계는 익힌다. 문제에서는 수치를 주고 판단하게 한다.'],

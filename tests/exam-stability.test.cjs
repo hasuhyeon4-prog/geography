@@ -209,6 +209,27 @@ test('identification rests only on whitelisted knowledge that holds in every yea
       });
       continue;
     }
+    if (q.format === 'joint') {
+      // 동시 식별: every other placement of the 대상 with every other naming of A~C breaks a
+      // whitelisted order, held every year, on the shown numbers.
+      const k = q.entities.length, cell = (n, j) => num(q.display.rows[q.entities.indexOf(n)].cells[j]);
+      for (const o of b.orders) {
+        assert.ok((allowedOrders[o.composition][o.entity] || []).some(a => a.join() === o.order.join()), 'order not whitelisted: ' + o.entity);
+        assert.ok(orderHoldsEveryYear(o.composition, o.entity, o.order), o.entity);
+      }
+      for (const p of permutations(q.entities)) for (const g of permutations(q.hidden)) {
+        if (p.join() === q.entities.join() && g.join() === q.hidden.join()) continue;
+        const broken = b.orders.some(o => {
+          if (!p.includes(o.entity)) return false;
+          const row = q.entities[p.indexOf(o.entity)], v = {};
+          q.display.columns.forEach((c, j) => { if (c.unit === '%') v[c.reveal ? g[q.hidden.indexOf(c.id)] : c.id] = cell(row, j); });
+          const others = Object.keys(v).filter(x => !o.order.includes(x) && !EXCLUDE[o.composition].includes(x));
+          return o.order.some((x, i) => (i + 1 < o.order.length ? [o.order[i + 1]] : others).some(y => v[y] > v[x]));
+        });
+        assert.ok(broken, `${t.id}: ${p.join(',')} / ${g.join(',')} is not ruled out`);
+      }
+      continue;
+    }
     if (q.format === 'columns') {
       // 항목 식별: every wrong assignment of the hidden columns breaks a verified relation, sign
       // or composition order on the shown numbers.
@@ -503,4 +524,19 @@ test('religion: recalled orders cite the lecture and hold on the unrounded Pew r
   for (const [n, c] of Object.entries(religionRaw.countries)) for (const [y, v] of Object.entries(c.series)) {
     for (const [k, x] of Object.entries(v)) assert.ok(Math.abs(x - religion.countries[n].series[y][k]) <= 0.051, `${n} ${y} ${k}`);
   }
+});
+
+test('religion facts asked about A~C follow the lecture, and the world order holds in the Pew world rows', () => {
+  const W = religionRaw.world.series, facts = Object.fromEntries(REL.categoryFacts.map(f => [f.id, f]));
+  assert.deepEqual(Object.keys(W).sort(), ['2010', '2020']);
+  for (const v of Object.values(W)) facts.world.order.slice(1).forEach((x, i) => assert.ok(v[facts.world.order[i]] - v[x] >= 2, facts.world.order[i] + ' > ' + x));
+  let n = 0;
+  for (const q of questions()) for (const s of q.stage2.statements.filter(x => x.kind === 'category')) {
+    const f = facts[s.check.trait], c = s.check;
+    assert.match(f.basis, /강의 1권 P04/);
+    if (f.kind === 'order') assert.equal(f.order.indexOf(c.subject) < f.order.indexOf(c.object), s.truth, s.text);
+    else assert.equal(f.values[c.category] === c.value, s.truth, s.text);
+    n++;
+  }
+  assert.ok(n > 50, 'category <보기> exercised: ' + n);
 });

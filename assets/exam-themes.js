@@ -97,6 +97,8 @@
     '캄보디아','라오스','아프가니스탄','튀르키예','포르투갈','남수단'],
    pick:[3,4],show:['christianity','islam','hinduism','buddhism','judaism','unaffiliated','other'],hideable:['christianity','islam','hinduism','buddhism'],
    amountNoun:'신자 수',reveals:['religion'],
+   // 동시 식별: countries and three religions both hidden (2026학년도 수능 13번·6월 8번).
+   joint:true,jointPrompt:'{range}는 {candidates} 중 하나이고, A~C는 {columns} 중 하나이다. 표는 종교별 인구 비중(%)과 총인구이다.',
    followups:{facts:['islam','buddhism','christianity','bloc','capitalCity','hemisphere','equator','meridian','seas','landlocked'],focus:['islam','buddhism','christianity']},
    prompt:'{range}는 {candidates} 중 하나이다. 표는 종교별 인구 비중(%)과 총인구이다.'
   },

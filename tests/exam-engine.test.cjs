@@ -91,8 +91,8 @@ test('every ready theme builds full two-stage questions', () => {
       else assert.equal(n, 5, t.id);
       assert.equal(new Set(q.stage1.options.map(o => o.join('|'))).size, n, t.id + ' duplicate assignment');
       assert.doesNotMatch(q.prompt, /[{}]/, t.id + ' unresolved prompt');
-      assert.ok(['rows', 'columns', 'implicit'].includes(q.format), t.id + ' format ' + q.format);
-      if (t.map && q.format !== 'columns') {
+      assert.ok(['rows', 'columns', 'implicit', 'joint'].includes(q.format), t.id + ' format ' + q.format);
+      if (t.map && q.format !== 'columns' && q.format !== 'joint') {
         // The 대상 and extra countries are marked A~E, lettered west to east, at points inside them.
         const m = q.stage1.markers;
         assert.ok(m.length >= Math.min(4, t.pool.length) && m.length <= 5, t.id + ' markers ' + m.length);
@@ -104,7 +104,21 @@ test('every ready theme builds full two-stage questions', () => {
         assert.match(q.mapPrompt, /지도에 표시된 A~[DE]/, t.id);
         assert.doesNotMatch(q.mapPrompt, /[{}]/, t.id);
       }
-      if (q.format === 'columns') {
+      if (q.format === 'joint') {
+        // 동시 식별: each option places the 대상 and names A~C; only the true pair survives.
+        assert.ok(t.joint, t.id);
+        assert.deepEqual(q.stage1.options[q.stage1.answer], q.entities.concat(q.hidden), t.id);
+        assert.ok(engine.jointIdentifiable(t, q.entities, q.hidden), t.id + ' joint not identifiable');
+        assert.deepEqual(engine.jointLeft(t, q.entities, q.hidden), [q.entities.concat(q.hidden)], t.id);
+        assert.deepEqual(q.display.columns.filter(c => c.reveal).map(c => c.label), ['A', 'B', 'C'], t.id);
+        assert.deepEqual(q.display.rows.map(r => r.label), q.labels, t.id + ' rows keep their symbols');
+        for (const c of q.display.columns.filter(x => x.reveal)) assert.ok(q.prompt.includes(c.reveal), t.id + ' prompt lists ' + c.reveal);
+        for (const n of q.entities) assert.ok(q.prompt.includes(n), t.id + ' prompt lists ' + n);
+        // One wrong option swaps only the 대상, one only the columns.
+        const k = q.entities.length, rowsOf = o => o.slice(0, k).join(), colsOf = o => o.slice(k).join();
+        const wrong = q.stage1.options.filter((o, i) => i !== q.stage1.answer);
+        assert.ok(wrong.some(o => colsOf(o) === q.hidden.join()) && wrong.some(o => rowsOf(o) === q.entities.join()), t.id + ' near options');
+      } else if (q.format === 'columns') {
         // 항목 식별: the options assign the hidden columns; only the true one is consistent.
         assert.deepEqual(q.stage1.options[q.stage1.answer], q.hidden, t.id);
         assert.ok(engine.columnsIdentifiable(t, q.entities, q.hidden), t.id + ' columns not identifiable');
@@ -183,6 +197,22 @@ test('each statement is true exactly when the knowledge base says so', () => {
           const amount = n => engine.value(n, c.total) * engine.value(n, c.rate) / c.per;
           assert.equal(amount(c.subject) > amount(c.object), s.truth, s.text);
           assert.notEqual(engine.value(c.subject, c.rate) > engine.value(c.object, c.rate), amount(c.subject) > amount(c.object), 'data items are rate-versus-total traps');
+        } else if (s.kind === 'category') {
+          // Facts about a religion itself, from the lecture whitelist; at least one side is hidden.
+          const f = K.categoryFacts[t.composition].find(x => x.id === c.trait);
+          assert.equal(f.status, 'active', s.text);
+          if (f.kind === 'order') {
+            assert.equal(f.order.indexOf(c.subject) < f.order.indexOf(c.object), s.truth, s.text);
+            assert.ok(q.hidden.includes(c.subject) || q.hidden.includes(c.object), s.text);
+          } else {
+            assert.ok(q.hidden.includes(c.category), s.text);
+            assert.equal(f.values[c.category] === c.value, s.truth, s.text);
+          }
+          for (const x of [c.subject, c.object, c.category].filter(Boolean)) {
+            const j = q.hidden.indexOf(x);
+            if (j >= 0) assert.ok(new RegExp('(^|[^A-Z])' + 'ABC'[j] + '(?![A-Z])').test(s.text), s.text);
+          }
+          for (const x of [c.subject, c.object, c.category]) if (q.hidden.includes(x)) assert.ok(!s.text.includes(engine.catLabel(t, x)), 'names a hidden column: ' + s.text);
         } else if (s.kind === 'concept') {
           // A concept-card statement keeps the card's truth; its 대상 appear as their labels.
           const k = K.concepts.find(x => x.id === c.concept);
@@ -190,7 +220,13 @@ test('each statement is true exactly when the knowledge base says so', () => {
           assert.equal(s.truth, k.truth, s.text);
           if (q.format !== 'columns') for (const n of k.about) assert.ok(s.text.includes(q.labels[q.entities.indexOf(n)]) && !new RegExp('(^|[^가-힣])' + n + '(?![가-힣])').test(s.text.replace(/\([가-마]\)/g, '')), s.text);
         } else assert.fail('unknown kind ' + s.kind);
-        assert.ok(s.text.startsWith(q.labels.find(l => s.text.startsWith(l)) || '?'), s.text);
+        if (s.kind === 'category') assert.match(s.text, /^[ABC]는 |^[가-힣]+(은|는) /, s.text);
+        else assert.ok(s.text.startsWith(q.labels.find(l => s.text.startsWith(l)) || '?'), s.text);
+        // A share × total <보기> calls a hidden column by its letter.
+        if (q.hidden && t.kind === 'composition' && s.kind === 'data' && q.hidden.includes(c.category)) {
+          assert.ok(s.text.includes(' ' + 'ABC'[q.hidden.indexOf(c.category)] + ' '), s.text);
+          assert.ok(!s.text.includes(engine.catLabel(t, c.category)), 'names a hidden column: ' + s.text);
+        }
         for (const label of s.text.match(/\([가-마]\)/g) || []) assert.ok(name(q, label), s.text);
         if (q.format === 'columns') assert.doesNotMatch(s.text, /\([가-마]\)/, '항목 식별 <보기> name the 대상: ' + s.text);
       }
@@ -223,7 +259,7 @@ test('<보기> stay on the theme and avoid free distractors', () => {
       }
       // A borrowed domain (대륙 theme's grain columns) is background, as in the engine.
       const own = s => !t.domains || !s.check.ind || (K.indicators[s.check.ind].domain || null) === t.domains[0];
-      if (st.filter(s => own(s) && (['compare', 'sign', 'data', 'graph', 'climate', 'concept'].includes(s.kind) || (s.check.set && (f.focus || []).includes(s.check.set)))).length >= 2) withTheme++;
+      if (st.filter(s => own(s) && (['compare', 'sign', 'data', 'graph', 'climate', 'concept', 'category'].includes(s.kind) || (s.check.set && (f.focus || []).includes(s.check.set)))).length >= 2) withTheme++;
     }
     focusShare[t.id] = withTheme / SEEDS;
   }
@@ -264,6 +300,7 @@ test('questions come in three formats and recent ones are not repeated', () => {
   const formats = {};
   for (const t of engine.themes) for (let seed = 1; seed <= 200; seed++) { const q = engine.build({themeId: t.id, seed}); formats[q.format] = (formats[q.format] || 0) + 1; }
   for (const f of ['rows', 'columns', 'implicit']) assert.ok(formats[f] > 100, f + ' ' + formats[f]);
+  assert.ok(formats.joint > 20, 'joint ' + formats.joint);
   // With the last questions passed as avoid, a theme with enough combinations does not repeat within 20.
   for (const id of ['country-population', 'religion-composition', 'climate-graphs', 'electricity-mix']) {
     const recent = [];

@@ -219,18 +219,19 @@
    var left=permutations(hidden).filter(function(g){return columnsConsistent(theme,rows,hidden,g)});
    return left.length===1&&left[0].join('|')===hidden.join('|');
   }
-  function columnsDisplay(theme,rows,shown,hidden){
-   var names=function(n){return n};
+  function columnsDisplay(theme,rows,shown,hidden,rowLabels){
+   var names=function(n){return rowLabels?rowLabels[rows.indexOf(n)]:n};
    if(theme.kind==='indicators'){
     var named=shown.filter(function(ind){return hidden.indexOf(ind)<0});
     var cols=named.map(function(ind){var m=meta(ind);return {id:ind,label:m.label,unit:m.unit}}).concat(hidden.map(function(id,j){return {id:id,label:COLS[j],reveal:meta(id).label,unit:''}}));
     var src={};shown.forEach(function(ind){var m=meta(ind);src[m.year+' · '+m.source]=1});
     return {columns:cols,rows:rows.map(function(n){return {label:names(n),cells:named.concat(hidden).map(function(ind){return fmt(value(n,ind))})}}),source:Object.keys(src).join(' / ')+' · A~C의 단위는 생략함'};
    }
+   // A~C come first, so on a narrow screen the columns to identify are in view.
    var c=composition(theme),visible=(theme.show||[]).filter(function(id){return hidden.indexOf(id)<0});
-   var cols=visible.map(function(id){return {id:id,label:catLabel(theme,id),unit:'%'}}).concat(hidden.map(function(id,j){return {id:id,label:COLS[j],reveal:catLabel(theme,id),unit:'%'}}));
+   var cols=hidden.map(function(id,j){return {id:id,label:COLS[j],reveal:catLabel(theme,id),unit:'%'}}).concat(visible.map(function(id){return {id:id,label:catLabel(theme,id),unit:'%'}}));
    if(c.total)cols.push({id:c.total.indicator||'total',label:c.total.label,unit:c.total.unit});
-   return {columns:cols,rows:rows.map(function(n){return {label:n,cells:visible.concat(hidden).map(function(id){return fmt(comp(theme,n)[id]||0)}).concat(c.total?[fmt(total(theme,n))]:[])}}),
+   return {columns:cols,rows:rows.map(function(n){return {label:names(n),cells:hidden.concat(visible).map(function(id){return fmt(comp(theme,n)[id]||0)}).concat(c.total?[fmt(total(theme,n))]:[])}}),
     source:c.year+' · '+c.source+' · '+c.unit};
   }
   function columnsCues(theme,rows,hidden){
@@ -245,6 +246,23 @@
     return {label:COLS[j],name:columnName(theme,id),cue:parts.length?parts.slice(0,4).join(' · '):'나머지 항목(소거)'};
    });
   }
+
+  // 동시 식별 (format 'joint'): the 대상 rows and three category columns are both hidden, as on
+  // exam tables where countries and religions are symbols. perm places the 대상 on the rows and
+  // guess names the columns; only one pair may survive the verified orders.
+  function jointConsistent(theme,chosen,hidden,perm,guess){
+   var c=composition(theme);
+   return perm.every(function(n,i){
+    var o=orderOf(theme,n);if(!o)return true;
+    var data=comp(theme,chosen[i]),v=Object.assign({},data);guess.forEach(function(g,j){v[g]=data[hidden[j]]});
+    return !orderBroken(c,o.order,v);
+   });
+  }
+  function jointLeft(theme,chosen,hidden){
+   var out=[];permutations(chosen).forEach(function(p){permutations(hidden).forEach(function(g){if(jointConsistent(theme,chosen,hidden,p,g))out.push(p.concat(g))})});
+   return out;
+  }
+  function jointIdentifiable(theme,chosen,hidden){var left=jointLeft(theme,chosen,hidden);return left.length===1&&left[0].join('|')===chosen.concat(hidden).join('|')}
 
   function stage1(chosen,r){
    var all=permutations(chosen),key=function(p){return p.join('|')},right=key(chosen);
@@ -333,9 +351,12 @@
   }
 
   // named: the 대상 are shown by name (항목 식별), so <보기> use names with their particles.
-  function candidates(theme,chosen,shown,r,named){
+  // hidden: composition categories shown as A~C; <보기> call them by their letters.
+  function candidates(theme,chosen,shown,r,named,hidden){
    if(theme.kind==='climate')return climateCandidates(theme,chosen,r);
    var out=[],has=function(n){return chosen.indexOf(n)>=0};
+   hidden=theme.kind==='composition'&&hidden||[];
+   var CN=function(cat){var j=hidden.indexOf(cat);return j>=0?COLS[j]:catLabel(theme,cat)},CS=function(cat){return CN(cat)+(hidden.indexOf(cat)>=0?'는':topic(CN(cat)))};
    // A fact the clue sentence already states ('힌두교 신자가 가장 많은 국가') is not asked about.
    var given={};if(theme.kind==='clues')chosen.forEach(function(n,i){given[n]=clueOf(shown[i]).text});
    var stated=function(n,set){var f=entity(n).facts[set];return !!(given[n]&&f&&f.values.some(function(v){return given[n].indexOf(optionLabel(set,v))>=0}))};
@@ -402,9 +423,9 @@
       if(cat==='other'||ca[cat]<1||cb[cat]<1)return;
       var amtA=ca[cat]*ta/100,amtB=cb[cat]*tb/100,s0=trap(p,ca[cat],cb[cat],amtA,amtB,1.5);if(!s0)return;
       var truth=r()<.5,s=truth?s0:[s0[1],s0[0]],amt=function(n){return n===p[0]?amtA:amtB};
-      var noun=catLabel(theme,cat)+' '+(theme.amountNoun||'인구');
+      var noun=CN(cat)+' '+(theme.amountNoun||'인구');
       add({kind:'data',key:'amount|'+cat+'|'+p[0]+'|'+p[1],check:{category:cat,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+noun+subjectParticle(noun)+' 많다.',truth:truth,
-       explain:'표의 비율 × '+c.total.label+': '+s0[0]+' 약 '+fmt(amt(s0[0]))+c.total.unit+', '+s0[1]+' 약 '+fmt(amt(s0[1]))+c.total.unit+' — 비율은 반대지만 '+c.total.label+' 차이 때문에 실제 '+(/수$/.test(theme.amountNoun||'')?'수는':'양은')+' 이렇다. (비율·'+c.total.label+' 모두 '+c.year+'년 '+c.source+')'});
+       explain:(hidden.indexOf(cat)>=0?CN(cat)+'는 '+catLabel(theme,cat)+'. ':'')+'표의 비율 × '+c.total.label+': '+s0[0]+' 약 '+fmt(amt(s0[0]))+c.total.unit+', '+s0[1]+' 약 '+fmt(amt(s0[1]))+c.total.unit+' — 비율은 반대지만 '+c.total.label+' 차이 때문에 실제 '+(/수$/.test(theme.amountNoun||'')?'수는':'양은')+' 이렇다. (비율·'+c.total.label+' 모두 '+c.year+'년 '+c.source+')'});
      });
     }
     if(theme.kind==='indicators')(theme.derived||[]).forEach(function(d){
@@ -415,6 +436,26 @@
      var line=function(n){return n+' '+fmt(value(n,d.total))+tm.unit+' × '+fmt(value(n,d.rate))+rm.unit+' ≈ '+fmt(value(n,d.total)*value(n,d.rate)/d.per)+tm.unit};
      add({kind:'data',key:'derived|'+d.rate+'|'+p[0]+'|'+p[1],check:{rate:d.rate,total:d.total,per:d.per,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+d.noun+'가 많다.',truth:truth,
       explain:'표의 '+tm.label+' × '+rm.label+': '+line(s0[0])+', '+line(s0[1])+' — '+rm.label+'은 반대지만 '+tm.label+' 차이 때문에 '+d.noun+'는 이렇다. ('+rm.year+', '+rm.source+')'});
+    });
+   });
+   // What a hidden category is (religion: world adherents, origin, founding time, 보편/민족).
+   // Asked only once a column is identified, so at least one category of each item is hidden.
+   var CF=hidden.length&&(kb.categoryFacts||{})[theme.composition]||[],named0=CF.length?(theme.show||[]).filter(function(x){return composition(theme).rankExclude.indexOf(x)<0}):[];
+   CF.forEach(function(f){
+    if(f.status!=='active')return;
+    var name=function(x){return hidden.indexOf(x)>=0?CN(x)+'('+catLabel(theme,x)+')':catLabel(theme,x)};
+    if(f.kind==='order'){
+     var why=f.label+': '+f.order.map(function(x){return catLabel(theme,x)}).join(' > ')+(f.values?' (세계 인구 중 비율 '+Object.keys(f.values).map(function(y){return y+'년 '+f.order.map(function(x){return fmt(f.values[y][x])}).join('·')}).join(', ')+'%, '+f.source+')':'')+' · 근거: '+f.basis;
+     pairs(f.order.filter(function(x){return named0.indexOf(x)>=0})).forEach(function(p){
+      if(hidden.indexOf(p[0])<0&&hidden.indexOf(p[1])<0)return;
+      var truth=r()<.5,s=truth?p:[p[1],p[0]];
+      add({kind:'category',key:'cat|'+f.id+'|'+p.slice().sort().join('|'),text:CS(s[0])+' '+CN(s[1])+'보다 '+f.more+'.',truth:truth,explain:name(s[0])+', '+name(s[1])+' — '+why,check:{trait:f.id,subject:s[0],object:s[1]}});
+     });
+    }else hidden.forEach(function(x){
+     var v0=f.values[x];if(v0==null)return;
+     var others=Object.keys(f.values).map(function(k){return f.values[k]}).filter(function(v,i,a){return v!==v0&&a.indexOf(v)===i});
+     var v=others.length&&r()<.5?pick(others,r):v0;
+     add({kind:'category',key:'cat|'+f.id+'|'+x,text:CS(x)+' '+fill(f.phrase,v)+'.',truth:v===v0,explain:name(x)+' — '+f.label+': '+v0+' · 근거: '+f.basis,check:{trait:f.id,category:x,value:v}});
     });
    });
    return out;
@@ -428,7 +469,7 @@
   function isFocus0(theme,c){var focusSets=(theme.followups&&theme.followups.focus)||[];
    // A theme that borrows another domain (대륙 곡물 with population) keeps the borrowed ones as background.
    if(theme.domains&&c.check&&c.check.ind&&(meta(c.check.ind).domain||null)!==theme.domains[0])return false;
-   return c.kind==='concept'||c.kind==='compare'||c.kind==='sign'||c.kind==='data'||c.kind==='graph'||c.kind==='climate'||!!(c.check&&c.check.set&&focusSets.indexOf(c.check.set)>=0)}
+   return c.kind==='concept'||c.kind==='category'||c.kind==='compare'||c.kind==='sign'||c.kind==='data'||c.kind==='graph'||c.kind==='climate'||!!(c.check&&c.check.set&&focusSets.indexOf(c.check.set)>=0)}
   function chooseStatements(theme,cands,r){
    var isFocus=function(c){return isFocus0(theme,c)};
    var picked=[],used={},kinds={},both=0;
@@ -520,7 +561,7 @@
    var signature=theme.id+'|columns|'+rows.slice().sort(koSort).join(',')+'|'+hidden.slice().sort().join(',');
    if(avoid.indexOf(signature)>=0&&attempt<450)return null;
    if(!columnsIdentifiable(theme,rows,hidden))return null;
-   var s2=chooseStatements(theme,candidates(theme,rows,shown,r,true),r);if(!s2)return null;
+   var s2=chooseStatements(theme,candidates(theme,rows,shown,r,true,hidden),r);if(!s2)return null;
    if(k<theme.pick[1]&&attempt<400&&s2.statements.filter(function(s){return isFocus0(theme,s)}).length<2)return null;
    var s1=stage1(hidden,r),names={};hidden.forEach(function(id){names[id]=columnName(theme,id)});
    var list=hidden.map(function(id){return names[id]}).sort(koSort).join(', ');
@@ -528,6 +569,30 @@
     prompt:'표는 '+rows.join(', ')+'의 자료이다. A~C는 '+list+' 중 하나이다.',
     stage1:{question:'A~C에 해당하는 것으로 옳은 것은?',labels:COLS,names:names,options:s1.options,answer:s1.answer,cues:columnsCues(theme,rows,hidden),basis:{columns:hidden}},
     stage2:{question:'자료에 대한 설명으로 옳은 것만을 <보기>에서 고른 것은?',statements:s2.statements,options:s2.options,answer:s2.answer}};
+  }
+
+  function buildJoint(theme,avail,k,r,avoid,attempt){
+   var hidden=shuffle(columnsFor(theme),r).slice(0,3),chosen=shuffle(avail,r).slice(0,k);
+   var signature=theme.id+'|joint|'+chosen.slice().sort(koSort).join(',')+'|'+hidden.slice().sort().join(',');
+   if(avoid.indexOf(signature)>=0&&attempt<450)return null;
+   if(!jointIdentifiable(theme,chosen,hidden))return null;
+   var s2=chooseStatements(theme,candidates(theme,chosen,[],r,false,hidden),r);if(!s2)return null;
+   if(k<theme.pick[1]&&attempt<400&&s2.statements.filter(function(s){return isFocus0(theme,s)}).length<2)return null;
+   // Wrong options: one with only the 대상 swapped, one with only the columns, the rest both.
+   var right=chosen.concat(hidden),key=function(o){return o.join('|')},wrong={rows:[],cols:[],both:[]};
+   permutations(chosen).forEach(function(p){permutations(hidden).forEach(function(g){
+    var o=p.concat(g);if(key(o)===key(right))return;
+    wrong[p.join()===chosen.join()?'cols':g.join()===hidden.join()?'rows':'both'].push(o);
+   })});
+   var picked=shuffle(wrong.rows,r).slice(0,1).concat(shuffle(wrong.cols,r).slice(0,1));
+   picked=picked.concat(shuffle(wrong.both,r).slice(0,4-picked.length));
+   var options=shuffle([right].concat(picked),r),names={};hidden.forEach(function(id){names[id]=columnName(theme,id)});
+   var range=LABELS[0]+'~'+LABELS[k-1],list=hidden.map(function(id){return names[id]}).sort(koSort).join(', '),who=chosen.slice().sort(koSort).join(', ');
+   var basis=known(theme,chosen,[]);basis.columns=hidden;
+   return {theme:theme,format:'joint',signature:signature,labels:LABELS.slice(0,k),entities:chosen,hidden:hidden,shown:[],display:columnsDisplay(theme,chosen,[],hidden,LABELS),
+    prompt:(theme.jointPrompt||theme.prompt).split('{range}').join(range).split('{candidates}').join(who).split('{columns}').join(list),
+    stage1:{question:range+'와 A~C에 해당하는 것으로 옳은 것은?',rows:k,labels:COLS,names:names,options:options,answer:options.map(key).indexOf(key(right)),cues:cues(theme,chosen,[]).concat(columnsCues(theme,chosen,hidden)),basis:basis},
+    stage2:{question:range+'와 A~C에 대한 설명으로 옳은 것만을 <보기>에서 고른 것은?',statements:s2.statements,options:s2.options,answer:s2.answer}};
   }
 
   function build(opts){
@@ -562,9 +627,11 @@
     // A theme without three columns to hide, or a 항목 식별 draw that keeps failing, falls back to 대상 식별.
     // The format is fixed for the first attempts; later ones re-roll, so when the recent questions
     // have used up one format (전력 대상 식별 has four), another format is tried instead of a repeat.
-    var canHide=columnsFor(theme).length>=3,roll=attempt<150?roll0:r();
-    var format=mode==='columns'&&!canHide?'rows':mode||(roll<.35&&canHide&&attempt<300?'columns':roll>.8?'implicit':'rows');
+    // A joint theme (종교) splits the 항목 식별 share with 동시 식별, where rows and columns are both hidden.
+    var canHide=columnsFor(theme).length>=3,canJoint=canHide&&!!theme.joint&&theme.kind==='composition',roll=attempt<150?roll0:r();
+    var format=(mode==='columns'&&!canHide)||(mode==='joint'&&!canJoint)?'rows':mode||(roll<.35&&canHide&&attempt<300?(canJoint&&roll>=.15?'joint':'columns'):roll>.8?'implicit':'rows');
     if(format==='columns'){var cq=buildColumns(theme,avail,k,r,avoid,attempt);if(cq)return cq;continue}
+    if(format==='joint'){var jq=buildJoint(theme,avail,k,r,avoid,attempt);if(jq)return jq;continue}
     var known0=theme.everyKnown&&theme.kind!=='indicators'?avail.filter(own):avail;
     if(known0.length<k)continue;
     var chosen=draw(theme,known0,k,r),shown=[];
@@ -619,7 +686,7 @@
    }
    return null;
   }
-  return {themes:ready,build:build,identifiable:identifiable,columnsIdentifiable:columnsIdentifiable,columnsConsistent:columnsConsistent,candidates:candidates,known:known,relation:relation,value:value,comp:comp,total:total,seeded:seeded,LABELS:LABELS,COMBOS:COMBOS};
+  return {themes:ready,build:build,identifiable:identifiable,columnsIdentifiable:columnsIdentifiable,columnsConsistent:columnsConsistent,jointIdentifiable:jointIdentifiable,jointLeft:jointLeft,catLabel:catLabel,candidates:candidates,known:known,relation:relation,value:value,comp:comp,total:total,seeded:seeded,LABELS:LABELS,COMBOS:COMBOS};
  }
  return {create:create,seeded:seeded,topic:topic};
 });

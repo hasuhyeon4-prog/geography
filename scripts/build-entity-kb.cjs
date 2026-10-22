@@ -570,6 +570,22 @@ for (const o of REL.orders) {
 // The energy whitelist (R2) names each country's leading sources in primary energy.
 for (const o of ENERGY.orders) for (const [n, order] of Object.entries(o.orders)) orders.push(Object.assign(checkOrder(o.composition, n, order), {basis: o.basis}));
 
+// Facts about the categories themselves (religions), asked once a hidden column A~C is identified.
+// The world adherent order must also hold in the Pew world rows (2010, 2020) by the order margin.
+const WORLD = {religion: religionRaw.world};
+const categoryFacts = {};
+for (const f of REL.categoryFacts || []) {
+  const g = Object.assign({}, f);
+  if (f.id === 'world') {
+    const ser = WORLD[f.composition].series, gaps = [];
+    for (const [y, v] of Object.entries(ser)) f.order.slice(1).forEach((k, i) => gaps.push([y, v[f.order[i]] - v[k]]));
+    const least = gaps.reduce((a, b) => (b[1] < a[1] ? b : a));
+    Object.assign(g, {years: Object.keys(ser), minGap: Math.round(least[1] * 10) / 10, values: Object.fromEntries(Object.entries(ser).map(([y, v]) => [y, Object.fromEntries(f.order.map(k => [k, Math.round(v[k] * 10) / 10]))])),
+      status: least[1] <= 0 ? 'reversed' : least[1] < compositions[f.composition].orderMargin ? 'belowMargin' : 'active', source: religionRaw.source + ' 세계 전체'});
+  } else g.status = 'active';
+  (categoryFacts[f.composition] = categoryFacts[f.composition] || []).push(g);
+}
+
 // --- climate graphs: lecture climate types checked against the station normals ---
 // Lecture 1권 P02 thresholds: A 최한월 18℃ 이상, B 건조 한계 미만, C 최한월 −3~18℃·최난월 10℃ 이상,
 // D 최한월 −3℃ 미만, E 최난월 10℃ 미만. A type counts as knowledge only when the station data give
@@ -652,7 +668,7 @@ const out = {
     options: Object.fromEntries(C.optionsFor(C.byId[id]).map(o => [o.id, o.label])),
   }])), agriFactSets),
   extraFacts: Object.fromEntries(Object.entries(extra.facts).map(([k, f]) => [k, {label: f.label, complete: f.complete, source: f.source}])),
-  indicators, entities, compositions, relations, signs, orders, concepts, outOfScope,
+  indicators, entities, compositions, relations, signs, orders, categoryFacts, concepts, outOfScope,
   climate: {period: climate.normalPeriod, source: '관측소 월평년값(WMO 제출 자료 우선, JMA·ECCC 보충)', margin: CLIMATE_MARGIN, types: CLIMATE_LABEL, verdicts: climateTypes},
 };
 // Verified is not the same as practicable: count how often each active relation reaches a
@@ -673,12 +689,14 @@ for (const t of engine.themes) for (let seed = 1; seed <= PRACTICE_SEEDS; seed++
   for (const st of q.stage2.statements) {
     if (st.kind === 'compare') hit(pairKey(st.check.ind, st.check.subject, st.check.object));
     if (st.kind === 'sign') hit('s|' + st.check.ind + '|' + st.check.entity);
+    if (st.kind === 'category') hit('c|' + q.theme.composition + '|' + st.check.trait);
   }
 }
 for (const x of relations) if (x.status === 'active') x.practice = uses[pairKey(x.indicator, x.hi, x.lo)] || 0;
 for (const x of signs) if (x.status === 'active') x.practice = uses['s|' + x.indicator + '|' + x.entity] || 0;
 for (const x of orders) if (x.status === 'active') x.practice = uses['o|' + x.composition + '|' + x.entity] || 0;
 for (const x of climateTypes) if (x.status === 'active') x.practice = uses['k|' + x.entity] || 0;
+for (const [cid, list] of Object.entries(categoryFacts)) for (const x of list) if (x.status === 'active') x.practice = uses['c|' + cid + '|' + x.id] || 0;
 out.practiceSample = {seedsPerTheme: PRACTICE_SEEDS, themes: engine.themes.map(t => t.id)};
 
 fs.writeFileSync(process.env.KB_OUT || path.join(ROOT, 'assets/entity-kb.js'),
