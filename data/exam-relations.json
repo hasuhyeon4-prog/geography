@@ -76,7 +76,12 @@
  "orders": [
   {"composition": "exports","orders": {"사우디아라비아": ["fuel"],"나이지리아": ["fuel"],"튀르키예": ["manufactures"],"멕시코": ["manufactures"],"일본": ["manufactures"],"칠레": ["ores"],"아르헨티나": ["food"]},"basis": "최종 강의 2권 P08 95~96·99쪽, P11 176쪽 · 2026학년도 6월 16번·2027학년도 6월 7번·9월 13번. 품목 구조를 WDI의 명시된 SITC 범주로만 사용하며 다이아몬드를 광석·금속으로 옮기지 않음"},
   {"composition": "religion","orders": {"말레이시아": ["islam","buddhism"],"네팔": ["hinduism","buddhism"],"스리랑카": ["buddhism","hinduism"],"인도": ["hinduism","islam"],"방글라데시": ["islam","hinduism"]},"basis": "강의 1권 P04 국가별 신자 수 상위 종교의 관계 · 2026학년도 6월 8번 · 2026학년도 수능 13번"},
-  {"composition": "religion","fromSet": "religion","entities": ["말레이시아","네팔","스리랑카","인도","방글라데시","미얀마","필리핀","우즈베키스탄","인도네시아","이스라엘","레바논","나이지리아","파키스탄","타이"],"basis": "분류 지도 '신자 수가 가장 많은 종교' 세트의 채점 항목(강의 1권 P04)"},
+  {"composition": "religion","fromSet": "religion","entities": ["말레이시아","네팔","스리랑카","인도","방글라데시","미얀마","필리핀","우즈베키스탄","인도네시아","이스라엘","파키스탄","타이"],"basis": "분류 지도 '신자 수가 가장 많은 종교' 세트의 채점 항목(강의 1권 P04). 나이지리아는 강의가 한 종교로 설명하지 않고(2권 P10), 레바논은 강의 근거가 없어 회상하지 않음"},
+  {"composition": "religion","orders": {"우즈베키스탄": ["islam","christianity"],"필리핀": ["christianity","islam"],"미얀마": ["buddhism","christianity"]},"basis": "강의 1권 P04 신자 수 1·2위 종교 · 2027학년도 9월 7번(2020년 자료). 미얀마의 2위는 간격이 작아 회상하지 않음"},
+  {"composition": "religion","orders": {"캄보디아": ["buddhism"],"라오스": ["buddhism"]},"basis": "강의 1권 P04·2권 P10 동남아시아의 다수 종교(타이·미얀마·캄보디아·라오스는 불교) · 2025학년도 9월 4번(앙코르와트)"},
+  {"composition": "religion","orders": {"아프가니스탄": ["islam"],"튀르키예": ["islam"]},"basis": "강의 1권 P04 국가의 다수 종교와 유적의 종교 구별(아프가니스탄의 바미얀 석불, 이슬람교도가 다수인 튀르키예의 크리스트교 유적)"},
+  {"composition": "religion","orders": {"포르투갈": ["christianity"]},"basis": "강의 1권 P04 종교 상징과 국장 · 2024학년도 9월 20번(스리랑카·파키스탄·포르투갈)"},
+  {"composition": "religion","orders": {"남수단": ["christianity"]},"basis": "강의 1권 P04 남수단의 분리 독립(기출에서 크리스트교 신자가 이슬람교 신자보다 많은 국가로 비교). 기타 종교가 이슬람교보다 커서 2위는 정하지 않음"},
   {"composition": "electricity","orders": {"프랑스": ["nuclear"]},"basis": "강의 2권 P07 우라늄과 원자력 발전(프랑스의 높은 원자력 비중은 발전 정책의 결과)"},
   {"composition": "electricity","orders": {"노르웨이": ["hydro"],"아이슬란드": ["hydro"],"덴마크": ["wind"]},"basis": "강의 2권 P07 · 2025학년도 수능 9번 · 2027학년도 6월 8번(노르웨이는 풍력보다 수력, 아이슬란드는 전력 생산에서 수력, 덴마크는 풍력의 대표 사례)"},
   {"composition": "electricity","orders": {"브라질": ["hydro"],"네팔": ["hydro"]},"basis": "강의 2권 P07(브라질은 수력이 중요한 국가, 네팔은 2015년 전력 생산에서 수력 비중 99.8%)"}

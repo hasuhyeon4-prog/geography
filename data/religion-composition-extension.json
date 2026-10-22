@@ -3033,6 +3033,34 @@
     "2020": 51858481.5
    }
   },
+  "남수단": {
+   "iso3": "SSD",
+   "sourceName": "South Sudan",
+   "series": {
+    "2010": {
+     "christianity": 58.69256973,
+     "islam": 6.231332302,
+     "unaffiliated": 0.449186146,
+     "buddhism": 0.002269053,
+     "hinduism": 0.002003497,
+     "judaism": 0.0,
+     "other": 34.6226387
+    },
+    "2020": {
+     "christianity": 60.50164413,
+     "islam": 6.223001957,
+     "unaffiliated": 0.440300107,
+     "buddhism": 0.002269128,
+     "hinduism": 0.00200112,
+     "judaism": 0.0,
+     "other": 32.83078384
+    }
+   },
+   "populationSeries": {
+    "2010": 9745953.5,
+    "2020": 10698467.0
+   }
+  },
   "에스파냐": {
    "iso3": "ESP",
    "sourceName": "Spain",
@@ -3760,6 +3788,32 @@
     "2010": 13356547.5,
     "2020": 15526888.5
    }
+  }
+ },
+ "world": {
+  "series": {
+   "2010": {
+    "christianity": 30.58475113,
+    "islam": 23.86979103,
+    "unaffiliated": 23.29216576,
+    "buddhism": 4.88203001,
+    "hinduism": 14.97799492,
+    "judaism": 0.198186591,
+    "other": 2.195080042
+   },
+   "2020": {
+    "christianity": 28.77144623,
+    "islam": 25.64849091,
+    "unaffiliated": 24.16189003,
+    "buddhism": 4.111000538,
+    "hinduism": 14.93646812,
+    "judaism": 0.187420741,
+    "other": 2.183285475
+   }
+  },
+  "populationSeries": {
+   "2010": 7020588096.0,
+   "2020": 7885807101.0
   }
  }
 }

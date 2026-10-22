@@ -18,6 +18,7 @@ const countries = data('data/country-indicators.json');
 const groups = data('data/group-series.json');
 const electricity = data('data/electricity-mix.json');
 const religion = data('data/religion-composition.json');
+const religionRaw = data('data/religion-composition-extension.json');
 const economy = data('data/economy-indicators.json');
 const engine = E.create(K, T);
 const SEEDS = 300;
@@ -132,9 +133,12 @@ const compositionSeries = {
 const EXCLUDE = {electricity: [], exports: [], religion: ['unaffiliated', 'other'], primaryEnergy: []};
 function orderHoldsEveryYear(cid, name, order) {
   const ser = compositionSeries[cid](name);
-  return Object.values(ser).every(v => {
+  // Religion: the rounded and the unrounded Pew rows, and no 무종교·기타 bundle above a ranked religion.
+  const rows = Object.values(ser).concat(cid === 'religion' && religionRaw.countries[name] ? Object.values(religionRaw.countries[name].series) : []);
+  return rows.every(v => {
     const rest = Object.keys(v).filter(k => !order.includes(k) && !EXCLUDE[cid].includes(k));
-    return order.every((k, i) => (i + 1 < order.length ? v[k] > v[order[i + 1]] : rest.every(o => v[k] > v[o])));
+    return order.every((k, i) => (i + 1 < order.length ? v[k] > v[order[i + 1]] : rest.every(o => v[k] > v[o]))) &&
+      EXCLUDE[cid].every(k => !(v[k] >= v[order[order.length - 1]]));
   }) && (cid === 'religion' ? Object.keys(ser).length === 2 : Object.keys(ser).length >= MIN_YEARS);
 }
 
@@ -477,5 +481,26 @@ test('agriculture knowledge is recalled only where a theme lists its domain', ()
       if (!ind) continue;
       assert.ok(domains.includes(AGRI_COL[ind] || AGRI_AREA[ind] ? 'agri' : null), q.theme.id + ': ' + s.text);
     }
+  }
+});
+
+test('religion: recalled orders cite the lecture and hold on the unrounded Pew rows', () => {
+  for (const o of K.orders.filter(x => x.composition === 'religion')) {
+    assert.match(o.basis, /강의 1권 P04/, o.entity);
+    if (o.status === 'active') assert.ok(orderHoldsEveryYear('religion', o.entity, o.order), o.entity + ' ' + o.order);
+  }
+  // The lecture declines one religion for 나이지리아 and says nothing of 레바논's; 미얀마's 2위 is too close.
+  for (const n of ['나이지리아', '레바논']) {
+    assert.ok(!K.orders.some(o => o.composition === 'religion' && o.entity === n), n);
+  }
+  assert.ok(!K.entities['나이지리아'].facts.religion);
+  assert.equal(K.orders.find(o => o.entity === '미얀마' && o.order.length === 2).status, 'belowMargin');
+  for (const q of questions()) for (const o of q.stage1.basis.orders || []) {
+    assert.ok(o.status === undefined || o.status === 'active', o.entity);
+    assert.ok(!(o.entity === '미얀마' && o.order.length === 2), '미얀마 2위 used');
+  }
+  // The unrounded release is the same estimate as the rounded file.
+  for (const [n, c] of Object.entries(religionRaw.countries)) for (const [y, v] of Object.entries(c.series)) {
+    for (const [k, x] of Object.entries(v)) assert.ok(Math.abs(x - religion.countries[n].series[y][k]) <= 0.051, `${n} ${y} ${k}`);
   }
 });

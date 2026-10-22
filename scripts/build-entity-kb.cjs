@@ -30,6 +30,8 @@ const groupSeries = read('data/group-series.json');
 const extra = read('data/entity-facts.json');
 const electricity = read('data/electricity-mix.json');
 const religion = read('data/religion-composition.json');
+// The same Pew release unrounded (R5). Religion orders must also hold on these rows.
+const religionRaw = read('data/religion-composition-extension.json');
 const REL = read('data/exam-relations.json');
 if (economy.meta.baseYear !== stats.meta.baseYear) throw new Error('economy and country totals have different base years');
 
@@ -84,6 +86,9 @@ const EXCLUSIVE = ['religion', 'christianity', 'islam', 'buddhism', 'bloc', 'ape
 // A set entry can describe a territory rather than the country itself: 프랑스's
 // latinLanguage entry is French Guiana, so it says nothing about France.
 const FACT_SCOPE = {latinLanguage: name => C.regionOf[name] === 'americas'};
+// Set entries the lecture declines to state as one country-wide fact. 나이지리아: '국토 전체를
+// 어느 하나의 종교만으로 설명하기 어렵다' (2권 P10), and the Pew editions disagree on its 1위.
+const FACT_UNSAFE = {religion: ['나이지리아']};
 
 function ringArea(ring) {
   let a = 0;
@@ -155,6 +160,7 @@ for (const name of Object.keys(shapes.byName)) {
     const set = C.byId[id];
     if (!set || set.points) continue;
     if (FACT_SCOPE[id] && !FACT_SCOPE[id](name)) continue;
+    if ((FACT_UNSAFE[id] || []).includes(name)) continue;
     const e = C.entry(set, name);
     if (e.status === 'graded') facts[id] = {values: e.values.slice(), note: e.note || ''};
     else if (e.status === 'other' && NEGATION_SAFE[id] === 'all' && e.values.length) facts[id] = {values: e.values.slice(), note: e.note || ''};
@@ -533,19 +539,24 @@ function checkOrder(cid, name, order) {
   if (!ser || !c.values[name]) return no('구성 자료 없음');
   const years = Object.keys(ser).filter(y => cid === 'religion' || (y >= Y0 && y <= Y1)).sort();
   if (cid !== 'religion' && years.length < MIN_YEARS) return no(`${Y0}~${Y1}년 자료 ${years.length}개 연도`);
-  const rows = years.map(y => [y, ser[y]]).concat([['표시값', c.values[name]]]);
+  const raw = cid === 'religion' && religionRaw.countries[name];
+  const rows = years.map(y => [y, ser[y]]).concat(raw ? Object.entries(raw.series).map(([y, v]) => [y + '년 비반올림값', v]) : [], [['표시값', c.values[name]]]);
   const rest = c.categories.map(x => x[0]).filter(k => !order.includes(k) && !c.rankExclude.includes(k));
   let least = [null, Infinity];
-  const broken = [];
+  const broken = [], bundled = [];
   for (const [y, v] of rows) {
     const gaps = order.map((k, i) => v[k] - (i + 1 < order.length ? v[order[i + 1]] : Math.max(...rest.map(o => v[o] || 0))));
     const g = Math.min(...gaps);
     if (g <= 0) broken.push(y);
     if (g < least[1]) least = [y, g];
+    // The table shows 무종교 and 기타 종교 too: a ranked religion smaller than either would read
+    // as contradicting '신자 수 n위'.
+    if (c.rankExclude.some(k => v[k] >= v[order[order.length - 1]])) bundled.push(y);
   }
   Object.assign(out, {years: [years[0], years[years.length - 1]], n: years.length, minGap: Math.round(least[1] * 10) / 10});
   if (broken.length) return Object.assign(out, {status: 'reversed', reason: `순서가 성립하지 않는 해: ${broken.join('·')}`});
-  if (least[1] < c.orderMargin) return Object.assign(out, {status: 'belowMargin', reason: `순서는 확인한 모든 해에 같음. 최소 간격 ${Math.round(least[1] * 10) / 10}%p(${least[0]}${least[0] === '표시값' ? '' : '년'}) < 출제 기준 ${c.orderMargin}%p`});
+  if (bundled.length) return Object.assign(out, {status: 'belowMargin', reason: `${c.categories.find(x => x[0] === order[order.length - 1])[1]}보다 ${c.rankExclude.map(k => c.categories.find(x => x[0] === k)[1]).join('·')} 중 하나가 큰 해: ${bundled.map(y => /^\d+$/.test(y) ? y + '년' : y).join('·')}`});
+  if (least[1] < c.orderMargin) return Object.assign(out, {status: 'belowMargin', reason: `순서는 확인한 모든 해에 같음. 최소 간격 ${Math.round(least[1] * 10) / 10}%p(${/^\d+$/.test(least[0]) ? least[0] + '년' : least[0]}) < 출제 기준 ${c.orderMargin}%p`});
   return Object.assign(out, {status: 'active'});
 }
 const orders = [];

@@ -243,15 +243,22 @@ with zipfile.ZipFile(io.BytesIO(raw('pew2025.zip'))) as z:
     rows=list(csv.DictReader(io.StringIO(z.read(fn).decode('utf-8-sig'))))
 pew={};cols={'christianity':'Christians','islam':'Muslims','unaffiliated':'Religiously_unaffiliated',
     'buddhism':'Buddhists','hinduism':'Hindus','judaism':'Jews','other':'Other_religions'}
+# The app boundaries (Natural Earth) code South Sudan 'SDS' where ISO uses 'SSD'.
+BOUNDARY_CODE={'SSD':'SDS'}
+world={}
 for r in rows:
+    # Level 3 is the Pew world total: the world adherent order the lecture compares (1권 P04).
+    if r['Level']=='3':
+        y=r['Year'];world.setdefault('series',{})[y]={k:number(r[v]) for k,v in cols.items()}
+        world.setdefault('populationSeries',{})[y]=number(r['Population']);continue
     if r['Level']!='1':continue
-    iso=m49_iso.get(int(r['Countrycode']));name=ISO_KO.get(iso)
+    iso=m49_iso.get(int(r['Countrycode']));name=ISO_KO.get(BOUNDARY_CODE.get(iso,iso))
     if not name:continue
     y=r['Year'];p=pew.setdefault(name,{'iso3':iso,'sourceName':r['Country'],'series':{},'populationSeries':{}})
     p['series'][y]={k:number(r[v]) for k,v in cols.items()};p['populationSeries'][y]=number(r['Population'])
 write('data/religion-composition-extension.json',{'schemaVersion':1,'source':'Pew Research Center Religious Composition 2010–2020 dataset (2025)',
     'unit':'% of population','populationUnit':'명','years':[2010,2020],'precision':'원본 비반올림 비율. 표시 단계에서만 반올림.',
-    'countries':pew})
+    'countries':pew,'world':world})
 
 # EIA physical quantities preserve their own product and activity definitions.
 eia={}

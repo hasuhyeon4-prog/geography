@@ -90,9 +90,11 @@
    prompt:'{range}는 {candidates} 중 하나이다. 그래프는 월평균 기온(선)과 월 강수량(막대)이다.'
   },
   {
-   id:'religion-composition',status:'ready',title:'국가별 종교 인구 구성',lecture:'1권 P04',exams:['2027학년도 9월 7번','2026학년도 6월 8번','2022학년도 6월 5번'],
+   id:'religion-composition',status:'ready',title:'국가별 종교 인구 구성',lecture:'1권 P04',exams:['2027학년도 9월 7번','2026학년도 수능 13번','2026학년도 6월 8번','2024학년도 9월 20번','2022학년도 6월 5번'],
    kind:'composition',composition:'religion',entityType:'country',map:true,
-   pool:['말레이시아','네팔','스리랑카','인도','방글라데시','미얀마','필리핀','우즈베키스탄','인도네시아','이스라엘','레바논','나이지리아','파키스탄','타이'],
+   // 레바논·나이지리아 stay as table rows only: their 1위 is not recalled (data/exam-relations.json).
+   pool:['말레이시아','네팔','스리랑카','인도','방글라데시','미얀마','필리핀','우즈베키스탄','인도네시아','이스라엘','레바논','나이지리아','파키스탄','타이',
+    '캄보디아','라오스','아프가니스탄','튀르키예','포르투갈','남수단'],
    pick:[3,4],show:['christianity','islam','hinduism','buddhism','judaism','unaffiliated','other'],hideable:['christianity','islam','hinduism','buddhism'],
    amountNoun:'신자 수',reveals:['religion'],
    followups:{facts:['islam','buddhism','christianity','bloc','capitalCity','hemisphere','equator','meridian','seas','landlocked'],focus:['islam','buddhism','christianity']},
