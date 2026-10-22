@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>세계지리 강의 표</title>
+<style>
+:root{--ink:#142d39;--muted:#60727b;--line:#dce4e6;--accent:#086b70;--pale:#e6f2f0;--paper:#fff;--good:#2b8a3e;--bad:#c4441c}
+*{box-sizing:border-box}html,body{margin:0;width:100%;min-height:100%;color:var(--ink);background:#f6f9f9;font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;font-size:15px}
+button,select{font:inherit;color:inherit;border:1px solid var(--line);border-radius:10px;background:#fff}button{cursor:pointer;min-height:44px;padding:8px 12px;font-weight:700;touch-action:manipulation}button:hover{background:#f3f7f7}
+button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #52b4c2;outline-offset:2px}[hidden]{display:none!important}
+.primary{background:var(--accent);border-color:var(--accent);color:#fff}.primary:hover{background:#05595d}
+header{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:8px;min-height:52px;padding:5px 12px;padding-top:calc(5px + env(safe-area-inset-top));background:#fff;border-bottom:1px solid var(--line)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.nav{display:flex;gap:2px;margin-left:auto}.nav a{font-size:12px;font-weight:700;color:var(--muted);text-decoration:none;padding:9px 6px;border-radius:9px;white-space:nowrap}.nav a[aria-current=page]{background:var(--ink);color:#fff}@media(max-width:380px){.nav a{padding:8px 3px;font-size:11px}}
+.navLink{flex-shrink:0;font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border:1px solid #badcd5;background:var(--pale);border-radius:10px;padding:9px 8px;white-space:nowrap}
+.scope{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:8px 12px;background:#fafcfc;border-bottom:1px solid var(--line)}.scope label{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);white-space:nowrap;min-width:0}
+select{min-height:40px;min-width:0;width:100%;padding:6px;font-size:13px;font-weight:650;color:var(--ink)}
+main{max-width:720px;margin:0 auto;padding:14px 14px calc(24px + env(safe-area-inset-bottom))}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 2px 10px #142d390d;margin-bottom:12px}
+.meta{font-size:12px;color:var(--muted);margin-bottom:8px;line-height:1.5}
+.q{font-size:18px;line-height:1.55;font-weight:700;margin:4px 0 12px;word-break:keep-all}
+.desc{list-style:none;padding:0;margin:0 0 14px;border:1px solid var(--line);border-radius:12px}.desc li{padding:9px 12px;border-top:1px solid var(--line);line-height:1.55;word-break:keep-all}.desc li:first-child{border-top:0}.desc b{display:block;font-size:12px;color:var(--muted)}
+.choices{display:grid;gap:8px}.choices button{text-align:left;font-weight:650;line-height:1.45;word-break:keep-all}
+.choices button.right{border-color:var(--good);background:#ebfbee;color:#1f5f2c}.choices button.wrong{border-color:var(--bad);background:#fff4e6;color:#8a3a0c}.choices button:disabled{cursor:default;opacity:1}
+.result{border-radius:12px;padding:11px 13px;margin:12px 0;font-size:14px;line-height:1.6}.result.good{background:#ebfbee;color:#1f5f2c}.result.bad{background:#fff4e6;color:#8a3a0c}
+.wrap{overflow-x:auto;margin:8px 0}table{border-collapse:collapse;font-size:13px;min-width:100%}th,td{border:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top;line-height:1.5;word-break:keep-all;min-width:7em}th{background:#f3f7f7;font-weight:700}
+tr.hit td{background:#fff8db}td.name{font-weight:700;white-space:nowrap;min-width:0}
+.big{width:100%;min-height:52px;font-size:16px;border-radius:13px;margin-top:6px}
+.small{font-size:12px;line-height:1.5}.muted{color:var(--muted)}h2{font-size:17px;margin:0 0 6px}
+.hint{font-size:12px;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+<header><a class="navLink" href="index.html">← 위치</a><h1 class="sr">강의 표</h1><nav class="nav" aria-label="퀴즈 종류"><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html">OX</a><a href="concepts.html" aria-current="page">강의 표</a><a href="exam.html">기출형</a></nav></header>
+<div class="scope"><label for="domainSelect">영역<select id="domainSelect"></select></label><label for="modeSelect">방식<select id="modeSelect"><option value="which">설명 → 대상</option><option value="what">대상 → 설명</option><option value="study">표 보기</option></select></label></div>
+<main id="main" aria-live="polite"></main>
+<script src="assets/concept-tables.js?v=20261022-1"></script>
+<script>
+(function(){
+'use strict';
+var $=function(id){return document.getElementById(id)},T=window.WGConceptTables;
+if(!T){$('main').textContent='강의 표를 불러오지 못했어요. 새로고침해 주세요.';return}
+function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(c){if(c!=null&&c!==false)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
+function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_concepts_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
+var store=readStore();if(!store.history||typeof store.history!=='object')store.history={};
+var domainName={};T.domains.forEach(function(d){domainName[d.id]=d.name});
+var state={domain:domainName[store.domain]?store.domain:'all',mode:['which','what','study'].includes(store.mode)?store.mode:'which',q:null,answer:null,right:0,total:0};
+function save(){try{localStorage.setItem('wg_concepts_v1',JSON.stringify({domain:state.domain,mode:state.mode,history:store.history}))}catch(e){}}
+function tables(){return T.tables.filter(function(t){return state.domain==='all'||t.domain===state.domain})}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),x=a[i];a[i]=a[j];a[j]=x}return a}
+function title(t){return domainName[t.domain]+' · 강의 '+t.lecture}
+// Rows are compared within one lecture table only; a table's cells are the answers it defines.
+function tableEl(t,hit){
+ var head=el('tr',{},[el('th',{text:'구분'})].concat(t.columns.map(function(c){return el('th',{text:c.label})})));
+ var body=t.rows.map(function(r,i){return el('tr',{className:i===hit?'hit':null},[el('td',{className:'name',text:r})].concat(t.columns.map(function(c){return el('td',{text:c.cells[i]||'—'})})))});
+ return el('div',{className:'wrap'},[el('table',{},[el('thead',{},[head]),el('tbody',{},body)])]);
+}
+function examsEl(t){return t.exams.length?el('p',{className:'small muted',text:'관련 기출 '+t.exams.length+'문항: '+t.exams.slice(0,4).join(', ')+(t.exams.length>4?' 외':'')}):null}
+// The questions this mode can ask, each with how often it was missed.
+function items(){
+ var out=[];
+ tables().forEach(function(t){
+  t.rows.forEach(function(r,i){
+   if(state.mode==='which'){if(t.columns.some(function(c){return c.cells[i]}))out.push({t:t,row:i,key:'which|'+t.id+'|'+r})}
+   else t.columns.forEach(function(c,j){if(c.askable)out.push({t:t,row:i,col:j,key:'what|'+t.id+'|'+r+'|'+c.label})});
+  });
+ });
+ return out;
+}
+// Missed and unseen questions come first; otherwise at random.
+function weight(it){var h=store.history[it.key];return !h?2:h.wrong>h.right?3+h.wrong-h.right:h.last===false?2.5:1}
+function draw(){
+ var list=items();if(!list.length)return null;
+ var total=list.reduce(function(s,x){return s+weight(x)},0),pick=Math.random()*total;
+ for(var i=0;i<list.length;i++){pick-=weight(list[i]);if(pick<=0)return list[i]}
+ return list[list.length-1];
+}
+// Up to five options from the same table, always including the answer.
+function options(all,answer){var others=shuffle(all.filter(function(x){return x!==answer})).slice(0,4);return shuffle(others.concat([answer]))}
+// The row's own name inside its cells would give the answer away.
+function mask(text,name){return text.split(name).join('○○')}
+function next(){
+ var it=draw();state.answer=null;
+ if(!it){state.q=null;render();return}
+ var t=it.t;
+ if(state.mode==='which')state.q={it:it,options:options(t.rows,t.rows[it.row]),answer:t.rows[it.row]};
+ else{var c=t.columns[it.col];state.q={it:it,options:options(c.cells,c.cells[it.row]),answer:c.cells[it.row]}}
+ render();window.scrollTo({top:0});
+}
+function choose(opt){
+ if(state.answer!==null||!state.q)return;state.answer=opt;var ok=opt===state.q.answer;state.total++;if(ok)state.right++;
+ var h=store.history[state.q.it.key]||(store.history[state.q.it.key]={right:0,wrong:0});h[ok?'right':'wrong']++;h.last=ok;save();render();
+}
+function renderStudy(main){
+ var list=tables();
+ main.append(el('p',{className:'small muted',text:'강의 표 '+list.length+'개. 각 표는 강의가 대상끼리 비교한 그대로입니다. 연습에서는 같은 표 안에서만 고릅니다.'}));
+ list.forEach(function(t){main.append(el('section',{className:'card'},[el('div',{className:'meta',text:title(t)}),el('h2',{text:t.rows.join(' · ')}),tableEl(t,-1),examsEl(t)]))});
+}
+function renderQuiz(main){
+ var q=state.q;
+ if(!q){main.append(el('section',{className:'card'},[el('p',{text:'이 영역에는 문항이 없어요.'})]));return}
+ var t=q.it.t,i=q.it.row,name=t.rows[i],card=el('section',{className:'card'});
+ card.append(el('div',{className:'meta',text:title(t)+(state.total?' · 이번 '+state.right+'/'+state.total:'')}));
+ if(state.mode==='which'){
+  card.append(el('p',{className:'q',text:'강의 표에서 다음 설명에 해당하는 것은?'}));
+  card.append(el('ul',{className:'desc'},t.columns.filter(function(c){return c.cells[i]}).map(function(c){return el('li',{},[el('b',{text:c.label}),mask(c.cells[i],name)])})));
+ }else card.append(el('p',{className:'q',text:name+'의 「'+t.columns[q.it.col].label+'」는?'}));
+ var box=el('div',{className:'choices'});
+ q.options.forEach(function(o,k){
+  var b=el('button',{type:'button',text:(k+1)+'. '+o,onclick:function(){choose(o)}});
+  if(state.answer!==null){b.disabled=true;if(o===q.answer)b.className='right';else if(o===state.answer)b.className='wrong'}
+  box.append(b);
+ });
+ card.append(box);
+ if(state.answer!==null){
+  var ok=state.answer===q.answer;
+  card.append(el('div',{className:'result '+(ok?'good':'bad'),role:'status'},[el('b',{text:ok?'정답':'오답 — 정답: '+q.answer})]));
+  card.append(tableEl(t,i),examsEl(t));
+  card.append(el('button',{type:'button',className:'primary big',text:'다음 문항',onclick:next}));
+ }
+ main.append(card);
+ main.append(el('p',{className:'hint',text:'키보드: 1~5로 고르고 Enter로 다음'}));
+}
+function render(){
+ var main=$('main');main.replaceChildren();
+ if(state.mode==='study')renderStudy(main);else renderQuiz(main);
+}
+$('domainSelect').append(el('option',{value:'all',text:'전체 ('+T.tables.length+'개 표)'}));
+T.domains.forEach(function(d){$('domainSelect').append(el('option',{value:d.id,text:d.name+' · '+d.section+' ('+T.tables.filter(function(t){return t.domain===d.id}).length+')'}))});
+$('domainSelect').value=state.domain;$('modeSelect').value=state.mode;
+$('domainSelect').onchange=function(){state.domain=this.value;save();state.mode==='study'?render():next()};
+$('modeSelect').onchange=function(){state.mode=this.value;save();state.mode==='study'?render():next()};
+document.addEventListener('keydown',function(e){
+ if(e.target.tagName==='SELECT'||e.altKey||e.ctrlKey||e.metaKey||state.mode==='study'||!state.q)return;
+ var n=parseInt(e.key,10);
+ if(n>=1&&n<=state.q.options.length&&state.answer===null){e.preventDefault();choose(state.q.options[n-1])}
+ else if(e.key==='Enter'&&state.answer!==null){e.preventDefault();next()}
+});
+state.mode==='study'?render():next();
+})();
+</script>
+</body>
+</html>
