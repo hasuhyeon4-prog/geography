@@ -1,0 +1,1647 @@
+{
+ "schemaVersion": 1,
+ "about": "cities 강의 근거 개념 카드",
+ "policy": {
+  "absenceMeansFalse": false,
+  "falseDistractors": "명시적 거짓 statements만 사용. complete:false인 세트의 교차 대입 금지.",
+  "sourceLocator": "data/extension-sources/lecture-blocks.json의 blockId; 쪽수 미측정",
+  "scope": "개념 카드이며 기출 재현율 또는 화면 연결 완료를 뜻하지 않는다."
+ },
+ "entities": {
+  "뉴욕": {
+   "type": "city",
+   "place": [
+    -74.006,
+    40.7128
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1706",
+    "locator": "강의 1권 P05 / L1-B1706",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1706",
+     "locator": "강의 1권 P05 / L1-B1706",
+     "priorAuditExamIds": []
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::뉴욕",
+    "name": "뉴욕",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "도시·도시 단서::뉴욕",
+     "name": "뉴욕",
+     "geometry": {
+      "type": "point",
+      "lon": -74.006,
+      "lat": 40.7128,
+      "kind": "city"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "런던": {
+   "type": "city",
+   "place": [
+    -0.1278,
+    51.5074
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1706",
+    "locator": "강의 1권 P05 / L1-B1706",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1706",
+     "locator": "강의 1권 P05 / L1-B1706",
+     "priorAuditExamIds": []
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::런던",
+    "name": "런던",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "도시·도시 단서::런던",
+     "name": "런던",
+     "geometry": {
+      "type": "point",
+      "lon": -0.1278,
+      "lat": 51.5074,
+      "kind": "city"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "파리": {
+   "type": "city",
+   "place": [
+    2.3522,
+    48.8566
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1706",
+    "locator": "강의 1권 P05 / L1-B1706",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1706",
+     "locator": "강의 1권 P05 / L1-B1706",
+     "priorAuditExamIds": []
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::파리",
+    "name": "파리",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "도시·도시 단서::파리",
+     "name": "파리",
+     "geometry": {
+      "type": "point",
+      "lon": 2.3522,
+      "lat": 48.8566,
+      "kind": "city"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "도쿄": {
+   "type": "city",
+   "place": [
+    139.6503,
+    35.6762
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1706",
+    "locator": "강의 1권 P05 / L1-B1706",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1706",
+     "locator": "강의 1권 P05 / L1-B1706",
+     "priorAuditExamIds": []
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::도쿄",
+    "name": "도쿄",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "도시·도시 단서::도쿄",
+     "name": "도쿄",
+     "geometry": {
+      "type": "point",
+      "lon": 139.6503,
+      "lat": 35.6762,
+      "kind": "city"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "싱가포르": {
+   "type": "city",
+   "place": [
+    103.8198,
+    1.3521
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1706",
+    "locator": "강의 1권 P05 / L1-B1706",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1706",
+     "locator": "강의 1권 P05 / L1-B1706",
+     "priorAuditExamIds": []
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::싱가포르",
+    "name": "싱가포르",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "도시·도시 단서::싱가포르",
+     "name": "싱가포르",
+     "geometry": {
+      "type": "point",
+      "lon": 103.8198,
+      "lat": 1.3521,
+      "kind": "city"
+     },
+     "source": "data/extension-sources/location-items.json"
+    },
+    {
+     "id": "국가::싱가포르",
+     "name": "싱가포르",
+     "geometry": {
+      "type": "point",
+      "lon": 103.82,
+      "lat": 1.35,
+      "kind": "country"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "시드니": {
+   "type": "city",
+   "place": [
+    151.2093,
+    -33.8688
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1706",
+    "locator": "강의 1권 P05 / L1-B1706",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1706",
+     "locator": "강의 1권 P05 / L1-B1706",
+     "priorAuditExamIds": []
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::시드니",
+    "name": "시드니",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "도시·도시 단서::시드니",
+     "name": "시드니",
+     "geometry": {
+      "type": "point",
+      "lon": 151.2093,
+      "lat": -33.8688,
+      "kind": "city"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "브라질": {
+   "type": "country",
+   "place": [
+    -47.8828,
+    -15.7939
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1630",
+    "locator": "강의 1권 P05 / L1-B1630",
+    "priorAuditExamIds": [
+     "2023_6_14",
+     "2026_9_18"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1630",
+     "locator": "강의 1권 P05 / L1-B1630",
+     "priorAuditExamIds": [
+      "2023_6_14",
+      "2026_9_18"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "국가::브라질",
+    "name": "브라질",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "국가::브라질",
+     "name": "브라질",
+     "geometry": {
+      "type": "point",
+      "lon": -47.8828,
+      "lat": -15.7939,
+      "kind": "country"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "오스트레일리아": {
+   "type": "country",
+   "place": [
+    147.04655,
+    -32.91055
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1630",
+    "locator": "강의 1권 P05 / L1-B1630",
+    "priorAuditExamIds": [
+     "2023_6_14",
+     "2026_9_18"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1630",
+     "locator": "강의 1권 P05 / L1-B1630",
+     "priorAuditExamIds": [
+      "2023_6_14",
+      "2026_9_18"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "국가::오스트레일리아",
+    "name": "오스트레일리아",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "국가::오스트레일리아",
+     "name": "오스트레일리아",
+     "geometry": {
+      "type": "point",
+      "lon": 147.04655,
+      "lat": -32.91055,
+      "kind": "country"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "나이지리아": {
+   "type": "country",
+   "place": [
+    6.0,
+    6.5244
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1630",
+    "locator": "강의 1권 P05 / L1-B1630",
+    "priorAuditExamIds": [
+     "2023_6_14",
+     "2026_9_18"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1630",
+     "locator": "강의 1권 P05 / L1-B1630",
+     "priorAuditExamIds": [
+      "2023_6_14",
+      "2026_9_18"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "국가::나이지리아",
+    "name": "나이지리아",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "국가::나이지리아",
+     "name": "나이지리아",
+     "geometry": {
+      "type": "point",
+      "lon": 6.0,
+      "lat": 6.5244,
+      "kind": "country"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "파키스탄": {
+   "type": "country",
+   "place": [
+    68.5,
+    27.0
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1630",
+    "locator": "강의 1권 P05 / L1-B1630",
+    "priorAuditExamIds": [
+     "2023_6_14",
+     "2026_9_18"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1630",
+     "locator": "강의 1권 P05 / L1-B1630",
+     "priorAuditExamIds": [
+      "2023_6_14",
+      "2026_9_18"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "국가::파키스탄",
+    "name": "파키스탄",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "국가::파키스탄",
+     "name": "파키스탄",
+     "geometry": {
+      "type": "point",
+      "lon": 68.5,
+      "lat": 27.0,
+      "kind": "country"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "미국": {
+   "type": "country",
+   "place": [
+    -91.4998,
+    39.81
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1630",
+    "locator": "강의 1권 P05 / L1-B1630",
+    "priorAuditExamIds": [
+     "2023_6_14",
+     "2026_9_18"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1630",
+     "locator": "강의 1권 P05 / L1-B1630",
+     "priorAuditExamIds": [
+      "2023_6_14",
+      "2026_9_18"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "국가::미국",
+    "name": "미국",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "국가::미국",
+     "name": "미국",
+     "geometry": {
+      "type": "point",
+      "lon": -91.4998,
+      "lat": 39.81,
+      "kind": "country"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  }
+ },
+ "sets": {
+  "L1-B1706-c2": {
+   "label": "강한 기준점",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "북부 아메리카·금융·기업·UN 본부",
+    "영국 수도·금융·역사적 세계 연결",
+    "프랑스 수도·생산자 서비스·라데팡스",
+    "일본 수도·기업·금융·동아시아 연결",
+    "도시국가·항공·항만·금융 허브",
+    "오세아니아의 세계 도시 기능"
+   ],
+   "values": {
+    "뉴욕": [
+     "북부 아메리카·금융·기업·UN 본부"
+    ],
+    "런던": [
+     "영국 수도·금융·역사적 세계 연결"
+    ],
+    "파리": [
+     "프랑스 수도·생산자 서비스·라데팡스"
+    ],
+    "도쿄": [
+     "일본 수도·기업·금융·동아시아 연결"
+    ],
+    "싱가포르": [
+     "도시국가·항공·항만·금융 허브"
+    ],
+    "시드니": [
+     "오세아니아의 세계 도시 기능"
+    ]
+   },
+   "evidence": {
+    "뉴욕": [
+     {
+      "value": "북부 아메리카·금융·기업·UN 본부",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1706",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1706 / 표 2행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "런던": [
+     {
+      "value": "영국 수도·금융·역사적 세계 연결",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1706",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1706 / 표 3행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "파리": [
+     {
+      "value": "프랑스 수도·생산자 서비스·라데팡스",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1706",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1706 / 표 4행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "도쿄": [
+     {
+      "value": "일본 수도·기업·금융·동아시아 연결",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1706",
+       "tableRow": 5,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1706 / 표 5행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "싱가포르": [
+     {
+      "value": "도시국가·항공·항만·금융 허브",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1706",
+       "tableRow": 6,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1706 / 표 6행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "시드니": [
+     {
+      "value": "오세아니아의 세계 도시 기능",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1706",
+       "tableRow": 7,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1706 / 표 7행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1706",
+    "locator": "강의 1권 P05 / L1-B1706",
+    "priorAuditExamIds": []
+   }
+  },
+  "L1-B1706-c3": {
+   "label": "함정 제거",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "미국 수도가 아님",
+    "해당 자료의 계층은 직접 읽음",
+    "모든 업무 기능이 구도심에만 있지 않음",
+    "도시권/행정구역 인구 구분",
+    "작은 국토=낮은 세계 기능 아님",
+    "오스트레일리아 수도가 아님"
+   ],
+   "values": {
+    "뉴욕": [
+     "미국 수도가 아님"
+    ],
+    "런던": [
+     "해당 자료의 계층은 직접 읽음"
+    ],
+    "파리": [
+     "모든 업무 기능이 구도심에만 있지 않음"
+    ],
+    "도쿄": [
+     "도시권/행정구역 인구 구분"
+    ],
+    "싱가포르": [
+     "작은 국토=낮은 세계 기능 아님"
+    ],
+    "시드니": [
+     "오스트레일리아 수도가 아님"
+    ]
+   },
+   "evidence": {
+    "뉴욕": [
+     {
+      "value": "미국 수도가 아님",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1706",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1706 / 표 2행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "런던": [
+     {
+      "value": "해당 자료의 계층은 직접 읽음",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1706",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1706 / 표 3행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "파리": [
+     {
+      "value": "모든 업무 기능이 구도심에만 있지 않음",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1706",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1706 / 표 4행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "도쿄": [
+     {
+      "value": "도시권/행정구역 인구 구분",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1706",
+       "tableRow": 5,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1706 / 표 5행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "싱가포르": [
+     {
+      "value": "작은 국토=낮은 세계 기능 아님",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1706",
+       "tableRow": 6,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1706 / 표 6행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "시드니": [
+     {
+      "value": "오스트레일리아 수도가 아님",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1706",
+       "tableRow": 7,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1706 / 표 7행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1706",
+    "locator": "강의 1권 P05 / L1-B1706",
+    "priorAuditExamIds": []
+   }
+  },
+  "L1-B1630-c2": {
+   "label": "수도",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "브라질리아",
+    "캔버라",
+    "아부자",
+    "이슬라마바드",
+    "워싱턴 D.C."
+   ],
+   "values": {
+    "브라질": [
+     "브라질리아"
+    ],
+    "오스트레일리아": [
+     "캔버라"
+    ],
+    "나이지리아": [
+     "아부자"
+    ],
+    "파키스탄": [
+     "이슬라마바드"
+    ],
+    "미국": [
+     "워싱턴 D.C."
+    ]
+   },
+   "evidence": {
+    "브라질": [
+     {
+      "value": "브라질리아",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1630",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1630 / 표 2행",
+       "priorAuditExamIds": [
+        "2023_6_14",
+        "2026_9_18"
+       ]
+      }
+     }
+    ],
+    "오스트레일리아": [
+     {
+      "value": "캔버라",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1630",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1630 / 표 3행",
+       "priorAuditExamIds": [
+        "2023_6_14",
+        "2026_9_18"
+       ]
+      }
+     }
+    ],
+    "나이지리아": [
+     {
+      "value": "아부자",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1630",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1630 / 표 4행",
+       "priorAuditExamIds": [
+        "2023_6_14",
+        "2026_9_18"
+       ]
+      }
+     }
+    ],
+    "파키스탄": [
+     {
+      "value": "이슬라마바드",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1630",
+       "tableRow": 5,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1630 / 표 5행",
+       "priorAuditExamIds": [
+        "2023_6_14",
+        "2026_9_18"
+       ]
+      }
+     }
+    ],
+    "미국": [
+     {
+      "value": "워싱턴 D.C.",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1630",
+       "tableRow": 6,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1630 / 표 6행",
+       "priorAuditExamIds": [
+        "2023_6_14",
+        "2026_9_18"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1630",
+    "locator": "강의 1권 P05 / L1-B1630",
+    "priorAuditExamIds": [
+     "2023_6_14",
+     "2026_9_18"
+    ]
+   }
+  },
+  "L1-B1630-c3": {
+   "label": "대표 대도시·수위 도시 후보",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "상파울루",
+    "시드니·멜버른",
+    "라고스",
+    "카라치",
+    "뉴욕"
+   ],
+   "values": {
+    "브라질": [
+     "상파울루"
+    ],
+    "오스트레일리아": [
+     "시드니·멜버른"
+    ],
+    "나이지리아": [
+     "라고스"
+    ],
+    "파키스탄": [
+     "카라치"
+    ],
+    "미국": [
+     "뉴욕"
+    ]
+   },
+   "evidence": {
+    "브라질": [
+     {
+      "value": "상파울루",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1630",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1630 / 표 2행",
+       "priorAuditExamIds": [
+        "2023_6_14",
+        "2026_9_18"
+       ]
+      }
+     }
+    ],
+    "오스트레일리아": [
+     {
+      "value": "시드니·멜버른",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1630",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1630 / 표 3행",
+       "priorAuditExamIds": [
+        "2023_6_14",
+        "2026_9_18"
+       ]
+      }
+     }
+    ],
+    "나이지리아": [
+     {
+      "value": "라고스",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1630",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1630 / 표 4행",
+       "priorAuditExamIds": [
+        "2023_6_14",
+        "2026_9_18"
+       ]
+      }
+     }
+    ],
+    "파키스탄": [
+     {
+      "value": "카라치",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1630",
+       "tableRow": 5,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1630 / 표 5행",
+       "priorAuditExamIds": [
+        "2023_6_14",
+        "2026_9_18"
+       ]
+      }
+     }
+    ],
+    "미국": [
+     {
+      "value": "뉴욕",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1630",
+       "tableRow": 6,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1630 / 표 6행",
+       "priorAuditExamIds": [
+        "2023_6_14",
+        "2026_9_18"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1630",
+    "locator": "강의 1권 P05 / L1-B1630",
+    "priorAuditExamIds": [
+     "2023_6_14",
+     "2026_9_18"
+    ]
+   }
+  },
+  "L1-B1630-c4": {
+   "label": "판정 포인트",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "내륙 개발을 위한 계획 수도",
+    "정치 수도와 세계 도시 기능 분리",
+    "내륙 계획 수도와 해안 대도시",
+    "정치 수도와 항구·경제 도시",
+    "UN 본부·금융 기능은 뉴욕"
+   ],
+   "values": {
+    "브라질": [
+     "내륙 개발을 위한 계획 수도"
+    ],
+    "오스트레일리아": [
+     "정치 수도와 세계 도시 기능 분리"
+    ],
+    "나이지리아": [
+     "내륙 계획 수도와 해안 대도시"
+    ],
+    "파키스탄": [
+     "정치 수도와 항구·경제 도시"
+    ],
+    "미국": [
+     "UN 본부·금융 기능은 뉴욕"
+    ]
+   },
+   "evidence": {
+    "브라질": [
+     {
+      "value": "내륙 개발을 위한 계획 수도",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1630",
+       "tableRow": 2,
+       "tableColumn": 4,
+       "locator": "강의 1권 P05 / L1-B1630 / 표 2행",
+       "priorAuditExamIds": [
+        "2023_6_14",
+        "2026_9_18"
+       ]
+      }
+     }
+    ],
+    "오스트레일리아": [
+     {
+      "value": "정치 수도와 세계 도시 기능 분리",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1630",
+       "tableRow": 3,
+       "tableColumn": 4,
+       "locator": "강의 1권 P05 / L1-B1630 / 표 3행",
+       "priorAuditExamIds": [
+        "2023_6_14",
+        "2026_9_18"
+       ]
+      }
+     }
+    ],
+    "나이지리아": [
+     {
+      "value": "내륙 계획 수도와 해안 대도시",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1630",
+       "tableRow": 4,
+       "tableColumn": 4,
+       "locator": "강의 1권 P05 / L1-B1630 / 표 4행",
+       "priorAuditExamIds": [
+        "2023_6_14",
+        "2026_9_18"
+       ]
+      }
+     }
+    ],
+    "파키스탄": [
+     {
+      "value": "정치 수도와 항구·경제 도시",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1630",
+       "tableRow": 5,
+       "tableColumn": 4,
+       "locator": "강의 1권 P05 / L1-B1630 / 표 5행",
+       "priorAuditExamIds": [
+        "2023_6_14",
+        "2026_9_18"
+       ]
+      }
+     }
+    ],
+    "미국": [
+     {
+      "value": "UN 본부·금융 기능은 뉴욕",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1630",
+       "tableRow": 6,
+       "tableColumn": 4,
+       "locator": "강의 1권 P05 / L1-B1630 / 표 6행",
+       "priorAuditExamIds": [
+        "2023_6_14",
+        "2026_9_18"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1630",
+    "locator": "강의 1권 P05 / L1-B1630",
+    "priorAuditExamIds": [
+     "2023_6_14",
+     "2026_9_18"
+    ]
+   }
+  }
+ },
+ "statements": [
+  {
+   "id": "existing-p01",
+   "about": [],
+   "claim": "2015년 대륙 간 이동에서 유럽·앵글로아메리카·오세아니아는 순유입 지역이다.",
+   "truth": true,
+   "explanation": "아시아·아프리카·라틴아메리카는 순유출.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p01",
+    "locator": "2020학년도 6월 17번·9월 11번"
+   },
+   "period": "2015년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-p02",
+   "about": [],
+   "claim": "2015년 대륙 간 이동에서 라틴아메리카는 순유입 지역이다.",
+   "truth": false,
+   "explanation": "라틴아메리카는 순유출이며, 큰 이동 흐름이 앵글로아메리카로 향한다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p02",
+    "locator": "2020학년도 6월 17번·9월 11번"
+   },
+   "period": "2015년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-p03",
+   "about": [],
+   "claim": "1950~1955년 유럽은 순유입 지역이었다.",
+   "truth": false,
+   "explanation": "1950~1955년 유럽은 순유출, 2010~2015년에는 순유입 지역이다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p03",
+    "locator": "1권 P05"
+   },
+   "period": "1950~1955년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-p04",
+   "about": [],
+   "claim": "2017년 대륙별 이동 자료 비교에서 인구 총규모는 아시아가, 노령화 지수는 유럽이 가장 높다.",
+   "truth": true,
+   "explanation": "앵글로아메리카는 큰 순유입, 라틴아메리카는 아프리카보다 순유출이 크다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p04",
+    "locator": "2020학년도 6월 17번·9월 11번"
+   },
+   "period": "2017년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-p05",
+   "about": [],
+   "claim": "2020년 비교에서 라틴아메리카는 유럽보다 총인구가 많았다.",
+   "truth": false,
+   "explanation": "러시아를 유럽에 포함한 이 자료에서 유럽이 라틴아메리카보다 총인구가 많다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p05",
+    "locator": "2024학년도 수능"
+   },
+   "period": "2020년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-p06",
+   "about": [],
+   "claim": "2020년 비교에서 아시아는 아프리카보다 인구 밀도가 높았다.",
+   "truth": true,
+   "explanation": "인구 밀도는 아시아가 가장 높다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p06",
+    "locator": "2024학년도 수능"
+   },
+   "period": "2020년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-p07",
+   "about": [],
+   "claim": "2015년 앵글로아메리카·라틴 아메리카·유럽·아프리카 중 도시화율은 유럽이 가장 높다.",
+   "truth": false,
+   "explanation": "앵글로아메리카가 더 높다. 앵글로·라틴 아메리카 사이의 근소한 1위는 외우지 않는다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p07",
+    "locator": "2015년 대륙 자료"
+   },
+   "period": "2015년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-p08",
+   "about": [],
+   "claim": "2023년 아시아 인구에서 인도와 중국이 차지하는 비율은 합계 약 60%이다.",
+   "truth": true,
+   "explanation": "두 인구 대국의 합계가 아시아 인구의 절반을 넘는다. 정확한 비율은 제시 자료에서 읽는다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p08",
+    "locator": "2023년 대륙 내부 인구 비율"
+   },
+   "period": "2023년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-p09",
+   "about": [],
+   "claim": "2023년 아메리카 인구 비율 1위 국가는 브라질이다.",
+   "truth": false,
+   "explanation": "미국 33.0%, 브라질 20.3%, 멕시코 12.4%.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p09",
+    "locator": "2023년 대륙 내부 인구 비율"
+   },
+   "period": "2023년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-p10",
+   "about": [],
+   "claim": "2023년 아프리카 인구 비율 1위 국가는 나이지리아이다.",
+   "truth": true,
+   "explanation": "나이지리아 15.4%이며 상위 5개국 비율이 비교적 고르게 분산되어 있다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p10",
+    "locator": "2023년 대륙 내부 인구 비율"
+   },
+   "period": "2023년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-p11",
+   "about": [],
+   "claim": "아프리카는 순유출이 있어도 높은 자연 증가로 전체 인구가 늘었다.",
+   "truth": true,
+   "explanation": "순유출과 인구 감소는 같은 말이 아니다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p11",
+    "locator": "2018학년도 9월 11번"
+   },
+   "period": "2018학년도 9월 11번의 강의 범위 · 통계 연도 미확인",
+   "practice": "recall"
+  },
+  {
+   "id": "existing-p12",
+   "about": [],
+   "claim": "자연 증가율이 음수이면 총인구는 반드시 감소한다.",
+   "truth": false,
+   "explanation": "순유입이 자연 감소를 상쇄하면 총인구는 늘 수 있다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p12",
+    "locator": "1권 P05"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-p13",
+   "about": [],
+   "claim": "2015년 프랑스·미국·나이지리아 중 총인구는 나이지리아가 가장 많다.",
+   "truth": false,
+   "explanation": "총인구는 미국이 가장 많고 프랑스가 가장 적다. 자연 증가율은 나이지리아가 가장 높다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p13",
+    "locator": "1권 P05"
+   },
+   "period": "2015년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-p14",
+   "about": [],
+   "claim": "2020년 일본·멕시코·나이지리아 중 총인구가 가장 많은 나라는 나이지리아이다.",
+   "truth": true,
+   "explanation": "중위 연령은 일본·멕시코·나이지리아 순으로 높다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p14",
+    "locator": "2023학년도 수능"
+   },
+   "period": "2020년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-p15",
+   "about": [],
+   "claim": "타이는 수도와 최대 도시가 같고, 베트남은 수도와 최대 도시가 다르다.",
+   "truth": true,
+   "explanation": "방콕은 수도이자 최대 도시, 베트남은 수도 하노이와 최대 도시 호찌민.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p15",
+    "locator": "1권 P05"
+   },
+   "period": "1권 P05의 강의 범위 · 통계 연도 미확인",
+   "practice": "recall"
+  },
+  {
+   "id": "existing-p16",
+   "about": [],
+   "claim": "브라질의 최대 도시는 리우데자네이루이다.",
+   "truth": false,
+   "explanation": "최대 도시는 상파울루. 리우데자네이루는 과거 수도로 항구·관광·문화 기능이 크다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p16",
+    "locator": "2권 P10"
+   },
+   "period": "2권 P10의 강의 범위 · 통계 연도 미확인",
+   "practice": "recall"
+  },
+  {
+   "id": "existing-p17",
+   "about": [],
+   "claim": "미국 내에서 시카고의 대도시권 인구 순위는 1950년 2위에서 2020년 3위로 바뀌었다.",
+   "truth": true,
+   "explanation": "인구는 늘었지만 다른 도시가 더 빠르게 성장하면 순위는 내려갈 수 있다. 절대 인구수와 상대 순위를 구별한다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p17",
+    "locator": "2025학년도 9월 15번"
+   },
+   "period": "1950년·2020년 · 미국 내 대도시권 인구",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-p18",
+   "about": [],
+   "claim": "수도 인구가 가장 많은 나라가 수도 인구 비율도 가장 높다.",
+   "truth": false,
+   "explanation": "수도 인구 자체와 수도 인구 비율은 다른 지표이다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p18",
+    "locator": "1권 P05"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-p19",
+   "about": [],
+   "claim": "도시화율이 높은 나라는 도시 인구도 반드시 더 많다.",
+   "truth": false,
+   "explanation": "도시 인구는 총인구×도시화율÷100으로 비교한다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p19",
+    "locator": "1권 P05 함정 교정"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-p20",
+   "about": [],
+   "claim": "수위 도시는 모두 종주 도시이다.",
+   "truth": false,
+   "explanation": "종주성은 제2도시와의 격차·기능 집중이 커야 말할 수 있다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p20",
+    "locator": "1권 P05 함정 교정"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-p21",
+   "about": [],
+   "claim": "세계 도시는 모두 수도이자 거대도시이다.",
+   "truth": false,
+   "explanation": "세계 도시는 기능과 연결망으로 판정한다. 뉴욕·시드니는 수도가 아니다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p21",
+    "locator": "1권 P05 함정 교정"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-p22",
+   "about": [],
+   "claim": "브라질의 수도는 브라질리아이지만 수위 도시는 상파울루이다.",
+   "truth": true,
+   "explanation": "브라질리아는 1960년 리우데자네이루에서 옮긴 내륙 계획 수도.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p22",
+    "locator": "2021학년도 9월 18번"
+   },
+   "period": "2021학년도 9월 18번의 강의 범위 · 통계 연도 미확인",
+   "practice": "recall"
+  },
+  {
+   "id": "existing-p23",
+   "about": [],
+   "claim": "미얀마는 수도를 네피도로 옮기면서 양곤의 경제 중심 기능도 함께 옮겨 갔다.",
+   "truth": false,
+   "explanation": "수도 이전은 정부 기능을 옮기는 것이며 양곤의 경제·문화 중심 기능은 이어진다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p23",
+    "locator": "1권 P05"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-p24",
+   "about": [],
+   "claim": "시드니는 오스트레일리아의 수도이다.",
+   "truth": false,
+   "explanation": "수도는 캔버라. 시드니는 오세아니아의 세계 도시 기능을 가진다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p24",
+    "locator": "1권 P05"
+   },
+   "period": "1권 P05의 강의 범위 · 통계 연도 미확인",
+   "practice": "recall"
+  },
+  {
+   "id": "existing-p25",
+   "about": [],
+   "claim": "뉴욕은 미국의 수도이며 UN 본부가 있는 도시이다.",
+   "truth": false,
+   "explanation": "UN 본부·금융 기능은 뉴욕에 있지만 수도는 워싱턴 D.C.이다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p25",
+    "locator": "1권 P05"
+   },
+   "period": "1권 P05의 강의 범위 · 통계 연도 미확인",
+   "practice": "recall"
+  },
+  {
+   "id": "existing-p26",
+   "about": [],
+   "claim": "합계 출산율이 낮으면 총인구가 즉시 감소한다.",
+   "truth": false,
+   "explanation": "사망·이동·연령 구조 때문에 총인구 변화에는 시차가 있다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p26",
+    "locator": "1권 P05 함정 교정"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-p27",
+   "about": [],
+   "claim": "순이동이 0이면 국제 이동이 전혀 없다는 뜻이다.",
+   "truth": false,
+   "explanation": "유입과 유출이 같아 순값만 0일 수 있다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p27",
+    "locator": "1권 P05 함정 교정"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-p28",
+   "about": [],
+   "claim": "브라질리아·산티아고·멕시코시티 중 해발 고도가 가장 높은 수도는 멕시코시티이다.",
+   "truth": true,
+   "explanation": "멕시코시티 2,215m, 브라질리아 1,092m, 산티아고 638m(2018년 자료).",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p28",
+    "locator": "2021학년도 9월 18번"
+   },
+   "period": "2018년 자료",
+   "practice": "recall"
+  },
+  {
+   "id": "existing-p29",
+   "about": [],
+   "claim": "부에노스아이레스와 멕시코시티는 종주 도시의 대표 사례이다.",
+   "truth": true,
+   "explanation": "부에노스아이레스는 코르도바보다, 멕시코시티는 과달라하라보다 인구가 훨씬 많다(2015년).",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p29",
+    "locator": "2022학년도 6월 3번 등"
+   },
+   "period": "2015년의 도시권 비교 · 경계 정의에 유의",
+   "practice": "recall"
+  },
+  {
+   "id": "existing-p30",
+   "about": [],
+   "claim": "노년층 비율이 높은 나라는 노년층 인구 수도 반드시 더 많다.",
+   "truth": false,
+   "explanation": "노년층 인구 수 = 총인구 × 노년층 비율이다. 비율만으로 총인구가 다른 나라의 인구 수를 정할 수 없다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p30",
+    "locator": "1권 P05 함정 교정"
+   },
+   "period": null,
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-p31",
+   "about": [],
+   "claim": "독일은 베트남보다 도시 인구가 많지만 촌락 인구는 적다.",
+   "truth": true,
+   "explanation": "촌락 인구 = 도시 인구 × (100 − 도시화율) ÷ 도시화율이다. 독일은 6,310×22.8÷77.2 ≈ 1,860만 명, 베트남은 3,160×66.2÷33.8 ≈ 6,190만 명이다. 멕시코·독일의 도시화율 순서는 이 기출 자료의 값으로 읽고 따로 외우지 않는다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "p31",
+    "locator": "2020학년도 6월 14번"
+   },
+   "period": "2020학년도 6월 14번의 강의 범위 · 통계 연도 미확인",
+   "practice": "reading"
+  }
+ ],
+ "counts": {
+  "entities": 11,
+  "sets": 5,
+  "statements": 31
+ }
+}

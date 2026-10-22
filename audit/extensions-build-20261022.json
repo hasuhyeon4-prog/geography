@@ -1,0 +1,196 @@
+{
+ "generatedAt": "2026-10-22",
+ "counts": {
+  "energy": {
+   "entities": 21,
+   "sets": 15,
+   "statements": 26
+  },
+  "climate": {
+   "entities": 18,
+   "sets": 27,
+   "statements": 30
+  },
+  "climate-processes": {
+   "entities": 20,
+   "sets": 14,
+   "statements": 0
+  },
+  "landforms": {
+   "entities": 63,
+   "sets": 32,
+   "statements": 22
+  },
+  "landform-places": {
+   "entities": 64,
+   "sets": 2,
+   "statements": 0
+  },
+  "religion": {
+   "entities": 10,
+   "sets": 45,
+   "statements": 8
+  },
+  "religion-practices": {
+   "entities": 5,
+   "sets": 4,
+   "statements": 0
+  },
+  "religion-places": {
+   "entities": 6,
+   "sets": 2,
+   "statements": 0
+  },
+  "conflicts": {
+   "entities": 18,
+   "sets": 10,
+   "statements": 0
+  },
+  "culture": {
+   "entities": 8,
+   "sets": 3,
+   "statements": 4
+  },
+  "industry": {
+   "entities": 21,
+   "sets": 7,
+   "statements": 28
+  },
+  "city-functions": {
+   "entities": 10,
+   "sets": 6,
+   "statements": 0
+  },
+  "cities": {
+   "entities": 11,
+   "sets": 5,
+   "statements": 31
+  },
+  "oldmaps": {
+   "entities": 12,
+   "sets": 6,
+   "statements": 16
+  },
+  "geographic-information": {
+   "entities": 18,
+   "sets": 9,
+   "statements": 9
+  },
+  "environment": {
+   "entities": 14,
+   "sets": 3,
+   "statements": 28
+  },
+  "localization": {
+   "entities": 6,
+   "sets": 0,
+   "statements": 6
+  }
+ },
+ "countryFacts": 49,
+ "countryClues": 1659,
+ "requestedCountryCoverage": {
+  "볼리비아": {
+   "evidencePassages": 23,
+   "eligibleIdentification": 8,
+   "mapped": true
+  },
+  "카자흐스탄": {
+   "evidencePassages": 21,
+   "eligibleIdentification": 6,
+   "mapped": true
+  },
+  "이탈리아": {
+   "evidencePassages": 31,
+   "eligibleIdentification": 14,
+   "mapped": true
+  },
+  "페루": {
+   "evidencePassages": 22,
+   "eligibleIdentification": 5,
+   "mapped": true
+  },
+  "포르투갈": {
+   "evidencePassages": 16,
+   "eligibleIdentification": 4,
+   "mapped": true
+  },
+  "이라크": {
+   "evidencePassages": 4,
+   "eligibleIdentification": 1,
+   "mapped": true
+  },
+  "잠비아": {
+   "evidencePassages": 7,
+   "eligibleIdentification": 2,
+   "mapped": true
+  },
+  "몽골": {
+   "evidencePassages": 10,
+   "eligibleIdentification": 4,
+   "mapped": true
+  },
+  "나미비아": {
+   "evidencePassages": 4,
+   "eligibleIdentification": 1,
+   "mapped": true
+  },
+  "핀란드": {
+   "evidencePassages": 6,
+   "eligibleIdentification": 1,
+   "mapped": true
+  },
+  "모로코": {
+   "evidencePassages": 8,
+   "eligibleIdentification": 3,
+   "mapped": true
+  },
+  "뉴질랜드": {
+   "evidencePassages": 6,
+   "eligibleIdentification": 1,
+   "mapped": true
+  },
+  "네덜란드": {
+   "evidencePassages": 13,
+   "eligibleIdentification": 4,
+   "mapped": true
+  },
+  "앙골라": {
+   "evidencePassages": 4,
+   "eligibleIdentification": 1,
+   "mapped": true
+  },
+  "차드": {
+   "evidencePassages": 5,
+   "eligibleIdentification": 1,
+   "mapped": true
+  },
+  "콜롬비아": {
+   "evidencePassages": 9,
+   "eligibleIdentification": 2,
+   "mapped": true
+  },
+  "싱가포르": {
+   "evidencePassages": 15,
+   "eligibleIdentification": 7,
+   "mapped": true
+  },
+  "캄보디아": {
+   "evidencePassages": 9,
+   "eligibleIdentification": 1,
+   "mapped": true
+  },
+  "라오스": {
+   "evidencePassages": 6,
+   "eligibleIdentification": 1,
+   "mapped": true
+  }
+ },
+ "sourcePolicy": "원표 셀과 원문을 보존. 판정 미확정 값은 별도 보류.",
+ "notes": [
+  "complete:false인 속성에서 누락된 국가나 값을 거짓으로 만들지 않는다.",
+  "나라 이름·기호가 섞인 원본 명제는 독립 OX로 재사용하지 않고 원문 자료와 함께 제시한다.",
+  "고지도 세부 제작연도처럼 원본 최소 암기 범위 밖인 값은 추가하지 않는다.",
+  "통계 순위·갈등 당사자·회원국은 원본 또는 수집 시점을 고정한다."
+ ]
+}

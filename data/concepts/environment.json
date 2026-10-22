@@ -1,0 +1,1766 @@
+{
+ "schemaVersion": 1,
+ "about": "environment 강의 근거 개념 카드",
+ "policy": {
+  "absenceMeansFalse": false,
+  "falseDistractors": "명시적 거짓 statements만 사용. complete:false인 세트의 교차 대입 금지.",
+  "sourceLocator": "data/extension-sources/lecture-blocks.json의 blockId; 쪽수 미측정",
+  "scope": "개념 카드이며 기출 재현율 또는 화면 연결 완료를 뜻하지 않는다."
+ },
+ "entities": {
+  "람사르 협약": {
+   "type": "treaty",
+   "place": [
+    50.64,
+    36.92
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B1059",
+    "locator": "강의 2권 P09 / L2-B1059",
+    "priorAuditExamIds": [
+     "2016_9_17",
+     "2019_6_10",
+     "2021_6_20",
+     "2025_9_20",
+     "2025_수능_14",
+     "2026_9_20",
+     "2026_수능_2"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P09",
+     "blockId": "L2-B1059",
+     "locator": "강의 2권 P09 / L2-B1059",
+     "priorAuditExamIds": [
+      "2016_9_17",
+      "2019_6_10",
+      "2021_6_20",
+      "2025_9_20",
+      "2025_수능_14",
+      "2026_9_20",
+      "2026_수능_2"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::람사르",
+    "name": "람사르",
+    "source": "기존 자료 재분류"
+   }
+  },
+  "런던 협약": {
+   "type": "treaty",
+   "place": [
+    -0.1278,
+    51.5074
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B1059",
+    "locator": "강의 2권 P09 / L2-B1059",
+    "priorAuditExamIds": [
+     "2016_9_17",
+     "2019_6_10",
+     "2021_6_20",
+     "2025_9_20",
+     "2025_수능_14",
+     "2026_9_20",
+     "2026_수능_2"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P09",
+     "blockId": "L2-B1059",
+     "locator": "강의 2권 P09 / L2-B1059",
+     "priorAuditExamIds": [
+      "2016_9_17",
+      "2019_6_10",
+      "2021_6_20",
+      "2025_9_20",
+      "2025_수능_14",
+      "2026_9_20",
+      "2026_수능_2"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::런던",
+    "name": "런던",
+    "source": "평가원 감사"
+   }
+  },
+  "장거리 이동 대기 오염 협약": {
+   "type": "treaty",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B1059",
+    "locator": "강의 2권 P09 / L2-B1059",
+    "priorAuditExamIds": [
+     "2016_9_17",
+     "2019_6_10",
+     "2021_6_20",
+     "2025_9_20",
+     "2025_수능_14",
+     "2026_9_20",
+     "2026_수능_2"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P09",
+     "blockId": "L2-B1059",
+     "locator": "강의 2권 P09 / L2-B1059",
+     "priorAuditExamIds": [
+      "2016_9_17",
+      "2019_6_10",
+      "2021_6_20",
+      "2025_9_20",
+      "2025_수능_14",
+      "2026_9_20",
+      "2026_수능_2"
+     ]
+    }
+   ]
+  },
+  "몬트리올 의정서": {
+   "type": "treaty",
+   "place": [
+    -73.5673,
+    45.5017
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B1059",
+    "locator": "강의 2권 P09 / L2-B1059",
+    "priorAuditExamIds": [
+     "2016_9_17",
+     "2019_6_10",
+     "2021_6_20",
+     "2025_9_20",
+     "2025_수능_14",
+     "2026_9_20",
+     "2026_수능_2"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P09",
+     "blockId": "L2-B1059",
+     "locator": "강의 2권 P09 / L2-B1059",
+     "priorAuditExamIds": [
+      "2016_9_17",
+      "2019_6_10",
+      "2021_6_20",
+      "2025_9_20",
+      "2025_수능_14",
+      "2026_9_20",
+      "2026_수능_2"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::몬트리올",
+    "name": "몬트리올",
+    "source": "평가원 감사"
+   }
+  },
+  "바젤 협약": {
+   "type": "treaty",
+   "place": [
+    7.5886,
+    47.5596
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B1059",
+    "locator": "강의 2권 P09 / L2-B1059",
+    "priorAuditExamIds": [
+     "2016_9_17",
+     "2019_6_10",
+     "2021_6_20",
+     "2025_9_20",
+     "2025_수능_14",
+     "2026_9_20",
+     "2026_수능_2"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P09",
+     "blockId": "L2-B1059",
+     "locator": "강의 2권 P09 / L2-B1059",
+     "priorAuditExamIds": [
+      "2016_9_17",
+      "2019_6_10",
+      "2021_6_20",
+      "2025_9_20",
+      "2025_수능_14",
+      "2026_9_20",
+      "2026_수능_2"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::바젤",
+    "name": "바젤",
+    "source": "평가원 감사"
+   }
+  },
+  "유엔 사막화 방지 협약": {
+   "type": "treaty",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B1059",
+    "locator": "강의 2권 P09 / L2-B1059",
+    "priorAuditExamIds": [
+     "2016_9_17",
+     "2019_6_10",
+     "2021_6_20",
+     "2025_9_20",
+     "2025_수능_14",
+     "2026_9_20",
+     "2026_수능_2"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P09",
+     "blockId": "L2-B1059",
+     "locator": "강의 2권 P09 / L2-B1059",
+     "priorAuditExamIds": [
+      "2016_9_17",
+      "2019_6_10",
+      "2021_6_20",
+      "2025_9_20",
+      "2025_수능_14",
+      "2026_9_20",
+      "2026_수능_2"
+     ]
+    }
+   ]
+  },
+  "교토 의정서": {
+   "type": "treaty",
+   "place": [
+    135.74805,
+    35.03194
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B1059",
+    "locator": "강의 2권 P09 / L2-B1059",
+    "priorAuditExamIds": [
+     "2016_9_17",
+     "2019_6_10",
+     "2021_6_20",
+     "2025_9_20",
+     "2025_수능_14",
+     "2026_9_20",
+     "2026_수능_2"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P09",
+     "blockId": "L2-B1059",
+     "locator": "강의 2권 P09 / L2-B1059",
+     "priorAuditExamIds": [
+      "2016_9_17",
+      "2019_6_10",
+      "2021_6_20",
+      "2025_9_20",
+      "2025_수능_14",
+      "2026_9_20",
+      "2026_수능_2"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "강의보완::교토",
+    "name": "교토",
+    "source": "개정 강의 2026-09-26"
+   }
+  },
+  "파리 협정": {
+   "type": "treaty",
+   "place": [
+    2.3522,
+    48.8566
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B1059",
+    "locator": "강의 2권 P09 / L2-B1059",
+    "priorAuditExamIds": [
+     "2016_9_17",
+     "2019_6_10",
+     "2021_6_20",
+     "2025_9_20",
+     "2025_수능_14",
+     "2026_9_20",
+     "2026_수능_2"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P09",
+     "blockId": "L2-B1059",
+     "locator": "강의 2권 P09 / L2-B1059",
+     "priorAuditExamIds": [
+      "2016_9_17",
+      "2019_6_10",
+      "2021_6_20",
+      "2025_9_20",
+      "2025_수능_14",
+      "2026_9_20",
+      "2026_수능_2"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::파리",
+    "name": "파리",
+    "source": "평가원 감사"
+   }
+  },
+  "지구 온난화": {
+   "type": "environmentalIssue",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B0899",
+    "locator": "강의 2권 P09 / L2-B0899",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P09",
+     "blockId": "L2-B0899",
+     "locator": "강의 2권 P09 / L2-B0899",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "사막화": {
+   "type": "environmentalIssue",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B0956",
+    "locator": "강의 2권 P09 / L2-B0956",
+    "priorAuditExamIds": [
+     "2014_9_14"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P09",
+     "blockId": "L2-B0956",
+     "locator": "강의 2권 P09 / L2-B0956",
+     "priorAuditExamIds": [
+      "2014_9_14"
+     ]
+    }
+   ]
+  },
+  "열대림 파괴": {
+   "type": "environmentalIssue",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B0980",
+    "locator": "강의 2권 P09 / L2-B0980",
+    "priorAuditExamIds": [
+     "2021_9_17"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P09",
+     "blockId": "L2-B0980",
+     "locator": "강의 2권 P09 / L2-B0980",
+     "priorAuditExamIds": [
+      "2021_9_17"
+     ]
+    }
+   ]
+  },
+  "산성비": {
+   "type": "environmentalIssue",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B0946",
+    "locator": "강의 2권 P09 / L2-B0946",
+    "priorAuditExamIds": [
+     "2014_9_14",
+     "2015_6_18"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P09",
+     "blockId": "L2-B0946",
+     "locator": "강의 2권 P09 / L2-B0946",
+     "priorAuditExamIds": [
+      "2014_9_14",
+      "2015_6_18"
+     ]
+    }
+   ]
+  },
+  "오존층 파괴": {
+   "type": "environmentalIssue",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B0929",
+    "locator": "강의 2권 P09 / L2-B0929",
+    "priorAuditExamIds": [
+     "2016_6_9",
+     "2016_9_17",
+     "2016_수능_7",
+     "2017_9_10",
+     "2018_6_20",
+     "2019_9_18",
+     "2020_6_15",
+     "2020_수능_5",
+     "2023_9_17"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P09",
+     "blockId": "L2-B0929",
+     "locator": "강의 2권 P09 / L2-B0929",
+     "priorAuditExamIds": [
+      "2016_6_9",
+      "2016_9_17",
+      "2016_수능_7",
+      "2017_9_10",
+      "2018_6_20",
+      "2019_9_18",
+      "2020_6_15",
+      "2020_수능_5",
+      "2023_9_17"
+     ]
+    }
+   ]
+  },
+  "생물 다양성": {
+   "type": "environmentalIssue",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B0983",
+    "locator": "강의 2권 P09 / L2-B0983",
+    "priorAuditExamIds": [
+     "2016_6_9",
+     "2016_9_17",
+     "2018_9_5",
+     "2021_수능_9",
+     "2022_6_16",
+     "2022_9_20"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P09",
+     "blockId": "L2-B0983",
+     "locator": "강의 2권 P09 / L2-B0983",
+     "priorAuditExamIds": [
+      "2016_6_9",
+      "2016_9_17",
+      "2018_9_5",
+      "2021_수능_9",
+      "2022_6_16",
+      "2022_9_20"
+     ]
+    }
+   ]
+  }
+ },
+ "sets": {
+  "L2-B1059-c1": {
+   "label": "채택",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "1971",
+    "1972",
+    "1979",
+    "1987",
+    "1989",
+    "1994",
+    "1997",
+    "2015"
+   ],
+   "values": {
+    "람사르 협약": [
+     "1971"
+    ],
+    "런던 협약": [
+     "1972"
+    ],
+    "장거리 이동 대기 오염 협약": [
+     "1979"
+    ],
+    "몬트리올 의정서": [
+     "1987"
+    ],
+    "바젤 협약": [
+     "1989"
+    ],
+    "유엔 사막화 방지 협약": [
+     "1994"
+    ],
+    "교토 의정서": [
+     "1997"
+    ],
+    "파리 협정": [
+     "2015"
+    ]
+   },
+   "evidence": {
+    "람사르 협약": [
+     {
+      "value": "1971",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 2,
+       "tableColumn": 1,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 2행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "런던 협약": [
+     {
+      "value": "1972",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 3,
+       "tableColumn": 1,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 3행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "장거리 이동 대기 오염 협약": [
+     {
+      "value": "1979",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 4,
+       "tableColumn": 1,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 4행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "몬트리올 의정서": [
+     {
+      "value": "1987",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 5,
+       "tableColumn": 1,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 5행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "바젤 협약": [
+     {
+      "value": "1989",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 6,
+       "tableColumn": 1,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 6행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "유엔 사막화 방지 협약": [
+     {
+      "value": "1994",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 7,
+       "tableColumn": 1,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 7행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "교토 의정서": [
+     {
+      "value": "1997",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 8,
+       "tableColumn": 1,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 8행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "파리 협정": [
+     {
+      "value": "2015",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 9,
+       "tableColumn": 1,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 9행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B1059",
+    "locator": "강의 2권 P09 / L2-B1059",
+    "priorAuditExamIds": [
+     "2016_9_17",
+     "2019_6_10",
+     "2021_6_20",
+     "2025_9_20",
+     "2025_수능_14",
+     "2026_9_20",
+     "2026_수능_2"
+    ]
+   }
+  },
+  "L2-B1059-c3": {
+   "label": "채택 도시",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "람사르·이란",
+    "런던·영국",
+    "제네바·스위스",
+    "몬트리올·캐나다",
+    "바젤·스위스",
+    "파리·프랑스",
+    "교토·일본"
+   ],
+   "values": {
+    "람사르 협약": [
+     "람사르·이란"
+    ],
+    "런던 협약": [
+     "런던·영국"
+    ],
+    "장거리 이동 대기 오염 협약": [
+     "제네바·스위스"
+    ],
+    "몬트리올 의정서": [
+     "몬트리올·캐나다"
+    ],
+    "바젤 협약": [
+     "바젤·스위스"
+    ],
+    "유엔 사막화 방지 협약": [
+     "파리·프랑스"
+    ],
+    "교토 의정서": [
+     "교토·일본"
+    ],
+    "파리 협정": [
+     "파리·프랑스"
+    ]
+   },
+   "evidence": {
+    "람사르 협약": [
+     {
+      "value": "람사르·이란",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 2행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "런던 협약": [
+     {
+      "value": "런던·영국",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 3행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "장거리 이동 대기 오염 협약": [
+     {
+      "value": "제네바·스위스",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 4행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "몬트리올 의정서": [
+     {
+      "value": "몬트리올·캐나다",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 5,
+       "tableColumn": 3,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 5행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "바젤 협약": [
+     {
+      "value": "바젤·스위스",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 6,
+       "tableColumn": 3,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 6행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "유엔 사막화 방지 협약": [
+     {
+      "value": "파리·프랑스",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 7,
+       "tableColumn": 3,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 7행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "교토 의정서": [
+     {
+      "value": "교토·일본",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 8,
+       "tableColumn": 3,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 8행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "파리 협정": [
+     {
+      "value": "파리·프랑스",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 9,
+       "tableColumn": 3,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 9행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B1059",
+    "locator": "강의 2권 P09 / L2-B1059",
+    "priorAuditExamIds": [
+     "2016_9_17",
+     "2019_6_10",
+     "2021_6_20",
+     "2025_9_20",
+     "2025_수능_14",
+     "2026_9_20",
+     "2026_수능_2"
+    ]
+   }
+  },
+  "L2-B1059-c4": {
+   "label": "주요 대상·대응",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "습지의 보전과 현명한 이용",
+    "폐기물 등의 해양 투기로 인한 오염 방지",
+    "국경을 넘는 대기 오염, 산성 강수 문제에 관한 협력",
+    "오존층 파괴 물질의 생산·소비 규제",
+    "유해 폐기물 등의 국가 간 이동·처분 규제",
+    "가뭄·사막화와 건조 지역 토지 황폐화 대응",
+    "선진국의 수량적 온실가스 감축 의무 중심",
+    "보편적 참여를 통한 기후 변화 대응"
+   ],
+   "values": {
+    "람사르 협약": [
+     "습지의 보전과 현명한 이용"
+    ],
+    "런던 협약": [
+     "폐기물 등의 해양 투기로 인한 오염 방지"
+    ],
+    "장거리 이동 대기 오염 협약": [
+     "국경을 넘는 대기 오염, 산성 강수 문제에 관한 협력"
+    ],
+    "몬트리올 의정서": [
+     "오존층 파괴 물질의 생산·소비 규제"
+    ],
+    "바젤 협약": [
+     "유해 폐기물 등의 국가 간 이동·처분 규제"
+    ],
+    "유엔 사막화 방지 협약": [
+     "가뭄·사막화와 건조 지역 토지 황폐화 대응"
+    ],
+    "교토 의정서": [
+     "선진국의 수량적 온실가스 감축 의무 중심"
+    ],
+    "파리 협정": [
+     "보편적 참여를 통한 기후 변화 대응"
+    ]
+   },
+   "evidence": {
+    "람사르 협약": [
+     {
+      "value": "습지의 보전과 현명한 이용",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 2,
+       "tableColumn": 4,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 2행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "런던 협약": [
+     {
+      "value": "폐기물 등의 해양 투기로 인한 오염 방지",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 3,
+       "tableColumn": 4,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 3행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "장거리 이동 대기 오염 협약": [
+     {
+      "value": "국경을 넘는 대기 오염, 산성 강수 문제에 관한 협력",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 4,
+       "tableColumn": 4,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 4행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "몬트리올 의정서": [
+     {
+      "value": "오존층 파괴 물질의 생산·소비 규제",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 5,
+       "tableColumn": 4,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 5행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "바젤 협약": [
+     {
+      "value": "유해 폐기물 등의 국가 간 이동·처분 규제",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 6,
+       "tableColumn": 4,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 6행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "유엔 사막화 방지 협약": [
+     {
+      "value": "가뭄·사막화와 건조 지역 토지 황폐화 대응",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 7,
+       "tableColumn": 4,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 7행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "교토 의정서": [
+     {
+      "value": "선진국의 수량적 온실가스 감축 의무 중심",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 8,
+       "tableColumn": 4,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 8행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ],
+    "파리 협정": [
+     {
+      "value": "보편적 참여를 통한 기후 변화 대응",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P09",
+       "blockId": "L2-B1059",
+       "tableRow": 9,
+       "tableColumn": 4,
+       "locator": "강의 2권 P09 / L2-B1059 / 표 9행",
+       "priorAuditExamIds": [
+        "2016_9_17",
+        "2019_6_10",
+        "2021_6_20",
+        "2025_9_20",
+        "2025_수능_14",
+        "2026_9_20",
+        "2026_수능_2"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B1059",
+    "locator": "강의 2권 P09 / L2-B1059",
+    "priorAuditExamIds": [
+     "2016_9_17",
+     "2019_6_10",
+     "2021_6_20",
+     "2025_9_20",
+     "2025_수능_14",
+     "2026_9_20",
+     "2026_수능_2"
+    ]
+   }
+  }
+ },
+ "statements": [
+  {
+   "id": "environment-L2-B0899-1",
+   "about": [
+    "지구 온난화"
+   ],
+   "claim": "지구 온난화는 지구의 평균 기온이 장기적으로 높아지는 현상이다. 기후 변화는 기온뿐 아니라 강수, 바람, 계절의 길이, 극한 현상 등의 장기적인 변화까지 포함한다. 어느 지역에 추운 날이 있었다는 사실과 전 지구의 장기 평균 기온이 상승한다는 사실은 함께 성립할 수 있다. 하루의 날씨와 수십 년에 걸친 기후는 시간 범위가 다르기 때문이다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B0899",
+    "locator": "강의 2권 P09 / L2-B0899",
+    "priorAuditExamIds": []
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "environment-L2-B0956-2",
+   "about": [
+    "사막화"
+   ],
+   "claim": "미국 지도 A는 동부에서 심한 산성 강수를 나타낸다. 발전·산업·교통에서 발생한 오염 물질과 그 이동이 영향을 미친다. B는 상대적으로 건조한 서부에 넓게 나타나는 사막화 관련 분포이다. 동부와 서부라는 위치 차이뿐 아니라 화석 연료 연소에서 시작하는 대기 오염과, 수분 부족·토지 이용에서 시작하는 토지 황폐화라는 과정의 차이도 함께 읽는다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B0956",
+    "locator": "강의 2권 P09 / L2-B0956",
+    "priorAuditExamIds": [
+     "2014_9_14"
+    ]
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "environment-L2-B0980-3",
+   "about": [
+    "열대림 파괴"
+   ],
+   "claim": "열대림 파괴는 고온 다습한 열대 지역의 산림이 벌목되거나 농경지·목장·광산·도로 등으로 전환되면서 숲의 면적과 기능이 줄어드는 현상이다. 사막화와 마찬가지로 식생 감소와 토양 침식이 나타날 수 있지만, 주된 기후 배경과 토지 이용의 목적이 다르다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B0980",
+    "locator": "강의 2권 P09 / L2-B0980",
+    "priorAuditExamIds": [
+     "2021_9_17"
+    ]
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "environment-L2-B0946-4",
+   "about": [
+    "산성비"
+   ],
+   "claim": "산성 강수는 산성을 띤 물질이 비·눈·안개 등과 함께 지표에 도달하는 현상이다. 대기의 이산화탄소가 녹은 보통의 빗물도 약한 산성을 띨 수 있으므로 산성비를 단순히 ‘pH 7 미만의 모든 비’라고 정의하지 않는다. 환경 문제로 다루는 산성 강수에서는 인간 활동으로 배출된 황산화물(SOx)과 질소산화물(NOx)의 역할이 중요하다. pH 값은 낮을수록 산성이 강하다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B0946",
+    "locator": "강의 2권 P09 / L2-B0946",
+    "priorAuditExamIds": [
+     "2014_9_14",
+     "2015_6_18"
+    ]
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "environment-L2-B0929-5",
+   "about": [
+    "오존층 파괴"
+   ],
+   "claim": "염화 플루오린화 탄소(CFCs)는 과거 냉매·발포제 등으로 널리 사용되었다. 비교적 안정하여 대기에 오래 남은 물질이 성층권까지 올라가면 강한 자외선에 의해 분해되면서 염소를 내놓는다. 이 염소가 오존 분해 반응을 촉진한다. 할론 등에서 나오는 브로민도 오존층 파괴에 관여한다. 오존이 줄어들면 지표에 도달하는 유해 자외선이 많아져 피부암·백내장 위험과 생태계 피해가 커질 수 있다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B0929",
+    "locator": "강의 2권 P09 / L2-B0929",
+    "priorAuditExamIds": [
+     "2016_6_9",
+     "2016_9_17",
+     "2016_수능_7",
+     "2017_9_10",
+     "2018_6_20",
+     "2019_9_18",
+     "2020_6_15",
+     "2020_수능_5",
+     "2023_9_17"
+    ]
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "environment-L2-B0983-6",
+   "about": [
+    "생물 다양성"
+   ],
+   "claim": "나무가 베어지면 동식물의 서식 공간이 줄어든다. 도로와 농장이 숲을 작은 조각으로 나누면 남아 있는 숲 사이의 이동과 번식도 어려워질 수 있다. 이를 서식지 파편화라고 한다. 생물 다양성은 단순히 나무의 양이 아니라 여러 종과 서식지의 관계를 포함하므로, 원래 숲을 한 종류의 작물 농장으로 바꾸는 것은 같은 생태계를 보전하는 일과 다르다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B0983",
+    "locator": "강의 2권 P09 / L2-B0983",
+    "priorAuditExamIds": [
+     "2016_6_9",
+     "2016_9_17",
+     "2018_9_5",
+     "2021_수능_9",
+     "2022_6_16",
+     "2022_9_20"
+    ]
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "explicit-014",
+   "about": [
+    "람사르 협약"
+   ],
+   "claim": "람사르 협약은 습지 보전과 연결된다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B1059",
+    "locator": "강의 2권 P09 / L2-B1059",
+    "priorAuditExamIds": [
+     "2016_9_17",
+     "2019_6_10",
+     "2021_6_20",
+     "2025_9_20",
+     "2025_수능_14",
+     "2026_9_20",
+     "2026_수능_2"
+    ]
+   },
+   "practice": "recall",
+   "explanation": "채택 | 문서 | 채택 도시 | 주요 대상·대응 | 1971 | 람사르 협약 | 람사르·이란 | 습지의 보전과 현명한 이용 | 1972 | 런던 협약 | 런던·영국 | 폐기물 등의 해양 투기로 인한 오염 방지 | 1979 | 장거리 이동 대기 오염 협약 | 제네바·스위스 | 국경을 넘는 대기 오염, 산성 강수 문제에 관한 협력 | 1987 | 몬트리올 의정서 | 몬트리올·캐나다 | 오존층 파괴 물질의 생산·소비 규제 | 1989 | 바젤 협약 | 바젤·스위스 | 유해 폐기물 등의 국가 간 이동·처분 규제 | 1994 | 유엔 사막화 방지 협약 | 파리·프랑스 | 가뭄·사막화와 건조 지역 토지 황폐화 대응 | 1997 | 교토 의정서 | 교토·일본 | 선진국의 수량적 온실가스 감축 의무 중심 | 2015 | 파리 협정 | 파리·프랑스 | 보편적 참여를 통한 기후 변화 대응"
+  },
+  {
+   "id": "explicit-015",
+   "about": [
+    "바젤 협약"
+   ],
+   "claim": "바젤 협약의 직접적인 규제 대상은 오존층 파괴 물질이다.",
+   "truth": false,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B1059",
+    "locator": "강의 2권 P09 / L2-B1059",
+    "priorAuditExamIds": [
+     "2016_9_17",
+     "2019_6_10",
+     "2021_6_20",
+     "2025_9_20",
+     "2025_수능_14",
+     "2026_9_20",
+     "2026_수능_2"
+    ]
+   },
+   "practice": "recall",
+   "explanation": "채택 | 문서 | 채택 도시 | 주요 대상·대응 | 1971 | 람사르 협약 | 람사르·이란 | 습지의 보전과 현명한 이용 | 1972 | 런던 협약 | 런던·영국 | 폐기물 등의 해양 투기로 인한 오염 방지 | 1979 | 장거리 이동 대기 오염 협약 | 제네바·스위스 | 국경을 넘는 대기 오염, 산성 강수 문제에 관한 협력 | 1987 | 몬트리올 의정서 | 몬트리올·캐나다 | 오존층 파괴 물질의 생산·소비 규제 | 1989 | 바젤 협약 | 바젤·스위스 | 유해 폐기물 등의 국가 간 이동·처분 규제 | 1994 | 유엔 사막화 방지 협약 | 파리·프랑스 | 가뭄·사막화와 건조 지역 토지 황폐화 대응 | 1997 | 교토 의정서 | 교토·일본 | 선진국의 수량적 온실가스 감축 의무 중심 | 2015 | 파리 협정 | 파리·프랑스 | 보편적 참여를 통한 기후 변화 대응"
+  },
+  {
+   "id": "explicit-016",
+   "about": [
+    "몬트리올 의정서"
+   ],
+   "claim": "몬트리올 의정서는 유해 폐기물의 국가 간 이동을 규제한다.",
+   "truth": false,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P09",
+    "blockId": "L2-B1059",
+    "locator": "강의 2권 P09 / L2-B1059",
+    "priorAuditExamIds": [
+     "2016_9_17",
+     "2019_6_10",
+     "2021_6_20",
+     "2025_9_20",
+     "2025_수능_14",
+     "2026_9_20",
+     "2026_수능_2"
+    ]
+   },
+   "practice": "recall",
+   "explanation": "채택 | 문서 | 채택 도시 | 주요 대상·대응 | 1971 | 람사르 협약 | 람사르·이란 | 습지의 보전과 현명한 이용 | 1972 | 런던 협약 | 런던·영국 | 폐기물 등의 해양 투기로 인한 오염 방지 | 1979 | 장거리 이동 대기 오염 협약 | 제네바·스위스 | 국경을 넘는 대기 오염, 산성 강수 문제에 관한 협력 | 1987 | 몬트리올 의정서 | 몬트리올·캐나다 | 오존층 파괴 물질의 생산·소비 규제 | 1989 | 바젤 협약 | 바젤·스위스 | 유해 폐기물 등의 국가 간 이동·처분 규제 | 1994 | 유엔 사막화 방지 협약 | 파리·프랑스 | 가뭄·사막화와 건조 지역 토지 황폐화 대응 | 1997 | 교토 의정서 | 교토·일본 | 선진국의 수량적 온실가스 감축 의무 중심 | 2015 | 파리 협정 | 파리·프랑스 | 보편적 참여를 통한 기후 변화 대응"
+  },
+  {
+   "id": "existing-v01",
+   "about": [],
+   "claim": "람사르 협약은 1971년 이란의 람사르에서 채택된 습지 보전 협약이다.",
+   "truth": true,
+   "explanation": "람사르는 이란 북부 카스피해 연안에 있으며 수도가 아니다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v01",
+    "locator": "2027학년도 9월 3번"
+   },
+   "period": null,
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-v02",
+   "about": [],
+   "claim": "몬트리올 의정서는 선진국의 온실가스 감축 의무를 규정한다.",
+   "truth": false,
+   "explanation": "몬트리올 의정서(1987)는 오존층 파괴 물질 규제. 온실가스 감축 의무는 교토 의정서(1997).",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v02",
+    "locator": "2권 P09"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-v03",
+   "about": [],
+   "claim": "유엔 사막화 방지 협약과 파리 협정은 같은 도시에서 채택되었다.",
+   "truth": true,
+   "explanation": "1994년과 2015년 모두 프랑스 파리.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v03",
+    "locator": "2022학년도 수능 20번"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-v04",
+   "about": [],
+   "claim": "바젤 협약은 유해 폐기물의 국가 간 이동과 처분을 규제한다.",
+   "truth": true,
+   "explanation": "소비한 나라와 처리하는 나라가 다를 때의 문제를 다룬다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v04",
+    "locator": "2권 P09"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-v05",
+   "about": [],
+   "claim": "바젤과 제네바는 스웨덴의 도시이다.",
+   "truth": false,
+   "explanation": "둘 다 스위스의 도시이다. 스위스의 연방 도시는 베른.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v05",
+    "locator": "2026학년도 수능 2번"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-v06",
+   "about": [],
+   "claim": "교토 의정서는 파리 협정보다 나중에 채택되었다.",
+   "truth": false,
+   "explanation": "교토 의정서 1997년, 파리 협정 2015년.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v06",
+    "locator": "2권 P09"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-v07",
+   "about": [],
+   "claim": "런던 협약은 장거리 이동 대기 오염 협약보다 먼저 채택되었다.",
+   "truth": true,
+   "explanation": "런던 협약 1972년, 장거리 이동 대기 오염 협약(제네바) 1979년.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v07",
+    "locator": "2권 P09"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-v08",
+   "about": [],
+   "claim": "교토는 현재 일본의 수도이다.",
+   "truth": false,
+   "explanation": "교토는 혼슈 긴키 지방에 있으며 현재 수도는 도쿄이다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v08",
+    "locator": "2권 P09"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-v09",
+   "about": [],
+   "claim": "몬트리올은 캐나다의 수도이다.",
+   "truth": false,
+   "explanation": "캐나다의 수도는 오타와이다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v09",
+    "locator": "2027학년도 9월 3번"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-v10",
+   "about": [],
+   "claim": "북극 해빙이 녹는 것은 육상 빙하가 녹는 것과 같은 경로로 해수면을 높인다.",
+   "truth": false,
+   "explanation": "바다에 떠 있는 해빙은 이미 물을 밀어내고 있다. 주된 원인은 육상 얼음 감소와 해수 열팽창.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v10",
+    "locator": "2권 P09"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-v11",
+   "about": [],
+   "claim": "남극의 오존 구멍은 남반구의 봄인 9~10월 무렵 가장 넓게 나타난다.",
+   "truth": true,
+   "explanation": "1979~2016년 평균값 기준. 한국의 계절 감각을 남극에 적용하지 않는다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v11",
+    "locator": "2권 P09"
+   },
+   "period": "1979~2016년 평균 · 남극",
+   "practice": "recall"
+  },
+  {
+   "id": "existing-v12",
+   "about": [],
+   "claim": "오존 구멍은 대기에 실제로 구멍이 뚫린 것을 뜻한다.",
+   "truth": false,
+   "explanation": "오존량이 매우 적어진 영역을 가리킨다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v12",
+    "locator": "2권 P09"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-v13",
+   "about": [],
+   "claim": "유럽의 산성비 영역은 1990년보다 2010년에 크게 축소되었다.",
+   "truth": true,
+   "explanation": "오염 물질 배출 저감과 연결된다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v13",
+    "locator": "2권 P09"
+   },
+   "period": null,
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-v14",
+   "about": [],
+   "claim": "사막화는 원래 비가 적은 사막이 존재하는 상태를 뜻한다.",
+   "truth": false,
+   "explanation": "건조·반건조 지역에서 기후 변동과 인간 활동으로 토지가 황폐해지는 과정이다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v14",
+    "locator": "2권 P09"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-v15",
+   "about": [],
+   "claim": "아랄해는 외해와 연결된 바다이다.",
+   "truth": false,
+   "explanation": "카자흐스탄과 우즈베키스탄 사이의 내륙 호수로, 관개용수 전환으로 축소되었다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v15",
+    "locator": "2권 P09"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-v16",
+   "about": [],
+   "claim": "차드호의 수면 범위는 1963년보다 2017년에 좁다.",
+   "truth": true,
+   "explanation": "장기간 가뭄과 과도한 경작, 초목 소실과 연결된다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v16",
+    "locator": "2019학년도 수능"
+   },
+   "period": null,
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-v17",
+   "about": [],
+   "claim": "사헬은 사하라 사막 남쪽에 있는 국가의 이름이다.",
+   "truth": false,
+   "explanation": "사하라 남쪽 가장자리를 따라 동서로 이어지는 건조 전이지대이다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v17",
+    "locator": "2권 P09"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-v18",
+   "about": [],
+   "claim": "산성비는 산업·에너지 소비가 집중된 유럽·북아메리카 동부·동아시아에 주로 분포한다.",
+   "truth": true,
+   "explanation": "사막화는 사하라 주변, 서남·중앙아시아, 북아메리카 서부 등 건조 지역에 넓게 나타난다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v18",
+    "locator": "2권 P09"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-v19",
+   "about": [],
+   "claim": "보르네오섬의 1950년과 2010년 비교 지도는 호수 수면의 감소를 보여 준다.",
+   "truth": false,
+   "explanation": "보르네오섬은 산림 범위(열대림 파괴), 차드호는 수면 범위(사막화)를 비교한다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "v19",
+    "locator": "2권 P09"
+   },
+   "period": null,
+   "practice": "suppliedData"
+  }
+ ],
+ "counts": {
+  "entities": 14,
+  "sets": 3,
+  "statements": 28
+ }
+}

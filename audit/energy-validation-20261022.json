@@ -1,0 +1,1187 @@
+{
+ "candidates": [
+  {
+   "id": "중국:coal_share_energy>oil_share_energy",
+   "country": "중국",
+   "hi": "coal_share_energy",
+   "lo": "oil_share_energy",
+   "years": [
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "failedYears": [],
+   "status": "active",
+   "sourceBlockId": "L2-B0373"
+  },
+  {
+   "id": "인도:coal_share_energy>oil_share_energy",
+   "country": "인도",
+   "hi": "coal_share_energy",
+   "lo": "oil_share_energy",
+   "years": [
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "failedYears": [],
+   "status": "active",
+   "sourceBlockId": "L2-B0373"
+  },
+  {
+   "id": "러시아:gas_share_energy>oil_share_energy",
+   "country": "러시아",
+   "hi": "gas_share_energy",
+   "lo": "oil_share_energy",
+   "years": [
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "failedYears": [],
+   "status": "active",
+   "sourceBlockId": "L2-B0373"
+  },
+  {
+   "id": "이란:gas_share_energy>oil_share_energy",
+   "country": "이란",
+   "hi": "gas_share_energy",
+   "lo": "oil_share_energy",
+   "years": [
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "failedYears": [],
+   "status": "active",
+   "sourceBlockId": "L2-B0373"
+  },
+  {
+   "id": "브라질:oil_share_energy>hydro_share_energy",
+   "country": "브라질",
+   "hi": "oil_share_energy",
+   "lo": "hydro_share_energy",
+   "years": [
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "failedYears": [],
+   "status": "active",
+   "sourceBlockId": "L2-B0377"
+  },
+  {
+   "id": "프랑스:nuclear_share_energy>oil_share_energy",
+   "country": "프랑스",
+   "hi": "nuclear_share_energy",
+   "lo": "oil_share_energy",
+   "years": [
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "failedYears": [
+    "2022"
+   ],
+   "status": "changed",
+   "sourceBlockId": "L2-B0373"
+  }
+ ],
+ "topOrders": [
+  {
+   "id": "중국:primary-top-2",
+   "country": "중국",
+   "expected": [
+    "coal",
+    "oil"
+   ],
+   "years": [
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "annualRanks": {
+    "2015": [
+     "coal",
+     "oil",
+     "hydro",
+     "gas",
+     "wind",
+     "nuclear",
+     "other_renewables",
+     "solar",
+     "biofuel"
+    ],
+    "2016": [
+     "coal",
+     "oil",
+     "hydro",
+     "gas",
+     "wind",
+     "nuclear",
+     "other_renewables",
+     "solar",
+     "biofuel"
+    ],
+    "2017": [
+     "coal",
+     "oil",
+     "hydro",
+     "gas",
+     "wind",
+     "nuclear",
+     "solar",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2018": [
+     "coal",
+     "oil",
+     "hydro",
+     "gas",
+     "wind",
+     "nuclear",
+     "solar",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2019": [
+     "coal",
+     "oil",
+     "hydro",
+     "gas",
+     "wind",
+     "nuclear",
+     "solar",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2020": [
+     "coal",
+     "oil",
+     "gas",
+     "hydro",
+     "wind",
+     "nuclear",
+     "solar",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2021": [
+     "coal",
+     "oil",
+     "gas",
+     "hydro",
+     "wind",
+     "nuclear",
+     "solar",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2022": [
+     "coal",
+     "oil",
+     "gas",
+     "hydro",
+     "wind",
+     "solar",
+     "nuclear",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2023": [
+     "coal",
+     "oil",
+     "gas",
+     "hydro",
+     "wind",
+     "solar",
+     "nuclear",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2024": [
+     "coal",
+     "oil",
+     "gas",
+     "hydro",
+     "wind",
+     "solar",
+     "nuclear",
+     "other_renewables",
+     "biofuel"
+    ]
+   },
+   "failedYears": [],
+   "status": "active",
+   "sourceBlockId": "L2-B0373"
+  },
+  {
+   "id": "인도:primary-top-2",
+   "country": "인도",
+   "expected": [
+    "coal",
+    "oil"
+   ],
+   "years": [
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "annualRanks": {
+    "2015": [
+     "coal",
+     "oil",
+     "gas",
+     "hydro",
+     "nuclear",
+     "wind",
+     "other_renewables",
+     "solar",
+     "biofuel"
+    ],
+    "2016": [
+     "coal",
+     "oil",
+     "gas",
+     "hydro",
+     "wind",
+     "nuclear",
+     "other_renewables",
+     "solar",
+     "biofuel"
+    ],
+    "2017": [
+     "coal",
+     "oil",
+     "gas",
+     "hydro",
+     "wind",
+     "nuclear",
+     "solar",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2018": [
+     "coal",
+     "oil",
+     "gas",
+     "hydro",
+     "wind",
+     "nuclear",
+     "solar",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2019": [
+     "coal",
+     "oil",
+     "gas",
+     "hydro",
+     "wind",
+     "solar",
+     "nuclear",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2020": [
+     "coal",
+     "oil",
+     "gas",
+     "hydro",
+     "solar",
+     "wind",
+     "nuclear",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2021": [
+     "coal",
+     "oil",
+     "gas",
+     "hydro",
+     "solar",
+     "wind",
+     "nuclear",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2022": [
+     "coal",
+     "oil",
+     "gas",
+     "hydro",
+     "solar",
+     "wind",
+     "nuclear",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2023": [
+     "coal",
+     "oil",
+     "gas",
+     "hydro",
+     "solar",
+     "wind",
+     "nuclear",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2024": [
+     "coal",
+     "oil",
+     "gas",
+     "hydro",
+     "solar",
+     "wind",
+     "nuclear",
+     "other_renewables",
+     "biofuel"
+    ]
+   },
+   "failedYears": [],
+   "status": "active",
+   "sourceBlockId": "L2-B0373"
+  },
+  {
+   "id": "러시아:primary-top-2",
+   "country": "러시아",
+   "expected": [
+    "gas",
+    "oil"
+   ],
+   "years": [
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "annualRanks": {
+    "2015": [
+     "gas",
+     "oil",
+     "coal",
+     "nuclear",
+     "hydro",
+     "other_renewables",
+     "solar",
+     "wind",
+     "biofuel"
+    ],
+    "2016": [
+     "gas",
+     "oil",
+     "coal",
+     "nuclear",
+     "hydro",
+     "other_renewables",
+     "solar",
+     "biofuel",
+     "wind"
+    ],
+    "2017": [
+     "gas",
+     "oil",
+     "coal",
+     "nuclear",
+     "hydro",
+     "other_renewables",
+     "solar",
+     "biofuel",
+     "wind"
+    ],
+    "2018": [
+     "gas",
+     "oil",
+     "coal",
+     "nuclear",
+     "hydro",
+     "other_renewables",
+     "solar",
+     "biofuel",
+     "wind"
+    ],
+    "2019": [
+     "gas",
+     "oil",
+     "coal",
+     "nuclear",
+     "hydro",
+     "solar",
+     "other_renewables",
+     "biofuel",
+     "wind"
+    ],
+    "2020": [
+     "gas",
+     "oil",
+     "coal",
+     "nuclear",
+     "hydro",
+     "solar",
+     "wind",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2021": [
+     "gas",
+     "oil",
+     "coal",
+     "nuclear",
+     "hydro",
+     "wind",
+     "solar",
+     "biofuel",
+     "other_renewables"
+    ],
+    "2022": [
+     "gas",
+     "oil",
+     "coal",
+     "nuclear",
+     "hydro",
+     "wind",
+     "solar",
+     "biofuel",
+     "other_renewables"
+    ],
+    "2023": [
+     "gas",
+     "oil",
+     "coal",
+     "nuclear",
+     "hydro",
+     "wind",
+     "solar",
+     "biofuel",
+     "other_renewables"
+    ],
+    "2024": [
+     "gas",
+     "oil",
+     "coal",
+     "nuclear",
+     "hydro",
+     "wind",
+     "solar",
+     "biofuel",
+     "other_renewables"
+    ]
+   },
+   "failedYears": [],
+   "status": "active",
+   "sourceBlockId": "L2-B0375"
+  },
+  {
+   "id": "이란:primary-top-2",
+   "country": "이란",
+   "expected": [
+    "gas",
+    "oil"
+   ],
+   "years": [
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "annualRanks": {
+    "2015": [
+     "gas",
+     "oil",
+     "hydro",
+     "coal",
+     "nuclear",
+     "wind",
+     "other_renewables",
+     "biofuel",
+     "solar"
+    ],
+    "2016": [
+     "gas",
+     "oil",
+     "hydro",
+     "nuclear",
+     "coal",
+     "wind",
+     "other_renewables",
+     "biofuel",
+     "solar"
+    ],
+    "2017": [
+     "gas",
+     "oil",
+     "hydro",
+     "nuclear",
+     "coal",
+     "wind",
+     "solar",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2018": [
+     "gas",
+     "oil",
+     "hydro",
+     "nuclear",
+     "coal",
+     "wind",
+     "solar",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2019": [
+     "gas",
+     "oil",
+     "hydro",
+     "coal",
+     "nuclear",
+     "wind",
+     "solar",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2020": [
+     "gas",
+     "oil",
+     "hydro",
+     "coal",
+     "nuclear",
+     "wind",
+     "solar",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2021": [
+     "gas",
+     "oil",
+     "hydro",
+     "coal",
+     "nuclear",
+     "wind",
+     "solar",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2022": [
+     "gas",
+     "oil",
+     "hydro",
+     "coal",
+     "nuclear",
+     "wind",
+     "solar",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2023": [
+     "gas",
+     "oil",
+     "hydro",
+     "coal",
+     "nuclear",
+     "wind",
+     "solar",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2024": [
+     "gas",
+     "oil",
+     "hydro",
+     "coal",
+     "nuclear",
+     "wind",
+     "solar",
+     "other_renewables",
+     "biofuel"
+    ]
+   },
+   "failedYears": [],
+   "status": "active",
+   "sourceBlockId": "L2-B0375"
+  },
+  {
+   "id": "프랑스:primary-top-2",
+   "country": "프랑스",
+   "expected": [
+    "nuclear",
+    "oil"
+   ],
+   "years": [
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "annualRanks": {
+    "2015": [
+     "nuclear",
+     "oil",
+     "gas",
+     "hydro",
+     "coal",
+     "wind",
+     "biofuel",
+     "other_renewables",
+     "solar"
+    ],
+    "2016": [
+     "nuclear",
+     "oil",
+     "gas",
+     "hydro",
+     "coal",
+     "wind",
+     "biofuel",
+     "other_renewables",
+     "solar"
+    ],
+    "2017": [
+     "nuclear",
+     "oil",
+     "gas",
+     "hydro",
+     "coal",
+     "wind",
+     "biofuel",
+     "other_renewables",
+     "solar"
+    ],
+    "2018": [
+     "nuclear",
+     "oil",
+     "gas",
+     "hydro",
+     "coal",
+     "wind",
+     "biofuel",
+     "other_renewables",
+     "solar"
+    ],
+    "2019": [
+     "nuclear",
+     "oil",
+     "gas",
+     "hydro",
+     "wind",
+     "coal",
+     "biofuel",
+     "solar",
+     "other_renewables"
+    ],
+    "2020": [
+     "nuclear",
+     "oil",
+     "gas",
+     "hydro",
+     "wind",
+     "coal",
+     "solar",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2021": [
+     "nuclear",
+     "oil",
+     "gas",
+     "hydro",
+     "wind",
+     "coal",
+     "solar",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2022": [
+     "oil",
+     "nuclear",
+     "gas",
+     "hydro",
+     "wind",
+     "coal",
+     "solar",
+     "biofuel",
+     "other_renewables"
+    ],
+    "2023": [
+     "nuclear",
+     "oil",
+     "gas",
+     "hydro",
+     "wind",
+     "solar",
+     "coal",
+     "biofuel",
+     "other_renewables"
+    ],
+    "2024": [
+     "nuclear",
+     "oil",
+     "gas",
+     "hydro",
+     "wind",
+     "solar",
+     "coal",
+     "biofuel",
+     "other_renewables"
+    ]
+   },
+   "failedYears": [
+    "2022"
+   ],
+   "status": "changed",
+   "sourceBlockId": "L2-B0375"
+  },
+  {
+   "id": "브라질:primary-top-1",
+   "country": "브라질",
+   "expected": [
+    "oil"
+   ],
+   "years": [
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "annualRanks": {
+    "2015": [
+     "oil",
+     "hydro",
+     "gas",
+     "biofuel",
+     "coal",
+     "other_renewables",
+     "wind",
+     "nuclear",
+     "solar"
+    ],
+    "2016": [
+     "oil",
+     "hydro",
+     "gas",
+     "biofuel",
+     "coal",
+     "other_renewables",
+     "wind",
+     "nuclear",
+     "solar"
+    ],
+    "2017": [
+     "oil",
+     "hydro",
+     "gas",
+     "biofuel",
+     "coal",
+     "other_renewables",
+     "wind",
+     "nuclear",
+     "solar"
+    ],
+    "2018": [
+     "oil",
+     "hydro",
+     "gas",
+     "biofuel",
+     "coal",
+     "other_renewables",
+     "wind",
+     "nuclear",
+     "solar"
+    ],
+    "2019": [
+     "oil",
+     "hydro",
+     "gas",
+     "biofuel",
+     "coal",
+     "other_renewables",
+     "wind",
+     "nuclear",
+     "solar"
+    ],
+    "2020": [
+     "oil",
+     "hydro",
+     "gas",
+     "biofuel",
+     "other_renewables",
+     "coal",
+     "wind",
+     "nuclear",
+     "solar"
+    ],
+    "2021": [
+     "oil",
+     "hydro",
+     "gas",
+     "biofuel",
+     "coal",
+     "wind",
+     "other_renewables",
+     "solar",
+     "nuclear"
+    ],
+    "2022": [
+     "oil",
+     "hydro",
+     "gas",
+     "biofuel",
+     "wind",
+     "other_renewables",
+     "coal",
+     "solar",
+     "nuclear"
+    ],
+    "2023": [
+     "oil",
+     "hydro",
+     "gas",
+     "biofuel",
+     "wind",
+     "other_renewables",
+     "coal",
+     "solar",
+     "nuclear"
+    ],
+    "2024": [
+     "oil",
+     "hydro",
+     "gas",
+     "biofuel",
+     "wind",
+     "other_renewables",
+     "solar",
+     "coal",
+     "nuclear"
+    ]
+   },
+   "failedYears": [],
+   "status": "active",
+   "sourceBlockId": "L2-B0373"
+  },
+  {
+   "id": "남아프리카 공화국:primary-top-1",
+   "country": "남아프리카 공화국",
+   "expected": [
+    "coal"
+   ],
+   "years": [
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "annualRanks": {
+    "2015": [
+     "coal",
+     "oil",
+     "gas",
+     "nuclear",
+     "wind",
+     "solar",
+     "hydro",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2016": [
+     "coal",
+     "oil",
+     "nuclear",
+     "gas",
+     "wind",
+     "solar",
+     "hydro",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2017": [
+     "coal",
+     "oil",
+     "gas",
+     "nuclear",
+     "wind",
+     "solar",
+     "hydro",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2018": [
+     "coal",
+     "oil",
+     "gas",
+     "nuclear",
+     "wind",
+     "solar",
+     "hydro",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2019": [
+     "coal",
+     "oil",
+     "gas",
+     "nuclear",
+     "wind",
+     "solar",
+     "hydro",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2020": [
+     "coal",
+     "oil",
+     "gas",
+     "nuclear",
+     "wind",
+     "solar",
+     "hydro",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2021": [
+     "coal",
+     "oil",
+     "gas",
+     "nuclear",
+     "wind",
+     "solar",
+     "hydro",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2022": [
+     "coal",
+     "oil",
+     "gas",
+     "nuclear",
+     "wind",
+     "solar",
+     "hydro",
+     "biofuel",
+     "other_renewables"
+    ],
+    "2023": [
+     "coal",
+     "oil",
+     "gas",
+     "wind",
+     "nuclear",
+     "solar",
+     "hydro",
+     "other_renewables",
+     "biofuel"
+    ],
+    "2024": [
+     "coal",
+     "oil",
+     "gas",
+     "wind",
+     "nuclear",
+     "solar",
+     "hydro",
+     "other_renewables",
+     "biofuel"
+    ]
+   },
+   "failedYears": [],
+   "status": "active",
+   "sourceBlockId": "L2-B0385"
+  }
+ ],
+ "countryComparisons": [
+  {
+   "id": "primary_energy_consumption:중국>미국",
+   "indicator": "primary_energy_consumption",
+   "hi": "중국",
+   "lo": "미국",
+   "years": [
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "failedYears": [],
+   "status": "active",
+   "sourceBlockId": "L2-B0368"
+  },
+  {
+   "id": "primary_energy_consumption:미국>인도",
+   "indicator": "primary_energy_consumption",
+   "hi": "미국",
+   "lo": "인도",
+   "years": [
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "failedYears": [],
+   "status": "active",
+   "sourceBlockId": "L2-B0368"
+  },
+  {
+   "id": "energy_per_capita:미국>중국",
+   "indicator": "energy_per_capita",
+   "hi": "미국",
+   "lo": "중국",
+   "years": [
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "failedYears": [],
+   "status": "active",
+   "sourceBlockId": "L2-B0368"
+  },
+  {
+   "id": "gas_consumption:미국>중국",
+   "indicator": "gas_consumption",
+   "hi": "미국",
+   "lo": "중국",
+   "years": [
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "failedYears": [],
+   "status": "active",
+   "sourceBlockId": "L2-B0368"
+  },
+  {
+   "id": "hydro_share_energy:브라질>러시아",
+   "indicator": "hydro_share_energy",
+   "hi": "브라질",
+   "lo": "러시아",
+   "years": [
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "failedYears": [],
+   "status": "active",
+   "sourceBlockId": "L2-B0385"
+  }
+ ],
+ "policy": "8개 이상 공통 연도 모두에서 방향 일치. 전체 구성의 순위는 모든 구성요소가 있는 연도만 확인. 반례는 숨기지 않는다."
+}

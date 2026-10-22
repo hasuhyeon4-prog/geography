@@ -1,0 +1,1040 @@
+{
+ "schemaVersion": 1,
+ "about": "city-functions 강의 근거 개념 카드",
+ "policy": {
+  "absenceMeansFalse": false,
+  "falseDistractors": "명시적 거짓 statements만 사용. complete:false인 세트의 교차 대입 금지.",
+  "sourceLocator": "data/extension-sources/lecture-blocks.json의 blockId; 쪽수 미측정",
+  "scope": "개념 카드이며 기출 재현율 또는 화면 연결 완료를 뜻하지 않는다."
+ },
+ "entities": {
+  "수도": {
+   "type": "cityConcept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1613",
+    "locator": "강의 1권 P05 / L1-B1613",
+    "priorAuditExamIds": [
+     "2019_9_7",
+     "2025_수능_8",
+     "2026_9_18"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1613",
+     "locator": "강의 1권 P05 / L1-B1613",
+     "priorAuditExamIds": [
+      "2019_9_7",
+      "2025_수능_8",
+      "2026_9_18"
+     ]
+    },
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1637",
+     "locator": "강의 1권 P05 / L1-B1637",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "수위 도시": {
+   "type": "cityConcept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1613",
+    "locator": "강의 1권 P05 / L1-B1613",
+    "priorAuditExamIds": [
+     "2019_9_7",
+     "2025_수능_8",
+     "2026_9_18"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1613",
+     "locator": "강의 1권 P05 / L1-B1613",
+     "priorAuditExamIds": [
+      "2019_9_7",
+      "2025_수능_8",
+      "2026_9_18"
+     ]
+    },
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1637",
+     "locator": "강의 1권 P05 / L1-B1637",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "종주 도시": {
+   "type": "cityConcept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1613",
+    "locator": "강의 1권 P05 / L1-B1613",
+    "priorAuditExamIds": [
+     "2019_9_7",
+     "2025_수능_8",
+     "2026_9_18"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1613",
+     "locator": "강의 1권 P05 / L1-B1613",
+     "priorAuditExamIds": [
+      "2019_9_7",
+      "2025_수능_8",
+      "2026_9_18"
+     ]
+    },
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1637",
+     "locator": "강의 1권 P05 / L1-B1637",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "세계 도시": {
+   "type": "cityConcept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1613",
+    "locator": "강의 1권 P05 / L1-B1613",
+    "priorAuditExamIds": [
+     "2019_9_7",
+     "2025_수능_8",
+     "2026_9_18"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1613",
+     "locator": "강의 1권 P05 / L1-B1613",
+     "priorAuditExamIds": [
+      "2019_9_7",
+      "2025_수능_8",
+      "2026_9_18"
+     ]
+    },
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1637",
+     "locator": "강의 1권 P05 / L1-B1637",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "거대도시": {
+   "type": "cityConcept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1637",
+    "locator": "강의 1권 P05 / L1-B1637",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1637",
+     "locator": "강의 1권 P05 / L1-B1637",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "경제 통제": {
+   "type": "cityConcept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1641",
+    "locator": "강의 1권 P05 / L1-B1641",
+    "priorAuditExamIds": [
+     "2024_6_7"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1641",
+     "locator": "강의 1권 P05 / L1-B1641",
+     "priorAuditExamIds": [
+      "2024_6_7"
+     ]
+    }
+   ]
+  },
+  "생산자 서비스": {
+   "type": "cityConcept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1641",
+    "locator": "강의 1권 P05 / L1-B1641",
+    "priorAuditExamIds": [
+     "2024_6_7"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1641",
+     "locator": "강의 1권 P05 / L1-B1641",
+     "priorAuditExamIds": [
+      "2024_6_7"
+     ]
+    }
+   ]
+  },
+  "교통 연결": {
+   "type": "cityConcept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1641",
+    "locator": "강의 1권 P05 / L1-B1641",
+    "priorAuditExamIds": [
+     "2024_6_7"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1641",
+     "locator": "강의 1권 P05 / L1-B1641",
+     "priorAuditExamIds": [
+      "2024_6_7"
+     ]
+    }
+   ]
+  },
+  "정치": {
+   "type": "cityConcept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1641",
+    "locator": "강의 1권 P05 / L1-B1641",
+    "priorAuditExamIds": [
+     "2024_6_7"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1641",
+     "locator": "강의 1권 P05 / L1-B1641",
+     "priorAuditExamIds": [
+      "2024_6_7"
+     ]
+    }
+   ]
+  },
+  "문화·행사": {
+   "type": "cityConcept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1641",
+    "locator": "강의 1권 P05 / L1-B1641",
+    "priorAuditExamIds": [
+     "2024_6_7"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P05",
+     "blockId": "L1-B1641",
+     "locator": "강의 1권 P05 / L1-B1641",
+     "priorAuditExamIds": [
+      "2024_6_7"
+     ]
+    }
+   ]
+  }
+ },
+ "sets": {
+  "L1-B1613-c2": {
+   "label": "정의",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "중앙 정부가 있는 정치 중심 도시",
+    "한 국가에서 인구가 가장 많은 도시",
+    "제2도시보다 인구·기능이 압도적으로 집중된 수위 도시",
+    "국경을 넘어 경제·정치·문화·교통을 연결"
+   ],
+   "values": {
+    "수도": [
+     "중앙 정부가 있는 정치 중심 도시"
+    ],
+    "수위 도시": [
+     "한 국가에서 인구가 가장 많은 도시"
+    ],
+    "종주 도시": [
+     "제2도시보다 인구·기능이 압도적으로 집중된 수위 도시"
+    ],
+    "세계 도시": [
+     "국경을 넘어 경제·정치·문화·교통을 연결"
+    ]
+   },
+   "evidence": {
+    "수도": [
+     {
+      "value": "중앙 정부가 있는 정치 중심 도시",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1613",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1613 / 표 2행",
+       "priorAuditExamIds": [
+        "2019_9_7",
+        "2025_수능_8",
+        "2026_9_18"
+       ]
+      }
+     }
+    ],
+    "수위 도시": [
+     {
+      "value": "한 국가에서 인구가 가장 많은 도시",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1613",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1613 / 표 3행",
+       "priorAuditExamIds": [
+        "2019_9_7",
+        "2025_수능_8",
+        "2026_9_18"
+       ]
+      }
+     }
+    ],
+    "종주 도시": [
+     {
+      "value": "제2도시보다 인구·기능이 압도적으로 집중된 수위 도시",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1613",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1613 / 표 4행",
+       "priorAuditExamIds": [
+        "2019_9_7",
+        "2025_수능_8",
+        "2026_9_18"
+       ]
+      }
+     }
+    ],
+    "세계 도시": [
+     {
+      "value": "국경을 넘어 경제·정치·문화·교통을 연결",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1613",
+       "tableRow": 5,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1613 / 표 5행",
+       "priorAuditExamIds": [
+        "2019_9_7",
+        "2025_수능_8",
+        "2026_9_18"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1613",
+    "locator": "강의 1권 P05 / L1-B1613",
+    "priorAuditExamIds": [
+     "2019_9_7",
+     "2025_수능_8",
+     "2026_9_18"
+    ]
+   }
+  },
+  "L1-B1613-c3": {
+   "label": "같지 않을 수 있는 것",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "최대 인구 도시·세계 도시",
+    "수도·종주 도시",
+    "단순히 1위라는 사실",
+    "수도·인구 천만 도시"
+   ],
+   "values": {
+    "수도": [
+     "최대 인구 도시·세계 도시"
+    ],
+    "수위 도시": [
+     "수도·종주 도시"
+    ],
+    "종주 도시": [
+     "단순히 1위라는 사실"
+    ],
+    "세계 도시": [
+     "수도·인구 천만 도시"
+    ]
+   },
+   "evidence": {
+    "수도": [
+     {
+      "value": "최대 인구 도시·세계 도시",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1613",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1613 / 표 2행",
+       "priorAuditExamIds": [
+        "2019_9_7",
+        "2025_수능_8",
+        "2026_9_18"
+       ]
+      }
+     }
+    ],
+    "수위 도시": [
+     {
+      "value": "수도·종주 도시",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1613",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1613 / 표 3행",
+       "priorAuditExamIds": [
+        "2019_9_7",
+        "2025_수능_8",
+        "2026_9_18"
+       ]
+      }
+     }
+    ],
+    "종주 도시": [
+     {
+      "value": "단순히 1위라는 사실",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1613",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1613 / 표 4행",
+       "priorAuditExamIds": [
+        "2019_9_7",
+        "2025_수능_8",
+        "2026_9_18"
+       ]
+      }
+     }
+    ],
+    "세계 도시": [
+     {
+      "value": "수도·인구 천만 도시",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1613",
+       "tableRow": 5,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1613 / 표 5행",
+       "priorAuditExamIds": [
+        "2019_9_7",
+        "2025_수능_8",
+        "2026_9_18"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1613",
+    "locator": "강의 1권 P05 / L1-B1613",
+    "priorAuditExamIds": [
+     "2019_9_7",
+     "2025_수능_8",
+     "2026_9_18"
+    ]
+   }
+  },
+  "L1-B1637-c2": {
+   "label": "판정 기준",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "도시 인구가 일정 기준 이상",
+    "정치 행정 기능",
+    "국가 내 인구 1위",
+    "인구·기능의 압도적 집중",
+    "기업·금융·생산자 서비스·국제기구·교통 연결"
+   ],
+   "values": {
+    "거대도시": [
+     "도시 인구가 일정 기준 이상"
+    ],
+    "수도": [
+     "정치 행정 기능"
+    ],
+    "수위 도시": [
+     "국가 내 인구 1위"
+    ],
+    "종주 도시": [
+     "인구·기능의 압도적 집중"
+    ],
+    "세계 도시": [
+     "기업·금융·생산자 서비스·국제기구·교통 연결"
+    ]
+   },
+   "evidence": {
+    "거대도시": [
+     {
+      "value": "도시 인구가 일정 기준 이상",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1637",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1637 / 표 2행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "수도": [
+     {
+      "value": "정치 행정 기능",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1637",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1637 / 표 3행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "수위 도시": [
+     {
+      "value": "국가 내 인구 1위",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1637",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1637 / 표 4행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "종주 도시": [
+     {
+      "value": "인구·기능의 압도적 집중",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1637",
+       "tableRow": 5,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1637 / 표 5행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "세계 도시": [
+     {
+      "value": "기업·금융·생산자 서비스·국제기구·교통 연결",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1637",
+       "tableRow": 6,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1637 / 표 6행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1637",
+    "locator": "강의 1권 P05 / L1-B1637",
+    "priorAuditExamIds": []
+   }
+  },
+  "L1-B1637-c3": {
+   "label": "예시적 관계",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "인구는 크지만 세계 연결 기능이 상대적으로 낮을 수 있음",
+    "작은 계획 수도도 가능",
+    "제2도시와 격차는 별도",
+    "개발도상국에만 나타나는 절대 법칙 아님",
+    "인구 천만 명 여부와 독립"
+   ],
+   "values": {
+    "거대도시": [
+     "인구는 크지만 세계 연결 기능이 상대적으로 낮을 수 있음"
+    ],
+    "수도": [
+     "작은 계획 수도도 가능"
+    ],
+    "수위 도시": [
+     "제2도시와 격차는 별도"
+    ],
+    "종주 도시": [
+     "개발도상국에만 나타나는 절대 법칙 아님"
+    ],
+    "세계 도시": [
+     "인구 천만 명 여부와 독립"
+    ]
+   },
+   "evidence": {
+    "거대도시": [
+     {
+      "value": "인구는 크지만 세계 연결 기능이 상대적으로 낮을 수 있음",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1637",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1637 / 표 2행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "수도": [
+     {
+      "value": "작은 계획 수도도 가능",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1637",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1637 / 표 3행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "수위 도시": [
+     {
+      "value": "제2도시와 격차는 별도",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1637",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1637 / 표 4행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "종주 도시": [
+     {
+      "value": "개발도상국에만 나타나는 절대 법칙 아님",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1637",
+       "tableRow": 5,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1637 / 표 5행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "세계 도시": [
+     {
+      "value": "인구 천만 명 여부와 독립",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1637",
+       "tableRow": 6,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1637 / 표 6행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1637",
+    "locator": "강의 1권 P05 / L1-B1637",
+    "priorAuditExamIds": []
+   }
+  },
+  "L1-B1641-c2": {
+   "label": "관찰 지표",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "다국적 기업 본사·증권·금융",
+    "금융·보험·법률·회계·광고",
+    "국제 항공편·환승·항만·통신",
+    "정부·국제기구 본부·외교",
+    "미디어·교육·관광·국제 행사"
+   ],
+   "values": {
+    "경제 통제": [
+     "다국적 기업 본사·증권·금융"
+    ],
+    "생산자 서비스": [
+     "금융·보험·법률·회계·광고"
+    ],
+    "교통 연결": [
+     "국제 항공편·환승·항만·통신"
+    ],
+    "정치": [
+     "정부·국제기구 본부·외교"
+    ],
+    "문화·행사": [
+     "미디어·교육·관광·국제 행사"
+    ]
+   },
+   "evidence": {
+    "경제 통제": [
+     {
+      "value": "다국적 기업 본사·증권·금융",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1641",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1641 / 표 2행",
+       "priorAuditExamIds": [
+        "2024_6_7"
+       ]
+      }
+     }
+    ],
+    "생산자 서비스": [
+     {
+      "value": "금융·보험·법률·회계·광고",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1641",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1641 / 표 3행",
+       "priorAuditExamIds": [
+        "2024_6_7"
+       ]
+      }
+     }
+    ],
+    "교통 연결": [
+     {
+      "value": "국제 항공편·환승·항만·통신",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1641",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1641 / 표 4행",
+       "priorAuditExamIds": [
+        "2024_6_7"
+       ]
+      }
+     }
+    ],
+    "정치": [
+     {
+      "value": "정부·국제기구 본부·외교",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1641",
+       "tableRow": 5,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1641 / 표 5행",
+       "priorAuditExamIds": [
+        "2024_6_7"
+       ]
+      }
+     }
+    ],
+    "문화·행사": [
+     {
+      "value": "미디어·교육·관광·국제 행사",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1641",
+       "tableRow": 6,
+       "tableColumn": 2,
+       "locator": "강의 1권 P05 / L1-B1641 / 표 6행",
+       "priorAuditExamIds": [
+        "2024_6_7"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1641",
+    "locator": "강의 1권 P05 / L1-B1641",
+    "priorAuditExamIds": [
+     "2024_6_7"
+    ]
+   }
+  },
+  "L1-B1641-c3": {
+   "label": "주의",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "기업 수와 평균 매출액 구분",
+    "제조업 종사자 비율과 다른 축",
+    "도시 인구만으로 추론 금지",
+    "수도와 세계 도시 계층이 항상 일치하지 않음",
+    "개최 경험 하나로 최상위 확정 금지"
+   ],
+   "values": {
+    "경제 통제": [
+     "기업 수와 평균 매출액 구분"
+    ],
+    "생산자 서비스": [
+     "제조업 종사자 비율과 다른 축"
+    ],
+    "교통 연결": [
+     "도시 인구만으로 추론 금지"
+    ],
+    "정치": [
+     "수도와 세계 도시 계층이 항상 일치하지 않음"
+    ],
+    "문화·행사": [
+     "개최 경험 하나로 최상위 확정 금지"
+    ]
+   },
+   "evidence": {
+    "경제 통제": [
+     {
+      "value": "기업 수와 평균 매출액 구분",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1641",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1641 / 표 2행",
+       "priorAuditExamIds": [
+        "2024_6_7"
+       ]
+      }
+     }
+    ],
+    "생산자 서비스": [
+     {
+      "value": "제조업 종사자 비율과 다른 축",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1641",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1641 / 표 3행",
+       "priorAuditExamIds": [
+        "2024_6_7"
+       ]
+      }
+     }
+    ],
+    "교통 연결": [
+     {
+      "value": "도시 인구만으로 추론 금지",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1641",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1641 / 표 4행",
+       "priorAuditExamIds": [
+        "2024_6_7"
+       ]
+      }
+     }
+    ],
+    "정치": [
+     {
+      "value": "수도와 세계 도시 계층이 항상 일치하지 않음",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1641",
+       "tableRow": 5,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1641 / 표 5행",
+       "priorAuditExamIds": [
+        "2024_6_7"
+       ]
+      }
+     }
+    ],
+    "문화·행사": [
+     {
+      "value": "개최 경험 하나로 최상위 확정 금지",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P05",
+       "blockId": "L1-B1641",
+       "tableRow": 6,
+       "tableColumn": 3,
+       "locator": "강의 1권 P05 / L1-B1641 / 표 6행",
+       "priorAuditExamIds": [
+        "2024_6_7"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P05",
+    "blockId": "L1-B1641",
+    "locator": "강의 1권 P05 / L1-B1641",
+    "priorAuditExamIds": [
+     "2024_6_7"
+    ]
+   }
+  }
+ },
+ "statements": [],
+ "counts": {
+  "entities": 10,
+  "sets": 6,
+  "statements": 0
+ }
+}

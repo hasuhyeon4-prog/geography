@@ -1,0 +1,137 @@
+{
+ "about": "저장소에서 더한 OX (2026-10-22). 개념 카드의 강의 표 셀·문장에서 옮겨, 새 두 주제가 참·거짓을 고루 갖게 한다(tests/fact-statements.test.cjs). scripts/build-extensions.py가 R9 문장 뒤에 붙인다.",
+ "items": [
+  {
+   "id": "r9-cards-001",
+   "topic": "oldmaps",
+   "claim": "프톨레마이오스 지도는 구형 지구 인식을 바탕으로 경위선망과 지도 투영법을 사용했다.",
+   "originalClaim": "프톨레마이오스 지도는 구형 지구 인식을 바탕으로 경위선망과 지도 투영법을 사용했다.",
+   "answer": true,
+   "explain": "강의 표: 프톨레마이오스 지도 — 대표 표현 \"경위선망을 갖춘 구세계\", 배경지식 \"구형 지구 인식·지도 투영법\".",
+   "source": "강의 1권 P01 / L1-B0162",
+   "period": "개념",
+   "practice": "recall",
+   "auditStatus": "lecture-explicit"
+  },
+  {
+   "id": "r9-cards-002",
+   "topic": "oldmaps",
+   "claim": "혼일강리역대국도지도는 조선 전기에 국가 주도로 제작되었다.",
+   "originalClaim": "혼일강리역대국도지도는 조선 전기에 국가 주도로 제작되었다.",
+   "answer": true,
+   "explain": "강의 표: 혼일강리역대국도지도 — \"우리나라 조선 전기 국가 주도·중국 중심·우리나라 확대\".",
+   "source": "강의 1권 P01 / L1-B0169",
+   "period": "개념",
+   "practice": "recall",
+   "auditStatus": "lecture-explicit"
+  },
+  {
+   "id": "r9-cards-003",
+   "topic": "oldmaps",
+   "claim": "곤여만국전도는 중국에서 제작되었다.",
+   "originalClaim": "곤여만국전도는 중국에서 제작되었다.",
+   "answer": true,
+   "explain": "강의 표: 곤여만국전도 — \"중국에서 제작·혼일강리보다 늦음\", 타원형 세계와 경위선.",
+   "source": "강의 1권 P01 / L1-B0169",
+   "period": "개념",
+   "practice": "recall",
+   "auditStatus": "lecture-explicit"
+  },
+  {
+   "id": "r9-cards-004",
+   "topic": "oldmaps",
+   "claim": "포르톨라노는 연안·항구·도시를 촘촘히 표현한 항해용 실용 지도이다.",
+   "originalClaim": "포르톨라노는 연안·항구·도시를 촘촘히 표현한 항해용 실용 지도이다.",
+   "answer": true,
+   "explain": "강의 표: 포르톨라노 — 대표 표현 \"연안·항구·도시가 촘촘\", 배경지식 \"항해용 실용 지도·나침반 항해에 편리\".",
+   "source": "강의 1권 P01 / L1-B0174",
+   "period": "개념",
+   "practice": "recall",
+   "auditStatus": "lecture-explicit"
+  },
+  {
+   "id": "r9-cards-005",
+   "topic": "oldmaps",
+   "claim": "천하도는 실제 세계를 경위선망으로 정확히 나타낸 지도이다.",
+   "originalClaim": "천하도는 실제 세계를 경위선망으로 정확히 나타낸 지도이다.",
+   "answer": false,
+   "explain": "강의 표: 천하도 — \"원형 관념도·상상 지명\", \"조선 중기 이후 민간·중화+도교·실제와 상상 세계\". 경위선망을 갖춘 정확한 지도가 아니다.",
+   "source": "강의 1권 P01 / L1-B0169",
+   "period": "개념",
+   "practice": "recall",
+   "auditStatus": "lecture-explicit"
+  },
+  {
+   "id": "r9-cards-006",
+   "topic": "geographic-information",
+   "claim": "한 도시의 위도와 경도는 공간 정보이다.",
+   "originalClaim": "한 도시의 위도와 경도는 공간 정보이다.",
+   "answer": true,
+   "explain": "강의 표: 좌표는 숫자여도 위치를 지정하므로 공간 정보다. 인구·GDP처럼 \"얼마나·어떤\"을 붙이는 것은 속성 정보다.",
+   "source": "강의 1권 P01 / L1-B0201",
+   "period": "개념",
+   "practice": "recall",
+   "auditStatus": "lecture-explicit"
+  },
+  {
+   "id": "r9-cards-007",
+   "topic": "geographic-information",
+   "claim": "A 도시가 B 도시보다 동쪽에 있다는 것은 관계 정보이다.",
+   "originalClaim": "A 도시가 B 도시보다 동쪽에 있다는 것은 관계 정보이다.",
+   "answer": true,
+   "explain": "강의 표: 한 도시의 경도는 공간 정보, \"A가 B보다 동쪽\"은 관계 정보(거리·방향·인접·연결).",
+   "source": "강의 1권 P01 / L1-B0201",
+   "period": "개념",
+   "practice": "recall",
+   "auditStatus": "lecture-explicit"
+  },
+  {
+   "id": "r9-cards-008",
+   "topic": "geographic-information",
+   "claim": "원격 탐사로 여러 시점의 영상을 비교하면 빙하 면적이나 열대림 훼손의 변화를 파악할 수 있다.",
+   "originalClaim": "원격 탐사로 여러 시점의 영상을 비교하면 빙하 면적이나 열대림 훼손의 변화를 파악할 수 있다.",
+   "answer": true,
+   "explain": "강의: 센서는 지표·대기에서 반사·방출되는 에너지를 감지하며, 여러 시점의 영상을 비교해 해안선·빙하 면적·열대림 훼손의 변화를 파악한다.",
+   "source": "강의 1권 P01 / L1-B0205",
+   "period": "개념",
+   "practice": "recall",
+   "auditStatus": "lecture-explicit"
+  },
+  {
+   "id": "r9-cards-009",
+   "topic": "geographic-information",
+   "claim": "GIS는 GPS와 같은 위치 수신 장치이다.",
+   "originalClaim": "GIS는 GPS와 같은 위치 수신 장치이다.",
+   "answer": false,
+   "explain": "강의 표: GIS는 여러 지리 정보를 저장·결합·분석하는 체계이며 GPS와 같은 위치 수신 장치가 아니다.",
+   "source": "강의 1권 P01 / L1-B0205",
+   "period": "개념",
+   "practice": "recall",
+   "auditStatus": "lecture-explicit"
+  },
+  {
+   "id": "r9-cards-010",
+   "topic": "geographic-information",
+   "claim": "조건을 하나 이상 만족하면 되는 중첩 분석에서는 조건별 결과의 합집합을 구한다.",
+   "originalClaim": "조건을 하나 이상 만족하면 되는 중첩 분석에서는 조건별 결과의 합집합을 구한다.",
+   "answer": true,
+   "explain": "강의: \"모두 만족\"은 교집합, \"하나 이상\"은 합집합이다.",
+   "source": "강의 1권 P01 / L1-B0228",
+   "period": "개념",
+   "practice": "recall",
+   "auditStatus": "lecture-explicit"
+  },
+  {
+   "id": "r9-cards-011",
+   "topic": "geographic-information",
+   "claim": "유선도는 이동과 흐름을 선의 방향과 굵기로 표현한다.",
+   "originalClaim": "유선도는 이동과 흐름을 선의 방향과 굵기로 표현한다.",
+   "answer": true,
+   "explain": "강의 표: 유선도 — 이동·흐름을 선의 방향·굵기로 표현. 읽을 때는 출발·도착·흐름 규모를 먼저 본다.",
+   "source": "강의 1권 P01 / L1-B0220",
+   "period": "개념",
+   "practice": "recall",
+   "auditStatus": "lecture-explicit"
+  }
+ ]
+}

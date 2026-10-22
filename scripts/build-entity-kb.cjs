@@ -160,6 +160,9 @@ for (const name of Object.keys(shapes.byName)) {
     else if (e.status === 'other' && NEGATION_SAFE[id] === 'all' && e.values.length) facts[id] = {values: e.values.slice(), note: e.note || ''};
   }
   for (const [key, f] of Object.entries(extra.facts)) {
+    // 'suppliedData' facts (OPEC by one edition's list, a 기출 table's largest group) are practised
+    // with their data shown, never recalled.
+    if (f.practice === 'suppliedData') continue;
     if (f.values[name]) facts[key] = {values: f.values[name].slice(), note: '', source: f.source};
   }
   const s = stats.countries[name];

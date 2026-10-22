@@ -1,0 +1,60 @@
+{
+ "schemaVersion": 1,
+ "about": "생물 다양성 협약의 채택과 서명 개방 구별",
+ "entities": {
+  "생물 다양성 협약": {
+   "type": "treaty",
+   "place": null,
+   "source": {
+    "sourceUrl": "https://www.cbd.int/history/default.shtml",
+    "snapshot": "cbd-history.html",
+    "publisher": "Convention on Biological Diversity Secretariat",
+    "adopted": "1992-05-22",
+    "adoptionCity": "나이로비",
+    "openedForSignature": "1992-06-05",
+    "signatureCity": "리우데자네이루",
+    "objectives": [
+     "생물 다양성 보전",
+     "구성 요소의 지속 가능한 이용",
+     "유전자원 이용 이익의 공정하고 공평한 공유"
+    ],
+    "policy": "채택과 서명 개방은 별도 사건. 리우 개최 사실을 나이로비 채택 장소와 혼동하지 않는다.",
+    "retrievedAt": "2026-10-22",
+    "sha256": "38fb5d029c3b2a941b2bd16ece75305f7616fd5d041f5e5a0f84ea728add2b96",
+    "practice": "suppliedData",
+    "curriculumEvidence": "요청서 R9 보완 항목. 강의 개별 기출의 회상 허용 목록으로 자동 편입하지 않는다."
+   }
+  }
+ },
+ "sets": {},
+ "statements": [
+  {
+   "id": "cbd-distinct-events",
+   "about": [
+    "생물 다양성 협약"
+   ],
+   "claim": "생물 다양성 협약은 1992년 나이로비에서 채택되고 리우데자네이루에서 서명에 개방되었다.",
+   "truth": true,
+   "source": {
+    "sourceUrl": "https://www.cbd.int/history/default.shtml",
+    "snapshot": "cbd-history.html",
+    "publisher": "Convention on Biological Diversity Secretariat",
+    "adopted": "1992-05-22",
+    "adoptionCity": "나이로비",
+    "openedForSignature": "1992-06-05",
+    "signatureCity": "리우데자네이루",
+    "objectives": [
+     "생물 다양성 보전",
+     "구성 요소의 지속 가능한 이용",
+     "유전자원 이용 이익의 공정하고 공평한 공유"
+    ],
+    "policy": "채택과 서명 개방은 별도 사건. 리우 개최 사실을 나이로비 채택 장소와 혼동하지 않는다.",
+    "retrievedAt": "2026-10-22",
+    "sha256": "38fb5d029c3b2a941b2bd16ece75305f7616fd5d041f5e5a0f84ea728add2b96",
+    "practice": "suppliedData",
+    "curriculumEvidence": "요청서 R9 보완 항목. 강의 개별 기출의 회상 허용 목록으로 자동 편입하지 않는다."
+   },
+   "practice": "suppliedData"
+  }
+ ]
+}

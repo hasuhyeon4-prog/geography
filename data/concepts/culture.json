@@ -1,0 +1,760 @@
+{
+ "schemaVersion": 1,
+ "about": "culture 강의 근거 개념 카드",
+ "policy": {
+  "absenceMeansFalse": false,
+  "falseDistractors": "명시적 거짓 statements만 사용. complete:false인 세트의 교차 대입 금지.",
+  "sourceLocator": "data/extension-sources/lecture-blocks.json의 blockId; 쪽수 미측정",
+  "scope": "개념 카드이며 기출 재현율 또는 화면 연결 완료를 뜻하지 않는다."
+ },
+ "entities": {
+  "유르트": {
+   "type": "culturalFeature",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1290",
+    "locator": "강의 1권 P04 / L1-B1290",
+    "priorAuditExamIds": [
+     "2021_수능_11",
+     "2024_수능_12",
+     "2026_수능_11"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P04",
+     "blockId": "L1-B1290",
+     "locator": "강의 1권 P04 / L1-B1290",
+     "priorAuditExamIds": [
+      "2021_수능_11",
+      "2024_수능_12",
+      "2026_수능_11"
+     ]
+    }
+   ]
+  },
+  "카나트": {
+   "type": "culturalFeature",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1290",
+    "locator": "강의 1권 P04 / L1-B1290",
+    "priorAuditExamIds": [
+     "2021_수능_11",
+     "2024_수능_12",
+     "2026_수능_11"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P04",
+     "blockId": "L1-B1290",
+     "locator": "강의 1권 P04 / L1-B1290",
+     "priorAuditExamIds": [
+      "2021_수능_11",
+      "2024_수능_12",
+      "2026_수능_11"
+     ]
+    }
+   ]
+  },
+  "열대 고상 가옥": {
+   "type": "culturalFeature",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1290",
+    "locator": "강의 1권 P04 / L1-B1290",
+    "priorAuditExamIds": [
+     "2021_수능_11",
+     "2024_수능_12",
+     "2026_수능_11"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P04",
+     "blockId": "L1-B1290",
+     "locator": "강의 1권 P04 / L1-B1290",
+     "priorAuditExamIds": [
+      "2021_수능_11",
+      "2024_수능_12",
+      "2026_수능_11"
+     ]
+    },
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P04",
+     "blockId": "L1-B1297",
+     "locator": "강의 1권 P04 / L1-B1297",
+     "priorAuditExamIds": [
+      "2022_6_17",
+      "2023_9_20",
+      "2026_6_20"
+     ]
+    }
+   ]
+  },
+  "다설 가옥": {
+   "type": "culturalFeature",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1290",
+    "locator": "강의 1권 P04 / L1-B1290",
+    "priorAuditExamIds": [
+     "2021_수능_11",
+     "2024_수능_12",
+     "2026_수능_11"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P04",
+     "blockId": "L1-B1290",
+     "locator": "강의 1권 P04 / L1-B1290",
+     "priorAuditExamIds": [
+      "2021_수능_11",
+      "2024_수능_12",
+      "2026_수능_11"
+     ]
+    }
+   ]
+  },
+  "건조 지역 의복": {
+   "type": "culturalFeature",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1290",
+    "locator": "강의 1권 P04 / L1-B1290",
+    "priorAuditExamIds": [
+     "2021_수능_11",
+     "2024_수능_12",
+     "2026_수능_11"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P04",
+     "blockId": "L1-B1290",
+     "locator": "강의 1권 P04 / L1-B1290",
+     "priorAuditExamIds": [
+      "2021_수능_11",
+      "2024_수능_12",
+      "2026_수능_11"
+     ]
+    }
+   ]
+  },
+  "게르": {
+   "type": "house",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1274",
+    "locator": "강의 1권 P04 / L1-B1274",
+    "priorAuditExamIds": [
+     "2022_6_17"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P04",
+     "blockId": "L1-B1274",
+     "locator": "강의 1권 P04 / L1-B1274",
+     "priorAuditExamIds": [
+      "2022_6_17"
+     ]
+    }
+   ]
+  },
+  "갓쇼즈쿠리": {
+   "type": "house",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1297",
+    "locator": "강의 1권 P04 / L1-B1297",
+    "priorAuditExamIds": [
+     "2022_6_17",
+     "2023_9_20",
+     "2026_6_20"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P04",
+     "blockId": "L1-B1297",
+     "locator": "강의 1권 P04 / L1-B1297",
+     "priorAuditExamIds": [
+      "2022_6_17",
+      "2023_9_20",
+      "2026_6_20"
+     ]
+    }
+   ]
+  },
+  "건조 지역 흙집": {
+   "type": "house",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P02",
+    "blockId": "L1-B0355",
+    "locator": "강의 1권 P02 / L1-B0355",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P02",
+     "blockId": "L1-B0355",
+     "locator": "강의 1권 P02 / L1-B0355",
+     "priorAuditExamIds": []
+    }
+   ]
+  }
+ },
+ "sets": {
+  "L1-B1290-c2": {
+   "label": "환경",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "중앙아시아·몽골 초원",
+    "건조 지역 산록·오아시스",
+    "고온다습·홍수 가능 지역",
+    "눈이 많은 산지·고위도",
+    "강한 일사·큰 일교차·먼지"
+   ],
+   "values": {
+    "유르트": [
+     "중앙아시아·몽골 초원"
+    ],
+    "카나트": [
+     "건조 지역 산록·오아시스"
+    ],
+    "열대 고상 가옥": [
+     "고온다습·홍수 가능 지역"
+    ],
+    "다설 가옥": [
+     "눈이 많은 산지·고위도"
+    ],
+    "건조 지역 의복": [
+     "강한 일사·큰 일교차·먼지"
+    ]
+   },
+   "evidence": {
+    "유르트": [
+     {
+      "value": "중앙아시아·몽골 초원",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1290",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 1권 P04 / L1-B1290 / 표 2행",
+       "priorAuditExamIds": [
+        "2021_수능_11",
+        "2024_수능_12",
+        "2026_수능_11"
+       ]
+      }
+     }
+    ],
+    "카나트": [
+     {
+      "value": "건조 지역 산록·오아시스",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1290",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 1권 P04 / L1-B1290 / 표 3행",
+       "priorAuditExamIds": [
+        "2021_수능_11",
+        "2024_수능_12",
+        "2026_수능_11"
+       ]
+      }
+     }
+    ],
+    "열대 고상 가옥": [
+     {
+      "value": "고온다습·홍수 가능 지역",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1290",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 1권 P04 / L1-B1290 / 표 4행",
+       "priorAuditExamIds": [
+        "2021_수능_11",
+        "2024_수능_12",
+        "2026_수능_11"
+       ]
+      }
+     }
+    ],
+    "다설 가옥": [
+     {
+      "value": "눈이 많은 산지·고위도",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1290",
+       "tableRow": 5,
+       "tableColumn": 2,
+       "locator": "강의 1권 P04 / L1-B1290 / 표 5행",
+       "priorAuditExamIds": [
+        "2021_수능_11",
+        "2024_수능_12",
+        "2026_수능_11"
+       ]
+      }
+     }
+    ],
+    "건조 지역 의복": [
+     {
+      "value": "강한 일사·큰 일교차·먼지",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1290",
+       "tableRow": 6,
+       "tableColumn": 2,
+       "locator": "강의 1권 P04 / L1-B1290 / 표 6행",
+       "priorAuditExamIds": [
+        "2021_수능_11",
+        "2024_수능_12",
+        "2026_수능_11"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1290",
+    "locator": "강의 1권 P04 / L1-B1290",
+    "priorAuditExamIds": [
+     "2021_수능_11",
+     "2024_수능_12",
+     "2026_수능_11"
+    ]
+   }
+  },
+  "L1-B1290-c3": {
+   "label": "최소 원리",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "유목 이동·조립·보온",
+    "지하 수로로 증발을 줄여 물 이동",
+    "통풍·습기·침수 회피",
+    "급경사 지붕으로 적설 배출",
+    "피부 보호·통풍·보온의 균형"
+   ],
+   "values": {
+    "유르트": [
+     "유목 이동·조립·보온"
+    ],
+    "카나트": [
+     "지하 수로로 증발을 줄여 물 이동"
+    ],
+    "열대 고상 가옥": [
+     "통풍·습기·침수 회피"
+    ],
+    "다설 가옥": [
+     "급경사 지붕으로 적설 배출"
+    ],
+    "건조 지역 의복": [
+     "피부 보호·통풍·보온의 균형"
+    ]
+   },
+   "evidence": {
+    "유르트": [
+     {
+      "value": "유목 이동·조립·보온",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1290",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 1권 P04 / L1-B1290 / 표 2행",
+       "priorAuditExamIds": [
+        "2021_수능_11",
+        "2024_수능_12",
+        "2026_수능_11"
+       ]
+      }
+     }
+    ],
+    "카나트": [
+     {
+      "value": "지하 수로로 증발을 줄여 물 이동",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1290",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 1권 P04 / L1-B1290 / 표 3행",
+       "priorAuditExamIds": [
+        "2021_수능_11",
+        "2024_수능_12",
+        "2026_수능_11"
+       ]
+      }
+     }
+    ],
+    "열대 고상 가옥": [
+     {
+      "value": "통풍·습기·침수 회피",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1290",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 1권 P04 / L1-B1290 / 표 4행",
+       "priorAuditExamIds": [
+        "2021_수능_11",
+        "2024_수능_12",
+        "2026_수능_11"
+       ]
+      }
+     }
+    ],
+    "다설 가옥": [
+     {
+      "value": "급경사 지붕으로 적설 배출",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1290",
+       "tableRow": 5,
+       "tableColumn": 3,
+       "locator": "강의 1권 P04 / L1-B1290 / 표 5행",
+       "priorAuditExamIds": [
+        "2021_수능_11",
+        "2024_수능_12",
+        "2026_수능_11"
+       ]
+      }
+     }
+    ],
+    "건조 지역 의복": [
+     {
+      "value": "피부 보호·통풍·보온의 균형",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1290",
+       "tableRow": 6,
+       "tableColumn": 3,
+       "locator": "강의 1권 P04 / L1-B1290 / 표 6행",
+       "priorAuditExamIds": [
+        "2021_수능_11",
+        "2024_수능_12",
+        "2026_수능_11"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1290",
+    "locator": "강의 1권 P04 / L1-B1290",
+    "priorAuditExamIds": [
+     "2021_수능_11",
+     "2024_수능_12",
+     "2026_수능_11"
+    ]
+   }
+  },
+  "L1-B1290-c4": {
+   "label": "과잉 일반화 방지",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "모든 주민이 현재도 유목하는 것은 아님",
+    "모든 건조 지역 관개가 카나트는 아님",
+    "고상=영구 동토로 단정 금지",
+    "급경사 지붕=단일 국가로 확정 금지",
+    "색깔 하나로 문화권 확정 금지"
+   ],
+   "values": {
+    "유르트": [
+     "모든 주민이 현재도 유목하는 것은 아님"
+    ],
+    "카나트": [
+     "모든 건조 지역 관개가 카나트는 아님"
+    ],
+    "열대 고상 가옥": [
+     "고상=영구 동토로 단정 금지"
+    ],
+    "다설 가옥": [
+     "급경사 지붕=단일 국가로 확정 금지"
+    ],
+    "건조 지역 의복": [
+     "색깔 하나로 문화권 확정 금지"
+    ]
+   },
+   "evidence": {
+    "유르트": [
+     {
+      "value": "모든 주민이 현재도 유목하는 것은 아님",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1290",
+       "tableRow": 2,
+       "tableColumn": 4,
+       "locator": "강의 1권 P04 / L1-B1290 / 표 2행",
+       "priorAuditExamIds": [
+        "2021_수능_11",
+        "2024_수능_12",
+        "2026_수능_11"
+       ]
+      }
+     }
+    ],
+    "카나트": [
+     {
+      "value": "모든 건조 지역 관개가 카나트는 아님",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1290",
+       "tableRow": 3,
+       "tableColumn": 4,
+       "locator": "강의 1권 P04 / L1-B1290 / 표 3행",
+       "priorAuditExamIds": [
+        "2021_수능_11",
+        "2024_수능_12",
+        "2026_수능_11"
+       ]
+      }
+     }
+    ],
+    "열대 고상 가옥": [
+     {
+      "value": "고상=영구 동토로 단정 금지",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1290",
+       "tableRow": 4,
+       "tableColumn": 4,
+       "locator": "강의 1권 P04 / L1-B1290 / 표 4행",
+       "priorAuditExamIds": [
+        "2021_수능_11",
+        "2024_수능_12",
+        "2026_수능_11"
+       ]
+      }
+     }
+    ],
+    "다설 가옥": [
+     {
+      "value": "급경사 지붕=단일 국가로 확정 금지",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1290",
+       "tableRow": 5,
+       "tableColumn": 4,
+       "locator": "강의 1권 P04 / L1-B1290 / 표 5행",
+       "priorAuditExamIds": [
+        "2021_수능_11",
+        "2024_수능_12",
+        "2026_수능_11"
+       ]
+      }
+     }
+    ],
+    "건조 지역 의복": [
+     {
+      "value": "색깔 하나로 문화권 확정 금지",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1290",
+       "tableRow": 6,
+       "tableColumn": 4,
+       "locator": "강의 1권 P04 / L1-B1290 / 표 6행",
+       "priorAuditExamIds": [
+        "2021_수능_11",
+        "2024_수능_12",
+        "2026_수능_11"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1290",
+    "locator": "강의 1권 P04 / L1-B1290",
+    "priorAuditExamIds": [
+     "2021_수능_11",
+     "2024_수능_12",
+     "2026_수능_11"
+    ]
+   }
+  }
+ },
+ "statements": [
+  {
+   "id": "culture-L1-B1274-1",
+   "about": [
+    "게르"
+   ],
+   "claim": "사진의 (가)는 몽골의 게르, (나)는 일본의 갓쇼즈쿠리, (다)는 인도네시아의 고상 가옥이다. (가)의 분해·조립이 가능한 골조와 덮개는 유목 이동에, (나)의 가파른 지붕은 많은 눈에, (다)의 높인 바닥과 열린 구조는 고온 다습한 환경의 통풍에 연결된다. (나)가 (다)보다 통풍에 유리하다는 비교나 (나)가 (가)보다 유목 생활에 적합하다는 비교는 구조와 기능을 바꾼 것이다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1274",
+    "locator": "강의 1권 P04 / L1-B1274",
+    "priorAuditExamIds": [
+     "2022_6_17"
+    ]
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "culture-L1-B1297-2",
+   "about": [
+    "갓쇼즈쿠리"
+   ],
+   "claim": "일본의 갓쇼즈쿠리 가옥은 두 손을 모은 듯한 급경사 지붕이 특징이다. 눈이 많이 내리는 환경에서 지붕의 눈이 쉽게 미끄러져 내려가도록 한다. 동남아시아 열대 지역의 고상 가옥은 바닥을 지면에서 높여 열·습기·침수 피해를 줄이고 통풍을 돕는다. 이동성은 게르가, 통풍은 개방적인 열대 고상 가옥이 유리하며, 모든 급경사 지붕을 유목 생활의 결과로 해석하지 않는다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1297",
+    "locator": "강의 1권 P04 / L1-B1297",
+    "priorAuditExamIds": [
+     "2022_6_17",
+     "2023_9_20",
+     "2026_6_20"
+    ]
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "culture-L1-B1297-3",
+   "about": [
+    "열대 고상 가옥"
+   ],
+   "claim": "일본의 갓쇼즈쿠리 가옥은 두 손을 모은 듯한 급경사 지붕이 특징이다. 눈이 많이 내리는 환경에서 지붕의 눈이 쉽게 미끄러져 내려가도록 한다. 동남아시아 열대 지역의 고상 가옥은 바닥을 지면에서 높여 열·습기·침수 피해를 줄이고 통풍을 돕는다. 이동성은 게르가, 통풍은 개방적인 열대 고상 가옥이 유리하며, 모든 급경사 지붕을 유목 생활의 결과로 해석하지 않는다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1297",
+    "locator": "강의 1권 P04 / L1-B1297",
+    "priorAuditExamIds": [
+     "2022_6_17",
+     "2023_9_20",
+     "2026_6_20"
+    ]
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "culture-L1-B0355-4",
+   "about": [
+    "건조 지역 흙집"
+   ],
+   "claim": "건조 지역의 전통 가옥은 구하기 쉬운 흙으로 두꺼운 벽을 만들어 외부의 큰 온도 변화를 줄이고, 비가 적어 지붕을 평평하게 만들기도 한다. 스텝에서는 가축과 함께 이동하는 유목 생활에 맞춰 조립·운반하기 쉬운 천막형 가옥인 유르트·게르를 사용한다. 모든 건조 지역의 가옥이나 농업 방식이 같은 것은 아니다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P02",
+    "blockId": "L1-B0355",
+    "locator": "강의 1권 P02 / L1-B0355",
+    "priorAuditExamIds": []
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  }
+ ],
+ "counts": {
+  "entities": 8,
+  "sets": 3,
+  "statements": 4
+ }
+}

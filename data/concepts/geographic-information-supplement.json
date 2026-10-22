@@ -1,0 +1,42 @@
+{
+ "schemaVersion": 1,
+ "about": "요청서 R9의 버퍼 분석 보완",
+ "entities": {
+  "버퍼 분석": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "sourceUrl": "https://doc.esri.com/en/arcgis-pro/latest/tool-reference/analysis/buffer.html",
+    "snapshot": "arcgis-buffer.html",
+    "publisher": "Esri ArcGIS Pro documentation",
+    "summary": "입력 객체 주위에 지정한 거리의 버퍼 다각형을 만든다. 거리 분석이며 속성 가중치의 합산과 다르다.",
+    "retrievedAt": "2026-10-22",
+    "sha256": "6b683640847f1442999cc71e82a9fe2ec4265b76df8082c543fa5d7159275350",
+    "practice": "suppliedData",
+    "curriculumEvidence": "요청서 R9 보완 항목. 강의 개별 기출의 회상 허용 목록으로 자동 편입하지 않는다."
+   }
+  }
+ },
+ "sets": {},
+ "statements": [
+  {
+   "id": "buffer-distance",
+   "about": [
+    "버퍼 분석"
+   ],
+   "claim": "입력 객체 주위에 지정한 거리의 버퍼 다각형을 만든다. 거리 분석이며 속성 가중치의 합산과 다르다.",
+   "truth": true,
+   "source": {
+    "sourceUrl": "https://doc.esri.com/en/arcgis-pro/latest/tool-reference/analysis/buffer.html",
+    "snapshot": "arcgis-buffer.html",
+    "publisher": "Esri ArcGIS Pro documentation",
+    "summary": "입력 객체 주위에 지정한 거리의 버퍼 다각형을 만든다. 거리 분석이며 속성 가중치의 합산과 다르다.",
+    "retrievedAt": "2026-10-22",
+    "sha256": "6b683640847f1442999cc71e82a9fe2ec4265b76df8082c543fa5d7159275350",
+    "practice": "suppliedData",
+    "curriculumEvidence": "요청서 R9 보완 항목. 강의 개별 기출의 회상 허용 목록으로 자동 편입하지 않는다."
+   },
+   "practice": "suppliedData"
+  }
+ ]
+}

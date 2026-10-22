@@ -1,0 +1,1502 @@
+{
+ "tables": [
+  {
+   "domain": "energy",
+   "source": "L2-B0302",
+   "type": "energy",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "energy",
+   "source": "L2-B0324",
+   "type": "energy",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "energy",
+   "source": "L2-B0332",
+   "type": "energy",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "energy",
+   "source": "L2-B0433",
+   "type": "energy",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "energy",
+   "source": "L2-B0452",
+   "type": "energy",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "energy",
+   "source": "L2-B0422",
+   "type": "energy",
+   "transpose": true,
+   "names": [
+    "풍력",
+    "태양광"
+   ],
+   "skip": []
+  },
+  {
+   "domain": "climate",
+   "source": "L1-B0327",
+   "type": "climate",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "climate",
+   "source": "L1-B0343",
+   "type": "climate",
+   "transpose": true,
+   "names": [
+    "BW",
+    "BS"
+   ],
+   "skip": []
+  },
+  {
+   "domain": "climate",
+   "source": "L1-B0372",
+   "type": "climate",
+   "transpose": true,
+   "names": [
+    "Cfa",
+    "Cw"
+   ],
+   "skip": []
+  },
+  {
+   "domain": "climate",
+   "source": "L1-B0379",
+   "type": "climate",
+   "transpose": true,
+   "names": [
+    "Cfb",
+    "Cs"
+   ],
+   "skip": []
+  },
+  {
+   "domain": "climate",
+   "source": "L1-B0390",
+   "type": "climate",
+   "transpose": true,
+   "names": [
+    "Df",
+    "Dw"
+   ],
+   "skip": []
+  },
+  {
+   "domain": "climate",
+   "source": "L1-B0400",
+   "type": "climate",
+   "transpose": true,
+   "names": [
+    "ET",
+    "EF",
+    "H"
+   ],
+   "skip": []
+  },
+  {
+   "domain": "climate-processes",
+   "source": "L1-B0293",
+   "type": "process",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "climate-processes",
+   "source": "L1-B0305",
+   "type": "process",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "climate-processes",
+   "source": "L1-B0308",
+   "type": "process",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "climate-processes",
+   "source": "L1-B0316",
+   "type": "process",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "climate-processes",
+   "source": "L1-B0362",
+   "type": "process",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "landforms",
+   "source": "L1-B0621",
+   "type": "landform",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "landforms",
+   "source": "L1-B0677",
+   "type": "landform",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "landforms",
+   "source": "L1-B0689",
+   "type": "landform",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "landforms",
+   "source": "L1-B0702",
+   "type": "landform",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "landforms",
+   "source": "L1-B0738",
+   "type": "landform",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "landforms",
+   "source": "L1-B0754",
+   "type": "landform",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "landforms",
+   "source": "L1-B0758",
+   "type": "landform",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "landforms",
+   "source": "L1-B0783",
+   "type": "landform",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "landforms",
+   "source": "L1-B0806",
+   "type": "landform",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "landforms",
+   "source": "L1-B0820",
+   "type": "landform",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "landforms",
+   "source": "L1-B0855",
+   "type": "landform",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "landforms",
+   "source": "L1-B0859",
+   "type": "landform",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "landforms",
+   "source": "L1-B0863",
+   "type": "landform",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "landforms",
+   "source": "L1-B0888",
+   "type": "landform",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "landforms",
+   "source": "L1-B0645",
+   "type": "landform",
+   "transpose": true,
+   "names": [
+    "신기 습곡 산지",
+    "고기 습곡 산지"
+   ],
+   "skip": []
+  },
+  {
+   "domain": "landform-places",
+   "source": "L1-B0729",
+   "type": "place",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "religion",
+   "source": "L1-B0961",
+   "type": "religion",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "religion",
+   "source": "L1-B1024",
+   "type": "religion",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "religion",
+   "source": "L1-B1037",
+   "type": "religion",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "religion",
+   "source": "L1-B0995",
+   "type": "denomination",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "religion",
+   "source": "L1-B1008",
+   "type": "denomination",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "religion",
+   "source": "L1-B0969",
+   "type": "religion",
+   "singleEntity": "크리스트교",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "religion",
+   "source": "L1-B1002",
+   "type": "religion",
+   "singleEntity": "이슬람교",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "religion",
+   "source": "L1-B1014",
+   "type": "religion",
+   "singleEntity": "불교",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "religion-practices",
+   "source": "L1-B1101",
+   "type": "religion",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "religion-practices",
+   "source": "L1-B1107",
+   "type": "religion",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "religion-places",
+   "source": "L1-B1029",
+   "type": "place",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "conflicts",
+   "source": "L1-B1158",
+   "type": "region",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "conflicts",
+   "source": "L1-B1169",
+   "type": "region",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "conflicts",
+   "source": "L1-B1186",
+   "type": "region",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "conflicts",
+   "source": "L1-B1188",
+   "type": "region",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "conflicts",
+   "source": "L1-B1212",
+   "type": "region",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "culture",
+   "source": "L1-B1290",
+   "type": "culturalFeature",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "industry",
+   "source": "L2-B0644",
+   "type": "industrialRegion",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "industry",
+   "source": "L2-B0649",
+   "type": "industrialRegion",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "industry",
+   "source": "L2-B0690",
+   "type": "industrialRegion",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "city-functions",
+   "source": "L1-B1613",
+   "type": "cityConcept",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "city-functions",
+   "source": "L1-B1637",
+   "type": "cityConcept",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "city-functions",
+   "source": "L1-B1641",
+   "type": "cityConcept",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "cities",
+   "source": "L1-B1706",
+   "type": "city",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "cities",
+   "source": "L1-B1630",
+   "type": "country",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "oldmaps",
+   "source": "L1-B0162",
+   "type": "oldmap",
+   "transpose": false,
+   "names": {
+    "바빌로니아": "바빌로니아 점토판 지도",
+    "T-O": "T-O 지도",
+    "프톨레마이오스": "프톨레마이오스 지도",
+    "알 이드리시": "알 이드리시 지도",
+    "혼일강리": "혼일강리역대국도지도"
+   },
+   "skip": []
+  },
+  {
+   "domain": "oldmaps",
+   "source": "L1-B0169",
+   "type": "oldmap",
+   "transpose": false,
+   "names": {
+    "바빌로니아": "바빌로니아 점토판 지도",
+    "T-O": "T-O 지도",
+    "프톨레마이오스": "프톨레마이오스 지도",
+    "알 이드리시": "알 이드리시 지도",
+    "혼일강리": "혼일강리역대국도지도"
+   },
+   "skip": []
+  },
+  {
+   "domain": "oldmaps",
+   "source": "L1-B0174",
+   "type": "oldmap",
+   "transpose": false,
+   "names": {
+    "바빌로니아": "바빌로니아 점토판 지도",
+    "T-O": "T-O 지도",
+    "프톨레마이오스": "프톨레마이오스 지도",
+    "알 이드리시": "알 이드리시 지도",
+    "혼일강리": "혼일강리역대국도지도"
+   },
+   "skip": []
+  },
+  {
+   "domain": "geographic-information",
+   "source": "L1-B0201",
+   "type": "concept",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "geographic-information",
+   "source": "L1-B0205",
+   "type": "concept",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "geographic-information",
+   "source": "L1-B0220",
+   "type": "concept",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "geographic-information",
+   "source": "L1-B0238",
+   "type": "concept",
+   "transpose": false,
+   "names": null,
+   "skip": []
+  },
+  {
+   "domain": "environment",
+   "source": "L2-B1059",
+   "type": "treaty",
+   "transpose": false,
+   "names": null,
+   "skip": [],
+   "entityColumn": 1
+  }
+ ],
+ "passages": [
+  {
+   "domain": "landforms",
+   "name": "순상 화산",
+   "type": "landform",
+   "source": "L1-B0675"
+  },
+  {
+   "domain": "landforms",
+   "name": "성층 화산",
+   "type": "landform",
+   "source": "L1-B0675"
+  },
+  {
+   "domain": "landforms",
+   "name": "석회 동굴",
+   "type": "landform",
+   "source": "L1-B0697"
+  },
+  {
+   "domain": "landforms",
+   "name": "솔리플럭션",
+   "type": "landform",
+   "source": "L1-B0406"
+  },
+  {
+   "domain": "culture",
+   "name": "게르",
+   "type": "house",
+   "source": "L1-B1274"
+  },
+  {
+   "domain": "culture",
+   "name": "갓쇼즈쿠리",
+   "type": "house",
+   "source": "L1-B1297"
+  },
+  {
+   "domain": "culture",
+   "name": "열대 고상 가옥",
+   "type": "house",
+   "source": "L1-B1297"
+  },
+  {
+   "domain": "culture",
+   "name": "건조 지역 흙집",
+   "type": "house",
+   "source": "L1-B0355"
+  },
+  {
+   "domain": "industry",
+   "name": "제3 이탈리아",
+   "type": "industrialRegion",
+   "source": "L2-B0662"
+  },
+  {
+   "domain": "industry",
+   "name": "시카고",
+   "type": "industrialRegion",
+   "source": "L2-B0674"
+  },
+  {
+   "domain": "industry",
+   "name": "디트로이트",
+   "type": "industrialRegion",
+   "source": "L2-B0676"
+  },
+  {
+   "domain": "industry",
+   "name": "피츠버그",
+   "type": "industrialRegion",
+   "source": "L2-B0678"
+  },
+  {
+   "domain": "industry",
+   "name": "일본 태평양 연안",
+   "type": "industrialRegion",
+   "source": "L2-B0572"
+  },
+  {
+   "domain": "industry",
+   "name": "중국 연해 공업",
+   "type": "industrialRegion",
+   "source": "L2-B0615"
+  },
+  {
+   "domain": "industry",
+   "name": "인도 IT 산업",
+   "type": "industrialRegion",
+   "source": "L2-B0615"
+  },
+  {
+   "domain": "industry",
+   "name": "선벨트",
+   "type": "industrialRegion",
+   "source": "L2-B0668"
+  },
+  {
+   "domain": "oldmaps",
+   "name": "바빌로니아 점토판 지도",
+   "type": "oldmap",
+   "source": "L1-B0180"
+  },
+  {
+   "domain": "oldmaps",
+   "name": "T-O 지도",
+   "type": "oldmap",
+   "source": "L1-B0181"
+  },
+  {
+   "domain": "oldmaps",
+   "name": "프톨레마이오스 지도",
+   "type": "oldmap",
+   "source": "L1-B0182"
+  },
+  {
+   "domain": "oldmaps",
+   "name": "알 이드리시 지도",
+   "type": "oldmap",
+   "source": "L1-B0183"
+  },
+  {
+   "domain": "oldmaps",
+   "name": "천하도",
+   "type": "oldmap",
+   "source": "L1-B0185"
+  },
+  {
+   "domain": "oldmaps",
+   "name": "대명 혼일도",
+   "type": "oldmap",
+   "source": "L1-B0186"
+  },
+  {
+   "domain": "oldmaps",
+   "name": "혼일강리역대국도지도",
+   "type": "oldmap",
+   "source": "L1-B0187"
+  },
+  {
+   "domain": "oldmaps",
+   "name": "곤여만국전도",
+   "type": "oldmap",
+   "source": "L1-B0188"
+  },
+  {
+   "domain": "oldmaps",
+   "name": "지구전후도",
+   "type": "oldmap",
+   "source": "L1-B0189"
+  },
+  {
+   "domain": "geographic-information",
+   "name": "원격 탐사",
+   "type": "concept",
+   "source": "L1-B0210"
+  },
+  {
+   "domain": "geographic-information",
+   "name": "GPS와 GIS",
+   "type": "concept",
+   "source": "L1-B0213"
+  },
+  {
+   "domain": "geographic-information",
+   "name": "중첩 분석",
+   "type": "concept",
+   "source": "L1-B0233"
+  },
+  {
+   "domain": "localization",
+   "name": "세계화·지역화·현지화",
+   "type": "concept",
+   "source": "L2-B0859"
+  },
+  {
+   "domain": "localization",
+   "name": "지역화 사례 L2-B0858",
+   "type": "concept",
+   "source": "L2-B0858"
+  },
+  {
+   "domain": "localization",
+   "name": "지역화 사례 L2-B0860",
+   "type": "concept",
+   "source": "L2-B0860"
+  },
+  {
+   "domain": "localization",
+   "name": "지역화 사례 L2-B0864",
+   "type": "concept",
+   "source": "L2-B0864"
+  },
+  {
+   "domain": "localization",
+   "name": "지역화 사례 L2-B0865",
+   "type": "concept",
+   "source": "L2-B0865"
+  },
+  {
+   "domain": "localization",
+   "name": "지역화 사례 L2-B0871",
+   "type": "concept",
+   "source": "L2-B0871"
+  },
+  {
+   "domain": "environment",
+   "name": "지구 온난화",
+   "type": "environmentalIssue",
+   "source": "L2-B0899"
+  },
+  {
+   "domain": "environment",
+   "name": "사막화",
+   "type": "environmentalIssue",
+   "source": "L2-B0956"
+  },
+  {
+   "domain": "environment",
+   "name": "열대림 파괴",
+   "type": "environmentalIssue",
+   "source": "L2-B0980"
+  },
+  {
+   "domain": "environment",
+   "name": "산성비",
+   "type": "environmentalIssue",
+   "source": "L2-B0946"
+  },
+  {
+   "domain": "environment",
+   "name": "오존층 파괴",
+   "type": "environmentalIssue",
+   "source": "L2-B0929"
+  },
+  {
+   "domain": "environment",
+   "name": "생물 다양성",
+   "type": "environmentalIssue",
+   "source": "L2-B0983"
+  },
+  {
+   "domain": "climate",
+   "name": "기후 토양",
+   "type": "concept",
+   "source": "L1-B0392"
+  },
+  {
+   "domain": "climate",
+   "name": "스텝 흑토",
+   "type": "concept",
+   "source": "L1-B0345"
+  },
+  {
+   "domain": "climate",
+   "name": "라테라이트",
+   "type": "concept",
+   "source": "L1-B0330"
+  },
+  {
+   "domain": "climate",
+   "name": "활동층·영구 동토",
+   "type": "concept",
+   "source": "L1-B0406"
+  }
+ ],
+ "facts": [
+  {
+   "kind": "rivers",
+   "country": "미얀마",
+   "value": "이라와디강",
+   "source": "L2-B1109"
+  },
+  {
+   "kind": "rivers",
+   "country": "타이",
+   "value": "짜오프라야강",
+   "source": "L2-B1118"
+  },
+  {
+   "kind": "rivers",
+   "country": "중국",
+   "value": "메콩강",
+   "source": "L2-B1112"
+  },
+  {
+   "kind": "rivers",
+   "country": "미얀마",
+   "value": "메콩강",
+   "source": "L2-B1112"
+  },
+  {
+   "kind": "rivers",
+   "country": "라오스",
+   "value": "메콩강",
+   "source": "L2-B1112"
+  },
+  {
+   "kind": "rivers",
+   "country": "타이",
+   "value": "메콩강",
+   "source": "L2-B1112"
+  },
+  {
+   "kind": "rivers",
+   "country": "캄보디아",
+   "value": "메콩강",
+   "source": "L2-B1112"
+  },
+  {
+   "kind": "rivers",
+   "country": "베트남",
+   "value": "메콩강",
+   "source": "L2-B1112"
+  },
+  {
+   "kind": "rivers",
+   "country": "파키스탄",
+   "value": "인더스강",
+   "source": "L2-B1105"
+  },
+  {
+   "kind": "rivers",
+   "country": "인도",
+   "value": "갠지스강",
+   "source": "L2-B1100"
+  },
+  {
+   "kind": "rivers",
+   "country": "독일",
+   "value": "라인강",
+   "source": "L2-B1211"
+  },
+  {
+   "kind": "rivers",
+   "country": "콩고 민주 공화국",
+   "value": "콩고강",
+   "source": "L2-B1249"
+  },
+  {
+   "kind": "rivers",
+   "country": "잠비아",
+   "value": "잠베지강",
+   "source": "L2-B1252"
+  },
+  {
+   "kind": "rivers",
+   "country": "짐바브웨",
+   "value": "잠베지강",
+   "source": "L2-B1252"
+  },
+  {
+   "kind": "rivers",
+   "country": "남수단",
+   "value": "백나일강",
+   "source": "L2-B1252"
+  },
+  {
+   "kind": "languages",
+   "country": "벨기에",
+   "value": "네덜란드어",
+   "source": "L1-B1230"
+  },
+  {
+   "kind": "languages",
+   "country": "벨기에",
+   "value": "프랑스어",
+   "source": "L1-B1230"
+  },
+  {
+   "kind": "languages",
+   "country": "벨기에",
+   "value": "독일어",
+   "source": "L1-B1230"
+  },
+  {
+   "kind": "languages",
+   "country": "스위스",
+   "value": "독일어",
+   "source": "L1-B1230"
+  },
+  {
+   "kind": "languages",
+   "country": "스위스",
+   "value": "프랑스어",
+   "source": "L1-B1230"
+  },
+  {
+   "kind": "languages",
+   "country": "스위스",
+   "value": "이탈리아어",
+   "source": "L1-B1230"
+  },
+  {
+   "kind": "languages",
+   "country": "스위스",
+   "value": "로만슈어",
+   "source": "L1-B1230"
+  },
+  {
+   "kind": "languages",
+   "country": "프랑스",
+   "value": "프랑스어",
+   "source": "L1-B1230"
+  },
+  {
+   "kind": "languages",
+   "country": "포르투갈",
+   "value": "포르투갈어",
+   "source": "L1-B1230"
+  },
+  {
+   "kind": "languages",
+   "country": "브라질",
+   "value": "포르투갈어",
+   "source": "L1-B1230"
+  },
+  {
+   "kind": "languages",
+   "country": "크로아티아",
+   "value": "크로아티아어",
+   "source": "L1-B1230"
+  },
+  {
+   "kind": "languages",
+   "country": "에스파냐",
+   "value": "에스파냐어",
+   "source": "L1-B1231"
+  },
+  {
+   "kind": "languages",
+   "country": "우루과이",
+   "value": "에스파냐어",
+   "source": "L1-B1231"
+  },
+  {
+   "kind": "languages",
+   "country": "콜롬비아",
+   "value": "에스파냐어",
+   "source": "L1-B1231"
+  },
+  {
+   "kind": "languages",
+   "country": "아르헨티나",
+   "value": "에스파냐어",
+   "source": "L1-B1231"
+  },
+  {
+   "kind": "languages",
+   "country": "나이지리아",
+   "value": "영어",
+   "source": "L2-B1241"
+  },
+  {
+   "kind": "languages",
+   "country": "가나",
+   "value": "영어",
+   "source": "L2-B1241"
+  },
+  {
+   "kind": "languages",
+   "country": "코트디부아르",
+   "value": "프랑스어",
+   "source": "L2-B1241"
+  },
+  {
+   "kind": "languages",
+   "country": "세네갈",
+   "value": "프랑스어",
+   "source": "L2-B1241"
+  },
+  {
+   "kind": "landlocked",
+   "country": "라오스",
+   "value": "내륙국",
+   "source": "L2-B1112"
+  },
+  {
+   "kind": "landlocked",
+   "country": "잠비아",
+   "value": "내륙국",
+   "source": "L2-B1249"
+  },
+  {
+   "kind": "landlocked",
+   "country": "남수단",
+   "value": "내륙국",
+   "source": "L2-B1249"
+  },
+  {
+   "kind": "landlocked",
+   "country": "짐바브웨",
+   "value": "내륙국",
+   "source": "L2-B1252"
+  },
+  {
+   "kind": "landlocked",
+   "country": "보츠와나",
+   "value": "내륙국",
+   "source": "L2-B1257"
+  },
+  {
+   "kind": "landlocked",
+   "country": "파라과이",
+   "value": "내륙국",
+   "source": "L2-B1309"
+  },
+  {
+   "kind": "landlocked",
+   "country": "볼리비아",
+   "value": "내륙국",
+   "source": "L2-B1319"
+  },
+  {
+   "kind": "colonizer",
+   "country": "멕시코",
+   "value": "에스파냐",
+   "source": "L2-B1296"
+  },
+  {
+   "kind": "colonizer",
+   "country": "베트남",
+   "value": "프랑스",
+   "source": "L2-B0172"
+  },
+  {
+   "kind": "colonizer",
+   "country": "필리핀",
+   "value": "에스파냐",
+   "source": "L1-B0964"
+  },
+  {
+   "kind": "languages",
+   "country": "쿠바",
+   "value": "에스파냐어",
+   "source": "L2-B1299"
+  },
+  {
+   "kind": "languages",
+   "country": "도미니카 공화국",
+   "value": "에스파냐어",
+   "source": "L2-B1299"
+  },
+  {
+   "kind": "languages",
+   "country": "아이티",
+   "value": "프랑스어",
+   "source": "L2-B1299"
+  },
+  {
+   "kind": "languages",
+   "country": "아이티",
+   "value": "아이티 크리올어",
+   "source": "L2-B1299"
+  },
+  {
+   "kind": "languages",
+   "country": "자메이카",
+   "value": "영어",
+   "source": "L2-B1299"
+  }
+ ],
+ "notes": [
+  "complete:false인 속성에서 누락된 국가나 값을 거짓으로 만들지 않는다.",
+  "나라 이름·기호가 섞인 원본 명제는 독립 OX로 재사용하지 않고 원문 자료와 함께 제시한다.",
+  "고지도 세부 제작연도처럼 원본 최소 암기 범위 밖인 값은 추가하지 않는다.",
+  "통계 순위·갈등 당사자·회원국은 원본 또는 수집 시점을 고정한다."
+ ],
+ "requestedCountries": [
+  "볼리비아",
+  "카자흐스탄",
+  "이탈리아",
+  "페루",
+  "포르투갈",
+  "이라크",
+  "잠비아",
+  "몽골",
+  "나미비아",
+  "핀란드",
+  "모로코",
+  "뉴질랜드",
+  "네덜란드",
+  "앙골라",
+  "차드",
+  "콜롬비아",
+  "싱가포르",
+  "캄보디아",
+  "라오스"
+ ],
+ "explicitStatements": [
+  {
+   "id": "explicit-001",
+   "domain": "oldmaps",
+   "claim": "T-O 지도는 남쪽을 위로 표현한다.",
+   "truth": false,
+   "sourceBlockId": "L1-B0162",
+   "about": [
+    "T-O 지도"
+   ]
+  },
+  {
+   "id": "explicit-002",
+   "domain": "oldmaps",
+   "claim": "알 이드리시 지도는 남쪽을 위로 표현한다.",
+   "truth": true,
+   "sourceBlockId": "L1-B0183",
+   "about": [
+    "알 이드리시 지도"
+   ]
+  },
+  {
+   "id": "explicit-003",
+   "domain": "oldmaps",
+   "claim": "알 이드리시 지도는 이슬람 세계관을 반영하므로 유럽에서 제작되었을 수 없다.",
+   "truth": false,
+   "sourceBlockId": "L1-B0183",
+   "about": [
+    "알 이드리시 지도"
+   ]
+  },
+  {
+   "id": "explicit-004",
+   "domain": "oldmaps",
+   "claim": "혼일강리역대국도지도는 중국에서 제작되었다.",
+   "truth": false,
+   "sourceBlockId": "L1-B0187",
+   "about": [
+    "혼일강리역대국도지도"
+   ]
+  },
+  {
+   "id": "explicit-005",
+   "domain": "oldmaps",
+   "claim": "곤여만국전도는 혼일강리역대국도지도보다 먼저 제작되었다.",
+   "truth": false,
+   "sourceBlockId": "L1-B0178",
+   "about": [
+    "곤여만국전도"
+   ]
+  },
+  {
+   "id": "explicit-006",
+   "domain": "oldmaps",
+   "claim": "지구전후도는 대명 혼일도보다 나중에 제작되었다.",
+   "truth": true,
+   "sourceBlockId": "L1-B0189",
+   "about": [
+    "지구전후도"
+   ]
+  },
+  {
+   "id": "explicit-007",
+   "domain": "oldmaps",
+   "claim": "메르카토르 세계 지도는 모든 위도에서 면적을 정확히 보존한다.",
+   "truth": false,
+   "sourceBlockId": "L1-B0174",
+   "about": [
+    "메르카토르"
+   ]
+  },
+  {
+   "id": "explicit-008",
+   "domain": "geographic-information",
+   "claim": "GPS로 방사능 유출량을 직접 측정할 수 있다.",
+   "truth": false,
+   "sourceBlockId": "L1-B0213",
+   "about": [
+    "GPS"
+   ]
+  },
+  {
+   "id": "explicit-009",
+   "domain": "geographic-information",
+   "claim": "원격 탐사로 주민의 만족도를 직접 측정할 수 있다.",
+   "truth": false,
+   "sourceBlockId": "L1-B0212",
+   "about": [
+    "원격 탐사"
+   ]
+  },
+  {
+   "id": "explicit-010",
+   "domain": "geographic-information",
+   "claim": "위도와 경도는 숫자이므로 속성 정보이다.",
+   "truth": false,
+   "sourceBlockId": "L1-B0202",
+   "about": [
+    "공간 정보"
+   ]
+  },
+  {
+   "id": "explicit-011",
+   "domain": "geographic-information",
+   "claim": "중첩 조건을 모두 만족해야 하면 조건별 결과의 합집합을 구한다.",
+   "truth": false,
+   "sourceBlockId": "L1-B0228",
+   "about": [
+    "중첩 분석"
+   ]
+  },
+  {
+   "id": "explicit-012",
+   "domain": "geographic-information",
+   "claim": "이상과 이하는 기준값을 포함한다.",
+   "truth": true,
+   "sourceBlockId": "L1-B0238",
+   "about": [
+    "이상",
+    "이하"
+   ]
+  },
+  {
+   "id": "explicit-013",
+   "domain": "geographic-information",
+   "claim": "미만은 기준값과 같은 값을 포함한다.",
+   "truth": false,
+   "sourceBlockId": "L1-B0238",
+   "about": [
+    "미만"
+   ]
+  },
+  {
+   "id": "explicit-014",
+   "domain": "environment",
+   "claim": "람사르 협약은 습지 보전과 연결된다.",
+   "truth": true,
+   "sourceBlockId": "L2-B1059",
+   "about": [
+    "람사르 협약"
+   ]
+  },
+  {
+   "id": "explicit-015",
+   "domain": "environment",
+   "claim": "바젤 협약의 직접적인 규제 대상은 오존층 파괴 물질이다.",
+   "truth": false,
+   "sourceBlockId": "L2-B1059",
+   "about": [
+    "바젤 협약"
+   ]
+  },
+  {
+   "id": "explicit-016",
+   "domain": "environment",
+   "claim": "몬트리올 의정서는 유해 폐기물의 국가 간 이동을 규제한다.",
+   "truth": false,
+   "sourceBlockId": "L2-B1059",
+   "about": [
+    "몬트리올 의정서"
+   ]
+  }
+ ],
+ "manualClues": [
+  {
+   "country": "라오스",
+   "source": "L2-B1112",
+   "text": "라오스는 바다에 직접 접하지 않는 내륙국이고, 비엔티안은 타이와의 국경 가까이에 있다.",
+   "candidates": [
+    "라오스",
+    "캄보디아",
+    "베트남"
+   ],
+   "practice": "recall"
+  },
+  {
+   "country": "앙골라",
+   "source": "L1-B1388",
+   "text": "2023년 앙골라·브라질·독일 비교에서 총부양비는 각각 약 90·44·58, 노년 부양비는 약 5·15·36이다.",
+   "candidates": [
+    "앙골라",
+    "브라질",
+    "독일"
+   ],
+   "practice": "suppliedData",
+   "given": {
+    "year": 2023,
+    "candidates": [
+     "앙골라",
+     "브라질",
+     "독일"
+    ],
+    "totalDependencyRatio": [
+     90,
+     44,
+     58
+    ],
+    "oldDependencyRatio": [
+     5,
+     15,
+     36
+    ]
+   },
+   "prompt": "제시된 2023년 세 국가 가운데 총부양비가 약 90이고 노년 부양비가 약 5인 이 국가는?"
+  }
+ ],
+ "datedFactSets": {
+  "opec": {
+   "label": "석유 수출국 기구 회원국",
+   "template": "{value}이다",
+   "options": [
+    "OPEC 회원국"
+   ],
+   "exclusive": false,
+   "complete": false,
+   "period": "Energy Institute Statistical Review 2025 발행판의 회원 목록; 현재 회원국으로 자동 갱신하지 않는다.",
+   "practice": "suppliedData",
+   "source": {
+    "kind": "officialDataset",
+    "snapshot": "ei2025.xlsx",
+    "sheet": "Definitions",
+    "cell": "A60",
+    "publicationYear": 2025,
+    "lectureTopic": "L2-B0353"
+   },
+   "values": {
+    "이란": [
+     "OPEC 회원국"
+    ],
+    "이라크": [
+     "OPEC 회원국"
+    ],
+    "쿠웨이트": [
+     "OPEC 회원국"
+    ],
+    "사우디아라비아": [
+     "OPEC 회원국"
+    ],
+    "아랍 에미리트": [
+     "OPEC 회원국"
+    ],
+    "알제리": [
+     "OPEC 회원국"
+    ],
+    "리비아": [
+     "OPEC 회원국"
+    ],
+    "적도 기니": [
+     "OPEC 회원국"
+    ],
+    "가봉": [
+     "OPEC 회원국"
+    ],
+    "나이지리아": [
+     "OPEC 회원국"
+    ],
+    "베네수엘라": [
+     "OPEC 회원국"
+    ],
+    "콩고 공화국": [
+     "OPEC 회원국"
+    ]
+   }
+  },
+  "ethnicity": {
+   "label": "기출 제시자료의 최다 인구 집단",
+   "template": "제시자료에서 {value} 집단이 가장 많다",
+   "options": [
+    "메스티소",
+    "유럽계 백인"
+   ],
+   "exclusive": true,
+   "complete": false,
+   "period": "2020학년도 6월 13번 제시자료; 현재 인구 집단을 뜻하지 않는다.",
+   "practice": "suppliedData",
+   "source": {
+    "kind": "priorExamAudit",
+    "examId": "2020_6_13",
+    "snapshot": "data/extension-sources/prior-country-exam-evidence.json",
+    "field": "reviews.2020_6_13.prior_record.원문판독_선지"
+   },
+   "values": {
+    "파라과이": [
+     "메스티소"
+    ],
+    "아르헨티나": [
+     "유럽계 백인"
+    ]
+   },
+   "givenBounds": {
+    "파라과이": {
+     "메스티소": {
+      "greaterThanPercent": 80
+     }
+    },
+    "아르헨티나": {
+     "유럽계 백인": {
+      "greaterThanPercent": 80
+     }
+    }
+   },
+   "policy": "80% 초과라는 원문 판독의 범위만 보존한다. 브라질의 최다 집단은 이 기록만으로 정하지 않는다. 분류의 국가별 차이를 유지한다."
+  }
+ },
+ "climatePrimaryExtraction": {
+  "QuitoInaquInfo": {
+   "source": "inamhi-M0024.pdf",
+   "pdfPage": 1,
+   "extraction": "PDF 범례에 명시된 1991–2020 월평균 기온 숫자 12개를 전사하고 렌더링으로 대조. 곡선을 픽셀로 추정하지 않음.",
+   "station": {
+    "name": "IÑAQUITO",
+    "code": "M0024",
+    "longitude": -78.4877,
+    "latitude": -0.1783,
+    "elevationM": 2789
+   },
+   "temperatureC": [
+    15.0,
+    15.0,
+    14.9,
+    15.0,
+    15.2,
+    15.4,
+    15.4,
+    15.7,
+    15.7,
+    15.1,
+    14.8,
+    14.9
+   ],
+   "normalPeriod": [
+    1991,
+    2020
+   ],
+   "annualTemperatureC": 15.2
+  }
+ }
+}

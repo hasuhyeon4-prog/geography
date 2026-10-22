@@ -236,3 +236,21 @@
   - 위도·계절로 계산하는 낮 길이
 - `scripts/build-entity-kb.cjs`가 `data/exam-relations-*.json`·`data/concepts/*.json`을 읽게 하기
 - 자료가 들어오는 대로 주제·테스트·화면 연결, 그리고 이 문서의 진행 상황 갱신
+
+## 2026-10-22 추가 인계 상태
+
+R2~R9 자료·근거·재생성·검증 파일은 `docs/R2-R9-HANDOFF.md`에 정리했다. 모든 세부 항목이 완료된 것은 아니며, 영역별 실제 보류는 `audit/request-coverage-20261022.json`을 따른다. 화면·엔진 연결은 아직 포함하지 않았다.
+
+## 2026-10-22 보완판 추가 상태
+
+매장량·원유 교역·제조업·호주 상품 교역 원표, 에너지·도시 허용 관계, OPEC 기준판 목록, 국가 식별·성지 연결을 추가했다. 26개 검사 통과. 실제 미확보 관측 자료와 출처에 따른 사용 제한, 선택 사항을 구분한 최신 상태는 `audit/request-coverage-20261022.json`과 `docs/R2-R9-HANDOFF.md`를 따른다.
+
+## 2026-10-22 저장소 반영 (Claude)
+
+R1~R9 묶음을 저장소에 넣었다. 저장소와 사이트가 공개 상태여서 사용자의 결정에 따라 다음 셋은 넣지 않았다(`.gitignore`). 앱이 쓰는 개념 카드·국가 단서의 인용 문장은 공개된다.
+- 강의 전체 본문 `data/extension-sources/lecture-blocks.json`
+- 워크북 기록 `data/extension-sources/workbook-records.json`
+- 강의 그림 `assets/source-figures/`
+
+이 셋이 필요한 검사 3개(카드와 원문 대조, 재생성)는 파일이 없으면 이유를 밝히고 건너뛴다. 묶음의 파일을 같은 경로에 두면 전부 실행된다. `practice:'suppliedData'`인 사실(OPEC 기준판 목록, 기출 제시자료의 인구 집단)은 회상 <보기>에 쓰지 않는다.
+

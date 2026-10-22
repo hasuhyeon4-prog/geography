@@ -1,0 +1,144 @@
+{
+ "date": "2026-10-22",
+ "meaning": "실제 미확보 자료(holds), 출처·기간 제한(limitations), 선택 사항(optional)을 구분한다. 화면·엔진 연결은 원요청서에서 틀 담당의 일이다.",
+ "engineIntegrated": false,
+ "requests": {
+  "R2": {
+   "status": "deliveredWithLimitations",
+   "files": [
+    "data/energy-series.json",
+    "data/geothermal-generation.json",
+    "data/mineral-production.json",
+    "data/mineral-production-shares.json",
+    "data/fossil-trade-reserves.json",
+    "data/fossil-production-region-shares.json",
+    "data/exam-relations-energy.json",
+    "data/concepts/energy.json",
+    "data/fossil-reserves-ei.json",
+    "data/oil-trade-ei.json"
+   ],
+   "holds": [],
+   "limitations": [
+    "EI2025 매장량 계열의 최종 수치 연도는 2020. 이후 값 전방 채움 금지.",
+    "프랑스 1차 에너지 순위는 2022 반례로 회상 제외. G7 전체 순위의 강의 명시 근거 없음."
+   ],
+   "optional": []
+  },
+  "R3": {
+   "status": "deliveredWithLimitations",
+   "files": [
+    "data/entity-facts.json",
+    "data/country-clues.json",
+    "data/entity-facts-supplement.json"
+   ],
+   "holds": [],
+   "limitations": [
+    "인구 집단 최다 2개국은 2020학년도 6월 13번 제시자료에 한정. 근거 없는 국가별 현재 최다 집단은 허용하지 않음.",
+    "보충 공용어 3개국은 suppliedData 전용. 이란 원 HTML은 redirect loop로 미확보, 공식 페이지의 검색 색인에서 확인.",
+    "식민 지배국 등은 강의에 실제로 나온 사례만 제공."
+   ],
+   "optional": []
+  },
+  "R4": {
+   "status": "deliveredWithHolds",
+   "files": [
+    "data/concepts/climate.json",
+    "data/concepts/climate-processes.json",
+    "data/climate-normals-extension.json"
+   ],
+   "holds": [
+    "키토 1991–2020 강수",
+    "아부자 1991–2020 검증된 월평균 기온",
+    "이키토스 1991–2020 월평균 기온"
+   ],
+   "limitations": [
+    "정상적인 부분 자료는 기온·강수 읽기에 따로 사용 가능. 완전한 그래프는 usage.climateGraph 확인."
+   ],
+   "optional": []
+  },
+  "R5": {
+   "status": "deliveredWithLimitations",
+   "files": [
+    "data/concepts/religion.json",
+    "data/concepts/religion-practices.json",
+    "data/concepts/religion-places.json",
+    "data/concepts/culture.json",
+    "data/concepts/conflicts.json",
+    "data/religion-composition-extension.json"
+   ],
+   "holds": [],
+   "limitations": [
+    "광역 장소는 기존 도형, 결합 성지는 linkedLocations의 개별 지점 사용."
+   ],
+   "optional": []
+  },
+  "R6": {
+   "status": "deliveredWithLimitations",
+   "files": [
+    "data/concepts/industry.json",
+    "data/concepts/cities.json",
+    "data/concepts/city-functions.json",
+    "data/given-source-figures.json",
+    "data/us-state-manufacturing-2013.json",
+    "data/australia-trade-change.json",
+    "data/exam-relations-cities.json"
+   ],
+   "holds": [],
+   "limitations": [
+    "호주 역사 원표는 1949-50·1950-51 회계연도. 강의의 1950 역년 통계와 정확히 같은 값으로 간주하지 않음.",
+    "2025 세계 도시 평가의 기관명이 본문에 없어 제시자료 전용."
+   ],
+   "optional": []
+  },
+  "R7": {
+   "status": "deliveredWithLimitations",
+   "files": [
+    "data/urbanization-change.json",
+    "data/fertility-change.json",
+    "data/fertility-un-regions.json",
+    "data/us-migrants-by-origin.json",
+    "data/us-migrants-lecture-given.json"
+   ],
+   "holds": [],
+   "limitations": [
+    "UN 파일의 미국 출신국 중 앱 국가코드로 연결한 53개국 제공. 누락 출신국은 0이 아님.",
+    "UN 원 서버 403으로 원본 바이트 직접 대조 불가. 독립 공개 사본 두 개의 SHA-256 일치. 세네갈 강의값은 given 보존."
+   ],
+   "optional": []
+  },
+  "R8": {
+   "status": "deliveredWithLimitations",
+   "files": [
+    "data/concepts/landforms.json",
+    "data/concepts/landform-places.json"
+   ],
+   "holds": [],
+   "limitations": [
+    "원래 선·영역인 지형은 임의의 새 점으로 대체하지 않음."
+   ],
+   "optional": [
+    "재사용 허용된 신규 경관 사진"
+   ]
+  },
+  "R9": {
+   "status": "deliveredWithLimitations",
+   "files": [
+    "data/concepts/oldmaps.json",
+    "data/concepts/geographic-information.json",
+    "data/concepts/localization.json",
+    "data/concepts/environment.json",
+    "data/concepts/environment-supplement.json",
+    "data/concepts/geographic-information-supplement.json",
+    "assets/fact-statements.js"
+   ],
+   "holds": [],
+   "limitations": [
+    "추가 공식 출처 사실은 회상으로 자동 승인하지 않고 suppliedData 조건 유지."
+   ],
+   "optional": [
+    "퍼블릭 도메인 고지도 이미지 전체"
+   ]
+  }
+ },
+ "revision": "보완판"
+}

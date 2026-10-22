@@ -1,0 +1,626 @@
+{
+ "schemaVersion": 1,
+ "about": "religion-practices 강의 근거 개념 카드",
+ "policy": {
+  "absenceMeansFalse": false,
+  "falseDistractors": "명시적 거짓 statements만 사용. complete:false인 세트의 교차 대입 금지.",
+  "sourceLocator": "data/extension-sources/lecture-blocks.json의 blockId; 쪽수 미측정",
+  "scope": "개념 카드이며 기출 재현율 또는 화면 연결 완료를 뜻하지 않는다."
+ },
+ "entities": {
+  "이슬람교": {
+   "type": "religion",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1101",
+    "locator": "강의 1권 P04 / L1-B1101",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P04",
+     "blockId": "L1-B1101",
+     "locator": "강의 1권 P04 / L1-B1101",
+     "priorAuditExamIds": []
+    },
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P04",
+     "blockId": "L1-B1107",
+     "locator": "강의 1권 P04 / L1-B1107",
+     "priorAuditExamIds": [
+      "2020_9_18",
+      "2023_수능_17"
+     ]
+    }
+   ]
+  },
+  "힌두교": {
+   "type": "religion",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1101",
+    "locator": "강의 1권 P04 / L1-B1101",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P04",
+     "blockId": "L1-B1101",
+     "locator": "강의 1권 P04 / L1-B1101",
+     "priorAuditExamIds": []
+    },
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P04",
+     "blockId": "L1-B1107",
+     "locator": "강의 1권 P04 / L1-B1107",
+     "priorAuditExamIds": [
+      "2020_9_18",
+      "2023_수능_17"
+     ]
+    }
+   ]
+  },
+  "유대교": {
+   "type": "religion",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1101",
+    "locator": "강의 1권 P04 / L1-B1101",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P04",
+     "blockId": "L1-B1101",
+     "locator": "강의 1권 P04 / L1-B1101",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "불교": {
+   "type": "religion",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1101",
+    "locator": "강의 1권 P04 / L1-B1101",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P04",
+     "blockId": "L1-B1101",
+     "locator": "강의 1권 P04 / L1-B1101",
+     "priorAuditExamIds": []
+    },
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P04",
+     "blockId": "L1-B1107",
+     "locator": "강의 1권 P04 / L1-B1107",
+     "priorAuditExamIds": [
+      "2020_9_18",
+      "2023_수능_17"
+     ]
+    }
+   ]
+  },
+  "크리스트교": {
+   "type": "religion",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1101",
+    "locator": "강의 1권 P04 / L1-B1101",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P04",
+     "blockId": "L1-B1101",
+     "locator": "강의 1권 P04 / L1-B1101",
+     "priorAuditExamIds": []
+    },
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P04",
+     "blockId": "L1-B1107",
+     "locator": "강의 1권 P04 / L1-B1107",
+     "priorAuditExamIds": [
+      "2020_9_18",
+      "2023_수능_17"
+     ]
+    }
+   ]
+  }
+ },
+ "sets": {
+  "L1-B1101-c2": {
+   "label": "대표 식생활 단서",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "돼지고기·술 금기, 할랄 규범",
+    "소를 신성시하고 소고기를 기피하는 전통",
+    "코셔 식품 규범",
+    "지역·종파에 따라 채식 전통과 실천 차이",
+    "교파·시기별 금식·금육 전통의 차이"
+   ],
+   "values": {
+    "이슬람교": [
+     "돼지고기·술 금기, 할랄 규범"
+    ],
+    "힌두교": [
+     "소를 신성시하고 소고기를 기피하는 전통"
+    ],
+    "유대교": [
+     "코셔 식품 규범"
+    ],
+    "불교": [
+     "지역·종파에 따라 채식 전통과 실천 차이"
+    ],
+    "크리스트교": [
+     "교파·시기별 금식·금육 전통의 차이"
+    ]
+   },
+   "evidence": {
+    "이슬람교": [
+     {
+      "value": "돼지고기·술 금기, 할랄 규범",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1101",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 1권 P04 / L1-B1101 / 표 2행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "힌두교": [
+     {
+      "value": "소를 신성시하고 소고기를 기피하는 전통",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1101",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 1권 P04 / L1-B1101 / 표 3행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "유대교": [
+     {
+      "value": "코셔 식품 규범",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1101",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 1권 P04 / L1-B1101 / 표 4행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "불교": [
+     {
+      "value": "지역·종파에 따라 채식 전통과 실천 차이",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1101",
+       "tableRow": 5,
+       "tableColumn": 2,
+       "locator": "강의 1권 P04 / L1-B1101 / 표 5행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "크리스트교": [
+     {
+      "value": "교파·시기별 금식·금육 전통의 차이",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1101",
+       "tableRow": 6,
+       "tableColumn": 2,
+       "locator": "강의 1권 P04 / L1-B1101 / 표 6행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1101",
+    "locator": "강의 1권 P04 / L1-B1101",
+    "priorAuditExamIds": []
+   }
+  },
+  "L1-B1101-c3": {
+   "label": "주의",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "모든 국가의 요리를 한 종류로 묶지 않음",
+    "모든 힌두교도가 동일한 식단은 아님",
+    "세부 규칙은 출제 요구 범위에서만",
+    "불교도=전원 채식으로 절대화 금지",
+    "세계 공통의 단일 금기 음식으로 단정 금지"
+   ],
+   "values": {
+    "이슬람교": [
+     "모든 국가의 요리를 한 종류로 묶지 않음"
+    ],
+    "힌두교": [
+     "모든 힌두교도가 동일한 식단은 아님"
+    ],
+    "유대교": [
+     "세부 규칙은 출제 요구 범위에서만"
+    ],
+    "불교": [
+     "불교도=전원 채식으로 절대화 금지"
+    ],
+    "크리스트교": [
+     "세계 공통의 단일 금기 음식으로 단정 금지"
+    ]
+   },
+   "evidence": {
+    "이슬람교": [
+     {
+      "value": "모든 국가의 요리를 한 종류로 묶지 않음",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1101",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 1권 P04 / L1-B1101 / 표 2행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "힌두교": [
+     {
+      "value": "모든 힌두교도가 동일한 식단은 아님",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1101",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 1권 P04 / L1-B1101 / 표 3행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "유대교": [
+     {
+      "value": "세부 규칙은 출제 요구 범위에서만",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1101",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 1권 P04 / L1-B1101 / 표 4행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "불교": [
+     {
+      "value": "불교도=전원 채식으로 절대화 금지",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1101",
+       "tableRow": 5,
+       "tableColumn": 3,
+       "locator": "강의 1권 P04 / L1-B1101 / 표 5행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "크리스트교": [
+     {
+      "value": "세계 공통의 단일 금기 음식으로 단정 금지",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1101",
+       "tableRow": 6,
+       "tableColumn": 3,
+       "locator": "강의 1권 P04 / L1-B1101 / 표 6행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1101",
+    "locator": "강의 1권 P04 / L1-B1101",
+    "priorAuditExamIds": []
+   }
+  },
+  "L1-B1107-c2": {
+   "label": "대표 의례·축제",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "라마단 금식, 이드 알피트르, 메카 순례",
+    "성탄절·부활절",
+    "부처 관련 기념일·베삭",
+    "디왈리·홀리 등"
+   ],
+   "values": {
+    "이슬람교": [
+     "라마단 금식, 이드 알피트르, 메카 순례"
+    ],
+    "크리스트교": [
+     "성탄절·부활절"
+    ],
+    "불교": [
+     "부처 관련 기념일·베삭"
+    ],
+    "힌두교": [
+     "디왈리·홀리 등"
+    ]
+   },
+   "evidence": {
+    "이슬람교": [
+     {
+      "value": "라마단 금식, 이드 알피트르, 메카 순례",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1107",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 1권 P04 / L1-B1107 / 표 2행",
+       "priorAuditExamIds": [
+        "2020_9_18",
+        "2023_수능_17"
+       ]
+      }
+     }
+    ],
+    "크리스트교": [
+     {
+      "value": "성탄절·부활절",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1107",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 1권 P04 / L1-B1107 / 표 3행",
+       "priorAuditExamIds": [
+        "2020_9_18",
+        "2023_수능_17"
+       ]
+      }
+     }
+    ],
+    "불교": [
+     {
+      "value": "부처 관련 기념일·베삭",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1107",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 1권 P04 / L1-B1107 / 표 4행",
+       "priorAuditExamIds": [
+        "2020_9_18",
+        "2023_수능_17"
+       ]
+      }
+     }
+    ],
+    "힌두교": [
+     {
+      "value": "디왈리·홀리 등",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1107",
+       "tableRow": 5,
+       "tableColumn": 2,
+       "locator": "강의 1권 P04 / L1-B1107 / 표 5행",
+       "priorAuditExamIds": [
+        "2020_9_18",
+        "2023_수능_17"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1107",
+    "locator": "강의 1권 P04 / L1-B1107",
+    "priorAuditExamIds": [
+     "2020_9_18",
+     "2023_수능_17"
+    ]
+   }
+  },
+  "L1-B1107-c3": {
+   "label": "시간 자료 처리",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "이슬람력은 음력 기반이라 양력 시기가 이동",
+    "교파·달력에 따라 날짜 차이 가능",
+    "지역 달력과 전통에 따라 시기·명칭 차이",
+    "음력·지역 전통에 따라 날짜 변동"
+   ],
+   "values": {
+    "이슬람교": [
+     "이슬람력은 음력 기반이라 양력 시기가 이동"
+    ],
+    "크리스트교": [
+     "교파·달력에 따라 날짜 차이 가능"
+    ],
+    "불교": [
+     "지역 달력과 전통에 따라 시기·명칭 차이"
+    ],
+    "힌두교": [
+     "음력·지역 전통에 따라 날짜 변동"
+    ]
+   },
+   "evidence": {
+    "이슬람교": [
+     {
+      "value": "이슬람력은 음력 기반이라 양력 시기가 이동",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1107",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 1권 P04 / L1-B1107 / 표 2행",
+       "priorAuditExamIds": [
+        "2020_9_18",
+        "2023_수능_17"
+       ]
+      }
+     }
+    ],
+    "크리스트교": [
+     {
+      "value": "교파·달력에 따라 날짜 차이 가능",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1107",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 1권 P04 / L1-B1107 / 표 3행",
+       "priorAuditExamIds": [
+        "2020_9_18",
+        "2023_수능_17"
+       ]
+      }
+     }
+    ],
+    "불교": [
+     {
+      "value": "지역 달력과 전통에 따라 시기·명칭 차이",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1107",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 1권 P04 / L1-B1107 / 표 4행",
+       "priorAuditExamIds": [
+        "2020_9_18",
+        "2023_수능_17"
+       ]
+      }
+     }
+    ],
+    "힌두교": [
+     {
+      "value": "음력·지역 전통에 따라 날짜 변동",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P04",
+       "blockId": "L1-B1107",
+       "tableRow": 5,
+       "tableColumn": 3,
+       "locator": "강의 1권 P04 / L1-B1107 / 표 5행",
+       "priorAuditExamIds": [
+        "2020_9_18",
+        "2023_수능_17"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1107",
+    "locator": "강의 1권 P04 / L1-B1107",
+    "priorAuditExamIds": [
+     "2020_9_18",
+     "2023_수능_17"
+    ]
+   }
+  }
+ },
+ "statements": [],
+ "counts": {
+  "entities": 5,
+  "sets": 4,
+  "statements": 0
+ }
+}

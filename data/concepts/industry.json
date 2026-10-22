@@ -1,0 +1,2351 @@
+{
+ "schemaVersion": 1,
+ "about": "industry 강의 근거 개념 카드",
+ "policy": {
+  "absenceMeansFalse": false,
+  "falseDistractors": "명시적 거짓 statements만 사용. complete:false인 세트의 교차 대입 금지.",
+  "sourceLocator": "data/extension-sources/lecture-blocks.json의 blockId; 쪽수 미측정",
+  "scope": "개념 카드이며 기출 재현율 또는 화면 연결 완료를 뜻하지 않는다."
+ },
+ "entities": {
+  "루르": {
+   "type": "industrialRegion",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0644",
+    "locator": "강의 2권 P08 / L2-B0644",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0644",
+     "locator": "강의 2권 P08 / L2-B0644",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "로렌": {
+   "type": "industrialRegion",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0644",
+    "locator": "강의 2권 P08 / L2-B0644",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0644",
+     "locator": "강의 2권 P08 / L2-B0644",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "로테르담": {
+   "type": "industrialRegion",
+   "place": [
+    4.4777,
+    51.9244
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0644",
+    "locator": "강의 2권 P08 / L2-B0644",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0644",
+     "locator": "강의 2권 P08 / L2-B0644",
+     "priorAuditExamIds": []
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::로테르담",
+    "name": "로테르담",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "도시·도시 단서::로테르담",
+     "name": "로테르담",
+     "geometry": {
+      "type": "point",
+      "lon": 4.4777,
+      "lat": 51.9244,
+      "kind": "city"
+     },
+     "source": "data/extension-sources/location-items.json"
+    },
+    {
+     "id": "산업 지역::로테르담",
+     "name": "로테르담",
+     "geometry": {
+      "type": "point",
+      "lon": 4.4777,
+      "lat": 51.9244,
+      "kind": "industry"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "케임브리지 사이언스 파크": {
+   "type": "industrialRegion",
+   "place": [
+    0.15,
+    52.23
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0649",
+    "locator": "강의 2권 P08 / L2-B0649",
+    "priorAuditExamIds": [
+     "2018_6_17",
+     "2020_6_12",
+     "2022_9_7",
+     "2022_수능_18",
+     "2024_6_13",
+     "2024_9_10",
+     "2025_9_16",
+     "2026_수능_20"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0649",
+     "locator": "강의 2권 P08 / L2-B0649",
+     "priorAuditExamIds": [
+      "2018_6_17",
+      "2020_6_12",
+      "2022_9_7",
+      "2022_수능_18",
+      "2024_6_13",
+      "2024_9_10",
+      "2025_9_16",
+      "2026_수능_20"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "산업 지역::케임브리지 사이언스 파크",
+    "name": "케임브리지 사이언스 파크",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "산업 지역::케임브리지 사이언스 파크",
+     "name": "케임브리지 사이언스 파크",
+     "geometry": {
+      "type": "point",
+      "lon": 0.15,
+      "lat": 52.23,
+      "kind": "industry"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "실리콘 글렌": {
+   "type": "industrialRegion",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0649",
+    "locator": "강의 2권 P08 / L2-B0649",
+    "priorAuditExamIds": [
+     "2018_6_17",
+     "2020_6_12",
+     "2022_9_7",
+     "2022_수능_18",
+     "2024_6_13",
+     "2024_9_10",
+     "2025_9_16",
+     "2026_수능_20"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0649",
+     "locator": "강의 2권 P08 / L2-B0649",
+     "priorAuditExamIds": [
+      "2018_6_17",
+      "2020_6_12",
+      "2022_9_7",
+      "2022_수능_18",
+      "2024_6_13",
+      "2024_9_10",
+      "2025_9_16",
+      "2026_수능_20"
+     ]
+    }
+   ],
+   "linkedLocations": [
+    {
+     "id": "산업 지역::실리콘 글렌",
+     "name": "실리콘 글렌",
+     "geometry": {
+      "type": "box",
+      "bbox": [
+       -4.8,
+       55.4,
+       -2.4,
+       56.4
+      ],
+      "kind": "industry"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "소피아 앙티폴리스": {
+   "type": "industrialRegion",
+   "place": [
+    7.05,
+    43.62
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0649",
+    "locator": "강의 2권 P08 / L2-B0649",
+    "priorAuditExamIds": [
+     "2018_6_17",
+     "2020_6_12",
+     "2022_9_7",
+     "2022_수능_18",
+     "2024_6_13",
+     "2024_9_10",
+     "2025_9_16",
+     "2026_수능_20"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0649",
+     "locator": "강의 2권 P08 / L2-B0649",
+     "priorAuditExamIds": [
+      "2018_6_17",
+      "2020_6_12",
+      "2022_9_7",
+      "2022_수능_18",
+      "2024_6_13",
+      "2024_9_10",
+      "2025_9_16",
+      "2026_수능_20"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "산업 지역::소피아 앙티폴리스",
+    "name": "소피아 앙티폴리스",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "산업 지역::소피아 앙티폴리스",
+     "name": "소피아 앙티폴리스",
+     "geometry": {
+      "type": "point",
+      "lon": 7.05,
+      "lat": 43.62,
+      "kind": "industry"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "오울루": {
+   "type": "industrialRegion",
+   "place": [
+    25.4651,
+    65.0121
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0649",
+    "locator": "강의 2권 P08 / L2-B0649",
+    "priorAuditExamIds": [
+     "2018_6_17",
+     "2020_6_12",
+     "2022_9_7",
+     "2022_수능_18",
+     "2024_6_13",
+     "2024_9_10",
+     "2025_9_16",
+     "2026_수능_20"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0649",
+     "locator": "강의 2권 P08 / L2-B0649",
+     "priorAuditExamIds": [
+      "2018_6_17",
+      "2020_6_12",
+      "2022_9_7",
+      "2022_수능_18",
+      "2024_6_13",
+      "2024_9_10",
+      "2025_9_16",
+      "2026_수능_20"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::오울루",
+    "name": "오울루",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "도시·도시 단서::오울루",
+     "name": "오울루",
+     "geometry": {
+      "type": "point",
+      "lon": 25.4651,
+      "lat": 65.0121,
+      "kind": "city"
+     },
+     "source": "data/extension-sources/location-items.json"
+    },
+    {
+     "id": "산업 지역::오울루",
+     "name": "오울루",
+     "geometry": {
+      "type": "point",
+      "lon": 25.47,
+      "lat": 65.01,
+      "kind": "industry"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "시스타 사이언스 시티": {
+   "type": "industrialRegion",
+   "place": [
+    17.95,
+    59.4
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0649",
+    "locator": "강의 2권 P08 / L2-B0649",
+    "priorAuditExamIds": [
+     "2018_6_17",
+     "2020_6_12",
+     "2022_9_7",
+     "2022_수능_18",
+     "2024_6_13",
+     "2024_9_10",
+     "2025_9_16",
+     "2026_수능_20"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0649",
+     "locator": "강의 2권 P08 / L2-B0649",
+     "priorAuditExamIds": [
+      "2018_6_17",
+      "2020_6_12",
+      "2022_9_7",
+      "2022_수능_18",
+      "2024_6_13",
+      "2024_9_10",
+      "2025_9_16",
+      "2026_수능_20"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "산업 지역::시스타 사이언스 시티",
+    "name": "시스타 사이언스 시티",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "산업 지역::시스타 사이언스 시티",
+     "name": "시스타 사이언스 시티",
+     "geometry": {
+      "type": "point",
+      "lon": 17.95,
+      "lat": 59.4,
+      "kind": "industry"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "뮌헨": {
+   "type": "industrialRegion",
+   "place": [
+    11.582,
+    48.1351
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0649",
+    "locator": "강의 2권 P08 / L2-B0649",
+    "priorAuditExamIds": [
+     "2018_6_17",
+     "2020_6_12",
+     "2022_9_7",
+     "2022_수능_18",
+     "2024_6_13",
+     "2024_9_10",
+     "2025_9_16",
+     "2026_수능_20"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0649",
+     "locator": "강의 2권 P08 / L2-B0649",
+     "priorAuditExamIds": [
+      "2018_6_17",
+      "2020_6_12",
+      "2022_9_7",
+      "2022_수능_18",
+      "2024_6_13",
+      "2024_9_10",
+      "2025_9_16",
+      "2026_수능_20"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::뮌헨",
+    "name": "뮌헨",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "도시·도시 단서::뮌헨",
+     "name": "뮌헨",
+     "geometry": {
+      "type": "point",
+      "lon": 11.582,
+      "lat": 48.1351,
+      "kind": "city"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "휴스턴": {
+   "type": "industrialRegion",
+   "place": [
+    -95.3698,
+    29.7604
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0690",
+    "locator": "강의 2권 P08 / L2-B0690",
+    "priorAuditExamIds": [
+     "2024_9_17"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0690",
+     "locator": "강의 2권 P08 / L2-B0690",
+     "priorAuditExamIds": [
+      "2024_9_17"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::휴스턴",
+    "name": "휴스턴",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "도시·도시 단서::휴스턴",
+     "name": "휴스턴",
+     "geometry": {
+      "type": "point",
+      "lon": -95.3698,
+      "lat": 29.7604,
+      "kind": "city"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "실리콘 밸리": {
+   "type": "industrialRegion",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0690",
+    "locator": "강의 2권 P08 / L2-B0690",
+    "priorAuditExamIds": [
+     "2024_9_17"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0690",
+     "locator": "강의 2권 P08 / L2-B0690",
+     "priorAuditExamIds": [
+      "2024_9_17"
+     ]
+    }
+   ],
+   "linkedLocations": [
+    {
+     "id": "산업 지역::실리콘 밸리",
+     "name": "실리콘 밸리",
+     "geometry": {
+      "type": "ellipse",
+      "lon": -121.9,
+      "lat": 37.3,
+      "rx": 1.4,
+      "ry": 1.0,
+      "kind": "industry"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "로스앤젤레스": {
+   "type": "industrialRegion",
+   "place": [
+    -118.2437,
+    34.0522
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0690",
+    "locator": "강의 2권 P08 / L2-B0690",
+    "priorAuditExamIds": [
+     "2024_9_17"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0690",
+     "locator": "강의 2권 P08 / L2-B0690",
+     "priorAuditExamIds": [
+      "2024_9_17"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::로스앤젤레스",
+    "name": "로스앤젤레스",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "도시·도시 단서::로스앤젤레스",
+     "name": "로스앤젤레스",
+     "geometry": {
+      "type": "point",
+      "lon": -118.2437,
+      "lat": 34.0522,
+      "kind": "city"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "시애틀": {
+   "type": "industrialRegion",
+   "place": [
+    -122.3321,
+    47.6062
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0690",
+    "locator": "강의 2권 P08 / L2-B0690",
+    "priorAuditExamIds": [
+     "2024_9_17"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0690",
+     "locator": "강의 2권 P08 / L2-B0690",
+     "priorAuditExamIds": [
+      "2024_9_17"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::시애틀",
+    "name": "시애틀",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "도시·도시 단서::시애틀",
+     "name": "시애틀",
+     "geometry": {
+      "type": "point",
+      "lon": -122.3321,
+      "lat": 47.6062,
+      "kind": "city"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "제3 이탈리아": {
+   "type": "industrialRegion",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0662",
+    "locator": "강의 2권 P08 / L2-B0662",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0662",
+     "locator": "강의 2권 P08 / L2-B0662",
+     "priorAuditExamIds": []
+    }
+   ],
+   "linkedLocations": [
+    {
+     "id": "산업 지역::제3 이탈리아",
+     "name": "제3 이탈리아",
+     "geometry": {
+      "type": "box",
+      "bbox": [
+       9.5,
+       42.8,
+       14.5,
+       46.5
+      ],
+      "kind": "industry"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "시카고": {
+   "type": "industrialRegion",
+   "place": [
+    -87.6298,
+    41.8781
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0674",
+    "locator": "강의 2권 P08 / L2-B0674",
+    "priorAuditExamIds": [
+     "2025_수능_16"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0674",
+     "locator": "강의 2권 P08 / L2-B0674",
+     "priorAuditExamIds": [
+      "2025_수능_16"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::시카고",
+    "name": "시카고",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "도시·도시 단서::시카고",
+     "name": "시카고",
+     "geometry": {
+      "type": "point",
+      "lon": -87.6298,
+      "lat": 41.8781,
+      "kind": "city"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "디트로이트": {
+   "type": "industrialRegion",
+   "place": [
+    -83.0458,
+    42.3314
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0676",
+    "locator": "강의 2권 P08 / L2-B0676",
+    "priorAuditExamIds": [
+     "2016_6_5",
+     "2017_6_5",
+     "2019_수능_19",
+     "2021_6_18",
+     "2023_6_18",
+     "2023_수능_9",
+     "2025_수능_16",
+     "2026_6_4",
+     "2026_9_16"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0676",
+     "locator": "강의 2권 P08 / L2-B0676",
+     "priorAuditExamIds": [
+      "2016_6_5",
+      "2017_6_5",
+      "2019_수능_19",
+      "2021_6_18",
+      "2023_6_18",
+      "2023_수능_9",
+      "2025_수능_16",
+      "2026_6_4",
+      "2026_9_16"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "도시·도시 단서::디트로이트",
+    "name": "디트로이트",
+    "source": "평가원 감사"
+   },
+   "linkedLocations": [
+    {
+     "id": "도시·도시 단서::디트로이트",
+     "name": "디트로이트",
+     "geometry": {
+      "type": "point",
+      "lon": -83.0458,
+      "lat": 42.3314,
+      "kind": "city"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "피츠버그": {
+   "type": "industrialRegion",
+   "place": [
+    -80.00193,
+    40.43194
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0678",
+    "locator": "강의 2권 P08 / L2-B0678",
+    "priorAuditExamIds": [
+     "2025_수능_16"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0678",
+     "locator": "강의 2권 P08 / L2-B0678",
+     "priorAuditExamIds": [
+      "2025_수능_16"
+     ]
+    }
+   ],
+   "placeSource": {
+    "kind": "existingLocation",
+    "id": "강의보완::피츠버그",
+    "name": "피츠버그",
+    "source": "개정 강의 2026-09-26"
+   },
+   "linkedLocations": [
+    {
+     "id": "강의보완::피츠버그",
+     "name": "피츠버그",
+     "geometry": {
+      "type": "point",
+      "lon": -80.00193,
+      "lat": 40.43194,
+      "source": "Natural Earth populated places: Pittsburgh",
+      "kind": "city"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  },
+  "일본 태평양 연안": {
+   "type": "industrialRegion",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0572",
+    "locator": "강의 2권 P08 / L2-B0572",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0572",
+     "locator": "강의 2권 P08 / L2-B0572",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "중국 연해 공업": {
+   "type": "industrialRegion",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0615",
+    "locator": "강의 2권 P08 / L2-B0615",
+    "priorAuditExamIds": [
+     "2015_9_5",
+     "2021_6_15",
+     "2022_9_4",
+     "2022_수능_14",
+     "2025_9_17",
+     "2027_6_7"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0615",
+     "locator": "강의 2권 P08 / L2-B0615",
+     "priorAuditExamIds": [
+      "2015_9_5",
+      "2021_6_15",
+      "2022_9_4",
+      "2022_수능_14",
+      "2025_9_17",
+      "2027_6_7"
+     ]
+    }
+   ]
+  },
+  "인도 IT 산업": {
+   "type": "industrialRegion",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0615",
+    "locator": "강의 2권 P08 / L2-B0615",
+    "priorAuditExamIds": [
+     "2015_9_5",
+     "2021_6_15",
+     "2022_9_4",
+     "2022_수능_14",
+     "2025_9_17",
+     "2027_6_7"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0615",
+     "locator": "강의 2권 P08 / L2-B0615",
+     "priorAuditExamIds": [
+      "2015_9_5",
+      "2021_6_15",
+      "2022_9_4",
+      "2022_수능_14",
+      "2025_9_17",
+      "2027_6_7"
+     ]
+    }
+   ]
+  },
+  "선벨트": {
+   "type": "industrialRegion",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0668",
+    "locator": "강의 2권 P08 / L2-B0668",
+    "priorAuditExamIds": [
+     "2014_수능_3",
+     "2017_6_5",
+     "2019_수능_19",
+     "2022_수능_18",
+     "2027_6_5"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P08",
+     "blockId": "L2-B0668",
+     "locator": "강의 2권 P08 / L2-B0668",
+     "priorAuditExamIds": [
+      "2014_수능_3",
+      "2017_6_5",
+      "2019_수능_19",
+      "2022_수능_18",
+      "2027_6_5"
+     ]
+    }
+   ],
+   "linkedLocations": [
+    {
+     "id": "산업 지역::선벨트",
+     "name": "선벨트",
+     "geometry": {
+      "type": "poly",
+      "pts": [
+       [
+        -121,
+        36
+       ],
+       [
+        -114,
+        32
+       ],
+       [
+        -106,
+        31
+       ],
+       [
+        -100,
+        28
+       ],
+       [
+        -82,
+        25
+       ],
+       [
+        -76,
+        35
+       ],
+       [
+        -92,
+        37
+       ],
+       [
+        -110,
+        38
+       ]
+      ],
+      "kind": "industry"
+     },
+     "source": "data/extension-sources/location-items.json"
+    }
+   ]
+  }
+ },
+ "sets": {
+  "L2-B0644-c2": {
+   "label": "국가·위치",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "독일 서부",
+    "프랑스 북동부",
+    "네덜란드 라인강 하구"
+   ],
+   "values": {
+    "루르": [
+     "독일 서부"
+    ],
+    "로렌": [
+     "프랑스 북동부"
+    ],
+    "로테르담": [
+     "네덜란드 라인강 하구"
+    ]
+   },
+   "evidence": {
+    "루르": [
+     {
+      "value": "독일 서부",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0644",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 2권 P08 / L2-B0644 / 표 2행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "로렌": [
+     {
+      "value": "프랑스 북동부",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0644",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 2권 P08 / L2-B0644 / 표 3행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "로테르담": [
+     {
+      "value": "네덜란드 라인강 하구",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0644",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 2권 P08 / L2-B0644 / 표 4행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0644",
+    "locator": "강의 2권 P08 / L2-B0644",
+    "priorAuditExamIds": []
+   }
+  },
+  "L2-B0644-c3": {
+   "label": "성장의 기반",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "석탄·라인강 수운",
+    "철광석·주변 석탄 공급",
+    "해외 원료 수입·항만·내륙 교통"
+   ],
+   "values": {
+    "루르": [
+     "석탄·라인강 수운"
+    ],
+    "로렌": [
+     "철광석·주변 석탄 공급"
+    ],
+    "로테르담": [
+     "해외 원료 수입·항만·내륙 교통"
+    ]
+   },
+   "evidence": {
+    "루르": [
+     {
+      "value": "석탄·라인강 수운",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0644",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 2권 P08 / L2-B0644 / 표 2행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "로렌": [
+     {
+      "value": "철광석·주변 석탄 공급",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0644",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 2권 P08 / L2-B0644 / 표 3행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "로테르담": [
+     {
+      "value": "해외 원료 수입·항만·내륙 교통",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0644",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 2권 P08 / L2-B0644 / 표 4행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0644",
+    "locator": "강의 2권 P08 / L2-B0644",
+    "priorAuditExamIds": []
+   }
+  },
+  "L2-B0644-c4": {
+   "label": "이어지는 설명",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "전통 공업 쇠퇴 뒤 산업·도시 재편",
+    "전통 제철 지역",
+    "정유·석유 화학·유럽 물류"
+   ],
+   "values": {
+    "루르": [
+     "전통 공업 쇠퇴 뒤 산업·도시 재편"
+    ],
+    "로렌": [
+     "전통 제철 지역"
+    ],
+    "로테르담": [
+     "정유·석유 화학·유럽 물류"
+    ]
+   },
+   "evidence": {
+    "루르": [
+     {
+      "value": "전통 공업 쇠퇴 뒤 산업·도시 재편",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0644",
+       "tableRow": 2,
+       "tableColumn": 4,
+       "locator": "강의 2권 P08 / L2-B0644 / 표 2행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "로렌": [
+     {
+      "value": "전통 제철 지역",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0644",
+       "tableRow": 3,
+       "tableColumn": 4,
+       "locator": "강의 2권 P08 / L2-B0644 / 표 3행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "로테르담": [
+     {
+      "value": "정유·석유 화학·유럽 물류",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0644",
+       "tableRow": 4,
+       "tableColumn": 4,
+       "locator": "강의 2권 P08 / L2-B0644 / 표 4행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0644",
+    "locator": "강의 2권 P08 / L2-B0644",
+    "priorAuditExamIds": []
+   }
+  },
+  "L2-B0649-c2": {
+   "label": "국가·위치",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "영국 잉글랜드",
+    "영국 스코틀랜드",
+    "프랑스 남동부",
+    "핀란드 북부",
+    "스웨덴 스톡홀름",
+    "독일 남부"
+   ],
+   "values": {
+    "케임브리지 사이언스 파크": [
+     "영국 잉글랜드"
+    ],
+    "실리콘 글렌": [
+     "영국 스코틀랜드"
+    ],
+    "소피아 앙티폴리스": [
+     "프랑스 남동부"
+    ],
+    "오울루": [
+     "핀란드 북부"
+    ],
+    "시스타 사이언스 시티": [
+     "스웨덴 스톡홀름"
+    ],
+    "뮌헨": [
+     "독일 남부"
+    ]
+   },
+   "evidence": {
+    "케임브리지 사이언스 파크": [
+     {
+      "value": "영국 잉글랜드",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0649",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 2권 P08 / L2-B0649 / 표 2행",
+       "priorAuditExamIds": [
+        "2018_6_17",
+        "2020_6_12",
+        "2022_9_7",
+        "2022_수능_18",
+        "2024_6_13",
+        "2024_9_10",
+        "2025_9_16",
+        "2026_수능_20"
+       ]
+      }
+     }
+    ],
+    "실리콘 글렌": [
+     {
+      "value": "영국 스코틀랜드",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0649",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 2권 P08 / L2-B0649 / 표 3행",
+       "priorAuditExamIds": [
+        "2018_6_17",
+        "2020_6_12",
+        "2022_9_7",
+        "2022_수능_18",
+        "2024_6_13",
+        "2024_9_10",
+        "2025_9_16",
+        "2026_수능_20"
+       ]
+      }
+     }
+    ],
+    "소피아 앙티폴리스": [
+     {
+      "value": "프랑스 남동부",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0649",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 2권 P08 / L2-B0649 / 표 4행",
+       "priorAuditExamIds": [
+        "2018_6_17",
+        "2020_6_12",
+        "2022_9_7",
+        "2022_수능_18",
+        "2024_6_13",
+        "2024_9_10",
+        "2025_9_16",
+        "2026_수능_20"
+       ]
+      }
+     }
+    ],
+    "오울루": [
+     {
+      "value": "핀란드 북부",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0649",
+       "tableRow": 5,
+       "tableColumn": 2,
+       "locator": "강의 2권 P08 / L2-B0649 / 표 5행",
+       "priorAuditExamIds": [
+        "2018_6_17",
+        "2020_6_12",
+        "2022_9_7",
+        "2022_수능_18",
+        "2024_6_13",
+        "2024_9_10",
+        "2025_9_16",
+        "2026_수능_20"
+       ]
+      }
+     }
+    ],
+    "시스타 사이언스 시티": [
+     {
+      "value": "스웨덴 스톡홀름",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0649",
+       "tableRow": 6,
+       "tableColumn": 2,
+       "locator": "강의 2권 P08 / L2-B0649 / 표 6행",
+       "priorAuditExamIds": [
+        "2018_6_17",
+        "2020_6_12",
+        "2022_9_7",
+        "2022_수능_18",
+        "2024_6_13",
+        "2024_9_10",
+        "2025_9_16",
+        "2026_수능_20"
+       ]
+      }
+     }
+    ],
+    "뮌헨": [
+     {
+      "value": "독일 남부",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0649",
+       "tableRow": 7,
+       "tableColumn": 2,
+       "locator": "강의 2권 P08 / L2-B0649 / 표 7행",
+       "priorAuditExamIds": [
+        "2018_6_17",
+        "2020_6_12",
+        "2022_9_7",
+        "2022_수능_18",
+        "2024_6_13",
+        "2024_9_10",
+        "2025_9_16",
+        "2026_수능_20"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0649",
+    "locator": "강의 2권 P08 / L2-B0649",
+    "priorAuditExamIds": [
+     "2018_6_17",
+     "2020_6_12",
+     "2022_9_7",
+     "2022_수능_18",
+     "2024_6_13",
+     "2024_9_10",
+     "2025_9_16",
+     "2026_수능_20"
+    ]
+   }
+  },
+  "L2-B0649-c3": {
+   "label": "성장 배경과 특징",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "대학과 연구 기반, 첨단 기업의 집적",
+    "글래스고·에든버러 일대의 산업 재편, 전자·반도체 기업 입지",
+    "칸·니스 인근, 대학·연구 기관·기업의 협력, 정보 통신 등",
+    "통신 산업과 대학·기업·지방 정부의 협력, 산업 다각화",
+    "정보 통신 기술 기업과 연구 기관의 집적",
+    "자동차 기업 본사, 전기·정보 기술·바이오·금융 기능"
+   ],
+   "values": {
+    "케임브리지 사이언스 파크": [
+     "대학과 연구 기반, 첨단 기업의 집적"
+    ],
+    "실리콘 글렌": [
+     "글래스고·에든버러 일대의 산업 재편, 전자·반도체 기업 입지"
+    ],
+    "소피아 앙티폴리스": [
+     "칸·니스 인근, 대학·연구 기관·기업의 협력, 정보 통신 등"
+    ],
+    "오울루": [
+     "통신 산업과 대학·기업·지방 정부의 협력, 산업 다각화"
+    ],
+    "시스타 사이언스 시티": [
+     "정보 통신 기술 기업과 연구 기관의 집적"
+    ],
+    "뮌헨": [
+     "자동차 기업 본사, 전기·정보 기술·바이오·금융 기능"
+    ]
+   },
+   "evidence": {
+    "케임브리지 사이언스 파크": [
+     {
+      "value": "대학과 연구 기반, 첨단 기업의 집적",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0649",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 2권 P08 / L2-B0649 / 표 2행",
+       "priorAuditExamIds": [
+        "2018_6_17",
+        "2020_6_12",
+        "2022_9_7",
+        "2022_수능_18",
+        "2024_6_13",
+        "2024_9_10",
+        "2025_9_16",
+        "2026_수능_20"
+       ]
+      }
+     }
+    ],
+    "실리콘 글렌": [
+     {
+      "value": "글래스고·에든버러 일대의 산업 재편, 전자·반도체 기업 입지",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0649",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 2권 P08 / L2-B0649 / 표 3행",
+       "priorAuditExamIds": [
+        "2018_6_17",
+        "2020_6_12",
+        "2022_9_7",
+        "2022_수능_18",
+        "2024_6_13",
+        "2024_9_10",
+        "2025_9_16",
+        "2026_수능_20"
+       ]
+      }
+     }
+    ],
+    "소피아 앙티폴리스": [
+     {
+      "value": "칸·니스 인근, 대학·연구 기관·기업의 협력, 정보 통신 등",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0649",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 2권 P08 / L2-B0649 / 표 4행",
+       "priorAuditExamIds": [
+        "2018_6_17",
+        "2020_6_12",
+        "2022_9_7",
+        "2022_수능_18",
+        "2024_6_13",
+        "2024_9_10",
+        "2025_9_16",
+        "2026_수능_20"
+       ]
+      }
+     }
+    ],
+    "오울루": [
+     {
+      "value": "통신 산업과 대학·기업·지방 정부의 협력, 산업 다각화",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0649",
+       "tableRow": 5,
+       "tableColumn": 3,
+       "locator": "강의 2권 P08 / L2-B0649 / 표 5행",
+       "priorAuditExamIds": [
+        "2018_6_17",
+        "2020_6_12",
+        "2022_9_7",
+        "2022_수능_18",
+        "2024_6_13",
+        "2024_9_10",
+        "2025_9_16",
+        "2026_수능_20"
+       ]
+      }
+     }
+    ],
+    "시스타 사이언스 시티": [
+     {
+      "value": "정보 통신 기술 기업과 연구 기관의 집적",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0649",
+       "tableRow": 6,
+       "tableColumn": 3,
+       "locator": "강의 2권 P08 / L2-B0649 / 표 6행",
+       "priorAuditExamIds": [
+        "2018_6_17",
+        "2020_6_12",
+        "2022_9_7",
+        "2022_수능_18",
+        "2024_6_13",
+        "2024_9_10",
+        "2025_9_16",
+        "2026_수능_20"
+       ]
+      }
+     }
+    ],
+    "뮌헨": [
+     {
+      "value": "자동차 기업 본사, 전기·정보 기술·바이오·금융 기능",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0649",
+       "tableRow": 7,
+       "tableColumn": 3,
+       "locator": "강의 2권 P08 / L2-B0649 / 표 7행",
+       "priorAuditExamIds": [
+        "2018_6_17",
+        "2020_6_12",
+        "2022_9_7",
+        "2022_수능_18",
+        "2024_6_13",
+        "2024_9_10",
+        "2025_9_16",
+        "2026_수능_20"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0649",
+    "locator": "강의 2권 P08 / L2-B0649",
+    "priorAuditExamIds": [
+     "2018_6_17",
+     "2020_6_12",
+     "2022_9_7",
+     "2022_수능_18",
+     "2024_6_13",
+     "2024_9_10",
+     "2025_9_16",
+     "2026_수능_20"
+    ]
+   }
+  },
+  "L2-B0690-c2": {
+   "label": "소속·위치",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "텍사스·멕시코만 연안",
+    "캘리포니아·샌프란시스코만 남쪽",
+    "캘리포니아 남부",
+    "워싱턴주·태평양 북서부"
+   ],
+   "values": {
+    "휴스턴": [
+     "텍사스·멕시코만 연안"
+    ],
+    "실리콘 밸리": [
+     "캘리포니아·샌프란시스코만 남쪽"
+    ],
+    "로스앤젤레스": [
+     "캘리포니아 남부"
+    ],
+    "시애틀": [
+     "워싱턴주·태평양 북서부"
+    ]
+   },
+   "evidence": {
+    "휴스턴": [
+     {
+      "value": "텍사스·멕시코만 연안",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0690",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 2권 P08 / L2-B0690 / 표 2행",
+       "priorAuditExamIds": [
+        "2024_9_17"
+       ]
+      }
+     }
+    ],
+    "실리콘 밸리": [
+     {
+      "value": "캘리포니아·샌프란시스코만 남쪽",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0690",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 2권 P08 / L2-B0690 / 표 3행",
+       "priorAuditExamIds": [
+        "2024_9_17"
+       ]
+      }
+     }
+    ],
+    "로스앤젤레스": [
+     {
+      "value": "캘리포니아 남부",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0690",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 2권 P08 / L2-B0690 / 표 4행",
+       "priorAuditExamIds": [
+        "2024_9_17"
+       ]
+      }
+     }
+    ],
+    "시애틀": [
+     {
+      "value": "워싱턴주·태평양 북서부",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0690",
+       "tableRow": 5,
+       "tableColumn": 2,
+       "locator": "강의 2권 P08 / L2-B0690 / 표 5행",
+       "priorAuditExamIds": [
+        "2024_9_17"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0690",
+    "locator": "강의 2권 P08 / L2-B0690",
+    "priorAuditExamIds": [
+     "2024_9_17"
+    ]
+   }
+  },
+  "L2-B0690-c3": {
+   "label": "대표 기능과 성장 조건",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "정유·석유 화학, 에너지 자원과 항만, 우주 항공",
+    "전자·정보 기술, 대학·연구·기업·투자망",
+    "영화·영상, 큰 시장과 전문 문화 산업 인력",
+    "항공 산업, 국제 부품 조달·조립"
+   ],
+   "values": {
+    "휴스턴": [
+     "정유·석유 화학, 에너지 자원과 항만, 우주 항공"
+    ],
+    "실리콘 밸리": [
+     "전자·정보 기술, 대학·연구·기업·투자망"
+    ],
+    "로스앤젤레스": [
+     "영화·영상, 큰 시장과 전문 문화 산업 인력"
+    ],
+    "시애틀": [
+     "항공 산업, 국제 부품 조달·조립"
+    ]
+   },
+   "evidence": {
+    "휴스턴": [
+     {
+      "value": "정유·석유 화학, 에너지 자원과 항만, 우주 항공",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0690",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 2권 P08 / L2-B0690 / 표 2행",
+       "priorAuditExamIds": [
+        "2024_9_17"
+       ]
+      }
+     }
+    ],
+    "실리콘 밸리": [
+     {
+      "value": "전자·정보 기술, 대학·연구·기업·투자망",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0690",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 2권 P08 / L2-B0690 / 표 3행",
+       "priorAuditExamIds": [
+        "2024_9_17"
+       ]
+      }
+     }
+    ],
+    "로스앤젤레스": [
+     {
+      "value": "영화·영상, 큰 시장과 전문 문화 산업 인력",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0690",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 2권 P08 / L2-B0690 / 표 4행",
+       "priorAuditExamIds": [
+        "2024_9_17"
+       ]
+      }
+     }
+    ],
+    "시애틀": [
+     {
+      "value": "항공 산업, 국제 부품 조달·조립",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P08",
+       "blockId": "L2-B0690",
+       "tableRow": 5,
+       "tableColumn": 3,
+       "locator": "강의 2권 P08 / L2-B0690 / 표 5행",
+       "priorAuditExamIds": [
+        "2024_9_17"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0690",
+    "locator": "강의 2권 P08 / L2-B0690",
+    "priorAuditExamIds": [
+     "2024_9_17"
+    ]
+   }
+  }
+ },
+ "statements": [
+  {
+   "id": "industry-L2-B0662-1",
+   "about": [
+    "제3 이탈리아"
+   ],
+   "claim": "2024학년도 수능 4번은 오울루, 로테르담, 제3 이탈리아를 하나의 답사 일정으로 제시한다. 오울루는 대학·기업과 테크노폴리스, 로테르담은 항만·수운·석유 화학, 제3 이탈리아는 장인적 중소기업과 신뢰에 기초한 협력망으로 구별된다. 세 곳 모두 산업이 집적했지만, 모여 있는 활동과 그 이유가 다르다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0662",
+    "locator": "강의 2권 P08 / L2-B0662",
+    "priorAuditExamIds": []
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "industry-L2-B0674-2",
+   "about": [
+    "시카고"
+   ],
+   "claim": "시카고는 미시간호 남서안의 일리노이주에 있다. 오대호 수운과 철도, 미시시피강 수계로 이어지는 내륙 교통이 결합하면서 미국 중서부·남부·동부를 연결하는 중심지로 성장했다. 교통의 결절점은 원료·제품과 인구가 모이기 유리하므로 상공업과 도시 기능이 함께 발달하였다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0674",
+    "locator": "강의 2권 P08 / L2-B0674",
+    "priorAuditExamIds": [
+     "2025_수능_16"
+    ]
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "industry-L2-B0676-3",
+   "about": [
+    "디트로이트"
+   ],
+   "claim": "디트로이트는 미시간주의 오대호 수운을 이용할 수 있는 곳에 위치한다. 초기 모피 교역의 거점에서 자동차 기업과 공장이 집중한 공업 도시로 발전했다. 완성차 공장과 부품 기업, 전문 노동력의 집적은 자동차 생산의 기반을 강화했다. 이후 자동차 산업의 변화와 생산 이전은 도시의 고용과 인구에도 영향을 주었다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0676",
+    "locator": "강의 2권 P08 / L2-B0676",
+    "priorAuditExamIds": [
+     "2016_6_5",
+     "2017_6_5",
+     "2019_수능_19",
+     "2021_6_18",
+     "2023_6_18",
+     "2023_수능_9",
+     "2025_수능_16",
+     "2026_6_4",
+     "2026_9_16"
+    ]
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "industry-L2-B0678-4",
+   "about": [
+    "피츠버그"
+   ],
+   "claim": "피츠버그는 애팔래치아산맥의 석탄 산지와 연결되는 펜실베이니아주의 도시다. 인근 석탄과 오대호 수운·철도로 공급되는 철광석을 이용하여 철강 산업이 발달하였다. 철강 공업의 입지를 ‘철광석이 바로 옆에 있기 때문’이라고만 설명할 수 없는 사례다. 서로 다른 자원 산지와 공업 도시가 운송망으로 연결되어 있다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0678",
+    "locator": "강의 2권 P08 / L2-B0678",
+    "priorAuditExamIds": [
+     "2025_수능_16"
+    ]
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "industry-L2-B0572-5",
+   "about": [
+    "일본 태평양 연안"
+   ],
+   "claim": "네덜란드 로테르담의 정유·석유 화학 공업과 일본 태평양 연안의 중화학 공업이 대표 사례다. 로테르담은 라인강 하구에서 해운과 유럽 내륙 수운을 연결한다. 일본의 임해 공업 지역은 수입 원료의 하역과 제품 수출에 유리하다. 두 사례 모두 주변에 대규모 원유·철광석 산지가 있어야 성립하는 입지가 아니다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0572",
+    "locator": "강의 2권 P08 / L2-B0572",
+    "priorAuditExamIds": []
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "industry-L2-B0615-6",
+   "about": [
+    "중국 연해 공업"
+   ],
+   "claim": "국가 | 기출에서 제시된 구조와 특징 | 함께 연결할 지식 | 인도 | 농업 종사자 비중이 높고, 서비스 생산과 IT 거점도 중요 | 벵갈루루·하이데라바드의 전문 인력 | 중국 | 큰 제조업 기반과 수출 공급망, 산업별 GDP 총규모가 큼 | 연해 공업·대시장·베이징의 연구 기능 | 일본 | 공업 제품 수출, 원료·에너지 수입, 높은 서비스 비중 | 태평양 연안 공업과 도쿄의 관리 기능 | 오스트레일리아 | 자원·농축산물 수출과 높은 서비스업 고용 비중이 공존 | 광업의 자본 집약성, 도시 서비스 | 싱가포르 | 1차 산업 종사자가 매우 적고 서비스업 비중이 큼 | 항만·금융·교역 중심의 도시 국가",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0615",
+    "locator": "강의 2권 P08 / L2-B0615",
+    "priorAuditExamIds": [
+     "2015_9_5",
+     "2021_6_15",
+     "2022_9_4",
+     "2022_수능_14",
+     "2025_9_17",
+     "2027_6_7"
+    ]
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "industry-L2-B0615-7",
+   "about": [
+    "인도 IT 산업"
+   ],
+   "claim": "국가 | 기출에서 제시된 구조와 특징 | 함께 연결할 지식 | 인도 | 농업 종사자 비중이 높고, 서비스 생산과 IT 거점도 중요 | 벵갈루루·하이데라바드의 전문 인력 | 중국 | 큰 제조업 기반과 수출 공급망, 산업별 GDP 총규모가 큼 | 연해 공업·대시장·베이징의 연구 기능 | 일본 | 공업 제품 수출, 원료·에너지 수입, 높은 서비스 비중 | 태평양 연안 공업과 도쿄의 관리 기능 | 오스트레일리아 | 자원·농축산물 수출과 높은 서비스업 고용 비중이 공존 | 광업의 자본 집약성, 도시 서비스 | 싱가포르 | 1차 산업 종사자가 매우 적고 서비스업 비중이 큼 | 항만·금융·교역 중심의 도시 국가",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0615",
+    "locator": "강의 2권 P08 / L2-B0615",
+    "priorAuditExamIds": [
+     "2015_9_5",
+     "2021_6_15",
+     "2022_9_4",
+     "2022_수능_14",
+     "2025_9_17",
+     "2027_6_7"
+    ]
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "industry-L2-B0668-8",
+   "about": [
+    "선벨트"
+   ],
+   "claim": "남부·서부의 선벨트는 에너지 자원, 항공 우주·방위 산업 투자, 첨단 산업, 인구와 시장의 성장 등을 바탕으로 발전했다. 따뜻한 기후는 인구 이동과 생활 환경의 한 조건이지만 모든 산업 입지를 기후만으로 설명할 수는 없다. 휴스턴은 석유와 우주 항공, 실리콘 밸리는 대학·연구·기업망, 로스앤젤레스는 영상 산업과 연결된다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0668",
+    "locator": "강의 2권 P08 / L2-B0668",
+    "priorAuditExamIds": [
+     "2014_수능_3",
+     "2017_6_5",
+     "2019_수능_19",
+     "2022_수능_18",
+     "2027_6_5"
+    ]
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "existing-t01",
+   "about": [],
+   "claim": "2019년 나이지리아의 수출 1위 품목은 원유이다.",
+   "truth": true,
+   "explanation": "76.5+10.1=86.6%이다. 화석 연료 수출 의존을 구성 비율로 확인한다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t01",
+    "locator": "2022학년도 수능 3번"
+   },
+   "period": "2019년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-t02",
+   "about": [],
+   "claim": "2019년 칠레의 수출 1위 품목은 구리이다.",
+   "truth": true,
+   "explanation": "26.5+19.2=45.7%이다. 원료와 가공품의 구분을 유지하면서 합계를 구한다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t02",
+    "locator": "2022학년도 수능 3번"
+   },
+   "period": "2019년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-t03",
+   "about": [],
+   "claim": "2019년 케냐의 석유 제품 수출은 대규모 원유 매장의 증거이다.",
+   "truth": false,
+   "explanation": "원유와 석유 제품은 다르다. 케냐의 1·2위 수출품은 차·화훼류이다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t03",
+    "locator": "2022학년도 수능 3번"
+   },
+   "period": "2019년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-t04",
+   "about": [],
+   "claim": "2019년 브라질의 수출 상위 품목은 대두·원유·철광석이다.",
+   "truth": true,
+   "explanation": "대두는 농산물, 원유는 화석 연료, 철광석은 금속 자원이다. 한 종류의 자원 수출국으로만 단정하지 않는다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t04",
+    "locator": "2022학년도 수능 3번"
+   },
+   "period": "2019년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-t05",
+   "about": [],
+   "claim": "멕시코는 칠레보다 공산품 수출 비중이 높다.",
+   "truth": true,
+   "explanation": "멕시코는 자동차·전자 등 제조업 공급망, 칠레는 광물 비중이 크다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t05",
+    "locator": "2024학년도 9월 7번·2026학년도 6월 16번"
+   },
+   "period": "2024학년도 9월 7번·2026학년도 6월 16번의 강의 범위 · 통계 연도 미확인",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-t06",
+   "about": [],
+   "claim": "2024년 총수출액은 나이지리아가 사우디아라비아보다 많다.",
+   "truth": false,
+   "explanation": "사우디아라비아 305,499백만 달러, 나이지리아 53,320백만 달러.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t06",
+    "locator": "2027학년도 9월 13번"
+   },
+   "period": "2024년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-t07",
+   "about": [],
+   "claim": "1950년 오스트레일리아의 수출·수입 1위 상대국은 미국이다.",
+   "truth": false,
+   "explanation": "1950년에는 영국, 2020년에는 중국이 두 방향 모두 1위.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t07",
+    "locator": "2026학년도 9월 11번"
+   },
+   "period": "1950년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-t08",
+   "about": [],
+   "claim": "2020년 오스트레일리아의 수출·수입 1위 상대국은 모두 중국이다.",
+   "truth": true,
+   "explanation": "일본은 수출 2위·수입 3위.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t08",
+    "locator": "2026학년도 9월 11번"
+   },
+   "period": "2020년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-t09",
+   "about": [],
+   "claim": "2017년 캐나다의 대미 수출액은 미국의 대캐나다 수출액보다 많다.",
+   "truth": true,
+   "explanation": "캐나다의 대미 수출 3,200억 달러에서 수입 2,821억 달러를 빼면 379억 달러 흑자이다. 이 양국 사이의 수지이다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t09",
+    "locator": "2021학년도 6월 7번"
+   },
+   "period": "2017년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-t10",
+   "about": [],
+   "claim": "2017년 멕시코의 대미 수출액은 미국의 대멕시코 수출액보다 적다.",
+   "truth": false,
+   "explanation": "멕시코의 대미 수출은 3,269억 달러, 수입은 2,430억 달러이므로 839억 달러 흑자이다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t10",
+    "locator": "2021학년도 6월 7번"
+   },
+   "period": "2017년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-t11",
+   "about": [],
+   "claim": "2016학년도 6월 10번 자료에서 미국은 무역 흑자국이다.",
+   "truth": false,
+   "explanation": "무역 적자는 수입액이 수출액보다 많다는 뜻이며 수출액이 0이라는 뜻이 아니다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t11",
+    "locator": "2016학년도 6월 10번"
+   },
+   "period": "2016학년도 6월 10번의 강의 범위 · 통계 연도 미확인",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-t12",
+   "about": [],
+   "claim": "2020년 역내 총생산액은 EU가 USMCA보다 크다.",
+   "truth": false,
+   "explanation": "미국이 포함된 USMCA가 가장 크다. 회원 수가 많다고 GDP가 큰 것은 아니다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t12",
+    "locator": "2023학년도 6월 10번"
+   },
+   "period": "2020년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-t13",
+   "about": [],
+   "claim": "2020년 총무역액은 네 경제 블록 중 EU가 가장 크다.",
+   "truth": true,
+   "explanation": "역내와 역외 막대를 합하여 비교한다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t13",
+    "locator": "2023학년도 6월 10번"
+   },
+   "period": "2020년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-t14",
+   "about": [],
+   "claim": "2020년 총인구는 네 경제 블록 중 ASEAN이 가장 많다.",
+   "truth": true,
+   "explanation": "EU·USMCA·ASEAN·MERCOSUR 중 ASEAN.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t14",
+    "locator": "2023학년도 6월 10번"
+   },
+   "period": "2020년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-t15",
+   "about": [],
+   "claim": "2015년 명목 GDP 순위는 미국, 중국, 일본 순이다.",
+   "truth": true,
+   "explanation": "1인당 GDP는 GDP를 인구로 나눈 값이다. 총량 순위만으로 1인당 순위를 정할 수 없다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t15",
+    "locator": "2015년 GDP 자료"
+   },
+   "period": "2015년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-t16",
+   "about": [],
+   "claim": "2015년 독일·미국·중국·멕시코 중 자동차 생산량이 가장 많은 나라는 미국이다.",
+   "truth": false,
+   "explanation": "1995·2005년에는 미국, 2015년에는 중국이 가장 많다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t16",
+    "locator": "2020학년도 수능 17번"
+   },
+   "period": "2015년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-t17",
+   "about": [],
+   "claim": "2015년 앵글로아메리카의 3차 산업 종사자 비중은 약 81%이다.",
+   "truth": true,
+   "explanation": "81÷18=4.5이므로 4배 이상이다. 81%라는 숫자 자체를 외우지 않고 제공 비율로 판단한다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t17",
+    "locator": "2018학년도 6월 19번"
+   },
+   "period": "2015년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-t18",
+   "about": [],
+   "claim": "튀르키예가 EU로 수출하는 1위 품목은 광물성 연료이다.",
+   "truth": false,
+   "explanation": "품목의 종류만으로는 총수출액을 알 수 없다. 구성과 총액은 다른 자료이다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t18",
+    "locator": "2025학년도 수능 6번"
+   },
+   "period": "2025학년도 수능 6번의 강의 범위 · 통계 연도 미확인",
+   "practice": "reading"
+  },
+  {
+   "id": "existing-t19",
+   "about": [],
+   "claim": "독일은 2차 산업 안에서 제조업이 차지하는 비중이 영국보다 높다.",
+   "truth": true,
+   "explanation": "전체 GDP에서 제조업의 몫도 독일이 가장 크다. 영국은 3차 산업 비중이 가장 높다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t19",
+    "locator": "2권 P08"
+   },
+   "period": "2권 P08의 강의 범위 · 통계 연도 미확인",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-t20",
+   "about": [],
+   "claim": "나이지리아는 총 GDP와 1인당 GDP가 모두 보츠와나보다 크다.",
+   "truth": false,
+   "explanation": "총 GDP는 나이지리아가 크지만 1인당 GDP는 보츠와나가 더 크다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "t20",
+    "locator": "2권 P10"
+   },
+   "period": "2권 P10의 강의 범위 · 통계 연도 미확인",
+   "practice": "recall"
+  }
+ ],
+ "counts": {
+  "entities": 21,
+  "sets": 7,
+  "statements": 28
+ }
+}

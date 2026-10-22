@@ -1,0 +1,242 @@
+{
+ "schemaVersion": 1,
+ "normalPeriod": [
+  1991,
+  2020
+ ],
+ "mode": "additive; 기존 data/climate-normals.json 41개를 보존",
+ "sites": [
+  {
+   "name": "싱가포르",
+   "mapPoint": [
+    103.8198,
+    1.3521
+   ],
+   "lectureClimate": "af",
+   "sourceBlockId": "L1-B0341",
+   "normalPeriod": [
+    1991,
+    2020
+   ],
+   "station": {
+    "id": "48698",
+    "idScheme": "source-station-id",
+    "latitude": 1.368056,
+    "longitude": 103.9825,
+    "elevationM": 14.0,
+    "name": "SINGAPORE/CHANGI AIRPORT",
+    "country": "SINGAPORE",
+    "wigosId": "0-20000-0-48698",
+    "distanceFromMapPointKm": 18.2
+   },
+   "sourceFile": "singapore.csv",
+   "temperatureC": [
+    26.8,
+    27.3,
+    27.8,
+    28.2,
+    28.6,
+    28.5,
+    28.2,
+    28.1,
+    28.0,
+    27.9,
+    27.2,
+    26.8
+   ],
+   "precipitationMm": [
+    221.6,
+    105.0,
+    151.1,
+    163.8,
+    163.8,
+    137.1,
+    144.8,
+    148.9,
+    124.6,
+    166.4,
+    254.1,
+    332.1
+   ],
+   "temperatureYears": [
+    30.0,
+    30.0,
+    30.0,
+    30.0,
+    30.0,
+    30.0,
+    30.0,
+    30.0,
+    30.0,
+    30.0,
+    30.0,
+    30.0
+   ],
+   "precipitationYears": [
+    30.0,
+    30.0,
+    30.0,
+    30.0,
+    30.0,
+    30.0,
+    30.0,
+    30.0,
+    30.0,
+    30.0,
+    30.0,
+    30.0
+   ],
+   "status": "complete",
+   "usage": {
+    "climateGraph": true,
+    "temperatureReading": true,
+    "precipitationReading": true
+   },
+   "issues": []
+  },
+  {
+   "name": "이키토스",
+   "mapPoint": [
+    -73.25001,
+    -3.75002
+   ],
+   "lectureClimate": "af",
+   "sourceBlockId": "L1-B0441",
+   "normalPeriod": [
+    1991,
+    2020
+   ],
+   "station": {
+    "id": "33303",
+    "idScheme": "source-station-id",
+    "latitude": -3.786667,
+    "longitude": -73.293333,
+    "elevationM": 106.0,
+    "name": "SAN_ROQUE",
+    "country": "PERU",
+    "wigosId": "0-604-1-22633303",
+    "distanceFromMapPointKm": 6.3
+   },
+   "sourceFile": "iquitos-sanroque.csv",
+   "temperatureC": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "precipitationMm": [
+    245.2,
+    232.2,
+    284.7,
+    254.5,
+    248.2,
+    162.7,
+    132.3,
+    159.1,
+    160.6,
+    198.4,
+    192.0,
+    236.5
+   ],
+   "temperatureYears": null,
+   "precipitationYears": [
+    27.0,
+    29.0,
+    27.0,
+    28.0,
+    27.0,
+    26.0,
+    27.0,
+    28.0,
+    27.0,
+    26.0,
+    26.0,
+    27.0
+   ],
+   "status": "partial",
+   "usage": {
+    "climateGraph": false,
+    "temperatureReading": false,
+    "precipitationReading": true
+   },
+   "issues": [
+    "WMO 제출에 Daily_Mean이 없다. Tmax/Tmin 평균으로 대체하지 않는다."
+   ]
+  },
+  {
+   "name": "키토",
+   "normalPeriod": [
+    1991,
+    2020
+   ],
+   "station": {
+    "name": "IÑAQUITO",
+    "code": "M0024",
+    "longitude": -78.4877,
+    "latitude": -0.1783,
+    "elevationM": 2789
+   },
+   "sourceFile": "inamhi-M0024.pdf",
+   "pdfPage": 1,
+   "extraction": "PDF 범례에 명시된 1991–2020 월평균 기온 숫자 12개를 전사하고 렌더링으로 대조. 곡선을 픽셀로 추정하지 않음.",
+   "temperatureC": [
+    15.0,
+    15.0,
+    14.9,
+    15.0,
+    15.2,
+    15.4,
+    15.4,
+    15.7,
+    15.7,
+    15.1,
+    14.8,
+    14.9
+   ],
+   "annualTemperatureC": 15.2,
+   "precipitationMm": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "status": "partial",
+   "usage": {
+    "climateGraph": false,
+    "temperatureReading": true,
+    "precipitationReading": false
+   },
+   "issues": [
+    "INAMHI 1991–2020 Iñaquito 월평균 기온을 확보. WWIS 강수는 1981–2010이며 기간이 달라 결합하지 않는다."
+   ]
+  }
+ ],
+ "reviewedHolds": [
+  {
+   "name": "키토",
+   "status": "partial",
+   "reason": "INAMHI Iñaquito 기온 확보. 같은 1991–2020 기간 강수 미확보. WWIS 1981–2010 강수와 합성하지 않음."
+  },
+  {
+   "name": "아부자",
+   "status": "hold",
+   "reason": "기존 1월 월평균 기온=최고 기온 35.2℃의 이상치가 재수집본에도 남음. JMA 65125 대체 페이지 404. 기존 강수 사용과 기온 보류 유지."
+  }
+ ]
+}

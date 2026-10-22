@@ -1,1 +1,6 @@
 __pycache__/
+# Lecture full text, workbook records and lecture figures stay out of this public repository
+# (2026-10-22). Put them here from the R1-R9 bundle to run the full regeneration checks.
+data/extension-sources/lecture-blocks.json
+data/extension-sources/workbook-records.json
+assets/source-figures/

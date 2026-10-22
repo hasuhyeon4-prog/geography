@@ -1,0 +1,3765 @@
+{
+ "schemaVersion": 1,
+ "source": "Pew Research Center Religious Composition 2010–2020 dataset (2025)",
+ "unit": "% of population",
+ "populationUnit": "명",
+ "years": [
+  2010,
+  2020
+ ],
+ "precision": "원본 비반올림 비율. 표시 단계에서만 반올림.",
+ "countries": {
+  "아프가니스탄": {
+   "iso3": "AFG",
+   "sourceName": "Afghanistan",
+   "series": {
+    "2010": {
+     "christianity": 0.100224391,
+     "islam": 99.74918365,
+     "unaffiliated": 0.00865241,
+     "buddhism": 0.01998632,
+     "hinduism": 0.00035474,
+     "judaism": 0.000106422,
+     "other": 0.121494696
+    },
+    "2020": {
+     "christianity": 0.019379199,
+     "islam": 99.86196899,
+     "unaffiliated": 0.008456565,
+     "buddhism": 0.020000853,
+     "hinduism": 0.000128296,
+     "judaism": 2.56593e-05,
+     "other": 0.090042546
+    }
+   },
+   "populationSeries": {
+    "2010": 28284088.5,
+    "2020": 39068979.0
+   }
+  },
+  "알제리": {
+   "iso3": "DZA",
+   "sourceName": "Algeria",
+   "series": {
+    "2010": {
+     "christianity": 0.290679306,
+     "islam": 98.57145691,
+     "unaffiliated": 1.08472383,
+     "buddhism": 0.014109504,
+     "hinduism": 0.0,
+     "judaism": 0.000151956,
+     "other": 0.038876127
+    },
+    "2020": {
+     "christianity": 0.294989556,
+     "islam": 98.38234711,
+     "unaffiliated": 1.266207099,
+     "buddhism": 0.015000784,
+     "hinduism": 0.0,
+     "judaism": 0.000129986,
+     "other": 0.041328549
+    }
+   },
+   "populationSeries": {
+    "2010": 36188235.5,
+    "2020": 44042091.0
+   }
+  },
+  "앙골라": {
+   "iso3": "AGO",
+   "sourceName": "Angola",
+   "series": {
+    "2010": {
+     "christianity": 91.57467651,
+     "islam": 0.166905507,
+     "unaffiliated": 4.476850033,
+     "buddhism": 0.00385205,
+     "hinduism": 0.013696176,
+     "judaism": 0.002140027,
+     "other": 3.761880159
+    },
+    "2020": {
+     "christianity": 93.04470825,
+     "islam": 0.255656004,
+     "unaffiliated": 6.114808083,
+     "buddhism": 0.002393168,
+     "hinduism": 0.009273528,
+     "judaism": 0.001196584,
+     "other": 0.571967721
+    }
+   },
+   "populationSeries": {
+    "2010": 23294825.0,
+    "2020": 33451132.5
+   }
+  },
+  "아르헨티나": {
+   "iso3": "ARG",
+   "sourceName": "Argentina",
+   "series": {
+    "2010": {
+     "christianity": 88.07093048,
+     "islam": 1.000082135,
+     "unaffiliated": 9.727508545,
+     "buddhism": 0.029148331,
+     "hinduism": 0.002481744,
+     "judaism": 0.442821056,
+     "other": 0.727030873
+    },
+    "2020": {
+     "christianity": 88.45394135,
+     "islam": 0.929196358,
+     "unaffiliated": 9.232909203,
+     "buddhism": 0.031062234,
+     "hinduism": 0.002573854,
+     "judaism": 0.384978116,
+     "other": 0.96533829
+    }
+   },
+   "populationSeries": {
+    "2010": 41288693.5,
+    "2020": 45191964.5
+   }
+  },
+  "오스트레일리아": {
+   "iso3": "AUS",
+   "sourceName": "Australia",
+   "series": {
+    "2010": {
+     "christianity": 67.11828613,
+     "islam": 2.475812912,
+     "unaffiliated": 24.85868263,
+     "buddhism": 2.727071762,
+     "hinduism": 1.444337487,
+     "judaism": 0.496472239,
+     "other": 0.879340172
+    },
+    "2020": {
+     "christianity": 46.75042343,
+     "islam": 3.503147364,
+     "unaffiliated": 42.34402084,
+     "buddhism": 2.611551523,
+     "hinduism": 2.963423014,
+     "judaism": 0.420412093,
+     "other": 1.40702188
+    }
+   },
+   "populationSeries": {
+    "2010": 22141580.5,
+    "2020": 25743791.0
+   }
+  },
+  "오스트리아": {
+   "iso3": "AUT",
+   "sourceName": "Austria",
+   "series": {
+    "2010": {
+     "christianity": 80.4365921,
+     "islam": 5.383095741,
+     "unaffiliated": 13.50526714,
+     "buddhism": 0.220994622,
+     "hinduism": 0.087822534,
+     "judaism": 0.161903217,
+     "other": 0.204323143
+    },
+    "2020": {
+     "christianity": 68.19069672,
+     "islam": 8.302758217,
+     "unaffiliated": 22.39739227,
+     "buddhism": 0.296996266,
+     "hinduism": 0.11324697,
+     "judaism": 0.060347393,
+     "other": 0.638559401
+    }
+   },
+   "populationSeries": {
+    "2010": 8365091.5,
+    "2020": 8921405.0
+   }
+  },
+  "아제르바이잔": {
+   "iso3": "AZE",
+   "sourceName": "Azerbaijan",
+   "series": {
+    "2010": {
+     "christianity": 1.638720155,
+     "islam": 97.12218475,
+     "unaffiliated": 1.068396449,
+     "buddhism": 0.002489931,
+     "hinduism": 0.008335858,
+     "judaism": 0.159870267,
+     "other": 0.0
+    },
+    "2020": {
+     "christianity": 0.419673085,
+     "islam": 94.72725677,
+     "unaffiliated": 4.759952545,
+     "buddhism": 0.002041818,
+     "hinduism": 0.006806061,
+     "judaism": 0.084269956,
+     "other": 0.0
+    }
+   },
+   "populationSeries": {
+    "2010": 9146850.5,
+    "2020": 10181730.0
+   }
+  },
+  "바레인": {
+   "iso3": "BHR",
+   "sourceName": "Bahrain",
+   "series": {
+    "2010": {
+     "christianity": 15.71869564,
+     "islam": 70.2177887,
+     "unaffiliated": 0.368229896,
+     "buddhism": 0.182837799,
+     "hinduism": 12.88137245,
+     "judaism": 0.016314505,
+     "other": 0.61476016
+    },
+    "2020": {
+     "christianity": 13.6735096,
+     "islam": 74.02146912,
+     "unaffiliated": 0.320074171,
+     "buddhism": 0.159597144,
+     "hinduism": 11.20584488,
+     "judaism": 0.014348853,
+     "other": 0.605156124
+    }
+   },
+   "populationSeries": {
+    "2010": 1213244.0,
+    "2020": 1483077.0
+   }
+  },
+  "방글라데시": {
+   "iso3": "BGD",
+   "sourceName": "Bangladesh",
+   "series": {
+    "2010": {
+     "christianity": 0.304379791,
+     "islam": 90.37450409,
+     "unaffiliated": 0.0,
+     "buddhism": 0.621577501,
+     "hinduism": 8.561435699,
+     "judaism": 0.0,
+     "other": 0.138101071
+    },
+    "2020": {
+     "christianity": 0.300090015,
+     "islam": 91.06732178,
+     "unaffiliated": 0.0,
+     "buddhism": 0.61018306,
+     "hinduism": 7.90237093,
+     "judaism": 0.0,
+     "other": 0.120036013
+    }
+   },
+   "populationSeries": {
+    "2010": 152201981.5,
+    "2020": 166298024.0
+   }
+  },
+  "벨기에": {
+   "iso3": "BEL",
+   "sourceName": "Belgium",
+   "series": {
+    "2010": {
+     "christianity": 61.10960007,
+     "islam": 5.112907887,
+     "unaffiliated": 32.01262283,
+     "buddhism": 0.144751668,
+     "hinduism": 0.118146814,
+     "judaism": 0.276706636,
+     "other": 1.225263715
+    },
+    "2020": {
+     "christianity": 50.97150421,
+     "islam": 6.811327934,
+     "unaffiliated": 38.98344803,
+     "buddhism": 0.178415298,
+     "hinduism": 0.232221946,
+     "judaism": 0.250827819,
+     "other": 2.572257042
+    }
+   },
+   "populationSeries": {
+    "2010": 10936625.5,
+    "2020": 11540107.0
+   }
+  },
+  "베냉": {
+   "iso3": "BEN",
+   "sourceName": "Benin",
+   "series": {
+    "2010": {
+     "christianity": 58.32691574,
+     "islam": 23.46452713,
+     "unaffiliated": 4.399120808,
+     "buddhism": 0.009401094,
+     "hinduism": 0.009422267,
+     "judaism": 3.17604e-05,
+     "other": 13.79058075
+    },
+    "2020": {
+     "christianity": 53.23115921,
+     "islam": 31.40122795,
+     "unaffiliated": 4.885910034,
+     "buddhism": 0.008225815,
+     "hinduism": 0.008297001,
+     "judaism": 6.32755e-05,
+     "other": 10.46511555
+    }
+   },
+   "populationSeries": {
+    "2010": 9797484.0,
+    "2020": 13070169.0
+   }
+  },
+  "볼리비아": {
+   "iso3": "BOL",
+   "sourceName": "Bolivia",
+   "series": {
+    "2010": {
+     "christianity": 95.70630646,
+     "islam": 0.008412181,
+     "unaffiliated": 3.988294363,
+     "buddhism": 0.017019995,
+     "hinduism": 0.003325746,
+     "judaism": 0.034531184,
+     "other": 0.2421076
+    },
+    "2020": {
+     "christianity": 88.92559814,
+     "islam": 0.009802146,
+     "unaffiliated": 9.547657967,
+     "buddhism": 0.01885028,
+     "hinduism": 0.003686277,
+     "judaism": 0.004188951,
+     "other": 1.490216374
+    }
+   },
+   "populationSeries": {
+    "2010": 10182345.0,
+    "2020": 11816299.5
+   }
+  },
+  "보스니아 헤르체고비나": {
+   "iso3": "BIH",
+   "sourceName": "Bosnia-Herzegovina",
+   "series": {
+    "2010": {
+     "christianity": 46.45385742,
+     "islam": 51.27508163,
+     "unaffiliated": 1.106963634,
+     "buddhism": 0.00236153,
+     "hinduism": 0.0,
+     "judaism": 0.013119613,
+     "other": 1.148615599
+    },
+    "2020": {
+     "christianity": 44.67794418,
+     "islam": 53.64897919,
+     "unaffiliated": 1.045740604,
+     "buddhism": 0.002712135,
+     "hinduism": 0.0,
+     "judaism": 0.015067414,
+     "other": 0.609558046
+    }
+   },
+   "populationSeries": {
+    "2010": 3811471.5,
+    "2020": 3299349.5
+   }
+  },
+  "보츠와나": {
+   "iso3": "BWA",
+   "sourceName": "Botswana",
+   "series": {
+    "2010": {
+     "christianity": 80.46395111,
+     "islam": 0.716222227,
+     "unaffiliated": 14.66267681,
+     "buddhism": 0.248023421,
+     "hinduism": 0.143426448,
+     "judaism": 0.004780882,
+     "other": 3.760915279
+    },
+    "2020": {
+     "christianity": 82.29058838,
+     "islam": 0.33039239,
+     "unaffiliated": 14.72220898,
+     "buddhism": 0.228216156,
+     "hinduism": 0.137448832,
+     "judaism": 0.00392711,
+     "other": 2.287216187
+    }
+   },
+   "populationSeries": {
+    "2010": 2033110.5,
+    "2020": 2365893.5
+   }
+  },
+  "브라질": {
+   "iso3": "BRA",
+   "sourceName": "Brazil",
+   "series": {
+    "2010": {
+     "christianity": 89.15826416,
+     "islam": 0.018563654,
+     "unaffiliated": 8.115718842,
+     "buddhism": 0.12678048,
+     "hinduism": 0.002994251,
+     "judaism": 0.055669174,
+     "other": 2.522007704
+    },
+    "2020": {
+     "christianity": 80.65506744,
+     "islam": 0.017701255,
+     "unaffiliated": 13.47328377,
+     "buddhism": 0.103137359,
+     "hinduism": 0.000770417,
+     "judaism": 0.044158481,
+     "other": 5.705881596
+    }
+   },
+   "populationSeries": {
+    "2010": 193701929.5,
+    "2020": 208660842.5
+   }
+  },
+  "브루나이": {
+   "iso3": "BRN",
+   "sourceName": "Brunei",
+   "series": {
+    "2010": {
+     "christianity": 8.68449688,
+     "islam": 78.79367065,
+     "unaffiliated": 0.156544909,
+     "buddhism": 7.836350441,
+     "hinduism": 1.340731382,
+     "judaism": 0.0,
+     "other": 3.188205004
+    },
+    "2020": {
+     "christianity": 6.693441868,
+     "islam": 82.15075684,
+     "unaffiliated": 0.156205788,
+     "buddhism": 6.296775341,
+     "hinduism": 1.335672617,
+     "judaism": 0.0,
+     "other": 3.367149591
+    }
+   },
+   "populationSeries": {
+    "2010": 392332.0,
+    "2020": 447403.5
+   }
+  },
+  "불가리아": {
+   "iso3": "BGR",
+   "sourceName": "Bulgaria",
+   "series": {
+    "2010": {
+     "christianity": 81.3976059,
+     "islam": 9.981410027,
+     "unaffiliated": 8.407243729,
+     "buddhism": 0.019819338,
+     "hinduism": 0.001411629,
+     "judaism": 0.049360912,
+     "other": 0.143145353
+    },
+    "2020": {
+     "christianity": 79.49707794,
+     "islam": 10.25873566,
+     "unaffiliated": 10.0321579,
+     "buddhism": 0.026466111,
+     "hinduism": 0.002907086,
+     "judaism": 0.045989148,
+     "other": 0.136665002
+    }
+   },
+   "populationSeries": {
+    "2010": 7437598.5,
+    "2020": 6933652.0
+   }
+  },
+  "캄보디아": {
+   "iso3": "KHM",
+   "sourceName": "Cambodia",
+   "series": {
+    "2010": {
+     "christianity": 0.371981323,
+     "islam": 1.904454947,
+     "unaffiliated": 0.093291819,
+     "buddhism": 96.92893219,
+     "hinduism": 0.00090507,
+     "judaism": 0.0,
+     "other": 0.700432837
+    },
+    "2020": {
+     "christianity": 0.316419482,
+     "islam": 2.0429039,
+     "unaffiliated": 0.079039522,
+     "buddhism": 97.09085846,
+     "hinduism": 0.000792835,
+     "judaism": 0.0,
+     "other": 0.469986796
+    }
+   },
+   "populationSeries": {
+    "2010": 14500726.0,
+    "2020": 16725473.5
+   }
+  },
+  "카메룬": {
+   "iso3": "CMR",
+   "sourceName": "Cameroon",
+   "series": {
+    "2010": {
+     "christianity": 71.66581726,
+     "islam": 21.3280201,
+     "unaffiliated": 3.075546026,
+     "buddhism": 0.001808902,
+     "hinduism": 0.006340458,
+     "judaism": 0.006340458,
+     "other": 3.916128159
+    },
+    "2020": {
+     "christianity": 69.8339386,
+     "islam": 25.15727043,
+     "unaffiliated": 2.079864502,
+     "buddhism": 0.00181991,
+     "hinduism": 0.007430334,
+     "judaism": 0.00637948,
+     "other": 2.913296461
+    }
+   },
+   "populationSeries": {
+    "2010": 19668066.0,
+    "2020": 26210558.0
+   }
+  },
+  "캐나다": {
+   "iso3": "CAN",
+   "sourceName": "Canada",
+   "series": {
+    "2010": {
+     "christianity": 67.24938202,
+     "islam": 3.249471426,
+     "unaffiliated": 23.85477829,
+     "buddhism": 1.105837107,
+     "hinduism": 1.585132122,
+     "judaism": 1.000176191,
+     "other": 1.955220342
+    },
+    "2020": {
+     "christianity": 53.32112503,
+     "islam": 4.887863159,
+     "unaffiliated": 34.62942886,
+     "buddhism": 1.73734796,
+     "hinduism": 1.524757147,
+     "judaism": 0.923046291,
+     "other": 2.976430178
+    }
+   },
+   "populationSeries": {
+    "2010": 34196898.5,
+    "2020": 38171902.0
+   }
+  },
+  "차드": {
+   "iso3": "TCD",
+   "sourceName": "Chad",
+   "series": {
+    "2010": {
+     "christianity": 39.54836273,
+     "islam": 57.27845764,
+     "unaffiliated": 2.689516068,
+     "buddhism": 0.011265496,
+     "hinduism": 0.011265496,
+     "judaism": 0.0,
+     "other": 0.46113503
+    },
+    "2020": {
+     "christianity": 38.89405441,
+     "islam": 56.35778046,
+     "unaffiliated": 3.13465786,
+     "buddhism": 0.010874331,
+     "hinduism": 0.009997175,
+     "judaism": 0.0,
+     "other": 1.592638016
+    }
+   },
+   "populationSeries": {
+    "2010": 12312575.0,
+    "2020": 17224679.0
+   }
+  },
+  "칠레": {
+   "iso3": "CHL",
+   "sourceName": "Chile",
+   "series": {
+    "2010": {
+     "christianity": 86.02832031,
+     "islam": 0.007351141,
+     "unaffiliated": 13.58162022,
+     "buddhism": 0.016725965,
+     "hinduism": 0.004410685,
+     "judaism": 0.163209602,
+     "other": 0.198364034
+    },
+    "2020": {
+     "christianity": 68.32601929,
+     "islam": 0.066993728,
+     "unaffiliated": 30.26606369,
+     "buddhism": 0.038323306,
+     "hinduism": 0.005335507,
+     "judaism": 0.081571691,
+     "other": 1.215691566
+    }
+   },
+   "populationSeries": {
+    "2010": 17181464.0,
+    "2020": 19370624.0
+   }
+  },
+  "중국": {
+   "iso3": "CHN",
+   "sourceName": "China",
+   "series": {
+    "2010": {
+     "christianity": 2.308143377,
+     "islam": 1.533653378,
+     "unaffiliated": 87.4220047,
+     "buddhism": 5.630384922,
+     "hinduism": 0.001662713,
+     "judaism": 0.000228953,
+     "other": 3.103920698
+    },
+    "2020": {
+     "christianity": 1.78475678,
+     "islam": 1.821801543,
+     "unaffiliated": 89.6231308,
+     "buddhism": 3.742975712,
+     "hinduism": 0.00204179,
+     "judaism": 0.000213027,
+     "other": 3.025080681
+    }
+   },
+   "populationSeries": {
+    "2010": 1351561514.0,
+    "2020": 1426106093.0
+   }
+  },
+  "콜롬비아": {
+   "iso3": "COL",
+   "sourceName": "Colombia",
+   "series": {
+    "2010": {
+     "christianity": 92.42011261,
+     "islam": 0.00301231,
+     "unaffiliated": 7.244157791,
+     "buddhism": 0.003614772,
+     "hinduism": 0.00091485,
+     "judaism": 0.005801485,
+     "other": 0.322387397
+    },
+    "2020": {
+     "christianity": 86.2469635,
+     "islam": 0.003926908,
+     "unaffiliated": 9.943602562,
+     "buddhism": 0.009221531,
+     "hinduism": 0.001024615,
+     "judaism": 0.004137866,
+     "other": 3.791124821
+    }
+   },
+   "populationSeries": {
+    "2010": 44777319.0,
+    "2020": 50629997.5
+   }
+  },
+  "코스타리카": {
+   "iso3": "CRI",
+   "sourceName": "Costa Rica",
+   "series": {
+    "2010": {
+     "christianity": 91.23590851,
+     "islam": 0.017740272,
+     "unaffiliated": 7.544550419,
+     "buddhism": 0.044134337,
+     "hinduism": 0.008870136,
+     "judaism": 0.054086197,
+     "other": 1.094713807
+    },
+    "2020": {
+     "christianity": 87.85917664,
+     "islam": 0.025180042,
+     "unaffiliated": 10.09859562,
+     "buddhism": 0.048993725,
+     "hinduism": 0.009369318,
+     "judaism": 0.050750472,
+     "other": 1.907937527
+    }
+   },
+   "populationSeries": {
+    "2010": 4555962.0,
+    "2020": 5034320.0
+   }
+  },
+  "크로아티아": {
+   "iso3": "HRV",
+   "sourceName": "Croatia",
+   "series": {
+    "2010": {
+     "christianity": 93.6523819,
+     "islam": 1.540855169,
+     "unaffiliated": 4.672171593,
+     "buddhism": 0.022235209,
+     "hinduism": 0.011464562,
+     "judaism": 0.012186487,
+     "other": 0.088707931
+    },
+    "2020": {
+     "christianity": 90.85782623,
+     "islam": 1.372602701,
+     "unaffiliated": 6.657827854,
+     "buddhism": 0.022288118,
+     "hinduism": 0.011706879,
+     "judaism": 0.015337282,
+     "other": 1.062411189
+    }
+   },
+   "populationSeries": {
+    "2010": 4301145.5,
+    "2020": 3953958.0
+   }
+  },
+  "쿠바": {
+   "iso3": "CUB",
+   "sourceName": "Cuba",
+   "series": {
+    "2010": {
+     "christianity": 58.79412079,
+     "islam": 0.079992004,
+     "unaffiliated": 23.53764534,
+     "buddhism": 0.049995001,
+     "hinduism": 0.209978998,
+     "judaism": 0.009999,
+     "other": 17.31826782
+    },
+    "2020": {
+     "christianity": 60.65393448,
+     "islam": 0.079992004,
+     "unaffiliated": 21.60783958,
+     "buddhism": 0.049995001,
+     "hinduism": 0.209978998,
+     "judaism": 0.009999,
+     "other": 17.3882618
+    }
+   },
+   "populationSeries": {
+    "2010": 11297409.0,
+    "2020": 11176354.0
+   }
+  },
+  "키프로스": {
+   "iso3": "CYP",
+   "sourceName": "Cyprus",
+   "series": {
+    "2010": {
+     "christianity": 65.53677368,
+     "islam": 26.57514763,
+     "unaffiliated": 6.483201504,
+     "buddhism": 0.637345552,
+     "hinduism": 0.283264667,
+     "judaism": 0.041759547,
+     "other": 0.442503721
+    },
+    "2020": {
+     "christianity": 67.7487793,
+     "islam": 24.3588028,
+     "unaffiliated": 6.57008934,
+     "buddhism": 0.557559073,
+     "hinduism": 0.266658694,
+     "judaism": 0.043770704,
+     "other": 0.454339713
+    }
+   },
+   "populationSeries": {
+    "2010": 1127816.5,
+    "2020": 1302247.5
+   }
+  },
+  "체코": {
+   "iso3": "CZE",
+   "sourceName": "Czech Republic",
+   "series": {
+    "2010": {
+     "christianity": 30.02878761,
+     "islam": 0.189588875,
+     "unaffiliated": 68.53768158,
+     "buddhism": 0.105826624,
+     "hinduism": 0.02276182,
+     "judaism": 0.025552208,
+     "other": 1.089803815
+    },
+    "2020": {
+     "christianity": 26.41275787,
+     "islam": 0.327130884,
+     "unaffiliated": 72.81342316,
+     "buddhism": 0.068411015,
+     "hinduism": 0.016849395,
+     "judaism": 0.025813967,
+     "other": 0.335610092
+    }
+   },
+   "populationSeries": {
+    "2010": 10464035.5,
+    "2020": 10550129.5
+   }
+  },
+  "콩고 민주 공화국": {
+   "iso3": "COD",
+   "sourceName": "Democratic Republic of the Congo",
+   "series": {
+    "2010": {
+     "christianity": 96.4972229,
+     "islam": 1.205383658,
+     "unaffiliated": 1.421827912,
+     "buddhism": 0.000213107,
+     "hinduism": 0.001577757,
+     "judaism": 0.000150622,
+     "other": 0.873626471
+    },
+    "2020": {
+     "christianity": 96.26151276,
+     "islam": 1.270551205,
+     "unaffiliated": 1.175555229,
+     "buddhism": 0.000153266,
+     "hinduism": 0.001197573,
+     "judaism": 0.000107697,
+     "other": 1.290924907
+    }
+   },
+   "populationSeries": {
+    "2010": 68563037.5,
+    "2020": 95989998.0
+   }
+  },
+  "덴마크": {
+   "iso3": "DNK",
+   "sourceName": "Denmark",
+   "series": {
+    "2010": {
+     "christianity": 80.1672287,
+     "islam": 3.194696188,
+     "unaffiliated": 14.49713802,
+     "buddhism": 0.498567879,
+     "hinduism": 0.304989249,
+     "judaism": 0.148677945,
+     "other": 1.188699007
+    },
+    "2020": {
+     "christianity": 76.90623474,
+     "islam": 4.219104767,
+     "unaffiliated": 16.63090706,
+     "buddhism": 0.656479597,
+     "hinduism": 0.435123563,
+     "judaism": 0.106127203,
+     "other": 1.046020389
+    }
+   },
+   "populationSeries": {
+    "2010": 5547862.5,
+    "2020": 5831530.0
+   }
+  },
+  "도미니카 공화국": {
+   "iso3": "DOM",
+   "sourceName": "Dominican Republic",
+   "series": {
+    "2010": {
+     "christianity": 84.92118073,
+     "islam": 0.019640427,
+     "unaffiliated": 14.94174099,
+     "buddhism": 0.034063864,
+     "hinduism": 0.007569748,
+     "judaism": 0.001022939,
+     "other": 0.074783213
+    },
+    "2020": {
+     "christianity": 77.63658142,
+     "islam": 0.024818942,
+     "unaffiliated": 19.60108948,
+     "buddhism": 0.042546757,
+     "hinduism": 0.006363831,
+     "judaism": 0.000909119,
+     "other": 2.687689304
+    }
+   },
+   "populationSeries": {
+    "2010": 9820175.0,
+    "2020": 11008300.0
+   }
+  },
+  "에콰도르": {
+   "iso3": "ECU",
+   "sourceName": "Ecuador",
+   "series": {
+    "2010": {
+     "christianity": 95.56450653,
+     "islam": 0.014276579,
+     "unaffiliated": 4.269433975,
+     "buddhism": 0.017078524,
+     "hinduism": 0.008672688,
+     "judaism": 0.004002779,
+     "other": 0.122032568
+    },
+    "2020": {
+     "christianity": 88.52362061,
+     "islam": 0.018136753,
+     "unaffiliated": 8.391396523,
+     "buddhism": 0.022002894,
+     "hinduism": 0.007959703,
+     "judaism": 0.003411301,
+     "other": 3.033472061
+    }
+   },
+   "populationSeries": {
+    "2010": 15076695.0,
+    "2020": 17546064.5
+   }
+  },
+  "이집트": {
+   "iso3": "EGY",
+   "sourceName": "Egypt",
+   "series": {
+    "2010": {
+     "christianity": 5.084518433,
+     "islam": 94.90718842,
+     "unaffiliated": 0.0045844,
+     "buddhism": 2.09523e-05,
+     "hinduism": 6.28542e-05,
+     "judaism": 0.000396393,
+     "other": 0.003230284
+    },
+    "2020": {
+     "christianity": 4.821415901,
+     "islam": 95.17256927,
+     "unaffiliated": 0.004652523,
+     "buddhism": 5.40333e-05,
+     "hinduism": 0.000170961,
+     "judaism": 0.000214229,
+     "other": 0.000923006
+    }
+   },
+   "populationSeries": {
+    "2010": 89196072.5,
+    "2020": 109315123.5
+   }
+  },
+  "엘살바도르": {
+   "iso3": "SLV",
+   "sourceName": "El Salvador",
+   "series": {
+    "2010": {
+     "christianity": 88.34280396,
+     "islam": 0.003271163,
+     "unaffiliated": 11.62399292,
+     "buddhism": 0.006542325,
+     "hinduism": 0.001799139,
+     "judaism": 0.001635581,
+     "other": 0.019954091
+    },
+    "2020": {
+     "christianity": 87.10838318,
+     "islam": 0.003496097,
+     "unaffiliated": 11.88199902,
+     "buddhism": 0.006674367,
+     "hinduism": 0.001906962,
+     "judaism": 0.001589135,
+     "other": 0.995953739
+    }
+   },
+   "populationSeries": {
+    "2010": 6068249.5,
+    "2020": 6234673.5
+   }
+  },
+  "에스토니아": {
+   "iso3": "EST",
+   "sourceName": "Estonia",
+   "series": {
+    "2010": {
+     "christianity": 61.18571091,
+     "islam": 0.498735726,
+     "unaffiliated": 31.50699997,
+     "buddhism": 0.125595614,
+     "hinduism": 0.058804311,
+     "judaism": 0.205762431,
+     "other": 6.418391228
+    },
+    "2020": {
+     "christianity": 52.61386108,
+     "islam": 0.598115027,
+     "unaffiliated": 43.60287857,
+     "buddhism": 0.196146205,
+     "hinduism": 0.062808216,
+     "judaism": 0.135394946,
+     "other": 2.790795803
+    }
+   },
+   "populationSeries": {
+    "2010": 1331448.5,
+    "2020": 1329669.5
+   }
+  },
+  "에티오피아": {
+   "iso3": "ETH",
+   "sourceName": "Ethiopia",
+   "series": {
+    "2010": {
+     "christianity": 62.55389786,
+     "islam": 34.79376221,
+     "unaffiliated": 0.062757298,
+     "buddhism": 0.00117228,
+     "hinduism": 0.002468538,
+     "judaism": 0.00626561,
+     "other": 2.579677582
+    },
+    "2020": {
+     "christianity": 61.57827377,
+     "islam": 36.24017715,
+     "unaffiliated": 0.062328301,
+     "buddhism": 0.001163285,
+     "hinduism": 0.002422591,
+     "judaism": 0.004776543,
+     "other": 2.110861063
+    }
+   },
+   "populationSeries": {
+    "2010": 90538513.5,
+    "2020": 118917671.5
+   }
+  },
+  "핀란드": {
+   "iso3": "FIN",
+   "sourceName": "Finland",
+   "series": {
+    "2010": {
+     "christianity": 81.82421875,
+     "islam": 0.818588078,
+     "unaffiliated": 16.57051277,
+     "buddhism": 0.168797016,
+     "hinduism": 0.062930189,
+     "judaism": 0.051536109,
+     "other": 0.503421724
+    },
+    "2020": {
+     "christianity": 72.28497314,
+     "islam": 1.610194445,
+     "unaffiliated": 25.04721832,
+     "buddhism": 0.314537853,
+     "hinduism": 0.147366583,
+     "judaism": 0.062084887,
+     "other": 0.533625603
+    }
+   },
+   "populationSeries": {
+    "2010": 5363350.5,
+    "2020": 5529612.0
+   }
+  },
+  "프랑스": {
+   "iso3": "FRA",
+   "sourceName": "France",
+   "series": {
+    "2010": {
+     "christianity": 57.09673691,
+     "islam": 6.625971794,
+     "unaffiliated": 34.48221207,
+     "buddhism": 0.517911732,
+     "hinduism": 0.096085221,
+     "judaism": 0.77188462,
+     "other": 0.409195036
+    },
+    "2020": {
+     "christianity": 46.46761322,
+     "islam": 9.097817421,
+     "unaffiliated": 42.64575195,
+     "buddhism": 0.71300137,
+     "hinduism": 0.127766788,
+     "judaism": 0.691686749,
+     "other": 0.256361872
+    }
+   },
+   "populationSeries": {
+    "2010": 63417362.5,
+    "2020": 65905277.5
+   }
+  },
+  "독일": {
+   "iso3": "DEU",
+   "sourceName": "Germany",
+   "series": {
+    "2010": {
+     "christianity": 62.2303009,
+     "islam": 5.141801357,
+     "unaffiliated": 31.81594849,
+     "buddhism": 0.322043866,
+     "hinduism": 0.126234323,
+     "judaism": 0.146326303,
+     "other": 0.21734415
+    },
+    "2020": {
+     "christianity": 56.23487854,
+     "islam": 6.548741341,
+     "unaffiliated": 36.14769745,
+     "buddhism": 0.343751937,
+     "hinduism": 0.156519756,
+     "judaism": 0.141607389,
+     "other": 0.426800668
+    }
+   },
+   "populationSeries": {
+    "2010": 80830924.0,
+    "2020": 83628708.5
+   }
+  },
+  "가나": {
+   "iso3": "GHA",
+   "sourceName": "Ghana",
+   "series": {
+    "2010": {
+     "christianity": 71.08795166,
+     "islam": 17.66755676,
+     "unaffiliated": 5.270244122,
+     "buddhism": 0.0,
+     "hinduism": 0.0,
+     "judaism": 0.0,
+     "other": 5.974249363
+    },
+    "2020": {
+     "christianity": 71.28790283,
+     "islam": 19.87060738,
+     "unaffiliated": 1.068349838,
+     "buddhism": 0.0,
+     "hinduism": 0.0,
+     "judaism": 0.0,
+     "other": 7.773138046
+    }
+   },
+   "populationSeries": {
+    "2010": 25474994.5,
+    "2020": 31887809.0
+   }
+  },
+  "그리스": {
+   "iso3": "GRC",
+   "sourceName": "Greece",
+   "series": {
+    "2010": {
+     "christianity": 91.24494171,
+     "islam": 4.503005981,
+     "unaffiliated": 3.676095247,
+     "buddhism": 0.018624619,
+     "hinduism": 0.072504595,
+     "judaism": 0.040783837,
+     "other": 0.444042325
+    },
+    "2020": {
+     "christianity": 89.47636414,
+     "islam": 5.120216846,
+     "unaffiliated": 4.742371082,
+     "buddhism": 0.024676016,
+     "hinduism": 0.085614547,
+     "judaism": 0.039002184,
+     "other": 0.511751652
+    }
+   },
+   "populationSeries": {
+    "2010": 11124670.0,
+    "2020": 10699369.0
+   }
+  },
+  "기니": {
+   "iso3": "GIN",
+   "sourceName": "Guinea",
+   "series": {
+    "2010": {
+     "christianity": 8.469569206,
+     "islam": 87.87899017,
+     "unaffiliated": 3.361628532,
+     "buddhism": 0.090003364,
+     "hinduism": 0.0,
+     "judaism": 0.0,
+     "other": 0.199807703
+    },
+    "2020": {
+     "christianity": 11.70807648,
+     "islam": 86.80789185,
+     "unaffiliated": 1.319620252,
+     "buddhism": 0.085958868,
+     "hinduism": 0.0,
+     "judaism": 0.0,
+     "other": 0.078451402
+    }
+   },
+   "populationSeries": {
+    "2010": 10396086.0,
+    "2020": 13371183.0
+   }
+  },
+  "가이아나": {
+   "iso3": "GUY",
+   "sourceName": "Guyana",
+   "series": {
+    "2010": {
+     "christianity": 63.89891815,
+     "islam": 6.770055771,
+     "unaffiliated": 3.13450551,
+     "buddhism": 0.026740417,
+     "hinduism": 24.82564354,
+     "judaism": 0.012033188,
+     "other": 1.332105637
+    },
+    "2020": {
+     "christianity": 65.87551117,
+     "islam": 6.504891396,
+     "unaffiliated": 2.908345699,
+     "buddhism": 0.03135968,
+     "hinduism": 23.3990097,
+     "judaism": 0.037631616,
+     "other": 1.243247032
+    }
+   },
+   "populationSeries": {
+    "2010": 749256.5,
+    "2020": 807481.5
+   }
+  },
+  "아이티": {
+   "iso3": "HTI",
+   "sourceName": "Haiti",
+   "series": {
+    "2010": {
+     "christianity": 91.05142212,
+     "islam": 0.001930329,
+     "unaffiliated": 7.634363651,
+     "buddhism": 0.003352677,
+     "hinduism": 0.0,
+     "judaism": 0.002235118,
+     "other": 1.306692362
+    },
+    "2020": {
+     "christianity": 88.71865845,
+     "islam": 0.001857289,
+     "unaffiliated": 9.434687614,
+     "buddhism": 0.003183924,
+     "hinduism": 0.0,
+     "judaism": 0.002122616,
+     "other": 1.839487433
+    }
+   },
+   "populationSeries": {
+    "2010": 9803294.0,
+    "2020": 11243848.0
+   }
+  },
+  "헝가리": {
+   "iso3": "HUN",
+   "sourceName": "Hungary",
+   "series": {
+    "2010": {
+     "christianity": 72.55506134,
+     "islam": 0.061702371,
+     "unaffiliated": 24.98338318,
+     "buddhism": 0.124192946,
+     "hinduism": 0.035343461,
+     "judaism": 0.151578501,
+     "other": 2.088737488
+    },
+    "2020": {
+     "christianity": 72.36884308,
+     "islam": 0.139223918,
+     "unaffiliated": 26.97590637,
+     "buddhism": 0.192222267,
+     "hinduism": 0.057621021,
+     "judaism": 0.132964462,
+     "other": 0.133217916
+    }
+   },
+   "populationSeries": {
+    "2010": 9979128.5,
+    "2020": 9749456.5
+   }
+  },
+  "아이슬란드": {
+   "iso3": "ISL",
+   "sourceName": "Iceland",
+   "series": {
+    "2010": {
+     "christianity": 81.28427124,
+     "islam": 0.723289132,
+     "unaffiliated": 15.87091827,
+     "buddhism": 0.421602756,
+     "hinduism": 0.125995174,
+     "judaism": 0.094193012,
+     "other": 1.479731798
+    },
+    "2020": {
+     "christianity": 74.91873932,
+     "islam": 1.212648392,
+     "unaffiliated": 19.84541512,
+     "buddhism": 1.33994174,
+     "hinduism": 0.160479277,
+     "judaism": 0.155474246,
+     "other": 2.367298365
+    }
+   },
+   "populationSeries": {
+    "2010": 318158.0,
+    "2020": 366614.0
+   }
+  },
+  "인도": {
+   "iso3": "IND",
+   "sourceName": "India",
+   "series": {
+    "2010": {
+     "christianity": 2.309820175,
+     "islam": 14.26481247,
+     "unaffiliated": 0.002767197,
+     "buddhism": 0.698959231,
+     "hinduism": 79.97396088,
+     "judaism": 0.000367887,
+     "other": 2.749312162
+    },
+    "2020": {
+     "christianity": 2.214620113,
+     "islam": 15.19001579,
+     "unaffiliated": 0.003259997,
+     "buddhism": 0.680662572,
+     "hinduism": 79.36618805,
+     "judaism": 0.000301379,
+     "other": 2.544952393
+    }
+   },
+   "populationSeries": {
+    "2010": 1243481564.0,
+    "2020": 1402617696.0
+   }
+  },
+  "인도네시아": {
+   "iso3": "IDN",
+   "sourceName": "Indonesia",
+   "series": {
+    "2010": {
+     "christianity": 9.876195908,
+     "islam": 87.53216553,
+     "unaffiliated": 0.099378057,
+     "buddhism": 0.721183062,
+     "hinduism": 1.693956137,
+     "judaism": 5.8936e-06,
+     "other": 0.07711897
+    },
+    "2020": {
+     "christianity": 10.26230717,
+     "islam": 86.96417999,
+     "unaffiliated": 0.092005208,
+     "buddhism": 0.677527726,
+     "hinduism": 1.584296703,
+     "judaism": 0.001059009,
+     "other": 0.418626547
+    }
+   },
+   "populationSeries": {
+    "2010": 246305322.0,
+    "2020": 274814865.5
+   }
+  },
+  "이란": {
+   "iso3": "IRN",
+   "sourceName": "Iran",
+   "series": {
+    "2010": {
+     "christianity": 0.157182261,
+     "islam": 99.73181152,
+     "unaffiliated": 0.0,
+     "buddhism": 0.0,
+     "hinduism": 0.0,
+     "judaism": 0.011692788,
+     "other": 0.099316582
+    },
+    "2020": {
+     "christianity": 0.14260982,
+     "islam": 99.77310944,
+     "unaffiliated": 5.01292e-05,
+     "buddhism": 1.87587e-05,
+     "hinduism": 0.000219217,
+     "judaism": 0.009242157,
+     "other": 0.074749671
+    }
+   },
+   "populationSeries": {
+    "2010": 77420842.5,
+    "2020": 87723443.0
+   }
+  },
+  "이라크": {
+   "iso3": "IRQ",
+   "sourceName": "Iraq",
+   "series": {
+    "2010": {
+     "christianity": 0.636672914,
+     "islam": 99.23440552,
+     "unaffiliated": 0.000895574,
+     "buddhism": 0.0,
+     "hinduism": 0.000479772,
+     "judaism": 0.0,
+     "other": 0.127544075
+    },
+    "2020": {
+     "christianity": 0.374980688,
+     "islam": 99.49835968,
+     "unaffiliated": 0.000798929,
+     "buddhism": 0.0,
+     "hinduism": 0.000493456,
+     "judaism": 0.0,
+     "other": 0.125364259
+    }
+   },
+   "populationSeries": {
+    "2010": 31045366.0,
+    "2020": 42116604.5
+   }
+  },
+  "아일랜드": {
+   "iso3": "IRL",
+   "sourceName": "Ireland",
+   "series": {
+    "2010": {
+     "christianity": 91.86814117,
+     "islam": 1.090392947,
+     "unaffiliated": 6.144365311,
+     "buddhism": 0.192679852,
+     "hinduism": 0.236867964,
+     "judaism": 0.02652177,
+     "other": 0.441032231
+    },
+    "2020": {
+     "christianity": 81.21601868,
+     "islam": 1.691199064,
+     "unaffiliated": 15.6012392,
+     "buddhism": 0.193803862,
+     "hinduism": 0.694914162,
+     "judaism": 0.054588255,
+     "other": 0.548237681
+    }
+   },
+   "populationSeries": {
+    "2010": 4559080.0,
+    "2020": 4982606.5
+   }
+  },
+  "이스라엘": {
+   "iso3": "ISR",
+   "sourceName": "Israel",
+   "series": {
+    "2010": {
+     "christianity": 1.964361548,
+     "islam": 13.85749912,
+     "unaffiliated": 3.576563597,
+     "buddhism": 0.051385254,
+     "hinduism": 0.199271202,
+     "judaism": 78.49975586,
+     "other": 1.851163983
+    },
+    "2020": {
+     "christianity": 1.879276514,
+     "islam": 14.73149681,
+     "unaffiliated": 4.374664307,
+     "buddhism": 0.042839181,
+     "hinduism": 0.166129664,
+     "judaism": 77.0493927,
+     "other": 1.756201863
+    }
+   },
+   "populationSeries": {
+    "2010": 7336735.0,
+    "2020": 8800376.0
+   }
+  },
+  "이탈리아": {
+   "iso3": "ITA",
+   "sourceName": "Italy",
+   "series": {
+    "2010": {
+     "christianity": 88.4956665,
+     "islam": 3.415664911,
+     "unaffiliated": 6.738992691,
+     "buddhism": 0.41805926,
+     "hinduism": 0.300039828,
+     "judaism": 0.0750653,
+     "other": 0.556514144
+    },
+    "2020": {
+     "christianity": 80.47179413,
+     "islam": 4.419428349,
+     "unaffiliated": 13.27242947,
+     "buddhism": 0.613567829,
+     "hinduism": 0.425853163,
+     "judaism": 0.071020424,
+     "other": 0.725903451
+    }
+   },
+   "populationSeries": {
+    "2010": 60164213.0,
+    "2020": 59912769.0
+   }
+  },
+  "코트디부아르": {
+   "iso3": "CIV",
+   "sourceName": "Ivory Coast",
+   "series": {
+    "2010": {
+     "christianity": 40.79904556,
+     "islam": 43.72231293,
+     "unaffiliated": 10.00831509,
+     "buddhism": 0.0,
+     "hinduism": 0.0,
+     "judaism": 0.0,
+     "other": 5.470327854
+    },
+    "2020": {
+     "christianity": 44.91496658,
+     "islam": 46.32071686,
+     "unaffiliated": 5.564354897,
+     "buddhism": 0.0,
+     "hinduism": 0.0,
+     "judaism": 0.0,
+     "other": 3.19996047
+    }
+   },
+   "populationSeries": {
+    "2010": 22488064.5,
+    "2020": 28915449.5
+   }
+  },
+  "자메이카": {
+   "iso3": "JAM",
+   "sourceName": "Jamaica",
+   "series": {
+    "2010": {
+     "christianity": 70.44303894,
+     "islam": 0.016460026,
+     "unaffiliated": 21.84929657,
+     "buddhism": 0.0,
+     "hinduism": 0.03840673,
+     "judaism": 0.007315567,
+     "other": 7.645484924
+    },
+    "2020": {
+     "christianity": 68.61232758,
+     "islam": 0.015954982,
+     "unaffiliated": 23.74363899,
+     "buddhism": 0.001242755,
+     "hinduism": 0.036873739,
+     "judaism": 0.017727759,
+     "other": 7.57223177
+    }
+   },
+   "populationSeries": {
+    "2010": 2748567.5,
+    "2020": 2830739.0
+   }
+  },
+  "일본": {
+   "iso3": "JPN",
+   "sourceName": "Japan",
+   "series": {
+    "2010": {
+     "christianity": 2.208920956,
+     "islam": 0.158718973,
+     "unaffiliated": 52.17994308,
+     "buddhism": 41.79790497,
+     "hinduism": 0.024834789,
+     "judaism": 0.001321784,
+     "other": 3.628358364
+    },
+    "2020": {
+     "christianity": 2.249630213,
+     "islam": 0.16997391,
+     "unaffiliated": 57.45616913,
+     "buddhism": 37.20560837,
+     "hinduism": 0.031737354,
+     "judaism": 0.001376222,
+     "other": 2.885504961
+    }
+   },
+   "populationSeries": {
+    "2010": 128185275.0,
+    "2020": 126304543.0
+   }
+  },
+  "요르단": {
+   "iso3": "JOR",
+   "sourceName": "Jordan",
+   "series": {
+    "2010": {
+     "christianity": 3.3538661,
+     "islam": 96.46387482,
+     "unaffiliated": 0.075166725,
+     "buddhism": 0.028421966,
+     "hinduism": 0.063812368,
+     "judaism": 0.0,
+     "other": 0.014860217
+    },
+    "2020": {
+     "christianity": 2.809163332,
+     "islam": 97.08689117,
+     "unaffiliated": 0.047398046,
+     "buddhism": 0.018849416,
+     "hinduism": 0.027908115,
+     "judaism": 0.0,
+     "other": 0.009790716
+    }
+   },
+   "populationSeries": {
+    "2010": 7297043.5,
+    "2020": 10865227.5
+   }
+  },
+  "카자흐스탄": {
+   "iso3": "KAZ",
+   "sourceName": "Kazakhstan",
+   "series": {
+    "2010": {
+     "christianity": 27.32284164,
+     "islam": 69.66152954,
+     "unaffiliated": 2.864628315,
+     "buddhism": 0.094393596,
+     "hinduism": 0.0,
+     "judaism": 0.033940181,
+     "other": 0.022663796
+    },
+    "2020": {
+     "christianity": 19.29185677,
+     "islam": 77.90452576,
+     "unaffiliated": 2.534446478,
+     "buddhism": 0.091090441,
+     "hinduism": 0.0,
+     "judaism": 0.042062771,
+     "other": 0.13601622
+    }
+   },
+   "populationSeries": {
+    "2010": 16836810.5,
+    "2020": 19482117.0
+   }
+  },
+  "케냐": {
+   "iso3": "KEN",
+   "sourceName": "Kenya",
+   "series": {
+    "2010": {
+     "christianity": 83.121315,
+     "islam": 11.22477722,
+     "unaffiliated": 2.404452324,
+     "buddhism": 0.00072258,
+     "hinduism": 0.139222458,
+     "judaism": 0.00096344,
+     "other": 3.108549833
+    },
+    "2020": {
+     "christianity": 85.67028809,
+     "islam": 10.93115425,
+     "unaffiliated": 1.603437185,
+     "buddhism": 0.000961802,
+     "hinduism": 0.127907932,
+     "judaism": 0.000577081,
+     "other": 1.665675163
+    }
+   },
+   "populationSeries": {
+    "2010": 41598566.5,
+    "2020": 52217333.5
+   }
+  },
+  "쿠웨이트": {
+   "iso3": "KWT",
+   "sourceName": "Kuwait",
+   "series": {
+    "2010": {
+     "christianity": 9.40346241,
+     "islam": 82.55859375,
+     "unaffiliated": 0.23564969,
+     "buddhism": 0.108175986,
+     "hinduism": 7.380530834,
+     "judaism": 0.010736058,
+     "other": 0.302851975
+    },
+    "2020": {
+     "christianity": 10.53036976,
+     "islam": 80.23990631,
+     "unaffiliated": 0.248254478,
+     "buddhism": 0.121455498,
+     "hinduism": 8.504200935,
+     "judaism": 0.010824583,
+     "other": 0.34498772
+    }
+   },
+   "populationSeries": {
+    "2010": 2943371.5,
+    "2020": 4400144.0
+   }
+  },
+  "키르기스스탄": {
+   "iso3": "KGZ",
+   "sourceName": "Kyrgyzstan",
+   "series": {
+    "2010": {
+     "christianity": 7.722026348,
+     "islam": 90.55289459,
+     "unaffiliated": 1.597296119,
+     "buddhism": 0.10297925,
+     "hinduism": 0.01568263,
+     "judaism": 0.009117808,
+     "other": 0.0
+    },
+    "2020": {
+     "christianity": 5.753356934,
+     "islam": 91.71746826,
+     "unaffiliated": 1.16977489,
+     "buddhism": 0.032685466,
+     "hinduism": 0.009338705,
+     "judaism": 0.004669352,
+     "other": 1.312705517
+    }
+   },
+   "populationSeries": {
+    "2010": 5491760.5,
+    "2020": 6664139.5
+   }
+  },
+  "라오스": {
+   "iso3": "LAO",
+   "sourceName": "Laos",
+   "series": {
+    "2010": {
+     "christianity": 0.695829511,
+     "islam": 0.061050959,
+     "unaffiliated": 0.064657912,
+     "buddhism": 63.97875214,
+     "hinduism": 0.0,
+     "judaism": 0.0,
+     "other": 35.19970703
+    },
+    "2020": {
+     "christianity": 1.539444566,
+     "islam": 0.022150202,
+     "unaffiliated": 0.052833665,
+     "buddhism": 64.16296387,
+     "hinduism": 0.0,
+     "judaism": 0.0,
+     "other": 34.22260666
+    }
+   },
+   "populationSeries": {
+    "2010": 6334194.0,
+    "2020": 7346532.5
+   }
+  },
+  "라트비아": {
+   "iso3": "LVA",
+   "sourceName": "Latvia",
+   "series": {
+    "2010": {
+     "christianity": 82.88639832,
+     "islam": 0.700537086,
+     "unaffiliated": 10.9948616,
+     "buddhism": 0.072804086,
+     "hinduism": 0.019985434,
+     "judaism": 0.309298396,
+     "other": 5.016117573
+    },
+    "2020": {
+     "christianity": 77.26760101,
+     "islam": 0.670408607,
+     "unaffiliated": 16.97382164,
+     "buddhism": 0.069054514,
+     "hinduism": 0.043224961,
+     "judaism": 0.226667479,
+     "other": 4.749224663
+    }
+   },
+   "populationSeries": {
+    "2010": 2097831.0,
+    "2020": 1901123.5
+   }
+  },
+  "레바논": {
+   "iso3": "LBN",
+   "sourceName": "Lebanon",
+   "series": {
+    "2010": {
+     "christianity": 33.83872223,
+     "islam": 62.31577301,
+     "unaffiliated": 0.017434647,
+     "buddhism": 0.006905802,
+     "hinduism": 0.016173588,
+     "judaism": 0.008487131,
+     "other": 3.796503305
+    },
+    "2020": {
+     "christianity": 27.906147,
+     "islam": 67.78356171,
+     "unaffiliated": 0.018806541,
+     "buddhism": 0.00663968,
+     "hinduism": 0.017323207,
+     "judaism": 0.005650791,
+     "other": 4.261873722
+    }
+   },
+   "populationSeries": {
+    "2010": 5041288.0,
+    "2020": 5702397.5
+   }
+  },
+  "라이베리아": {
+   "iso3": "LBR",
+   "sourceName": "Liberia",
+   "series": {
+    "2010": {
+     "christianity": 85.7440567,
+     "islam": 12.05202579,
+     "unaffiliated": 1.453091621,
+     "buddhism": 0.0,
+     "hinduism": 0.007462768,
+     "judaism": 0.0,
+     "other": 0.743360579
+    },
+    "2020": {
+     "christianity": 85.16896057,
+     "islam": 12.72352505,
+     "unaffiliated": 1.066497684,
+     "buddhism": 0.0,
+     "hinduism": 0.005896708,
+     "judaism": 0.0,
+     "other": 1.035118818
+    }
+   },
+   "populationSeries": {
+    "2010": 4058890.0,
+    "2020": 5149463.5
+   }
+  },
+  "리비아": {
+   "iso3": "LBY",
+   "sourceName": "Libya",
+   "series": {
+    "2010": {
+     "christianity": 2.632474422,
+     "islam": 96.81859589,
+     "unaffiliated": 0.096548431,
+     "buddhism": 0.280857772,
+     "hinduism": 0.088970579,
+     "judaism": 0.001925402,
+     "other": 0.080628246
+    },
+    "2020": {
+     "christianity": 0.524617851,
+     "islam": 98.99452209,
+     "unaffiliated": 0.049393948,
+     "buddhism": 0.258001149,
+     "hinduism": 0.089997694,
+     "judaism": 0.001906484,
+     "other": 0.081556775
+    }
+   },
+   "populationSeries": {
+    "2010": 6497839.0,
+    "2020": 7045399.0
+   }
+  },
+  "리투아니아": {
+   "iso3": "LTU",
+   "sourceName": "Lithuania",
+   "series": {
+    "2010": {
+     "christianity": 92.48455048,
+     "islam": 0.099761978,
+     "unaffiliated": 6.828612328,
+     "buddhism": 0.02421139,
+     "hinduism": 0.008601415,
+     "judaism": 0.044943765,
+     "other": 0.509320498
+    },
+    "2020": {
+     "christianity": 92.15046692,
+     "islam": 0.089217022,
+     "unaffiliated": 7.080081463,
+     "buddhism": 0.025529502,
+     "hinduism": 0.018437974,
+     "judaism": 0.037046697,
+     "other": 0.599219263
+    }
+   },
+   "populationSeries": {
+    "2010": 3097719.5,
+    "2020": 2795764.5
+   }
+  },
+  "룩셈부르크": {
+   "iso3": "LUX",
+   "sourceName": "Luxembourg",
+   "series": {
+    "2010": {
+     "christianity": 74.39080811,
+     "islam": 0.731000602,
+     "unaffiliated": 20.19783211,
+     "buddhism": 0.128187552,
+     "hinduism": 0.134227157,
+     "judaism": 0.212965235,
+     "other": 4.20497942
+    },
+    "2020": {
+     "christianity": 65.88789368,
+     "islam": 1.828941822,
+     "unaffiliated": 25.28631973,
+     "buddhism": 0.479477018,
+     "hinduism": 0.360089123,
+     "judaism": 0.486133814,
+     "other": 5.671145439
+    }
+   },
+   "populationSeries": {
+    "2010": 507410.0,
+    "2020": 630597.0
+   }
+  },
+  "마다가스카르": {
+   "iso3": "MDG",
+   "sourceName": "Madagascar",
+   "series": {
+    "2010": {
+     "christianity": 69.96260834,
+     "islam": 0.630331099,
+     "unaffiliated": 22.45296288,
+     "buddhism": 0.029911114,
+     "hinduism": 0.059822228,
+     "judaism": 0.000460171,
+     "other": 6.863905907
+    },
+    "2020": {
+     "christianity": 74.2053833,
+     "islam": 1.159488678,
+     "unaffiliated": 22.29583359,
+     "buddhism": 0.027457755,
+     "hinduism": 0.063666567,
+     "judaism": 0.000354294,
+     "other": 2.247811079
+    }
+   },
+   "populationSeries": {
+    "2010": 22183340.5,
+    "2020": 28953556.5
+   }
+  },
+  "말레이시아": {
+   "iso3": "MYS",
+   "sourceName": "Malaysia",
+   "series": {
+    "2010": {
+     "christianity": 9.249741554,
+     "islam": 61.30461502,
+     "unaffiliated": 1.688032866,
+     "buddhism": 19.81785011,
+     "hinduism": 6.279292107,
+     "judaism": 0.0,
+     "other": 1.66046834
+    },
+    "2020": {
+     "christianity": 9.153184891,
+     "islam": 64.11719513,
+     "unaffiliated": 0.844678819,
+     "buddhism": 18.87560844,
+     "hinduism": 6.122179031,
+     "judaism": 0.0,
+     "other": 0.887154043
+    }
+   },
+   "populationSeries": {
+    "2010": 28655776.5,
+    "2020": 33889558.5
+   }
+  },
+  "말리": {
+   "iso3": "MLI",
+   "sourceName": "Mali",
+   "series": {
+    "2010": {
+     "christianity": 3.47059083,
+     "islam": 94.03171539,
+     "unaffiliated": 1.396924734,
+     "buddhism": 0.0,
+     "hinduism": 0.0,
+     "judaism": 0.0,
+     "other": 1.100771189
+    },
+    "2020": {
+     "christianity": 2.571752548,
+     "islam": 94.13371277,
+     "unaffiliated": 2.525307894,
+     "buddhism": 0.0,
+     "hinduism": 0.0,
+     "judaism": 0.0,
+     "other": 0.769227386
+    }
+   },
+   "populationSeries": {
+    "2010": 15945198.0,
+    "2020": 21713835.5
+   }
+  },
+  "몰타": {
+   "iso3": "MLT",
+   "sourceName": "Malta",
+   "series": {
+    "2010": {
+     "christianity": 97.05687714,
+     "islam": 0.158912003,
+     "unaffiliated": 2.541576862,
+     "buddhism": 0.078805029,
+     "hinduism": 0.08358109,
+     "judaism": 0.0146342,
+     "other": 0.065609798
+    },
+    "2020": {
+     "christianity": 88.59967804,
+     "islam": 3.643014431,
+     "unaffiliated": 5.24495554,
+     "buddhism": 0.606907308,
+     "hinduism": 1.415327311,
+     "judaism": 0.286915153,
+     "other": 0.203198671
+    }
+   },
+   "populationSeries": {
+    "2010": 422650.5,
+    "2020": 518206.5
+   }
+  },
+  "모리타니": {
+   "iso3": "MRT",
+   "sourceName": "Mauritania",
+   "series": {
+    "2010": {
+     "christianity": 0.271421224,
+     "islam": 99.12471771,
+     "unaffiliated": 0.10231813,
+     "buddhism": 0.0,
+     "hinduism": 0.0,
+     "judaism": 0.002924438,
+     "other": 0.498615265
+    },
+    "2020": {
+     "christianity": 0.233780533,
+     "islam": 99.18540192,
+     "unaffiliated": 0.106502414,
+     "buddhism": 0.0,
+     "hinduism": 0.0,
+     "judaism": 0.002222912,
+     "other": 0.472091347
+    }
+   },
+   "populationSeries": {
+    "2010": 3390964.5,
+    "2020": 4600131.0
+   }
+  },
+  "멕시코": {
+   "iso3": "MEX",
+   "sourceName": "Mexico",
+   "series": {
+    "2010": {
+     "christianity": 95.01799774,
+     "islam": 0.003439206,
+     "unaffiliated": 4.828783512,
+     "buddhism": 0.012810351,
+     "hinduism": 0.001766544,
+     "judaism": 0.061566554,
+     "other": 0.073639832
+    },
+    "2020": {
+     "christianity": 89.17308044,
+     "islam": 0.006285933,
+     "unaffiliated": 10.63434982,
+     "buddhism": 0.018263193,
+     "hinduism": 0.00391715,
+     "judaism": 0.046796679,
+     "other": 0.117304102
+    }
+   },
+   "populationSeries": {
+    "2010": 113623895.0,
+    "2020": 126799054.5
+   }
+  },
+  "몽골": {
+   "iso3": "MNG",
+   "sourceName": "Mongolia",
+   "series": {
+    "2010": {
+     "christianity": 2.147909641,
+     "islam": 3.297368288,
+     "unaffiliated": 37.44565582,
+     "buddhism": 53.8843956,
+     "hinduism": 0.0029602,
+     "judaism": 0.0,
+     "other": 3.221713066
+    },
+    "2020": {
+     "christianity": 1.342484832,
+     "islam": 3.526082993,
+     "unaffiliated": 40.82786942,
+     "buddhism": 51.1350975,
+     "hinduism": 0.003035514,
+     "judaism": 0.0,
+     "other": 3.165430069
+    }
+   },
+   "populationSeries": {
+    "2010": 2701732.0,
+    "2020": 3290785.5
+   }
+  },
+  "모로코": {
+   "iso3": "MAR",
+   "sourceName": "Morocco",
+   "series": {
+    "2010": {
+     "christianity": 0.096848242,
+     "islam": 99.65975189,
+     "unaffiliated": 0.13053523,
+     "buddhism": 0.0,
+     "hinduism": 0.0,
+     "judaism": 0.010835662,
+     "other": 0.102028042
+    },
+    "2020": {
+     "christianity": 0.085476898,
+     "islam": 99.67552185,
+     "unaffiliated": 0.130789146,
+     "buddhism": 0.0,
+     "hinduism": 0.0,
+     "judaism": 0.006179804,
+     "other": 0.10203585
+    }
+   },
+   "populationSeries": {
+    "2010": 32467015.5,
+    "2020": 36584208.0
+   }
+  },
+  "모잠비크": {
+   "iso3": "MOZ",
+   "sourceName": "Mozambique",
+   "series": {
+    "2010": {
+     "christianity": 56.33591461,
+     "islam": 17.99086761,
+     "unaffiliated": 18.94782257,
+     "buddhism": 0.002080288,
+     "hinduism": 0.043339342,
+     "judaism": 0.0,
+     "other": 6.679975033
+    },
+    "2020": {
+     "christianity": 61.33995056,
+     "islam": 19.427248,
+     "unaffiliated": 14.28753757,
+     "buddhism": 0.001603683,
+     "hinduism": 0.032073654,
+     "judaism": 0.0,
+     "other": 4.911586761
+    }
+   },
+   "populationSeries": {
+    "2010": 22999235.0,
+    "2020": 30783688.0
+   }
+  },
+  "미얀마": {
+   "iso3": "MMR",
+   "sourceName": "Myanmar",
+   "series": {
+    "2010": {
+     "christianity": 6.205628872,
+     "islam": 4.576945305,
+     "unaffiliated": 0.064344577,
+     "buddhism": 87.62619019,
+     "hinduism": 0.57656014,
+     "judaism": 0.000162055,
+     "other": 0.9501701
+    },
+    "2020": {
+     "christianity": 6.135730743,
+     "islam": 3.345355749,
+     "unaffiliated": 0.058647044,
+     "buddhism": 89.05110168,
+     "hinduism": 0.439414382,
+     "judaism": 0.000187185,
+     "other": 0.969559908
+    }
+   },
+   "populationSeries": {
+    "2010": 49024382.0,
+    "2020": 53016521.5
+   }
+  },
+  "나미비아": {
+   "iso3": "NAM",
+   "sourceName": "Namibia",
+   "series": {
+    "2010": {
+     "christianity": 96.14958191,
+     "islam": 0.066583775,
+     "unaffiliated": 0.224097788,
+     "buddhism": 0.033344917,
+     "hinduism": 0.057162713,
+     "judaism": 0.004763559,
+     "other": 3.464463472
+    },
+    "2020": {
+     "christianity": 90.53588104,
+     "islam": 0.11899709,
+     "unaffiliated": 5.631341934,
+     "buddhism": 0.028122637,
+     "hinduism": 0.052227754,
+     "judaism": 0.00401752,
+     "other": 3.629415035
+    }
+   },
+   "populationSeries": {
+    "2010": 2109810.5,
+    "2020": 2728761.5
+   }
+  },
+  "네팔": {
+   "iso3": "NPL",
+   "sourceName": "Nepal",
+   "series": {
+    "2010": {
+     "christianity": 1.405996203,
+     "islam": 4.400880337,
+     "unaffiliated": 0.001877653,
+     "buddhism": 9.038227081,
+     "hinduism": 81.52294159,
+     "judaism": 0.0,
+     "other": 3.630074739
+    },
+    "2020": {
+     "christianity": 1.758354902,
+     "islam": 5.08394146,
+     "unaffiliated": 0.001294779,
+     "buddhism": 8.208739281,
+     "hinduism": 81.18401337,
+     "judaism": 0.0,
+     "other": 3.763658047
+    }
+   },
+   "populationSeries": {
+    "2010": 27341952.5,
+    "2020": 28966574.5
+   }
+  },
+  "네덜란드": {
+   "iso3": "NLD",
+   "sourceName": "Netherlands",
+   "series": {
+    "2010": {
+     "christianity": 42.72736359,
+     "islam": 5.000281334,
+     "unaffiliated": 45.54164124,
+     "buddhism": 0.236897826,
+     "hinduism": 0.49569571,
+     "judaism": 0.179520383,
+     "other": 5.818600655
+    },
+    "2020": {
+     "christianity": 35.10305786,
+     "islam": 5.500672817,
+     "unaffiliated": 54.11624146,
+     "buddhism": 0.298789322,
+     "hinduism": 0.562808275,
+     "judaism": 0.175035015,
+     "other": 4.243393421
+    }
+   },
+   "populationSeries": {
+    "2010": 16771235.0,
+    "2020": 17636731.0
+   }
+  },
+  "뉴질랜드": {
+   "iso3": "NZL",
+   "sourceName": "New Zealand",
+   "series": {
+    "2010": {
+     "christianity": 49.11395264,
+     "islam": 1.198270321,
+     "unaffiliated": 44.18071365,
+     "buddhism": 1.515010715,
+     "hinduism": 2.335584402,
+     "judaism": 0.143423855,
+     "other": 1.513047576
+    },
+    "2020": {
+     "christianity": 40.32331467,
+     "islam": 1.359425902,
+     "unaffiliated": 51.35481262,
+     "buddhism": 1.192508101,
+     "hinduism": 2.788676023,
+     "judaism": 0.110793501,
+     "other": 2.870469809
+    }
+   },
+   "populationSeries": {
+    "2010": 4347770.5,
+    "2020": 5069895.0
+   }
+  },
+  "니제르": {
+   "iso3": "NER",
+   "sourceName": "Niger",
+   "series": {
+    "2010": {
+     "christianity": 1.113411784,
+     "islam": 98.5844574,
+     "unaffiliated": 0.212664753,
+     "buddhism": 0.0,
+     "hinduism": 0.0,
+     "judaism": 0.0,
+     "other": 0.08946602
+    },
+    "2020": {
+     "christianity": 0.556236327,
+     "islam": 98.13329315,
+     "unaffiliated": 1.2242167,
+     "buddhism": 0.0,
+     "hinduism": 0.0,
+     "judaism": 0.0,
+     "other": 0.08625342
+    }
+   },
+   "populationSeries": {
+    "2010": 16548834.5,
+    "2020": 23717613.5
+   }
+  },
+  "나이지리아": {
+   "iso3": "NGA",
+   "sourceName": "Nigeria",
+   "series": {
+    "2010": {
+     "christianity": 44.39326477,
+     "islam": 54.54431915,
+     "unaffiliated": 0.423864573,
+     "buddhism": 0.0006213,
+     "hinduism": 0.00018639,
+     "judaism": 6.213e-05,
+     "other": 0.637677431
+    },
+    "2020": {
+     "christianity": 43.35137558,
+     "islam": 56.06650925,
+     "unaffiliated": 0.379311502,
+     "buddhism": 0.000480014,
+     "hinduism": 0.000144004,
+     "judaism": 4.80014e-05,
+     "other": 0.202133209
+    }
+   },
+   "populationSeries": {
+    "2010": 166642885.5,
+    "2020": 213996181.0
+   }
+  },
+  "노르웨이": {
+   "iso3": "NOR",
+   "sourceName": "Norway",
+   "series": {
+    "2010": {
+     "christianity": 78.81320953,
+     "islam": 2.519629717,
+     "unaffiliated": 14.67798519,
+     "buddhism": 0.531725526,
+     "hinduism": 0.152973339,
+     "judaism": 0.114491686,
+     "other": 3.189986467
+    },
+    "2020": {
+     "christianity": 71.42243958,
+     "islam": 4.113745213,
+     "unaffiliated": 22.4515419,
+     "buddhism": 0.687752903,
+     "hinduism": 0.230490178,
+     "judaism": 0.096250214,
+     "other": 0.997784615
+    }
+   },
+   "populationSeries": {
+    "2010": 4889162.0,
+    "2020": 5379273.5
+   }
+  },
+  "오만": {
+   "iso3": "OMN",
+   "sourceName": "Oman",
+   "series": {
+    "2010": {
+     "christianity": 4.374836922,
+     "islam": 90.12530518,
+     "unaffiliated": 0.07609529,
+     "buddhism": 0.060792953,
+     "hinduism": 5.16892767,
+     "judaism": 0.003851608,
+     "other": 0.190186173
+    },
+    "2020": {
+     "christianity": 8.071033478,
+     "islam": 81.78730011,
+     "unaffiliated": 0.140269518,
+     "buddhism": 0.112074755,
+     "hinduism": 9.531416893,
+     "judaism": 0.0070652,
+     "other": 0.3508389
+    }
+   },
+   "populationSeries": {
+    "2010": 2757446.0,
+    "2020": 4522496.5
+   }
+  },
+  "파키스탄": {
+   "iso3": "PAK",
+   "sourceName": "Pakistan",
+   "series": {
+    "2010": {
+     "christianity": 1.484067321,
+     "islam": 96.68557739,
+     "unaffiliated": 0.013764118,
+     "buddhism": 0.010586156,
+     "hinduism": 1.763082147,
+     "judaism": 9.46306e-05,
+     "other": 0.042830002
+    },
+    "2020": {
+     "christianity": 1.271847963,
+     "islam": 96.54430389,
+     "unaffiliated": 0.012734034,
+     "buddhism": 0.010499283,
+     "hinduism": 2.139701843,
+     "judaism": 9.09027e-05,
+     "other": 0.020821461
+    }
+   },
+   "populationSeries": {
+    "2010": 199239047.0,
+    "2020": 235001746.0
+   }
+  },
+  "파나마": {
+   "iso3": "PAN",
+   "sourceName": "Panama",
+   "series": {
+    "2010": {
+     "christianity": 93.11482239,
+     "islam": 0.041196369,
+     "unaffiliated": 6.018229008,
+     "buddhism": 0.140342295,
+     "hinduism": 0.078822389,
+     "judaism": 0.219713971,
+     "other": 0.386870384
+    },
+    "2020": {
+     "christianity": 91.15790558,
+     "islam": 0.053109758,
+     "unaffiliated": 6.21044302,
+     "buddhism": 0.171386138,
+     "hinduism": 0.093144633,
+     "judaism": 0.232861593,
+     "other": 2.081149578
+    }
+   },
+   "populationSeries": {
+    "2010": 3628535.0,
+    "2020": 4293261.0
+   }
+  },
+  "파푸아뉴기니": {
+   "iso3": "PNG",
+   "sourceName": "Papua New Guinea",
+   "series": {
+    "2010": {
+     "christianity": 99.52021027,
+     "islam": 0.09362717,
+     "unaffiliated": 0.371655703,
+     "buddhism": 0.00356047,
+     "hinduism": 0.002769254,
+     "judaism": 0.001318692,
+     "other": 0.006857201
+    },
+    "2020": {
+     "christianity": 99.08984375,
+     "islam": 0.074771993,
+     "unaffiliated": 0.310512781,
+     "buddhism": 0.002769333,
+     "hinduism": 0.002256494,
+     "judaism": 0.001025679,
+     "other": 0.518817782
+    }
+   },
+   "populationSeries": {
+    "2010": 7633523.0,
+    "2020": 9815745.5
+   }
+  },
+  "파라과이": {
+   "iso3": "PRY",
+   "sourceName": "Paraguay",
+   "series": {
+    "2010": {
+     "christianity": 96.75906372,
+     "islam": 0.012307986,
+     "unaffiliated": 0.492019206,
+     "buddhism": 0.026002787,
+     "hinduism": 0.0,
+     "judaism": 0.015601672,
+     "other": 2.695009232
+    },
+    "2020": {
+     "christianity": 93.52775574,
+     "islam": 0.011331539,
+     "unaffiliated": 4.247684002,
+     "buddhism": 0.022663077,
+     "hinduism": 0.0,
+     "judaism": 0.016619591,
+     "other": 2.173946381
+    }
+   },
+   "populationSeries": {
+    "2010": 5737971.5,
+    "2020": 6603739.5
+   }
+  },
+  "페루": {
+   "iso3": "PER",
+   "sourceName": "Peru",
+   "series": {
+    "2010": {
+     "christianity": 93.94261169,
+     "islam": 0.009374068,
+     "unaffiliated": 2.811420202,
+     "buddhism": 0.010810969,
+     "hinduism": 0.002565895,
+     "judaism": 0.006500266,
+     "other": 3.216718912
+    },
+    "2020": {
+     "christianity": 94.49199677,
+     "islam": 0.021588508,
+     "unaffiliated": 5.106701851,
+     "buddhism": 0.031947389,
+     "hinduism": 0.009488135,
+     "judaism": 0.005704891,
+     "other": 0.332569689
+    }
+   },
+   "populationSeries": {
+    "2010": 29086019.5,
+    "2020": 32838579.5
+   }
+  },
+  "필리핀": {
+   "iso3": "PHL",
+   "sourceName": "Philippines",
+   "series": {
+    "2010": {
+     "christianity": 91.77424622,
+     "islam": 5.571123123,
+     "unaffiliated": 0.07581,
+     "buddhism": 0.036526319,
+     "hinduism": 0.001283056,
+     "judaism": 0.000434807,
+     "other": 2.540578127
+    },
+    "2020": {
+     "christianity": 91.46120453,
+     "islam": 6.462348461,
+     "unaffiliated": 0.041135743,
+     "buddhism": 0.036360435,
+     "hinduism": 0.001328647,
+     "judaism": 0.000452259,
+     "other": 1.997168183
+    }
+   },
+   "populationSeries": {
+    "2010": 96337125.0,
+    "2020": 112081264.0
+   }
+  },
+  "폴란드": {
+   "iso3": "POL",
+   "sourceName": "Poland",
+   "series": {
+    "2010": {
+     "christianity": 97.26747894,
+     "islam": 0.013087096,
+     "unaffiliated": 2.65095377,
+     "buddhism": 0.013714613,
+     "hinduism": 0.004145362,
+     "judaism": 0.008290724,
+     "other": 0.042328954
+    },
+    "2020": {
+     "christianity": 91.18841553,
+     "islam": 0.007315581,
+     "unaffiliated": 8.645580292,
+     "buddhism": 0.010713195,
+     "hinduism": 0.005204489,
+     "judaism": 0.0117101,
+     "other": 0.131059557
+    }
+   },
+   "populationSeries": {
+    "2010": 38095351.5,
+    "2020": 38171012.0
+   }
+  },
+  "포르투갈": {
+   "iso3": "PRT",
+   "sourceName": "Portugal",
+   "series": {
+    "2010": {
+     "christianity": 91.76418304,
+     "islam": 0.251309514,
+     "unaffiliated": 7.227894783,
+     "buddhism": 0.175663918,
+     "hinduism": 0.188885927,
+     "judaism": 0.035970528,
+     "other": 0.356090009
+    },
+    "2020": {
+     "christianity": 85.07437134,
+     "islam": 0.40882951,
+     "unaffiliated": 13.78093719,
+     "buddhism": 0.199211225,
+     "hinduism": 0.219034374,
+     "judaism": 0.03268465,
+     "other": 0.284928471
+    }
+   },
+   "populationSeries": {
+    "2010": 10578660.0,
+    "2020": 10370519.0
+   }
+  },
+  "카타르": {
+   "iso3": "QAT",
+   "sourceName": "Qatar",
+   "series": {
+    "2010": {
+     "christianity": 13.35215282,
+     "islam": 74.6283493,
+     "unaffiliated": 0.300321162,
+     "buddhism": 0.168777451,
+     "hinduism": 11.09046459,
+     "judaism": 0.012372345,
+     "other": 0.447563738
+    },
+    "2020": {
+     "christianity": 12.54836273,
+     "islam": 75.89176178,
+     "unaffiliated": 0.273621351,
+     "buddhism": 0.218447864,
+     "hinduism": 10.62953568,
+     "judaism": 0.010868053,
+     "other": 0.427404314
+    }
+   },
+   "populationSeries": {
+    "2010": 1709229.5,
+    "2020": 2803375.0
+   }
+  },
+  "루마니아": {
+   "iso3": "ROU",
+   "sourceName": "Romania",
+   "series": {
+    "2010": {
+     "christianity": 99.27075958,
+     "islam": 0.340894729,
+     "unaffiliated": 0.209845245,
+     "buddhism": 0.007130489,
+     "hinduism": 0.001721153,
+     "judaism": 0.047208756,
+     "other": 0.122443303
+    },
+    "2020": {
+     "christianity": 98.54199982,
+     "islam": 0.355796516,
+     "unaffiliated": 0.939600706,
+     "buddhism": 0.029729392,
+     "hinduism": 0.019956755,
+     "judaism": 0.045262743,
+     "other": 0.067656629
+    }
+   },
+   "populationSeries": {
+    "2010": 20432574.0,
+    "2020": 19392469.0
+   }
+  },
+  "러시아": {
+   "iso3": "RUS",
+   "sourceName": "Russia",
+   "series": {
+    "2010": {
+     "christianity": 77.08773804,
+     "islam": 8.623188019,
+     "unaffiliated": 13.03043938,
+     "buddhism": 0.363892227,
+     "hinduism": 0.072866254,
+     "judaism": 0.138209268,
+     "other": 0.683669448
+    },
+    "2020": {
+     "christianity": 69.92578888,
+     "islam": 8.193008423,
+     "unaffiliated": 20.19824409,
+     "buddhism": 0.35243994,
+     "hinduism": 0.071238369,
+     "judaism": 0.084050812,
+     "other": 1.175231457
+    }
+   },
+   "populationSeries": {
+    "2010": 143934465.5,
+    "2020": 146371298.5
+   }
+  },
+  "사우디아라비아": {
+   "iso3": "SAU",
+   "sourceName": "Saudi Arabia",
+   "series": {
+    "2010": {
+     "christianity": 3.353214979,
+     "islam": 94.40605927,
+     "unaffiliated": 0.085883543,
+     "buddhism": 0.056653894,
+     "hinduism": 2.005758047,
+     "judaism": 0.002104589,
+     "other": 0.090323918
+    },
+    "2020": {
+     "christianity": 4.377707958,
+     "islam": 92.69380188,
+     "unaffiliated": 0.112103462,
+     "buddhism": 0.07348647,
+     "hinduism": 2.622116566,
+     "judaism": 0.002747443,
+     "other": 0.118037276
+    }
+   },
+   "populationSeries": {
+    "2010": 25157128.5,
+    "2020": 30991207.0
+   }
+  },
+  "세네갈": {
+   "iso3": "SEN",
+   "sourceName": "Senegal",
+   "series": {
+    "2010": {
+     "christianity": 3.408409119,
+     "islam": 96.12142944,
+     "unaffiliated": 0.003573304,
+     "buddhism": 0.000319231,
+     "hinduism": 0.0,
+     "judaism": 0.000319231,
+     "other": 0.465946317
+    },
+    "2020": {
+     "christianity": 2.403386593,
+     "islam": 97.55647278,
+     "unaffiliated": 0.020703293,
+     "buddhism": 0.000304208,
+     "hinduism": 0.0,
+     "judaism": 0.000304208,
+     "other": 0.018828791
+    }
+   },
+   "populationSeries": {
+    "2010": 12635412.5,
+    "2020": 16789219.5
+   }
+  },
+  "세르비아": {
+   "iso3": "SRB",
+   "sourceName": "Serbia",
+   "series": {
+    "2010": {
+     "christianity": 95.48233795,
+     "islam": 3.243606329,
+     "unaffiliated": 1.221846104,
+     "buddhism": 0.014110733,
+     "hinduism": 0.003397028,
+     "judaism": 0.008428319,
+     "other": 0.026272511
+    },
+    "2020": {
+     "christianity": 91.5355072,
+     "islam": 4.420050621,
+     "unaffiliated": 4.008869648,
+     "buddhism": 0.014541986,
+     "hinduism": 0.003533567,
+     "judaism": 0.009566501,
+     "other": 0.007928411
+    }
+   },
+   "populationSeries": {
+    "2010": 7395864.5,
+    "2020": 6907812.0
+   }
+  },
+  "시에라리온": {
+   "iso3": "SLE",
+   "sourceName": "Sierra Leone",
+   "series": {
+    "2010": {
+     "christianity": 18.12755394,
+     "islam": 81.55543518,
+     "unaffiliated": 0.096377656,
+     "buddhism": 0.0,
+     "hinduism": 0.006214366,
+     "judaism": 0.0,
+     "other": 0.214420065
+    },
+    "2020": {
+     "christianity": 19.82931328,
+     "islam": 80.14663696,
+     "unaffiliated": 0.012038952,
+     "buddhism": 0.0,
+     "hinduism": 0.009715848,
+     "judaism": 0.0,
+     "other": 0.002295798
+    }
+   },
+   "populationSeries": {
+    "2010": 6222714.0,
+    "2020": 7912558.0
+   }
+  },
+  "싱가포르": {
+   "iso3": "SGP",
+   "sourceName": "Singapore",
+   "series": {
+    "2010": {
+     "christianity": 18.26963806,
+     "islam": 15.5905962,
+     "unaffiliated": 16.60159683,
+     "buddhism": 33.01421738,
+     "hinduism": 5.378501892,
+     "judaism": 0.005809912,
+     "other": 11.13963795
+    },
+    "2020": {
+     "christianity": 18.75891685,
+     "islam": 16.13864326,
+     "unaffiliated": 19.89608192,
+     "buddhism": 30.80149078,
+     "hinduism": 5.29460001,
+     "judaism": 0.015228762,
+     "other": 9.095038414
+    }
+   },
+   "populationSeries": {
+    "2010": 5077014.0,
+    "2020": 5620150.5
+   }
+  },
+  "슬로바키아": {
+   "iso3": "SVK",
+   "sourceName": "Slovakia",
+   "series": {
+    "2010": {
+     "christianity": 75.06378174,
+     "islam": 0.040326726,
+     "unaffiliated": 24.69373512,
+     "buddhism": 0.052640829,
+     "hinduism": 0.005317528,
+     "judaism": 0.041586626,
+     "other": 0.1026114
+    },
+    "2020": {
+     "christianity": 73.74530029,
+     "islam": 0.054791708,
+     "unaffiliated": 25.32966995,
+     "buddhism": 0.122730501,
+     "hinduism": 0.017808132,
+     "judaism": 0.037891094,
+     "other": 0.691805959
+    }
+   },
+   "populationSeries": {
+    "2010": 5391851.0,
+    "2020": 5455023.5
+   }
+  },
+  "슬로베니아": {
+   "iso3": "SVN",
+   "sourceName": "Slovenia",
+   "series": {
+    "2010": {
+     "christianity": 72.39395905,
+     "islam": 0.92064786,
+     "unaffiliated": 26.44399834,
+     "buddhism": 0.022663288,
+     "hinduism": 0.100732282,
+     "judaism": 0.011258853,
+     "other": 0.106741734
+    },
+    "2020": {
+     "christianity": 65.41543579,
+     "islam": 1.608627558,
+     "unaffiliated": 32.26738739,
+     "buddhism": 0.038389336,
+     "hinduism": 0.010602368,
+     "judaism": 0.023140971,
+     "other": 0.636416554
+    }
+   },
+   "populationSeries": {
+    "2010": 2044612.0,
+    "2020": 2102419.5
+   }
+  },
+  "소말리아": {
+   "iso3": "SOM",
+   "sourceName": "Somalia",
+   "series": {
+    "2010": {
+     "christianity": 0.038002685,
+     "islam": 99.80715179,
+     "unaffiliated": 0.020963665,
+     "buddhism": 0.0,
+     "hinduism": 0.046939503,
+     "judaism": 0.0,
+     "other": 0.086940959
+    },
+    "2020": {
+     "christianity": 0.026225021,
+     "islam": 99.83339691,
+     "unaffiliated": 0.016120082,
+     "buddhism": 0.0,
+     "hinduism": 0.039998192,
+     "judaism": 0.0,
+     "other": 0.08425606
+    }
+   },
+   "populationSeries": {
+    "2010": 12261756.5,
+    "2020": 16651190.5
+   }
+  },
+  "남아프리카 공화국": {
+   "iso3": "ZAF",
+   "sourceName": "South Africa",
+   "series": {
+    "2010": {
+     "christianity": 84.33209229,
+     "islam": 1.942576528,
+     "unaffiliated": 5.807097435,
+     "buddhism": 0.023915533,
+     "hinduism": 1.035702586,
+     "judaism": 0.136140019,
+     "other": 6.722476006
+    },
+    "2020": {
+     "christianity": 85.25711823,
+     "islam": 1.604882717,
+     "unaffiliated": 3.122110128,
+     "buddhism": 0.035529964,
+     "hinduism": 1.065007329,
+     "judaism": 0.065178007,
+     "other": 8.850171089
+    }
+   },
+   "populationSeries": {
+    "2010": 52344051.0,
+    "2020": 60562381.0
+   }
+  },
+  "대한민국": {
+   "iso3": "KOR",
+   "sourceName": "South Korea",
+   "series": {
+    "2010": {
+     "christianity": 32.13106155,
+     "islam": 0.210005358,
+     "unaffiliated": 41.33947754,
+     "buddhism": 25.57151985,
+     "hinduism": 0.031610403,
+     "judaism": 0.000204863,
+     "other": 0.716117084
+    },
+    "2020": {
+     "christianity": 31.9855442,
+     "islam": 0.310002804,
+     "unaffiliated": 48.26361847,
+     "buddhism": 19.0005722,
+     "hinduism": 0.091812678,
+     "judaism": 0.000192884,
+     "other": 0.34825626
+    }
+   },
+   "populationSeries": {
+    "2010": 48769332.5,
+    "2020": 51858481.5
+   }
+  },
+  "에스파냐": {
+   "iso3": "ESP",
+   "sourceName": "Spain",
+   "series": {
+    "2010": {
+     "christianity": 78.64649963,
+     "islam": 2.11652422,
+     "unaffiliated": 18.96937752,
+     "buddhism": 0.009717961,
+     "hinduism": 0.046858408,
+     "judaism": 0.025766127,
+     "other": 0.185256228
+    },
+    "2020": {
+     "christianity": 69.45676422,
+     "islam": 3.575252533,
+     "unaffiliated": 26.35974312,
+     "buddhism": 0.01773273,
+     "hinduism": 0.12520808,
+     "judaism": 0.027235987,
+     "other": 0.4380669
+    }
+   },
+   "populationSeries": {
+    "2010": 46840471.5,
+    "2020": 47679489.0
+   }
+  },
+  "스리랑카": {
+   "iso3": "LKA",
+   "sourceName": "Sri Lanka",
+   "series": {
+    "2010": {
+     "christianity": 7.622633934,
+     "islam": 9.664055824,
+     "unaffiliated": 0.017901588,
+     "buddhism": 70.10184479,
+     "hinduism": 12.57998276,
+     "judaism": 0.000338679,
+     "other": 0.013244387
+    },
+    "2020": {
+     "christianity": 5.590357304,
+     "islam": 10.20240116,
+     "unaffiliated": 0.069881201,
+     "buddhism": 69.59994507,
+     "hinduism": 14.53492832,
+     "judaism": 0.000276306,
+     "other": 0.002210445
+    }
+   },
+   "populationSeries": {
+    "2010": 20879089.0,
+    "2020": 22561807.0
+   }
+  },
+  "수단": {
+   "iso3": "SDN",
+   "sourceName": "Sudan",
+   "series": {
+    "2010": {
+     "christianity": 0.171913102,
+     "islam": 99.70120239,
+     "unaffiliated": 0.125550315,
+     "buddhism": 0.0,
+     "hinduism": 0.001333731,
+     "judaism": 0.0,
+     "other": 0.0
+    },
+    "2020": {
+     "christianity": 0.487978131,
+     "islam": 98.85551453,
+     "unaffiliated": 0.563212574,
+     "buddhism": 0.0,
+     "hinduism": 0.00123761,
+     "judaism": 0.0,
+     "other": 0.092053778
+    }
+   },
+   "populationSeries": {
+    "2010": 35414399.5,
+    "2020": 46789231.0
+   }
+  },
+  "수리남": {
+   "iso3": "SUR",
+   "sourceName": "Suriname",
+   "series": {
+    "2010": {
+     "christianity": 51.62850952,
+     "islam": 14.05850887,
+     "unaffiliated": 7.372706413,
+     "buddhism": 0.353428066,
+     "hinduism": 23.40077972,
+     "judaism": 0.03662467,
+     "other": 3.149442673
+    },
+    "2020": {
+     "christianity": 52.78678131,
+     "islam": 13.09019852,
+     "unaffiliated": 8.109276772,
+     "buddhism": 0.383813918,
+     "hinduism": 22.45373917,
+     "judaism": 0.032945402,
+     "other": 3.14324522
+    }
+   },
+   "populationSeries": {
+    "2010": 549923.0,
+    "2020": 612316.5
+   }
+  },
+  "스웨덴": {
+   "iso3": "SWE",
+   "sourceName": "Sweden",
+   "series": {
+    "2010": {
+     "christianity": 72.75215149,
+     "islam": 4.51724577,
+     "unaffiliated": 21.47082329,
+     "buddhism": 0.605774283,
+     "hinduism": 0.26036942,
+     "judaism": 0.08912202,
+     "other": 0.304513246
+    },
+    "2020": {
+     "christianity": 60.7713089,
+     "islam": 8.099198341,
+     "unaffiliated": 28.90637589,
+     "buddhism": 0.839671671,
+     "hinduism": 0.45201534,
+     "judaism": 0.158362478,
+     "other": 0.773067355
+    }
+   },
+   "populationSeries": {
+    "2010": 9378232.0,
+    "2020": 10353686.5
+   }
+  },
+  "스위스": {
+   "iso3": "CHE",
+   "sourceName": "Switzerland",
+   "series": {
+    "2010": {
+     "christianity": 73.34831238,
+     "islam": 5.072525501,
+     "unaffiliated": 20.08433723,
+     "buddhism": 0.546771646,
+     "hinduism": 0.522226632,
+     "judaism": 0.244943976,
+     "other": 0.180881217
+    },
+    "2020": {
+     "christianity": 61.58049774,
+     "islam": 6.083072662,
+     "unaffiliated": 30.76514435,
+     "buddhism": 0.619091868,
+     "hinduism": 0.539418042,
+     "judaism": 0.226010546,
+     "other": 0.186763957
+    }
+   },
+   "populationSeries": {
+    "2010": 7825753.5,
+    "2020": 8640581.5
+   }
+  },
+  "시리아": {
+   "iso3": "SYR",
+   "sourceName": "Syria",
+   "series": {
+    "2010": {
+     "christianity": 8.589492798,
+     "islam": 89.46463776,
+     "unaffiliated": 1.934072495,
+     "buddhism": 0.0,
+     "hinduism": 0.008899363,
+     "judaism": 0.000536921,
+     "other": 0.002364934
+    },
+    "2020": {
+     "christianity": 3.840747118,
+     "islam": 94.16599274,
+     "unaffiliated": 1.980045676,
+     "buddhism": 0.0,
+     "hinduism": 0.009999624,
+     "judaism": 0.000559979,
+     "other": 0.002657043
+    }
+   },
+   "populationSeries": {
+    "2010": 22482420.5,
+    "2020": 21049429.0
+   }
+  },
+  "타이완": {
+   "iso3": "TWN",
+   "sourceName": "Taiwan",
+   "series": {
+    "2010": {
+     "christianity": 4.93721056,
+     "islam": 0.345205188,
+     "unaffiliated": 22.77386665,
+     "buddhism": 20.87269402,
+     "hinduism": 0.0,
+     "judaism": 0.0,
+     "other": 51.07102203
+    },
+    "2020": {
+     "christianity": 5.539291382,
+     "islam": 0.497803152,
+     "unaffiliated": 23.09183502,
+     "buddhism": 19.18875122,
+     "hinduism": 0.0,
+     "judaism": 0.0,
+     "other": 51.68231964
+    }
+   },
+   "populationSeries": {
+    "2010": 23224049.0,
+    "2020": 23663459.0
+   }
+  },
+  "타지키스탄": {
+   "iso3": "TJK",
+   "sourceName": "Tajikistan",
+   "series": {
+    "2010": {
+     "christianity": 1.000190496,
+     "islam": 98.91122437,
+     "unaffiliated": 0.07454811,
+     "buddhism": 0.005379321,
+     "hinduism": 0.004592103,
+     "judaism": 0.0,
+     "other": 0.004067292
+    },
+    "2020": {
+     "christianity": 1.000219822,
+     "islam": 98.91412354,
+     "unaffiliated": 0.074550293,
+     "buddhism": 0.004191463,
+     "hinduism": 0.00366753,
+     "judaism": 0.0,
+     "other": 0.003248384
+    }
+   },
+   "populationSeries": {
+    "2010": 7652140.5,
+    "2020": 9749310.5
+   }
+  },
+  "탄자니아": {
+   "iso3": "TZA",
+   "sourceName": "Tanzania",
+   "series": {
+    "2010": {
+     "christianity": 61.68095398,
+     "islam": 35.38309097,
+     "unaffiliated": 2.177928209,
+     "buddhism": 0.000310349,
+     "hinduism": 0.009975499,
+     "judaism": 0.000288181,
+     "other": 0.747454345
+    },
+    "2020": {
+     "christianity": 64.69165802,
+     "islam": 29.86781693,
+     "unaffiliated": 3.478159189,
+     "buddhism": 0.000178269,
+     "hinduism": 0.006482508,
+     "judaism": 0.000178269,
+     "other": 1.955531359
+    }
+   },
+   "populationSeries": {
+    "2010": 44758487.5,
+    "2020": 60972797.5
+   }
+  },
+  "타이": {
+   "iso3": "THA",
+   "sourceName": "Thailand",
+   "series": {
+    "2010": {
+     "christianity": 1.218707085,
+     "islam": 5.04432869,
+     "unaffiliated": 0.071096636,
+     "buddhism": 93.44778442,
+     "hinduism": 0.071827345,
+     "judaism": 0.000292952,
+     "other": 0.145960003
+    },
+    "2020": {
+     "christianity": 1.033611178,
+     "islam": 4.514589787,
+     "unaffiliated": 0.012629814,
+     "buddhism": 94.39245605,
+     "hinduism": 0.040371645,
+     "judaism": 0.000279816,
+     "other": 0.006059419
+    }
+   },
+   "populationSeries": {
+    "2010": 68579447.5,
+    "2020": 71641483.5
+   }
+  },
+  "동티모르": {
+   "iso3": "TLS",
+   "sourceName": "Timor-Leste",
+   "series": {
+    "2010": {
+     "christianity": 99.41512299,
+     "islam": 0.190802574,
+     "unaffiliated": 0.176391721,
+     "buddhism": 0.036748275,
+     "hinduism": 0.157676816,
+     "judaism": 0.0,
+     "other": 0.023256425
+    },
+    "2020": {
+     "christianity": 99.5353241,
+     "islam": 0.256671906,
+     "unaffiliated": 0.063858345,
+     "buddhism": 0.030312831,
+     "hinduism": 0.012914566,
+     "judaism": 0.0,
+     "other": 0.100920439
+    }
+   },
+   "populationSeries": {
+    "2010": 1084679.5,
+    "2020": 1326053.5
+   }
+  },
+  "튀니지": {
+   "iso3": "TUN",
+   "sourceName": "Tunisia",
+   "series": {
+    "2010": {
+     "christianity": 0.229461744,
+     "islam": 99.3917923,
+     "unaffiliated": 0.370488912,
+     "buddhism": 0.0,
+     "hinduism": 0.0,
+     "judaism": 0.008260623,
+     "other": 0.0
+    },
+    "2020": {
+     "christianity": 0.246675566,
+     "islam": 99.30379486,
+     "unaffiliated": 0.441310823,
+     "buddhism": 0.0,
+     "hinduism": 0.0,
+     "judaism": 0.008222519,
+     "other": 0.0
+    }
+   },
+   "populationSeries": {
+    "2010": 10765980.0,
+    "2020": 11974057.0
+   }
+  },
+  "튀르키예": {
+   "iso3": "TUR",
+   "sourceName": "Turkey",
+   "series": {
+    "2010": {
+     "christianity": 0.650081873,
+     "islam": 98.62883759,
+     "unaffiliated": 0.182611182,
+     "buddhism": 0.042002544,
+     "hinduism": 0.032464851,
+     "judaism": 0.024944743,
+     "other": 0.439060688
+    },
+    "2020": {
+     "christianity": 0.13598159,
+     "islam": 97.10687256,
+     "unaffiliated": 2.529001713,
+     "buddhism": 0.052905586,
+     "hinduism": 0.043144707,
+     "judaism": 0.029282626,
+     "other": 0.102810837
+    }
+   },
+   "populationSeries": {
+    "2010": 73346769.0,
+    "2020": 86091691.5
+   }
+  },
+  "투르크메니스탄": {
+   "iso3": "TKM",
+   "sourceName": "Turkmenistan",
+   "series": {
+    "2010": {
+     "christianity": 6.370560169,
+     "islam": 93.02088928,
+     "unaffiliated": 0.507795691,
+     "buddhism": 0.01137474,
+     "hinduism": 0.001898265,
+     "judaism": 0.003796529,
+     "other": 0.083682567
+    },
+    "2020": {
+     "christianity": 5.615219593,
+     "islam": 94.28793335,
+     "unaffiliated": 0.071888015,
+     "buddhism": 0.006719529,
+     "hinduism": 0.001599888,
+     "judaism": 0.003199776,
+     "other": 0.013439058
+    }
+   },
+   "populationSeries": {
+    "2010": 5564356.0,
+    "2020": 6949912.0
+   }
+  },
+  "우간다": {
+   "iso3": "UGA",
+   "sourceName": "Uganda",
+   "series": {
+    "2010": {
+     "christianity": 87.62872314,
+     "islam": 11.2058897,
+     "unaffiliated": 0.015459904,
+     "buddhism": 0.000618396,
+     "hinduism": 0.004637971,
+     "judaism": 0.000278278,
+     "other": 1.144390941
+    },
+    "2020": {
+     "christianity": 87.74430084,
+     "islam": 11.41293049,
+     "unaffiliated": 0.094881155,
+     "buddhism": 0.000800483,
+     "hinduism": 0.005336556,
+     "judaism": 0.001040628,
+     "other": 0.740711689
+    }
+   },
+   "populationSeries": {
+    "2010": 32390801.5,
+    "2020": 44457152.5
+   }
+  },
+  "우크라이나": {
+   "iso3": "UKR",
+   "sourceName": "Ukraine",
+   "series": {
+    "2010": {
+     "christianity": 85.45636749,
+     "islam": 0.902708113,
+     "unaffiliated": 13.23971939,
+     "buddhism": 0.100300901,
+     "hinduism": 0.011426565,
+     "judaism": 0.100300901,
+     "other": 0.189175248
+    },
+    "2020": {
+     "christianity": 83.42977142,
+     "islam": 0.567826331,
+     "unaffiliated": 15.14456844,
+     "buddhism": 0.334418237,
+     "hinduism": 0.01266236,
+     "judaism": 0.095710993,
+     "other": 0.415044874
+    }
+   },
+   "populationSeries": {
+    "2010": 46456002.5,
+    "2020": 44680014.5
+   }
+  },
+  "아랍 에미리트": {
+   "iso3": "ARE",
+   "sourceName": "United Arab Emirates",
+   "series": {
+    "2010": {
+     "christianity": 13.15628719,
+     "islam": 75.12831879,
+     "unaffiliated": 0.308697373,
+     "buddhism": 0.153635383,
+     "hinduism": 10.80302811,
+     "judaism": 0.01381787,
+     "other": 0.436217904
+    },
+    "2020": {
+     "christianity": 14.31364155,
+     "islam": 72.94023132,
+     "unaffiliated": 0.335835189,
+     "buddhism": 0.167142332,
+     "hinduism": 11.75353146,
+     "judaism": 0.015009754,
+     "other": 0.474605411
+    }
+   },
+   "populationSeries": {
+    "2010": 6938363.0,
+    "2020": 9448524.0
+   }
+  },
+  "영국": {
+   "iso3": "GBR",
+   "sourceName": "United Kingdom",
+   "series": {
+    "2010": {
+     "christianity": 62.37902069,
+     "islam": 5.258263111,
+     "unaffiliated": 28.78405952,
+     "buddhism": 0.449345261,
+     "hinduism": 1.470571876,
+     "judaism": 0.451687187,
+     "other": 1.207051873
+    },
+    "2020": {
+     "christianity": 49.37041092,
+     "islam": 6.369117737,
+     "unaffiliated": 40.21815872,
+     "buddhism": 0.457109183,
+     "hinduism": 1.695444226,
+     "judaism": 0.440775841,
+     "other": 1.448984146
+    }
+   },
+   "populationSeries": {
+    "2010": 63006483.0,
+    "2020": 67351861.5
+   }
+  },
+  "미국": {
+   "iso3": "USA",
+   "sourceName": "United States",
+   "series": {
+    "2010": {
+     "christianity": 78.27893829,
+     "islam": 0.891186774,
+     "unaffiliated": 16.45480537,
+     "buddhism": 1.15208292,
+     "hinduism": 0.575294912,
+     "judaism": 1.83412683,
+     "other": 0.813564777
+    },
+    "2020": {
+     "christianity": 64.01000214,
+     "islam": 1.192380905,
+     "unaffiliated": 29.72999954,
+     "buddhism": 1.29174602,
+     "hinduism": 0.894285679,
+     "judaism": 1.689206362,
+     "other": 1.192380905
+    }
+   },
+   "populationSeries": {
+    "2010": 311062790.0,
+    "2020": 339436158.5
+   }
+  },
+  "우루과이": {
+   "iso3": "URY",
+   "sourceName": "Uruguay",
+   "series": {
+    "2010": {
+     "christianity": 60.97925949,
+     "islam": 0.021475542,
+     "unaffiliated": 36.26379013,
+     "buddhism": 0.0,
+     "hinduism": 0.0,
+     "judaism": 0.518992305,
+     "other": 2.21648407
+    },
+    "2020": {
+     "christianity": 44.4913063,
+     "islam": 0.089302436,
+     "unaffiliated": 52.4098053,
+     "buddhism": 0.0,
+     "hinduism": 0.0,
+     "judaism": 0.478261471,
+     "other": 2.531326056
+    }
+   },
+   "populationSeries": {
+    "2010": 3318580.0,
+    "2020": 3398968.0
+   }
+  },
+  "우즈베키스탄": {
+   "iso3": "UZB",
+   "sourceName": "Uzbekistan",
+   "series": {
+    "2010": {
+     "christianity": 3.35731411,
+     "islam": 95.75060272,
+     "unaffiliated": 0.604316533,
+     "buddhism": 0.067146286,
+     "hinduism": 0.201438844,
+     "judaism": 0.01502461,
+     "other": 0.004157973
+    },
+    "2020": {
+     "christianity": 2.775307417,
+     "islam": 95.62223053,
+     "unaffiliated": 0.551984191,
+     "buddhism": 0.014764371,
+     "hinduism": 0.027500505,
+     "judaism": 0.008351563,
+     "other": 0.999862552
+    }
+   },
+   "populationSeries": {
+    "2010": 28385506.5,
+    "2020": 33586372.0
+   }
+  },
+  "베네수엘라": {
+   "iso3": "VEN",
+   "sourceName": "Venezuela",
+   "series": {
+    "2010": {
+     "christianity": 89.35803223,
+     "islam": 0.049807191,
+     "unaffiliated": 8.431073189,
+     "buddhism": 0.021335995,
+     "hinduism": 0.0,
+     "judaism": 0.040026743,
+     "other": 2.099724531
+    },
+    "2020": {
+     "christianity": 88.11541748,
+     "islam": 0.049069069,
+     "unaffiliated": 9.727750778,
+     "buddhism": 0.021340482,
+     "hinduism": 0.0,
+     "judaism": 0.017549738,
+     "other": 2.068873405
+    }
+   },
+   "populationSeries": {
+    "2010": 28813101.0,
+    "2020": 28444077.5
+   }
+  },
+  "베트남": {
+   "iso3": "VNM",
+   "sourceName": "Vietnam",
+   "series": {
+    "2010": {
+     "christianity": 8.795362473,
+     "islam": 0.087436005,
+     "unaffiliated": 62.14483261,
+     "buddhism": 27.58589554,
+     "hinduism": 0.065549128,
+     "judaism": 0.000143369,
+     "other": 1.320779562
+    },
+    "2020": {
+     "christianity": 8.330019951,
+     "islam": 0.072078042,
+     "unaffiliated": 67.67364502,
+     "buddhism": 23.02081871,
+     "hinduism": 0.041288089,
+     "judaism": 0.000127164,
+     "other": 0.862020373
+    }
+   },
+   "populationSeries": {
+    "2010": 87455151.5,
+    "2020": 98079191.0
+   }
+  },
+  "잠비아": {
+   "iso3": "ZMB",
+   "sourceName": "Zambia",
+   "series": {
+    "2010": {
+     "christianity": 97.68292236,
+     "islam": 0.505516171,
+     "unaffiliated": 0.079393357,
+     "buddhism": 0.00217516,
+     "hinduism": 0.018198842,
+     "judaism": 0.001232591,
+     "other": 1.710559964
+    },
+    "2020": {
+     "christianity": 98.28038025,
+     "islam": 0.511289477,
+     "unaffiliated": 0.059753649,
+     "buddhism": 0.001901973,
+     "hinduism": 0.016061105,
+     "judaism": 0.001003819,
+     "other": 1.129607677
+    }
+   },
+   "populationSeries": {
+    "2010": 13965594.0,
+    "2020": 19059395.0
+   }
+  },
+  "짐바브웨": {
+   "iso3": "ZWE",
+   "sourceName": "Zimbabwe",
+   "series": {
+    "2010": {
+     "christianity": 84.44526672,
+     "islam": 0.502714932,
+     "unaffiliated": 12.48290062,
+     "buddhism": 0.043458719,
+     "hinduism": 0.048871588,
+     "judaism": 0.003115321,
+     "other": 2.47367239
+    },
+    "2020": {
+     "christianity": 87.20018768,
+     "islam": 0.529105365,
+     "unaffiliated": 10.53988743,
+     "buddhism": 0.037205644,
+     "hinduism": 0.038111851,
+     "judaism": 0.001276351,
+     "other": 1.654226065
+    }
+   },
+   "populationSeries": {
+    "2010": 13356547.5,
+    "2020": 15526888.5
+   }
+  }
+ }
+}

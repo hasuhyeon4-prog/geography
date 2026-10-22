@@ -1,0 +1,258 @@
+{
+ "retrievedAt": "2026-10-22",
+ "sources": [
+  {
+   "path": "owid_energy.csv",
+   "url": "https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv",
+   "sha256": "266f2e2baad7975351bc9bb4aa061d22b1da9fe4c47d51d2ac6071e01e171f76",
+   "bytes": 9229369,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "owid-codebook.csv",
+   "url": "https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-codebook.csv",
+   "sha256": "3cc9b7db0d921496e2988568ce3aee5ed41f50431dd234a0663b5f0a4b2e32bb",
+   "bytes": 45793,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "geothermal-page.txt",
+   "url": "derived:irena2025.pdf#pdf-page=94",
+   "sha256": "e7b4300ad2931f43a0a0aef74fcabfa7cf163109cf8ee0efa5f348e800066c35",
+   "bytes": 5532,
+   "retrievedAt": "2026-10-22",
+   "derivation": "pdftotext -layout irena2025.pdf; form-feed page 94, printed page 81; visually verified"
+  },
+  {
+   "path": "irena2025.pdf",
+   "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2025/Jul/IRENA_DAT_RE_Statistics_2025.pdf",
+   "sha256": "acfa950c325aa6ea84e90a2b0a2d12e5c1ab765bf65e0ee087b715352fd3933e",
+   "bytes": 13374218,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "bgs-copper.json",
+   "url": "https://ogcapi.bgs.ac.uk/collections/world-mineral-statistics/items?f=json&limit=10000&bgs_statistic_type_trans=Production&bgs_commodity_trans=copper%2C+mine",
+   "sha256": "219ad1464515f448c6d32a91f015081f6831fec98a44510dad374bfe3368548d",
+   "bytes": 5235773,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "bgs-bauxite.json",
+   "url": "https://ogcapi.bgs.ac.uk/collections/world-mineral-statistics/items?f=json&limit=10000&bgs_statistic_type_trans=Production&bgs_commodity_trans=bauxite",
+   "sha256": "47698936ff8babb514e598027c342b62d9c2cac10c7e8f6f1f7c34c0dc677f3a",
+   "bytes": 2735667,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "bgs-iron.json",
+   "url": "https://ogcapi.bgs.ac.uk/collections/world-mineral-statistics/items?f=json&limit=10000&bgs_statistic_type_trans=Production&bgs_commodity_trans=iron+ore",
+   "sha256": "bbe184585898845d0bf1e1f507e276a37a40cfc1112e180e9c2332ef8bdff0a2",
+   "bytes": 4610620,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "wb_fertility.json",
+   "url": "https://api.worldbank.org/v2/country/all/indicator/SP.DYN.TFRT.IN?format=json&date=1960:2025&per_page=20000",
+   "sha256": "d9ddf6cdc0ae7e984e45614a27380f99e7d09018c72b5b7ffb0d2c30d1ea4261",
+   "bytes": 3973504,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "wup2025-pop.xlsx",
+   "url": "https://population.un.org/wup/assets/Download/Countries%20and%20Aggregates/WUP2025-F14-National-Definitions_Pop_by_category.xlsx",
+   "sha256": "f359eb5677a9a92f6ef8b098e50320064876c131fe7585c09b956c7cf6a7011f",
+   "bytes": 1266623,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "wup2025-share.xlsx",
+   "url": "https://population.un.org/wup/assets/Download/Countries%20and%20Aggregates/WUP2025-F15-National-Definitions_percPop_by_category.xlsx",
+   "sha256": "5fdc43a9bd9b2aa121dee5892736216643c98a3d16f987c8dc31ac45ef8e956c",
+   "bytes": 872960,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "pew2025.zip",
+   "url": "https://www.pewresearch.org/wp-content/uploads/sites/20/2025/06/Religious-Composition-2010-2020-dataset.zip",
+   "sha256": "39d1cf1b1dec28e22bc5e2a0e9ab958a8afdcdc971a79c175ff49d03e6ce8af6",
+   "bytes": 294315,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "un-tfr-owid.csv",
+   "url": "https://ourworldindata.org/grapher/children-per-woman-un.csv",
+   "sha256": "9043a1bf4f21969b81953bdffee871fc87ae7f25bbed245bdb18699b6f59402e",
+   "bytes": 504624,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "singapore.csv",
+   "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-5-WMO-Normals-9120/Singapore/CSV/ChangiAirport_48698.csv",
+   "sha256": "4f8baedb981df63406dd4a6ab86c37102520535e258f8451280c5188bd0a3fa0",
+   "bytes": 16096,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "iquitos-sanroque.csv",
+   "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-3-WMO-Normals-9120/Peru/CSV/SanRoque_33303.csv",
+   "sha256": "9f62e39963fde5a72d0ea9d0babe05a057cf28e0b09d0acac65c820390ef8c6a",
+   "bytes": 10876,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "iquitos-puertoalmendra.csv",
+   "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-3-WMO-Normals-9120/Peru/CSV/PuertoAlmendra_33304.csv",
+   "sha256": "edeab9982e022884910463a68021c74d625218dbc964ad7918a6478d31272836",
+   "bytes": 10624,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "abuja.csv",
+   "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-1-WMO-Normals-9120/Nigeria/CSV/Abuja_65125.csv",
+   "sha256": "a0c3944575601094788f3a2d96a706ddd40a051e70cbe51d0131f052cdd619b7",
+   "bytes": 8793,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "noaa-ecuador-csv.html",
+   "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-3-WMO-Normals-9120/Ecuador/CSV/",
+   "sha256": "3418e642d1085c30f0386516628dee32b881425e404a12d20a158dc664a6ce29",
+   "bytes": 1114,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "cbd-history.html",
+   "url": "https://www.cbd.int/history/default.shtml",
+   "sha256": "38fb5d029c3b2a941b2bd16ece75305f7616fd5d041f5e5a0f84ea728add2b96",
+   "bytes": 72368,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "arcgis-buffer.html",
+   "url": "https://doc.esri.com/en/arcgis-pro/latest/tool-reference/analysis/buffer.html",
+   "sha256": "6b683640847f1442999cc71e82a9fe2ec4265b76df8082c543fa5d7159275350",
+   "bytes": 37241,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "eia-gas-exports.json",
+   "url": "https://api.eia.gov/v2/international/data/?api_key=DEMO_KEY&frequency=annual&data%5B0%5D=value&start=2013&end=2024&length=5000&facets%5BproductId%5D%5B%5D=26&facets%5BactivityId%5D%5B%5D=4&facets%5Bunit%5D%5B%5D=BCF",
+   "sha256": "55a3993072f1021767dba400fba93d9ed5bced16fa66385c5970985ff1a8f90c",
+   "bytes": 1055794,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "eia-coal-exports.json",
+   "url": "https://api.eia.gov/v2/international/data/?api_key=DEMO_KEY&frequency=annual&data%5B0%5D=value&start=2013&end=2024&length=5000&facets%5BproductId%5D%5B%5D=7&facets%5BactivityId%5D%5B%5D=4&facets%5Bunit%5D%5B%5D=TST",
+   "sha256": "ccab66113ae257b274b36a54f56a1bd52ef5972bdee94a82c8f97cc00d2aa22c",
+   "bytes": 1043882,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "eia-oil-exports.json",
+   "url": "https://api.eia.gov/v2/international/data/?api_key=DEMO_KEY&frequency=annual&data%5B0%5D=value&start=2013&end=2024&length=5000&facets%5BproductId%5D%5B%5D=57&facets%5BactivityId%5D%5B%5D=4&facets%5Bunit%5D%5B%5D=TBPD",
+   "sha256": "686dffc228e2aea1ef73d670b666d7be801ec16addc1241d1af7d4a35021ed29",
+   "bytes": 603951,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "eia-coal-reserves.json",
+   "url": "https://api.eia.gov/v2/international/data/?api_key=DEMO_KEY&frequency=annual&data%5B0%5D=value&start=2013&end=2024&length=5000&facets%5BproductId%5D%5B%5D=7&facets%5BactivityId%5D%5B%5D=6&facets%5Bunit%5D%5B%5D=MST",
+   "sha256": "1888c3e2dc76afa239c94f569d1ed036a7f4cfea88fe988cbe42a22ade8713a6",
+   "bytes": 933174,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "ims2024.xlsx",
+   "publisher": "UN DESA",
+   "url": "https://www.un.org/development/desa/pd/sites/www.un.org.development.desa.pd/files/undesa_pd_2024_ims_stock_by_sex_destination_and_origin.xlsx",
+   "sha256": "0e10179d05186041a65cf5c6200943b2231701f9c1fd33cbbe21d23b8ea47316",
+   "bytes": 6005287,
+   "retrievedAt": "2026-10-22",
+   "transportMirrors": [
+    "https://raw.githubusercontent.com/RexCaecos/ciencia_redes_uba/main/undesa_pd_2024_ims_stock_by_sex_destination_and_origin.xlsx",
+    "https://raw.githubusercontent.com/Jas-thinks/Network-Science58/main/undesa_pd_2024_ims_stock_by_sex_destination_and_origin.xlsx"
+   ],
+   "independentMirrorHashesEqual": true,
+   "originByteComparison": false,
+   "originError": "403 Forbidden",
+   "practice": "suppliedData"
+  },
+  {
+   "path": "ei2025.xlsx",
+   "url": "https://www.energyinst.org/__data/assets/excel_doc/0008/1656215/EI-Stats-Review-ALL-data.xlsx",
+   "sha256": "b50e7cb2964e3a73b0ea63838a99d1775cca18545dd702c26083a4488f205d63",
+   "bytes": 14737771,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "ei2023.xlsx",
+   "url": "https://www.energyinst.org/__data/assets/excel_doc/0007/1810159/EI-stats-review-all-data-2023.xlsx",
+   "sha256": "92c4e97e1a69ae60e92f31b8f926c68d1951662c0458d491729dde9e721ec1de",
+   "bytes": 3396273,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "census2013-state.xlsx",
+   "url": "https://www2.census.gov/programs-surveys/asm/data/2013/ASM_2013_31AS101_with_ann.xlsx",
+   "sha256": "aeae7a66ba418ffe029a8a000b32fcc97d4780f0d3552636bb1665628ef02415",
+   "bytes": 730930,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "dfat-historical.xlsx",
+   "url": "https://www.dfat.gov.au/sites/default/files/australias-direction-of-merchandise-trade-historical.xlsx",
+   "sha256": "9307caff92f6ac67f0a19f5a2272d5e6773aee7b025b37fa30a61c7e3fbe1fbe",
+   "bytes": 390830,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "dfat-calendar.xlsx",
+   "url": "https://www.dfat.gov.au/sites/default/files/australias-direction-of-goods-services-trade-calendar-years.xlsx",
+   "sha256": "8e9a8bd6fef37b20ba137aafd52a7b66573cd18df857e962b9fcf47b2b4216b3",
+   "bytes": 3389654,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "inamhi-M0024.pdf",
+   "url": "https://servicios.inamhi.gob.ec/wp-content/uploads/2024/01/NORMALES_TEM_M0024.pdf",
+   "sha256": "aa272a0f520684a96bb6a5dccb03e2f6a52dba7f355090277c48b01b5cddfcbd",
+   "bytes": 2659373,
+   "retrievedAt": "2026-10-22"
+  },
+  {
+   "path": "kenya-languages.html",
+   "url": "https://klrc.go.ke/index.php/constitution-of-kenya/108-chapter-two-the-republic/173-7-national-official-and-other-languages",
+   "sha256": "45e5c31b4a6ea7d9801d472740bc2358e86a1662f4b39370bca0594fb08d6905",
+   "bytes": 40064,
+   "retrievedAt": "2026-10-22",
+   "usage": "supplementary supplied-data fact evidence"
+  },
+  {
+   "path": "turkiye-constitution.pdf",
+   "url": "https://cdn.tbmm.gov.tr/TbmmWeb/Yayinlar/Dosya/ea266075-d26a-4bad-8007-efa2b7b773a8.pdf",
+   "sha256": "c1e893acc5e94a0767d1224cba61190f8e6ace2f5e43be90369ebf3903cf3a95",
+   "bytes": 1187245,
+   "retrievedAt": "2026-10-22",
+   "usage": "supplementary supplied-data fact evidence"
+  },
+  {
+   "path": "wmo-quito.xml",
+   "url": "https://worldweather.wmo.int/en/json/291_en.xml",
+   "sha256": "3cdefe9a8dd81ec1ff9924265ef884ef5681995de206e98bc217e7c140a26ff6",
+   "bytes": 3348,
+   "retrievedAt": "2026-10-22",
+   "usage": "normal period review only"
+  },
+  {
+   "path": "wmo-abuja.xml",
+   "url": "https://worldweather.wmo.int/en/json/324_en.xml",
+   "sha256": "7a1bc2ff05de0de70dfcecf9fecb6b1f836c1d976f83a9dbe6b6eb2dc226c12f",
+   "bytes": 3622,
+   "retrievedAt": "2026-10-22",
+   "usage": "normal period review only"
+  }
+ ],
+ "policy": "원본 URL·파일 바이트·SHA-256 보존. raw API의 결측·깃발·단위를 유지."
+}

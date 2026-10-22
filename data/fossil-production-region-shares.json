@@ -1,0 +1,1135 @@
+{
+ "source": "OWID energy-data original regional series / derived",
+ "unit": "TWh / %",
+ "policy": "같은 지표·연도의 원지역 값÷원세계 값. 지역 구분은 OWID 원명 유지. 역내 교역·매장량·물리 수출량과 별개.",
+ "regions": {
+  "Africa": {
+   "coal_production": {
+    "2013": {
+     "valueTWh": 1772.021,
+     "worldTWh": 45969.586,
+     "shareOfReportedWorldPct": 3.8547682374167995
+    },
+    "2014": {
+     "valueTWh": 1831.761,
+     "worldTWh": 45840.074,
+     "shareOfReportedWorldPct": 3.9959817691393775
+    },
+    "2015": {
+     "valueTWh": 1759.014,
+     "worldTWh": 44567.742,
+     "shareOfReportedWorldPct": 3.9468322177955524
+    },
+    "2016": {
+     "valueTWh": 1756.659,
+     "worldTWh": 42191.59,
+     "shareOfReportedWorldPct": 4.1635287980377145
+    },
+    "2017": {
+     "valueTWh": 1801.406,
+     "worldTWh": 43193.328,
+     "shareOfReportedWorldPct": 4.170565416955137
+    },
+    "2018": {
+     "valueTWh": 1841.816,
+     "worldTWh": 45150.984,
+     "shareOfReportedWorldPct": 4.079237785825443
+    },
+    "2019": {
+     "valueTWh": 1800.926,
+     "worldTWh": 45802.574,
+     "shareOfReportedWorldPct": 3.93193186042339
+    },
+    "2020": {
+     "valueTWh": 1749.462,
+     "worldTWh": 43486.125,
+     "shareOfReportedWorldPct": 4.023034933556393
+    },
+    "2021": {
+     "valueTWh": 1687.926,
+     "worldTWh": 45359.484,
+     "shareOfReportedWorldPct": 3.721219580011095
+    },
+    "2022": {
+     "valueTWh": 1711.146,
+     "worldTWh": 48548.547,
+     "shareOfReportedWorldPct": 3.524608058815849
+    },
+    "2023": {
+     "valueTWh": 1748.336,
+     "worldTWh": 50074.297,
+     "shareOfReportedWorldPct": 3.4914838644664346
+    },
+    "2024": {
+     "valueTWh": 1775.735,
+     "worldTWh": 50618.328,
+     "shareOfReportedWorldPct": 3.5080870312429124
+    }
+   },
+   "oil_production": {
+    "2013": {
+     "valueTWh": 4747.693,
+     "worldTWh": 47965.855,
+     "shareOfReportedWorldPct": 9.898068115329123
+    },
+    "2014": {
+     "valueTWh": 4531.725,
+     "worldTWh": 49090.754,
+     "shareOfReportedWorldPct": 9.231320830802476
+    },
+    "2015": {
+     "valueTWh": 4481.698,
+     "worldTWh": 50735.289,
+     "shareOfReportedWorldPct": 8.833492601175488
+    },
+    "2016": {
+     "valueTWh": 4230.382,
+     "worldTWh": 50937.781,
+     "shareOfReportedWorldPct": 8.30499860211814
+    },
+    "2017": {
+     "valueTWh": 4464.168,
+     "worldTWh": 51008.156,
+     "shareOfReportedWorldPct": 8.751870975300498
+    },
+    "2018": {
+     "valueTWh": 4548.258,
+     "worldTWh": 52229.098,
+     "shareOfReportedWorldPct": 8.708283646790148
+    },
+    "2019": {
+     "valueTWh": 4601.129,
+     "worldTWh": 52156.902,
+     "shareOfReportedWorldPct": 8.82170685674544
+    },
+    "2020": {
+     "valueTWh": 3884.969,
+     "worldTWh": 48711.66,
+     "shareOfReportedWorldPct": 7.975439555950259
+    },
+    "2021": {
+     "valueTWh": 4036.983,
+     "worldTWh": 49280.457,
+     "shareOfReportedWorldPct": 8.191853821485463
+    },
+    "2022": {
+     "valueTWh": 3865.37,
+     "worldTWh": 51482.996,
+     "shareOfReportedWorldPct": 7.508051784709655
+    },
+    "2023": {
+     "valueTWh": 3986.051,
+     "worldTWh": 52501.914,
+     "shareOfReportedWorldPct": 7.592201305270509
+    },
+    "2024": {
+     "valueTWh": 4017.715,
+     "worldTWh": 52831.051,
+     "shareOfReportedWorldPct": 7.604836405772053
+    }
+   },
+   "gas_production": {
+    "2013": {
+     "valueTWh": 1989.898,
+     "worldTWh": 33702.988,
+     "shareOfReportedWorldPct": 5.904218344082727
+    },
+    "2014": {
+     "valueTWh": 1995.039,
+     "worldTWh": 34451.488,
+     "shareOfReportedWorldPct": 5.790864533920857
+    },
+    "2015": {
+     "valueTWh": 2061.933,
+     "worldTWh": 35151.949,
+     "shareOfReportedWorldPct": 5.865771482542832
+    },
+    "2016": {
+     "valueTWh": 2097.809,
+     "worldTWh": 35535.949,
+     "shareOfReportedWorldPct": 5.903343118823139
+    },
+    "2017": {
+     "valueTWh": 2301.302,
+     "worldTWh": 36843.316,
+     "shareOfReportedWorldPct": 6.246185875343034
+    },
+    "2018": {
+     "valueTWh": 2426.149,
+     "worldTWh": 38559.543,
+     "shareOfReportedWorldPct": 6.291954756828938
+    },
+    "2019": {
+     "valueTWh": 2455.741,
+     "worldTWh": 39725.438,
+     "shareOfReportedWorldPct": 6.18178457843561
+    },
+    "2020": {
+     "valueTWh": 2319.091,
+     "worldTWh": 38669.66,
+     "shareOfReportedWorldPct": 5.997184873102064
+    },
+    "2021": {
+     "valueTWh": 2666.713,
+     "worldTWh": 40465.746,
+     "shareOfReportedWorldPct": 6.5900502612753025
+    },
+    "2022": {
+     "valueTWh": 2564.339,
+     "worldTWh": 40503.566,
+     "shareOfReportedWorldPct": 6.331143781266074
+    },
+    "2023": {
+     "valueTWh": 2536.472,
+     "worldTWh": 40642.184,
+     "shareOfReportedWorldPct": 6.24098350620134
+    },
+    "2024": {
+     "valueTWh": 2395.632,
+     "worldTWh": 41244.516,
+     "shareOfReportedWorldPct": 5.808364922987579
+    }
+   }
+  },
+  "Asia": {
+   "coal_production": {
+    "2013": {
+     "valueTWh": 29547.01,
+     "worldTWh": 45969.586,
+     "shareOfReportedWorldPct": 64.27512747232484
+    },
+    "2014": {
+     "valueTWh": 29228.08,
+     "worldTWh": 45840.074,
+     "shareOfReportedWorldPct": 63.76097909440548
+    },
+    "2015": {
+     "valueTWh": 28802.227,
+     "worldTWh": 44567.742,
+     "shareOfReportedWorldPct": 64.62572638299692
+    },
+    "2016": {
+     "valueTWh": 27333.418,
+     "worldTWh": 42191.59,
+     "shareOfReportedWorldPct": 64.78404345510563
+    },
+    "2017": {
+     "valueTWh": 28064.102,
+     "worldTWh": 43193.328,
+     "shareOfReportedWorldPct": 64.97323382907656
+    },
+    "2018": {
+     "valueTWh": 29857.93,
+     "worldTWh": 45150.984,
+     "shareOfReportedWorldPct": 66.1290792687929
+    },
+    "2019": {
+     "valueTWh": 31068.303,
+     "worldTWh": 45802.574,
+     "shareOfReportedWorldPct": 67.83091055100964
+    },
+    "2020": {
+     "valueTWh": 30852.223,
+     "worldTWh": 43486.125,
+     "shareOfReportedWorldPct": 70.9472803106738
+    },
+    "2021": {
+     "valueTWh": 32130.475,
+     "worldTWh": 45359.484,
+     "shareOfReportedWorldPct": 70.83518630855677
+    },
+    "2022": {
+     "valueTWh": 35271.605,
+     "worldTWh": 48548.547,
+     "shareOfReportedWorldPct": 72.65223612150535
+    },
+    "2023": {
+     "valueTWh": 37057.488,
+     "worldTWh": 50074.297,
+     "shareOfReportedWorldPct": 74.0050089969311
+    },
+    "2024": {
+     "valueTWh": 38178.215,
+     "worldTWh": 50618.328,
+     "shareOfReportedWorldPct": 75.42369830943447
+    }
+   },
+   "oil_production": {
+    "2013": {
+     "valueTWh": 21414.438,
+     "worldTWh": 47965.855,
+     "shareOfReportedWorldPct": 44.645171028432614
+    },
+    "2014": {
+     "valueTWh": 21527.734,
+     "worldTWh": 49090.754,
+     "shareOfReportedWorldPct": 43.85293002425671
+    },
+    "2015": {
+     "valueTWh": 22421.779,
+     "worldTWh": 50735.289,
+     "shareOfReportedWorldPct": 44.19365582011368
+    },
+    "2016": {
+     "valueTWh": 23258.436,
+     "worldTWh": 50937.781,
+     "shareOfReportedWorldPct": 45.66048136254699
+    },
+    "2017": {
+     "valueTWh": 22911.068,
+     "worldTWh": 51008.156,
+     "shareOfReportedWorldPct": 44.91647963121819
+    },
+    "2018": {
+     "valueTWh": 23034.777,
+     "worldTWh": 52229.098,
+     "shareOfReportedWorldPct": 44.10334063207448
+    },
+    "2019": {
+     "valueTWh": 22079.412,
+     "worldTWh": 52156.902,
+     "shareOfReportedWorldPct": 42.332675357136814
+    },
+    "2020": {
+     "valueTWh": 20574.926,
+     "worldTWh": 48711.66,
+     "shareOfReportedWorldPct": 42.23819512617718
+    },
+    "2021": {
+     "valueTWh": 20680.746,
+     "worldTWh": 49280.457,
+     "shareOfReportedWorldPct": 41.96541034511916
+    },
+    "2022": {
+     "valueTWh": 22101.809,
+     "worldTWh": 51482.996,
+     "shareOfReportedWorldPct": 42.930308484766506
+    },
+    "2023": {
+     "valueTWh": 21801.35,
+     "worldTWh": 52501.914,
+     "shareOfReportedWorldPct": 41.5248670743699
+    },
+    "2024": {
+     "valueTWh": 21739.879,
+     "worldTWh": 52831.051,
+     "shareOfReportedWorldPct": 41.1498135821678
+    }
+   },
+   "gas_production": {
+    "2013": {
+     "valueTWh": 11827.102,
+     "worldTWh": 33702.988,
+     "shareOfReportedWorldPct": 35.092146725981685
+    },
+    "2014": {
+     "valueTWh": 12329.38,
+     "worldTWh": 34451.488,
+     "shareOfReportedWorldPct": 35.78765596423585
+    },
+    "2015": {
+     "valueTWh": 12629.982,
+     "worldTWh": 35151.949,
+     "shareOfReportedWorldPct": 35.929677754141025
+    },
+    "2016": {
+     "valueTWh": 12853.8,
+     "worldTWh": 35535.949,
+     "shareOfReportedWorldPct": 36.171258575365464
+    },
+    "2017": {
+     "valueTWh": 13053.877,
+     "worldTWh": 36843.316,
+     "shareOfReportedWorldPct": 35.43078750023478
+    },
+    "2018": {
+     "valueTWh": 13334.577,
+     "worldTWh": 38559.543,
+     "shareOfReportedWorldPct": 34.58178173947757
+    },
+    "2019": {
+     "valueTWh": 13597.094,
+     "worldTWh": 39725.438,
+     "shareOfReportedWorldPct": 34.227675475850006
+    },
+    "2020": {
+     "valueTWh": 13499.89,
+     "worldTWh": 38669.66,
+     "shareOfReportedWorldPct": 34.91080604277358
+    },
+    "2021": {
+     "valueTWh": 14103.571,
+     "worldTWh": 40465.746,
+     "shareOfReportedWorldPct": 34.85311008476157
+    },
+    "2022": {
+     "valueTWh": 14260.147,
+     "worldTWh": 40503.566,
+     "shareOfReportedWorldPct": 35.207139539269214
+    },
+    "2023": {
+     "valueTWh": 14462.999,
+     "worldTWh": 40642.184,
+     "shareOfReportedWorldPct": 35.586175683865804
+    },
+    "2024": {
+     "valueTWh": 14792.935,
+     "worldTWh": 41244.516,
+     "shareOfReportedWorldPct": 35.866428884751606
+    }
+   }
+  },
+  "Europe": {
+   "coal_production": {
+    "2013": {
+     "valueTWh": 4458.116,
+     "worldTWh": 45969.586,
+     "shareOfReportedWorldPct": 9.697968565564196
+    },
+    "2014": {
+     "valueTWh": 4244.431,
+     "worldTWh": 45840.074,
+     "shareOfReportedWorldPct": 9.259214982942652
+    },
+    "2015": {
+     "valueTWh": 4206.487,
+     "worldTWh": 44567.742,
+     "shareOfReportedWorldPct": 9.438411755300505
+    },
+    "2016": {
+     "valueTWh": 4182.524,
+     "worldTWh": 42191.59,
+     "shareOfReportedWorldPct": 9.91316989949893
+    },
+    "2017": {
+     "valueTWh": 4239.271,
+     "worldTWh": 43193.328,
+     "shareOfReportedWorldPct": 9.814643131920745
+    },
+    "2018": {
+     "valueTWh": 4335.699,
+     "worldTWh": 45150.984,
+     "shareOfReportedWorldPct": 9.602667795678606
+    },
+    "2019": {
+     "valueTWh": 4128.073,
+     "worldTWh": 45802.574,
+     "shareOfReportedWorldPct": 9.012753300720611
+    },
+    "2020": {
+     "valueTWh": 3671.988,
+     "worldTWh": 43486.125,
+     "shareOfReportedWorldPct": 8.44404508334555
+    },
+    "2021": {
+     "valueTWh": 3958.639,
+     "worldTWh": 45359.484,
+     "shareOfReportedWorldPct": 8.72725756756845
+    },
+    "2022": {
+     "valueTWh": 3987.211,
+     "worldTWh": 48548.547,
+     "shareOfReportedWorldPct": 8.212832816603141
+    },
+    "2023": {
+     "valueTWh": 3728.975,
+     "worldTWh": 50074.297,
+     "shareOfReportedWorldPct": 7.446884376629391
+    },
+    "2024": {
+     "valueTWh": 3584.412,
+     "worldTWh": 50618.328,
+     "shareOfReportedWorldPct": 7.081253256725508
+    }
+   },
+   "oil_production": {
+    "2013": {
+     "valueTWh": 8045.048,
+     "worldTWh": 47965.855,
+     "shareOfReportedWorldPct": 16.772447817306706
+    },
+    "2014": {
+     "valueTWh": 8113.812,
+     "worldTWh": 49090.754,
+     "shareOfReportedWorldPct": 16.528187772385813
+    },
+    "2015": {
+     "valueTWh": 8274.17,
+     "worldTWh": 50735.289,
+     "shareOfReportedWorldPct": 16.308510630539626
+    },
+    "2016": {
+     "valueTWh": 8450.845,
+     "worldTWh": 50937.781,
+     "shareOfReportedWorldPct": 16.59052442822352
+    },
+    "2017": {
+     "valueTWh": 8420.619,
+     "worldTWh": 51008.156,
+     "shareOfReportedWorldPct": 16.508377601417312
+    },
+    "2018": {
+     "valueTWh": 8510.417,
+     "worldTWh": 52229.098,
+     "shareOfReportedWorldPct": 16.294397808669796
+    },
+    "2019": {
+     "valueTWh": 8515.803,
+     "worldTWh": 52156.902,
+     "shareOfReportedWorldPct": 16.327279177739506
+    },
+    "2020": {
+     "valueTWh": 8056.556,
+     "worldTWh": 48711.66,
+     "shareOfReportedWorldPct": 16.53927622257176
+    },
+    "2021": {
+     "valueTWh": 8138.0,
+     "worldTWh": 49280.457,
+     "shareOfReportedWorldPct": 16.513645561363198
+    },
+    "2022": {
+     "valueTWh": 8138.761,
+     "worldTWh": 51482.996,
+     "shareOfReportedWorldPct": 15.808639031030753
+    },
+    "2023": {
+     "valueTWh": 8069.85,
+     "worldTWh": 52501.914,
+     "shareOfReportedWorldPct": 15.370582489621237
+    },
+    "2024": {
+     "valueTWh": 7767.557,
+     "worldTWh": 52831.051,
+     "shareOfReportedWorldPct": 14.702635766227706
+    }
+   },
+   "gas_production": {
+    "2013": {
+     "valueTWh": 8941.476,
+     "worldTWh": 33702.988,
+     "shareOfReportedWorldPct": 26.53021743947451
+    },
+    "2014": {
+     "valueTWh": 8562.16,
+     "worldTWh": 34451.488,
+     "shareOfReportedWorldPct": 24.85280171352831
+    },
+    "2015": {
+     "valueTWh": 8441.271,
+     "worldTWh": 35151.949,
+     "shareOfReportedWorldPct": 24.01366422100806
+    },
+    "2016": {
+     "valueTWh": 8480.683,
+     "worldTWh": 35535.949,
+     "shareOfReportedWorldPct": 23.865080963505434
+    },
+    "2017": {
+     "valueTWh": 8969.263,
+     "worldTWh": 36843.316,
+     "shareOfReportedWorldPct": 24.344342403924774
+    },
+    "2018": {
+     "valueTWh": 9192.182,
+     "worldTWh": 38559.543,
+     "shareOfReportedWorldPct": 23.83892879643309
+    },
+    "2019": {
+     "valueTWh": 9128.731,
+     "worldTWh": 39725.438,
+     "shareOfReportedWorldPct": 22.97956035122885
+    },
+    "2020": {
+     "valueTWh": 8561.913,
+     "worldTWh": 38669.66,
+     "shareOfReportedWorldPct": 22.141164416754634
+    },
+    "2021": {
+     "valueTWh": 9120.043,
+     "worldTWh": 40465.746,
+     "shareOfReportedWorldPct": 22.537686565817914
+    },
+    "2022": {
+     "valueTWh": 8385.359,
+     "worldTWh": 40503.566,
+     "shareOfReportedWorldPct": 20.702767257579247
+    },
+    "2023": {
+     "valueTWh": 7902.817,
+     "worldTWh": 40642.184,
+     "shareOfReportedWorldPct": 19.44486300244101
+    },
+    "2024": {
+     "valueTWh": 8274.0,
+     "worldTWh": 41244.516,
+     "shareOfReportedWorldPct": 20.06084881684634
+    }
+   }
+  },
+  "North America": {
+   "coal_production": {
+    "2013": {
+     "valueTWh": 6071.474,
+     "worldTWh": 45969.586,
+     "shareOfReportedWorldPct": 13.207589035063313
+    },
+    "2014": {
+     "valueTWh": 6148.92,
+     "worldTWh": 45840.074,
+     "shareOfReportedWorldPct": 13.413852691424538
+    },
+    "2015": {
+     "valueTWh": 5451.613,
+     "worldTWh": 44567.742,
+     "shareOfReportedWorldPct": 12.232194756467582
+    },
+    "2016": {
+     "valueTWh": 4534.78,
+     "worldTWh": 42191.59,
+     "shareOfReportedWorldPct": 10.748066143039408
+    },
+    "2017": {
+     "valueTWh": 4805.539,
+     "worldTWh": 43193.328,
+     "shareOfReportedWorldPct": 11.12565116538369
+    },
+    "2018": {
+     "valueTWh": 4695.47,
+     "worldTWh": 45150.984,
+     "shareOfReportedWorldPct": 10.399485424282227
+    },
+    "2019": {
+     "valueTWh": 4367.678,
+     "worldTWh": 45802.574,
+     "shareOfReportedWorldPct": 9.53587892243785
+    },
+    "2020": {
+     "valueTWh": 3351.839,
+     "worldTWh": 43486.125,
+     "shareOfReportedWorldPct": 7.707835545245753
+    },
+    "2021": {
+     "valueTWh": 3602.867,
+     "worldTWh": 45359.484,
+     "shareOfReportedWorldPct": 7.9429188392002
+    },
+    "2022": {
+     "valueTWh": 3728.966,
+     "worldTWh": 48548.547,
+     "shareOfReportedWorldPct": 7.680901346027926
+    },
+    "2023": {
+     "valueTWh": 3660.502,
+     "worldTWh": 50074.297,
+     "shareOfReportedWorldPct": 7.310141568238092
+    },
+    "2024": {
+     "valueTWh": 3301.298,
+     "worldTWh": 50618.328,
+     "shareOfReportedWorldPct": 6.521942012782405
+    }
+   },
+   "oil_production": {
+    "2013": {
+     "valueTWh": 9198.636,
+     "worldTWh": 47965.855,
+     "shareOfReportedWorldPct": 19.177466971035958
+    },
+    "2014": {
+     "valueTWh": 10188.568,
+     "worldTWh": 49090.754,
+     "shareOfReportedWorldPct": 20.75455593939339
+    },
+    "2015": {
+     "valueTWh": 10642.411,
+     "worldTWh": 50735.289,
+     "shareOfReportedWorldPct": 20.976348434715728
+    },
+    "2016": {
+     "valueTWh": 10320.478,
+     "worldTWh": 50937.781,
+     "shareOfReportedWorldPct": 20.260949333462325
+    },
+    "2017": {
+     "valueTWh": 10754.789,
+     "worldTWh": 51008.156,
+     "shareOfReportedWorldPct": 21.084449710356125
+    },
+    "2018": {
+     "valueTWh": 12024.681,
+     "worldTWh": 52229.098,
+     "shareOfReportedWorldPct": 23.02295360337259
+    },
+    "2019": {
+     "valueTWh": 12945.592,
+     "worldTWh": 52156.902,
+     "shareOfReportedWorldPct": 24.820477259174634
+    },
+    "2020": {
+     "valueTWh": 12374.228,
+     "worldTWh": 48711.66,
+     "shareOfReportedWorldPct": 25.40301028542242
+    },
+    "2021": {
+     "valueTWh": 12612.454,
+     "worldTWh": 49280.457,
+     "shareOfReportedWorldPct": 25.59321639407686
+    },
+    "2022": {
+     "valueTWh": 13270.923,
+     "worldTWh": 51482.996,
+     "shareOfReportedWorldPct": 25.77729353590844
+    },
+    "2023": {
+     "valueTWh": 14109.521,
+     "worldTWh": 52501.914,
+     "shareOfReportedWorldPct": 26.874298335104505
+    },
+    "2024": {
+     "valueTWh": 14509.605,
+     "worldTWh": 52831.051,
+     "shareOfReportedWorldPct": 27.464161180514846
+    }
+   },
+   "gas_production": {
+    "2013": {
+     "valueTWh": 8988.483,
+     "worldTWh": 33702.988,
+     "shareOfReportedWorldPct": 26.66969171991516
+    },
+    "2014": {
+     "valueTWh": 9530.851,
+     "worldTWh": 34451.488,
+     "shareOfReportedWorldPct": 27.664555446777804
+    },
+    "2015": {
+     "valueTWh": 9849.617,
+     "worldTWh": 35151.949,
+     "shareOfReportedWorldPct": 28.020116324133266
+    },
+    "2016": {
+     "valueTWh": 9696.036,
+     "worldTWh": 35535.949,
+     "shareOfReportedWorldPct": 27.285147218102995
+    },
+    "2017": {
+     "valueTWh": 9921.614,
+     "worldTWh": 36843.316,
+     "shareOfReportedWorldPct": 26.929210172070288
+    },
+    "2018": {
+     "valueTWh": 10914.591,
+     "worldTWh": 38559.543,
+     "shareOfReportedWorldPct": 28.305810055892007
+    },
+    "2019": {
+     "valueTWh": 11708.852,
+     "worldTWh": 39725.438,
+     "shareOfReportedWorldPct": 29.474444057734495
+    },
+    "2020": {
+     "valueTWh": 11560.067,
+     "worldTWh": 38669.66,
+     "shareOfReportedWorldPct": 29.89441076027045
+    },
+    "2021": {
+     "valueTWh": 11758.659,
+     "worldTWh": 40465.746,
+     "shareOfReportedWorldPct": 29.05830279268792
+    },
+    "2022": {
+     "valueTWh": 12376.093,
+     "worldTWh": 40503.566,
+     "shareOfReportedWorldPct": 30.555563922445746
+    },
+    "2023": {
+     "valueTWh": 12863.627,
+     "worldTWh": 40642.184,
+     "shareOfReportedWorldPct": 31.650924566455384
+    },
+    "2024": {
+     "valueTWh": 12873.4,
+     "worldTWh": 41244.516,
+     "shareOfReportedWorldPct": 31.21239196988031
+    }
+   }
+  },
+  "Oceania": {
+   "coal_production": {
+    "2013": {
+     "valueTWh": 3357.271,
+     "worldTWh": 45969.586,
+     "shareOfReportedWorldPct": 7.303243931759577
+    },
+    "2014": {
+     "valueTWh": 3588.146,
+     "worldTWh": 45840.074,
+     "shareOfReportedWorldPct": 7.827530993950839
+    },
+    "2015": {
+     "valueTWh": 3579.409,
+     "worldTWh": 44567.742,
+     "shareOfReportedWorldPct": 8.031389609103375
+    },
+    "2016": {
+     "valueTWh": 3582.937,
+     "worldTWh": 42191.59,
+     "shareOfReportedWorldPct": 8.492064413784833
+    },
+    "2017": {
+     "valueTWh": 3493.439,
+     "worldTWh": 43193.328,
+     "shareOfReportedWorldPct": 8.08791348515678
+    },
+    "2018": {
+     "valueTWh": 3658.488,
+     "worldTWh": 45150.984,
+     "shareOfReportedWorldPct": 8.102786862851096
+    },
+    "2019": {
+     "valueTWh": 3681.222,
+     "worldTWh": 45802.574,
+     "shareOfReportedWorldPct": 8.037150925185996
+    },
+    "2020": {
+     "valueTWh": 3360.605,
+     "worldTWh": 43486.125,
+     "shareOfReportedWorldPct": 7.7279936991396685
+    },
+    "2021": {
+     "valueTWh": 3422.399,
+     "worldTWh": 45359.484,
+     "shareOfReportedWorldPct": 7.545057170403438
+    },
+    "2022": {
+     "valueTWh": 3264.813,
+     "worldTWh": 48548.547,
+     "shareOfReportedWorldPct": 6.724841837182069
+    },
+    "2023": {
+     "valueTWh": 3280.717,
+     "worldTWh": 50074.297,
+     "shareOfReportedWorldPct": 6.551698569028338
+    },
+    "2024": {
+     "valueTWh": 3300.18,
+     "worldTWh": 50618.328,
+     "shareOfReportedWorldPct": 6.519733326632203
+    }
+   },
+   "oil_production": {
+    "2013": {
+     "valueTWh": 204.809,
+     "worldTWh": 47965.855,
+     "shareOfReportedWorldPct": 0.4269891571827501
+    },
+    "2014": {
+     "valueTWh": 216.372,
+     "worldTWh": 49090.754,
+     "shareOfReportedWorldPct": 0.44075917025026756
+    },
+    "2015": {
+     "valueTWh": 195.421,
+     "worldTWh": 50735.289,
+     "shareOfReportedWorldPct": 0.3851776620411091
+    },
+    "2016": {
+     "valueTWh": 178.546,
+     "worldTWh": 50937.781,
+     "shareOfReportedWorldPct": 0.35051782094708833
+    },
+    "2017": {
+     "valueTWh": 161.666,
+     "worldTWh": 51008.156,
+     "shareOfReportedWorldPct": 0.316941471085526
+    },
+    "2018": {
+     "valueTWh": 170.055,
+     "worldTWh": 52229.098,
+     "shareOfReportedWorldPct": 0.3255943650414947
+    },
+    "2019": {
+     "valueTWh": 223.933,
+     "worldTWh": 52156.902,
+     "shareOfReportedWorldPct": 0.42934490242537793
+    },
+    "2020": {
+     "valueTWh": 222.271,
+     "worldTWh": 48711.66,
+     "shareOfReportedWorldPct": 0.456299374728761
+    },
+    "2021": {
+     "valueTWh": 214.225,
+     "worldTWh": 49280.457,
+     "shareOfReportedWorldPct": 0.43470579016748967
+    },
+    "2022": {
+     "valueTWh": 198.707,
+     "worldTWh": 51482.996,
+     "shareOfReportedWorldPct": 0.3859662712713922
+    },
+    "2023": {
+     "valueTWh": 181.573,
+     "worldTWh": 52501.914,
+     "shareOfReportedWorldPct": 0.3458407249686174
+    },
+    "2024": {
+     "valueTWh": 173.426,
+     "worldTWh": 52831.051,
+     "shareOfReportedWorldPct": 0.3282652847470326
+    }
+   },
+   "gas_production": {
+    "2013": {
+     "valueTWh": 605.766,
+     "worldTWh": 33702.988,
+     "shareOfReportedWorldPct": 1.7973658596679913
+    },
+    "2014": {
+     "valueTWh": 652.744,
+     "worldTWh": 34451.488,
+     "shareOfReportedWorldPct": 1.8946757829444119
+    },
+    "2015": {
+     "valueTWh": 742.977,
+     "worldTWh": 35151.949,
+     "shareOfReportedWorldPct": 2.1136153787660534
+    },
+    "2016": {
+     "valueTWh": 940.797,
+     "worldTWh": 35535.949,
+     "shareOfReportedWorldPct": 2.6474514582402175
+    },
+    "2017": {
+     "valueTWh": 1102.946,
+     "worldTWh": 36843.316,
+     "shareOfReportedWorldPct": 2.993612192778739
+    },
+    "2018": {
+     "valueTWh": 1274.019,
+     "worldTWh": 38559.543,
+     "shareOfReportedWorldPct": 3.3040303408160208
+    },
+    "2019": {
+     "valueTWh": 1461.024,
+     "worldTWh": 39725.438,
+     "shareOfReportedWorldPct": 3.6778046349042137
+    },
+    "2020": {
+     "valueTWh": 1457.164,
+     "worldTWh": 38669.66,
+     "shareOfReportedWorldPct": 3.7682358727746763
+    },
+    "2021": {
+     "valueTWh": 1479.26,
+     "worldTWh": 40465.746,
+     "shareOfReportedWorldPct": 3.655585640259789
+    },
+    "2022": {
+     "valueTWh": 1542.391,
+     "worldTWh": 40503.566,
+     "shareOfReportedWorldPct": 3.808037544151051
+    },
+    "2023": {
+     "valueTWh": 1507.112,
+     "worldTWh": 40642.184,
+     "shareOfReportedWorldPct": 3.7082456001872344
+    },
+    "2024": {
+     "valueTWh": 1501.404,
+     "worldTWh": 41244.516,
+     "shareOfReportedWorldPct": 3.6402512275813828
+    }
+   }
+  },
+  "South America": {
+   "coal_production": {
+    "2013": {
+     "valueTWh": 735.626,
+     "worldTWh": 45969.586,
+     "shareOfReportedWorldPct": 1.6002449967680805
+    },
+    "2014": {
+     "valueTWh": 756.27,
+     "worldTWh": 45840.074,
+     "shareOfReportedWorldPct": 1.6498010016301456
+    },
+    "2015": {
+     "valueTWh": 733.249,
+     "worldTWh": 44567.742,
+     "shareOfReportedWorldPct": 1.6452460167266272
+    },
+    "2016": {
+     "valueTWh": 768.498,
+     "worldTWh": 42191.59,
+     "shareOfReportedWorldPct": 1.8214483028489805
+    },
+    "2017": {
+     "valueTWh": 764.828,
+     "worldTWh": 43193.328,
+     "shareOfReportedWorldPct": 1.7707086613006529
+    },
+    "2018": {
+     "valueTWh": 735.553,
+     "worldTWh": 45150.984,
+     "shareOfReportedWorldPct": 1.6290962783889715
+    },
+    "2019": {
+     "valueTWh": 735.511,
+     "worldTWh": 45802.574,
+     "shareOfReportedWorldPct": 1.6058289649834963
+    },
+    "2020": {
+     "valueTWh": 484.109,
+     "worldTWh": 43486.125,
+     "shareOfReportedWorldPct": 1.1132493410254418
+    },
+    "2021": {
+     "valueTWh": 544.118,
+     "worldTWh": 45359.484,
+     "shareOfReportedWorldPct": 1.1995683196043414
+    },
+    "2022": {
+     "valueTWh": 565.327,
+     "worldTWh": 48548.547,
+     "shareOfReportedWorldPct": 1.1644570948745387
+    },
+    "2023": {
+     "valueTWh": 575.106,
+     "worldTWh": 50074.297,
+     "shareOfReportedWorldPct": 1.1485053899009308
+    },
+    "2024": {
+     "valueTWh": 453.06,
+     "worldTWh": 50618.328,
+     "shareOfReportedWorldPct": 0.8950512944639342
+    }
+   },
+   "oil_production": {
+    "2013": {
+     "valueTWh": 4266.663,
+     "worldTWh": 47965.855,
+     "shareOfReportedWorldPct": 8.895208893910052
+    },
+    "2014": {
+     "valueTWh": 4422.72,
+     "worldTWh": 49090.754,
+     "shareOfReportedWorldPct": 9.009272907073296
+    },
+    "2015": {
+     "valueTWh": 4634.143,
+     "worldTWh": 50735.289,
+     "shareOfReportedWorldPct": 9.133963935831725
+    },
+    "2016": {
+     "valueTWh": 4419.506,
+     "worldTWh": 50937.781,
+     "shareOfReportedWorldPct": 8.676282934272304
+    },
+    "2017": {
+     "valueTWh": 4217.973,
+     "worldTWh": 51008.156,
+     "shareOfReportedWorldPct": 8.26921286862438
+    },
+    "2018": {
+     "valueTWh": 3866.054,
+     "worldTWh": 52229.098,
+     "shareOfReportedWorldPct": 7.402107537832647
+    },
+    "2019": {
+     "valueTWh": 3719.725,
+     "worldTWh": 52156.902,
+     "shareOfReportedWorldPct": 7.1317982038120284
+    },
+    "2020": {
+     "valueTWh": 3532.239,
+     "worldTWh": 48711.66,
+     "shareOfReportedWorldPct": 7.251321346880808
+    },
+    "2021": {
+     "valueTWh": 3530.884,
+     "worldTWh": 49280.457,
+     "shareOfReportedWorldPct": 7.1648767380546
+    },
+    "2022": {
+     "valueTWh": 3842.747,
+     "worldTWh": 51482.996,
+     "shareOfReportedWorldPct": 7.464109120611395
+    },
+    "2023": {
+     "valueTWh": 4293.417,
+     "worldTWh": 52501.914,
+     "shareOfReportedWorldPct": 8.17763900950354
+    },
+    "2024": {
+     "valueTWh": 4565.529,
+     "worldTWh": 52831.051,
+     "shareOfReportedWorldPct": 8.64175312355607
+    }
+   },
+   "gas_production": {
+    "2013": {
+     "valueTWh": 1322.937,
+     "worldTWh": 33702.988,
+     "shareOfReportedWorldPct": 3.925281046297735
+    },
+    "2014": {
+     "valueTWh": 1355.078,
+     "worldTWh": 34451.488,
+     "shareOfReportedWorldPct": 3.9332930989802244
+    },
+    "2015": {
+     "valueTWh": 1397.213,
+     "worldTWh": 35151.949,
+     "shareOfReportedWorldPct": 3.974781028500013
+    },
+    "2016": {
+     "valueTWh": 1435.547,
+     "worldTWh": 35535.949,
+     "shareOfReportedWorldPct": 4.039703568912708
+    },
+    "2017": {
+     "valueTWh": 1462.934,
+     "worldTWh": 36843.316,
+     "shareOfReportedWorldPct": 3.9706903689125053
+    },
+    "2018": {
+     "valueTWh": 1387.24,
+     "worldTWh": 38559.543,
+     "shareOfReportedWorldPct": 3.5976567460874733
+    },
+    "2019": {
+     "valueTWh": 1341.47,
+     "worldTWh": 39725.438,
+     "shareOfReportedWorldPct": 3.376853893970911
+    },
+    "2020": {
+     "valueTWh": 1244.443,
+     "worldTWh": 38669.66,
+     "shareOfReportedWorldPct": 3.2181379407007973
+    },
+    "2021": {
+     "valueTWh": 1311.505,
+     "worldTWh": 40465.746,
+     "shareOfReportedWorldPct": 3.2410251376559325
+    },
+    "2022": {
+     "valueTWh": 1346.966,
+     "worldTWh": 40503.566,
+     "shareOfReportedWorldPct": 3.325549162757669
+    },
+    "2023": {
+     "valueTWh": 1339.929,
+     "worldTWh": 40642.184,
+     "shareOfReportedWorldPct": 3.2968922142569896
+    },
+    "2024": {
+     "valueTWh": 1376.455,
+     "worldTWh": 41244.516,
+     "shareOfReportedWorldPct": 3.3373042854957973
+    }
+   }
+  }
+ }
+}

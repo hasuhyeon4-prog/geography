@@ -1,0 +1,1989 @@
+{
+ "schemaVersion": 1,
+ "about": "geographic-information 강의 근거 개념 카드",
+ "policy": {
+  "absenceMeansFalse": false,
+  "falseDistractors": "명시적 거짓 statements만 사용. complete:false인 세트의 교차 대입 금지.",
+  "sourceLocator": "data/extension-sources/lecture-blocks.json의 blockId; 쪽수 미측정",
+  "scope": "개념 카드이며 기출 재현율 또는 화면 연결 완료를 뜻하지 않는다."
+ },
+ "entities": {
+  "공간 정보": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0201",
+    "locator": "강의 1권 P01 / L1-B0201",
+    "priorAuditExamIds": [
+     "2018_수능_2",
+     "2021_수능_1",
+     "2023_6_6",
+     "2024_수능_1"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0201",
+     "locator": "강의 1권 P01 / L1-B0201",
+     "priorAuditExamIds": [
+      "2018_수능_2",
+      "2021_수능_1",
+      "2023_6_6",
+      "2024_수능_1"
+     ]
+    }
+   ]
+  },
+  "속성 정보": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0201",
+    "locator": "강의 1권 P01 / L1-B0201",
+    "priorAuditExamIds": [
+     "2018_수능_2",
+     "2021_수능_1",
+     "2023_6_6",
+     "2024_수능_1"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0201",
+     "locator": "강의 1권 P01 / L1-B0201",
+     "priorAuditExamIds": [
+      "2018_수능_2",
+      "2021_수능_1",
+      "2023_6_6",
+      "2024_수능_1"
+     ]
+    }
+   ]
+  },
+  "관계 정보": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0201",
+    "locator": "강의 1권 P01 / L1-B0201",
+    "priorAuditExamIds": [
+     "2018_수능_2",
+     "2021_수능_1",
+     "2023_6_6",
+     "2024_수능_1"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0201",
+     "locator": "강의 1권 P01 / L1-B0201",
+     "priorAuditExamIds": [
+      "2018_수능_2",
+      "2021_수능_1",
+      "2023_6_6",
+      "2024_수능_1"
+     ]
+    }
+   ]
+  },
+  "야외 조사": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0205",
+    "locator": "강의 1권 P01 / L1-B0205",
+    "priorAuditExamIds": [
+     "2014_6_5",
+     "2015_9_2",
+     "2015_수능_17",
+     "2016_6_6",
+     "2016_9_11",
+     "2016_수능_11",
+     "2017_수능_6",
+     "2023_6_6"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0205",
+     "locator": "강의 1권 P01 / L1-B0205",
+     "priorAuditExamIds": [
+      "2014_6_5",
+      "2015_9_2",
+      "2015_수능_17",
+      "2016_6_6",
+      "2016_9_11",
+      "2016_수능_11",
+      "2017_수능_6",
+      "2023_6_6"
+     ]
+    }
+   ]
+  },
+  "원격 탐사": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0205",
+    "locator": "강의 1권 P01 / L1-B0205",
+    "priorAuditExamIds": [
+     "2014_6_5",
+     "2015_9_2",
+     "2015_수능_17",
+     "2016_6_6",
+     "2016_9_11",
+     "2016_수능_11",
+     "2017_수능_6",
+     "2023_6_6"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0205",
+     "locator": "강의 1권 P01 / L1-B0205",
+     "priorAuditExamIds": [
+      "2014_6_5",
+      "2015_9_2",
+      "2015_수능_17",
+      "2016_6_6",
+      "2016_9_11",
+      "2016_수능_11",
+      "2017_수능_6",
+      "2023_6_6"
+     ]
+    },
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0210",
+     "locator": "강의 1권 P01 / L1-B0210",
+     "priorAuditExamIds": [
+      "2014_6_5",
+      "2015_9_2",
+      "2015_수능_17",
+      "2021_수능_1",
+      "2023_6_6"
+     ]
+    }
+   ]
+  },
+  "GPS": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0205",
+    "locator": "강의 1권 P01 / L1-B0205",
+    "priorAuditExamIds": [
+     "2014_6_5",
+     "2015_9_2",
+     "2015_수능_17",
+     "2016_6_6",
+     "2016_9_11",
+     "2016_수능_11",
+     "2017_수능_6",
+     "2023_6_6"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0205",
+     "locator": "강의 1권 P01 / L1-B0205",
+     "priorAuditExamIds": [
+      "2014_6_5",
+      "2015_9_2",
+      "2015_수능_17",
+      "2016_6_6",
+      "2016_9_11",
+      "2016_수능_11",
+      "2017_수능_6",
+      "2023_6_6"
+     ]
+    }
+   ]
+  },
+  "지도·인터넷": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0205",
+    "locator": "강의 1권 P01 / L1-B0205",
+    "priorAuditExamIds": [
+     "2014_6_5",
+     "2015_9_2",
+     "2015_수능_17",
+     "2016_6_6",
+     "2016_9_11",
+     "2016_수능_11",
+     "2017_수능_6",
+     "2023_6_6"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0205",
+     "locator": "강의 1권 P01 / L1-B0205",
+     "priorAuditExamIds": [
+      "2014_6_5",
+      "2015_9_2",
+      "2015_수능_17",
+      "2016_6_6",
+      "2016_9_11",
+      "2016_수능_11",
+      "2017_수능_6",
+      "2023_6_6"
+     ]
+    }
+   ]
+  },
+  "GIS": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0205",
+    "locator": "강의 1권 P01 / L1-B0205",
+    "priorAuditExamIds": [
+     "2014_6_5",
+     "2015_9_2",
+     "2015_수능_17",
+     "2016_6_6",
+     "2016_9_11",
+     "2016_수능_11",
+     "2017_수능_6",
+     "2023_6_6"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0205",
+     "locator": "강의 1권 P01 / L1-B0205",
+     "priorAuditExamIds": [
+      "2014_6_5",
+      "2015_9_2",
+      "2015_수능_17",
+      "2016_6_6",
+      "2016_9_11",
+      "2016_수능_11",
+      "2017_수능_6",
+      "2023_6_6"
+     ]
+    }
+   ]
+  },
+  "단계 구분도": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0220",
+    "locator": "강의 1권 P01 / L1-B0220",
+    "priorAuditExamIds": [
+     "2014_수능_4",
+     "2018_6_1",
+     "2018_수능_2",
+     "2019_6_15",
+     "2020_9_2"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0220",
+     "locator": "강의 1권 P01 / L1-B0220",
+     "priorAuditExamIds": [
+      "2014_수능_4",
+      "2018_6_1",
+      "2018_수능_2",
+      "2019_6_15",
+      "2020_9_2"
+     ]
+    }
+   ]
+  },
+  "왜상 지도": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0220",
+    "locator": "강의 1권 P01 / L1-B0220",
+    "priorAuditExamIds": [
+     "2014_수능_4",
+     "2018_6_1",
+     "2018_수능_2",
+     "2019_6_15",
+     "2020_9_2"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0220",
+     "locator": "강의 1권 P01 / L1-B0220",
+     "priorAuditExamIds": [
+      "2014_수능_4",
+      "2018_6_1",
+      "2018_수능_2",
+      "2019_6_15",
+      "2020_9_2"
+     ]
+    }
+   ]
+  },
+  "점묘도": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0220",
+    "locator": "강의 1권 P01 / L1-B0220",
+    "priorAuditExamIds": [
+     "2014_수능_4",
+     "2018_6_1",
+     "2018_수능_2",
+     "2019_6_15",
+     "2020_9_2"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0220",
+     "locator": "강의 1권 P01 / L1-B0220",
+     "priorAuditExamIds": [
+      "2014_수능_4",
+      "2018_6_1",
+      "2018_수능_2",
+      "2019_6_15",
+      "2020_9_2"
+     ]
+    }
+   ]
+  },
+  "유선도": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0220",
+    "locator": "강의 1권 P01 / L1-B0220",
+    "priorAuditExamIds": [
+     "2014_수능_4",
+     "2018_6_1",
+     "2018_수능_2",
+     "2019_6_15",
+     "2020_9_2"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0220",
+     "locator": "강의 1권 P01 / L1-B0220",
+     "priorAuditExamIds": [
+      "2014_수능_4",
+      "2018_6_1",
+      "2018_수능_2",
+      "2019_6_15",
+      "2020_9_2"
+     ]
+    }
+   ]
+  },
+  "이상": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0238",
+    "locator": "강의 1권 P01 / L1-B0238",
+    "priorAuditExamIds": [
+     "2017_6_2",
+     "2020_수능_2",
+     "2024_9_4",
+     "2025_6_3"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0238",
+     "locator": "강의 1권 P01 / L1-B0238",
+     "priorAuditExamIds": [
+      "2017_6_2",
+      "2020_수능_2",
+      "2024_9_4",
+      "2025_6_3"
+     ]
+    }
+   ]
+  },
+  "이하": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0238",
+    "locator": "강의 1권 P01 / L1-B0238",
+    "priorAuditExamIds": [
+     "2017_6_2",
+     "2020_수능_2",
+     "2024_9_4",
+     "2025_6_3"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0238",
+     "locator": "강의 1권 P01 / L1-B0238",
+     "priorAuditExamIds": [
+      "2017_6_2",
+      "2020_수능_2",
+      "2024_9_4",
+      "2025_6_3"
+     ]
+    }
+   ]
+  },
+  "초과": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0238",
+    "locator": "강의 1권 P01 / L1-B0238",
+    "priorAuditExamIds": [
+     "2017_6_2",
+     "2020_수능_2",
+     "2024_9_4",
+     "2025_6_3"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0238",
+     "locator": "강의 1권 P01 / L1-B0238",
+     "priorAuditExamIds": [
+      "2017_6_2",
+      "2020_수능_2",
+      "2024_9_4",
+      "2025_6_3"
+     ]
+    }
+   ]
+  },
+  "미만": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0238",
+    "locator": "강의 1권 P01 / L1-B0238",
+    "priorAuditExamIds": [
+     "2017_6_2",
+     "2020_수능_2",
+     "2024_9_4",
+     "2025_6_3"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0238",
+     "locator": "강의 1권 P01 / L1-B0238",
+     "priorAuditExamIds": [
+      "2017_6_2",
+      "2020_수능_2",
+      "2024_9_4",
+      "2025_6_3"
+     ]
+    }
+   ]
+  },
+  "GPS와 GIS": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0213",
+    "locator": "강의 1권 P01 / L1-B0213",
+    "priorAuditExamIds": [
+     "2014_6_5",
+     "2015_수능_17",
+     "2016_수능_11",
+     "2023_6_6",
+     "2024_수능_1"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0213",
+     "locator": "강의 1권 P01 / L1-B0213",
+     "priorAuditExamIds": [
+      "2014_6_5",
+      "2015_수능_17",
+      "2016_수능_11",
+      "2023_6_6",
+      "2024_수능_1"
+     ]
+    }
+   ]
+  },
+  "중첩 분석": {
+   "type": "concept",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0233",
+    "locator": "강의 1권 P01 / L1-B0233",
+    "priorAuditExamIds": [
+     "2014_수능_4",
+     "2017_6_2"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 1,
+     "section": "P01",
+     "blockId": "L1-B0233",
+     "locator": "강의 1권 P01 / L1-B0233",
+     "priorAuditExamIds": [
+      "2014_수능_4",
+      "2017_6_2"
+     ]
+    }
+   ]
+  }
+ },
+ "sets": {
+  "L1-B0201-c2": {
+   "label": "판정 질문",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "어디인가?",
+    "그곳이 어떤가?",
+    "다른 곳과 어떤 관계인가?"
+   ],
+   "values": {
+    "공간 정보": [
+     "어디인가?"
+    ],
+    "속성 정보": [
+     "그곳이 어떤가?"
+    ],
+    "관계 정보": [
+     "다른 곳과 어떤 관계인가?"
+    ]
+   },
+   "evidence": {
+    "공간 정보": [
+     {
+      "value": "어디인가?",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0201",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 1권 P01 / L1-B0201 / 표 2행",
+       "priorAuditExamIds": [
+        "2018_수능_2",
+        "2021_수능_1",
+        "2023_6_6",
+        "2024_수능_1"
+       ]
+      }
+     }
+    ],
+    "속성 정보": [
+     {
+      "value": "그곳이 어떤가?",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0201",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 1권 P01 / L1-B0201 / 표 3행",
+       "priorAuditExamIds": [
+        "2018_수능_2",
+        "2021_수능_1",
+        "2023_6_6",
+        "2024_수능_1"
+       ]
+      }
+     }
+    ],
+    "관계 정보": [
+     {
+      "value": "다른 곳과 어떤 관계인가?",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0201",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 1권 P01 / L1-B0201 / 표 4행",
+       "priorAuditExamIds": [
+        "2018_수능_2",
+        "2021_수능_1",
+        "2023_6_6",
+        "2024_수능_1"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0201",
+    "locator": "강의 1권 P01 / L1-B0201",
+    "priorAuditExamIds": [
+     "2018_수능_2",
+     "2021_수능_1",
+     "2023_6_6",
+     "2024_수능_1"
+    ]
+   }
+  },
+  "L1-B0201-c3": {
+   "label": "대표 예",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "위·경도, 수도 위치, 사고 지점",
+    "인구, 밀도, GDP, 산업 구조",
+    "거리, 방향, 인접, 연결"
+   ],
+   "values": {
+    "공간 정보": [
+     "위·경도, 수도 위치, 사고 지점"
+    ],
+    "속성 정보": [
+     "인구, 밀도, GDP, 산업 구조"
+    ],
+    "관계 정보": [
+     "거리, 방향, 인접, 연결"
+    ]
+   },
+   "evidence": {
+    "공간 정보": [
+     {
+      "value": "위·경도, 수도 위치, 사고 지점",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0201",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 1권 P01 / L1-B0201 / 표 2행",
+       "priorAuditExamIds": [
+        "2018_수능_2",
+        "2021_수능_1",
+        "2023_6_6",
+        "2024_수능_1"
+       ]
+      }
+     }
+    ],
+    "속성 정보": [
+     {
+      "value": "인구, 밀도, GDP, 산업 구조",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0201",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 1권 P01 / L1-B0201 / 표 3행",
+       "priorAuditExamIds": [
+        "2018_수능_2",
+        "2021_수능_1",
+        "2023_6_6",
+        "2024_수능_1"
+       ]
+      }
+     }
+    ],
+    "관계 정보": [
+     {
+      "value": "거리, 방향, 인접, 연결",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0201",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 1권 P01 / L1-B0201 / 표 4행",
+       "priorAuditExamIds": [
+        "2018_수능_2",
+        "2021_수능_1",
+        "2023_6_6",
+        "2024_수능_1"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0201",
+    "locator": "강의 1권 P01 / L1-B0201",
+    "priorAuditExamIds": [
+     "2018_수능_2",
+     "2021_수능_1",
+     "2023_6_6",
+     "2024_수능_1"
+    ]
+   }
+  },
+  "L1-B0201-c4": {
+   "label": "헷갈리는 경계",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "좌표는 숫자여도 위치를 지정하므로 공간 정보",
+    "대상명 뒤에 얼마나/어떤을 붙일 수 있음",
+    "한 도시의 경도는 공간, A가 B보다 동쪽은 관계"
+   ],
+   "values": {
+    "공간 정보": [
+     "좌표는 숫자여도 위치를 지정하므로 공간 정보"
+    ],
+    "속성 정보": [
+     "대상명 뒤에 얼마나/어떤을 붙일 수 있음"
+    ],
+    "관계 정보": [
+     "한 도시의 경도는 공간, A가 B보다 동쪽은 관계"
+    ]
+   },
+   "evidence": {
+    "공간 정보": [
+     {
+      "value": "좌표는 숫자여도 위치를 지정하므로 공간 정보",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0201",
+       "tableRow": 2,
+       "tableColumn": 4,
+       "locator": "강의 1권 P01 / L1-B0201 / 표 2행",
+       "priorAuditExamIds": [
+        "2018_수능_2",
+        "2021_수능_1",
+        "2023_6_6",
+        "2024_수능_1"
+       ]
+      }
+     }
+    ],
+    "속성 정보": [
+     {
+      "value": "대상명 뒤에 얼마나/어떤을 붙일 수 있음",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0201",
+       "tableRow": 3,
+       "tableColumn": 4,
+       "locator": "강의 1권 P01 / L1-B0201 / 표 3행",
+       "priorAuditExamIds": [
+        "2018_수능_2",
+        "2021_수능_1",
+        "2023_6_6",
+        "2024_수능_1"
+       ]
+      }
+     }
+    ],
+    "관계 정보": [
+     {
+      "value": "한 도시의 경도는 공간, A가 B보다 동쪽은 관계",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0201",
+       "tableRow": 4,
+       "tableColumn": 4,
+       "locator": "강의 1권 P01 / L1-B0201 / 표 4행",
+       "priorAuditExamIds": [
+        "2018_수능_2",
+        "2021_수능_1",
+        "2023_6_6",
+        "2024_수능_1"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0201",
+    "locator": "강의 1권 P01 / L1-B0201",
+    "priorAuditExamIds": [
+     "2018_수능_2",
+     "2021_수능_1",
+     "2023_6_6",
+     "2024_수능_1"
+    ]
+   }
+  },
+  "L1-B0205-c2": {
+   "label": "할 수 있는 일",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "현장 관찰·실측·면담",
+    "비접촉·광역·반복 관측; 지표·대기에서 반사·방출되는 에너지 감지",
+    "현재 위치와 좌표 확인",
+    "이미 표현·공개된 위치와 현황 읽기",
+    "여러 지리 정보 저장·결합·분석·공간 예측"
+   ],
+   "values": {
+    "야외 조사": [
+     "현장 관찰·실측·면담"
+    ],
+    "원격 탐사": [
+     "비접촉·광역·반복 관측; 지표·대기에서 반사·방출되는 에너지 감지"
+    ],
+    "GPS": [
+     "현재 위치와 좌표 확인"
+    ],
+    "지도·인터넷": [
+     "이미 표현·공개된 위치와 현황 읽기"
+    ],
+    "GIS": [
+     "여러 지리 정보 저장·결합·분석·공간 예측"
+    ]
+   },
+   "evidence": {
+    "야외 조사": [
+     {
+      "value": "현장 관찰·실측·면담",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0205",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 1권 P01 / L1-B0205 / 표 2행",
+       "priorAuditExamIds": [
+        "2014_6_5",
+        "2015_9_2",
+        "2015_수능_17",
+        "2016_6_6",
+        "2016_9_11",
+        "2016_수능_11",
+        "2017_수능_6",
+        "2023_6_6"
+       ]
+      }
+     }
+    ],
+    "원격 탐사": [
+     {
+      "value": "비접촉·광역·반복 관측; 지표·대기에서 반사·방출되는 에너지 감지",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0205",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 1권 P01 / L1-B0205 / 표 3행",
+       "priorAuditExamIds": [
+        "2014_6_5",
+        "2015_9_2",
+        "2015_수능_17",
+        "2016_6_6",
+        "2016_9_11",
+        "2016_수능_11",
+        "2017_수능_6",
+        "2023_6_6"
+       ]
+      }
+     }
+    ],
+    "GPS": [
+     {
+      "value": "현재 위치와 좌표 확인",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0205",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 1권 P01 / L1-B0205 / 표 4행",
+       "priorAuditExamIds": [
+        "2014_6_5",
+        "2015_9_2",
+        "2015_수능_17",
+        "2016_6_6",
+        "2016_9_11",
+        "2016_수능_11",
+        "2017_수능_6",
+        "2023_6_6"
+       ]
+      }
+     }
+    ],
+    "지도·인터넷": [
+     {
+      "value": "이미 표현·공개된 위치와 현황 읽기",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0205",
+       "tableRow": 5,
+       "tableColumn": 2,
+       "locator": "강의 1권 P01 / L1-B0205 / 표 5행",
+       "priorAuditExamIds": [
+        "2014_6_5",
+        "2015_9_2",
+        "2015_수능_17",
+        "2016_6_6",
+        "2016_9_11",
+        "2016_수능_11",
+        "2017_수능_6",
+        "2023_6_6"
+       ]
+      }
+     }
+    ],
+    "GIS": [
+     {
+      "value": "여러 지리 정보 저장·결합·분석·공간 예측",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0205",
+       "tableRow": 6,
+       "tableColumn": 2,
+       "locator": "강의 1권 P01 / L1-B0205 / 표 6행",
+       "priorAuditExamIds": [
+        "2014_6_5",
+        "2015_9_2",
+        "2015_수능_17",
+        "2016_6_6",
+        "2016_9_11",
+        "2016_수능_11",
+        "2017_수능_6",
+        "2023_6_6"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0205",
+    "locator": "강의 1권 P01 / L1-B0205",
+    "priorAuditExamIds": [
+     "2014_6_5",
+     "2015_9_2",
+     "2015_수능_17",
+     "2016_6_6",
+     "2016_9_11",
+     "2016_수능_11",
+     "2017_수능_6",
+     "2023_6_6"
+    ]
+   }
+  },
+  "L1-B0205-c3": {
+   "label": "할 수 없는 일·대표 함정",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "광역 반복 관측 장치로 취급하지 않음",
+    "인식·만족도·정확한 감염 여부 직접 측정 X",
+    "유출량·피해액·감염 여부·사상자 수 측정 X",
+    "표시되지 않은 정확한 수치까지 산출 X",
+    "GPS와 동일한 위치 수신 장치가 아님"
+   ],
+   "values": {
+    "야외 조사": [
+     "광역 반복 관측 장치로 취급하지 않음"
+    ],
+    "원격 탐사": [
+     "인식·만족도·정확한 감염 여부 직접 측정 X"
+    ],
+    "GPS": [
+     "유출량·피해액·감염 여부·사상자 수 측정 X"
+    ],
+    "지도·인터넷": [
+     "표시되지 않은 정확한 수치까지 산출 X"
+    ],
+    "GIS": [
+     "GPS와 동일한 위치 수신 장치가 아님"
+    ]
+   },
+   "evidence": {
+    "야외 조사": [
+     {
+      "value": "광역 반복 관측 장치로 취급하지 않음",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0205",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 1권 P01 / L1-B0205 / 표 2행",
+       "priorAuditExamIds": [
+        "2014_6_5",
+        "2015_9_2",
+        "2015_수능_17",
+        "2016_6_6",
+        "2016_9_11",
+        "2016_수능_11",
+        "2017_수능_6",
+        "2023_6_6"
+       ]
+      }
+     }
+    ],
+    "원격 탐사": [
+     {
+      "value": "인식·만족도·정확한 감염 여부 직접 측정 X",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0205",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 1권 P01 / L1-B0205 / 표 3행",
+       "priorAuditExamIds": [
+        "2014_6_5",
+        "2015_9_2",
+        "2015_수능_17",
+        "2016_6_6",
+        "2016_9_11",
+        "2016_수능_11",
+        "2017_수능_6",
+        "2023_6_6"
+       ]
+      }
+     }
+    ],
+    "GPS": [
+     {
+      "value": "유출량·피해액·감염 여부·사상자 수 측정 X",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0205",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 1권 P01 / L1-B0205 / 표 4행",
+       "priorAuditExamIds": [
+        "2014_6_5",
+        "2015_9_2",
+        "2015_수능_17",
+        "2016_6_6",
+        "2016_9_11",
+        "2016_수능_11",
+        "2017_수능_6",
+        "2023_6_6"
+       ]
+      }
+     }
+    ],
+    "지도·인터넷": [
+     {
+      "value": "표시되지 않은 정확한 수치까지 산출 X",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0205",
+       "tableRow": 5,
+       "tableColumn": 3,
+       "locator": "강의 1권 P01 / L1-B0205 / 표 5행",
+       "priorAuditExamIds": [
+        "2014_6_5",
+        "2015_9_2",
+        "2015_수능_17",
+        "2016_6_6",
+        "2016_9_11",
+        "2016_수능_11",
+        "2017_수능_6",
+        "2023_6_6"
+       ]
+      }
+     }
+    ],
+    "GIS": [
+     {
+      "value": "GPS와 동일한 위치 수신 장치가 아님",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0205",
+       "tableRow": 6,
+       "tableColumn": 3,
+       "locator": "강의 1권 P01 / L1-B0205 / 표 6행",
+       "priorAuditExamIds": [
+        "2014_6_5",
+        "2015_9_2",
+        "2015_수능_17",
+        "2016_6_6",
+        "2016_9_11",
+        "2016_수능_11",
+        "2017_수능_6",
+        "2023_6_6"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0205",
+    "locator": "강의 1권 P01 / L1-B0205",
+    "priorAuditExamIds": [
+     "2014_6_5",
+     "2015_9_2",
+     "2015_수능_17",
+     "2016_6_6",
+     "2016_9_11",
+     "2016_수능_11",
+     "2017_수능_6",
+     "2023_6_6"
+    ]
+   }
+  },
+  "L1-B0220-c2": {
+   "label": "표현",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "구역별 값을 색·음영 단계로 표현",
+    "값에 따라 지역 면적·형태를 왜곡",
+    "점으로 분포·밀도를 표현",
+    "이동·흐름을 선의 방향·굵기로 표현"
+   ],
+   "values": {
+    "단계 구분도": [
+     "구역별 값을 색·음영 단계로 표현"
+    ],
+    "왜상 지도": [
+     "값에 따라 지역 면적·형태를 왜곡"
+    ],
+    "점묘도": [
+     "점으로 분포·밀도를 표현"
+    ],
+    "유선도": [
+     "이동·흐름을 선의 방향·굵기로 표현"
+    ]
+   },
+   "evidence": {
+    "단계 구분도": [
+     {
+      "value": "구역별 값을 색·음영 단계로 표현",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0220",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 1권 P01 / L1-B0220 / 표 2행",
+       "priorAuditExamIds": [
+        "2014_수능_4",
+        "2018_6_1",
+        "2018_수능_2",
+        "2019_6_15",
+        "2020_9_2"
+       ]
+      }
+     }
+    ],
+    "왜상 지도": [
+     {
+      "value": "값에 따라 지역 면적·형태를 왜곡",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0220",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 1권 P01 / L1-B0220 / 표 3행",
+       "priorAuditExamIds": [
+        "2014_수능_4",
+        "2018_6_1",
+        "2018_수능_2",
+        "2019_6_15",
+        "2020_9_2"
+       ]
+      }
+     }
+    ],
+    "점묘도": [
+     {
+      "value": "점으로 분포·밀도를 표현",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0220",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 1권 P01 / L1-B0220 / 표 4행",
+       "priorAuditExamIds": [
+        "2014_수능_4",
+        "2018_6_1",
+        "2018_수능_2",
+        "2019_6_15",
+        "2020_9_2"
+       ]
+      }
+     }
+    ],
+    "유선도": [
+     {
+      "value": "이동·흐름을 선의 방향·굵기로 표현",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0220",
+       "tableRow": 5,
+       "tableColumn": 2,
+       "locator": "강의 1권 P01 / L1-B0220 / 표 5행",
+       "priorAuditExamIds": [
+        "2014_수능_4",
+        "2018_6_1",
+        "2018_수능_2",
+        "2019_6_15",
+        "2020_9_2"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0220",
+    "locator": "강의 1권 P01 / L1-B0220",
+    "priorAuditExamIds": [
+     "2014_수능_4",
+     "2018_6_1",
+     "2018_수능_2",
+     "2019_6_15",
+     "2020_9_2"
+    ]
+   }
+  },
+  "L1-B0220-c3": {
+   "label": "읽을 때 먼저 볼 것",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "범례 구간과 경계 포함 여부",
+    "무엇의 값으로 크기가 달라졌는가",
+    "점 하나의 값과 점의 집중",
+    "출발·도착·흐름 규모"
+   ],
+   "values": {
+    "단계 구분도": [
+     "범례 구간과 경계 포함 여부"
+    ],
+    "왜상 지도": [
+     "무엇의 값으로 크기가 달라졌는가"
+    ],
+    "점묘도": [
+     "점 하나의 값과 점의 집중"
+    ],
+    "유선도": [
+     "출발·도착·흐름 규모"
+    ]
+   },
+   "evidence": {
+    "단계 구분도": [
+     {
+      "value": "범례 구간과 경계 포함 여부",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0220",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 1권 P01 / L1-B0220 / 표 2행",
+       "priorAuditExamIds": [
+        "2014_수능_4",
+        "2018_6_1",
+        "2018_수능_2",
+        "2019_6_15",
+        "2020_9_2"
+       ]
+      }
+     }
+    ],
+    "왜상 지도": [
+     {
+      "value": "무엇의 값으로 크기가 달라졌는가",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0220",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 1권 P01 / L1-B0220 / 표 3행",
+       "priorAuditExamIds": [
+        "2014_수능_4",
+        "2018_6_1",
+        "2018_수능_2",
+        "2019_6_15",
+        "2020_9_2"
+       ]
+      }
+     }
+    ],
+    "점묘도": [
+     {
+      "value": "점 하나의 값과 점의 집중",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0220",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 1권 P01 / L1-B0220 / 표 4행",
+       "priorAuditExamIds": [
+        "2014_수능_4",
+        "2018_6_1",
+        "2018_수능_2",
+        "2019_6_15",
+        "2020_9_2"
+       ]
+      }
+     }
+    ],
+    "유선도": [
+     {
+      "value": "출발·도착·흐름 규모",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0220",
+       "tableRow": 5,
+       "tableColumn": 3,
+       "locator": "강의 1권 P01 / L1-B0220 / 표 5행",
+       "priorAuditExamIds": [
+        "2014_수능_4",
+        "2018_6_1",
+        "2018_수능_2",
+        "2019_6_15",
+        "2020_9_2"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0220",
+    "locator": "강의 1권 P01 / L1-B0220",
+    "priorAuditExamIds": [
+     "2014_수능_4",
+     "2018_6_1",
+     "2018_수능_2",
+     "2019_6_15",
+     "2020_9_2"
+    ]
+   }
+  },
+  "L1-B0238-c2": {
+   "label": "기호",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "≥",
+    "≤",
+    ">",
+    "<"
+   ],
+   "values": {
+    "이상": [
+     "≥"
+    ],
+    "이하": [
+     "≤"
+    ],
+    "초과": [
+     ">"
+    ],
+    "미만": [
+     "<"
+    ]
+   },
+   "evidence": {
+    "이상": [
+     {
+      "value": "≥",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0238",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 1권 P01 / L1-B0238 / 표 2행",
+       "priorAuditExamIds": [
+        "2017_6_2",
+        "2020_수능_2",
+        "2024_9_4",
+        "2025_6_3"
+       ]
+      }
+     }
+    ],
+    "이하": [
+     {
+      "value": "≤",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0238",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 1권 P01 / L1-B0238 / 표 3행",
+       "priorAuditExamIds": [
+        "2017_6_2",
+        "2020_수능_2",
+        "2024_9_4",
+        "2025_6_3"
+       ]
+      }
+     }
+    ],
+    "초과": [
+     {
+      "value": ">",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0238",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 1권 P01 / L1-B0238 / 표 4행",
+       "priorAuditExamIds": [
+        "2017_6_2",
+        "2020_수능_2",
+        "2024_9_4",
+        "2025_6_3"
+       ]
+      }
+     }
+    ],
+    "미만": [
+     {
+      "value": "<",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0238",
+       "tableRow": 5,
+       "tableColumn": 2,
+       "locator": "강의 1권 P01 / L1-B0238 / 표 5행",
+       "priorAuditExamIds": [
+        "2017_6_2",
+        "2020_수능_2",
+        "2024_9_4",
+        "2025_6_3"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0238",
+    "locator": "강의 1권 P01 / L1-B0238",
+    "priorAuditExamIds": [
+     "2017_6_2",
+     "2020_수능_2",
+     "2024_9_4",
+     "2025_6_3"
+    ]
+   }
+  },
+  "L1-B0238-c3": {
+   "label": "기준값과 같은 값",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "포함",
+    "제외"
+   ],
+   "values": {
+    "이상": [
+     "포함"
+    ],
+    "이하": [
+     "포함"
+    ],
+    "초과": [
+     "제외"
+    ],
+    "미만": [
+     "제외"
+    ]
+   },
+   "evidence": {
+    "이상": [
+     {
+      "value": "포함",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0238",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 1권 P01 / L1-B0238 / 표 2행",
+       "priorAuditExamIds": [
+        "2017_6_2",
+        "2020_수능_2",
+        "2024_9_4",
+        "2025_6_3"
+       ]
+      }
+     }
+    ],
+    "이하": [
+     {
+      "value": "포함",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0238",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 1권 P01 / L1-B0238 / 표 3행",
+       "priorAuditExamIds": [
+        "2017_6_2",
+        "2020_수능_2",
+        "2024_9_4",
+        "2025_6_3"
+       ]
+      }
+     }
+    ],
+    "초과": [
+     {
+      "value": "제외",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0238",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 1권 P01 / L1-B0238 / 표 4행",
+       "priorAuditExamIds": [
+        "2017_6_2",
+        "2020_수능_2",
+        "2024_9_4",
+        "2025_6_3"
+       ]
+      }
+     }
+    ],
+    "미만": [
+     {
+      "value": "제외",
+      "source": {
+       "kind": "lecture",
+       "volume": 1,
+       "section": "P01",
+       "blockId": "L1-B0238",
+       "tableRow": 5,
+       "tableColumn": 3,
+       "locator": "강의 1권 P01 / L1-B0238 / 표 5행",
+       "priorAuditExamIds": [
+        "2017_6_2",
+        "2020_수능_2",
+        "2024_9_4",
+        "2025_6_3"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0238",
+    "locator": "강의 1권 P01 / L1-B0238",
+    "priorAuditExamIds": [
+     "2017_6_2",
+     "2020_수능_2",
+     "2024_9_4",
+     "2025_6_3"
+    ]
+   }
+  }
+ },
+ "statements": [
+  {
+   "id": "geographic-information-L1-B0210-1",
+   "about": [
+    "원격 탐사"
+   ],
+   "claim": "인공위성이나 항공기에 탑재한 센서는 지표나 대기에서 반사·방출되는 에너지를 감지한다. 넓거나 접근하기 어려운 지역을 관측할 수 있고, 여러 시점의 영상을 비교하면 해안선·빙하 면적·열대림 훼손의 변화를 파악할 수 있다. 황사의 이동 경로, 해빙 면적, 오존층 파괴 범위도 관측 대상이다. 지도에 보이는 지표면만 조사할 수 있는 방법으로 한정하지 않는다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0210",
+    "locator": "강의 1권 P01 / L1-B0210",
+    "priorAuditExamIds": [
+     "2014_6_5",
+     "2015_9_2",
+     "2015_수능_17",
+     "2021_수능_1",
+     "2023_6_6"
+    ]
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "geographic-information-L1-B0213-2",
+   "about": [
+    "GPS와 GIS"
+   ],
+   "claim": "GPS는 위치를 파악하는 도구이고, GIS는 위치를 포함한 여러 정보를 컴퓨터에서 저장·결합·분석하는 체계이다. GPS로 방사능 유출량이나 감염 여부를 측정할 수는 없다. GIS에서는 해류와 오염 정보를 결합해 확산을 예측하거나, 도로망과 차량 위치를 결합해 버스 운행 정보를 제공할 수 있다. 전자 지도는 화면의 지역을 확대·축소하거나 필요한 정보를 골라 표시하기 쉽다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0213",
+    "locator": "강의 1권 P01 / L1-B0213",
+    "priorAuditExamIds": [
+     "2014_6_5",
+     "2015_수능_17",
+     "2016_수능_11",
+     "2023_6_6",
+     "2024_수능_1"
+    ]
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "geographic-information-L1-B0233-3",
+   "about": [
+    "중첩 분석"
+   ],
+   "claim": "모두 만족해야 하는 조건에서는 하나라도 충족하지 못한 후보가 제외된다. 하나 이상 만족하면 되는 조건에서는 조건별 결과의 합집합을 구한다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0233",
+    "locator": "강의 1권 P01 / L1-B0233",
+    "priorAuditExamIds": [
+     "2014_수능_4",
+     "2017_6_2"
+    ]
+   },
+   "practice": "sourceReading",
+   "exhaustive": false
+  },
+  {
+   "id": "explicit-008",
+   "about": [
+    "GPS"
+   ],
+   "claim": "GPS로 방사능 유출량을 직접 측정할 수 있다.",
+   "truth": false,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0213",
+    "locator": "강의 1권 P01 / L1-B0213",
+    "priorAuditExamIds": [
+     "2014_6_5",
+     "2015_수능_17",
+     "2016_수능_11",
+     "2023_6_6",
+     "2024_수능_1"
+    ]
+   },
+   "practice": "recall",
+   "explanation": "GPS는 위치를 파악하는 도구이고, GIS는 위치를 포함한 여러 정보를 컴퓨터에서 저장·결합·분석하는 체계이다. GPS로 방사능 유출량이나 감염 여부를 측정할 수는 없다. GIS에서는 해류와 오염 정보를 결합해 확산을 예측하거나, 도로망과 차량 위치를 결합해 버스 운행 정보를 제공할 수 있다. 전자 지도는 화면의 지역을 확대·축소하거나 필요한 정보를 골라 표시하기 쉽다."
+  },
+  {
+   "id": "explicit-009",
+   "about": [
+    "원격 탐사"
+   ],
+   "claim": "원격 탐사로 주민의 만족도를 직접 측정할 수 있다.",
+   "truth": false,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0212",
+    "locator": "강의 1권 P01 / L1-B0212",
+    "priorAuditExamIds": [
+     "2014_6_5",
+     "2016_6_6",
+     "2016_수능_11",
+     "2017_수능_6"
+    ]
+   },
+   "practice": "recall",
+   "explanation": "현장에 가서 관찰·실측·면담하는 야외 조사는 오래전부터 이루어졌다. 항공기·인공위성의 센서를 이용하는 원격 탐사는 이보다 뒤에 발달했다. 여행 만족도나 피해에 대한 주민 인식처럼 사람의 생각을 묻는 내용은 면담·설문이 적합하다."
+  },
+  {
+   "id": "explicit-010",
+   "about": [
+    "공간 정보"
+   ],
+   "claim": "위도와 경도는 숫자이므로 속성 정보이다.",
+   "truth": false,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0202",
+    "locator": "강의 1권 P01 / L1-B0202",
+    "priorAuditExamIds": [
+     "2016_6_6",
+     "2016_9_11",
+     "2018_9_4",
+     "2018_수능_2",
+     "2021_6_1",
+     "2023_6_6",
+     "2024_6_2",
+     "2026_6_5"
+    ]
+   },
+   "practice": "recall",
+   "explanation": "공간 정보는 대상의 위치나 형태를 나타내고, 속성 정보는 그 대상이 지닌 특징을 나타낸다. 카이로의 위·경도는 공간 정보이고, 카이로의 인구는 속성 정보이다. 기업이 첫 매장을 개장한 연도도 위치를 나타내지 않으므로 공간 정보가 아니다. 다른 도시와의 거리·방향·연결 여부는 두 장소 사이의 관계 정보이다."
+  },
+  {
+   "id": "explicit-011",
+   "about": [
+    "중첩 분석"
+   ],
+   "claim": "중첩 조건을 모두 만족해야 하면 조건별 결과의 합집합을 구한다.",
+   "truth": false,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0228",
+    "locator": "강의 1권 P01 / L1-B0228",
+    "priorAuditExamIds": [
+     "2014_수능_4",
+     "2017_6_2"
+    ]
+   },
+   "practice": "recall",
+   "explanation": "논리어 번역  “모두 만족”은 AND=교집합, “하나 이상”은 OR=합집합이다. 발문의 논리어가 바뀌면 남기는 후보도 바뀐다."
+  },
+  {
+   "id": "explicit-012",
+   "about": [
+    "이상",
+    "이하"
+   ],
+   "claim": "이상과 이하는 기준값을 포함한다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0238",
+    "locator": "강의 1권 P01 / L1-B0238",
+    "priorAuditExamIds": [
+     "2017_6_2",
+     "2020_수능_2",
+     "2024_9_4",
+     "2025_6_3"
+    ]
+   },
+   "practice": "recall",
+   "explanation": "용어 | 기호 | 기준값과 같은 값 | 이상 | ≥ | 포함 | 이하 | ≤ | 포함 | 초과 | > | 제외 | 미만 | < | 제외"
+  },
+  {
+   "id": "explicit-013",
+   "about": [
+    "미만"
+   ],
+   "claim": "미만은 기준값과 같은 값을 포함한다.",
+   "truth": false,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P01",
+    "blockId": "L1-B0238",
+    "locator": "강의 1권 P01 / L1-B0238",
+    "priorAuditExamIds": [
+     "2017_6_2",
+     "2020_수능_2",
+     "2024_9_4",
+     "2025_6_3"
+    ]
+   },
+   "practice": "recall",
+   "explanation": "용어 | 기호 | 기준값과 같은 값 | 이상 | ≥ | 포함 | 이하 | ≤ | 포함 | 초과 | > | 제외 | 미만 | < | 제외"
+  }
+ ],
+ "counts": {
+  "entities": 18,
+  "sets": 9,
+  "statements": 9
+ }
+}

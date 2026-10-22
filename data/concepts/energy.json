@@ -1,0 +1,2139 @@
+{
+ "schemaVersion": 1,
+ "about": "energy 강의 근거 개념 카드",
+ "policy": {
+  "absenceMeansFalse": false,
+  "falseDistractors": "명시적 거짓 statements만 사용. complete:false인 세트의 교차 대입 금지.",
+  "sourceLocator": "data/extension-sources/lecture-blocks.json의 blockId; 쪽수 미측정",
+  "scope": "개념 카드이며 기출 재현율 또는 화면 연결 완료를 뜻하지 않는다."
+ },
+ "entities": {
+  "고갈성 자원": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0302",
+    "locator": "강의 2권 P07 / L2-B0302",
+    "priorAuditExamIds": [
+     "2015_6_6"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0302",
+     "locator": "강의 2권 P07 / L2-B0302",
+     "priorAuditExamIds": [
+      "2015_6_6"
+     ]
+    }
+   ]
+  },
+  "재생 가능한 흐름": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0302",
+    "locator": "강의 2권 P07 / L2-B0302",
+    "priorAuditExamIds": [
+     "2015_6_6"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0302",
+     "locator": "강의 2권 P07 / L2-B0302",
+     "priorAuditExamIds": [
+      "2015_6_6"
+     ]
+    }
+   ]
+  },
+  "재생 가능한 생물 자원": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0302",
+    "locator": "강의 2권 P07 / L2-B0302",
+    "priorAuditExamIds": [
+     "2015_6_6"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0302",
+     "locator": "강의 2권 P07 / L2-B0302",
+     "priorAuditExamIds": [
+      "2015_6_6"
+     ]
+    }
+   ]
+  },
+  "원유 생산": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0324",
+    "locator": "강의 2권 P07 / L2-B0324",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0324",
+     "locator": "강의 2권 P07 / L2-B0324",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "원유 수입": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0324",
+    "locator": "강의 2권 P07 / L2-B0324",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0324",
+     "locator": "강의 2권 P07 / L2-B0324",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "석유 제품 생산": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0324",
+    "locator": "강의 2권 P07 / L2-B0324",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0324",
+     "locator": "강의 2권 P07 / L2-B0324",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "석유 제품 수출": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0324",
+    "locator": "강의 2권 P07 / L2-B0324",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0324",
+     "locator": "강의 2권 P07 / L2-B0324",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "파이프라인 가스": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0332",
+    "locator": "강의 2권 P07 / L2-B0332",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0332",
+     "locator": "강의 2권 P07 / L2-B0332",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "LNG": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0332",
+    "locator": "강의 2권 P07 / L2-B0332",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0332",
+     "locator": "강의 2권 P07 / L2-B0332",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "LPG": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0332",
+    "locator": "강의 2권 P07 / L2-B0332",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0332",
+     "locator": "강의 2권 P07 / L2-B0332",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "바이오": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0433",
+    "locator": "강의 2권 P07 / L2-B0433",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0433",
+     "locator": "강의 2권 P07 / L2-B0433",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "조력": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0433",
+    "locator": "강의 2권 P07 / L2-B0433",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0433",
+     "locator": "강의 2권 P07 / L2-B0433",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "원자력": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0433",
+    "locator": "강의 2권 P07 / L2-B0433",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0433",
+     "locator": "강의 2권 P07 / L2-B0433",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "철광석": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0452",
+    "locator": "강의 2권 P07 / L2-B0452",
+    "priorAuditExamIds": [
+     "2022_6_8"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0452",
+     "locator": "강의 2권 P07 / L2-B0452",
+     "priorAuditExamIds": [
+      "2022_6_8"
+     ]
+    }
+   ]
+  },
+  "구리": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0452",
+    "locator": "강의 2권 P07 / L2-B0452",
+    "priorAuditExamIds": [
+     "2022_6_8"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0452",
+     "locator": "강의 2권 P07 / L2-B0452",
+     "priorAuditExamIds": [
+      "2022_6_8"
+     ]
+    }
+   ]
+  },
+  "보크사이트": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0452",
+    "locator": "강의 2권 P07 / L2-B0452",
+    "priorAuditExamIds": [
+     "2022_6_8"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0452",
+     "locator": "강의 2권 P07 / L2-B0452",
+     "priorAuditExamIds": [
+      "2022_6_8"
+     ]
+    }
+   ]
+  },
+  "리튬": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0452",
+    "locator": "강의 2권 P07 / L2-B0452",
+    "priorAuditExamIds": [
+     "2022_6_8"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0452",
+     "locator": "강의 2권 P07 / L2-B0452",
+     "priorAuditExamIds": [
+      "2022_6_8"
+     ]
+    }
+   ]
+  },
+  "다이아몬드": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0452",
+    "locator": "강의 2권 P07 / L2-B0452",
+    "priorAuditExamIds": [
+     "2022_6_8"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0452",
+     "locator": "강의 2권 P07 / L2-B0452",
+     "priorAuditExamIds": [
+      "2022_6_8"
+     ]
+    }
+   ]
+  },
+  "코발트·탄탈럼": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0452",
+    "locator": "강의 2권 P07 / L2-B0452",
+    "priorAuditExamIds": [
+     "2022_6_8"
+    ]
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0452",
+     "locator": "강의 2권 P07 / L2-B0452",
+     "priorAuditExamIds": [
+      "2022_6_8"
+     ]
+    }
+   ]
+  },
+  "풍력": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0422",
+    "locator": "강의 2권 P07 / L2-B0422",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0422",
+     "locator": "강의 2권 P07 / L2-B0422",
+     "priorAuditExamIds": []
+    }
+   ]
+  },
+  "태양광": {
+   "type": "energy",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0422",
+    "locator": "강의 2권 P07 / L2-B0422",
+    "priorAuditExamIds": []
+   },
+   "sourceRefs": [
+    {
+     "kind": "lecture",
+     "volume": 2,
+     "section": "P07",
+     "blockId": "L2-B0422",
+     "locator": "강의 2권 P07 / L2-B0422",
+     "priorAuditExamIds": []
+    }
+   ]
+  }
+ },
+ "sets": {
+  "L2-B0302-c2": {
+   "label": "포함되는 자원",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "석탄·석유·천연가스, 철광석·구리·우라늄",
+    "태양 복사, 바람, 물의 순환, 지열 등",
+    "목재·농작물 등 바이오매스"
+   ],
+   "values": {
+    "고갈성 자원": [
+     "석탄·석유·천연가스, 철광석·구리·우라늄"
+    ],
+    "재생 가능한 흐름": [
+     "태양 복사, 바람, 물의 순환, 지열 등"
+    ],
+    "재생 가능한 생물 자원": [
+     "목재·농작물 등 바이오매스"
+    ]
+   },
+   "evidence": {
+    "고갈성 자원": [
+     {
+      "value": "석탄·석유·천연가스, 철광석·구리·우라늄",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0302",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0302 / 표 2행",
+       "priorAuditExamIds": [
+        "2015_6_6"
+       ]
+      }
+     }
+    ],
+    "재생 가능한 흐름": [
+     {
+      "value": "태양 복사, 바람, 물의 순환, 지열 등",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0302",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0302 / 표 3행",
+       "priorAuditExamIds": [
+        "2015_6_6"
+       ]
+      }
+     }
+    ],
+    "재생 가능한 생물 자원": [
+     {
+      "value": "목재·농작물 등 바이오매스",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0302",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0302 / 표 4행",
+       "priorAuditExamIds": [
+        "2015_6_6"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0302",
+    "locator": "강의 2권 P07 / L2-B0302",
+    "priorAuditExamIds": [
+     "2015_6_6"
+    ]
+   }
+  },
+  "L2-B0302-c3": {
+   "label": "이용과 재생의 관계",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "형성에 매우 긴 시간이 걸려 인간의 소비 속도로 보충되지 않는다.",
+    "에너지원의 흐름을 이용한다. 적합한 장소·설비와 관리가 필요하다.",
+    "다시 자랄 수 있으나 소비가 재생을 넘거나 토지를 훼손하면 지속성이 약해진다."
+   ],
+   "values": {
+    "고갈성 자원": [
+     "형성에 매우 긴 시간이 걸려 인간의 소비 속도로 보충되지 않는다."
+    ],
+    "재생 가능한 흐름": [
+     "에너지원의 흐름을 이용한다. 적합한 장소·설비와 관리가 필요하다."
+    ],
+    "재생 가능한 생물 자원": [
+     "다시 자랄 수 있으나 소비가 재생을 넘거나 토지를 훼손하면 지속성이 약해진다."
+    ]
+   },
+   "evidence": {
+    "고갈성 자원": [
+     {
+      "value": "형성에 매우 긴 시간이 걸려 인간의 소비 속도로 보충되지 않는다.",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0302",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0302 / 표 2행",
+       "priorAuditExamIds": [
+        "2015_6_6"
+       ]
+      }
+     }
+    ],
+    "재생 가능한 흐름": [
+     {
+      "value": "에너지원의 흐름을 이용한다. 적합한 장소·설비와 관리가 필요하다.",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0302",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0302 / 표 3행",
+       "priorAuditExamIds": [
+        "2015_6_6"
+       ]
+      }
+     }
+    ],
+    "재생 가능한 생물 자원": [
+     {
+      "value": "다시 자랄 수 있으나 소비가 재생을 넘거나 토지를 훼손하면 지속성이 약해진다.",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0302",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0302 / 표 4행",
+       "priorAuditExamIds": [
+        "2015_6_6"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0302",
+    "locator": "강의 2권 P07 / L2-B0302",
+    "priorAuditExamIds": [
+     "2015_6_6"
+    ]
+   }
+  },
+  "L2-B0324-c2": {
+   "label": "통계가 세는 것",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "유전에서 채굴한 원유",
+    "국외에서 들여온 원료",
+    "원유 등을 가공한 제품",
+    "국외로 판매한 가공품"
+   ],
+   "values": {
+    "원유 생산": [
+     "유전에서 채굴한 원유"
+    ],
+    "원유 수입": [
+     "국외에서 들여온 원료"
+    ],
+    "석유 제품 생산": [
+     "원유 등을 가공한 제품"
+    ],
+    "석유 제품 수출": [
+     "국외로 판매한 가공품"
+    ]
+   },
+   "evidence": {
+    "원유 생산": [
+     {
+      "value": "유전에서 채굴한 원유",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0324",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0324 / 표 2행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "원유 수입": [
+     {
+      "value": "국외에서 들여온 원료",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0324",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0324 / 표 3행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "석유 제품 생산": [
+     {
+      "value": "원유 등을 가공한 제품",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0324",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0324 / 표 4행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "석유 제품 수출": [
+     {
+      "value": "국외로 판매한 가공품",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0324",
+       "tableRow": 5,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0324 / 표 5행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0324",
+    "locator": "강의 2권 P07 / L2-B0324",
+    "priorAuditExamIds": []
+   }
+  },
+  "L2-B0324-c3": {
+   "label": "지리적으로 연결되는 조건",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "퇴적 분지·유전, 시추 기술, 투자와 생산 정책",
+    "항만·유조선·파이프라인, 국내 정유 수요",
+    "정유 설비, 자본·기술, 항만과 시장",
+    "정제 능력과 품목별 수요, 국제 가격"
+   ],
+   "values": {
+    "원유 생산": [
+     "퇴적 분지·유전, 시추 기술, 투자와 생산 정책"
+    ],
+    "원유 수입": [
+     "항만·유조선·파이프라인, 국내 정유 수요"
+    ],
+    "석유 제품 생산": [
+     "정유 설비, 자본·기술, 항만과 시장"
+    ],
+    "석유 제품 수출": [
+     "정제 능력과 품목별 수요, 국제 가격"
+    ]
+   },
+   "evidence": {
+    "원유 생산": [
+     {
+      "value": "퇴적 분지·유전, 시추 기술, 투자와 생산 정책",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0324",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0324 / 표 2행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "원유 수입": [
+     {
+      "value": "항만·유조선·파이프라인, 국내 정유 수요",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0324",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0324 / 표 3행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "석유 제품 생산": [
+     {
+      "value": "정유 설비, 자본·기술, 항만과 시장",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0324",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0324 / 표 4행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "석유 제품 수출": [
+     {
+      "value": "정제 능력과 품목별 수요, 국제 가격",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0324",
+       "tableRow": 5,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0324 / 표 5행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0324",
+    "locator": "강의 2권 P07 / L2-B0324",
+    "priorAuditExamIds": []
+   }
+  },
+  "L2-B0332-c2": {
+   "label": "성질과 방식",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "기체 상태로 관로 이동",
+    "메테인이 주성분인 천연가스를 냉각·액화",
+    "주로 프로페인·뷰테인 등을 액화한 연료"
+   ],
+   "values": {
+    "파이프라인 가스": [
+     "기체 상태로 관로 이동"
+    ],
+    "LNG": [
+     "메테인이 주성분인 천연가스를 냉각·액화"
+    ],
+    "LPG": [
+     "주로 프로페인·뷰테인 등을 액화한 연료"
+    ]
+   },
+   "evidence": {
+    "파이프라인 가스": [
+     {
+      "value": "기체 상태로 관로 이동",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0332",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0332 / 표 2행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "LNG": [
+     {
+      "value": "메테인이 주성분인 천연가스를 냉각·액화",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0332",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0332 / 표 3행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "LPG": [
+     {
+      "value": "주로 프로페인·뷰테인 등을 액화한 연료",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0332",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0332 / 표 4행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0332",
+    "locator": "강의 2권 P07 / L2-B0332",
+    "priorAuditExamIds": []
+   }
+  },
+  "L2-B0332-c3": {
+   "label": "구별할 내용",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "육상 연결과 통과 지역의 정치·경제 관계가 중요하다.",
+    "액화·운송·기화의 시설과 에너지가 필요하다.",
+    "LNG와 성분·액화 조건이 다르다. 두 약어를 같은 연료로 읽지 않는다."
+   ],
+   "values": {
+    "파이프라인 가스": [
+     "육상 연결과 통과 지역의 정치·경제 관계가 중요하다."
+    ],
+    "LNG": [
+     "액화·운송·기화의 시설과 에너지가 필요하다."
+    ],
+    "LPG": [
+     "LNG와 성분·액화 조건이 다르다. 두 약어를 같은 연료로 읽지 않는다."
+    ]
+   },
+   "evidence": {
+    "파이프라인 가스": [
+     {
+      "value": "육상 연결과 통과 지역의 정치·경제 관계가 중요하다.",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0332",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0332 / 표 2행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "LNG": [
+     {
+      "value": "액화·운송·기화의 시설과 에너지가 필요하다.",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0332",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0332 / 표 3행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "LPG": [
+     {
+      "value": "LNG와 성분·액화 조건이 다르다. 두 약어를 같은 연료로 읽지 않는다.",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0332",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0332 / 표 4행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0332",
+    "locator": "강의 2권 P07 / L2-B0332",
+    "priorAuditExamIds": []
+   }
+  },
+  "L2-B0433-c2": {
+   "label": "이용 원리",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "유기물의 연소 또는 연료 전환",
+    "조석에 따른 수위 차",
+    "핵분열의 열을 이용한 발전"
+   ],
+   "values": {
+    "바이오": [
+     "유기물의 연소 또는 연료 전환"
+    ],
+    "조력": [
+     "조석에 따른 수위 차"
+    ],
+    "원자력": [
+     "핵분열의 열을 이용한 발전"
+    ]
+   },
+   "evidence": {
+    "바이오": [
+     {
+      "value": "유기물의 연소 또는 연료 전환",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0433",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0433 / 표 2행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "조력": [
+     {
+      "value": "조석에 따른 수위 차",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0433",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0433 / 표 3행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "원자력": [
+     {
+      "value": "핵분열의 열을 이용한 발전",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0433",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0433 / 표 4행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0433",
+    "locator": "강의 2권 P07 / L2-B0433",
+    "priorAuditExamIds": []
+   }
+  },
+  "L2-B0433-c3": {
+   "label": "환경 영향을 설명할 때",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "토지·식량과의 경쟁, 재생 속도, 연소·가공 과정을 함께 고려한다.",
+    "갯벌과 연안 생태계, 시설 입지와 조석 주기의 영향을 고려한다.",
+    "운전 중 배출과 연료·폐기물·안전 문제를 서로 나누어 설명한다."
+   ],
+   "values": {
+    "바이오": [
+     "토지·식량과의 경쟁, 재생 속도, 연소·가공 과정을 함께 고려한다."
+    ],
+    "조력": [
+     "갯벌과 연안 생태계, 시설 입지와 조석 주기의 영향을 고려한다."
+    ],
+    "원자력": [
+     "운전 중 배출과 연료·폐기물·안전 문제를 서로 나누어 설명한다."
+    ]
+   },
+   "evidence": {
+    "바이오": [
+     {
+      "value": "토지·식량과의 경쟁, 재생 속도, 연소·가공 과정을 함께 고려한다.",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0433",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0433 / 표 2행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "조력": [
+     {
+      "value": "갯벌과 연안 생태계, 시설 입지와 조석 주기의 영향을 고려한다.",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0433",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0433 / 표 3행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "원자력": [
+     {
+      "value": "운전 중 배출과 연료·폐기물·안전 문제를 서로 나누어 설명한다.",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0433",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0433 / 표 4행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0433",
+    "locator": "강의 2권 P07 / L2-B0433",
+    "priorAuditExamIds": []
+   }
+  },
+  "L2-B0452-c2": {
+   "label": "대표 용도",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "철강의 원료",
+    "전선·전기 및 전자 산업",
+    "알루미늄의 원료",
+    "이차 전지 등",
+    "보석·산업용 절삭 등",
+    "배터리 재료, 전자 부품 등"
+   ],
+   "values": {
+    "철광석": [
+     "철강의 원료"
+    ],
+    "구리": [
+     "전선·전기 및 전자 산업"
+    ],
+    "보크사이트": [
+     "알루미늄의 원료"
+    ],
+    "리튬": [
+     "이차 전지 등"
+    ],
+    "다이아몬드": [
+     "보석·산업용 절삭 등"
+    ],
+    "코발트·탄탈럼": [
+     "배터리 재료, 전자 부품 등"
+    ]
+   },
+   "evidence": {
+    "철광석": [
+     {
+      "value": "철강의 원료",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0452",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0452 / 표 2행",
+       "priorAuditExamIds": [
+        "2022_6_8"
+       ]
+      }
+     }
+    ],
+    "구리": [
+     {
+      "value": "전선·전기 및 전자 산업",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0452",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0452 / 표 3행",
+       "priorAuditExamIds": [
+        "2022_6_8"
+       ]
+      }
+     }
+    ],
+    "보크사이트": [
+     {
+      "value": "알루미늄의 원료",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0452",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0452 / 표 4행",
+       "priorAuditExamIds": [
+        "2022_6_8"
+       ]
+      }
+     }
+    ],
+    "리튬": [
+     {
+      "value": "이차 전지 등",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0452",
+       "tableRow": 5,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0452 / 표 5행",
+       "priorAuditExamIds": [
+        "2022_6_8"
+       ]
+      }
+     }
+    ],
+    "다이아몬드": [
+     {
+      "value": "보석·산업용 절삭 등",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0452",
+       "tableRow": 6,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0452 / 표 6행",
+       "priorAuditExamIds": [
+        "2022_6_8"
+       ]
+      }
+     }
+    ],
+    "코발트·탄탈럼": [
+     {
+      "value": "배터리 재료, 전자 부품 등",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0452",
+       "tableRow": 7,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0452 / 표 7행",
+       "priorAuditExamIds": [
+        "2022_6_8"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0452",
+    "locator": "강의 2권 P07 / L2-B0452",
+    "priorAuditExamIds": [
+     "2022_6_8"
+    ]
+   }
+  },
+  "L2-B0452-c3": {
+   "label": "지리적 기준점",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "오스트레일리아·브라질, 오래된 안정 지괴와 대규모 광상",
+    "칠레·페루의 안데스, 콩고 민주 공화국·잠비아의 코퍼 벨트",
+    "오스트레일리아·기니, 강한 풍화와 연결되는 광상",
+    "남아메리카의 염수 광상과 오스트레일리아의 경암 광상",
+    "보츠와나·앙골라·남아프리카 공화국 등",
+    "콩고 민주 공화국 등의 광물과 공급망"
+   ],
+   "values": {
+    "철광석": [
+     "오스트레일리아·브라질, 오래된 안정 지괴와 대규모 광상"
+    ],
+    "구리": [
+     "칠레·페루의 안데스, 콩고 민주 공화국·잠비아의 코퍼 벨트"
+    ],
+    "보크사이트": [
+     "오스트레일리아·기니, 강한 풍화와 연결되는 광상"
+    ],
+    "리튬": [
+     "남아메리카의 염수 광상과 오스트레일리아의 경암 광상"
+    ],
+    "다이아몬드": [
+     "보츠와나·앙골라·남아프리카 공화국 등"
+    ],
+    "코발트·탄탈럼": [
+     "콩고 민주 공화국 등의 광물과 공급망"
+    ]
+   },
+   "evidence": {
+    "철광석": [
+     {
+      "value": "오스트레일리아·브라질, 오래된 안정 지괴와 대규모 광상",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0452",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0452 / 표 2행",
+       "priorAuditExamIds": [
+        "2022_6_8"
+       ]
+      }
+     }
+    ],
+    "구리": [
+     {
+      "value": "칠레·페루의 안데스, 콩고 민주 공화국·잠비아의 코퍼 벨트",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0452",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0452 / 표 3행",
+       "priorAuditExamIds": [
+        "2022_6_8"
+       ]
+      }
+     }
+    ],
+    "보크사이트": [
+     {
+      "value": "오스트레일리아·기니, 강한 풍화와 연결되는 광상",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0452",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0452 / 표 4행",
+       "priorAuditExamIds": [
+        "2022_6_8"
+       ]
+      }
+     }
+    ],
+    "리튬": [
+     {
+      "value": "남아메리카의 염수 광상과 오스트레일리아의 경암 광상",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0452",
+       "tableRow": 5,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0452 / 표 5행",
+       "priorAuditExamIds": [
+        "2022_6_8"
+       ]
+      }
+     }
+    ],
+    "다이아몬드": [
+     {
+      "value": "보츠와나·앙골라·남아프리카 공화국 등",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0452",
+       "tableRow": 6,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0452 / 표 6행",
+       "priorAuditExamIds": [
+        "2022_6_8"
+       ]
+      }
+     }
+    ],
+    "코발트·탄탈럼": [
+     {
+      "value": "콩고 민주 공화국 등의 광물과 공급망",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0452",
+       "tableRow": 7,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0452 / 표 7행",
+       "priorAuditExamIds": [
+        "2022_6_8"
+       ]
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0452",
+    "locator": "강의 2권 P07 / L2-B0452",
+    "priorAuditExamIds": [
+     "2022_6_8"
+    ]
+   }
+  },
+  "L2-B0422-r2": {
+   "label": "직접 이용하는 것",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "바람의 운동 에너지",
+    "태양의 빛"
+   ],
+   "values": {
+    "풍력": [
+     "바람의 운동 에너지"
+    ],
+    "태양광": [
+     "태양의 빛"
+    ]
+   },
+   "evidence": {
+    "풍력": [
+     {
+      "value": "바람의 운동 에너지",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0422",
+       "tableRow": 2,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0422 / 표 2행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "태양광": [
+     {
+      "value": "태양의 빛",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0422",
+       "tableRow": 2,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0422 / 표 2행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0422",
+    "locator": "강의 2권 P07 / L2-B0422",
+    "priorAuditExamIds": []
+   }
+  },
+  "L2-B0422-r3": {
+   "label": "유리한 조건",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "지속적인 바람, 부지·해역, 송전망",
+    "풍부한 일사, 낮은 운량, 부지·지붕, 송전망"
+   ],
+   "values": {
+    "풍력": [
+     "지속적인 바람, 부지·해역, 송전망"
+    ],
+    "태양광": [
+     "풍부한 일사, 낮은 운량, 부지·지붕, 송전망"
+    ]
+   },
+   "evidence": {
+    "풍력": [
+     {
+      "value": "지속적인 바람, 부지·해역, 송전망",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0422",
+       "tableRow": 3,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0422 / 표 3행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "태양광": [
+     {
+      "value": "풍부한 일사, 낮은 운량, 부지·지붕, 송전망",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0422",
+       "tableRow": 3,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0422 / 표 3행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0422",
+    "locator": "강의 2권 P07 / L2-B0422",
+    "priorAuditExamIds": []
+   }
+  },
+  "L2-B0422-r4": {
+   "label": "시간별 변화",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "풍속 변화에 따라 출력이 달라진다.",
+    "밤에는 발전하지 않으며 구름·계절의 영향을 받는다."
+   ],
+   "values": {
+    "풍력": [
+     "풍속 변화에 따라 출력이 달라진다."
+    ],
+    "태양광": [
+     "밤에는 발전하지 않으며 구름·계절의 영향을 받는다."
+    ]
+   },
+   "evidence": {
+    "풍력": [
+     {
+      "value": "풍속 변화에 따라 출력이 달라진다.",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0422",
+       "tableRow": 4,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0422 / 표 4행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "태양광": [
+     {
+      "value": "밤에는 발전하지 않으며 구름·계절의 영향을 받는다.",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0422",
+       "tableRow": 4,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0422 / 표 4행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0422",
+    "locator": "강의 2권 P07 / L2-B0422",
+    "priorAuditExamIds": []
+   }
+  },
+  "L2-B0422-r5": {
+   "label": "주요 공간 사례",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "덴마크·독일·북해 연안, 중국·미국 등",
+    "미국·중국·인도·에스파냐·독일 등의 다양한 입지"
+   ],
+   "values": {
+    "풍력": [
+     "덴마크·독일·북해 연안, 중국·미국 등"
+    ],
+    "태양광": [
+     "미국·중국·인도·에스파냐·독일 등의 다양한 입지"
+    ]
+   },
+   "evidence": {
+    "풍력": [
+     {
+      "value": "덴마크·독일·북해 연안, 중국·미국 등",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0422",
+       "tableRow": 5,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0422 / 표 5행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "태양광": [
+     {
+      "value": "미국·중국·인도·에스파냐·독일 등의 다양한 입지",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0422",
+       "tableRow": 5,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0422 / 표 5행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0422",
+    "locator": "강의 2권 P07 / L2-B0422",
+    "priorAuditExamIds": []
+   }
+  },
+  "L2-B0422-r6": {
+   "label": "사회적 조건",
+   "template": "{value}",
+   "exclusive": false,
+   "complete": false,
+   "options": [
+    "설치 비용·소음·경관·주민 수용성과 정책",
+    "설치 비용·토지 이용·저장·정책과 전력 수요"
+   ],
+   "values": {
+    "풍력": [
+     "설치 비용·소음·경관·주민 수용성과 정책"
+    ],
+    "태양광": [
+     "설치 비용·토지 이용·저장·정책과 전력 수요"
+    ]
+   },
+   "evidence": {
+    "풍력": [
+     {
+      "value": "설치 비용·소음·경관·주민 수용성과 정책",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0422",
+       "tableRow": 6,
+       "tableColumn": 2,
+       "locator": "강의 2권 P07 / L2-B0422 / 표 6행",
+       "priorAuditExamIds": []
+      }
+     }
+    ],
+    "태양광": [
+     {
+      "value": "설치 비용·토지 이용·저장·정책과 전력 수요",
+      "source": {
+       "kind": "lecture",
+       "volume": 2,
+       "section": "P07",
+       "blockId": "L2-B0422",
+       "tableRow": 6,
+       "tableColumn": 3,
+       "locator": "강의 2권 P07 / L2-B0422 / 표 6행",
+       "priorAuditExamIds": []
+      }
+     }
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P07",
+    "blockId": "L2-B0422",
+    "locator": "강의 2권 P07 / L2-B0422",
+    "priorAuditExamIds": []
+   }
+  }
+ },
+ "statements": [
+  {
+   "id": "existing-e01",
+   "about": [],
+   "claim": "오스트레일리아와 인도네시아는 대표적인 석탄 수출국이다.",
+   "truth": true,
+   "explanation": "아시아 소비 시장과 연결되는 광산·항만.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e01",
+    "locator": "2권 P07"
+   },
+   "period": "2권 P07의 강의 범위 · 통계 연도 미확인",
+   "practice": "recall"
+  },
+  {
+   "id": "existing-e02",
+   "about": [],
+   "claim": "석탄 수출이 많은 오스트레일리아는 세계 최대 석탄 생산국이다.",
+   "truth": false,
+   "explanation": "석탄 생산 비중은 중국이 가장 크다. 수출이 많다는 사실을 최대 생산국으로 바꾸지 않는다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e02",
+    "locator": "2024학년도 수능 18번"
+   },
+   "period": "2024학년도 수능 18번의 강의 범위 · 통계 연도 미확인",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-e03",
+   "about": [],
+   "claim": "중국은 석탄 생산 규모가 크므로 석탄을 수입하지 않는다.",
+   "truth": false,
+   "explanation": "발전·산업 수요가 매우 커서 국내 생산과 수입이 함께 이루어진다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e03",
+    "locator": "2026학년도 9월 13번"
+   },
+   "period": "2026학년도 9월 13번의 강의 범위 · 통계 연도 미확인",
+   "practice": "recall"
+  },
+  {
+   "id": "existing-e04",
+   "about": [],
+   "claim": "2022년 석유 생산은 미국·사우디아라비아·러시아의 비중이 크다.",
+   "truth": true,
+   "explanation": "천연가스는 미국·러시아·이란의 비중이 크다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e04",
+    "locator": "2024학년도 수능 18번"
+   },
+   "period": "2022년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-e05",
+   "about": [],
+   "claim": "2013년 천연가스 생산 상위 5개국에는 카타르와 이란이 포함된다.",
+   "truth": true,
+   "explanation": "이란과 카타르는 서남아시아 국가이다. 카타르의 옛 상위 5위 포함 여부를 따로 외우지 않고 자료와 위치를 연결한다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e05",
+    "locator": "2016학년도 6월 12번"
+   },
+   "period": "2013년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-e06",
+   "about": [],
+   "claim": "2013년 석탄 생산 상위 5개국에는 러시아가 포함된다.",
+   "truth": false,
+   "explanation": "미국은 북아메리카, 오스트레일리아는 오세아니아이다. 생산국 목록과 대륙 위치를 연결한다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e06",
+    "locator": "2016학년도 6월 12번"
+   },
+   "period": "2013년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-e07",
+   "about": [],
+   "claim": "석유는 석탄보다 국제 이동량이 많다.",
+   "truth": true,
+   "explanation": "생산 지역의 편재와 큰 수송 수요, 선박·관로의 발달.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e07",
+    "locator": "2014학년도 9월 15번"
+   },
+   "period": "2011년 자료 · 2014학년도 9월 15번",
+   "practice": "recall"
+  },
+  {
+   "id": "existing-e08",
+   "about": [],
+   "claim": "2011년 미국과 중국은 석유 소비량이 생산량보다 많았다.",
+   "truth": true,
+   "explanation": "소비량÷생산량×100이 100을 넘으면 소비량이 더 크다. 이것을 곧바로 수입 의존도라고 부르지는 않는다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e08",
+    "locator": "2014학년도 9월 15번"
+   },
+   "period": "2011년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-e09",
+   "about": [],
+   "claim": "2018년 서남아시아의 석유 수출량은 앵글로아메리카보다 적다.",
+   "truth": false,
+   "explanation": "지역 합계가 크다는 사실은 그 지역 모든 국가의 특성이 같다는 뜻이 아니다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e09",
+    "locator": "2021학년도 수능 19번"
+   },
+   "period": "2018년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-e10",
+   "about": [],
+   "claim": "석유는 산업용보다 수송용 소비 비율이 높다.",
+   "truth": true,
+   "explanation": "기출에서 석유를 구별하는 대표 용도는 수송이다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e10",
+    "locator": "2권 P07"
+   },
+   "period": "2권 P07의 강의 범위 · 통계 연도 미확인",
+   "practice": "recall"
+  },
+  {
+   "id": "existing-e11",
+   "about": [],
+   "claim": "2018년 러시아와 이란의 1차 에너지 소비에서 가장 큰 비중은 석유이다.",
+   "truth": false,
+   "explanation": "표의 최대 에너지원은 두 나라 모두 천연가스이다. 에너지원의 이름과 지표를 연결한다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e11",
+    "locator": "2018년 1차 에너지 자료"
+   },
+   "period": "2018년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-e12",
+   "about": [],
+   "claim": "2018년 프랑스의 1차 에너지 소비에서는 원자력 비중이 크다.",
+   "truth": true,
+   "explanation": "국가 내부 비중과 세계 발전 총량의 순위는 다르다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e12",
+    "locator": "2018년 1차 에너지 자료"
+   },
+   "period": "2018년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-e13",
+   "about": [],
+   "claim": "2025년 브라질의 1차 에너지 소비에서 가장 큰 비중은 수력이다.",
+   "truth": false,
+   "explanation": "수력 비중이 높은 편이라는 특징과 최대 에너지원이라는 판단은 다르다. 제시 자료의 최대 비중은 석유이다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e13",
+    "locator": "2027학년도 9월 10번"
+   },
+   "period": "2025년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-e14",
+   "about": [],
+   "claim": "2015년 네팔의 전력 생산에서 수력 비중은 99.8%이다.",
+   "truth": true,
+   "explanation": "표의 분모는 전력 생산이다. 1차 에너지 전체와 다른 지표이다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e14",
+    "locator": "2015년 전력 자료"
+   },
+   "period": "2015년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-e15",
+   "about": [],
+   "claim": "자국 발전에서 수력 비중이 높은 노르웨이는 세계 최대 수력 발전국이다.",
+   "truth": false,
+   "explanation": "국가 내부 비중이 높다는 사실과 세계 1위는 다르다. 2019년 수력 최대 발전국은 중국.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e15",
+    "locator": "2권 P07"
+   },
+   "period": "2019년 발전량 비교",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-e16",
+   "about": [],
+   "claim": "2019년 수력과 풍력의 최대 발전국은 모두 중국이다.",
+   "truth": true,
+   "explanation": "다만 두 에너지원의 세계 발전량은 수력이 더 크다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e16",
+    "locator": "2019년 발전 자료"
+   },
+   "period": "2019년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-e17",
+   "about": [],
+   "claim": "2019년 세계 발전량은 풍력이 수력보다 많다.",
+   "truth": false,
+   "explanation": "세계 발전량은 수력이 풍력보다 크다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e17",
+    "locator": "2019년 발전 자료"
+   },
+   "period": "2019년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-e18",
+   "about": [],
+   "claim": "아이슬란드는 세계 최대 지열 발전국이다.",
+   "truth": false,
+   "explanation": "자국 이용 비중과 세계 발전 총량을 구별한다. 이 기출 자료 시기의 세계 최대는 미국, 유럽 최대는 이탈리아이다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e18",
+    "locator": "2025학년도 수능 9번"
+   },
+   "period": "2021년 발전량 · 2025학년도 수능 9번",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-e19",
+   "about": [],
+   "claim": "천연가스는 같은 에너지를 얻을 때 석탄보다 이산화 탄소 배출이 적은 편이다.",
+   "truth": true,
+   "explanation": "그래도 화석 연료이므로 연소 시 이산화 탄소를 배출한다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e19",
+    "locator": "2권 P07"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-e20",
+   "about": [],
+   "claim": "OPEC은 모든 산유국이 가입한 기구이다.",
+   "truth": false,
+   "explanation": "석유 수출국들이 석유 정책을 협의하는 기구이며 모든 산유국의 모임이 아니다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e20",
+    "locator": "2권 P07"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-e21",
+   "about": [],
+   "claim": "철광석의 대표 산지는 오스트레일리아와 브라질이다.",
+   "truth": true,
+   "explanation": "오래된 안정 지괴와 대규모 광상.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e21",
+    "locator": "2권 P07"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-e22",
+   "about": [],
+   "claim": "보크사이트를 많이 캐는 나라가 알루미늄 제품도 가장 많이 만든다.",
+   "truth": false,
+   "explanation": "채굴과 제련·가공 단계는 다른 나라에서 이루어질 수 있다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e22",
+    "locator": "2권 P07"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-e23",
+   "about": [],
+   "claim": "우유니 소금 사막이 있으므로 볼리비아는 리튬 최대 생산국이다.",
+   "truth": false,
+   "explanation": "염수 광상의 존재만으로 최대 생산국을 추론하지 않는다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e23",
+    "locator": "2권 P07"
+   },
+   "period": null,
+   "practice": "recall"
+  },
+  {
+   "id": "existing-e24",
+   "about": [],
+   "claim": "2020년 오스트레일리아 철광석의 최대 수입국은 중국이다.",
+   "truth": true,
+   "explanation": "오스트레일리아의 자원 공급과 동아시아의 원료 수요.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e24",
+    "locator": "2026학년도 9월 11번"
+   },
+   "period": "2020년 · 강의 수록 자료",
+   "practice": "suppliedData"
+  },
+  {
+   "id": "existing-e25",
+   "about": [],
+   "claim": "사우디아라비아·이란·카자흐스탄 비교에서 천연가스 생산은 사우디아라비아가 가장 많다.",
+   "truth": false,
+   "explanation": "이 자료에서 석유 최대는 사우디아라비아, 천연가스 최대는 이란으로 다르다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e25",
+    "locator": "2022학년도 수능 10번"
+   },
+   "period": "2022학년도 수능 10번의 자료 · 최신 순위 아님",
+   "practice": "reading"
+  },
+  {
+   "id": "existing-e26",
+   "about": [],
+   "claim": "천연가스 생산량이 많은 나라는 수출량도 반드시 가장 많다.",
+   "truth": false,
+   "explanation": "이란처럼 생산과 국내 소비가 모두 클 수 있다.",
+   "source": {
+    "kind": "existingAuditedOX",
+    "id": "e26",
+    "locator": "2권 P10"
+   },
+   "period": null,
+   "practice": "suppliedData"
+  }
+ ],
+ "counts": {
+  "entities": 21,
+  "sets": 15,
+  "statements": 26
+ }
+}

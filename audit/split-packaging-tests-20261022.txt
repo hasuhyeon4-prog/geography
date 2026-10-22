@@ -1,0 +1,34 @@
+✔ all delivered lecture property values equal their exact source table cells (5.193405ms)
+✔ source passages and country clues remain verbatim source text (13.079548ms)
+✔ source-country facts have individual evidence and never mark omissions false (0.578441ms)
+✔ every supplied coordinate is an exact existing app point with its identity (10.073549ms)
+✔ all 19 requested countries have actual lecture evidence; absent eligibility stays visible (11.40132ms)
+✔ climate family and required landform types are present and distinct (2.334677ms)
+✔ old maps and treaty identity use actual names, not adoption years as entity names (0.701477ms)
+✔ R9 OX additions preserve all pre-existing question IDs and data byte-for-byte as JSON (4.030283ms)
+✔ urban and rural population sums reconcile to UN totals with original rounding (28.479052ms)
+✔ fertility UN regions retain official grouping instead of a mean of country TFRs (0.534706ms)
+✔ IRENA geothermal anchors, units and original missing observations survive parsing (0.360493ms)
+✔ migrant stocks reconcile by sex without becoming annual flows (9.684973ms)
+✔ religion percentages and population always share a source year, with all seven groups (1.211676ms)
+✔ mineral shares keep ore/metal-content units and their original row IDs (6.660827ms)
+✔ EIA trade and reserves retain stock/flow definitions and physical units (24.999329ms)
+✔ energy recall candidates require eight unanimous years and do not turn pair orders into top ranks (10.168882ms)
+✔ new climate source cannot manufacture missing means or unblock known suspect values (0.3646ms)
+✔ all outputs reproduce deterministically from shipped inputs without a network call (11499.741918ms)
+✔ country comparisons use the stated indicator in eight or more common years (4.258367ms)
+✔ reserves preserve actual 2020 endpoint, source regions, stock units and same-year world denominator (1.427831ms)
+✔ post-2020 oil trade separates crude/products and original workbook vintages (0.776891ms)
+✔ 2013 ASM source matches all three lecture totals and uses shipments, not GDP (0.420363ms)
+✔ Australian trade keeps goods/fiscal/calendar distinctions and suppressed values (12.420035ms)
+✔ all 19 countries have usable scoped identification, with historical Angola requiring its given table (10.976379ms)
+✔ linked sacred cities and conflict geometry preserve exact original locations (11.383593ms)
+✔ new world-city relationship and supplementary languages retain their evidence limits (0.303958ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11835.804447

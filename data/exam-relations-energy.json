@@ -1,0 +1,200 @@
+{
+ "schemaVersion": 2,
+ "check": {
+  "window": [
+   "2015",
+   "2025"
+  ],
+  "minYears": 8
+ },
+ "relations": [
+  {
+   "indicator": "primary_energy_consumption",
+   "pairs": [
+    [
+     "중국",
+     "미국"
+    ]
+   ],
+   "basis": "강의 2권 P07 / L2-B0368",
+   "validationId": "primary_energy_consumption:중국>미국"
+  },
+  {
+   "indicator": "primary_energy_consumption",
+   "pairs": [
+    [
+     "미국",
+     "인도"
+    ]
+   ],
+   "basis": "강의 2권 P07 / L2-B0368",
+   "validationId": "primary_energy_consumption:미국>인도"
+  },
+  {
+   "indicator": "energy_per_capita",
+   "pairs": [
+    [
+     "미국",
+     "중국"
+    ]
+   ],
+   "basis": "강의 2권 P07 / L2-B0368",
+   "validationId": "energy_per_capita:미국>중국"
+  },
+  {
+   "indicator": "gas_consumption",
+   "pairs": [
+    [
+     "미국",
+     "중국"
+    ]
+   ],
+   "basis": "강의 2권 P07 / L2-B0368",
+   "validationId": "gas_consumption:미국>중국"
+  },
+  {
+   "indicator": "hydro_share_energy",
+   "pairs": [
+    [
+     "브라질",
+     "러시아"
+    ]
+   ],
+   "basis": "강의 2권 P07 / L2-B0385",
+   "validationId": "hydro_share_energy:브라질>러시아"
+  }
+ ],
+ "orders": [
+  {
+   "composition": "primaryEnergy",
+   "orders": {
+    "중국": [
+     "coal",
+     "oil"
+    ]
+   },
+   "basis": "강의 2권 P07 / L2-B0373",
+   "validationId": "중국:primary-top-2"
+  },
+  {
+   "composition": "primaryEnergy",
+   "orders": {
+    "인도": [
+     "coal",
+     "oil"
+    ]
+   },
+   "basis": "강의 2권 P07 / L2-B0373",
+   "validationId": "인도:primary-top-2"
+  },
+  {
+   "composition": "primaryEnergy",
+   "orders": {
+    "러시아": [
+     "gas",
+     "oil"
+    ]
+   },
+   "basis": "강의 2권 P07 / L2-B0375",
+   "validationId": "러시아:primary-top-2"
+  },
+  {
+   "composition": "primaryEnergy",
+   "orders": {
+    "이란": [
+     "gas",
+     "oil"
+    ]
+   },
+   "basis": "강의 2권 P07 / L2-B0375",
+   "validationId": "이란:primary-top-2"
+  },
+  {
+   "composition": "primaryEnergy",
+   "orders": {
+    "브라질": [
+     "oil"
+    ]
+   },
+   "basis": "강의 2권 P07 / L2-B0373",
+   "validationId": "브라질:primary-top-1"
+  },
+  {
+   "composition": "primaryEnergy",
+   "orders": {
+    "남아프리카 공화국": [
+     "coal"
+    ]
+   },
+   "basis": "강의 2권 P07 / L2-B0385",
+   "validationId": "남아프리카 공화국:primary-top-1"
+  }
+ ],
+ "validatedIndicatorOrders": [
+  {
+   "entity": "중국",
+   "indicators": [
+    "coal_share_energy",
+    "oil_share_energy"
+   ],
+   "source": "강의 2권 P07 / L2-B0373",
+   "scope": "동일 국가의 해당 두 에너지원 비교. 전체 에너지원 1·2위를 뜻하지 않는다.",
+   "validationId": "중국:coal_share_energy>oil_share_energy"
+  },
+  {
+   "entity": "인도",
+   "indicators": [
+    "coal_share_energy",
+    "oil_share_energy"
+   ],
+   "source": "강의 2권 P07 / L2-B0373",
+   "scope": "동일 국가의 해당 두 에너지원 비교. 전체 에너지원 1·2위를 뜻하지 않는다.",
+   "validationId": "인도:coal_share_energy>oil_share_energy"
+  },
+  {
+   "entity": "러시아",
+   "indicators": [
+    "gas_share_energy",
+    "oil_share_energy"
+   ],
+   "source": "강의 2권 P07 / L2-B0373",
+   "scope": "동일 국가의 해당 두 에너지원 비교. 전체 에너지원 1·2위를 뜻하지 않는다.",
+   "validationId": "러시아:gas_share_energy>oil_share_energy"
+  },
+  {
+   "entity": "이란",
+   "indicators": [
+    "gas_share_energy",
+    "oil_share_energy"
+   ],
+   "source": "강의 2권 P07 / L2-B0373",
+   "scope": "동일 국가의 해당 두 에너지원 비교. 전체 에너지원 1·2위를 뜻하지 않는다.",
+   "validationId": "이란:gas_share_energy>oil_share_energy"
+  },
+  {
+   "entity": "브라질",
+   "indicators": [
+    "oil_share_energy",
+    "hydro_share_energy"
+   ],
+   "source": "강의 2권 P07 / L2-B0377",
+   "scope": "동일 국가의 해당 두 에너지원 비교. 전체 에너지원 1·2위를 뜻하지 않는다.",
+   "validationId": "브라질:oil_share_energy>hydro_share_energy"
+  }
+ ],
+ "candidateAudit": "audit/energy-validation-20261022.json",
+ "groups": {
+  "BRICS-2021-given": {
+   "entities": [
+    "브라질",
+    "러시아",
+    "인도",
+    "중국",
+    "남아프리카 공화국"
+   ],
+   "sourceBlockId": "L2-B0385",
+   "period": 2021
+  }
+ },
+ "policy": "relations·orders는 기존 관계 형식. primaryEnergy 구성과 지표를 엔진에 등록해야 한다. validatedIndicatorOrders는 별도 어댑터 필요. 강의에 G7 비교 근거가 없어 G7의 임의 전체 순위는 허용하지 않는다."
+}

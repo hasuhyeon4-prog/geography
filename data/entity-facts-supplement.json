@@ -1,0 +1,56 @@
+{
+ "schemaVersion": 1,
+ "practice": "suppliedData",
+ "complete": false,
+ "policy": "강의·기출의 명시적 회상 근거가 없어 새 언어 사례는 제시자료로만 사용. 공용어와 모든 주민의 모어를 동일시하지 않는다.",
+ "facts": [
+  {
+   "country": "이란",
+   "kind": "languages",
+   "values": [
+    "페르시아어"
+   ],
+   "source": {
+    "publisher": "Ministry of Foreign Affairs, Iran",
+    "url": "https://en.mfa.ir/portal/viewpage/3996/general-view",
+    "retrievedAt": "2026-10-22",
+    "retrieval": "공식 페이지의 검색 색인 본문. 원 HTML은 redirect loop로 미확보.",
+    "evidence": "Official language (of Iran) is Persian.",
+    "verification": "indexed-primary-source",
+    "recallEligible": false
+   }
+  },
+  {
+   "country": "튀르키예",
+   "kind": "languages",
+   "values": [
+    "튀르키예어"
+   ],
+   "source": {
+    "publisher": "Grand National Assembly of Türkiye",
+    "snapshot": "turkiye-constitution.pdf",
+    "article": 3,
+    "publication": "May 2019",
+    "url": "https://cdn.tbmm.gov.tr/TbmmWeb/Yayinlar/Dosya/ea266075-d26a-4bad-8007-efa2b7b773a8.pdf",
+    "evidence": "Its language is Turkish.",
+    "recallEligible": false
+   }
+  },
+  {
+   "country": "케냐",
+   "kind": "languages",
+   "values": [
+    "스와힐리어",
+    "영어"
+   ],
+   "source": {
+    "publisher": "Kenya Law Reform Commission",
+    "snapshot": "kenya-languages.html",
+    "article": 7,
+    "url": "https://klrc.go.ke/index.php/constitution-of-kenya/108-chapter-two-the-republic/173-7-national-official-and-other-languages",
+    "evidence": "The official languages of the Republic are Kiswahili and English.",
+    "recallEligible": false
+   }
+  }
+ ]
+}

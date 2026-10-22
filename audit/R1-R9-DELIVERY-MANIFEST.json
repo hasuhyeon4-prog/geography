@@ -1,0 +1,697 @@
+{
+ "date": "2026-10-22",
+ "revision": "보완판",
+ "engineIntegrated": false,
+ "r1PreservedFiles": 13,
+ "r1ChangedProgressDocument": [
+  "docs/DATA-REQUESTS.md"
+ ],
+ "files": [
+  {
+   "path": "README.md",
+   "bytes": 3910,
+   "sha256": "c863cf9eb90133d764b0f1d36771bcf9715268321457319aaead22a87db469ae"
+  },
+  {
+   "path": "assets/fact-statements.js",
+   "bytes": 102686,
+   "sha256": "e1b2f739aeb6fabcc354236e0f28cc41e0b744e12d3ae82674a7e38c11cfdf0a"
+  },
+  {
+   "path": "assets/source-figures/lecture1-rId122.png",
+   "bytes": 436719,
+   "sha256": "5ac4986de29d8a3d87148e8c3a9205088927e521a52deb1e66dca7a3d144721a"
+  },
+  {
+   "path": "assets/source-figures/lecture1-rId123.png",
+   "bytes": 694714,
+   "sha256": "738e08e28a403e3c69db9a90e2f8b92d11896f2ed0cac90a52ab9a4f2a43b788"
+  },
+  {
+   "path": "assets/source-figures/lecture1-rId124.png",
+   "bytes": 739671,
+   "sha256": "eb3e70055f363fe60a2dc09ab615b6389ea6c891f73ccde01619599f733e04a5"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId180.png",
+   "bytes": 111029,
+   "sha256": "8128f11e3cde2a94a5284d73fc7661884c15d56f7a55e2ca6db5a5f073554a35"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId181.png",
+   "bytes": 33739,
+   "sha256": "573cd72d4a14949c8df8f2f0a655520b4fe53ca4c919a0b57c1d192c9b4d6b9f"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId182.png",
+   "bytes": 212111,
+   "sha256": "1c82c64e98d20e7ef23e11ff46fcaef39b1a69ac8867037d0d7e86423e13eb3a"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId184.png",
+   "bytes": 70229,
+   "sha256": "d94e52c80cf29915851fe5712cba9c5cdb413b3edfb7276275e59ad80076a2f5"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId185.png",
+   "bytes": 78242,
+   "sha256": "bfe241bba43603cce929ee55878272b187e33812331cc5d6d1cb377ef1a49e8b"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId186.png",
+   "bytes": 88455,
+   "sha256": "68ce19c99a2d28a72130eadb9d6cb185f3bf2fa12f2734f559e876672b95e815"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId187.png",
+   "bytes": 125214,
+   "sha256": "7f3216f29b1eb26eb72d61872951eb95e7644e5499e736e0a81aae1faa287953"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId188.png",
+   "bytes": 75675,
+   "sha256": "f4c644df608e0d758b520651604d4c4f26b3bf84567f92c846eae11c6556041f"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId190.png",
+   "bytes": 87173,
+   "sha256": "d7b4cacece0445ea1dd19f0630d6bc7a66653cd7d6ca38f7e20c97fd96305292"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId191.png",
+   "bytes": 65503,
+   "sha256": "ab6f43203f5b781b46b620d1e29eed0f10a78608b237f60f18aa6ba4c7f72b08"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId192.png",
+   "bytes": 119504,
+   "sha256": "d5f9ca49b286202811252ba09471816cfe5d757f5d384ff8b1f7db77a44b7d42"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId193.png",
+   "bytes": 92687,
+   "sha256": "a0bd205f2bd0cfaa35dc70b105e4cd84b4bb05b646c2d5a2c35e9b521cd4b1da"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId194.png",
+   "bytes": 121007,
+   "sha256": "252e9ea3ebfacf3ba3db5bf71853e6a390a10eea576ee3433788588df985754f"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId195.png",
+   "bytes": 52330,
+   "sha256": "bcd0d8d75f6f11e5bc3dc011b4b6be60047dd31b8ca9b6c972643937843a36c5"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId196.png",
+   "bytes": 85962,
+   "sha256": "a5b40d95bff3c6fbd80ed58406d606b808952c98dbeffb320dd01eb824ca3f8b"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId197.png",
+   "bytes": 106521,
+   "sha256": "063f7153b997d40616405dafa422d6eade98eb9c85ffa65842b1c3103610fc97"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId200.png",
+   "bytes": 45515,
+   "sha256": "2809b76e54d5236f8250d7177e64f9c20db41e9c47d8d80f32d83dc2acf0806a"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId201.png",
+   "bytes": 52099,
+   "sha256": "1582f7521ef8b202c0f2e65223572e88a0129e9df25f6330d196da8ec8e35fd1"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId202.png",
+   "bytes": 132308,
+   "sha256": "40f22bc24da134d71a28f078df023de6c21c91e3842438e2f2418c77df3ebf78"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId204.png",
+   "bytes": 185254,
+   "sha256": "eb32385b0bb43bb8e9aa7f9df5bf08eea4c9b6eb65b7cf9ada8f2223359fb0bc"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId206.png",
+   "bytes": 35785,
+   "sha256": "86083b8164a4d51436d7623a7bafc2def29040fe4a8dc055c339cade5cd6cef5"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId207.png",
+   "bytes": 57845,
+   "sha256": "9e93d7719c9fa8175e6ce07f0d541658d3a53f186a925b073f87e2c76b2d2537"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId208.png",
+   "bytes": 71438,
+   "sha256": "d724783d0b9bb944b4a613e0ce25fff45b28e53c2df036f4d9edbd9edfd39655"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId209.png",
+   "bytes": 90166,
+   "sha256": "1d9009b666049cc5f79543afaafdc8f48e2a5b9977cb03ead5c2d93b11eae7d8"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId210.png",
+   "bytes": 64192,
+   "sha256": "11971c4d8fc7510e3e335fc5bb7623ebf0464f894fc626586c39915e71baa7c5"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId211.png",
+   "bytes": 91416,
+   "sha256": "d69671f33404e2293a9bc384c1e1ea94338a08e2eeca77fb4db0270ef2ec9bf0"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId212.png",
+   "bytes": 41115,
+   "sha256": "23308aff972f0d8c9acf0f70bfc02c90b865497fb42755db0cd3f41cbe105144"
+  },
+  {
+   "path": "assets/source-figures/lecture2-rId213.png",
+   "bytes": 113755,
+   "sha256": "0b378bb958c9ab6a3837e754a4849f6b1f0487c6f0dcc3f50fa28b28b8085510"
+  },
+  {
+   "path": "audit/VALIDATION-20261022.md",
+   "bytes": 1148,
+   "sha256": "5fe00da80d1d0a307c955eccc420c8000ea2ec28af802ac65713288f3cadc36d"
+  },
+  {
+   "path": "audit/agriculture-evidence-20261021.json",
+   "bytes": 122275,
+   "sha256": "199148bb64cf06b68a5811422077985997509585ba46a166c5e71e531333b223"
+  },
+  {
+   "path": "audit/agriculture-validation-20261021.json",
+   "bytes": 32502,
+   "sha256": "9482e693f99cf580f6069ff8dd314963f86f6044c9500e7852d4083557dfdcee"
+  },
+  {
+   "path": "audit/energy-validation-20261022.json",
+   "bytes": 17566,
+   "sha256": "95a4589b2d1227f0817fbfb04bb5c32b7ddf530b64948973a91da2d2f3aadc45"
+  },
+  {
+   "path": "audit/extensions-build-20261022.json",
+   "bytes": 3861,
+   "sha256": "cabdc9adeba70c51bd3e6d1953a96a0c2154a53322020f3171fc9019da1c04c6"
+  },
+  {
+   "path": "audit/extensions-test-output-20261022.txt",
+   "bytes": 2652,
+   "sha256": "ae1489dc18f01d5f1910803cd93aaf9d7b9588ebec5181dc4227ca505fe75cf0"
+  },
+  {
+   "path": "audit/request-coverage-20261022.json",
+   "bytes": 4814,
+   "sha256": "0799dd5f05f66238e77a5b76c4bc6e2eace7f2a46543e9381460a9f71b31a9fc"
+  },
+  {
+   "path": "audit/split-packaging-tests-20261022.txt",
+   "bytes": 2653,
+   "sha256": "a94ed56505039803c73abcc8b5659eda0d39c3d04ab0669acb8b660e4bb612f0"
+  },
+  {
+   "path": "data/agriculture-source-snapshots.zip",
+   "bytes": 2116146,
+   "sha256": "b4c3e6170df08940588894d72d7f748da0d6687468d636723f3356ac9f1944d6"
+  },
+  {
+   "path": "data/agriculture-sources/README.md",
+   "bytes": 1208,
+   "sha256": "59d0cf0df60962ce42818ba3f2c3a73d43abea6d7e7673d86ab39219c86e6ea3"
+  },
+  {
+   "path": "data/agriculture-sources/entity-names.json",
+   "bytes": 3483,
+   "sha256": "79d952a81d7dc4c08c41fd54c1dce2924bf5331104047662ff4c82d9d2275bae"
+  },
+  {
+   "path": "data/agriculture-sources/manifest.json",
+   "bytes": 10984,
+   "sha256": "bff16be0ab1683fcebfba64d2bed6b1fd59b809632d543cf935b271efce6d879"
+  },
+  {
+   "path": "data/agriculture.json",
+   "bytes": 8107224,
+   "sha256": "22c32c7e29e968e4e48ac3861e6f65c94797f7502e3def1de5a5ead5b7332ecc"
+  },
+  {
+   "path": "data/australia-trade-change.json",
+   "bytes": 1765755,
+   "sha256": "10b7ffd12449d42aa5d9a55ceae9320f8a0453acc437d70e7d20dc1f2e787f6d"
+  },
+  {
+   "path": "data/climate-normals-extension.json",
+   "bytes": 4184,
+   "sha256": "3b220ffdc2f3239ef6356281204fb6d7aa1eb65375768564f6d082e2b1f3e73d"
+  },
+  {
+   "path": "data/concepts/agriculture.json",
+   "bytes": 15515,
+   "sha256": "510f9241a669cf6121cc692d199d59d1e47109691d9d546c9d404d90259facdb"
+  },
+  {
+   "path": "data/concepts/cities.json",
+   "bytes": 40886,
+   "sha256": "20639979f0dea1d700c4519f387df791361bd414a4fc3202119eebfbe21f804c"
+  },
+  {
+   "path": "data/concepts/city-functions.json",
+   "bytes": 23628,
+   "sha256": "326318d57fa98028316cbac1838b20364df082f3cb3754063ca0bd087b52f9f0"
+  },
+  {
+   "path": "data/concepts/climate-processes.json",
+   "bytes": 81787,
+   "sha256": "870b495de276b7ec769f0f488e670dfcdb05c1a925adb797fc703857944cc8b2"
+  },
+  {
+   "path": "data/concepts/climate.json",
+   "bytes": 120824,
+   "sha256": "b20f1d2d5ab197f34cdc591aee6a41cc567f2e58ea11fed7675f4f94373b3e37"
+  },
+  {
+   "path": "data/concepts/conflicts.json",
+   "bytes": 53182,
+   "sha256": "48f665ec0b4c495a577f8fba125bb7186943fffa4e52fe65b1a0e001f1edfd28"
+  },
+  {
+   "path": "data/concepts/culture.json",
+   "bytes": 18773,
+   "sha256": "bfeb80e0a5e0a85318bcc557f9b1bcdbbd28006e9f6096596f9529b731090446"
+  },
+  {
+   "path": "data/concepts/energy.json",
+   "bytes": 54059,
+   "sha256": "0cfacf28229127c295dca826b9788a6a6dda3cd2d6ec1a1785d9760f21420b93"
+  },
+  {
+   "path": "data/concepts/environment-supplement.json",
+   "bytes": 2364,
+   "sha256": "f1ee7c2c8c117215471388863ce406b39d7909c701a3aa7fad8f4d3888356d1b"
+  },
+  {
+   "path": "data/concepts/environment.json",
+   "bytes": 45070,
+   "sha256": "e3a2fd02c17388b61140ad686a8975aa101ccdf8b9ab92062d4a298f847f70b7"
+  },
+  {
+   "path": "data/concepts/geographic-information-supplement.json",
+   "bytes": 1758,
+   "sha256": "56250798e1590997ac17f05434a97fca079d2e10e3f3d0991c4c19e1d51067af"
+  },
+  {
+   "path": "data/concepts/geographic-information.json",
+   "bytes": 45200,
+   "sha256": "d376cf161ebb129961005c0d0cd73c769a6640396c7ed1d70651ff0e3e365275"
+  },
+  {
+   "path": "data/concepts/industry.json",
+   "bytes": 58299,
+   "sha256": "27bac82e29f7ccbd9a42d3582c4f7dceea9a62d2703b5d157c6dead47377605c"
+  },
+  {
+   "path": "data/concepts/landform-places.json",
+   "bytes": 704222,
+   "sha256": "bd047601876c45550a5dc98f0baeaabd41a5fedf9bc05f70224bc79a0b738274"
+  },
+  {
+   "path": "data/concepts/landforms.json",
+   "bytes": 182076,
+   "sha256": "fd8535578b19241b7b94361499d59c688958f6ced6e4d3ee126803d34da2a2d7"
+  },
+  {
+   "path": "data/concepts/localization.json",
+   "bytes": 8310,
+   "sha256": "53cc760456bfcf8f9f05bcf7f2958ca149961b6eb6cf8c83cb8b0d6cbaea61f8"
+  },
+  {
+   "path": "data/concepts/oldmaps.json",
+   "bytes": 48228,
+   "sha256": "fcebf6604cb37eda1897d9210dc38bc8ec874b7eae3ceec428123edddcdff525"
+  },
+  {
+   "path": "data/concepts/religion-places.json",
+   "bytes": 17933,
+   "sha256": "5dece6fad8df4b52120220fb1491d7228bc7dfa1afdbd753e45d272ebd3454b1"
+  },
+  {
+   "path": "data/concepts/religion-practices.json",
+   "bytes": 14757,
+   "sha256": "7d7522c707e49557fc6030f5c9dfadfe02741e9fa16164fa91c794b7393098b7"
+  },
+  {
+   "path": "data/concepts/religion.json",
+   "bytes": 92534,
+   "sha256": "775b6bae655e42f845ee702ebcd0d898c89d4e4c865888564ff6e2a0338b08e9"
+  },
+  {
+   "path": "data/country-clues.json",
+   "bytes": 1447994,
+   "sha256": "1a85e92f99ff904f1e77ea29b4bdbf374a9ac6ad39f20c2dba3e8afc03ecaaac"
+  },
+  {
+   "path": "data/energy-series.json",
+   "bytes": 446613,
+   "sha256": "8700edde62910e279bc955237530e288a549454fe0578962527012607bf54ef3"
+  },
+  {
+   "path": "data/entity-facts-supplement.json",
+   "bytes": 1717,
+   "sha256": "231d850645a88f8fd0f38f467ed02b2b3b4ba01fad08ab169734763cfc88e97c"
+  },
+  {
+   "path": "data/entity-facts.json",
+   "bytes": 28917,
+   "sha256": "872b50813dbd43d4b58496cee373b98f4791651dafe673a666cf43e9d95b4a07"
+  },
+  {
+   "path": "data/exam-relations-agriculture.json",
+   "bytes": 13180,
+   "sha256": "f4688f516caaf6f4ee995e9868db86ecac870acdf223907a51073166edbfb515"
+  },
+  {
+   "path": "data/exam-relations-cities.json",
+   "bytes": 1439,
+   "sha256": "224bc2564bf12da14211272838f48aa9e8752521b7af70e825c2f23b291eb51b"
+  },
+  {
+   "path": "data/exam-relations-energy.json",
+   "bytes": 4597,
+   "sha256": "e84692278126f027336b393b572898170ed0907cd414ba46dc3c71ec45df44ab"
+  },
+  {
+   "path": "data/extension-sources/DATA-REQUESTS.md",
+   "bytes": 15867,
+   "sha256": "5f060aea4ad9305bf8d1d77624f9626f52c7c4aa5515837738b4e32481d65d36"
+  },
+  {
+   "path": "data/extension-sources/climate-normals.json",
+   "bytes": 137360,
+   "sha256": "518f7d28d880840e644d5ca1796d4180c95da6379ad05e5c0ebba5f9044fdea0"
+  },
+  {
+   "path": "data/extension-sources/climate-sites.json",
+   "bytes": 6208,
+   "sha256": "4f7e8ca54fc33529431cd26216ed20f95453f32ae42384ec755a0d3b15a6eea1"
+  },
+  {
+   "path": "data/extension-sources/country-boundaries.js",
+   "bytes": 1011872,
+   "sha256": "7f9fd3c776a177ca7d5f760dbe8b94d1af6205e82e96acfaf96c3a4677ba7306"
+  },
+  {
+   "path": "data/extension-sources/country-indicators.json",
+   "bytes": 384337,
+   "sha256": "cfa937a391f962ad74ab8cb0a3cccd32c912af93290bc43ac2b9bba6cbf1daa5"
+  },
+  {
+   "path": "data/extension-sources/country-language-supplement.json",
+   "bytes": 1717,
+   "sha256": "231d850645a88f8fd0f38f467ed02b2b3b4ba01fad08ab169734763cfc88e97c"
+  },
+  {
+   "path": "data/extension-sources/curation.json",
+   "bytes": 29572,
+   "sha256": "960dfdc381ef2fd8bd23fb97142e097ff3852ed9489818dd99253e878f316a0b"
+  },
+  {
+   "path": "data/extension-sources/economy-indicators.json",
+   "bytes": 549609,
+   "sha256": "57bfc880be92b213d57ea2969617687f10ef6cf289fb14c5aa6a543a145038a8"
+  },
+  {
+   "path": "data/extension-sources/electricity-mix.json",
+   "bytes": 289092,
+   "sha256": "ce44c3c5fdb5947eac99cbafdfb6080a989656ff21c314f79d4539bb84e386dc"
+  },
+  {
+   "path": "data/extension-sources/entity-facts.json",
+   "bytes": 974,
+   "sha256": "5277653f8a955790b9bfe7e44a3182c2196041f70d86b2f0622c26d613bf139f"
+  },
+  {
+   "path": "data/extension-sources/entity-kb.js",
+   "bytes": 282457,
+   "sha256": "f70f0f5a721be9e3d984da1f9f15f089e251c559c92a12c0468f1998ce0fa146"
+  },
+  {
+   "path": "data/extension-sources/exam-relations.json",
+   "bytes": 16048,
+   "sha256": "4869ed7ecc74cd9865aae05ac13885c25b7741f9c3d74b89b8b69d2b5eee022c"
+  },
+  {
+   "path": "data/extension-sources/existing-ox.json",
+   "bytes": 103843,
+   "sha256": "8ccb18227818f841ea48f58fb7e54b65e9f3098b0ea90d348cf1dccdc93ff075"
+  },
+  {
+   "path": "data/extension-sources/fact-statements.js",
+   "bytes": 59329,
+   "sha256": "62ef4e4757f7c50021d89bc685fb5437519e7960609e52c5b460225a7490c3f5"
+  },
+  {
+   "path": "data/extension-sources/group-series.json",
+   "bytes": 37214,
+   "sha256": "8cfc4578bcb37d9b80275206b74e4098ddd1e3340fdbb3c371210daf3a194186"
+  },
+  {
+   "path": "data/extension-sources/lecture-blocks.json",
+   "bytes": 1350784,
+   "sha256": "3747df62fe4c11a6c1b59f493c3ffa6322937b3ca2bd43798579cc2e6db70174"
+  },
+  {
+   "path": "data/extension-sources/lecture-exam-links.json",
+   "bytes": 87841,
+   "sha256": "4253abceb9d445edc43dbb4f48595f55a8d6cadbaab59087b84825c1eb228a6b"
+  },
+  {
+   "path": "data/extension-sources/location-items.json",
+   "bytes": 1012838,
+   "sha256": "97e4a37953f89632a532db3c63ab8768d2346cd2cf1e39fa8fd051d4d88a0546"
+  },
+  {
+   "path": "data/extension-sources/originals.json",
+   "bytes": 721,
+   "sha256": "163d2eb34457e137da6ba0c2fc1753c22f2fbc20c310ef4a33c6259442c9a835"
+  },
+  {
+   "path": "data/extension-sources/prior-country-exam-evidence.json",
+   "bytes": 2575,
+   "sha256": "ffe4284554f71f2b3e692ac39cb72e2b3df704c8382a8a7eb58603365aeba50d"
+  },
+  {
+   "path": "data/extension-sources/religion-composition.json",
+   "bytes": 67279,
+   "sha256": "de156afc1e33073cebddf352f72bea285e2015cac8818b338c2830cae9e5a286"
+  },
+  {
+   "path": "data/extension-sources/supplementary-curation.json",
+   "bytes": 1522,
+   "sha256": "16f3660305d6b1e5d6bc93265a31ae83e2fd6f3ee22acffc7e38476b81f21fa7"
+  },
+  {
+   "path": "data/extension-sources/workbook-records.json",
+   "bytes": 3449443,
+   "sha256": "27825b3a5511b33ee2414763cc5947cf01af85c6e0e5cb390d3abcce656de963"
+  },
+  {
+   "path": "data/extensions-source-manifest.json",
+   "bytes": 11146,
+   "sha256": "972a735db9b2d31415a1e047dfc93a231af9925d56841dbbf34b025ac43a5089"
+  },
+  {
+   "path": "data/extensions-source-snapshots-01.zip",
+   "bytes": 22378538,
+   "sha256": "d9e43871adeffaaeb3425d5b48c3214f65a11b65e5a8f1de213c631218c0498a"
+  },
+  {
+   "path": "data/extensions-source-snapshots-02.zip",
+   "bytes": 22378750,
+   "sha256": "74b696eca3ccc9aa106c589bd2abcce9911667479f14efa8200ca08d737ac13e"
+  },
+  {
+   "path": "data/fertility-change.json",
+   "bytes": 373946,
+   "sha256": "430b108c4bad365faf7a5e97463d876979c228b2db0e682257b0e2f8890a71cc"
+  },
+  {
+   "path": "data/fertility-un-regions.json",
+   "bytes": 10837,
+   "sha256": "4383694a060d7a63f676ed821e3c8252319397f16305abe20c871fc63f732c09"
+  },
+  {
+   "path": "data/fossil-production-region-shares.json",
+   "bytes": 28167,
+   "sha256": "4d43f4d03f666ac8528a7860e5c028e54a439028a610098e15a863c4edf1bc59"
+  },
+  {
+   "path": "data/fossil-reserves-ei.json",
+   "bytes": 109590,
+   "sha256": "50029a1f1878ba0f6cadfc1b0438ae7ae4da8a8a19457fd75ad28c0fa5a65b5b"
+  },
+  {
+   "path": "data/fossil-trade-reserves.json",
+   "bytes": 4813536,
+   "sha256": "c2385f5a5537964d8029ed2742fb0e6c7d155d15781d9f7126d47c0e7ea907a0"
+  },
+  {
+   "path": "data/geothermal-generation.json",
+   "bytes": 17473,
+   "sha256": "7d81590872814e9b8cdff4e38e4d6cbd9778b6926cc571900c3945da9ef33485"
+  },
+  {
+   "path": "data/given-source-figures.json",
+   "bytes": 41803,
+   "sha256": "fc4362d9979b114b09f9f8658a321adb6e7b7fc14195c6fc5f30d3031d3d8bc8"
+  },
+  {
+   "path": "data/mineral-production-shares.json",
+   "bytes": 320301,
+   "sha256": "b14903e9cdedcaf69c3b806b1eeb09f8d71adea76b8ca795ec9f28d6bf4cd891"
+  },
+  {
+   "path": "data/mineral-production.json",
+   "bytes": 800390,
+   "sha256": "551385a693d686c3ccec9c516e03e43ada897179ec363bd23f4580f11f6263e9"
+  },
+  {
+   "path": "data/oil-trade-ei.json",
+   "bytes": 27327,
+   "sha256": "f231da443cd78e6ae1fd6114963b3066ffcb9fed17fdd3185af0141a614513ae"
+  },
+  {
+   "path": "data/religion-composition-extension.json",
+   "bytes": 83510,
+   "sha256": "2575c62acc60bb16de6b5521b79a116e4b3feed855a6e8cf4450dde27f52e48b"
+  },
+  {
+   "path": "data/urbanization-change.json",
+   "bytes": 1738704,
+   "sha256": "8dd2ee9c3bf4e6dd1f36b97f1b5751b70f640af581bc01a7002b71a87eb84934"
+  },
+  {
+   "path": "data/us-migrants-by-origin.json",
+   "bytes": 41280,
+   "sha256": "717d6c5f00da684ac1014f3baf9ec1f8663204a988283854452d78b9c04f7055"
+  },
+  {
+   "path": "data/us-migrants-lecture-given.json",
+   "bytes": 377,
+   "sha256": "aee6d10ad78c9c4af76f3eb3bb7b650129bb3d28ee25709b10bf96b4a45f85ad"
+  },
+  {
+   "path": "data/us-state-manufacturing-2013.json",
+   "bytes": 17773,
+   "sha256": "dbe043d4519a0a621aacfcd2e9de424e651573044e257f07724ab39f02520bb3"
+  },
+  {
+   "path": "docs/AGRICULTURE-DATA-HANDOFF.md",
+   "bytes": 7326,
+   "sha256": "158a69038d11433e2410f88e4d2b55d43c1ea77d8dfb9f2ce67405ef79036c50"
+  },
+  {
+   "path": "docs/BASIC-CONCEPTS-HANDOFF.md",
+   "bytes": 1549,
+   "sha256": "50c4b0ead807fdf483c580ba8a4057e8b3893ddd4438e142e2fcaf86e0a915ad"
+  },
+  {
+   "path": "docs/CLIMATE-KNOWLEDGE-HANDOFF.md",
+   "bytes": 1687,
+   "sha256": "0035875d9801bb0a6ef21b9265c312ce0b9aa13a185e6dbd7a6f271fa3891152"
+  },
+  {
+   "path": "docs/COUNTRY-DATA-HANDOFF.md",
+   "bytes": 2127,
+   "sha256": "29e2f5411cb6752d932ad9cf7b395828f11c3a88fbcd03d092d6c456755ec3d7"
+  },
+  {
+   "path": "docs/CULTURE-DATA-HANDOFF.md",
+   "bytes": 1646,
+   "sha256": "6cdef0c59e9110c743feaed266d93990e893f0a4ba4ada4857cdb739f6db7c93"
+  },
+  {
+   "path": "docs/DATA-REQUESTS.md",
+   "bytes": 16604,
+   "sha256": "7c1fe4a75e64f4884f2596a1582b79a4d0a88534792ea78824d9540a22bda6d0"
+  },
+  {
+   "path": "docs/ENERGY-DATA-HANDOFF.md",
+   "bytes": 2030,
+   "sha256": "b24ea94c1c9c26603b00dfa8ccfcb6620bc045f007515a163d7e42c5316ad586"
+  },
+  {
+   "path": "docs/INDUSTRY-DATA-HANDOFF.md",
+   "bytes": 1804,
+   "sha256": "189af26bcbfbd8b3c70d4502273337e10d57cd7564f554d0d4d9950faaeeda9f"
+  },
+  {
+   "path": "docs/LANDFORM-DATA-HANDOFF.md",
+   "bytes": 1057,
+   "sha256": "251293d7b8da10b2c63974855e8358a303906a35dfc6ee872cb07b85f60070cc"
+  },
+  {
+   "path": "docs/POPULATION-CHANGE-HANDOFF.md",
+   "bytes": 1750,
+   "sha256": "d382d0f80fd657ada8d8440d412d3e18870ec1af0422f949f8a6e9b29c94bc51"
+  },
+  {
+   "path": "docs/R2-R9-HANDOFF.md",
+   "bytes": 3566,
+   "sha256": "6a34204706b78c2acc3eb8b0dd76da436c1f749ea4dd0a8379d1e21ce0936674"
+  },
+  {
+   "path": "scripts/build-agriculture-data.py",
+   "bytes": 12271,
+   "sha256": "d973979e18fbc8f4e611383f590b0254545ffa9fc2302d2ca0169bb22bd41127"
+  },
+  {
+   "path": "scripts/build-completions.py",
+   "bytes": 11722,
+   "sha256": "b2f9176fdd40a229e08d952aee1799c2b693009fbd9f7676bc3a7ee60858a959"
+  },
+  {
+   "path": "scripts/build-extensions.py",
+   "bytes": 16059,
+   "sha256": "ff03c72ce9ddb962266a068de9a1064ef22b3be58b46dfd8d40e849f99f784a2"
+  },
+  {
+   "path": "scripts/build-statistics.py",
+   "bytes": 26567,
+   "sha256": "4fa4aecb37558b7675e940afd9b6238e4d7621ba9783707cdcc6822de1492f40"
+  },
+  {
+   "path": "scripts/climate-source-parser.py",
+   "bytes": 15895,
+   "sha256": "60b446f41eeea3a1e6217092d99ddf2a669a4033240a4c63953c811c900eacd2"
+  },
+  {
+   "path": "scripts/fetch-agriculture-sources.py",
+   "bytes": 4538,
+   "sha256": "b4a8972e9962df308ce42fbad8ce2d6cb3e5a08462d8532d4aaf71008d53463d"
+  },
+  {
+   "path": "scripts/verify-sources.py",
+   "bytes": 1958,
+   "sha256": "9e9de3826f78d181c28eea4200c9689de9b7cf2f09bdff22aeb96df49feef1b8"
+  },
+  {
+   "path": "tests/agriculture-data.test.cjs",
+   "bytes": 9431,
+   "sha256": "1196329bc84615a63950c0da2313e223a274eefca3317d0c4da99b5371e27b8b"
+  },
+  {
+   "path": "tests/extensions.test.cjs",
+   "bytes": 17579,
+   "sha256": "275911df116497fa4d95eb5013ab390b5e795d3ad951c4cafb828b733c522b98"
+  },
+  {
+   "path": "다운로드_안내.md",
+   "bytes": 746,
+   "sha256": "e0d9738a8606f1d1c9b4f14cc6afacd9a58182f795016b9a2ac813fd65ee0447"
+  }
+ ],
+ "packaging": "3 ordinary ZIPs, each strictly under 30,000,000 bytes; unzip into the same directory"
+}

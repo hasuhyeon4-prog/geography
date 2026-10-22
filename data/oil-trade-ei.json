@@ -1,0 +1,1069 @@
+{
+ "schemaVersion": 1,
+ "source": "Energy Institute Statistical Review 2023/2025 official XLSX",
+ "unit": "million tonnes",
+ "years": [
+  2021,
+  2024
+ ],
+ "practice": "suppliedData",
+ "rows": [
+  {
+   "sourceName": "Canada",
+   "name": "캐나다",
+   "iso3": "CAN",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 5,
+   "series": {
+    "2021": {
+     "crudeImports": 23.97680499838312,
+     "productImports": 30.58295841689114,
+     "crudeExports": 197.5585643512654,
+     "productExports": 33.26078255937686
+    },
+    "2022": {
+     "crudeImports": 23.65889580136094,
+     "productImports": 27.86696767591697,
+     "crudeExports": 200.3444249848007,
+     "productExports": 32.33985266121669
+    }
+   }
+  },
+  {
+   "sourceName": "Mexico",
+   "name": "멕시코",
+   "iso3": "MEX",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 6,
+   "series": {
+    "2021": {
+     "crudeImports": 4.000000189989805e-09,
+     "productImports": 58.62739620183799,
+     "crudeExports": 52.80347422855548,
+     "productExports": 7.429736034293811
+    },
+    "2022": {
+     "crudeImports": 2.062876171893999e-05,
+     "productImports": 59.63951716990836,
+     "crudeExports": 49.37641817738654,
+     "productExports": 8.639631528128715
+    }
+   }
+  },
+  {
+   "sourceName": "US",
+   "name": "미국",
+   "iso3": "USA",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 7,
+   "series": {
+    "2021": {
+     "crudeImports": 304.4407004432805,
+     "productImports": 112.9283654265706,
+     "crudeExports": 139.6371381134304,
+     "productExports": 246.5896500016891
+    },
+    "2022": {
+     "crudeImports": 312.6095620586615,
+     "productImports": 98.1657450997577,
+     "crudeExports": 172.9084619542863,
+     "productExports": 252.9965821402139
+    }
+   }
+  },
+  {
+   "sourceName": "S. & Cent. America",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 8,
+   "series": {
+    "2021": {
+     "crudeImports": 22.06096253138858,
+     "productImports": 104.3076549545463,
+     "crudeExports": 124.8005475615728,
+     "productExports": 23.78001819599854
+    },
+    "2022": {
+     "crudeImports": 24.42955475549592,
+     "productImports": 115.8023035894077,
+     "crudeExports": 117.2424194026878,
+     "productExports": 28.93443221443293
+    }
+   }
+  },
+  {
+   "sourceName": "Europe",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 9,
+   "series": {
+    "2021": {
+     "crudeImports": 448.2281004015132,
+     "productImports": 187.8968139989216,
+     "crudeExports": 36.772538008859,
+     "productExports": 107.3807106482246
+    },
+    "2022": {
+     "crudeImports": 501.315167405201,
+     "productImports": 206.4598289770436,
+     "crudeExports": 19.61724352399447,
+     "productExports": 109.549759159181
+    }
+   }
+  },
+  {
+   "sourceName": "Russia",
+   "name": "러시아",
+   "iso3": "RUS",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 10,
+   "series": {
+    "2021": {
+     "crudeImports": 0.02434458568653929,
+     "productImports": 1.873536943521912,
+     "crudeExports": 244.1388382146035,
+     "productExports": 139.3561753553925
+    },
+    "2022": {
+     "crudeImports": 0.07080081231953696,
+     "productImports": 1.699040536061193,
+     "crudeExports": 264.6515052834372,
+     "productExports": 125.9488272734518
+    }
+   }
+  },
+  {
+   "sourceName": "Other CIS",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 11,
+   "series": {
+    "2021": {
+     "crudeImports": 15.94122387409503,
+     "productImports": 6.466344755717901,
+     "crudeExports": 87.06159057108654,
+     "productExports": 17.27901186096888
+    },
+    "2022": {
+     "crudeImports": 16.16625219401468,
+     "productImports": 7.557656810153821,
+     "crudeExports": 85.67528599824392,
+     "productExports": 12.23301617157185
+    }
+   }
+  },
+  {
+   "sourceName": "Iraq",
+   "name": "이라크",
+   "iso3": "IRQ",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 12,
+   "series": {
+    "2021": {
+     "crudeImports": 0.000105506,
+     "productImports": 10.1543722604369,
+     "crudeExports": 175.9522402417299,
+     "productExports": 14.42470494740721
+    },
+    "2022": {
+     "crudeImports": 0.004763230087280274,
+     "productImports": 9.042490302551501,
+     "crudeExports": 191.0027480368017,
+     "productExports": 12.46539491834185
+    }
+   }
+  },
+  {
+   "sourceName": "Kuwait",
+   "name": "쿠웨이트",
+   "iso3": "KWT",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 13,
+   "series": {
+    "2021": {
+     "crudeImports": 1.329759979248047e-07,
+     "productImports": 3.068891545043517,
+     "crudeExports": 92.32538136562484,
+     "productExports": 20.77924454524678
+    },
+    "2022": {
+     "crudeImports": 4.999999873689376e-09,
+     "productImports": 2.543938729525441,
+     "crudeExports": 90.31089190677103,
+     "productExports": 29.78959539292595
+    }
+   }
+  },
+  {
+   "sourceName": "Saudi Arabia",
+   "name": "사우디아라비아",
+   "iso3": "SAU",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 14,
+   "series": {
+    "2021": {
+     "crudeImports": 0.1463809924547123,
+     "productImports": 15.94417977449245,
+     "crudeExports": 323.4808380575757,
+     "productExports": 61.43632415209666
+    },
+    "2022": {
+     "crudeImports": 0.9269233074537049,
+     "productImports": 12.89246375954041,
+     "crudeExports": 364.7601589081871,
+     "productExports": 74.10023101220887
+    }
+   }
+  },
+  {
+   "sourceName": "United Arab Emirates",
+   "name": "아랍 에미리트",
+   "iso3": "ARE",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 15,
+   "series": {
+    "2021": {
+     "crudeImports": 7.175996611113598,
+     "productImports": 27.88277969272268,
+     "crudeExports": 144.1790314853488,
+     "productExports": 81.73895456505721
+    },
+    "2022": {
+     "crudeImports": 4.970464677815681,
+     "productImports": 39.76904028479138,
+     "crudeExports": 172.8507342019566,
+     "productExports": 89.50531477146114
+    }
+   }
+  },
+  {
+   "sourceName": "Other Middle East",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 16,
+   "series": {
+    "2021": {
+     "crudeImports": 18.10799141359785,
+     "productImports": 19.6505691829126,
+     "crudeExports": 99.42957978846651,
+     "productExports": 68.66233454239949
+    },
+    "2022": {
+     "crudeImports": 16.25394030879387,
+     "productImports": 22.54411798873375,
+     "crudeExports": 92.2117754966382,
+     "productExports": 79.39824818246889
+    }
+   }
+  },
+  {
+   "sourceName": "North Africa",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 17,
+   "series": {
+    "2021": {
+     "crudeImports": 9.850935806313043,
+     "productImports": 30.62851396817529,
+     "crudeExports": 88.45403176889303,
+     "productExports": 26.72004067748105
+    },
+    "2022": {
+     "crudeImports": 8.283763985795929,
+     "productImports": 34.09931088146531,
+     "crudeExports": 76.49341598771542,
+     "productExports": 25.66053530429472
+    }
+   }
+  },
+  {
+   "sourceName": "West Africa",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 18,
+   "series": {
+    "2021": {
+     "crudeImports": 0.4997176341559568,
+     "productImports": 42.60854625089411,
+     "crudeExports": 186.7011737755583,
+     "productExports": 8.212432476510674
+    },
+    "2022": {
+     "crudeImports": 0.6918648627430813,
+     "productImports": 53.08356323348261,
+     "crudeExports": 169.7266069291751,
+     "productExports": 7.084306852900295
+    }
+   }
+  },
+  {
+   "sourceName": "East & S. Africa",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 19,
+   "series": {
+    "2021": {
+     "crudeImports": 12.09613800919967,
+     "productImports": 45.82054690475836,
+     "crudeExports": 4.387967121998942,
+     "productExports": 4.290935675113326
+    },
+    "2022": {
+     "crudeImports": 6.806428824968508,
+     "productImports": 53.57835010115031,
+     "crudeExports": 1.700540348784628,
+     "productExports": 1.879647891507277
+    }
+   }
+  },
+  {
+   "sourceName": "Australasia",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 20,
+   "series": {
+    "2021": {
+     "crudeImports": 14.94145249972783,
+     "productImports": 28.96647271486975,
+     "crudeExports": 9.239726853452185,
+     "productExports": 5.377181910561904
+    },
+    "2022": {
+     "crudeImports": 10.28886846296914,
+     "productImports": 48.0729179086277,
+     "crudeExports": 8.941847539993805,
+     "productExports": 4.298126321934333
+    }
+   }
+  },
+  {
+   "sourceName": "China",
+   "name": "중국",
+   "iso3": "CHN",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 21,
+   "series": {
+    "2021": {
+     "crudeImports": 525.9612645319997,
+     "productImports": 103.407777392,
+     "crudeExports": 1.565508614,
+     "productExports": 60.53897165604526
+    },
+    "2022": {
+     "crudeImports": 508.232550756,
+     "productImports": 93.28329541199999,
+     "crudeExports": 1.343609481,
+     "productExports": 54.08131943430321
+    }
+   }
+  },
+  {
+   "sourceName": "India",
+   "name": "인도",
+   "iso3": "IND",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 22,
+   "series": {
+    "2021": {
+     "crudeImports": 213.74695532,
+     "productImports": 48.30826389280471,
+     "crudeExports": 0.05320878198699427,
+     "productExports": 75.11456033505372
+    },
+    "2022": {
+     "crudeImports": 231.165228906,
+     "productImports": 53.06320552400005,
+     "crudeExports": 0.007555585224463351,
+     "productExports": 83.29690385502226
+    }
+   }
+  },
+  {
+   "sourceName": "Japan",
+   "name": "일본",
+   "iso3": "JPN",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 23,
+   "series": {
+    "2021": {
+     "crudeImports": 122.05032781,
+     "productImports": 43.02441935300003,
+     "crudeExports": 0.4106770575847314,
+     "productExports": 10.95815609387256
+    },
+    "2022": {
+     "crudeImports": 132.511440188,
+     "productImports": 38.46317504400003,
+     "crudeExports": 0.4253366715102891,
+     "productExports": 16.93458562856596
+    }
+   }
+  },
+  {
+   "sourceName": "Singapore",
+   "name": "싱가포르",
+   "iso3": "SGP",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 24,
+   "series": {
+    "2021": {
+     "crudeImports": 47.0111985872726,
+     "productImports": 91.82933309804403,
+     "crudeExports": 1.150505446326131,
+     "productExports": 68.91303634621916
+    },
+    "2022": {
+     "crudeImports": 44.37542933328432,
+     "productImports": 72.52472250604103,
+     "crudeExports": 0.5064814863411519,
+     "productExports": 72.34737672626281
+    }
+   }
+  },
+  {
+   "sourceName": "Other Asia Pacific",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 25,
+   "series": {
+    "2021": {
+     "crudeImports": 261.9336363479995,
+     "productImports": 202.2584374569093,
+     "crudeExports": 38.09167663323855,
+     "productExports": 133.9932116060612
+    },
+    "2022": {
+     "crudeImports": 286.2938578246803,
+     "productImports": 196.4542117593033,
+     "crudeExports": 48.95831642447008,
+     "productExports": 125.1221758530679
+    }
+   }
+  },
+  {
+   "sourceName": "Total World",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2023.xlsx",
+   "sheet": "Oil - Trade 2021 and 2022",
+   "sourceRow": 26,
+   "series": {
+    "2021": {
+     "crudeImports": 2048.194238041157,
+     "productImports": 1216.23617418507,
+     "crudeExports": 2048.194238041157,
+     "productExports": 1216.23617418507
+    },
+    "2022": {
+     "crudeImports": 2129.055778329407,
+     "productImports": 1246.605863293463,
+     "crudeExports": 2129.055778329407,
+     "productExports": 1246.605863293463
+    }
+   }
+  },
+  {
+   "sourceName": "Canada",
+   "name": "캐나다",
+   "iso3": "CAN",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 5,
+   "series": {
+    "2023": {
+     "crudeImports": 25.5851480148561,
+     "productImports": 22.553308101788854,
+     "crudeExports": 209.4419280290121,
+     "productExports": 32.984363356535866
+    },
+    "2024": {
+     "crudeImports": 25.147828548207148,
+     "productImports": 22.388656340845717,
+     "crudeExports": 219.35359411910494,
+     "productExports": 35.59057487145838
+    }
+   }
+  },
+  {
+   "sourceName": "Mexico",
+   "name": "멕시코",
+   "iso3": "MEX",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 6,
+   "series": {
+    "2023": {
+     "crudeImports": 1.884065234375e-05,
+     "productImports": 58.59710935630944,
+     "crudeExports": 53.76847440310232,
+     "productExports": 9.165798870679343
+    },
+    "2024": {
+     "crudeImports": 0.0,
+     "productImports": 57.65348372357947,
+     "crudeExports": 41.68941274505711,
+     "productExports": 9.228534716019249
+    }
+   }
+  },
+  {
+   "sourceName": "US",
+   "name": "미국",
+   "iso3": "USA",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 7,
+   "series": {
+    "2023": {
+     "crudeImports": 324.29201416666984,
+     "productImports": 97.73395608337083,
+     "crudeExports": 194.06942881686822,
+     "productExports": 258.0460258665292
+    },
+    "2024": {
+     "crudeImports": 328.9847067207162,
+     "productImports": 88.28748699827226,
+     "crudeExports": 198.27894979032092,
+     "productExports": 283.2889467090815
+    }
+   }
+  },
+  {
+   "sourceName": "S. & Cent. America",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 8,
+   "series": {
+    "2023": {
+     "crudeImports": 20.32830357192597,
+     "productImports": 106.7046695812002,
+     "crudeExports": 154.40980108713455,
+     "productExports": 27.86820665336621
+    },
+    "2024": {
+     "crudeImports": 20.74967795553601,
+     "productImports": 110.12524381802467,
+     "crudeExports": 184.07215416358716,
+     "productExports": 30.343272656200778
+    }
+   }
+  },
+  {
+   "sourceName": "Europe",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 9,
+   "series": {
+    "2023": {
+     "crudeImports": 457.2539833186089,
+     "productImports": 206.24764728759598,
+     "crudeExports": 12.323866150748083,
+     "productExports": 102.78191428484031
+    },
+    "2024": {
+     "crudeImports": 463.40592798572004,
+     "productImports": 217.95099745603795,
+     "crudeExports": 12.427816777230621,
+     "productExports": 89.9200439094331
+    }
+   }
+  },
+  {
+   "sourceName": "Russia",
+   "name": "러시아",
+   "iso3": "RUS",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 10,
+   "series": {
+    "2023": {
+     "crudeImports": 0.033667640222000125,
+     "productImports": 1.509382726253177,
+     "crudeExports": 239.20288406343064,
+     "productExports": 96.51873975882857
+    },
+    "2024": {
+     "crudeImports": 0.033667340222000124,
+     "productImports": 1.1908067280736336,
+     "crudeExports": 243.08142444430476,
+     "productExports": 104.3327792421901
+    }
+   }
+  },
+  {
+   "sourceName": "Other CIS",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 11,
+   "series": {
+    "2023": {
+     "crudeImports": 15.43046869471,
+     "productImports": 8.27459770531362,
+     "crudeExports": 91.59816880667573,
+     "productExports": 16.39971913255097
+    },
+    "2024": {
+     "crudeImports": 16.123868178000002,
+     "productImports": 16.30491390548272,
+     "crudeExports": 90.58151225577984,
+     "productExports": 14.782069122327181
+    }
+   }
+  },
+  {
+   "sourceName": "Iraq",
+   "name": "이라크",
+   "iso3": "IRQ",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 12,
+   "series": {
+    "2023": {
+     "crudeImports": 0.000218677765625,
+     "productImports": 6.765185432779488,
+     "crudeExports": 186.1467445078937,
+     "productExports": 19.02960336259045
+    },
+    "2024": {
+     "crudeImports": 0.000218677765625,
+     "productImports": 5.307044532457743,
+     "crudeExports": 179.62254156370875,
+     "productExports": 25.094899754130818
+    }
+   }
+  },
+  {
+   "sourceName": "Kuwait",
+   "name": "쿠웨이트",
+   "iso3": "KWT",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 13,
+   "series": {
+    "2023": {
+     "crudeImports": 1.3529e-05,
+     "productImports": 0.2308359605387346,
+     "crudeExports": 81.13901850170433,
+     "productExports": 37.6861072116382
+    },
+    "2024": {
+     "crudeImports": 0.0,
+     "productImports": 0.3067552099166965,
+     "crudeExports": 60.090045599163936,
+     "productExports": 42.916532314936354
+    }
+   }
+  },
+  {
+   "sourceName": "Saudi Arabia",
+   "name": "사우디아라비아",
+   "iso3": "SAU",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 14,
+   "series": {
+    "2023": {
+     "crudeImports": 2.0680830885064276,
+     "productImports": 17.426167805796833,
+     "crudeExports": 346.353685005089,
+     "productExports": 57.833502360212705
+    },
+    "2024": {
+     "crudeImports": 7.782544205196741,
+     "productImports": 12.628294495007633,
+     "crudeExports": 320.58554376006066,
+     "productExports": 59.16712482218482
+    }
+   }
+  },
+  {
+   "sourceName": "United Arab Emirates",
+   "name": "아랍 에미리트",
+   "iso3": "ARE",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 15,
+   "series": {
+    "2023": {
+     "crudeImports": 5.101740646081394,
+     "productImports": 27.903788815595963,
+     "crudeExports": 168.76781201279633,
+     "productExports": 93.9404866641407
+    },
+    "2024": {
+     "crudeImports": 5.364524401561405,
+     "productImports": 31.58175294826933,
+     "crudeExports": 182.65388842356467,
+     "productExports": 95.26335453121499
+    }
+   }
+  },
+  {
+   "sourceName": "Other Middle East",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 16,
+   "series": {
+    "2023": {
+     "crudeImports": 22.00851775839133,
+     "productImports": 22.42519578163195,
+     "crudeExports": 154.33753187755548,
+     "productExports": 62.7701736719643
+    },
+    "2024": {
+     "crudeImports": 20.46461844138913,
+     "productImports": 17.964822180548857,
+     "crudeExports": 163.58996296981127,
+     "productExports": 70.13150041041591
+    }
+   }
+  },
+  {
+   "sourceName": "North Africa",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 17,
+   "series": {
+    "2023": {
+     "crudeImports": 3.862586660660876,
+     "productImports": 35.91798172268123,
+     "crudeExports": 78.18167024158588,
+     "productExports": 31.238481588610302
+    },
+    "2024": {
+     "crudeImports": 2.211606463690876,
+     "productImports": 37.572492700709326,
+     "crudeExports": 73.11687655686832,
+     "productExports": 32.940018288161305
+    }
+   }
+  },
+  {
+   "sourceName": "West Africa",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 18,
+   "series": {
+    "2023": {
+     "crudeImports": 1.3976488816033874,
+     "productImports": 53.942253782604396,
+     "crudeExports": 165.4231455056787,
+     "productExports": 5.34510606972733
+    },
+    "2024": {
+     "crudeImports": 2.8009081384760655,
+     "productImports": 45.47027109049894,
+     "crudeExports": 164.8041026679994,
+     "productExports": 7.897580579948847
+    }
+   }
+  },
+  {
+   "sourceName": "East & S. Africa",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 19,
+   "series": {
+    "2023": {
+     "crudeImports": 7.355193276206874,
+     "productImports": 51.59036001992266,
+     "crudeExports": 2.5660681596740296,
+     "productExports": 1.8762492202695342
+    },
+    "2024": {
+     "crudeImports": 10.261702010956876,
+     "productImports": 50.93905557058377,
+     "crudeExports": 1.9859826490738746,
+     "productExports": 1.6374668802775145
+    }
+   }
+  },
+  {
+   "sourceName": "Australasia",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 20,
+   "series": {
+    "2023": {
+     "crudeImports": 8.3760522463397,
+     "productImports": 58.64817504806756,
+     "crudeExports": 10.044132300726801,
+     "productExports": 4.923834388685656
+    },
+    "2024": {
+     "crudeImports": 7.813865554086771,
+     "productImports": 53.87826973697118,
+     "crudeExports": 9.074434038845494,
+     "productExports": 5.097224851661103
+    }
+   }
+  },
+  {
+   "sourceName": "China",
+   "name": "중국",
+   "iso3": "CHN",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 21,
+   "series": {
+    "2023": {
+     "crudeImports": 572.5215453276085,
+     "productImports": 114.39541878512502,
+     "crudeExports": 0.7632539519999999,
+     "productExports": 61.05225723194583
+    },
+    "2024": {
+     "crudeImports": 554.0854751142238,
+     "productImports": 110.47906837100001,
+     "crudeExports": 0.9059923381830133,
+     "productExports": 56.709332828220056
+    }
+   }
+  },
+  {
+   "sourceName": "India",
+   "name": "인도",
+   "iso3": "IND",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 22,
+   "series": {
+    "2023": {
+     "crudeImports": 230.643173966,
+     "productImports": 54.04555161099999,
+     "crudeExports": 0.05097131985705332,
+     "productExports": 94.40800175112966
+    },
+    "2024": {
+     "crudeImports": 238.63737446999997,
+     "productImports": 57.588850533999995,
+     "crudeExports": 0.050956709125000006,
+     "productExports": 90.2087408908061
+    }
+   }
+  },
+  {
+   "sourceName": "Japan",
+   "name": "일본",
+   "iso3": "JPN",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 23,
+   "series": {
+    "2023": {
+     "crudeImports": 125.52934039059754,
+     "productImports": 38.808793544,
+     "crudeExports": 2.4825472627972905e-05,
+     "productExports": 12.485458681512545
+    },
+    "2024": {
+     "crudeImports": 114.95864235799999,
+     "productImports": 38.26620276100002,
+     "crudeExports": 0.0917669445331747,
+     "productExports": 9.850090399665172
+    }
+   }
+  },
+  {
+   "sourceName": "Singapore",
+   "name": "싱가포르",
+   "iso3": "SGP",
+   "appMapped": true,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 24,
+   "series": {
+    "2023": {
+     "crudeImports": 42.29093262993899,
+     "productImports": 72.1112143625949,
+     "crudeExports": 1.8820713582000004,
+     "productExports": 80.01919594135718
+    },
+    "2024": {
+     "crudeImports": 43.50521600000001,
+     "productImports": 87.24726739108658,
+     "crudeExports": 0.0070047255463744585,
+     "productExports": 72.52429518258734
+    }
+   }
+  },
+  {
+   "sourceName": "Other Asia Pacific",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 25,
+   "series": {
+    "2023": {
+     "crudeImports": 299.04987449949664,
+     "productImports": 185.4422214355095,
+     "crudeExports": 12.657844900636945,
+     "productExports": 134.90058888256618
+    },
+    "2024": {
+     "crudeImports": 295.44841936986757,
+     "productImports": 194.76992552171987,
+     "crudeExports": 11.716828691746938,
+     "productExports": 120.97727905316546
+    }
+   }
+  },
+  {
+   "sourceName": "Total World",
+   "name": null,
+   "iso3": null,
+   "appMapped": false,
+   "unit": "million tonnes",
+   "snapshot": "ei2025.xlsx",
+   "sheet": "Oil - Trade movements in 23-24",
+   "sourceRow": 26,
+   "series": {
+    "2023": {
+     "crudeImports": 2163.128525825842,
+     "productImports": 1241.2738149496804,
+     "crudeExports": 2163.128525825842,
+     "productExports": 1241.2738149496804
+    },
+    "2024": {
+     "crudeImports": 2157.7807919336165,
+     "productImports": 1257.9016620140867,
+     "crudeExports": 2157.7807919336165,
+     "productExports": 1257.9016620140867
+    }
+   }
+  }
+ ],
+ "policy": "各 발행판의 2개 연도 원표를 보존한다. 2021–2022와 2023–2024 판본 경계를 명시한다. crude와 product를 합치거나 EIA TBPD에 이어 붙이지 않는다. 국가·지역 묶음은 원행 그대로다."
+}

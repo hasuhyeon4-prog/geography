@@ -1,0 +1,620 @@
+{
+ "schemaVersion": 1,
+ "source": "U.S. Census Bureau, Annual Survey of Manufactures 2013, 31AS101",
+ "snapshot": "census2013-state.xlsx",
+ "sheet": "ASM_2013_31AS101_with_ann",
+ "year": 2013,
+ "measure": "Total value of shipments and receipts for services; not GDP/value added",
+ "unit": "thousand current US dollars",
+ "lectureSourceBlockIds": [
+  "L2-B0694",
+  "L2-B0699"
+ ],
+ "practice": "suppliedData",
+ "states": {
+  "California": {
+   "industries": {
+    "311": {
+     "naics2012": "311",
+     "name": "Food manufacturing",
+     "shipmentsThousandUSD": 75425692.0,
+     "rawValue": 75425692.0,
+     "relativeStandardErrorPct": 0.3,
+     "sourceRow": 498,
+     "sharePct": 14.380661927339697
+    },
+    "312": {
+     "naics2012": "312",
+     "name": "Beverage and tobacco product manufacturing",
+     "shipmentsThousandUSD": 23317720.0,
+     "rawValue": 23317720.0,
+     "relativeStandardErrorPct": 0.8,
+     "sourceRow": 508,
+     "sharePct": 4.4457563377259754
+    },
+    "313": {
+     "naics2012": "313",
+     "name": "Textile mills",
+     "shipmentsThousandUSD": 1440257.0,
+     "rawValue": 1440257.0,
+     "relativeStandardErrorPct": 4.0,
+     "sourceRow": 511,
+     "sharePct": 0.2745993898933601
+    },
+    "314": {
+     "naics2012": "314",
+     "name": "Textile product mills",
+     "shipmentsThousandUSD": 1667983.0,
+     "rawValue": 1667983.0,
+     "relativeStandardErrorPct": 2.1,
+     "sourceRow": 515,
+     "sharePct": 0.318017627515434
+    },
+    "315": {
+     "naics2012": "315",
+     "name": "Apparel manufacturing",
+     "shipmentsThousandUSD": 5805212.0,
+     "rawValue": 5805212.0,
+     "relativeStandardErrorPct": 0.4,
+     "sourceRow": 518,
+     "sharePct": 1.106821680715048
+    },
+    "316": {
+     "naics2012": "316",
+     "name": "Leather and allied product manufacturing",
+     "shipmentsThousandUSD": 388480.0,
+     "rawValue": 388480.0,
+     "relativeStandardErrorPct": 0.1,
+     "sourceRow": 522,
+     "sharePct": 0.07406759417643693
+    },
+    "321": {
+     "naics2012": "321",
+     "name": "Wood product manufacturing",
+     "shipmentsThousandUSD": 4552577.0,
+     "rawValue": 4552577.0,
+     "relativeStandardErrorPct": 1.3,
+     "sourceRow": 526,
+     "sharePct": 0.8679943000746003
+    },
+    "322": {
+     "naics2012": "322",
+     "name": "Paper manufacturing",
+     "shipmentsThousandUSD": 9838442.0,
+     "rawValue": 9838442.0,
+     "relativeStandardErrorPct": 0.6,
+     "sourceRow": 530,
+     "sharePct": 1.8757972852770093
+    },
+    "323": {
+     "naics2012": "323",
+     "name": "Printing and related support activities",
+     "shipmentsThousandUSD": 7520406.0,
+     "rawValue": 7520406.0,
+     "relativeStandardErrorPct": 1.3,
+     "sourceRow": 533,
+     "sharePct": 1.4338405571716468
+    },
+    "324": {
+     "naics2012": "324",
+     "name": "Petroleum and coal products manufacturing",
+     "shipmentsThousandUSD": 95556518.0,
+     "rawValue": 95556518.0,
+     "relativeStandardErrorPct": 0.1,
+     "sourceRow": 535,
+     "sharePct": 18.218805076548062
+    },
+    "325": {
+     "naics2012": "325",
+     "name": "Chemical manufacturing",
+     "shipmentsThousandUSD": 62443336.0,
+     "rawValue": 62443336.0,
+     "relativeStandardErrorPct": 0.4,
+     "sourceRow": 537,
+     "sharePct": 11.905446020054814
+    },
+    "326": {
+     "naics2012": "326",
+     "name": "Plastics and rubber products manufacturing",
+     "shipmentsThousandUSD": 14274416.0,
+     "rawValue": 14274416.0,
+     "relativeStandardErrorPct": 1.2,
+     "sourceRow": 545,
+     "sharePct": 2.721560058159077
+    },
+    "327": {
+     "naics2012": "327",
+     "name": "Nonmetallic mineral product manufacturing",
+     "shipmentsThousandUSD": 8721123.0,
+     "rawValue": 8721123.0,
+     "relativeStandardErrorPct": 1.0,
+     "sourceRow": 548,
+     "sharePct": 1.6627692522827178
+    },
+    "331": {
+     "naics2012": "331",
+     "name": "Primary metal manufacturing",
+     "shipmentsThousandUSD": 7800098.0,
+     "rawValue": 7800098.0,
+     "relativeStandardErrorPct": 0.3,
+     "sourceRow": 554,
+     "sharePct": 1.4871666320027732
+    },
+    "332": {
+     "naics2012": "332",
+     "name": "Fabricated metal product manufacturing",
+     "shipmentsThousandUSD": 27800951.0,
+     "rawValue": 27800951.0,
+     "relativeStandardErrorPct": 0.6,
+     "sourceRow": 560,
+     "sharePct": 5.300529129908898
+    },
+    "333": {
+     "naics2012": "333",
+     "name": "Machinery manufacturing",
+     "shipmentsThousandUSD": 22125775.0,
+     "rawValue": 22125775.0,
+     "relativeStandardErrorPct": 0.8,
+     "sourceRow": 570,
+     "sharePct": 4.218500112075664
+    },
+    "334": {
+     "naics2012": "334",
+     "name": "Computer and electronic product manufacturing",
+     "shipmentsThousandUSD": 68127022.0,
+     "rawValue": 68127022.0,
+     "relativeStandardErrorPct": 0.3,
+     "sourceRow": 578,
+     "sharePct": 12.989097554430579
+    },
+    "335": {
+     "naics2012": "335",
+     "name": "Electrical equipment, appliance, and component manufacturing",
+     "shipmentsThousandUSD": 9904536.0,
+     "rawValue": 9904536.0,
+     "relativeStandardErrorPct": 0.4,
+     "sourceRow": 585,
+     "sharePct": 1.8883987668706494
+    },
+    "336": {
+     "naics2012": "336",
+     "name": "Transportation equipment manufacturing",
+     "shipmentsThousandUSD": 44538399.0,
+     "rawValue": 44538399.0,
+     "relativeStandardErrorPct": 0.5,
+     "sourceRow": 590,
+     "sharePct": 8.49169085255412
+    },
+    "337": {
+     "naics2012": "337",
+     "name": "Furniture and related product manufacturing",
+     "shipmentsThousandUSD": 6292235.0,
+     "rawValue": 6292235.0,
+     "relativeStandardErrorPct": 0.6,
+     "sourceRow": 598,
+     "sharePct": 1.199677482605984
+    },
+    "339": {
+     "naics2012": "339",
+     "name": "Miscellaneous manufacturing",
+     "shipmentsThousandUSD": 26952705.0,
+     "rawValue": 26952705.0,
+     "relativeStandardErrorPct": 0.4,
+     "sourceRow": 602,
+     "sharePct": 5.138802553277447
+    }
+   },
+   "total": {
+    "naics2012": "31-33",
+    "name": "Manufacturing",
+    "shipmentsThousandUSD": 524493882.0,
+    "rawValue": 524493882.0,
+    "relativeStandardErrorPct": 0.1,
+    "sourceRow": 497
+   }
+  },
+  "Ohio": {
+   "industries": {
+    "311": {
+     "naics2012": "311",
+     "name": "Food manufacturing",
+     "shipmentsThousandUSD": 31878358.0,
+     "rawValue": 31878358.0,
+     "relativeStandardErrorPct": 0.2,
+     "sourceRow": 3625,
+     "sharePct": 9.957327996813541
+    },
+    "312": {
+     "naics2012": "312",
+     "name": "Beverage and tobacco product manufacturing",
+     "shipmentsThousandUSD": 4585020.0,
+     "rawValue": 4585020.0,
+     "relativeStandardErrorPct": 1.0,
+     "sourceRow": 3635,
+     "sharePct": 1.432148670014623
+    },
+    "313": {
+     "naics2012": "313",
+     "name": "Textile mills",
+     "shipmentsThousandUSD": 318084.0,
+     "rawValue": 318084.0,
+     "relativeStandardErrorPct": 4.4,
+     "sourceRow": 3637,
+     "sharePct": 0.09935476345859591
+    },
+    "314": {
+     "naics2012": "314",
+     "name": "Textile product mills",
+     "shipmentsThousandUSD": 483613.0,
+     "rawValue": 483613.0,
+     "relativeStandardErrorPct": 3.5,
+     "sourceRow": 3641,
+     "sharePct": 0.1510583846421132
+    },
+    "315": {
+     "naics2012": "315",
+     "name": "Apparel manufacturing",
+     "shipmentsThousandUSD": 47617.0,
+     "rawValue": 47617.0,
+     "relativeStandardErrorPct": 0.0,
+     "sourceRow": 3644,
+     "sharePct": 0.014873353490298037
+    },
+    "316": {
+     "naics2012": "316",
+     "name": "Leather and allied product manufacturing",
+     "shipmentsThousandUSD": 179377.0,
+     "rawValue": 179377.0,
+     "relativeStandardErrorPct": 0.1,
+     "sourceRow": 3647,
+     "sharePct": 0.05602909736079953
+    },
+    "321": {
+     "naics2012": "321",
+     "name": "Wood product manufacturing",
+     "shipmentsThousandUSD": 1931337.0,
+     "rawValue": 1931337.0,
+     "relativeStandardErrorPct": 1.2,
+     "sourceRow": 3650,
+     "sharePct": 0.603260556311648
+    },
+    "322": {
+     "naics2012": "322",
+     "name": "Paper manufacturing",
+     "shipmentsThousandUSD": 7751367.0,
+     "rawValue": 7751367.0,
+     "relativeStandardErrorPct": 1.1,
+     "sourceRow": 3654,
+     "sharePct": 2.4211693601871396
+    },
+    "323": {
+     "naics2012": "323",
+     "name": "Printing and related support activities",
+     "shipmentsThousandUSD": 4383812.0,
+     "rawValue": 4383812.0,
+     "relativeStandardErrorPct": 0.8,
+     "sourceRow": 3657,
+     "sharePct": 1.369300575655972
+    },
+    "324": {
+     "naics2012": "324",
+     "name": "Petroleum and coal products manufacturing",
+     "shipmentsThousandUSD": 29760200.0,
+     "rawValue": 29760200.0,
+     "relativeStandardErrorPct": 0.1,
+     "sourceRow": 3659,
+     "sharePct": 9.295713181048106
+    },
+    "325": {
+     "naics2012": "325",
+     "name": "Chemical manufacturing",
+     "shipmentsThousandUSD": 34169628.0,
+     "rawValue": 34169628.0,
+     "relativeStandardErrorPct": 0.5,
+     "sourceRow": 3661,
+     "sharePct": 10.673015013041258
+    },
+    "326": {
+     "naics2012": "326",
+     "name": "Plastics and rubber products manufacturing",
+     "shipmentsThousandUSD": 19788574.0,
+     "rawValue": 19788574.0,
+     "relativeStandardErrorPct": 0.8,
+     "sourceRow": 3669,
+     "sharePct": 6.181037364196001
+    },
+    "327": {
+     "naics2012": "327",
+     "name": "Nonmetallic mineral product manufacturing",
+     "shipmentsThousandUSD": 5753556.0,
+     "rawValue": 5753556.0,
+     "relativeStandardErrorPct": 0.4,
+     "sourceRow": 3672,
+     "sharePct": 1.797145393750661
+    },
+    "331": {
+     "naics2012": "331",
+     "name": "Primary metal manufacturing",
+     "shipmentsThousandUSD": 29597954.0,
+     "rawValue": 29597954.0,
+     "relativeStandardErrorPct": 0.1,
+     "sourceRow": 3678,
+     "sharePct": 9.245035017568952
+    },
+    "332": {
+     "naics2012": "332",
+     "name": "Fabricated metal product manufacturing",
+     "shipmentsThousandUSD": 28841829.0,
+     "rawValue": 28841829.0,
+     "relativeStandardErrorPct": 0.7,
+     "sourceRow": 3684,
+     "sharePct": 9.008856459326063
+    },
+    "333": {
+     "naics2012": "333",
+     "name": "Machinery manufacturing",
+     "shipmentsThousandUSD": 22643359.0,
+     "rawValue": 22643359.0,
+     "relativeStandardErrorPct": 0.4,
+     "sourceRow": 3694,
+     "sharePct": 7.072740462749049
+    },
+    "334": {
+     "naics2012": "334",
+     "name": "Computer and electronic product manufacturing",
+     "shipmentsThousandUSD": 7743246.0,
+     "rawValue": 7743246.0,
+     "relativeStandardErrorPct": 0.9,
+     "sourceRow": 3702,
+     "sharePct": 2.418632734534648
+    },
+    "335": {
+     "naics2012": "335",
+     "name": "Electrical equipment, appliance, and component manufacturing",
+     "shipmentsThousandUSD": 9219101.0,
+     "rawValue": 9219101.0,
+     "relativeStandardErrorPct": 0.4,
+     "sourceRow": 3709,
+     "sharePct": 2.8796217324854596
+    },
+    "336": {
+     "naics2012": "336",
+     "name": "Transportation equipment manufacturing",
+     "shipmentsThousandUSD": 73947754.0,
+     "rawValue": 73947754.0,
+     "relativeStandardErrorPct": 0.9,
+     "sourceRow": 3714,
+     "sharePct": 23.09786599440537
+    },
+    "337": {
+     "naics2012": "337",
+     "name": "Furniture and related product manufacturing",
+     "shipmentsThousandUSD": 2610970.0,
+     "rawValue": 2610970.0,
+     "relativeStandardErrorPct": 0.8,
+     "sourceRow": 3722,
+     "sharePct": 0.8155465435152041
+    },
+    "339": {
+     "naics2012": "339",
+     "name": "Miscellaneous manufacturing",
+     "shipmentsThousandUSD": 4514968.0,
+     "rawValue": 4514968.0,
+     "relativeStandardErrorPct": 1.4,
+     "sourceRow": 3726,
+     "sharePct": 1.4102676577983484
+    }
+   },
+   "total": {
+    "naics2012": "31-33",
+    "name": "Manufacturing",
+    "shipmentsThousandUSD": 320149723.0,
+    "rawValue": 320149723.0,
+    "relativeStandardErrorPct": 0.2,
+    "sourceRow": 3624
+   }
+  },
+  "Texas": {
+   "industries": {
+    "311": {
+     "naics2012": "311",
+     "name": "Food manufacturing",
+     "shipmentsThousandUSD": 43516023.0,
+     "rawValue": 43516023.0,
+     "relativeStandardErrorPct": 0.4,
+     "sourceRow": 4451,
+     "sharePct": 5.947184616918393
+    },
+    "312": {
+     "naics2012": "312",
+     "name": "Beverage and tobacco product manufacturing",
+     "shipmentsThousandUSD": 9455462.0,
+     "rawValue": 9455462.0,
+     "relativeStandardErrorPct": 1.0,
+     "sourceRow": 4461,
+     "sharePct": 1.2922453449446982
+    },
+    "313": {
+     "naics2012": "313",
+     "name": "Textile mills",
+     "shipmentsThousandUSD": 780162.0,
+     "rawValue": 780162.0,
+     "relativeStandardErrorPct": 0.5,
+     "sourceRow": 4464,
+     "sharePct": 0.10662204689762865
+    },
+    "314": {
+     "naics2012": "314",
+     "name": "Textile product mills",
+     "shipmentsThousandUSD": 671197.0,
+     "rawValue": 671197.0,
+     "relativeStandardErrorPct": 2.0,
+     "sourceRow": 4468,
+     "sharePct": 0.09173017656787649
+    },
+    "315": {
+     "naics2012": "315",
+     "name": "Apparel manufacturing",
+     "shipmentsThousandUSD": 363870.0,
+     "rawValue": 363870.0,
+     "relativeStandardErrorPct": 1.5,
+     "sourceRow": 4471,
+     "sharePct": 0.04972885657676244
+    },
+    "316": {
+     "naics2012": "316",
+     "name": "Leather and allied product manufacturing",
+     "shipmentsThousandUSD": 768467.0,
+     "rawValue": 768467.0,
+     "relativeStandardErrorPct": 0.3,
+     "sourceRow": 4475,
+     "sharePct": 0.10502373162661088
+    },
+    "321": {
+     "naics2012": "321",
+     "name": "Wood product manufacturing",
+     "shipmentsThousandUSD": 5093822.0,
+     "rawValue": 5093822.0,
+     "relativeStandardErrorPct": 0.8,
+     "sourceRow": 4479,
+     "sharePct": 0.6961550654507302
+    },
+    "322": {
+     "naics2012": "322",
+     "name": "Paper manufacturing",
+     "shipmentsThousandUSD": 6965318.0,
+     "rawValue": 6965318.0,
+     "relativeStandardErrorPct": 1.1,
+     "sourceRow": 4483,
+     "sharePct": 0.9519259621115833
+    },
+    "323": {
+     "naics2012": "323",
+     "name": "Printing and related support activities",
+     "shipmentsThousandUSD": 3688699.0,
+     "rawValue": 3688699.0,
+     "relativeStandardErrorPct": 1.2,
+     "sourceRow": 4486,
+     "sharePct": 0.504121756467549
+    },
+    "324": {
+     "naics2012": "324",
+     "name": "Petroleum and coal products manufacturing",
+     "shipmentsThousandUSD": 276496566.0,
+     "rawValue": 276496566.0,
+     "relativeStandardErrorPct": 0.1,
+     "sourceRow": 4488,
+     "sharePct": 37.78783102366595
+    },
+    "325": {
+     "naics2012": "325",
+     "name": "Chemical manufacturing",
+     "shipmentsThousandUSD": 165945678.0,
+     "rawValue": 165945678.0,
+     "relativeStandardErrorPct": 0.3,
+     "sourceRow": 4490,
+     "sharePct": 22.6792228565026
+    },
+    "326": {
+     "naics2012": "326",
+     "name": "Plastics and rubber products manufacturing",
+     "shipmentsThousandUSD": 14798505.0,
+     "rawValue": 14798505.0,
+     "relativeStandardErrorPct": 0.3,
+     "sourceRow": 4498,
+     "sharePct": 2.022460583987418
+    },
+    "327": {
+     "naics2012": "327",
+     "name": "Nonmetallic mineral product manufacturing",
+     "shipmentsThousandUSD": 10539642.0,
+     "rawValue": 10539642.0,
+     "relativeStandardErrorPct": 1.3,
+     "sourceRow": 4501,
+     "sharePct": 1.4404164822283276
+    },
+    "331": {
+     "naics2012": "331",
+     "name": "Primary metal manufacturing",
+     "shipmentsThousandUSD": 17511453.0,
+     "rawValue": 17511453.0,
+     "relativeStandardErrorPct": 0.5,
+     "sourceRow": 4507,
+     "sharePct": 2.393229820231721
+    },
+    "332": {
+     "naics2012": "332",
+     "name": "Fabricated metal product manufacturing",
+     "shipmentsThousandUSD": 32591898.0,
+     "rawValue": 32591898.0,
+     "relativeStandardErrorPct": 1.5,
+     "sourceRow": 4513,
+     "sharePct": 4.454222170573201
+    },
+    "333": {
+     "naics2012": "333",
+     "name": "Machinery manufacturing",
+     "shipmentsThousandUSD": 42869840.0,
+     "rawValue": 42869840.0,
+     "relativeStandardErrorPct": 0.3,
+     "sourceRow": 4523,
+     "sharePct": 5.858873017365415
+    },
+    "334": {
+     "naics2012": "334",
+     "name": "Computer and electronic product manufacturing",
+     "shipmentsThousandUSD": 26649574.0,
+     "rawValue": 26649574.0,
+     "relativeStandardErrorPct": 0.5,
+     "sourceRow": 4531,
+     "sharePct": 3.642105266380348
+    },
+    "335": {
+     "naics2012": "335",
+     "name": "Electrical equipment, appliance, and component manufacturing",
+     "shipmentsThousandUSD": 5775259.0,
+     "rawValue": 5775259.0,
+     "relativeStandardErrorPct": 2.6,
+     "sourceRow": 4538,
+     "sharePct": 0.7892847074632602
+    },
+    "336": {
+     "naics2012": "336",
+     "name": "Transportation equipment manufacturing",
+     "shipmentsThousandUSD": 56002315.0,
+     "rawValue": 56002315.0,
+     "relativeStandardErrorPct": 0.2,
+     "sourceRow": 4543,
+     "sharePct": 7.65364303350557
+    },
+    "337": {
+     "naics2012": "337",
+     "name": "Furniture and related product manufacturing",
+     "shipmentsThousandUSD": 3962996.0,
+     "rawValue": 3962996.0,
+     "relativeStandardErrorPct": 1.3,
+     "sourceRow": 4551,
+     "sharePct": 0.5416089804003716
+    },
+    "339": {
+     "naics2012": "339",
+     "name": "Miscellaneous manufacturing",
+     "shipmentsThousandUSD": 7261208.0,
+     "rawValue": 7261208.0,
+     "relativeStandardErrorPct": 0.7,
+     "sourceRow": 4555,
+     "sharePct": 0.9923642268008905
+    }
+   },
+   "total": {
+    "naics2012": "31-33",
+    "name": "Manufacturing",
+    "shipmentsThousandUSD": 731707956.0,
+    "rawValue": 731707956.0,
+    "relativeStandardErrorPct": 0.1,
+    "sourceRow": 4450
+   }
+  }
+ },
+ "policy": "3자리 NAICS 상호배타적 업종과 31-33 총계를 구별. D/S 등 비공개 값은 null. 강의 도넛을 픽셀로 수치화하지 않고 원출처 비율을 계산한다."
+}
