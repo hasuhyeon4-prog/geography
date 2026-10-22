@@ -88,7 +88,9 @@ const EXCLUSIVE = ['religion', 'christianity', 'islam', 'buddhism', 'bloc', 'ape
 const FACT_SCOPE = {latinLanguage: name => C.regionOf[name] === 'americas'};
 // Set entries the lecture declines to state as one country-wide fact. 나이지리아: '국토 전체를
 // 어느 하나의 종교만으로 설명하기 어렵다' (2권 P10), and the Pew editions disagree on its 1위.
-const FACT_UNSAFE = {religion: ['나이지리아']};
+// 일본: the Pew 불교 1위 folds 신토 into 기타, the lecture never names Japan's religion, and a learner
+// who knows '신토·불교' could fairly reject it.
+const FACT_UNSAFE = {religion: ['나이지리아', '일본']};
 
 function ringArea(ring) {
   let a = 0;
@@ -534,8 +536,11 @@ for (const [n, passages] of Object.entries(clueData.countries)) {
     for (const s of p.text.split(/(?<=다\.)\s+/).map(x => x.trim())) {
       const m = s.match(new RegExp('^' + n + '(은|는|의|이|가)\\s'));
       if (!m || s.indexOf(n, n.length) >= 0 || countryNames.some(o => o !== n && s.includes(o))) continue;
-      // A part of the name ('콩고강' in 콩고 민주 공화국's clue) would give it away.
-      if (n.split(' ').filter(w => w.length >= 2 && !['공화국', '민주', '연방'].includes(w)).some(w => s.slice(n.length).includes(w))) continue;
+      // A part of the name would give it away: '콩고강' (콩고 민주 공화국), '말레이반도' (말레이시아),
+      // '아라비아반도' (사우디아라비아). Any three letters in a row of the name count as a part.
+      const words = n.split(' ').filter(w => w.length >= 2 && !['공화국', '민주', '연방'].includes(w));
+      const parts = words.flatMap(w => (w.length <= 3 ? [w] : Array.from({length: w.length - 2}, (_, i) => w.slice(i, i + 3))));
+      if (parts.some(w => s.slice(n.length).includes(w))) continue;
       if (NOT_A_CLUE.test(s) || s.length > 130 || s.length < 15 || clueSentences.some(c => c.text === s)) continue;
       clueSentences.push({country: n, text: s, particle: m[1], tokens: tokensIn(s.slice(n.length)), source: p.source.locator.split(' / ')[0]});
     }
@@ -593,12 +598,13 @@ const compositions = {
     // Same OWID rows as the shares, so share × total is one source and one year.
     total: {label: '총발전량', unit: 'TWh', year: electricity.meta.baseYear, source: electricity.meta.source,
       values: Object.fromEntries(Object.entries(electricity.countries).filter(([, c]) => c.generation != null).map(([n, c]) => [n, c.generation]))}},
-  // 1차 에너지 소비 구성 (R2, data/energy-series.json: OWID, substitution method). Shares and the
-  // total come from the same rows. The margin is 5%p: Brazil's oil leads hydro by about 7%p.
+  // 1차 에너지 소비 구성 (R2, data/energy-series.json: OWID, substitution method). The margin is
+  // 5%p: the smallest gaps 2015~2024 are 중국 석탄 over 석유·신재생 7.8%p and 브라질 석유 over 수력 8.3%p.
   primaryEnergy: {year: ENERGY_YEAR, source: 'Energy Institute·EIA (OWID 에너지 자료)', unit: '% (1차 에너지 소비 비중)', orderMargin: 5, rankExclude: [],
     categories: [['coal', '석탄'], ['oil', '석유'], ['gas', '천연가스'], ['nuclear', '원자력'], ['hydro', '수력'], ['renewables', '신재생(수력 제외)']],
     values: Object.fromEntries(Object.entries(energyShares).filter(([, s]) => s[ENERGY_YEAR]).map(([n, s]) => [n, s[ENERGY_YEAR]])),
     total: {label: '1차 에너지 소비량', unit: 'TWh', year: ENERGY_YEAR, source: 'Energy Institute·EIA (OWID 에너지 자료)',
+      note: '1차 에너지 소비량도 2023년(EI·EIA 결합 계열, 비중의 분모와 최대 3% 차이)',
       values: Object.fromEntries(Object.entries(energy.countries).filter(([n, c]) => energyShares[n] && energyShares[n][ENERGY_YEAR] && (c.series.primary_energy_consumption || {})[ENERGY_YEAR] != null)
         .map(([n, c]) => [n, c.series.primary_energy_consumption[ENERGY_YEAR]]))}},
   religion: {year: religion.meta.baseYear, source: religion.meta.source, unit: '% (인구 대비)', orderMargin: 2, rankExclude: ['unaffiliated', 'other'],

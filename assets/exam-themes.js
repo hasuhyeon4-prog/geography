@@ -77,7 +77,7 @@
   },
   {
    id:'export-composition',status:'ready',title:'상품 수출 구성과 총수출액',lecture:'2권 P08·P11',exams:['2027학년도 9월 13번','2026학년도 6월 16번','2027학년도 6월 7번'],
-   kind:'composition',composition:'exports',entityType:'country',reveals:['exportType'],map:true,
+   kind:'composition',composition:'exports',entityType:'country',what:'상품 수출 구성과 총수출액',reveals:['exportType'],map:true,
    pool:['사우디아라비아','나이지리아','튀르키예','멕시코','칠레','아르헨티나','브라질','오스트레일리아','인도네시아','일본'],
    pick:[3,3],show:['fuel','ores','food','agriculturalRaw','manufactures','other'],amountNoun:'수출액',hideable:['fuel','ores','food','manufactures'],
    followups:{facts:['opec','bloc','apec','latinLanguage','religion','capitalCity','hemisphere','equator','meridian'],focus:['opec']},
@@ -102,7 +102,7 @@
   },
   {
    id:'electricity-mix',status:'ready',title:'국가별 전력 생산 구성',lecture:'2권 P07',exams:['2025학년도 수능 9번','2027학년도 6월 8번'],
-   kind:'composition',composition:'electricity',entityType:'country',reveals:[],map:true,
+   kind:'composition',composition:'electricity',what:'발전량 구성과 총발전량',entityType:'country',reveals:[],map:true,
    pool:['프랑스','노르웨이','브라질','네팔','아이슬란드','덴마크','캐나다','중국','인도','러시아','이란','독일','케냐','미국','남아프리카 공화국','오스트레일리아'],
    // The verified top sources are only 원자력·수력·풍력, so three 대상, each identified by its own.
    pick:[3,3],everyKnown:true,show:['coal','gas','oil','nuclear','hydro','wind','solar','other'],amountNoun:'발전량',hideable:['coal','gas','nuclear','hydro','wind'],
@@ -121,7 +121,7 @@
   },
   {
    id:'religion-composition',status:'ready',title:'국가별 종교 인구 구성',lecture:'1권 P04',exams:['2027학년도 9월 7번','2026학년도 수능 13번','2026학년도 6월 8번','2024학년도 9월 20번','2022학년도 6월 5번'],
-   kind:'composition',composition:'religion',entityType:'country',map:true,
+   kind:'composition',composition:'religion',entityType:'country',map:true,what:'종교별 인구 비중과 총인구',
    // 레바논·나이지리아 stay as table rows only: their 1위 is not recalled (data/exam-relations.json).
    pool:['말레이시아','네팔','스리랑카','인도','방글라데시','미얀마','필리핀','우즈베키스탄','인도네시아','이스라엘','레바논','나이지리아','파키스탄','타이',
     '캄보디아','라오스','아프가니스탄','튀르키예','포르투갈','남수단'],
@@ -137,9 +137,11 @@
    id:'primary-energy',status:'ready',title:'국가별 1차 에너지 소비 구성',lecture:'2권 P07',exams:['2024학년도 6월 10번','2022학년도 6월 15번','2020학년도 수능 4번'],
    kind:'composition',composition:'primaryEnergy',entityType:'country',map:true,everyKnown:true,
    pool:['중국','인도','러시아','이란','브라질','남아프리카 공화국'],
-   pick:[3,3],show:['coal','oil','gas','nuclear','hydro','renewables'],hideable:['coal','oil','gas','hydro'],amountNoun:'소비량',
+   // Two-country questions too: 중국·인도·남아공 (석탄 1위) and 러시아·이란 (가스 > 석유) cannot share a
+   // question, so with three every question would hold 브라질.
+   pick:[2,3],show:['coal','oil','gas','nuclear','hydro','renewables'],hideable:['coal','oil','gas','hydro'],amountNoun:'소비량',what:'1차 에너지 소비 구성과 소비량',
    followups:{facts:['bloc','apec','religion','christianity','islam','capitalCity','hemisphere','equator'],focus:[]},
-   note:'1차 에너지는 발전에 쓰인 에너지와 수송·난방 등에 직접 쓰인 에너지를 모두 포함한다. 전력 생산 구성과 다르다.',
+   note:'1차 에너지는 발전에 쓰인 에너지와 수송·난방 등에 직접 쓰인 에너지를 모두 포함한다. 전력 생산 구성과 다르다. 원자력·수력·풍력·태양광 전력은 같은 전력을 화력으로 만들 때 드는 연료량으로 환산했다(대체법, EI). 그래서 물리적 에너지 함량 방식보다 이 비중들이 크게 나온다.',
    prompt:'{range}는 {candidates} 중 하나이다. 표는 1차 에너지 소비량의 에너지원별 비중(%)과 1차 에너지 소비량이다.'
   },
   // 지역지리: (가)~(다) are described by lecture sentences (data/country-clues.json, filtered in
@@ -147,8 +149,10 @@
   {
    id:'country-clues',status:'ready',title:'국가 설명으로 지도에서 찾기',lecture:'2권 P07·P08·P10 · 1권 P00·P04·P05',exams:['2027학년도 9월 9번','2027학년도 9월 12번','2027학년도 9월 18번'],
    kind:'clues',entityType:'country',map:true,
-   // 덴마크·잠비아·에콰도르·페루·오스트레일리아 left with their only sentences (KB cluesDropped).
-   pool:['에스파냐','프랑스','스웨덴','그리스','러시아','튀르키예','아이슬란드','이집트','에티오피아','콩고 민주 공화국','보츠와나','사우디아라비아','카타르','아랍 에미리트','아프가니스탄','인도','스리랑카','몽골','일본','미얀마','말레이시아','아르헨티나','세네갈'],
+   // 덴마크·잠비아·에콰도르·페루·오스트레일리아 left with their only sentences (KB cluesDropped);
+   // 사우디아라비아·말레이시아 because their clues hold part of the name (아라비아반도, 말레이반도);
+   // 아르헨티나, alone in the Americas, because its map pins could only be other continents.
+   pool:['에스파냐','프랑스','스웨덴','그리스','러시아','튀르키예','아이슬란드','이집트','에티오피아','콩고 민주 공화국','보츠와나','카타르','아랍 에미리트','아프가니스탄','인도','스리랑카','몽골','일본','미얀마','세네갈'],
    pick:[3,3],
    followups:{facts:['religion','christianity','islam','buddhism','bloc','apec','euro','latinLanguage','capitalCity','exportType','hemisphere','equator','meridian'],
     focus:['religion','christianity','islam','buddhism','bloc','apec','euro','latinLanguage','capitalCity','exportType']},

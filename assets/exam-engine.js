@@ -24,6 +24,8 @@
  function shuffle(list,r){var a=list.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(r()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
  function pick(list,r){return list[Math.floor(r()*list.length)]}
  function fmt(v){var a=Math.abs(v);return v.toLocaleString('ko-KR',{maximumFractionDigits:a>=100?0:a>=10?1:2})}
+ // Composition shares always with one decimal, so '57.0' does not read as '57' beside '27.3'.
+ function pct(v){return v.toLocaleString('ko-KR',{minimumFractionDigits:1,maximumFractionDigits:1})}
  // Particles follow how a name is read: ASEAN 아세안 → 은, EU 이유 → 는.
  var READ={ASEAN:'아세안',MERCOSUR:'메르코수르',EU:'이유',USMCA:'유에스엠씨에이',APEC:'에이펙',OPEC:'오펙'};
  function topic(word){word=READ[word]||word;var c=word.charCodeAt(word.length-1);return c>=0xAC00&&c<=0xD7A3&&(c-0xAC00)%28?'은':'는'}
@@ -83,10 +85,12 @@
   // Which options each region holds. A false claim must name something a country of the same
   // region really has, so "우간다는 APEC 회원국이다" never serves as a free distractor.
   var HOLDERS={};
-  Object.keys(kb.entities).forEach(function(n){var e=kb.entities[n];if(!e.region)return;Object.keys(e.facts||{}).forEach(function(set){var h=HOLDERS[set]||(HOLDERS[set]={}),g=h[e.region]||(h[e.region]={});e.facts[set].values.forEach(function(v){g[v]=1})})});
-  function plausible(set,name,v){var e=entity(name),g=e&&e.region&&HOLDERS[set]&&HOLDERS[set][e.region];return !!(g&&g[v])}
+  // A religion must be the 1위 of at least two countries of the region: 유대교 (이스라엘 alone) is no
+  // lure for 카타르.
+  Object.keys(kb.entities).forEach(function(n){var e=kb.entities[n];if(!e.region)return;Object.keys(e.facts||{}).forEach(function(set){var h=HOLDERS[set]||(HOLDERS[set]={}),g=h[e.region]||(h[e.region]={});e.facts[set].values.forEach(function(v){g[v]=(g[v]||0)+1})})});
+  function plausible(set,name,v){var e=entity(name),g=e&&e.region&&HOLDERS[set]&&HOLDERS[set][e.region];return !!(g&&g[v]>=(set==='religion'?2:1))}
   // A hemisphere is worth a <보기> only for a country within this many degrees of the equator.
-  var NEAR_EQUATOR=25,LINE_NEAR={equator:12,meridian:8};
+  var NEAR_EQUATOR=12,LINE_NEAR={equator:12,meridian:8};
   function allowed(theme,set){var f=theme.followups&&theme.followups.facts;return !f||f.indexOf(set)>=0}
   // An indicator with a domain (agriculture) is recalled only by themes listing that domain,
   // and a theme with domains recalls only those.
@@ -172,8 +176,8 @@
    var c=composition(theme),show=theme.show||c.categories.map(function(x){return x[0]});
    var cols=show.map(function(id){return {id:id,label:catLabel(theme,id),unit:'%'}});
    if(c.total)cols.push({id:c.total.indicator||'total',label:c.total.label,unit:c.total.unit});
-   return {columns:cols,rows:chosen.map(function(n,i){return {label:LABELS[i],cells:show.map(function(id){return fmt(comp(theme,n)[id]||0)}).concat(c.total?[fmt(total(theme,n))]:[])}}),
-    source:c.year+' · '+c.source+' · '+c.unit+(c.total?' · '+c.total.label+'도 '+c.total.year+'년 같은 출처':'')};
+   return {columns:cols,rows:chosen.map(function(n,i){return {label:LABELS[i],cells:show.map(function(id){return pct(comp(theme,n)[id]||0)}).concat(c.total?[fmt(total(theme,n))]:[])}}),
+    source:c.year+' · '+c.source+' · '+c.unit+(c.total?' · '+(c.total.note||c.total.label+'도 '+c.total.year+'년 같은 출처'):'')};
   }
 
   function cues(theme,chosen,shown){
@@ -236,7 +240,7 @@
    var c=composition(theme),visible=(theme.show||[]).filter(function(id){return hidden.indexOf(id)<0});
    var cols=hidden.map(function(id,j){return {id:id,label:COLS[j],reveal:catLabel(theme,id),unit:'%'}}).concat(visible.map(function(id){return {id:id,label:catLabel(theme,id),unit:'%'}}));
    if(c.total)cols.push({id:c.total.indicator||'total',label:c.total.label,unit:c.total.unit});
-   return {columns:cols,rows:rows.map(function(n){return {label:names(n),cells:hidden.concat(visible).map(function(id){return fmt(comp(theme,n)[id]||0)}).concat(c.total?[fmt(total(theme,n))]:[])}}),
+   return {columns:cols,rows:rows.map(function(n){return {label:names(n),cells:hidden.concat(visible).map(function(id){return pct(comp(theme,n)[id]||0)}).concat(c.total?[fmt(total(theme,n))]:[])}}),
     source:c.year+' · '+c.source+' · '+c.unit};
   }
   function columnsCues(theme,rows,hidden){
@@ -280,7 +284,8 @@
   function factExplain(set,name){
    var e=entity(name),f=e.facts[set],m=kb.factSets[set]||kb.extraFacts[set];
    var labels=f.values.map(function(v){return (kb.factSets[set]&&kb.factSets[set].options[v])||v}).join('·');
-   return name+' — '+(m?m.title||m.label:set)+': '+labels+(f.note?' · '+f.note:'')+(f.source?' ('+f.source+')':'');
+   var note=(f.note||'').replace(/ ?무종교를 제외한 개별 종교 중 1위이며, 과반 여부와 다릅니다\.?/,'').trim();
+   return name+' — '+(m?m.title||m.label:set)+': '+labels+(note?' · '+note:'')+(f.source?' ('+f.source+')':'');
   }
   function optionLabel(set,id){return kb.factSets[set]?kb.factSets[set].options[id]:id}
   // Concept-card sets carry their own phrase: '{value}을/를 …' takes the particle the value needs.
@@ -361,7 +366,10 @@
   // What a clue sentence already tells about its country, so no <보기> asks it again: '수도 다카르'
   // settles 수도와 최대 도시, '남부 아프리카' the hemisphere, '내륙국' the coast.
   var CLUE_STATES={capitalCity:/수도/,exportType:/수출|상업적 농업/,landlocked:/내륙국/,seas:/연안|접하|바다/,equator:/적도/,meridian:/본초 자오선/,
-   hemisphere:/남반구|북반구|회귀선|남부 아프리카|적도/,religion:/불교|이슬람교|힌두교|크리스트교|정교회/,christianity:/크리스트교|정교회|가톨릭|개신교/,islam:/이슬람교|수니|시아/,buddhism:/불교/};
+   hemisphere:/남반구|북반구|회귀선|남부 아프리카|적도/};
+  // The religion fact is stated only when the clue names the country's own 1위 religion: a past
+  // Buddhist site (바미얀) does not settle Afghanistan's religion, and stays a fair lure.
+  var RELIGION_WORDS={christianity:/크리스트교|정교회|가톨릭|개신교/,islam:/이슬람교/,buddhism:/불교/,hinduism:/힌두교/,judaism:/유대교/};
   // named: the 대상 are shown by name (항목 식별), so <보기> use names with their particles.
   // hidden: composition categories shown as A~C; <보기> call them by their letters.
   function candidates(theme,chosen,shown,r,named,hidden){
@@ -371,7 +379,9 @@
    var CN=function(cat){var j=hidden.indexOf(cat);return j>=0?COLS[j]:catLabel(theme,cat)},CS=function(cat){return CN(cat)+(hidden.indexOf(cat)>=0?'는':topic(CN(cat)))};
    // A fact the clue sentence already states ('힌두교 신자가 가장 많은 국가') is not asked about.
    var given={};if(theme.kind==='clues')chosen.forEach(function(n,i){given[n]=clueOf(shown[i]).text});
-   var stated=function(n,set){var f=entity(n).facts[set];if(!given[n])return false;if(CLUE_STATES[set]&&CLUE_STATES[set].test(given[n]))return true;return !!(f&&f.values.some(function(v){return given[n].indexOf(optionLabel(set,v))>=0}))};
+   var stated=function(n,set){var f=entity(n).facts[set];if(!given[n])return false;if(CLUE_STATES[set]&&CLUE_STATES[set].test(given[n]))return true;
+    if(set==='religion'&&f&&f.values.some(function(v){return RELIGION_WORDS[v]&&RELIGION_WORDS[v].test(given[n])}))return true;
+    return !!(f&&f.values.some(function(v){return given[n].indexOf(optionLabel(set,v))>=0}))};
    var L=function(n){return named?n:LABELS[chosen.indexOf(n)]},S=function(n){return L(n)+(named?topic(n):'는')},W=function(n){return L(n)+(named?(topic(n)==='은'?'과':'와'):'와')};
    function add(c){if(c.text&&!out.some(function(x){return x.text===c.text}))out.push(c)}
    chosen.forEach(function(n){
@@ -610,7 +620,7 @@
    var s1=stage1(hidden,r),names={};hidden.forEach(function(id){names[id]=columnName(theme,id)});
    var list=hidden.map(function(id){return names[id]}).sort(koSort).join(', ');
    return {theme:theme,format:'columns',signature:signature,labels:rows.slice(),entities:rows,hidden:hidden,shown:shown,display:columnsDisplay(theme,rows,shown,hidden),
-    prompt:'표는 '+rows.join(', ')+'의 자료이다. A~C는 '+list+' 중 하나이다.',
+    prompt:'표는 '+rows.join(', ')+'의 '+(theme.what||'자료')+'이다. A~C는 '+list+' 중 하나이다.',
     stage1:{question:'A~C에 해당하는 것으로 옳은 것은?',labels:COLS,names:names,options:s1.options,answer:s1.answer,cues:columnsCues(theme,rows,hidden),basis:{columns:hidden}},
     stage2:{question:'자료에 대한 설명으로 옳은 것만을 <보기>에서 고른 것은?',statements:s2.statements,options:s2.options,answer:s2.answer}};
   }
