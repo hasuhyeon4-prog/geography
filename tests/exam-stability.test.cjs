@@ -59,6 +59,8 @@ function agriSeries(area, key) {
   return Object.fromEntries(Object.keys(cols[0]).filter(y => cols.every(c => y in c)).map(y => [y, cols.reduce((t, c) => t + c[y], 0)]));
 }
 const scaled = (ser, k) => Object.fromEntries(Object.entries(ser).map(([y, v]) => [y, v / k]));
+const minerals = data('data/mineral-production-shares.json').minerals, MIN_REL = data('data/exam-relations-minerals.json');
+const MIN_COL = {'min-copper': '구리', 'min-iron': '철광석'};
 // Two-period urbanization (UN WUP 2025): a column in the window is read 2015~2025, an earlier one
 // within five years of its own year; a change between two columns over every pair of those years.
 const WUP = data('data/urbanization-change.json'), POP = data('data/exam-relations-population-change.json');
@@ -78,6 +80,12 @@ function periodRaw(ind, n) {
 function raw(ind, name) {
   if (PERIOD.test(ind)) return periodRaw(ind, name);
   if (ind === 'energy-total') return energy.countries[name].series.primary_energy_consumption;
+  if (MIN_COL[ind]) {
+    // BGS shares of the reported total; the row BGS labels Congo (1-17-19941) is not the DR Congo.
+    const out = {};
+    for (const row of minerals[MIN_COL[ind]]) for (const c of row.countries) if (c.name === name && !c.sourceRowId.startsWith('1-17-19941')) out[row.year] = (out[row.year] || 0) + c.shareOfReportedTotalPct;
+    return out;
+  }
   if (AGRI_COL[ind]) return scaled(agriSeries(name, AGRI_COL[ind][0]), AGRI_COL[ind][1]);
   if (AGRI_AREA[ind]) return scaled(agriSeries(AGRI_AREA[ind][1], AGRI_AREA[ind][0] + ':' + name), AGRI_AREA[ind][2]);
   if (countries.countries[name] && !GROUP[ind] && !ind.includes('-')) return countries.countries[name].series[ind] || (economy.countries[name].series[ind]) || {};
@@ -102,7 +110,7 @@ function yearly(ind, hi, lo) {
 
 // The whitelist, read here without the builder.
 const allowedPairs = new Map(), allowedSigns = new Set(), lectureDirected = [];
-for (const r of REL.relations.concat(POP.relations)) {
+for (const r of REL.relations.concat(POP.relations, MIN_REL.relations)) {
   const allow = (a, b) => allowedPairs.set(r.indicator + '|' + [a, b].sort().join('|'), r.basis);
   for (const [hi, lo] of r.pairs || []) { allow(hi, lo); lectureDirected.push([r.indicator, hi, lo]); }
   (r.tiers || []).forEach((tier, i) => r.tiers.slice(i + 1).flat().forEach(lo => tier.forEach(hi => { allow(hi, lo); lectureDirected.push([r.indicator, hi, lo]); })));
@@ -346,7 +354,7 @@ test('the table shows the data files’ base-year values', () => {
   for (const q of questions()) {
     if (q.theme.kind !== 'indicators') continue;
     q.shown.forEach((ind, j) => q.entities.forEach((n, i) => {
-      const year = PERIOD.test(ind) ? ind.match(PERIOD)[3] : ind.endsWith('-area') ? '2024' : q.theme.entityType === 'country' ? countries.meta.baseYear : '2023';
+      const year = PERIOD.test(ind) ? ind.match(PERIOD)[3] : MIN_COL[ind] ? '2024' : ind.endsWith('-area') ? '2024' : q.theme.entityType === 'country' ? countries.meta.baseYear : '2023';
       const v = raw(ind, n)[year];
       const shown = num(q.display.rows[i].cells[j]);
       assert.ok(Math.abs(shown - v) <= Math.max(0.051, Math.abs(v) * 0.006), `${n} ${ind}: shown ${shown}, data ${v}`);

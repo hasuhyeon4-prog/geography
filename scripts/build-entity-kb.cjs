@@ -602,6 +602,27 @@ for (const [key, [id, label, unit, more]] of Object.entries(ENERGY_IND)) {
     if (c.series[key][ENERGY_YEAR] != null) entities[n].values[id] = c.series[key][ENERGY_YEAR];
   }
 }
+// 광물 생산 비중 (R2: data/mineral-production-shares.json, BGS). A share is of the reported country
+// total of the same year and unit; a missing country is not 0. The row BGS labels Congo (1-17-19941)
+// is the Republic of the Congo, not the DR Congo, and is left out. Domain 'mineral'.
+const MINERALS = read('data/mineral-production-shares.json').minerals, MIN_REL = read('data/exam-relations-minerals.json');
+const MIN_IND = {'min-copper': ['구리', '세계 구리 생산량 중 비중', '세계 구리 생산 비중이 높다'], 'min-iron': ['철광석', '세계 철광석 생산량 중 비중', '세계 철광석 생산 비중이 높다']};
+const MIN_YEAR = '2024';
+for (const [id, [mineral, label, more]] of Object.entries(MIN_IND)) {
+  indicators[id] = {label, unit: '%', more, entityType: 'country', year: MIN_YEAR, source: 'BGS World Mineral Statistics(보고된 국가 합계 대비)',
+    compare: {type: 'ratio', min: 1.3}, static: false, domain: 'mineral', disabled: false, unstablePairs: []};
+  seriesOf[id] = {};
+  for (const row of MINERALS[mineral]) for (const c of row.countries) {
+    if (c.sourceRowId.startsWith('1-17-19941') || !entities[c.name] || entities[c.name].type !== 'country') continue;
+    const ser = seriesOf[id][c.name] = seriesOf[id][c.name] || {};
+    ser[row.year] = (ser[row.year] || 0) + c.shareOfReportedTotalPct;
+  }
+  for (const [n, ser] of Object.entries(seriesOf[id])) if (ser[MIN_YEAR] != null) entities[n].values[id] = Math.round(ser[MIN_YEAR] * 100) / 100;
+}
+for (const r of MIN_REL.relations) {
+  for (const [hi, lo] of r.pairs || []) relations.push(Object.assign(checkPair(r.indicator, hi, lo, true), {form: 'pairs', basis: r.basis}));
+  (r.tiers || []).forEach((tier, i) => r.tiers.slice(i + 1).flat().forEach(lo => tier.forEach(hi => relations.push(Object.assign(checkPair(r.indicator, hi, lo, true), {form: 'tiers', basis: r.basis})))));
+}
 // L2-B0368 gives the 2018 totals as 중국, 미국, 인도 in that order, so 중국 > 인도 is the lecture's too.
 // The whitelist's 미국 pairs (총량 중국 > 미국 > 인도, 1인당·천연가스 미국 > 중국) wait for a theme where
 // 미국 can be identified next to 중국: it has no verified electricity or primary-energy order.

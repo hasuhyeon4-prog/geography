@@ -144,6 +144,17 @@
    note:'1차 에너지는 발전에 쓰인 에너지와 수송·난방 등에 직접 쓰인 에너지를 모두 포함한다. 전력 생산 구성과 다르다. 원자력·수력·풍력·태양광 전력은 같은 전력을 화력으로 만들 때 드는 연료량으로 환산했다(대체법, EI). 그래서 물리적 에너지 함량 방식보다 이 비중들이 크게 나온다.',
    prompt:'{range}는 {candidates} 중 하나이다. 표는 1차 에너지 소비량의 에너지원별 비중(%)과 1차 에너지 소비량이다.'
   },
+  // 광물 생산 (R2, BGS). Each column is one mineral's world share, so rows compare only within it.
+  {
+   id:'country-minerals',status:'ready',title:'국가별 광물 생산 비중',lecture:'2권 P07',exams:['2026학년도 수능 9번','2025학년도 6월 12번','2027학년도 6월 13번'],
+   kind:'indicators',entityType:'country',map:true,domains:['mineral',null],
+   // 콩고 민주 has no 철광석 value and its 구리 order against 페루 flips, so it comes with 칠레 alone.
+   pool:['브라질','칠레','볼리비아','남아프리카 공화국','페루','콩고 민주 공화국'],pick:[2,3],
+   always:[],indicators:['min-copper','min-iron'],show:2,
+   followups:{facts:['latinLanguage','bloc','apec','religion','capitalCity','hemisphere','equator','meridian'],focus:['latinLanguage']},
+   note:'광물마다 세계 총량(분모)과 단위가 다르다(구리는 금속 함량, 철광석은 광석 무게). 그래서 서로 다른 광물의 비중끼리는 생산량을 비교할 수 없다.',
+   prompt:'{range}는 {candidates} 중 하나이다. 표는 세계 생산량에서 각 나라가 차지하는 비중(%)이다.'
+  },
   // 지역지리: (가)~(다) are described by lecture sentences (data/country-clues.json, filtered in
   // scripts/build-entity-kb.cjs) and found on the map. The pool is every country with a clue.
   {
