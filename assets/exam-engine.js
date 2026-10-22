@@ -75,7 +75,8 @@
   // Köppen letters as the lecture writes them: Aw, BS, Cfb, ET.
   function code(t){return t.split('').map(function(ch,i){return i===0||(i===1&&/[be]/.test(t[0]))?ch.toUpperCase():ch}).join('')}
   // Could these monthly data be of type t? Only the code letters the data decide reliably count.
-  function climateFits(c,t){for(var i=0;i<Math.min(c.robust,t.length);i++)if(c.computed[i]!==t[i])return false;return true}
+  // 고산 기후 is judged by its trace (저위도·서늘함·작은 연교차), not by the code letters.
+  function climateFits(c,t){if(t==='h')return c.h!=='no';for(var i=0;i<Math.min(c.robust,t.length);i++)if(c.computed[i]!==t[i])return false;return true}
   // Placing site n on the row that holds site d's graph is ruled out when d's data clearly
   // contradict n's verified type, or their seasons put the row in the other hemisphere.
   function climateBreaks(n,d){var s=cl(n),r=cl(d);return !!(s.type&&!climateFits(r,s.type))||!!(r.signal&&r.signal!==s.hemisphere)}
@@ -298,7 +299,10 @@
    ['annual','연 강수량','이 많다',0,'mm',function(c){return c.annual}],
    ['summer','연 강수량 중 6~8월 강수량의 비중','이 높다',15,'%',function(c){return c.summerShare}]
   ];
-  function climateExplain(n){var c=cl(n);return n+' — 강의 기후형 '+typeLabel(c.lecture)+'('+code(c.lecture)+'), 관측소 평년값 분류 '+code(c.computed)+' · '+c.station.replace(/_\d+$/,'')}
+  function climateExplain(n){var c=cl(n),st=c.station.replace(/_\d+$/,'');
+   // The lecture classifies H by its cause (고도), so the Köppen letters of the data are not shown as a second verdict.
+   if(c.lecture==='h')return n+' — 강의 기후형 고산 기후(H): 위도 '+fmt(Math.abs(c.lat))+'°의 저위도인데도 최한월 '+fmt(Math.min.apply(null,c.temperature))+'℃, 연교차 '+fmt(c.range)+'℃'+(c.elevation!=null?' · 해발 '+fmt(c.elevation)+'m':'')+' · '+st;
+   return n+' — 강의 기후형 '+typeLabel(c.lecture)+'('+code(c.lecture)+'), 관측소 평년값 분류 '+code(c.computed)+' · '+st}
   function climateCandidates(theme,chosen,r){
    var out=[],L=function(n){return LABELS[chosen.indexOf(n)]},S=function(n){return L(n)+'는'};
    function add(c){if(!out.some(function(x){return x.text===c.text}))out.push(c)}

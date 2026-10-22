@@ -388,8 +388,13 @@ test('equator and prime-meridian statements agree with geography', () => {
 
 // Köppen letters re-derived here from data/climate-normals.json with the lecture's thresholds
 // (1권 P02), each with whether the deciding values clear 1℃ / 10mm / 15% of the limit.
-const climateData = data('data/climate-normals.json');
+const climateData = data('data/climate-normals.json'), climateExt = data('data/climate-normals-extension.json');
 const station = Object.fromEntries(climateData.sites.map(x => [x.name, x]));
+// Added stations are found through the source file the knowledge base records for them.
+for (const x of climateExt.sites) {
+  const e = Object.values(K.entities).find(v => v.type === 'site' && v.climate.sourceId === 'ext:' + x.sourceFile);
+  if (e) station[e.name] = x;
+}
 function letters(T, P, lat) {
   const sum = a => a.reduce((x, y) => x + y, 0), hot = Math.max(...T), cold = Math.min(...T), mean = sum(T) / 12, rain = sum(P);
   const sm = lat >= 0 ? [3, 4, 5, 6, 7, 8] : [9, 10, 11, 0, 1, 2], wm = [...Array(12).keys()].filter(i => !sm.includes(i));
@@ -407,10 +412,17 @@ function letters(T, P, lat) {
   out.push([hot >= 22 ? 'a' : 'b', ok(hot, 22)]);
   return out;
 }
+// 고산 기후 by its trace: tropical latitude, coldest month ≤ 17℃, range ≤ 4℃, not a low station
+// ('yes'); outside the tropics, coldest ≥ 19℃, range ≥ 6℃ or below 1,000m ('no').
+function highlandOf(n) {
+  const x = station[n], T = x.temperatureC, cold = Math.min(...T), range = Math.max(...T) - cold, lat = Math.abs(x.station.latitude), h = x.station.elevationM;
+  if (lat < 23.44 && cold <= 17 && range <= 4 && (h == null || h >= 1500)) return 'yes';
+  return lat >= 23.44 || cold >= 19 || range >= 6 || (h != null && h < 1000) ? 'no' : 'unclear';
+}
 // The type's letters that the data clearly decide and that differ from it.
-const clashes = (n, type) => { const x = station[n], L = letters(x.temperatureC, x.precipitationMm, x.station.latitude); return [...type].some((ch, i) => L[i] && L[i][1] && L.slice(0, i).every(l => l[1]) && L[i][0] !== ch); };
+const clashes = (n, type) => { if (type === 'h') return highlandOf(n) === 'no'; const x = station[n], L = letters(x.temperatureC, x.precipitationMm, x.station.latitude); return [...type].some((ch, i) => L[i] && L[i][1] && L.slice(0, i).every(l => l[1]) && L[i][0] !== ch); };
 // Every letter of the type is clearly decided by the data and agrees with it.
-const confirmed = (n, type) => { const x = station[n], L = letters(x.temperatureC, x.precipitationMm, x.station.latitude); return [...type].every((ch, i) => L[i] && L[i][1] && L[i][0] === ch); };
+const confirmed = (n, type) => { if (type === 'h') return highlandOf(n) === 'yes'; if (highlandOf(n) !== 'no') return false; const x = station[n], L = letters(x.temperatureC, x.precipitationMm, x.station.latitude); return [...type].every((ch, i) => L[i] && L[i][1] && L[i][0] === ch); };
 const seasonOf = n => { const T = station[n].temperatureC, c = T.indexOf(Math.min(...T)) + 1; return Math.max(...T) - Math.min(...T) < 5 ? null : [12, 1, 2].includes(c) ? 'N' : [6, 7, 8].includes(c) ? 'S' : null; };
 
 test('climate questions use verified types and seasons, and every wrong option is ruled out by the data', () => {
@@ -421,7 +433,7 @@ test('climate questions use verified types and seasons, and every wrong option i
     const hemi = name => (station[name].station.latitude >= 0 ? 'N' : 'S');
     for (const name of q.entities) {
       const L = station[name].lectureClimate;
-      assert.ok(L !== 'h' && confirmed(name, L), name + ' identified by a type its data do not clearly confirm');
+      assert.ok(confirmed(name, L), name + ' identified by a type its data do not clearly confirm');
       assert.equal(K.entities[name].climate.type, L, name + ' used without a verified type');
     }
     // Each graph is the data of its 대상, and the rows sit on one common scale.
@@ -539,4 +551,19 @@ test('religion facts asked about A~C follow the lecture, and the world order hol
     n++;
   }
   assert.ok(n > 50, 'category <보기> exercised: ' + n);
+});
+
+test('climate additions: complete stations only, under their own names; 고산 기후 by its trace', () => {
+  const sg = K.entities['싱가포르(창이)'], raw = climateExt.sites.find(x => x.name === '싱가포르');
+  assert.deepEqual(sg.climate.temperature, raw.temperatureC);
+  assert.deepEqual(sg.climate.precipitation, raw.precipitationMm);
+  assert.equal(sg.climate.type, 'af');
+  assert.ok(!K.entities['싱가포르'].climate, 'the country keeps no station data');
+  for (const n of ['이키토스', '키토']) {
+    assert.ok(!K.entities[n] || !K.entities[n].climate, n);
+    assert.equal(K.climate.verdicts.find(v => v.entity === n).status, 'excluded', n);
+  }
+  for (const n of ['보고타', '아디스아바바']) assert.equal(K.entities[n].climate.type, 'h', n);
+  // No other graph could be read as 고산 기후.
+  for (const [n, e] of Object.entries(K.entities)) if (e.type === 'site' && e.climate.lecture !== 'h') assert.equal(highlandOf(n), 'no', n);
 });

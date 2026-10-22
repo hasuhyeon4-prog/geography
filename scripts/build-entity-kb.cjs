@@ -634,9 +634,41 @@ function koppen(T, P, lat) {
 const koppenCode = t => t.split('').map((ch, i) => (i === 0 || (i === 1 && /[be]/.test(t[0])) ? ch.toUpperCase() : ch)).join('');
 const climateTypes = [];
 const CLIMATE_BASIS = '강의 1권 P02 기출 도시의 기후(분류 지도 climateCities)';
-for (const s of climate.sites) {
+// 고산 기후 (H): the lecture decides it by elevation, not by monthly data, so the data only has to
+// show the lecture's trace of it: 저위도인데도 연중 서늘하고(최한월 18℃ 미만) 연교차가 작다. With the
+// 1℃ margin: 'yes' needs a tropical latitude, coldest month ≤ 17℃, range ≤ 4℃ and (where the
+// station height is known) 1,500m or more; 'no' is coldest ≥ 19℃, range ≥ 6℃, outside the tropics
+// or below 1,000m. Every other site must read 'no', so no graph could be mistaken for H.
+function highland(T, lat, elevation) {
+  const cold = Math.min(...T), range = Math.max(...T) - cold, tropics = Math.abs(lat) < 23.44;
+  if (tropics && cold <= 17 && range <= 4 && (elevation == null || elevation >= 1500)) return 'yes';
+  if (!tropics || cold >= 19 || range >= 6 || (elevation != null && elevation < 1000)) return 'no';
+  return 'unclear';
+}
+// Additions in data/climate-normals-extension.json (R4) join only with complete 1991~2020 monthly
+// data near the map point. A name already used by a country gets the station in brackets.
+const climateExt = read('data/climate-normals-extension.json');
+const CLIMATE_ALIAS = {싱가포르: '싱가포르(창이)'}, CLIMATE_REGION = {싱가포르: 'asia'};
+const climateSites = climate.sites.slice();
+for (const s of climateExt.sites) {
+  const base = climate.sites.find(b => b.name === s.name);
+  const full = s.usage.climateGraph && s.status === 'complete' && String(s.normalPeriod) === '1991,2020' && s.mapPoint && s.station && s.station.latitude != null &&
+    s.station.distanceFromMapPointKm < 35 && CLIMATE_LABEL[s.lectureClimate] && s.sourceBlockId &&
+    [s.temperatureC, s.precipitationMm].every(a => a.length === 12 && a.every(v => v != null));
+  if (!full) {
+    const why = s.issues && s.issues.length ? s.issues.join(' ') : '1991~2020년 월별 기온·강수가 모두 있지 않음';
+    if (!base) climateTypes.push({entity: s.name, lecture: s.lectureClimate, status: 'excluded', reason: '그래프에 쓸 자료 부족 — ' + why, basis: CLIMATE_BASIS});
+    else Object.assign(base, {extensionNote: why});
+    continue;
+  }
+  if (base && base.usage.climateGraph) throw new Error('climate extension would replace a base station: ' + s.name);
+  const P = s.precipitationMm;
+  climateSites.push(Object.assign({}, s, {name: CLIMATE_ALIAS[s.name] || s.name, region: s.region || CLIMATE_REGION[s.name], sourceId: 'ext:' + s.sourceFile,
+    basis: '강의 1권 P02 (' + s.sourceBlockId + ')', derived: {jjaPrecipitationSharePct: Math.round((P[5] + P[6] + P[7]) / P.reduce((a, b) => a + b, 0) * 1000) / 10}}));
+}
+for (const s of climateSites) {
   if (!s.usage.climateGraph) {
-    climateTypes.push({entity: s.name, lecture: s.lectureClimate, status: 'excluded', reason: '그래프에 쓸 기온·강수 자료가 없음(' + s.status + ')', basis: CLIMATE_BASIS});
+    climateTypes.push({entity: s.name, lecture: s.lectureClimate, status: 'excluded', reason: '그래프에 쓸 기온·강수 자료가 없음(' + s.status + ')' + (s.extensionNote ? ' — 추가 자료: ' + s.extensionNote : ''), basis: CLIMATE_BASIS});
     continue;
   }
   if (entities[s.name]) throw new Error('climate site name collides with an entity: ' + s.name);
@@ -644,17 +676,20 @@ for (const s of climate.sites) {
   const coldest = T.indexOf(Math.min(...T)) + 1, range = Math.max(...T) - Math.min(...T);
   // Hemisphere seen in the data: coldest month in 12~2월 (north) or 6~8월 (south), range ≥ 5℃.
   const signal = range >= 5 ? ([12, 1, 2].includes(coldest) ? 'N' : [6, 7, 8].includes(coldest) ? 'S' : null) : null;
-  const hemisphere = lat >= 0 ? 'N' : 'S', L = s.lectureClimate;
+  const hemisphere = lat >= 0 ? 'N' : 'S', L = s.lectureClimate, h = highland(T, lat, s.station.elevationM);
   if (signal && signal !== hemisphere) throw new Error(s.name + ': seasons disagree with the station latitude');
   let status, reason;
-  if (L === 'h') { status = 'excluded'; reason = '고산 기후는 저온의 원인이 고도이므로 월별 기온·강수만으로 판별하지 않음'; }
+  if (L === 'h') {
+    if (h === 'yes') { status = 'active'; reason = ''; }
+    else { status = 'belowMargin'; reason = '고산 기후의 흔적(저위도·최한월 17℃ 이하·연교차 4℃ 이하)이 관측값에서 뚜렷하지 않음'; }
+  } else if (h !== 'no') { status = 'belowMargin'; reason = '관측값이 고산 기후와 구별되지 않음(저위도·서늘함·작은 연교차)'; }
   else if (k.code.slice(0, L.length) !== L) { status = 'conflict'; reason = `관측소 평년값으로는 ${koppenCode(k.code)}(강의 ${koppenCode(L)}). 경계 지점이므로 기후형을 식별 근거로 쓰지 않음`; }
   else if (k.robust < L.length) { status = 'belowMargin'; reason = `같은 ${koppenCode(L)}이지만 경계 기준과의 차이가 작음(기준 ${CLIMATE_MARGIN['℃']}℃·${CLIMATE_MARGIN.mm}mm·${CLIMATE_MARGIN['%']}%)`; }
   else { status = 'active'; reason = ''; }
-  climateTypes.push({entity: s.name, lecture: L, computed: k.code, status, reason, basis: CLIMATE_BASIS});
+  climateTypes.push({entity: s.name, lecture: L, computed: k.code, status, reason, basis: s.basis || CLIMATE_BASIS});
   entities[s.name] = {type: 'site', name: s.name, region: s.region, label: s.mapPoint, facts: {}, values: {},
     climate: {temperature: T, precipitation: P, lat, hemisphere, elevation: s.station.elevationM, lecture: L, computed: k.code, robust: k.robust,
-      type: status === 'active' ? L : null, signal, coldest, range: Math.round(range * 10) / 10,
+      type: status === 'active' ? L : null, signal, coldest, range: Math.round(range * 10) / 10, h,
       annual: Math.round(P.reduce((a, b) => a + b, 0)), summerShare: s.derived.jjaPrecipitationSharePct,
       station: s.station.name, sourceId: s.sourceId}};
 }
