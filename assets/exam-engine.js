@@ -358,6 +358,10 @@
    return !missed&&opens?out:null;
   }
 
+  // What a clue sentence already tells about its country, so no <보기> asks it again: '수도 다카르'
+  // settles 수도와 최대 도시, '남부 아프리카' the hemisphere, '내륙국' the coast.
+  var CLUE_STATES={capitalCity:/수도/,exportType:/수출|상업적 농업/,landlocked:/내륙국/,seas:/연안|접하|바다/,equator:/적도/,meridian:/본초 자오선/,
+   hemisphere:/남반구|북반구|회귀선|남부 아프리카|적도/,religion:/불교|이슬람교|힌두교|크리스트교|정교회/,christianity:/크리스트교|정교회|가톨릭|개신교/,islam:/이슬람교|수니|시아/,buddhism:/불교/};
   // named: the 대상 are shown by name (항목 식별), so <보기> use names with their particles.
   // hidden: composition categories shown as A~C; <보기> call them by their letters.
   function candidates(theme,chosen,shown,r,named,hidden){
@@ -367,7 +371,7 @@
    var CN=function(cat){var j=hidden.indexOf(cat);return j>=0?COLS[j]:catLabel(theme,cat)},CS=function(cat){return CN(cat)+(hidden.indexOf(cat)>=0?'는':topic(CN(cat)))};
    // A fact the clue sentence already states ('힌두교 신자가 가장 많은 국가') is not asked about.
    var given={};if(theme.kind==='clues')chosen.forEach(function(n,i){given[n]=clueOf(shown[i]).text});
-   var stated=function(n,set){var f=entity(n).facts[set];return !!(given[n]&&f&&f.values.some(function(v){return given[n].indexOf(optionLabel(set,v))>=0}))};
+   var stated=function(n,set){var f=entity(n).facts[set];if(!given[n])return false;if(CLUE_STATES[set]&&CLUE_STATES[set].test(given[n]))return true;return !!(f&&f.values.some(function(v){return given[n].indexOf(optionLabel(set,v))>=0}))};
    var L=function(n){return named?n:LABELS[chosen.indexOf(n)]},S=function(n){return L(n)+(named?topic(n):'는')},W=function(n){return L(n)+(named?(topic(n)==='은'?'과':'와'):'와')};
    function add(c){if(c.text&&!out.some(function(x){return x.text===c.text}))out.push(c)}
    chosen.forEach(function(n){
@@ -388,13 +392,13 @@
     // '적도가 지난다' / '본초 자오선이 지난다': true when a landmass crosses the line; false only
     // for a country near it (within LINE_NEAR degrees but at least half a degree away).
     [['equator','적도'],['meridian','본초 자오선']].forEach(function(x){
-     var l=e.lines&&e.lines[x[0]];if(!l||l.undecided||!allowed(theme,x[0]))return;
+     var l=e.lines&&e.lines[x[0]];if(!l||l.undecided||!allowed(theme,x[0])||stated(n,x[0]))return;
      if(!l.crosses&&(l.dist<.5||l.dist>LINE_NEAR[x[0]]))return;
      var w=x[1]+subjectParticle(x[1]);
      add({kind:'fact',key:x[0]+'|'+n,text:S(n)+' '+w+' 지난다.',truth:l.crosses,
       explain:n+'의 국토'+(l.crosses?'를 '+w+' 지난다.':'는 '+x[1]+'에서 약 '+fmt(l.dist)+'° 떨어져 있어 '+w+' 지나지 않는다.'),check:{line:x[0],entity:n,value:true}});
     });
-    if(e.ns&&e.eqDist<=NEAR_EQUATOR&&allowed(theme,'hemisphere')){var north=e.ns==='N',trueIt=r()<.5;add({kind:'fact',key:'ns|'+n,text:S(n)+' '+((north===trueIt)?'북반구':'남반구')+'에 위치한다.',truth:trueIt,explain:n+'의 국토는 '+(north?'북반구':'남반구')+'에 있다.',check:{ns:(north===trueIt)?'N':'S',entity:n}})}
+    if(e.ns&&e.eqDist<=NEAR_EQUATOR&&allowed(theme,'hemisphere')&&!stated(n,'hemisphere')){var north=e.ns==='N',trueIt=r()<.5;add({kind:'fact',key:'ns|'+n,text:S(n)+' '+((north===trueIt)?'북반구':'남반구')+'에 위치한다.',truth:trueIt,explain:n+'의 국토는 '+(north?'북반구':'남반구')+'에 있다.',check:{ns:(north===trueIt)?'N':'S',entity:n}})}
    });
    SIGNS.forEach(function(x){
     if(!has(x.entity)||visible(shown,x.indicator)||!inScope(theme,x.indicator)||(theme.noRecall||[]).indexOf(x.indicator)>=0)return;

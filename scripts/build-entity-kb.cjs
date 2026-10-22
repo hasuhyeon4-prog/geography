@@ -496,7 +496,26 @@ const concepts = agriCards.statements.map((s, i) => ({id: 'agri-' + (i + 1), abo
 const clueData = read('data/country-clues.json');
 const placeNames = read('data/extension-sources/location-items.json').map(it => it.name);
 const countryNames = Object.values(entities).filter(e => e.type === 'country').map(e => e.name);
-const NOT_A_CLUE = /외우|단정|구별|익힌다|읽는다|판단|기억|주의|이해할 수|해야 한다|아니다|않는다|않았|없다|볼 수|바꿀|뜻|이러한|이 관계|이런|역시|사례이다|사례다|다만|그러나|반면|같은 비율|라고 해서|원문|주석|연결한다\.$|함께 설명|고려한다|세 나라|두 나라|네 나라|막대|그래프|표에서|[A-E]와|대응한다|이 단원|먼저 잡|안 된다|같지 않다|필요하다|설명할 수|설명한다|제시|그 (동|서|남|북)쪽|보다 (낮|높|많|적|크|작)|더 (많|적|크|작)|\d+(\.\d+)?%/;
+const NOT_A_CLUE = /외우|단정|구별|익힌다|읽는다|판단|기억|주의|이해할 수|해야 한다|아니다|않는다|않았|없다|볼 수|바꿀|뜻|이러한|이 관계|이런|역시|사례이다|사례다|다만|그러나|반면|같은 비율|라고 해서|원문|주석|연결한다\.$|함께 설명|고려한다|세 나라|두 나라|네 나라|막대|그래프|표에서|[A-E]와|대응한다|이 단원|먼저 잡|안 된다|같지 않다|필요하다|설명할 수|설명한다|제시|그 (동|서|남|북)쪽|보다 (낮|높|많|적|크|작)|더 (많|적|크|작)|\d+(\.\d+)?%|떠올릴 수|국명/;
+// Hand review (audit 2026-10-22): a key that no other clue names can still fit a pool country in
+// reality. Such sentences are dropped with the rival named; a clear sentence whose token key is
+// weak gets the phrase from the sentence that settles it. Lecture sentences are never reworded.
+const CLUE_REVIEW = [
+  ['오스트레일리아', '남회귀선 부근', null, '보츠와나·아르헨티나에도 남회귀선이 지나고 내륙이 건조함'],
+  ['페루', '건조한 태평양 해안', null, '에콰도르도 태평양 해안·안데스산맥·아마존 유역을 가짐'],
+  ['이집트', '나일강의 물을 이용한', null, '세 나라 비교에서 나온 상대적 서술이고 에티오피아도 나일강 유역·큰 인구'],
+  ['이집트', '이 나라의 국토 대부분은 건조', ['하구 삼각주']],
+  ['잠비아', '남부 아프리카의 내륙국으로 구리', null, '콩고 민주 공화국도 구리 주산지'],
+  ['프랑스', '이 나라의 높은 원자력', null, '스웨덴 등도 원자력 비중이 높고 위치 단서가 없음'],
+  ['보츠와나', '작은 인구와', null, '세 나라 비교에서 나온 상대적 서술(작은 인구)'],
+  ['보츠와나', '남부 아프리카의 내륙국이며', ['남부 아프리카의 내륙국', '다이아몬드']],
+  ['아이슬란드', '북대서양의 판이', ['판이 벌어지는 곳', '간헐천']],
+  ['스리랑카', '이 나라의 신할리즈족', ['신할리즈족']],
+  ['러시아', '북극해·카스피해', ['카스피해', '쿠릴 열도']],
+  ['사우디아라비아', '아라비아반도의 넓은', ['아라비아반도의 넓은 면적']],
+  ['아르헨티나', '이 나라의 팜파스', ['팜파스']],
+];
+const reviewOf = (n, text) => CLUE_REVIEW.find(([c, start]) => c === n && text.slice(n.length).replace(/^(은|는|의|이|가)\s/, '').startsWith(start.replace(/^이 나라의 /, '')));
 const BROAD = new Set(['아시아', '유럽', '아프리카', '북아메리카', '남아메리카', '오세아니아', '남극', '태평양', '대서양', '인도양', '북극해', '지중해',
   '적도', '북극권', '대륙', '비교', '제도', '고도', '분쟁', '유목', '열도', '산맥', '하구', '삼각주', '유적', '반도', '고원', '해안', '사막', '분지',
   '크리스트교', '이슬람교', '불교', '힌두교', '고기']);
@@ -515,6 +534,8 @@ for (const [n, passages] of Object.entries(clueData.countries)) {
     for (const s of p.text.split(/(?<=다\.)\s+/).map(x => x.trim())) {
       const m = s.match(new RegExp('^' + n + '(은|는|의|이|가)\\s'));
       if (!m || s.indexOf(n, n.length) >= 0 || countryNames.some(o => o !== n && s.includes(o))) continue;
+      // A part of the name ('콩고강' in 콩고 민주 공화국's clue) would give it away.
+      if (n.split(' ').filter(w => w.length >= 2 && !['공화국', '민주', '연방'].includes(w)).some(w => s.slice(n.length).includes(w))) continue;
       if (NOT_A_CLUE.test(s) || s.length > 130 || s.length < 15 || clueSentences.some(c => c.text === s)) continue;
       clueSentences.push({country: n, text: s, particle: m[1], tokens: tokensIn(s.slice(n.length)), source: p.source.locator.split(' / ')[0]});
     }
@@ -522,8 +543,17 @@ for (const [n, passages] of Object.entries(clueData.countries)) {
 }
 const tokenOwners = {};
 for (const c of clueSentences) for (const t of c.tokens) (tokenOwners[t] = tokenOwners[t] || new Set()).add(c.country);
+const clueDropped = [];
 for (const c of clueSentences) {
-  const own = c.tokens.filter(t => tokenOwners[t].size === 1);
+  const review = reviewOf(c.country, c.text);
+  if (review && !review[2]) { clueDropped.push({country: c.country, text: c.text, reason: review[3]}); continue; }
+  // A key inside a longer key ('쿠릴' in '쿠릴 열도') adds nothing.
+  let own = c.tokens.filter(t => tokenOwners[t].size === 1);
+  own = own.filter(t => !own.some(o => o !== t && o.includes(t)));
+  if (review) {
+    if (!review[2].every(k => c.text.includes(k))) throw new Error('clue review key not in the sentence: ' + c.country);
+    own = review[2];
+  }
   if (!own.length) continue;
   // On the paper the country is not named: '세네갈은 …' → '…', '이집트의 …' → '이 나라의 …'.
   const rest = c.text.slice(c.country.length + c.particle.length + 1);
@@ -755,7 +785,7 @@ const out = {
     options: Object.fromEntries(C.optionsFor(C.byId[id]).map(o => [o.id, o.label])),
   }])), agriFactSets),
   extraFacts: Object.fromEntries(Object.entries(extra.facts).map(([k, f]) => [k, {label: f.label, complete: f.complete, source: f.source}])),
-  indicators, entities, compositions, relations, signs, orders, categoryFacts, concepts, outOfScope,
+  indicators, entities, compositions, relations, signs, orders, categoryFacts, concepts, outOfScope, cluesDropped: clueDropped,
   climate: {period: climate.normalPeriod, source: '관측소 월평년값(WMO 제출 자료 우선, JMA·ECCC 보충)', margin: CLIMATE_MARGIN, types: CLIMATE_LABEL, verdicts: climateTypes},
 };
 // Verified is not the same as practicable: count how often each active relation reaches a

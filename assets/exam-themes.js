@@ -145,9 +145,10 @@
   // 지역지리: (가)~(다) are described by lecture sentences (data/country-clues.json, filtered in
   // scripts/build-entity-kb.cjs) and found on the map. The pool is every country with a clue.
   {
-   id:'country-clues',status:'ready',title:'국가 설명으로 지도에서 찾기',lecture:'2권 P10 · 1권 P04·P05',exams:['2027학년도 9월 9번','2027학년도 9월 12번','2027학년도 9월 18번'],
+   id:'country-clues',status:'ready',title:'국가 설명으로 지도에서 찾기',lecture:'2권 P07·P08·P10 · 1권 P00·P04·P05',exams:['2027학년도 9월 9번','2027학년도 9월 12번','2027학년도 9월 18번'],
    kind:'clues',entityType:'country',map:true,
-   pool:['에스파냐','프랑스','덴마크','스웨덴','그리스','러시아','튀르키예','아이슬란드','이집트','에티오피아','콩고 민주 공화국','잠비아','보츠와나','사우디아라비아','카타르','아랍 에미리트','아프가니스탄','인도','스리랑카','몽골','일본','미얀마','말레이시아','에콰도르','페루','아르헨티나','오스트레일리아','세네갈'],
+   // 덴마크·잠비아·에콰도르·페루·오스트레일리아 left with their only sentences (KB cluesDropped).
+   pool:['에스파냐','프랑스','스웨덴','그리스','러시아','튀르키예','아이슬란드','이집트','에티오피아','콩고 민주 공화국','보츠와나','사우디아라비아','카타르','아랍 에미리트','아프가니스탄','인도','스리랑카','몽골','일본','미얀마','말레이시아','아르헨티나','세네갈'],
    pick:[3,3],
    followups:{facts:['religion','christianity','islam','buddhism','bloc','apec','euro','latinLanguage','capitalCity','exportType','minerals','beverage','hemisphere','equator','meridian','seas','landlocked'],
     focus:['religion','christianity','islam','buddhism','bloc','apec','euro','latinLanguage','capitalCity','exportType','minerals','beverage','seas','landlocked']},
