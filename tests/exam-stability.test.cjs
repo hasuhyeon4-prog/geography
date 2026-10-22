@@ -77,6 +77,7 @@ function periodRaw(ind, n) {
 }
 function raw(ind, name) {
   if (PERIOD.test(ind)) return periodRaw(ind, name);
+  if (ind === 'energy-total') return energy.countries[name].series.primary_energy_consumption;
   if (AGRI_COL[ind]) return scaled(agriSeries(name, AGRI_COL[ind][0]), AGRI_COL[ind][1]);
   if (AGRI_AREA[ind]) return scaled(agriSeries(AGRI_AREA[ind][1], AGRI_AREA[ind][0] + ':' + name), AGRI_AREA[ind][2]);
   if (countries.countries[name] && !GROUP[ind] && !ind.includes('-')) return countries.countries[name].series[ind] || (economy.countries[name].series[ind]) || {};
@@ -132,6 +133,14 @@ const energyShare = (n, y) => {
   if (Object.values(parts).flat().some(x => x == null)) return null;
   return Object.fromEntries(Object.entries(parts).map(([k, xs]) => [k, xs.reduce((a, b) => a + b, 0)]));
 };
+// Energy totals (L2-B0368: 중국 > 미국 > 인도): the whitelisted chain allows each pair along it.
+{
+  const chain = ENERGY_REL.relations.filter(r => r.indicator === 'primary_energy_consumption').flatMap(r => r.pairs);
+  for (const [a, b] of chain) for (const [c, d] of chain) {
+    allowedPairs.set('energy-total|' + [a, b].sort().join('|'), 'L2-B0368');
+    if (b === c) allowedPairs.set('energy-total|' + [a, d].sort().join('|'), 'L2-B0368');
+  }
+}
 for (const o of REL.orders.concat(ENERGY_REL.orders)) {
   const c = allowedOrders[o.composition] || (allowedOrders[o.composition] = {});
   if (o.fromSet) {

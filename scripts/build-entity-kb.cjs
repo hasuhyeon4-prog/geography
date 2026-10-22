@@ -583,6 +583,31 @@ for (const [n, c] of Object.entries(energy.countries)) {
     if (!v.missing) (energyShares[n] = energyShares[n] || {})[y] = v;
   }
 }
+// Country energy comparisons of the R2 whitelist (data/exam-relations-energy.json relations), on
+// the same OWID series and the usual window. 'energy-total' is also the 1차 에너지 table's total,
+// so 중국 > 인도 there tells the two coal-led countries apart. Domain 'energy': recalled only in
+// themes that list it. hydro_share_energy is the table's own 수력 column, so it is not registered.
+const ENERGY_IND = {
+  primary_energy_consumption: ['energy-total', '1차 에너지 소비량', 'TWh', '1차 에너지 소비량이 많다'],
+  energy_per_capita: ['energy-pc', '1인당 1차 에너지 소비량', 'kWh', '1인당 1차 에너지 소비량이 많다'],
+  gas_consumption: ['energy-gas', '천연가스 소비량', 'TWh', '천연가스 소비량이 많다'],
+};
+for (const [key, [id, label, unit, more]] of Object.entries(ENERGY_IND)) {
+  indicators[id] = {label, unit, more, entityType: 'country', year: ENERGY_YEAR, source: 'Energy Institute·EIA (OWID 에너지 자료)',
+    compare: {type: 'ratio', min: 1.3}, static: false, domain: 'energy', disabled: false, unstablePairs: []};
+  seriesOf[id] = {};
+  for (const [n, c] of Object.entries(energy.countries)) {
+    if (!entities[n] || entities[n].type !== 'country' || !c.series[key]) continue;
+    seriesOf[id][n] = c.series[key];
+    if (c.series[key][ENERGY_YEAR] != null) entities[n].values[id] = c.series[key][ENERGY_YEAR];
+  }
+}
+// L2-B0368 gives the 2018 totals as 중국, 미국, 인도 in that order, so 중국 > 인도 is the lecture's too.
+// The whitelist's 미국 pairs (총량 중국 > 미국 > 인도, 1인당·천연가스 미국 > 중국) wait for a theme where
+// 미국 can be identified next to 중국: it has no verified electricity or primary-energy order.
+for (const r of [{indicator: 'primary_energy_consumption', pairs: [['중국', '인도']], basis: '강의 2권 P07 / L2-B0368 (2018년 1차 에너지 소비 총량은 중국, 미국, 인도 순)'}]) {
+  for (const [hi, lo] of r.pairs) relations.push(Object.assign(checkPair(ENERGY_IND[r.indicator][0], hi, lo, true), {form: 'pairs', basis: r.basis}));
+}
 
 // Compositions used as identification data. Shares are percentages of the stated total;
 // `orderMargin` is the gap every year must keep between ranked categories.
@@ -603,7 +628,7 @@ const compositions = {
   primaryEnergy: {year: ENERGY_YEAR, source: 'Energy Institute·EIA (OWID 에너지 자료)', unit: '% (1차 에너지 소비 비중)', orderMargin: 5, rankExclude: [],
     categories: [['coal', '석탄'], ['oil', '석유'], ['gas', '천연가스'], ['nuclear', '원자력'], ['hydro', '수력'], ['renewables', '신재생(수력 제외)']],
     values: Object.fromEntries(Object.entries(energyShares).filter(([, s]) => s[ENERGY_YEAR]).map(([n, s]) => [n, s[ENERGY_YEAR]])),
-    total: {label: '1차 에너지 소비량', unit: 'TWh', year: ENERGY_YEAR, source: 'Energy Institute·EIA (OWID 에너지 자료)',
+    total: {indicator: 'energy-total', label: '1차 에너지 소비량', unit: 'TWh', year: ENERGY_YEAR, source: 'Energy Institute·EIA (OWID 에너지 자료)',
       note: '1차 에너지 소비량도 2023년(EI·EIA 결합 계열, 비중의 분모와 최대 3% 차이)',
       values: Object.fromEntries(Object.entries(energy.countries).filter(([n, c]) => energyShares[n] && energyShares[n][ENERGY_YEAR] && (c.series.primary_energy_consumption || {})[ENERGY_YEAR] != null)
         .map(([n, c]) => [n, c.series.primary_energy_consumption[ENERGY_YEAR]]))}},
