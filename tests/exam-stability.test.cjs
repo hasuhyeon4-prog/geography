@@ -13,6 +13,7 @@ const E = require('../assets/exam-engine.js');
 const C = require('../assets/classification-sets.js');
 const R = require('../assets/rankings.js');
 const REL = data('data/exam-relations.json');
+const clueData = data('data/country-clues.json');
 const countries = data('data/country-indicators.json');
 const groups = data('data/group-series.json');
 const electricity = data('data/electricity-mix.json');
@@ -181,6 +182,19 @@ test('identification rests only on whitelisted knowledge that holds in every yea
     // Every wrong assignment must break some piece of that knowledge on the shown numbers.
     const comp = n => q.display.columns.reduce((v, c, i) => Object.assign(v, {[c.id]: num(q.display.rows[q.entities.indexOf(n)].cells[i])}), {});
     if (t.kind === 'climate') continue;  // checked against the station data in its own test below
+    if (t.kind === 'clues') {
+      // Each row is a sentence of an eligible lecture passage about its own country, and names
+      // something no other marked country's clue names, so any other placement contradicts it.
+      const marked = q.stage1.candidates || q.entities;
+      q.entities.forEach((n, i) => {
+        const c = K.entities[n].clues[+q.shown[i].split('#')[1]];
+        assert.ok(clueData.countries[n].some(x => x.eligibleIdentification && x.text.includes(c.text)), n + ': ' + c.text);
+        assert.ok(c.text.endsWith(q.display.rows[i].cells[0].replace(/^이 나라의 /, '')), n + ' shown text');
+        assert.ok(!q.display.rows[i].cells[0].includes(n), n + ' named in its own clue');
+        for (const o of marked) if (o !== n) for (const d of K.entities[o].clues || []) for (const k of c.keys) assert.ok(!d.text.includes(k), `${n} clue key ${k} also in ${o}`);
+      });
+      continue;
+    }
     if (q.format === 'columns') {
       // 항목 식별: every wrong assignment of the hidden columns breaks a verified relation, sign
       // or composition order on the shown numbers.

@@ -428,6 +428,50 @@ for (const [set, s] of Object.entries(agriCards.sets)) {
 const concepts = agriCards.statements.map((s, i) => ({id: 'agri-' + (i + 1), about: s.about, claim: s.claim, truth: s.truth, source: s.source}))
   .filter(s => s.about.every(n => entities[n] && AGRI_ITEMS[typeOf(n)]));
 
+// --- country clues (R3: data/country-clues.json) ---
+// A 지역지리 question describes (가)~(다) in sentences and asks for them on the map. Only
+// passages marked eligibleIdentification are used, and from them only sentences that
+// - open with the country as subject ('세네갈은 …', '이집트의 …') and name no other country,
+// - describe it rather than instruct ('…외우지 않는다') or point at a figure ('세 나라 중', '막대'),
+// - name a place on the location map or a concept-card item that no other country's clue names
+//   (다카르, 팜파스, 갓쇼즈쿠리), so the sentence settles which country it is.
+const clueData = read('data/country-clues.json');
+const placeNames = read('data/extension-sources/location-items.json').map(it => it.name);
+const countryNames = Object.values(entities).filter(e => e.type === 'country').map(e => e.name);
+const NOT_A_CLUE = /외우|단정|구별|익힌다|읽는다|판단|기억|주의|이해할 수|해야 한다|아니다|않는다|않았|없다|볼 수|바꿀|뜻|이러한|이 관계|이런|역시|사례이다|사례다|다만|그러나|반면|같은 비율|라고 해서|원문|주석|연결한다\.$|함께 설명|고려한다|세 나라|두 나라|네 나라|막대|그래프|표에서|[A-E]와|대응한다|이 단원|먼저 잡|안 된다|같지 않다|필요하다|설명할 수|설명한다|제시|그 (동|서|남|북)쪽|보다 (낮|높|많|적|크|작)|더 (많|적|크|작)|\d+(\.\d+)?%/;
+const BROAD = new Set(['아시아', '유럽', '아프리카', '북아메리카', '남아메리카', '오세아니아', '남극', '태평양', '대서양', '인도양', '북극해', '지중해',
+  '적도', '북극권', '대륙', '비교', '제도', '고도', '분쟁', '유목', '열도', '산맥', '하구', '삼각주', '유적', '반도', '고원', '해안', '사막', '분지',
+  '크리스트교', '이슬람교', '불교', '힌두교', '고기']);
+const clueTokens = new Set();
+const addToken = t => { t = t.replace(/\(.*\)/, '').trim(); if (t.length >= 2 && !BROAD.has(t) && !countryNames.includes(t)) clueTokens.add(t); };
+for (const n of placeNames) [n, ...n.split(/[·\s]/)].forEach(addToken);
+for (const f of fs.readdirSync(path.join(ROOT, 'data/concepts'))) Object.keys(read('data/concepts/' + f).entities).forEach(addToken);
+// A token counts only as a whole word: '루르' is not in '루르드'.
+const PARTICLE = '(?:은|는|이|가|을|를|과|와|의|에|에서|에는|으로|로|도|만|이다|이고|이며|·|,|\\s|\\.|$)';
+const tokensIn = s => [...clueTokens].filter(t => new RegExp('(^|[^가-힣])' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + PARTICLE).test(s));
+const clueSentences = [];
+for (const [n, passages] of Object.entries(clueData.countries)) {
+  if (!entities[n] || entities[n].type !== 'country') continue;
+  for (const p of passages) {
+    if (!p.eligibleIdentification) continue;
+    for (const s of p.text.split(/(?<=다\.)\s+/).map(x => x.trim())) {
+      const m = s.match(new RegExp('^' + n + '(은|는|의|이|가)\\s'));
+      if (!m || s.indexOf(n, n.length) >= 0 || countryNames.some(o => o !== n && s.includes(o))) continue;
+      if (NOT_A_CLUE.test(s) || s.length > 130 || s.length < 15 || clueSentences.some(c => c.text === s)) continue;
+      clueSentences.push({country: n, text: s, particle: m[1], tokens: tokensIn(s.slice(n.length)), source: p.source.locator.split(' / ')[0]});
+    }
+  }
+}
+const tokenOwners = {};
+for (const c of clueSentences) for (const t of c.tokens) (tokenOwners[t] = tokenOwners[t] || new Set()).add(c.country);
+for (const c of clueSentences) {
+  const own = c.tokens.filter(t => tokenOwners[t].size === 1);
+  if (!own.length) continue;
+  // On the paper the country is not named: '세네갈은 …' → '…', '이집트의 …' → '이 나라의 …'.
+  const rest = c.text.slice(c.country.length + c.particle.length + 1);
+  (entities[c.country].clues = entities[c.country].clues || []).push({text: c.text, shown: c.particle === '의' ? '이 나라의 ' + rest : rest, keys: own, source: c.source});
+}
+
 // Compositions used as identification data. Shares are percentages of the stated total;
 // `orderMargin` is the gap every year must keep between ranked categories.
 const compositions = {

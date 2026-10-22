@@ -36,6 +36,7 @@ h2{font-size:17px;line-height:1.45;margin:14px 0 8px;word-break:keep-all}.step{d
 .climateGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin:6px 0}.climateFig{margin:0;border:1px solid var(--line);border-radius:10px;padding:6px 6px 2px}
 .climateFig figcaption{font-weight:800;color:var(--accent);font-size:14px}.climateFig svg{display:block;width:100%;height:auto}.climateFig text{font-size:9px;fill:var(--muted)}
 .climateFig .bar{fill:#74a9cf}.climateFig .tline{fill:none;stroke:#c4441c;stroke-width:2}.climateFig .tdot{fill:#c4441c}.climateFig .grid{stroke:#e3e9ea}.climateFig .zero{stroke:#9aa8ad}
+td.text{white-space:normal;text-align:left;line-height:1.55;word-break:keep-all;min-width:12em}
 .numbers summary{cursor:pointer;font-size:12px;color:var(--muted)}.numbers table{font-size:11px}
 .toggle{flex:0 0 auto!important;gap:4px!important;cursor:pointer}.toggle input{width:18px;height:18px;margin:0}
 .below{max-width:720px;margin:0 auto;padding:0 12px calc(28px + env(safe-area-inset-bottom))}
@@ -49,9 +50,9 @@ h2{font-size:17px;line-height:1.45;margin:14px 0 8px;word-break:keep-all}.step{d
 <div class="scope"><label for="themeSelect">주제<select id="themeSelect"></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><span class="score" id="score"></span></div>
 <main id="main" aria-live="polite"></main>
 <div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 2015~2025년 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
-<script src="assets/entity-kb.js?v=20261022-1"></script>
-<script src="assets/exam-themes.js?v=20261022-1"></script>
-<script src="assets/exam-engine.js?v=20261022-1"></script>
+<script src="assets/entity-kb.js?v=20261022-2"></script>
+<script src="assets/exam-themes.js?v=20261022-2"></script>
+<script src="assets/exam-engine.js?v=20261022-2"></script>
 <script>
 (function(){
 'use strict';
@@ -97,7 +98,7 @@ function table(q,revealed){
  if(q.display.kind==='climate')return climateCharts(q,revealed);
  // 항목 식별 hides column names as A~C until stage 1 is answered; rows already carry names.
  var d=q.display,head=el('tr',{},[el('th',{text:'구분'})].concat(d.columns.map(function(c){return el('th',{text:c.label+(revealed&&c.reveal?' '+c.reveal:'')+(c.unit?' ('+c.unit+')':'')})})));
- var body=d.rows.map(function(r,i){return el('tr',{},[el('td',{className:'name',text:r.label+(revealed&&q.format!=='columns'?' '+q.entities[i]:'')})].concat(r.cells.map(function(c){return el('td',{className:q.theme.kind==='items'?'items':null,text:c})})))});
+ var body=d.rows.map(function(r,i){return el('tr',{},[el('td',{className:'name',text:r.label+(revealed&&q.format!=='columns'?' '+q.entities[i]:'')})].concat(r.cells.map(function(c){return el('td',{className:q.theme.kind==='items'?'items':q.theme.kind==='clues'?'text':null,text:c})})))});
  return el('div',{},[el('div',{className:'tableWrap'},[el('table',{},[el('thead',{},[head]),el('tbody',{},body)])]),el('div',{className:'source',text:'자료: '+d.source})]);
 }
 // The boundaries (about 1 MB) load only when a map question first appears.

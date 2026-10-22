@@ -93,8 +93,11 @@
   function koSort(a,b){return a.localeCompare(b,'ko')}
   function span(x,ind){if(!x.years)return '';var m=ind&&meta(ind);return m&&m.static?x.years.join('·')+'년 기준':x.years[0]+'~'+x.years[1]+'년 매년'}
 
+  // 국가 설명 (kind 'clues'): a shown column is '<country>#<n>', the n-th lecture clue sentence.
+  function clueOf(id){var i=id.lastIndexOf('#');return entity(id.slice(0,i)).clues[+id.slice(i+1)]}
   function hasData(theme,name){
    if(!entity(name))return false;
+   if(theme.kind==='clues')return !!(entity(name).clues&&entity(name).clues.length);
    if(theme.kind==='items')return !!(theme.items&&theme.items[name]);
    if(theme.kind==='climate')return !!cl(name);
    if(theme.kind==='composition')return !!comp(theme,name)&&(!composition(theme).total||total(theme,name)!=null);
@@ -112,6 +115,7 @@
    if(theme.kind==='composition'){var c=composition(theme);return {orders:chosen.map(function(n){return orderOf(theme,n)}).filter(Boolean),
     relations:c.total&&c.total.indicator?REL.filter(function(x){return x.indicator===c.total.indicator&&has(x.hi)&&has(x.lo)}):[]};}
    if(theme.kind==='climate')return {sites:chosen.map(function(n){return {entity:n,type:cl(n).type,hemisphere:cl(n).hemisphere}})};
+   if(theme.kind==='clues')return {clues:chosen.map(function(n){return {entity:n}})};
    return {items:chosen.map(function(n){return {entity:n,top:theme.items[n][0][0]}})};
   }
   // A row clearly breaks an order when a category ranked below beats it by the margin.
@@ -127,6 +131,8 @@
     return k.relations.every(function(x){return !clearlyAbove(x.indicator,value(row[x.lo],x.indicator),value(row[x.hi],x.indicator))})&&
      k.signs.every(function(x){var v=value(row[x.entity],x.indicator),min=meta(x.indicator).sign.min;return x.positive?v>-min:v<min});
    if(theme.kind==='climate')return perm.every(function(n,i){return !climateBreaks(n,chosen[i])});
+   // A clue names a place or item that no other country's clue names, so it fits only its own row.
+   if(theme.kind==='clues')return perm.every(function(n,i){return n===chosen[i]});
    if(theme.kind==='composition'){var c=composition(theme);return k.orders.every(function(o){return !orderBroken(c,o.order,comp(theme,row[o.entity]))})&&
     (k.relations||[]).every(function(x){return !clearlyAbove(x.indicator,total(theme,row[x.lo]),total(theme,row[x.hi]))});}
    return k.items.every(function(x){return theme.items[row[x.entity]][0][0]===x.top});
@@ -150,6 +156,10 @@
     return {kind:'climate',columns:[],rows:chosen.map(function(n,i){var c=cl(n);return {label:LABELS[i],temperature:c.temperature,precipitation:c.precipitation,cells:[]}}),
      scale:{tMin:Math.min(0,Math.floor(Math.min.apply(null,T)/10)*10),tMax:Math.max(10,Math.ceil(Math.max.apply(null,T)/10)*10),pMax:Math.max(100,Math.ceil(Math.max.apply(null,P)/100)*100)},
      source:CLIMATE.period.join('~')+'년 평년값 · '+CLIMATE.source};
+   }
+   if(theme.kind==='clues'){
+    var srcs={};shown.forEach(function(id){srcs[clueOf(id).source]=1});
+    return {columns:[{id:'clue',label:'강의의 설명',unit:''}],rows:chosen.map(function(n,i){return {label:LABELS[i],cells:[clueOf(shown[i]).shown]}}),source:Object.keys(srcs).join(' · ')};
    }
    if(theme.kind==='items'){
     return {columns:[{id:'items',label:'수출 상위 품목(비중, %)',unit:''}],rows:chosen.map(function(n,i){return {label:LABELS[i],cells:[theme.items[n].map(function(x){return x[0]+' '+fmt(x[1])}).join(', ')]}}),source:theme.year+' · '+theme.source};
@@ -177,6 +187,7 @@
     }else if(theme.kind==='composition'){var o=orderOf(theme,n);if(o)parts.push(o.order.map(function(id){return catLabel(theme,id)}).join(' > ')+(o.order.length===1?' 1위':''));
      (k.relations||[]).forEach(function(x){if(x.hi===n||x.lo===n)parts.push(meta(x.indicator).label+' '+x.hi+' > '+x.lo)});}
     else if(theme.kind==='climate'){var c=cl(n);if(c.type)parts.push(typeLabel(c.type));if(c.signal)parts.push((c.signal==='S'?'남반구':'북반구')+'(최한월 '+c.coldest+'월)')}
+    else if(theme.kind==='clues'){var q=clueOf(shown[i]);parts.push(q.keys.join('·')+' ('+q.source+')')}
     else parts.push(theme.items[n].slice(0,2).map(function(x){return x[0]}).join('·')+' 조합');
     return {label:LABELS[i],name:n,cue:parts.length?parts.slice(0,3).join(' · '):'나머지 대상(소거)'};
    });
@@ -325,13 +336,16 @@
   function candidates(theme,chosen,shown,r,named){
    if(theme.kind==='climate')return climateCandidates(theme,chosen,r);
    var out=[],has=function(n){return chosen.indexOf(n)>=0};
+   // A fact the clue sentence already states ('힌두교 신자가 가장 많은 국가') is not asked about.
+   var given={};if(theme.kind==='clues')chosen.forEach(function(n,i){given[n]=clueOf(shown[i]).text});
+   var stated=function(n,set){var f=entity(n).facts[set];return !!(given[n]&&f&&f.values.some(function(v){return given[n].indexOf(optionLabel(set,v))>=0}))};
    var L=function(n){return named?n:LABELS[chosen.indexOf(n)]},S=function(n){return L(n)+(named?topic(n):'는')},W=function(n){return L(n)+(named?(topic(n)==='은'?'과':'와'):'와')};
    function add(c){if(c.text&&!out.some(function(x){return x.text===c.text}))out.push(c)}
    chosen.forEach(function(n){
     var e=entity(n);
     Object.keys(e.facts||{}).forEach(function(set){
      // A fact the shown data already reveals would make the <보기> a reading exercise.
-     if((theme.reveals||[]).indexOf(set)>=0)return;
+     if((theme.reveals||[]).indexOf(set)>=0||stated(n,set))return;
      if(!allowed(theme,set))return;
      var f=e.facts[set],m=kb.factSets[set];
      f.values.forEach(function(v){var p=predicate(set,v);if(p)add({kind:'fact',key:set+'|'+n,text:S(n)+' '+p+'.',truth:true,explain:factExplain(set,n),check:{set:set,entity:n,value:v}})});
@@ -376,7 +390,7 @@
    pairs(chosen).forEach(function(p){
     var a=entity(p[0]),b=entity(p[1]);
     Object.keys(a.facts||{}).forEach(function(set){
-     var m=kb.factSets[set];if(!m||!m.exclusive||!b.facts||!b.facts[set]||(theme.reveals||[]).indexOf(set)>=0||!allowed(theme,set))return;
+     var m=kb.factSets[set];if(!m||!m.exclusive||!b.facts||!b.facts[set]||(theme.reveals||[]).indexOf(set)>=0||!allowed(theme,set)||stated(p[0],set)||stated(p[1],set))return;
      var va=a.facts[set].values[0],vb=b.facts[set].values[0],pr=predicate(set,va);if(!pr)return;
      if(va!==vb&&!plausible(set,p[1],va))return;
      add({kind:'both',key:set+'|'+p[0],keys:[set+'|'+p[0],set+'|'+p[1]],text:W(p[0])+' '+S(p[1])+' 모두 '+pr+'.',truth:va===vb,explain:factExplain(set,p[0])+' / '+factExplain(set,p[1]),check:{set:set,a:p[0],b:p[1],value:va}});
@@ -451,7 +465,7 @@
   function markerStage(theme,chosen,shown,avail,r){
    var k=chosen.length,room=Math.min(5,avail.length)-k,right=chosen.join('|');
    var known1=function(n){return theme.kind==='indicators'?REL.some(function(x){return shown.indexOf(x.indicator)>=0&&(x.hi===n&&chosen.indexOf(x.lo)>=0||x.lo===n&&chosen.indexOf(x.hi)>=0)}):
-    theme.kind==='composition'?!!orderOf(theme,n):theme.kind==='climate'?!!cl(n).type:!!(theme.items&&theme.items[n])};
+    theme.kind==='composition'?!!orderOf(theme,n):theme.kind==='climate'?!!cl(n).type:theme.kind==='clues'?!!entity(n).clues:!!(theme.items&&theme.items[n])};
    var region=function(n){return chosen.some(function(c){return entity(c).region===entity(n).region})};
    // Countries a learner can rule out by what they know come first, then neighbours.
    var others=shuffle(avail.filter(function(n){return chosen.indexOf(n)<0}),r).map(function(n){return [(known1(n)?2:0)+(region(n)?1:0),n]})
@@ -480,6 +494,10 @@
   // linked to them, so questions centre on the comparisons exams make; the rest are random.
   function draw(theme,avail,k,r,inds){
    var has=function(list,n){return list.indexOf(n)>=0};
+   if(theme.kind==='clues'){
+    var first=pick(avail,r),near=shuffle(avail.filter(function(n){return n!==first&&entity(n).region===entity(first).region}),r);
+    return shuffle([first].concat(near,shuffle(avail.filter(function(n){return n!==first&&!has(near,n)}),r)).slice(0,k),r);
+   }
    var rels=theme.kind==='indicators'?REL.filter(function(x){return has(avail,x.hi)&&has(avail,x.lo)&&(!inds||has(inds,x.indicator))&&inScope(theme,x.indicator)}):[];
    if(!rels.length||r()<.25)return shuffle(avail,r).slice(0,k);
    // Half the draws start from a 대상 picked uniformly, so countries with many relations
@@ -555,6 +573,7 @@
      chosen=shuffle([target.hi,target.lo].concat(shuffle(avail.filter(function(n){return n!==target.hi&&n!==target.lo}),r).slice(0,k-2)),r);
     }
     if(theme.kind==='composition'&&composition(theme).total&&composition(theme).total.indicator)shown=[composition(theme).total.indicator];
+    if(theme.kind==='clues')shown=chosen.map(function(n){return n+'#'+Math.floor(r()*entity(n).clues.length)});
     if(theme.kind==='indicators'){
      var always=theme.always||[],inds=theme.indicators.filter(function(ind){return meta(ind)&&!meta(ind).disabled&&always.indexOf(ind)<0});
      // A source without a value for one 대상 (no coffee in France) is not shown as 0; the column is left out.

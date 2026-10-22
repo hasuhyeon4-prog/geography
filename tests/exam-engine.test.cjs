@@ -229,7 +229,7 @@ test('<보기> stay on the theme and avoid free distractors', () => {
   }
   // Themes whose data support comparisons put at least two theme <보기> in most questions.
   for (const id of ['bloc-indicators', 'continent-indicators', 'country-population', 'country-economy', 'export-composition', 'religion-composition', 'electricity-mix', 'climate-graphs',
-    'crop-identification', 'livestock-identification', 'country-agriculture']) assert.ok(focusShare[id] >= 0.6, id + ' ' + focusShare[id]);
+    'crop-identification', 'livestock-identification', 'country-agriculture', 'country-clues']) assert.ok(focusShare[id] >= 0.6, id + ' ' + focusShare[id]);
   for (const e of Object.values(K.entities)) if (e.facts.latinLanguage) assert.equal(e.region, 'americas', e.name + ' latinLanguage');
 });
 
