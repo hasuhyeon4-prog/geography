@@ -91,6 +91,9 @@
   // An indicator with a domain (agriculture) is recalled only by themes listing that domain,
   // and a theme with domains recalls only those.
   function inScope(theme,ind){var m=meta(ind);return (theme.domains||[null]).indexOf(m&&m.domain||null)>=0}
+  // A change between two columns ('…@1970-2020') is never a column itself; it can be read, and
+  // so counts as shown, when both of its columns are in the table.
+  function visible(shown,ind){var m=meta(ind);return shown.indexOf(ind)>=0||!!(m&&m.from&&m.from.every(function(x){return shown.indexOf(x)>=0}))}
   function koSort(a,b){return a.localeCompare(b,'ko')}
   function span(x,ind){if(!x.years)return '';var m=ind&&meta(ind);return m&&m.static?x.years.join('·')+'년 기준':x.years[0]+'~'+x.years[1]+'년 매년'}
 
@@ -111,8 +114,8 @@
   function known(theme,chosen,shown){
    var has=function(n){return chosen.indexOf(n)>=0};
    if(theme.kind==='indicators')return {
-    relations:REL.filter(function(x){return shown.indexOf(x.indicator)>=0&&has(x.hi)&&has(x.lo)}),
-    signs:SIGNS.filter(function(x){return shown.indexOf(x.indicator)>=0&&has(x.entity)})};
+    relations:REL.filter(function(x){return visible(shown,x.indicator)&&has(x.hi)&&has(x.lo)}),
+    signs:SIGNS.filter(function(x){return visible(shown,x.indicator)&&has(x.entity)})};
    if(theme.kind==='composition'){var c=composition(theme);return {orders:chosen.map(function(n){return orderOf(theme,n)}).filter(Boolean),
     relations:c.total&&c.total.indicator?REL.filter(function(x){return x.indicator===c.total.indicator&&has(x.hi)&&has(x.lo)}):[]};}
    if(theme.kind==='climate')return {sites:chosen.map(function(n){return {entity:n,type:cl(n).type,hemisphere:cl(n).hemisphere}})};
@@ -148,8 +151,9 @@
   function display(theme,chosen,shown){
    if(theme.kind==='indicators'){
     var cols=shown.map(function(ind){var m=meta(ind);return {id:ind,label:m.label,unit:m.unit}});
-    var src={};shown.forEach(function(ind){var m=meta(ind);src[m.year+' · '+m.source]=1});
-    return {columns:cols,rows:chosen.map(function(n,i){return {label:LABELS[i],cells:shown.map(function(ind){return fmt(value(n,ind))})}}),source:Object.keys(src).join(' / ')};
+    // Columns of one source at several years share one source line ('1970·2020 · UN WUP …').
+    var src={},order=[];shown.forEach(function(ind){var m=meta(ind);if(!src[m.source]){src[m.source]=[];order.push(m.source)}if(src[m.source].indexOf(m.year)<0)src[m.source].push(m.year)});
+    return {columns:cols,rows:chosen.map(function(n,i){return {label:LABELS[i],cells:shown.map(function(ind){return fmt(value(n,ind))})}}),source:order.map(function(k){return src[k].join('·')+' · '+k}).join(' / ')};
    }
    if(theme.kind==='climate'){
     // All graphs share one scale, as on an exam page, so they can be compared by eye.
@@ -178,7 +182,7 @@
     var parts=[];
     if(theme.kind==='indicators'){
      // One line per indicator: who is known to be above and below this 대상.
-     shown.forEach(function(ind){
+     shown.concat(Object.keys(kb.indicators).filter(function(ind){return shown.indexOf(ind)<0&&visible(shown,ind)})).forEach(function(ind){
       var up=[],down=[];
       k.relations.forEach(function(x){if(x.indicator!==ind)return;if(x.lo===n)up.push(x.hi);if(x.hi===n)down.push(x.lo)});
       var chain=[up.join('·'),n,down.join('·')].filter(Boolean);
@@ -393,14 +397,14 @@
     if(e.ns&&e.eqDist<=NEAR_EQUATOR&&allowed(theme,'hemisphere')){var north=e.ns==='N',trueIt=r()<.5;add({kind:'fact',key:'ns|'+n,text:S(n)+' '+((north===trueIt)?'북반구':'남반구')+'에 위치한다.',truth:trueIt,explain:n+'의 국토는 '+(north?'북반구':'남반구')+'에 있다.',check:{ns:(north===trueIt)?'N':'S',entity:n}})}
    });
    SIGNS.forEach(function(x){
-    if(!has(x.entity)||shown.indexOf(x.indicator)>=0||!inScope(theme,x.indicator))return;
+    if(!has(x.entity)||visible(shown,x.indicator)||!inScope(theme,x.indicator)||(theme.noRecall||[]).indexOf(x.indicator)>=0)return;
     var m=meta(x.indicator),v=value(x.entity,x.indicator),yes=x.positive?m.sign.pos:m.sign.neg,no=x.positive?m.sign.neg:m.sign.pos;
     var why=x.entity+' '+m.label+' '+fmt(v)+m.unit+' ('+m.year+', '+m.source+') · '+span(x,x.indicator)+' '+(x.positive?'양(+)':'음(−)')+' · 근거: '+x.basis;
     if(yes)add({kind:'sign',key:x.indicator+'|'+x.entity,text:S(x.entity)+' '+yes+'.',truth:true,explain:why,check:{ind:x.indicator,entity:x.entity,positive:x.positive}});
     if(no)add({kind:'sign',key:x.indicator+'|'+x.entity,text:S(x.entity)+' '+no+'.',truth:false,explain:why,check:{ind:x.indicator,entity:x.entity,positive:!x.positive}});
    });
    REL.forEach(function(x){
-    if(!has(x.hi)||!has(x.lo)||shown.indexOf(x.indicator)>=0||meta(x.indicator).entityType!==entity(x.hi).type||!inScope(theme,x.indicator))return;
+    if(!has(x.hi)||!has(x.lo)||visible(shown,x.indicator)||meta(x.indicator).entityType!==entity(x.hi).type||!inScope(theme,x.indicator)||(theme.noRecall||[]).indexOf(x.indicator)>=0)return;
     var m=meta(x.indicator),truth=r()<.5,s=truth?[x.hi,x.lo]:[x.lo,x.hi];
     add({kind:'compare',key:x.indicator+'|'+[x.hi,x.lo].sort().join('|'),text:S(s[0])+' '+L(s[1])+'보다 '+m.more+'.',truth:truth,
      explain:x.hi+' '+fmt(value(x.hi,x.indicator))+m.unit+', '+x.lo+' '+fmt(value(x.lo,x.indicator))+m.unit+' ('+m.label+', '+m.year+', '+m.source+') · '+span(x,x.indicator)+' 같은 순서 · 근거: '+x.basis,
@@ -440,6 +444,35 @@
      var line=function(n){return n+' '+fmt(value(n,d.total))+tm.unit+' × '+fmt(value(n,d.rate))+rm.unit+' ≈ '+fmt(value(n,d.total)*value(n,d.rate)/d.per)+tm.unit};
      add({kind:'data',key:'derived|'+d.rate+'|'+p[0]+'|'+p[1],check:{rate:d.rate,total:d.total,per:d.per,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+d.noun+'가 많다.',truth:truth,
       explain:'표의 '+tm.label+' × '+rm.label+': '+line(s0[0])+', '+line(s0[1])+' — '+rm.label+'은 반대지만 '+tm.label+' 차이 때문에 '+d.noun+'는 이렇다. ('+rm.year+', '+rm.source+')'});
+    });
+    // Two-period tables: which row changed more between the two columns (3%p apart at least).
+    if(theme.kind==='indicators')(theme.changes||[]).forEach(function(d){
+     if(shown.indexOf(d.from)<0||shown.indexOf(d.to)<0)return;
+     // d.ratio compares growth (뒤 ÷ 앞, 1.2배 apart); otherwise the difference in %p.
+     var ch=function(n){return d.ratio?value(n,d.to)/value(n,d.from):value(n,d.to)-value(n,d.from)},ca=ch(p[0]),cb=ch(p[1]);
+     if(d.ratio?!(Math.min(ca,cb)>0)||Math.max(ca,cb)/Math.min(ca,cb)<d.min:Math.abs(ca-cb)<d.min)return;
+     var hi=ca>cb?p[0]:p[1],lo=hi===p[0]?p[1]:p[0],truth=r()<.5,s=truth?[hi,lo]:[lo,hi],fm=meta(d.from),tm=meta(d.to);
+     var line=function(n){return n+' '+fmt(value(n,d.from))+' → '+fmt(value(n,d.to))+(d.ratio?'('+fmt(Math.round(ch(n)*10)/10)+'배)':'('+(ch(n)>=0?'+':'')+fmt(Math.round(ch(n)*10)/10)+fm.unit+'p)')};
+     add({kind:'data',key:'change|'+d.from+'|'+p.slice().sort().join('|'),check:{from:d.from,to:d.to,ratio:!!d.ratio,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+d.noun+subjectParticle(d.noun)+' '+(d.more||'크다')+'.',truth:truth,
+      explain:'표의 '+fm.label+'·'+tm.label+': '+line(hi)+', '+line(lo)+' ('+fm.source+')'});
+    });
+   });
+   if(theme.kind==='indicators')chosen.forEach(function(n){
+    // Whether a population column rose or fell, when it moved by 5% or more.
+    (theme.changeSigns||[]).forEach(function(d){
+     if(shown.indexOf(d.from)<0||shown.indexOf(d.to)<0)return;
+     var a=value(n,d.from),b=value(n,d.to),pct=(b-a)/a*100;if(!(a>0)||Math.abs(pct)<d.min)return;
+     var up=r()<.5,fm=meta(d.from);
+     add({kind:'data',key:'sign|'+d.from+'|'+n,check:{from:d.from,to:d.to,entity:n,up:up},text:S(n)+' '+d.noun+subjectParticle(d.noun)+' '+(up?'증가하였다':'감소하였다')+'.',truth:(pct>0)===up,
+      explain:'표의 '+fm.label+'·'+meta(d.to).label+': '+n+' '+fmt(a)+' → '+fmt(b)+fm.unit+' ('+(pct>=0?'+':'')+fmt(Math.round(pct))+'%)'});
+    });
+    // 도시화율 50%: more people in cities than in the countryside (강의 1권 P05), 2%p clear of it.
+    (theme.majority||[]).forEach(function(ind){
+     if(shown.indexOf(ind)<0)return;
+     var v=value(n,ind),m=meta(ind);if(Math.abs(v-50)<2)return;
+     var claim=r()<.5;
+     add({kind:'data',key:'majority|'+ind+'|'+n,check:{majority:ind,entity:n,claim:claim},text:S(n)+' '+m.year+'년에 '+(claim?'도시 인구가 촌락 인구보다':'촌락 인구가 도시 인구보다')+' 많았다.',truth:(v>50)===claim,
+      explain:'표의 '+m.label+' '+n+' '+fmt(v)+'% — 50%보다 '+(v>50?'높으므로 도시 인구가 더 많다.':'낮으므로 촌락 인구가 더 많다.')});
     });
    });
    // What a hidden category is (religion: world adherents, origin, founding time, 보편/민족).
@@ -509,7 +542,7 @@
   }
   function markerStage(theme,chosen,shown,avail,r){
    var k=chosen.length,room=Math.min(5,avail.length)-k,right=chosen.join('|');
-   var known1=function(n){return theme.kind==='indicators'?REL.some(function(x){return shown.indexOf(x.indicator)>=0&&(x.hi===n&&chosen.indexOf(x.lo)>=0||x.lo===n&&chosen.indexOf(x.hi)>=0)}):
+   var known1=function(n){return theme.kind==='indicators'?REL.some(function(x){return visible(shown,x.indicator)&&(x.hi===n&&chosen.indexOf(x.lo)>=0||x.lo===n&&chosen.indexOf(x.hi)>=0)}):
     theme.kind==='composition'?!!orderOf(theme,n):theme.kind==='climate'?!!cl(n).type:theme.kind==='clues'?!!entity(n).clues:!!(theme.items&&theme.items[n])};
    var region=function(n){return chosen.some(function(c){return entity(c).region===entity(n).region})};
    // Countries a learner can rule out by what they know come first, then neighbours.
@@ -632,7 +665,7 @@
     // The format is fixed for the first attempts; later ones re-roll, so when the recent questions
     // have used up one format (전력 대상 식별 has four), another format is tried instead of a repeat.
     // A joint theme (종교) splits the 항목 식별 share with 동시 식별, where rows and columns are both hidden.
-    var canHide=columnsFor(theme).length>=3,canJoint=canHide&&!!theme.joint&&theme.kind==='composition',roll=attempt<150?roll0:r();
+    var canHide=columnsFor(theme).length>=3&&!theme.periodTable,canJoint=canHide&&!!theme.joint&&theme.kind==='composition',roll=attempt<150?roll0:r();
     var format=(mode==='columns'&&!canHide)||(mode==='joint'&&!canJoint)?'rows':mode||(roll<.35&&canHide&&attempt<300?(canJoint&&roll>=.15?'joint':'columns'):roll>.8?'implicit':'rows');
     if(format==='columns'){var cq=buildColumns(theme,avail,k,r,avoid,attempt);if(cq)return cq;continue}
     if(format==='joint'){var jq=buildJoint(theme,avail,k,r,avoid,attempt);if(jq)return jq;continue}
@@ -656,9 +689,10 @@
     if(!identifiable(theme,chosen,shown))continue;
     // A column shown on every question (총인구) is there for computing totals; if it alone
     // identified the 대상, the theme's own indicators would be decoration.
-    if(theme.always&&theme.always.length&&identifiable(theme,chosen,theme.always))continue;
+    // A two-period table (periodTable) is read through its two year columns, so they may identify.
+    if(theme.always&&theme.always.length&&!theme.periodTable&&identifiable(theme,chosen,theme.always))continue;
     // everyKnown: each 대상 is identified by its own verified knowledge, never by elimination.
-    if(theme.everyKnown&&chosen.some(function(n){return theme.kind!=='indicators'?!own(n):!REL.some(function(x){return shown.indexOf(x.indicator)>=0&&(x.hi===n||x.lo===n)&&chosen.indexOf(x.hi)>=0&&chosen.indexOf(x.lo)>=0})}))continue;
+    if(theme.everyKnown&&chosen.some(function(n){return theme.kind!=='indicators'?!own(n):!REL.some(function(x){return visible(shown,x.indicator)&&(x.hi===n||x.lo===n)&&chosen.indexOf(x.hi)>=0&&chosen.indexOf(x.lo)>=0})}))continue;
     var pair=theme.map?markerStage(theme,chosen,shown,avail,r):null;if(theme.map&&!pair)continue;
     var s2=chooseStatements(theme,candidates(theme,chosen,shown,r),r);if(!s2)continue;
     // Fewer 대상 leave fewer pairs to compare; such a draw whose <보기> are mostly background is redrawn.

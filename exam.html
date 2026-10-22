@@ -50,9 +50,9 @@ td.text{white-space:normal;text-align:left;line-height:1.55;word-break:keep-all;
 <div class="scope"><label for="themeSelect">주제<select id="themeSelect"></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><span class="score" id="score"></span></div>
 <main id="main" aria-live="polite"></main>
 <div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 2015~2025년 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
-<script src="assets/entity-kb.js?v=20261022-5"></script>
-<script src="assets/exam-themes.js?v=20261022-5"></script>
-<script src="assets/exam-engine.js?v=20261022-5"></script>
+<script src="assets/entity-kb.js?v=20261022-6"></script>
+<script src="assets/exam-themes.js?v=20261022-6"></script>
+<script src="assets/exam-engine.js?v=20261022-6"></script>
 <script>
 (function(){
 'use strict';
@@ -234,7 +234,7 @@ function knowledge(){
   if(x.status!=='active')return x.reason;
   if(x.trait)return (x.years?x.years.join('·')+'년 '+x.source+' · 최소 간격 '+x.minGap+'%p · ':'강의 설명 · ')+'A~C를 식별한 뒤 묻는 <보기>'+(sample?' · 표본 '+n(sample)+'문항 중 '+n(x.practice)+'회':'');
   if(x.lecture)return '관측소 평년값으로 같은 기후형 확인('+x.computed.split('').map(function(ch,i){return i===0||(i===1&&/[be]/.test(x.computed[0]))?ch.toUpperCase():ch}).join('')+')'+(sample?' · 표본 '+n(sample)+'문항 중 '+n(x.practice)+'회':'');
-  var m=x.indicator&&kb.indicators[x.indicator],span=m&&m.static?x.years.join('·')+'년 기준':x.years[0]+'~'+x.years[1]+'년 매년';
+  var m=x.indicator&&kb.indicators[x.indicator],span=m&&m.from?x.years[0].split('~')[0]+'~'+x.years[1].split('~')[0]+'년과 '+x.years[0].split('~')[1]+'~'+x.years[1].split('~')[1]+'년의 모든 조합':m&&m.static?x.years.join('·')+'년 기준':x.years[0]+'~'+x.years[1]+'년 매년';
   var gap=x.first?'':x.hi?' · 최소 차이 '+x.minGap:x.order?' · 최소 간격 '+x.minGap+'%p':' · 최소 절댓값 '+x.minAbs+m.unit;
   return span+gap+(sample?' · 표본 '+n(sample)+'문항 중 '+n(x.practice)+'회':'');
  }

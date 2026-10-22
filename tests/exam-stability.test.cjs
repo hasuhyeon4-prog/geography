@@ -59,7 +59,24 @@ function agriSeries(area, key) {
   return Object.fromEntries(Object.keys(cols[0]).filter(y => cols.every(c => y in c)).map(y => [y, cols.reduce((t, c) => t + c[y], 0)]));
 }
 const scaled = (ser, k) => Object.fromEntries(Object.entries(ser).map(([y, v]) => [y, v / k]));
+// Two-period urbanization (UN WUP 2025): a column in the window is read 2015~2025, an earlier one
+// within five years of its own year; a change between two columns over every pair of those years.
+const WUP = data('data/urbanization-change.json'), POP = data('data/exam-relations-population-change.json');
+const WUP_KEY = {share: 'urbanShare', urban: 'urbanPopulation', rural: 'ruralPopulation', total: 'totalPopulation'};
+const WUP_SCALE = {wup: 1e4, cwup: 1e6};
+const nearYears = y => { const lo = +y >= +Y0 ? +Y0 : Math.max(1950, +y - 5), hi = +y >= +Y0 ? +Y1 : +y + 5; return Array.from({length: hi - lo + 1}, (_, i) => String(lo + i)); };
+const wup = (p, k, n, y) => { const v = WUP.areas[n].series[WUP_KEY[k]][y]; return k === 'share' ? v : v / WUP_SCALE[p]; };
+const CHANGE = {shareRise: ['share', (a, b) => b - a], ruralChange: ['rural', (a, b) => (b - a) / a * 100], urbanGrowth: ['urban', (a, b) => b / a]};
+const PERIOD = /^(c?wup)-(\w+)@(\d{4})(?:-(\d{4}))?$/;
+function periodRaw(ind, n) {
+  const [, p, k, A, B] = ind.match(PERIOD);
+  if (!B) return Object.fromEntries(nearYears(A).map(y => [y, wup(p, k, n, y)]));
+  const [base, f] = CHANGE[k], out = {};
+  for (const a of nearYears(A)) for (const b of nearYears(B)) out[a + '~' + b] = f(wup(p, base, n, a), wup(p, base, n, b));
+  return out;
+}
 function raw(ind, name) {
+  if (PERIOD.test(ind)) return periodRaw(ind, name);
   if (AGRI_COL[ind]) return scaled(agriSeries(name, AGRI_COL[ind][0]), AGRI_COL[ind][1]);
   if (AGRI_AREA[ind]) return scaled(agriSeries(AGRI_AREA[ind][1], AGRI_AREA[ind][0] + ':' + name), AGRI_AREA[ind][2]);
   if (countries.countries[name] && !GROUP[ind] && !ind.includes('-')) return countries.countries[name].series[ind] || (economy.countries[name].series[ind]) || {};
@@ -74,7 +91,7 @@ function raw(ind, name) {
   const [key, scale] = GROUP[ind];
   return Object.fromEntries(Object.entries(g[key] || {}).map(([y, v]) => [y, v / scale]));
 }
-const STATIC = ind => ind === 'bloc-members' || ind.endsWith('-area');
+const STATIC = ind => ind === 'bloc-members' || ind.endsWith('-area') || PERIOD.test(ind);
 const inWindow = (ind, y) => STATIC(ind) || (y >= Y0 && y <= Y1);
 // Years in which `hi` is above `lo`, and years in which it is not.
 function yearly(ind, hi, lo) {
@@ -84,7 +101,7 @@ function yearly(ind, hi, lo) {
 
 // The whitelist, read here without the builder.
 const allowedPairs = new Map(), allowedSigns = new Set(), lectureDirected = [];
-for (const r of REL.relations) {
+for (const r of REL.relations.concat(POP.relations)) {
   const allow = (a, b) => allowedPairs.set(r.indicator + '|' + [a, b].sort().join('|'), r.basis);
   for (const [hi, lo] of r.pairs || []) { allow(hi, lo); lectureDirected.push([r.indicator, hi, lo]); }
   (r.tiers || []).forEach((tier, i) => r.tiers.slice(i + 1).flat().forEach(lo => tier.forEach(hi => { allow(hi, lo); lectureDirected.push([r.indicator, hi, lo]); })));
@@ -179,14 +196,19 @@ test('identification rests only on whitelisted knowledge that holds in every yea
   const permutations = list => (list.length <= 1 ? [list] : list.flatMap((x, i) => permutations(list.filter((_, j) => j !== i)).map(p => [x, ...p])));
   for (const q of questions()) {
     const t = q.theme, b = q.stage1.basis, col = ind => q.display.columns.findIndex(c => c.id === ind);
-    const shownValue = (name, ind) => num(q.display.rows[q.entities.indexOf(name)].cells[col(ind)]);
+    // A change between two shown columns is read from those two cells.
+    const cellOf = (name, ind) => num(q.display.rows[q.entities.indexOf(name)].cells[col(ind)]);
+    const fromOf = ind => { const m = ind.match(PERIOD); return m && m[4] ? [m[1] + '-' + CHANGE[m[2]][0] + '@' + m[3], m[1] + '-' + CHANGE[m[2]][0] + '@' + m[4]] : null; };
+    const shownValue = (name, ind) => { const f = fromOf(ind); return f ? CHANGE[ind.match(PERIOD)[2]][1](cellOf(name, f[0]), cellOf(name, f[1])) : cellOf(name, ind); };
+    const readable = ind => q.shown.includes(ind) || (fromOf(ind) || [null]).every(x => x && q.shown.includes(x));
     for (const x of b.relations || []) {
       assert.ok(allowedPair(x.indicator, x.hi, x.lo), 'identification uses ' + x.indicator + ' ' + x.hi + '/' + x.lo);
       assert.deepEqual(yearly(x.indicator, x.hi, x.lo).reversed, [], x.indicator + ' ' + x.hi + ' > ' + x.lo);
-      assert.ok(q.shown.includes(x.indicator));
+      assert.ok(readable(x.indicator), x.indicator + ' is not in the table');
     }
     for (const x of b.signs || []) {
       assert.ok(allowedSigns.has(x.indicator + '|' + x.entity));
+      assert.ok(readable(x.indicator), x.indicator + ' is not in the table');
       for (const [y, v] of Object.entries(raw(x.indicator, x.entity))) if (inWindow(x.indicator, y)) assert.equal(v > 0, x.positive, x.entity + ' ' + y);
     }
     for (const o of b.orders || []) {
@@ -295,12 +317,14 @@ test('share × total uses one year and one source, and both numbers are in the t
           amount = n => economy.exports[n].series[economy.meta.baseYear][c.category] * countries.countries[n].series.exports[economy.meta.baseYear];
           assert.ok(q.display.columns.some(x => x.id === 'exports'));
         }
+      } else if (c.from || c.majority) {
+        continue;  // two-period readings: recomputed from the WUP file in their own test below
       } else if (c.indicator) {
         assert.ok(q.shown.includes(c.indicator), 'a supplied comparison needs the indicated column');
         const v = n => raw(c.indicator, n)[c.indicator.includes('-') ? '2023' : countries.meta.baseYear];
         amount = n => v(n);
       } else {
-        const v = (n, ind) => raw(ind, n)[countries.countries[n] && !ind.includes('-') ? countries.meta.baseYear : '2023'];
+        const v = (n, ind) => raw(ind, n)[PERIOD.test(ind) ? ind.match(PERIOD)[3] : countries.countries[n] && !ind.includes('-') ? countries.meta.baseYear : '2023'];
         amount = n => v(n, c.total) * v(n, c.rate) / c.per;
         assert.ok(q.shown.includes(c.rate) && q.shown.includes(c.total), 'derived amounts need both columns shown');
       }
@@ -313,7 +337,7 @@ test('the table shows the data files’ base-year values', () => {
   for (const q of questions()) {
     if (q.theme.kind !== 'indicators') continue;
     q.shown.forEach((ind, j) => q.entities.forEach((n, i) => {
-      const year = ind.endsWith('-area') ? '2024' : q.theme.entityType === 'country' ? countries.meta.baseYear : '2023';
+      const year = PERIOD.test(ind) ? ind.match(PERIOD)[3] : ind.endsWith('-area') ? '2024' : q.theme.entityType === 'country' ? countries.meta.baseYear : '2023';
       const v = raw(ind, n)[year];
       const shown = num(q.display.rows[i].cells[j]);
       assert.ok(Math.abs(shown - v) <= Math.max(0.051, Math.abs(v) * 0.006), `${n} ${ind}: shown ${shown}, data ${v}`);
@@ -566,4 +590,27 @@ test('climate additions: complete stations only, under their own names; 고산 �
   for (const n of ['보고타', '아디스아바바']) assert.equal(K.entities[n].climate.type, 'h', n);
   // No other graph could be read as 고산 기후.
   for (const [n, e] of Object.entries(K.entities)) if (e.type === 'site' && e.climate.lecture !== 'h') assert.equal(highlandOf(n), 'no', n);
+});
+
+test('two-period tables: cells are the WUP values of their years, and change <보기> recompute from them', () => {
+  let n = 0;
+  for (const q of questions()) {
+    if (!q.theme.periodTable) continue;
+    const at = (name, ind) => { const [, p, k, y] = ind.match(PERIOD); return wup(p, k, name, y); };
+    q.display.columns.forEach((c, j) => q.entities.forEach((name, i) => {
+      assert.ok(Math.abs(num(q.display.rows[i].cells[j]) - at(name, c.id)) <= Math.max(0.051, Math.abs(at(name, c.id)) * 0.006), `${name} ${c.id}`);
+    }));
+    for (const s of q.stage2.statements) {
+      const c = s.check;
+      if (s.kind !== 'data') continue;
+      n++;
+      if (c.majority) assert.equal(at(c.entity, c.majority) > 50 === c.claim, s.truth, s.text);
+      else if (c.from && c.entity) assert.equal(at(c.entity, c.to) > at(c.entity, c.from) === c.up, s.truth, s.text);
+      else if (c.from) {
+        const ch = x => (c.ratio ? at(x, c.to) / at(x, c.from) : at(x, c.to) - at(x, c.from));
+        assert.equal(ch(c.subject) > ch(c.object), s.truth, s.text);
+      }
+    }
+  }
+  assert.ok(n > 300, 'period <보기> exercised: ' + n);
 });

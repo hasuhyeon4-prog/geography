@@ -37,6 +37,35 @@
    followups:{facts:['capitalCity','bloc','euro','religion','hemisphere','equator','meridian','seas','landlocked'],focus:['capitalCity']},
    prompt:'{range}는 {candidates} 중 하나이다.'
   },
+  // 두 시점 도시화 (R7, UN WUP 2025). The two year columns identify through relations the lecture
+  // states at each year (data/exam-relations-population-change.json), and a change between them
+  // (상승 폭, 촌락 인구 증감) counts once both columns are shown.
+  {
+   id:'country-urban-change',status:'ready',title:'국가별 도시화율 변화(두 시점)',lecture:'1권 P05',exams:['2020학년도 9월 17번','2024학년도 6월 17번','2026학년도 수능 10번'],
+   kind:'indicators',entityType:'country',map:true,periodTable:true,domains:['period',null],noRecall:['urban','pop'],
+   // 독일 (2026학년도 수능 10번) has no relation the lecture states for these columns, so it is left out.
+   pool:['영국','말레이시아','탄자니아','미국','브라질','니제르','파키스탄','차드'],
+   pick:[3,4],always:['wup-share@1970','wup-share@2020','wup-rural@1970','wup-rural@2020'],indicators:['wup-total@2020'],show:1,
+   derived:[{rate:'wup-share@2020',total:'wup-total@2020',per:100,noun:'2020년 도시 인구'}],
+   changes:[{from:'wup-share@1970',to:'wup-share@2020',noun:'1970~2020년 도시화율 상승 폭',min:3}],
+   changeSigns:[{from:'wup-rural@1970',to:'wup-rural@2020',noun:'1970~2020년 촌락 인구',min:5}],
+   majority:['wup-share@1970','wup-share@2020'],
+   followups:{facts:['capitalCity','bloc','euro','religion','hemisphere','equator','meridian','seas','landlocked'],focus:[]},
+   note:'UN WUP 2025의 추정치(국가별 도시 정의)이다. 기출 자료의 판본과 값이 조금 다를 수 있다. 도시화율 50%를 넘으면 도시 인구가 촌락 인구보다 많다.',
+   prompt:'{range}는 {candidates} 중 하나이다. 표는 1970년과 2020년의 도시화율과 인구이다.'
+  },
+  {
+   id:'continent-urban-change',status:'ready',title:'대륙별 도시·촌락 인구 변화(두 시점)',lecture:'1권 P05',exams:['2022학년도 수능 4번','2023학년도 수능 14번','2021학년도 9월 20번'],
+   // 총인구·도시화율 are sums and ratios of the shown populations, so they are not asked as recall.
+   kind:'indicators',entityType:'continent',periodTable:true,domains:['period',null],noRecall:['cont-pop','cont-urban','cwup-total@2020','cwup-share@1950','cwup-share@2020'],
+   pool:['아시아','아프리카','유럽','라틴 아메리카'],pick:[3,4],
+   always:['cwup-urban@1950','cwup-rural@1950','cwup-urban@2020','cwup-rural@2020'],indicators:['cwup-share@1950','cwup-share@2020','cwup-total@2020'],show:1,
+   changes:[{from:'cwup-urban@1950',to:'cwup-urban@2020',ratio:true,noun:'1950~2020년 도시 인구 증가율',more:'높다',min:1.2}],
+   changeSigns:[{from:'cwup-rural@1950',to:'cwup-rural@2020',noun:'1950~2020년 촌락 인구',min:5}],
+   majority:['cwup-share@1950','cwup-share@2020'],
+   note:'UN WUP 2025의 추정치(국가별 도시 정의)이다. 라틴 아메리카는 카리브 지역을 포함한다. 도시화율이 올라도 촌락 인구가 늘 수 있다.',
+   prompt:'{range}는 {candidates} 중 하나이다. 표는 1950년과 2020년의 대륙별 도시 인구·촌락 인구(백만 명)이다.'
+  },
   {
    id:'country-economy',status:'ready',title:'국가별 GDP·산업 구조',lecture:'1권 P05 · 2권 P08·P10',exams:['2026학년도 수능 7번','2024학년도 6월 9번','2026학년도 6월 18번'],
    kind:'indicators',entityType:'country',map:true,

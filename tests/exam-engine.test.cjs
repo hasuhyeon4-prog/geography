@@ -67,7 +67,7 @@ test('themes reference existing 대상, indicators, and compositions', () => {
     if (t.kind === 'indicators') {
       for (const i of t.indicators.concat(t.always || [])) assert.equal(K.indicators[i].entityType, t.entityType, t.id + ' ' + i);
       for (const d of t.derived || []) {
-        assert.ok(t.indicators.includes(d.rate) && t.indicators.concat(t.always || []).includes(d.total), t.id + ' derived amounts need both available columns; generated statements must show both');
+        assert.ok(t.indicators.concat(t.always || []).includes(d.rate) && t.indicators.concat(t.always || []).includes(d.total), t.id + ' derived amounts need both available columns; generated statements must show both');
         assert.ok(d.noun && [100, 1000].includes(d.per), t.id);
       }
     }
@@ -190,6 +190,20 @@ test('each statement is true exactly when the knowledge base says so', () => {
           const amount = n => engine.comp(t, n)[c.category] * engine.total(t, n);
           assert.equal(amount(c.subject) > amount(c.object), s.truth, s.text);
           assert.notEqual(engine.comp(t, c.subject)[c.category] > engine.comp(t, c.object)[c.category], amount(c.subject) > amount(c.object), 'data items are share-versus-total traps');
+        } else if (s.kind === 'data' && c.majority) {
+          // 도시화율 50%: the claim is made only 2%p or more away from it.
+          const v = engine.value(c.entity, c.majority);
+          assert.ok(q.shown.includes(c.majority) && Math.abs(v - 50) >= 2, s.text);
+          assert.equal(v > 50 === c.claim, s.truth, s.text);
+        } else if (s.kind === 'data' && c.from && c.entity) {
+          const a = engine.value(c.entity, c.from), b = engine.value(c.entity, c.to);
+          assert.ok(q.shown.includes(c.from) && q.shown.includes(c.to) && Math.abs(b - a) / a >= 0.05, s.text);
+          assert.equal(b > a === c.up, s.truth, s.text);
+        } else if (s.kind === 'data' && c.from) {
+          // A change between two shown columns: difference, or growth (뒤 ÷ 앞).
+          const ch = n => (c.ratio ? engine.value(n, c.to) / engine.value(n, c.from) : engine.value(n, c.to) - engine.value(n, c.from));
+          assert.ok(q.shown.includes(c.from) && q.shown.includes(c.to), s.text);
+          assert.equal(ch(c.subject) > ch(c.object), s.truth, s.text);
         } else if (s.kind === 'data' && c.indicator) {
           assert.ok(q.shown.includes(c.indicator));
           assert.equal(engine.value(c.subject, c.indicator) > engine.value(c.object, c.indicator), s.truth, s.text);
@@ -243,7 +257,8 @@ test('<보기> stay on the theme and avoid free distractors', () => {
     for (let seed = 1; seed <= SEEDS; seed++) {
       const q = engine.build({themeId: t.id, seed}), st = q.stage2.statements, f = t.followups || {};
       // The column shown on every question must not identify the 대상 by itself.
-      if (t.always && q.format !== 'columns') assert.ok(!engine.identifiable(t, q.entities, t.always), t.id + ' identified by ' + t.always);
+      // A two-period table (periodTable) is identified through its year columns on purpose.
+      if (t.always && !t.periodTable && q.format !== 'columns') assert.ok(!engine.identifiable(t, q.entities, t.always), t.id + ' identified by ' + t.always);
       assert.ok(st.filter(s => s.kind === 'both').length <= 1, t.id + ' more than one 모두 statement');
       for (const s of st) {
         const c = s.check || {}, set = c.set || c.line || (c.ns ? 'hemisphere' : null);
@@ -265,7 +280,7 @@ test('<보기> stay on the theme and avoid free distractors', () => {
   }
   // Themes whose data support comparisons put at least two theme <보기> in most questions.
   for (const id of ['bloc-indicators', 'continent-indicators', 'country-population', 'country-economy', 'export-composition', 'religion-composition', 'electricity-mix', 'climate-graphs',
-    'crop-identification', 'livestock-identification', 'country-agriculture', 'country-clues']) assert.ok(focusShare[id] >= 0.6, id + ' ' + focusShare[id]);
+    'crop-identification', 'livestock-identification', 'country-agriculture', 'country-clues', 'country-urban-change', 'continent-urban-change']) assert.ok(focusShare[id] >= 0.6, id + ' ' + focusShare[id]);
   for (const e of Object.values(K.entities)) if (e.facts.latinLanguage) assert.equal(e.region, 'americas', e.name + ' latinLanguage');
 });
 

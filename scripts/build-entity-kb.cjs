@@ -236,7 +236,7 @@ const gapOf = (cmp, hi, lo) => (cmp.type === 'ratio' ? (hi > 0 && lo > 0 ? hi / 
 const gapUnit = (cmp, unit) => (cmp.type === 'ratio' ? '배' : unit === '%' ? '%p' : unit);
 const gapText = (cmp, g, unit) => (cmp.type === 'ratio' ? g.toFixed(2) : String(Math.round(g * 10) / 10)) + gapUnit(cmp, unit);
 function windowYears(m, a, b) {
-  return Object.keys(a).filter(y => y in b && (m.static || (y >= Y0 && y <= Y1))).sort();
+  return Object.keys(a).filter(y => y in b && (m.window ? y >= m.window[0] && y <= m.window[1] : m.static || (y >= Y0 && y <= Y1))).sort();
 }
 function checkPair(ind, hi, lo, directed) {
   const m = indicators[ind], out = {indicator: ind, hi, lo};
@@ -249,7 +249,8 @@ function checkPair(ind, hi, lo, directed) {
   const va = entities[hi].values, vb = entities[lo].values;
   if (m.unstablePairs.some(p => p.includes(hi) && p.includes(lo))) return no('순위표 감사의 불안정 쌍');
   const a = seriesOf[ind][hi] || {}, b = seriesOf[ind][lo] || {}, years = windowYears(m, a, b);
-  if (!m.static && years.length < MIN_YEARS) return no(`${Y0}~${Y1}년 자료 ${years.length}개 연도(${MIN_YEARS}개 미만)`);
+  if (!m.static && !m.window && years.length < MIN_YEARS) return no(`${Y0}~${Y1}년 자료 ${years.length}개 연도(${MIN_YEARS}개 미만)`);
+  if (m.window && years.length < m.window[2]) return no(`${m.window[0]}~${m.window[1]}년 자료 ${years.length}개 연도(${m.window[2]}개 필요)`);
   const fmtv = v => (Math.round(v * 100) / 100).toLocaleString('ko-KR') + m.unit;
   const flipped = years.filter(y => a[y] <= b[y]);
   Object.assign(out, {years: [years[0], years[years.length - 1]], n: years.length});
@@ -284,8 +285,59 @@ function checkSign(ind, name) {
   if (small.length) return Object.assign(out, {status: 'belowMargin', reason: `부호는 매년 같음. 절댓값이 출제 기준 ${m.sign.min}${m.unit} 미만인 해: ${small.join(', ')}`});
   return Object.assign(out, {status: 'active'});
 }
+// --- two-period urbanization (R7: data/urbanization-change.json, UN WUP 2025) ---
+// Each table column is one base at one year ('wup-share@1970'). A column inside the window is
+// checked every year of it (2015~2025); an earlier column every year within five years of its
+// own, so no relation rests on one year's estimate. A change between two columns ('…@1970-2020',
+// never shown itself) must hold for every pair of those years. Indicators carry domain 'period',
+// so only the two-period themes recall them.
+const WUP = read('data/urbanization-change.json'), POP = read('data/exam-relations-population-change.json');
+const WUP_SRC = 'UN WUP 2025, 국가별 도시 정의(추정치)';
+const PERIOD_BASES = {wup: {type: 'country', scale: 1e4, unit: '만 명', share: 5}, cwup: {type: 'continent', scale: 1e6, unit: '백만 명', share: 3}};
+const WUP_KEY = {share: 'urbanShare', urban: 'urbanPopulation', rural: 'ruralPopulation', total: 'totalPopulation'};
+const WUP_LABEL = {share: '도시화율', urban: '도시 인구', rural: '촌락 인구', total: '총인구'};
+const years5 = y => { const lo = +y >= +Y0 ? +Y0 : Math.max(1950, +y - 5), hi = +y >= +Y0 ? +Y1 : +y + 5, out = []; for (let x = lo; x <= hi; x++) out.push(String(x)); return out; };
+for (const [p, cfg] of Object.entries(PERIOD_BASES)) {
+  const wupValue = (n, k, y) => { const v = ((WUP.areas[n] || {}).series || {})[WUP_KEY[k]]; return v && v[y] != null ? (k === 'share' ? v[y] : v[y] / cfg.scale) : null; };
+  const names = Object.keys(WUP.areas).filter(n => entities[n] && entities[n].type === cfg.type);
+  const [A, B] = POP.periods[cfg.type];
+  for (const y of [A, B]) for (const k of Object.keys(WUP_KEY)) {
+    const id = p + '-' + k + '@' + y, ys = years5(y);
+    indicators[id] = {label: y + '년 ' + WUP_LABEL[k], unit: k === 'share' ? '%' : cfg.unit, more: y + '년 ' + (k === 'share' ? '도시화율이 높다' : WUP_LABEL[k] + '가 많다'),
+      entityType: cfg.type, year: y, source: WUP_SRC, compare: k === 'share' ? {type: 'diff', min: cfg.share} : {type: 'ratio', min: 1.2},
+      static: false, window: [ys[0], ys[ys.length - 1], ys.length], domain: 'period', disabled: false, unstablePairs: []};
+    seriesOf[id] = {};
+    for (const n of names) {
+      seriesOf[id][n] = Object.fromEntries(ys.map(x => [x, wupValue(n, k, x)]).filter(([, v]) => v != null));
+      if (wupValue(n, k, y) != null) entities[n].values[id] = Math.round(wupValue(n, k, y) * 10) / 10;
+    }
+  }
+  // Changes between the two columns: share rise (%p), rural change (%), urban growth (배).
+  const CHANGES = [
+    {k: 'share', id: 'shareRise', label: '도시화율 상승 폭', unit: '%p', of: (a, b) => b - a, compare: {type: 'diff', min: cfg.share}, more: '도시화율 상승 폭이 크다'},
+    {k: 'rural', id: 'ruralChange', label: '촌락 인구 증감률', unit: '%', of: (a, b) => (b - a) / a * 100, compare: {type: 'diff', min: 20}, more: '촌락 인구 증가율이 높다',
+      sign: {min: 5, pos: A + '~' + B + '년 촌락 인구가 증가하였다', neg: A + '~' + B + '년 촌락 인구가 감소하였다'}},
+    {k: 'urban', id: 'urbanGrowth', label: '도시 인구 증가율', unit: '배', of: (a, b) => b / a, compare: {type: 'ratio', min: 1.2}, more: '도시 인구 증가율이 높다'},
+  ];
+  for (const c of CHANGES) {
+    const id = p + '-' + c.id + '@' + A + '-' + B;
+    indicators[id] = {label: A + '~' + B + '년 ' + c.label, unit: c.unit, more: A + '~' + B + '년 ' + c.more, entityType: cfg.type, year: A + '~' + B, source: WUP_SRC,
+      compare: c.compare, static: true, from: [p + '-' + c.k + '@' + A, p + '-' + c.k + '@' + B], domain: 'period', disabled: false, unstablePairs: []};
+    if (c.sign) indicators[id].sign = c.sign;
+    seriesOf[id] = {};
+    for (const n of names) {
+      const ser = {};
+      for (const a of years5(A)) for (const b of years5(B)) { const va = wupValue(n, c.k, a), vb = wupValue(n, c.k, b); if (va != null && vb != null && va > 0) ser[a + '~' + b] = c.of(va, vb); }
+      seriesOf[id][n] = ser;
+      // The value the shown columns give, as rounded in the table.
+      const ea = entities[n].values[p + '-' + c.k + '@' + A], eb = entities[n].values[p + '-' + c.k + '@' + B];
+      if (ea != null && eb != null && ea > 0) entities[n].values[id] = Math.round(c.of(ea, eb) * 100) / 100;
+    }
+  }
+}
+
 const relations = [], signs = [];
-for (const r of REL.relations) {
+for (const r of REL.relations.concat(POP.relations)) {
   const add = (hi, lo, directed, form) => relations.push(Object.assign(checkPair(r.indicator, hi, lo, directed), {form, basis: r.basis}, r.given ? {given: r.given} : {}));
   for (const [hi, lo] of r.pairs || []) add(hi, lo, true, 'pairs');
   (r.tiers || []).forEach((tier, i) => r.tiers.slice(i + 1).flat().forEach(lo => tier.forEach(hi => add(hi, lo, true, 'tiers'))));
