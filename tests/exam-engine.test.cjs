@@ -21,7 +21,7 @@ test('the committed knowledge base is what the builder produces from committed i
 
 test('knowledge cards carry valid facts, units, years, and comparison margins', () => {
   for (const [name, e] of Object.entries(K.entities)) {
-    assert.ok(['country', 'bloc', 'continent', 'site', 'crop', 'livestock'].includes(e.type), name);
+    assert.ok(['country', 'bloc', 'continent', 'site', 'crop', 'livestock', 'usState'].includes(e.type), name);
     for (const [set, f] of Object.entries(e.facts)) {
       const meta = K.factSets[set] || K.extraFacts[set];
       assert.ok(meta, name + ' ' + set);

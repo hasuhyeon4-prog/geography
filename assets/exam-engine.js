@@ -62,6 +62,8 @@
 
   function entity(name){return kb.entities[name]}
   function value(name,ind){var e=entity(name);return e&&e.values?e.values[ind]:undefined}
+  // An indicator with `decimals` keeps them in the table (13.0, not 13), as exam tables do.
+  function cellText(name,ind){var v=value(name,ind),d=meta(ind)&&meta(ind).decimals;return d!=null?v.toLocaleString('ko-KR',{minimumFractionDigits:d,maximumFractionDigits:d}):fmt(v)}
   function meta(ind){return kb.indicators[ind]}
   function relation(ind,a,b){for(var i=0;i<REL.length;i++){var x=REL[i];if(x.indicator===ind&&(x.hi===a&&x.lo===b||x.hi===b&&x.lo===a))return x}return null}
   function clearlyAbove(ind,x,y){var m=meta(ind).compare;if(x==null||y==null)return false;return m.type==='ratio'?x>0&&y>0&&x/y>=m.min:x-y>=m.min}
@@ -157,7 +159,7 @@
     var cols=shown.map(function(ind){var m=meta(ind);return {id:ind,label:m.label,unit:m.unit}});
     // Columns of one source at several years share one source line ('1970·2020 · UN WUP …').
     var src={},order=[];shown.forEach(function(ind){var m=meta(ind);if(!src[m.source]){src[m.source]=[];order.push(m.source)}if(src[m.source].indexOf(m.year)<0)src[m.source].push(m.year)});
-    return {columns:cols,rows:chosen.map(function(n,i){return {label:LABELS[i],cells:shown.map(function(ind){return fmt(value(n,ind))})}}),source:order.map(function(k){return src[k].join('·')+' · '+k}).join(' / ')};
+    return {columns:cols,rows:chosen.map(function(n,i){return {label:LABELS[i],cells:shown.map(function(ind){return cellText(n,ind)})}}),source:order.map(function(k){return src[k].join('·')+' · '+k}).join(' / ')};
    }
    if(theme.kind==='climate'){
     // All graphs share one scale, as on an exam page, so they can be compared by eye.
@@ -234,7 +236,7 @@
     var named=shown.filter(function(ind){return hidden.indexOf(ind)<0});
     var cols=named.map(function(ind){var m=meta(ind);return {id:ind,label:m.label,unit:m.unit}}).concat(hidden.map(function(id,j){return {id:id,label:COLS[j],reveal:meta(id).label,unit:''}}));
     var src={};shown.forEach(function(ind){var m=meta(ind);src[m.year+' · '+m.source]=1});
-    return {columns:cols,rows:rows.map(function(n){return {label:names(n),cells:named.concat(hidden).map(function(ind){return fmt(value(n,ind))})}}),source:Object.keys(src).join(' / ')+' · A~C의 단위는 생략함'};
+    return {columns:cols,rows:rows.map(function(n){return {label:names(n),cells:named.concat(hidden).map(function(ind){return cellText(n,ind)})}}),source:Object.keys(src).join(' / ')+' · A~C의 단위는 생략함'};
    }
    // A~C come first, so on a narrow screen the columns to identify are in view.
    var c=composition(theme),visible=(theme.show||[]).filter(function(id){return hidden.indexOf(id)<0});
@@ -468,8 +470,8 @@
      var amtA=ta*ra/d.per,amtB=tb*rb/d.per,s0=trap(p,ra,rb,amtA,amtB,1.2);if(!s0)return;
      var truth=r()<.5,s=truth?s0:[s0[1],s0[0]];
      var line=function(n){return n+' '+fmt(value(n,d.total))+tm.unit+' × '+fmt(value(n,d.rate))+rm.unit+' ≈ '+fmt(value(n,d.total)*value(n,d.rate)/d.per)+tm.unit};
-     add({kind:'data',key:'derived|'+d.rate+'|'+p[0]+'|'+p[1],check:{rate:d.rate,total:d.total,per:d.per,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+d.noun+'가 많다.',truth:truth,
-      explain:'표의 '+tm.label+' × '+rm.label+': '+line(s0[0])+', '+line(s0[1])+' — '+rm.label+'은 반대지만 '+tm.label+' 차이 때문에 '+d.noun+'는 이렇다. ('+rm.year+', '+rm.source+')'});
+     add({kind:'data',key:'derived|'+d.rate+'|'+p[0]+'|'+p[1],check:{rate:d.rate,total:d.total,per:d.per,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+d.noun+subjectParticle(d.noun)+' 많다.',truth:truth,
+      explain:'표의 '+tm.label+' × '+rm.label+': '+line(s0[0])+', '+line(s0[1])+' — '+rm.label+'은 반대지만 '+tm.label+' 차이 때문에 '+d.noun+topic(d.noun)+' 이렇다. ('+rm.year+', '+rm.source+')'});
     });
     // Two-period tables: which row changed more between the two columns (3%p apart at least).
     if(theme.kind==='indicators')(theme.changes||[]).forEach(function(d){

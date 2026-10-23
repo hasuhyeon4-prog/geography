@@ -639,6 +639,63 @@ for (const r of MIN_REL.relations) {
   for (const [hi, lo] of r.pairs || []) relations.push(Object.assign(checkPair(r.indicator, hi, lo, true), {form: 'pairs', basis: r.basis}));
   (r.tiers || []).forEach((tier, i) => r.tiers.slice(i + 1).flat().forEach(lo => tier.forEach(hi => relations.push(Object.assign(checkPair(r.indicator, hi, lo, true), {form: 'tiers', basis: r.basis})))));
 }
+// 미국 주별 제조업 (round two: data/us-state-manufacturing-series.json, Census ASM 2014~2016·
+// 2018~2021 and Economic Census 2017·2022). States are 대상 of their own type, valued by their
+// share of the state's manufacturing shipments (출하액, not value added). A column adding
+// several NAICS codes is filled only in years where every code is published; a code the Census
+// withholds (D) is missing, never 0. 336 운송 장비 is never added to its own parts (3361~3364).
+// 자동차·부품 uses 3363 alone: California's and Washington's 3361 is withheld in most years.
+// Domain 'usMfg': only the manufacturing theme recalls these.
+const USM = read('data/us-state-manufacturing-series.json'), USM_REL = read('data/exam-relations-us-manufacturing.json');
+const USM_YEAR = USM_REL.years[1], USM_SRC = 'U.S. Census Bureau 연간 제조업 조사(ASM)·경제 센서스(출하액)';
+const US_IND = {
+  'us-computer': [['334'], '컴퓨터·전자 제품', '컴퓨터·전자 제품이 차지하는 비중이 높다'],
+  'us-petchem': [['324', '325'], '석유·석탄 제품과 화학 제품', '석유·석탄 제품과 화학 제품이 차지하는 비중이 높다'],
+  'us-machTrans': [['333', '336'], '기계·운송 장비', '기계·운송 장비가 차지하는 비중이 높다'],
+  'us-metal': [['331', '332'], '1차 금속·금속 가공 제품', '1차 금속·금속 가공 제품이 차지하는 비중이 높다'],
+  'us-aero': [['3364'], '항공 우주 제품·부품', '항공 우주 제품·부품이 차지하는 비중이 높다'],
+  'us-parts': [['3363'], '자동차 부품', '자동차 부품이 차지하는 비중이 높다'],
+};
+// Washington's 3364 is withheld in 2014 and 2015, which leaves seven years (minYearsFor).
+const USM_MIN = USM_REL.minYearsFor;
+const usShares = {};
+for (const row of USM.rows) {
+  const n = USM.states[row.stateFips].name, s = ((usShares[n] = usShares[n] || {})[row.year] = usShares[n][row.year] || {});
+  s[row.naics] = row.naics === '31-33' ? (row.shipmentsThousandUSD == null ? null : row.shipmentsThousandUSD / 1e5) : row.shareOfStateShipmentsPct;
+}
+const stateShapes = read('data/us-state-boundaries.geojson').features;
+for (const st of Object.values(USM.states)) {
+  const f = stateShapes.find(x => x.properties.name_en === st.sourceName);
+  const polys = f.geometry.type === 'MultiPolygon' ? f.geometry.coordinates : [f.geometry.coordinates];
+  const main = polys.reduce((best, p) => (ringArea(p[0]) > ringArea(best[0]) ? p : best));
+  entities[st.name] = {type: 'usState', name: st.name, facts: {}, values: {}, ...labelPoint(main)};
+}
+const usmYears = () => { const out = []; for (let y = +USM_REL.years[0]; y <= +USM_REL.years[1]; y++) out.push(String(y)); return out; };
+for (const [id, [codes, label, more]] of Object.entries(US_IND).concat([['us-total', [['31-33'], '제조업 총출하액', '제조업 총출하액이 많다']]])) {
+  const total = id === 'us-total';
+  indicators[id] = {label: total ? label : label + ' 비중', unit: total ? '억 달러' : '%', more: total ? more : '제조업 출하액 중 ' + more,
+    entityType: 'usState', year: USM_YEAR, source: USM_SRC, compare: {type: 'ratio', min: 1.3}, static: false,
+    window: [USM_REL.years[0], USM_REL.years[1], USM_MIN[id] || USM_REL.minYears], domain: 'usMfg', disabled: false, unstablePairs: []};
+  if (!total) indicators[id].decimals = 1;
+  seriesOf[id] = {};
+  for (const [n, byYear] of Object.entries(usShares)) {
+    const ser = seriesOf[id][n] = {};
+    for (const y of usmYears()) {
+      const v = (byYear[y] || {}), parts = codes.map(c => v[c]);
+      if (parts.every(x => x != null)) ser[y] = parts.reduce((a, b) => a + b, 0);
+    }
+    if (ser[USM_YEAR] != null) entities[n].values[id] = total ? Math.round(ser[USM_YEAR]) : Math.round(ser[USM_YEAR] * 10) / 10;
+  }
+}
+for (const r of USM_REL.relations) for (const [hi, lo] of r.pairs) relations.push(Object.assign(checkPair(r.indicator, hi, lo, true), {form: 'pairs', basis: r.basis}));
+// 선벨트·러스트 벨트 and the coast each state lies on: lecture facts, one value per state, so a
+// false claim uses the value of another state in the question (states have no region to draw from).
+const US_FACT_SETS = {};
+for (const [set, s] of Object.entries(USM_REL.facts)) {
+  US_FACT_SETS[set] = {title: s.title, multi: false, negationSafe: false, exclusive: true, falseFromOthers: true, template: s.template,
+    options: Object.fromEntries(s.options.map(o => [o, o])), source: s.source};
+  for (const [n, values] of Object.entries(s.values)) entities[n].facts[set] = {values: values.slice(), note: '', source: s.source};
+}
 // L2-B0368 gives the 2018 totals as 중국, 미국, 인도 in that order, so 중국 > 인도 is the lecture's too.
 // The whitelist's 미국 pairs (총량 중국 > 미국 > 인도, 1인당·천연가스 미국 > 중국) wait for a theme where
 // 미국 can be identified next to 중국: it has no verified electricity or primary-energy order.
@@ -890,7 +947,7 @@ const out = {
   factSets: Object.assign(Object.fromEntries(FACT_SETS.filter(id => C.byId[id]).map(id => [id, {
     title: C.byId[id].title, multi: !!C.byId[id].multi, negationSafe: NEGATION_SAFE[id] === 'all', exclusive: EXCLUSIVE.includes(id),
     options: Object.fromEntries(C.optionsFor(C.byId[id]).map(o => [o.id, o.label])),
-  }])), agriFactSets, OPEC_SETS),
+  }])), agriFactSets, OPEC_SETS, US_FACT_SETS),
   extraFacts: Object.fromEntries(Object.entries(extra.facts).map(([k, f]) => [k, {label: f.label, complete: f.complete, source: f.source}])),
   indicators, entities, compositions, relations, signs, orders, categoryFacts, concepts, outOfScope, cluesDropped: clueDropped,
   climate: {period: climate.normalPeriod, source: '관측소 월평년값(WMO 제출 자료 우선, JMA·ECCC 보충)', margin: CLIMATE_MARGIN, types: CLIMATE_LABEL, verdicts: climateTypes,

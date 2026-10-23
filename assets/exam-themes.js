@@ -156,6 +156,21 @@
    note:'광물마다 세계 총량(분모)과 단위가 다르다(구리는 금속 함량, 철광석은 광석 무게). 그래서 서로 다른 광물의 비중끼리는 생산량을 비교할 수 없다.',
    prompt:'{range}는 {candidates} 중 하나이다. 표는 세계 생산량에서 각 나라가 차지하는 비중(%)이다.'
   },
+  // 미국 주별 제조업 (data/us-state-manufacturing-series.json). The two exam sets never put 오하이오
+  // with 미시간 or 워싱턴주, so the whitelist has no pair between them and such draws are not built.
+  {
+   id:'us-manufacturing',status:'ready',title:'미국 주별 제조업 구성',lecture:'2권 P08',exams:['2016학년도 9월 7번','2027학년도 6월 5번'],
+   kind:'indicators',entityType:'usState',map:true,domains:['usMfg'],
+   pool:['캘리포니아','텍사스','오하이오','미시간','워싱턴주'],pick:[3,4],
+   always:[],indicators:['us-computer','us-petchem','us-machTrans','us-metal','us-aero','us-parts','us-total'],show:3,
+   // 업종 출하액 = 총출하액 × 비중 (L2-B0698): asked only where share and amount point opposite ways.
+   derived:[{rate:'us-computer',total:'us-total',per:100,noun:'컴퓨터·전자 제품 출하액'},{rate:'us-petchem',total:'us-total',per:100,noun:'석유·석탄 제품과 화학 제품 출하액'},
+    {rate:'us-machTrans',total:'us-total',per:100,noun:'기계·운송 장비 출하액'},{rate:'us-metal',total:'us-total',per:100,noun:'1차 금속·금속 가공 제품 출하액'},
+    {rate:'us-aero',total:'us-total',per:100,noun:'항공 우주 제품·부품 출하액'},{rate:'us-parts',total:'us-total',per:100,noun:'자동차 부품 출하액'}],
+   followups:{facts:['usBelt','usCoast'],focus:[]},
+   note:'비중은 각 주의 제조업 총출하액 대비 업종 출하액이다(부가가치·주 총생산과 다른 지표). 업종 출하액은 총출하액 × 비중으로 구한다. 2027학년도 6월 문항의 2024년 생산액과 같은 지표로 보지 않는다.',
+   prompt:'{range}는 {candidates} 중 하나이다. 표는 각 주의 제조업 출하액에서 업종이 차지하는 비중(%)과 총출하액이다.'
+  },
   // 지역지리: (가)~(다) are described by lecture sentences (data/country-clues.json, filtered in
   // scripts/build-entity-kb.cjs) and found on the map. The pool is every country with a clue.
   {

@@ -61,6 +61,14 @@ function agriSeries(area, key) {
 const scaled = (ser, k) => Object.fromEntries(Object.entries(ser).map(([y, v]) => [y, v / k]));
 const minerals = data('data/mineral-production-shares.json').minerals, MIN_REL = data('data/exam-relations-minerals.json');
 const MIN_COL = {'min-copper': '구리', 'min-iron': '철광석'};
+// 미국 주별 제조업: shipment shares of the state total, a sum only where every code is published.
+const USM = data('data/us-state-manufacturing-series.json'), USM_REL = data('data/exam-relations-us-manufacturing.json');
+const US_COL = {'us-computer': ['334'], 'us-petchem': ['324', '325'], 'us-machTrans': ['333', '336'], 'us-metal': ['331', '332'], 'us-aero': ['3364'], 'us-parts': ['3363'], 'us-total': ['31-33']};
+function usRaw(ind, name) {
+  const fips = Object.keys(USM.states).find(f => USM.states[f].name === name), byYear = {};
+  for (const r of USM.rows) if (r.stateFips === fips && US_COL[ind].includes(r.naics)) (byYear[r.year] = byYear[r.year] || []).push(ind === 'us-total' ? (r.shipmentsThousandUSD == null ? null : r.shipmentsThousandUSD / 1e5) : r.shareOfStateShipmentsPct);
+  return Object.fromEntries(Object.entries(byYear).filter(([, v]) => v.length === US_COL[ind].length && v.every(x => x != null)).map(([y, v]) => [y, v.reduce((a, b) => a + b, 0)]));
+}
 // Two-period urbanization (UN WUP 2025): a column in the window is read 2015~2025, an earlier one
 // within five years of its own year; a change between two columns over every pair of those years.
 const WUP = data('data/urbanization-change.json'), POP = data('data/exam-relations-population-change.json');
@@ -79,6 +87,7 @@ function periodRaw(ind, n) {
 }
 function raw(ind, name) {
   if (PERIOD.test(ind)) return periodRaw(ind, name);
+  if (US_COL[ind]) return usRaw(ind, name);
   if (ind === 'energy-total') return energy.countries[name].series.primary_energy_consumption;
   if (MIN_COL[ind]) {
     // BGS shares of the reported total; the row BGS labels Congo (1-17-19941) is not the DR Congo.
@@ -101,7 +110,7 @@ function raw(ind, name) {
   return Object.fromEntries(Object.entries(g[key] || {}).map(([y, v]) => [y, v / scale]));
 }
 const STATIC = ind => ind === 'bloc-members' || ind.endsWith('-area') || PERIOD.test(ind);
-const inWindow = (ind, y) => STATIC(ind) || (y >= Y0 && y <= Y1);
+const inWindow = (ind, y) => STATIC(ind) || (US_COL[ind] ? y >= USM_REL.years[0] && y <= USM_REL.years[1] : y >= Y0 && y <= Y1);
 // Years in which `hi` is above `lo`, and years in which it is not.
 function yearly(ind, hi, lo) {
   const a = raw(ind, hi), b = raw(ind, lo), years = Object.keys(a).filter(y => y in b && inWindow(ind, y));
@@ -110,7 +119,7 @@ function yearly(ind, hi, lo) {
 
 // The whitelist, read here without the builder.
 const allowedPairs = new Map(), allowedSigns = new Set(), lectureDirected = [];
-for (const r of REL.relations.concat(POP.relations, MIN_REL.relations)) {
+for (const r of REL.relations.concat(POP.relations, MIN_REL.relations, USM_REL.relations)) {
   const allow = (a, b) => allowedPairs.set(r.indicator + '|' + [a, b].sort().join('|'), r.basis);
   for (const [hi, lo] of r.pairs || []) { allow(hi, lo); lectureDirected.push([r.indicator, hi, lo]); }
   (r.tiers || []).forEach((tier, i) => r.tiers.slice(i + 1).flat().forEach(lo => tier.forEach(hi => { allow(hi, lo); lectureDirected.push([r.indicator, hi, lo]); })));
@@ -190,7 +199,7 @@ test('recalled comparisons are whitelisted and hold in every year of the window'
       const [hi, lo] = s.truth ? [subject, object] : [object, subject];
       const {years, reversed} = yearly(ind, hi, lo);
       assert.deepEqual(reversed, [], `${ind} ${hi} > ${lo} reverses in ${reversed}`);
-      if (!STATIC(ind)) assert.ok(years.length >= MIN_YEARS, `${ind} ${hi}/${lo}: only ${years.length} years`);
+      if (!STATIC(ind)) assert.ok(years.length >= (US_COL[ind] ? USM_REL.minYearsFor[ind] || USM_REL.minYears : MIN_YEARS), `${ind} ${hi}/${lo}: only ${years.length} years`);
       n++;
     }
   }
@@ -341,7 +350,7 @@ test('share × total uses one year and one source, and both numbers are in the t
         const v = n => raw(c.indicator, n)[c.indicator.includes('-') ? '2023' : countries.meta.baseYear];
         amount = n => v(n);
       } else {
-        const v = (n, ind) => raw(ind, n)[PERIOD.test(ind) ? ind.match(PERIOD)[3] : countries.countries[n] && !ind.includes('-') ? countries.meta.baseYear : '2023'];
+        const v = (n, ind) => raw(ind, n)[PERIOD.test(ind) ? ind.match(PERIOD)[3] : US_COL[ind] ? USM_REL.years[1] : countries.countries[n] && !ind.includes('-') ? countries.meta.baseYear : '2023'];
         amount = n => v(n, c.total) * v(n, c.rate) / c.per;
         assert.ok(q.shown.includes(c.rate) && q.shown.includes(c.total), 'derived amounts need both columns shown');
       }
@@ -354,7 +363,7 @@ test('the table shows the data files’ base-year values', () => {
   for (const q of questions()) {
     if (q.theme.kind !== 'indicators') continue;
     q.shown.forEach((ind, j) => q.entities.forEach((n, i) => {
-      const year = PERIOD.test(ind) ? ind.match(PERIOD)[3] : MIN_COL[ind] ? '2024' : ind.endsWith('-area') ? '2024' : q.theme.entityType === 'country' ? countries.meta.baseYear : '2023';
+      const year = PERIOD.test(ind) ? ind.match(PERIOD)[3] : MIN_COL[ind] ? '2024' : US_COL[ind] ? USM_REL.years[1] : ind.endsWith('-area') ? '2024' : q.theme.entityType === 'country' ? countries.meta.baseYear : '2023';
       const v = raw(ind, n)[year];
       const shown = num(q.display.rows[i].cells[j]);
       assert.ok(Math.abs(shown - v) <= Math.max(0.051, Math.abs(v) * 0.006), `${n} ${ind}: shown ${shown}, data ${v}`);
@@ -568,7 +577,7 @@ test('agriculture knowledge is recalled only where a theme lists its domain', ()
     for (const s of q.stage2.statements) {
       const ind = s.check.ind;
       if (!ind) continue;
-      assert.ok(domains.includes(AGRI_COL[ind] || AGRI_AREA[ind] ? 'agri' : null), q.theme.id + ': ' + s.text);
+      assert.ok(domains.includes(AGRI_COL[ind] || AGRI_AREA[ind] ? 'agri' : US_COL[ind] ? 'usMfg' : null), q.theme.id + ': ' + s.text);
     }
   }
 });

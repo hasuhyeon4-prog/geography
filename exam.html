@@ -49,10 +49,10 @@ td.text{white-space:normal;text-align:left;line-height:1.55;word-break:keep-all;
 <header><a class="navLink" href="index.html">← 위치</a><h1 class="sr">기출형 연습</h1><nav class="nav" aria-label="퀴즈 종류"><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html">OX</a><a href="concepts.html">강의 표</a><a href="exam.html" aria-current="page">기출형</a></nav></header>
 <div class="scope"><label for="themeSelect">주제<select id="themeSelect"></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><span class="score" id="score"></span></div>
 <main id="main" aria-live="polite"></main>
-<div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 2015~2025년 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
-<script src="assets/entity-kb.js?v=20261023-4"></script>
-<script src="assets/exam-themes.js?v=20261023-4"></script>
-<script src="assets/exam-engine.js?v=20261023-3"></script>
+<div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 항목마다 적은 기간(대개 2015~2025년)의 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
+<script src="assets/entity-kb.js?v=20261023-5"></script>
+<script src="assets/exam-themes.js?v=20261023-5"></script>
+<script src="assets/exam-engine.js?v=20261023-4"></script>
 <script>
 (function(){
 'use strict';
@@ -108,6 +108,13 @@ function needShapes(){
  var s=document.createElement('script');s.src='assets/country-boundaries.js?v=20261021-1';
  s.onload=function(){shapes=window.WGCountryShapes?'ready':'failed';render()};s.onerror=function(){shapes='failed';render()};document.head.appendChild(s);
 }
+// US state outlines (about 10 kB) load only for a state theme's map.
+var stateShapes=window.WGStateShapes?'ready':'idle';
+function needStates(){
+ if(stateShapes!=='idle')return;stateShapes='loading';
+ var s=document.createElement('script');s.src='assets/us-state-boundaries.js?v=20261023-1';
+ s.onload=function(){stateShapes=window.WGStateShapes?'ready':'failed';render()};s.onerror=function(){stateShapes='failed';render()};document.head.appendChild(s);
+}
 function mapMode(q){return !!(q&&q.stage1&&q.stage1.markers)&&!state.nameMode}
 function letterOf(q,name){var m=q.stage1.markers&&q.stage1.markers.find(function(x){return x.name===name});return m?m.letter:null}
 function countryGeo(name){
@@ -130,9 +137,11 @@ function mapView(q){
 }
 function svgEl(tag,attrs,parent,text){var e=document.createElementNS('http://www.w3.org/2000/svg',tag);Object.keys(attrs).forEach(function(k){e.setAttribute(k,attrs[k])});if(text!=null)e.textContent=text;if(parent)parent.appendChild(e);return e}
 function drawMap(q,revealed){
- if(shapes!=='ready'){needShapes();return el('p',{className:'small muted',text:shapes==='failed'?'지도를 불러오지 못했어요. 위의 "이름으로"를 켜면 이름 후보로 풀 수 있어요.':'지도를 불러오는 중…'})}
+ var states=q.theme.entityType==='usState';
+ if(states)needStates();
+ if(shapes!=='ready'||states&&stateShapes!=='ready'){needShapes();return el('p',{className:'small muted',text:shapes==='failed'||states&&stateShapes==='failed'?'지도를 불러오지 못했어요. 위의 "이름으로"를 켜면 이름 후보로 풀 수 있어요.':'지도를 불러오는 중…'})}
  var v=mapView(q),x0=(v[0]+180)*10,y0=(90-v[3])*10,w=(v[2]-v[0])*10,h=(v[3]-v[1])*10,tol=(v[2]-v[0])/500;
- var svg=svgEl('svg',{viewBox:[x0,y0,w,h].map(function(n){return n.toFixed(1)}).join(' '),role:'img','aria-label':'국가가 '+q.stage1.markers.map(function(m){return m.letter}).join('·')+'로 표시된 지도'});
+ var svg=svgEl('svg',{viewBox:[x0,y0,w,h].map(function(n){return n.toFixed(1)}).join(' '),role:'img','aria-label':(states?'주가 ':'국가가 ')+q.stage1.markers.map(function(m){return m.letter}).join('·')+'로 표시된 지도'});
  var marked={};q.stage1.markers.forEach(function(m){marked[m.name]=1});
  Object.keys(WGCountryShapes.byName).forEach(function(n){
   var g=countryGeo(n),b=g.box;if(b[2]<v[0]||b[0]>v[2]||b[3]<v[1]||b[1]>v[3])return;
@@ -140,6 +149,9 @@ function drawMap(q,revealed){
    return out.length<3?'':out.map(function(p,i){return (i?'L':'M')+((p[0]+180)*10).toFixed(1)+' '+((90-p[1])*10).toFixed(1)}).join('')+'Z'}).join('')}).join('');
   if(d)svgEl('path',{d:d,class:marked[n]?'marked':'land','fill-rule':'evenodd','vector-effect':'non-scaling-stroke'},svg);
  });
+ // A state theme marks the states over the country they belong to.
+ if(states)q.stage1.markers.forEach(function(m){var g=WGStateShapes.byName[m.name];if(!g)return;
+  svgEl('path',{d:g.polygons.map(function(poly){return poly.map(function(ring){return ring.map(function(p,i){return (i?'L':'M')+((p[0]+180)*10).toFixed(1)+' '+((90-p[1])*10).toFixed(1)}).join('')+'Z'}).join('')}).join(''),class:'marked','fill-rule':'evenodd','vector-effect':'non-scaling-stroke'},svg)});
  // Pins keep a readable size on screen (about 9px radius) however wide the frame is.
  var unit=w/Math.max(240,Math.min(700,(document.documentElement.clientWidth||700)-40)),r=Math.max(w/55,9*unit),fs=Math.max(w/40,13*unit);
  // Nudge pins apart so two nearby letters never cover each other.
