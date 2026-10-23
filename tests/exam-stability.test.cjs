@@ -437,6 +437,13 @@ for (const x of climateExt.sites) {
   const e = Object.values(K.entities).find(v => v.type === 'site' && v.climate.sourceId === 'ext:' + x.sourceFile);
   if (e) station[e.name] = x;
 }
+// Round-two JMA stations: the monthly values from the file; the lecture type and the latitude are
+// the builder's documented choices (1권 P02, same WMO station or city point).
+for (const [n, x] of Object.entries(data('data/climate-normals-round2.json').stations)) {
+  const e = K.entities[n];
+  if (!e || e.type !== 'site' || e.climate.sourceId !== 'jma-' + x.wmoId) continue;
+  station[n] = {temperatureC: x.monthlyMeanTemperatureC, precipitationMm: x.monthlyPrecipitationMm, lectureClimate: e.climate.lecture, station: {latitude: e.climate.lat, elevationM: e.climate.elevation}};
+}
 function letters(T, P, lat) {
   const sum = a => a.reduce((x, y) => x + y, 0), hot = Math.max(...T), cold = Math.min(...T), mean = sum(T) / 12, rain = sum(P);
   const sm = lat >= 0 ? [3, 4, 5, 6, 7, 8] : [9, 10, 11, 0, 1, 2], wm = [...Array(12).keys()].filter(i => !sm.includes(i));
@@ -617,10 +624,13 @@ test('climate additions: complete stations only, under their own names; 고산 �
   assert.deepEqual(sg.climate.precipitation, raw.precipitationMm);
   assert.equal(sg.climate.type, 'af');
   assert.ok(!K.entities['싱가포르'].climate, 'the country keeps no station data');
-  for (const n of ['이키토스', '키토']) {
-    assert.ok(!K.entities[n] || !K.entities[n].climate, n);
-    assert.equal(K.climate.verdicts.find(v => v.entity === n).status, 'excluded', n);
-  }
+  assert.ok(!K.entities['키토'] || !K.entities['키토'].climate, '키토');
+  assert.equal(K.climate.verdicts.find(v => v.entity === '키토').status, 'excluded', '키토');
+  // 이키토스 comes from one JMA station (84377) for both temperature and rainfall, never the San Roque rain.
+  const iq = data('data/climate-normals-round2.json').stations['이키토스'];
+  assert.deepEqual(K.entities['이키토스'].climate.temperature, iq.monthlyMeanTemperatureC);
+  assert.deepEqual(K.entities['이키토스'].climate.precipitation, iq.monthlyPrecipitationMm);
+  assert.equal(K.climate.verdicts.filter(v => v.entity === '이키토스').length, 1);
   for (const n of ['보고타', '아디스아바바']) assert.equal(K.entities[n].climate.type, 'h', n);
   // No other graph could be read as 고산 기후.
   for (const [n, e] of Object.entries(K.entities)) if (e.type === 'site' && e.climate.lecture !== 'h') assert.equal(highlandOf(n), 'no', n);

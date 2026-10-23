@@ -58,12 +58,12 @@
    id:'continent-urban-change',status:'ready',title:'대륙별 도시·촌락 인구 변화(두 시점)',lecture:'1권 P05',exams:['2022학년도 수능 4번','2023학년도 수능 14번','2021학년도 9월 20번'],
    // 총인구·도시화율 are sums and ratios of the shown populations, so they are not asked as recall.
    kind:'indicators',entityType:'continent',periodTable:true,domains:['period',null],noRecall:['cont-pop','cont-urban','cwup-total@2020','cwup-share@1950','cwup-share@2020'],
-   pool:['아시아','아프리카','유럽','라틴 아메리카'],pick:[3,4],
+   pool:['아시아','아프리카','유럽','라틴 아메리카','앵글로아메리카'],pick:[3,4],
    always:['cwup-urban@1950','cwup-rural@1950','cwup-urban@2020','cwup-rural@2020'],indicators:['cwup-share@1950','cwup-share@2020','cwup-total@2020'],show:1,
    changes:[{from:'cwup-urban@1950',to:'cwup-urban@2020',ratio:true,noun:'1950~2020년 도시 인구 증가율',more:'높다',min:1.2}],
    changeSigns:[{from:'cwup-rural@1950',to:'cwup-rural@2020',noun:'1950~2020년 촌락 인구',min:5}],
    majority:['cwup-share@1950','cwup-share@2020'],
-   note:'UN WUP 2025의 추정치(국가별 도시 정의)이다. 라틴 아메리카는 카리브 지역을 포함한다. 도시화율이 올라도 촌락 인구가 늘 수 있다.',
+   note:'UN WUP 2025의 추정치(국가별 도시 정의)이다. 라틴 아메리카는 카리브 지역을 포함하고, 앵글로아메리카는 UN의 Northern America이다. 도시화율이 올라도 촌락 인구가 늘 수 있다.',
    prompt:'{range}는 {candidates} 중 하나이다. 표는 1950년과 2020년의 대륙별 도시 인구·촌락 인구(백만 명)이다.'
   },
   {
@@ -113,8 +113,9 @@
    id:'climate-graphs',status:'ready',title:'기후 그래프로 지역 판별',lecture:'1권 P02',exams:['2025학년도 수능 13번','2024학년도 9월 6번','2026학년도 수능 11번'],
    kind:'climate',entityType:'site',map:true,everyKnown:true,
    // Stations with complete 1991~2020 monthly temperature and precipitation (data/climate-normals.json,
-   // plus 싱가포르(창이) from data/climate-normals-extension.json).
-   pool:['양곤','발릭파판','다윈','배로(우트키아빅)','퍼스','오클랜드','파리','케이프타운','푸저우','보고타','런던','마르세유','마나우스','딕슨','치타','몬트리올','상파울루','라바트','쿤밍','크라이스트처치','샌프란시스코','선양','덴버','로차','더블린','메시나','브리즈번','창춘','디트로이트','블라디보스토크','로마','보스토크(남극)','리마','브라질리아','아디스아바바','시안','모스크바','로스앤젤레스','싱가포르(창이)'],
+   // plus 싱가포르(창이) from data/climate-normals-extension.json and 이키토스·다르에스살람 from
+   // data/climate-normals-round2.json).
+   pool:['양곤','발릭파판','다윈','배로(우트키아빅)','퍼스','오클랜드','파리','케이프타운','푸저우','보고타','런던','마르세유','마나우스','딕슨','치타','몬트리올','상파울루','라바트','쿤밍','크라이스트처치','샌프란시스코','선양','덴버','로차','더블린','메시나','브리즈번','창춘','디트로이트','블라디보스토크','로마','보스토크(남극)','리마','브라질리아','아디스아바바','시안','모스크바','로스앤젤레스','싱가포르(창이)','이키토스','다르에스살람'],
    pick:[3,4],
    note:'1991~2020년 관측소 평년값이다. 연교차 = 최난월 평균 기온 − 최한월 평균 기온. 남반구는 계절이 반대이다. 고산 기후는 저위도인데도 연중 서늘하고 연교차가 작다.',
    prompt:'{range}는 {candidates} 중 하나이다. 그래프는 월평균 기온(선)과 월 강수량(막대)이다.'

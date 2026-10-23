@@ -826,6 +826,35 @@ for (const s of climateExt.sites) {
   climateSites.push(Object.assign({}, s, {name: CLIMATE_ALIAS[s.name] || s.name, region: s.region || CLIMATE_REGION[s.name], sourceId: 'ext:' + s.sourceFile,
     basis: '강의 1권 P02 (' + s.sourceBlockId + ')', derived: {jjaPrecipitationSharePct: Math.round((P[5] + P[6] + P[7]) / P.reduce((a, b) => a + b, 0) * 1000) / 10}}));
 }
+// Round two (data/climate-normals-round2.json): complete JMA 1991~2020 normals of one station each.
+// The record has no coordinates, so the map point comes from the location items and the latitude
+// from the same WMO station's NOAA record (다르에스살람) or the city point (이키토스, 3.8°S, no
+// season or hemisphere test depends on it). The lecture types are 1권 P02's: 이키토스 the humid
+// Amazon lowland (L1-B0441), 다르에스살람 the southern savanna with a dry July (L1-B0494). Both
+// must still be confirmed by the data, like every site.
+const CLIMATE_R2 = read('data/climate-normals-round2.json');
+const R2_TYPE = {이키토스: ['af', 'L1-B0441'], 다르에스살람: ['aw', 'L1-B0494']};
+const locPoint = n => { const it = read('data/extension-sources/location-items.json').find(x => x.name === n && x.geometry && x.geometry.type === 'point'); return it && [it.geometry.lon, it.geometry.lat]; };
+for (const [n, st] of Object.entries(CLIMATE_R2.stations)) {
+  if (!st.climateGraph || String(st.period) !== '1991,2020' || !R2_TYPE[n]) continue;
+  const point = locPoint(n), noaa = Object.values(CLIMATE_R2.partialCandidates).find(c => c.wmoId === st.wmoId && c.coordinates);
+  if (!point || [st.monthlyMeanTemperatureC, st.monthlyPrecipitationMm].some(a => a.length !== 12 || a.some(v => v == null))) continue;
+  const i = climateSites.findIndex(b => b.name === n);
+  if (i >= 0 && climateSites[i].usage.climateGraph) throw new Error('round-two station would replace a graph site: ' + n);
+  const P = st.monthlyPrecipitationMm;
+  const site = {name: n, mapPoint: point, region: n === '이키토스' ? 'americas' : 'africa', lectureClimate: R2_TYPE[n][0], normalPeriod: st.period, status: 'complete',
+    usage: {climateGraph: true}, sourceId: 'jma-' + st.wmoId, basis: '강의 1권 P02 (' + R2_TYPE[n][1] + ')',
+    station: {name: 'JMA ' + st.wmoId, latitude: noaa ? noaa.coordinates[1] : point[1], elevationM: noaa ? noaa.elevationM : null},
+    temperatureC: st.monthlyMeanTemperatureC, precipitationMm: P, derived: {jjaPrecipitationSharePct: Math.round((P[5] + P[6] + P[7]) / P.reduce((a, b) => a + b, 0) * 1000) / 10}};
+  if (i >= 0) climateSites[i] = site; else climateSites.push(site);
+  // The partial record this station replaces no longer stands as an exclusion.
+  for (let j = climateTypes.length - 1; j >= 0; j--) if (climateTypes[j].entity === n && climateTypes[j].status === 'excluded') climateTypes.splice(j, 1);
+}
+// The same WMO station's elevation (아디스아바바 63450, JMA 2,354m).
+for (const [n, m] of Object.entries(CLIMATE_R2.metadata)) {
+  const b = climateSites.find(x => x.name === n);
+  if (b && b.sourceId === 'jma-' + m.wmoId && b.station.elevationM == null) b.station = Object.assign({}, b.station, {elevationM: m.elevationM});
+}
 for (const s of climateSites) {
   if (!s.usage.climateGraph) {
     climateTypes.push({entity: s.name, lecture: s.lectureClimate, status: 'excluded', reason: '그래프에 쓸 기온·강수 자료가 없음(' + s.status + ')' + (s.extensionNote ? ' — 추가 자료: ' + s.extensionNote : ''), basis: CLIMATE_BASIS});
