@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "about": "티베트 고원과 열대 고산의 대비; 장소를 기후형 H 전체와 동일시하지 않는다.",
+ "entities": {
+  "티베트 고원": {
+   "type": "highlandRegion",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P02",
+    "blockId": "L1-B0506",
+    "column": "본문",
+    "contrastColumns": [],
+    "priorAuditExamIds": [
+     "2018_6_2",
+     "2026_9_14",
+     "2026_수능_11",
+     "2027_9_8"
+    ],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  },
+  "열대 고산": {
+   "type": "climateRegion",
+   "place": null,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P02",
+    "blockId": "L1-B0506",
+    "column": "본문",
+    "contrastColumns": [],
+    "priorAuditExamIds": [
+     "2018_6_2",
+     "2026_9_14",
+     "2026_수능_11",
+     "2027_9_8"
+    ],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  }
+ },
+ "sets": {
+  "seasonality": {
+   "label": "계절 변화",
+   "exclusive": true,
+   "complete": false,
+   "template": "{value}",
+   "options": [
+    "중위도에 걸쳐 계절 변화가 뚜렷하다",
+    "적도 부근은 낮은 위도로 연교차가 작다"
+   ],
+   "values": {
+    "티베트 고원": [
+     "중위도에 걸쳐 계절 변화가 뚜렷하다"
+    ],
+    "열대 고산": [
+     "적도 부근은 낮은 위도로 연교차가 작다"
+    ]
+   },
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P02",
+    "blockId": "L1-B0506",
+    "column": "본문",
+    "contrastColumns": [],
+    "priorAuditExamIds": [
+     "2018_6_2",
+     "2026_9_14",
+     "2026_수능_11",
+     "2027_9_8"
+    ],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  }
+ },
+ "statements": [
+  {
+   "about": [
+    "티베트 고원"
+   ],
+   "claim": "티베트 고원의 높은 곳에는 고산 툰드라와 영구 동토층이 나타난다.",
+   "truth": true,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P02",
+    "blockId": "L1-B0506",
+    "column": "본문",
+    "contrastColumns": [],
+    "priorAuditExamIds": [
+     "2018_6_2",
+     "2026_9_14",
+     "2026_수능_11",
+     "2027_9_8"
+    ],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  },
+  {
+   "about": [
+    "티베트 고원",
+    "열대 고산"
+   ],
+   "claim": "고도가 높은 지역은 모두 연중 15℃ 안팎의 열대 고산 기후이다.",
+   "truth": false,
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P02",
+    "blockId": "L1-B0506",
+    "column": "본문",
+    "contrastColumns": [],
+    "priorAuditExamIds": [
+     "2018_6_2",
+     "2026_9_14",
+     "2026_수능_11",
+     "2027_9_8"
+    ],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  }
+ ]
+}

@@ -1,0 +1,406 @@
+{
+ "schemaVersion": 1,
+ "claims": [
+  {
+   "id": "religion-01",
+   "claim": "보편 종교로 분류된다.",
+   "trueFor": [
+    "크리스트교",
+    "이슬람교",
+    "불교"
+   ],
+   "falseFor": [
+    "힌두교",
+    "유대교"
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1037",
+    "column": "분류",
+    "contrastColumns": [],
+    "priorAuditExamIds": [
+     "2018_6_15",
+     "2024_6_15"
+    ],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  },
+  {
+   "id": "religion-02",
+   "claim": "민족 종교로 분류된다.",
+   "trueFor": [
+    "힌두교",
+    "유대교"
+   ],
+   "falseFor": [
+    "크리스트교",
+    "이슬람교",
+    "불교"
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1037",
+    "column": "분류",
+    "contrastColumns": [],
+    "priorAuditExamIds": [
+     "2018_6_15",
+     "2024_6_15"
+    ],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  },
+  {
+   "id": "religion-03",
+   "claim": "서남아시아에서 기원하였다.",
+   "trueFor": [
+    "크리스트교",
+    "이슬람교",
+    "유대교"
+   ],
+   "falseFor": [
+    "불교",
+    "힌두교"
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1037",
+    "column": "기원",
+    "contrastColumns": [],
+    "priorAuditExamIds": [
+     "2018_6_15",
+     "2024_6_15"
+    ],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  },
+  {
+   "id": "religion-04",
+   "claim": "남부 아시아에서 기원하였다.",
+   "trueFor": [
+    "불교",
+    "힌두교"
+   ],
+   "falseFor": [
+    "크리스트교",
+    "이슬람교",
+    "유대교"
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1037",
+    "column": "기원",
+    "contrastColumns": [],
+    "priorAuditExamIds": [
+     "2018_6_15",
+     "2024_6_15"
+    ],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  },
+  {
+   "id": "religion-05",
+   "claim": "유일신 신앙을 특징으로 한다.",
+   "trueFor": [
+    "크리스트교",
+    "이슬람교",
+    "유대교"
+   ],
+   "falseFor": [
+    "힌두교"
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1037",
+    "column": "분류",
+    "contrastColumns": [],
+    "priorAuditExamIds": [
+     "2018_6_15",
+     "2024_6_15"
+    ],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  },
+  {
+   "id": "religion-06",
+   "claim": "다신교 전통을 특징으로 한다.",
+   "trueFor": [
+    "힌두교"
+   ],
+   "falseFor": [
+    "크리스트교",
+    "이슬람교",
+    "유대교"
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1037",
+    "column": "분류",
+    "contrastColumns": [],
+    "priorAuditExamIds": [
+     "2018_6_15",
+     "2024_6_15"
+    ],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  },
+  {
+   "id": "religion-07",
+   "claim": "라마단 금식과 메카 순례를 대표 의례로 연결한다.",
+   "trueFor": [
+    "이슬람교"
+   ],
+   "falseFor": [
+    "불교",
+    "힌두교"
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1107",
+    "column": "대표 의례·축제",
+    "contrastColumns": [],
+    "priorAuditExamIds": [
+     "2020_9_18",
+     "2023_수능_17"
+    ],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  },
+  {
+   "id": "religion-08",
+   "claim": "성탄절·부활절을 대표 축제로 연결한다.",
+   "trueFor": [
+    "크리스트교"
+   ],
+   "falseFor": [
+    "불교",
+    "힌두교"
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1107",
+    "column": "대표 의례·축제",
+    "contrastColumns": [],
+    "priorAuditExamIds": [
+     "2020_9_18",
+     "2023_수능_17"
+    ],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  },
+  {
+   "id": "religion-09",
+   "claim": "디왈리·홀리를 대표 축제로 연결한다.",
+   "trueFor": [
+    "힌두교"
+   ],
+   "falseFor": [
+    "크리스트교",
+    "이슬람교"
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1107",
+    "column": "대표 의례·축제",
+    "contrastColumns": [],
+    "priorAuditExamIds": [
+     "2020_9_18",
+     "2023_수능_17"
+    ],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  },
+  {
+   "id": "religion-10",
+   "claim": "불상·불탑을 대표적인 종교 경관으로 연결한다.",
+   "trueFor": [
+    "불교"
+   ],
+   "falseFor": [
+    "이슬람교"
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1092",
+    "column": "인물 표현·건축",
+    "contrastColumns": [],
+    "priorAuditExamIds": [
+     "2014_6_7",
+     "2014_9_16",
+     "2017_6_3",
+     "2021_9_15",
+     "2023_9_11"
+    ],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  },
+  {
+   "id": "religion-11",
+   "claim": "미나레트를 대표적인 종교 경관으로 연결한다.",
+   "trueFor": [
+    "이슬람교"
+   ],
+   "falseFor": [
+    "불교",
+    "힌두교"
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1098",
+    "column": "본문",
+    "contrastColumns": [],
+    "priorAuditExamIds": [],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  },
+  {
+   "id": "religion-12",
+   "claim": "룸비니·부다가야를 성지로 연결한다.",
+   "trueFor": [
+    "불교"
+   ],
+   "falseFor": [
+    "이슬람교",
+    "크리스트교"
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1092",
+    "column": "성지 경관",
+    "contrastColumns": [],
+    "priorAuditExamIds": [
+     "2014_6_7",
+     "2014_9_16",
+     "2017_6_3",
+     "2021_9_15",
+     "2023_9_11"
+    ],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  },
+  {
+   "id": "religion-13",
+   "claim": "갠지스강 목욕 의례를 연결한다.",
+   "trueFor": [
+    "힌두교"
+   ],
+   "falseFor": [
+    "이슬람교"
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1123",
+    "column": "본문",
+    "contrastColumns": [],
+    "priorAuditExamIds": [
+     "2018_9_16"
+    ],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  },
+  {
+   "id": "religion-14",
+   "claim": "소를 신성시하고 소고기를 기피하는 전통이 있다.",
+   "trueFor": [
+    "힌두교"
+   ],
+   "falseFor": [],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1101",
+    "column": "대표 식생활 단서",
+    "contrastColumns": [],
+    "priorAuditExamIds": [],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  },
+  {
+   "id": "religion-15",
+   "claim": "돼지고기 금기와 할랄 규범을 연결한다.",
+   "trueFor": [
+    "이슬람교"
+   ],
+   "falseFor": [],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1101",
+    "column": "대표 식생활 단서",
+    "contrastColumns": [],
+    "priorAuditExamIds": [],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  },
+  {
+   "id": "religion-16",
+   "claim": "코셔 식품 규범을 연결한다.",
+   "trueFor": [
+    "유대교"
+   ],
+   "falseFor": [
+    "이슬람교"
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1102",
+    "column": "본문",
+    "contrastColumns": [],
+    "priorAuditExamIds": [],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  },
+  {
+   "id": "religion-17",
+   "claim": "모든 신자가 예외 없이 채식만 한다.",
+   "trueFor": [],
+   "falseFor": [
+    "불교"
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 1,
+    "section": "P04",
+    "blockId": "L1-B1101",
+    "column": "주의",
+    "contrastColumns": [],
+    "priorAuditExamIds": [],
+    "examRefStatus": "기존 검수 연결이며 해당 새 문장의 기출 직접 인용을 뜻하지 않음"
+   }
+  }
+ ],
+ "policy": {
+  "absenceMeansFalse": false,
+  "sharedSites": "예루살렘을 특정 한 종교만의 성지로 만드는 교차 대입 금지",
+  "sourceSnapshot": "data/round2-sources/lecture-evidence.json"
+ }
+}

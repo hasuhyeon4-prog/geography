@@ -1,0 +1,36 @@
+{
+ "schemaVersion": 1,
+ "items": [
+  {
+   "request": "R2.1 지역별 자원 생산 관계",
+   "status": "notAuthorizedForRecall",
+   "sourceBlockIds": [
+    "L2-B0338",
+    "L2-B0340",
+    "L2-B0342"
+   ],
+   "finding": "강의가 주요 생산국 조합을 명시하지만 아시아·오세아니아 등 지역별 고정 순서까지 명시하지 않는다. 기존 지역 비중 표는 suppliedData로 사용."
+  },
+  {
+   "request": "R2.4 보크사이트",
+   "status": "suppliedDataOnly",
+   "sourceBlockIds": [
+    "L2-B0452",
+    "L2-B0471",
+    "L2-B0472",
+    "L2-B0476"
+   ],
+   "finding": "오스트레일리아·기니는 대표 생산국으로 연결되며 브라질까지 포함한 연도 불변 순위는 강의에 없다. 기존 BGS 연도별 표로만 연습한다."
+  },
+  {
+   "request": "R2.5 미국 에너지",
+   "status": "compositionRankNotStated",
+   "sourceBlockIds": [
+    "L2-B0368",
+    "L2-B0373",
+    "L2-B0377"
+   ],
+   "finding": "총량 중국>미국>인도, 1인당·가스 미국>중국은 명시. 미국 내부 구성은 석유·가스 비중이 크다고만 적어 정확한 에너지원 순위를 창작하지 않는다. 총량 비교를 승인한 것과 미국을 구성 식별 후보로 승인한 것을 구분한다."
+  }
+ ]
+}

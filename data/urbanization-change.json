@@ -20,7 +20,8 @@
     "id": 900,
     "iso3": null,
     "sourceName": "WORLD",
-    "type": "World"
+    "type": "World",
+    "sdmxCode": "1"
    },
    "series": {
     "urbanPopulation": {
@@ -437,434 +438,13 @@
     }
    }
   },
-  "라틴 아메리카": {
-   "location": {
-    "id": 1830,
-    "iso3": null,
-    "sourceName": "Latin America and the Caribbean",
-    "type": "SDG region"
-   },
-   "series": {
-    "urbanPopulation": {
-     "1950": 70640818.0,
-     "1951": 73636979.0,
-     "1952": 76771610.0,
-     "1953": 80034801.0,
-     "1954": 83433226.0,
-     "1955": 86981235.0,
-     "1956": 90685543.0,
-     "1957": 94551113.0,
-     "1958": 98578096.0,
-     "1959": 102778755.0,
-     "1960": 107163343.0,
-     "1961": 111748011.0,
-     "1962": 116540793.0,
-     "1963": 121538097.0,
-     "1964": 126728026.0,
-     "1965": 132104415.00000001,
-     "1966": 137661946.0,
-     "1967": 143388247.0,
-     "1968": 149271429.0,
-     "1969": 155304735.0,
-     "1970": 161470242.0,
-     "1971": 167895326.0,
-     "1972": 174615772.0,
-     "1973": 181629514.0,
-     "1974": 188889625.0,
-     "1975": 196345157.0,
-     "1976": 203954660.0,
-     "1977": 211695739.0,
-     "1978": 219517495.0,
-     "1979": 227316804.0,
-     "1980": 235000697.0,
-     "1981": 242573838.0,
-     "1982": 250175860.0,
-     "1983": 257883173.0,
-     "1984": 265645626.0,
-     "1985": 273405698.0,
-     "1986": 281208403.0,
-     "1987": 289045595.0,
-     "1988": 296928614.0,
-     "1989": 304848348.0,
-     "1990": 312806983.0,
-     "1991": 320772383.0,
-     "1992": 328699486.0,
-     "1993": 336566203.0,
-     "1994": 344418397.0,
-     "1995": 352390379.0,
-     "1996": 360515166.0,
-     "1997": 368883169.0,
-     "1998": 377483839.0,
-     "1999": 386007690.0,
-     "2000": 394126880.0,
-     "2001": 401813103.0,
-     "2002": 409224771.0,
-     "2003": 416370551.0,
-     "2004": 423256240.0,
-     "2005": 429922648.0,
-     "2006": 436390153.0,
-     "2007": 442811436.0,
-     "2008": 449195902.0,
-     "2009": 455500977.0,
-     "2010": 461695104.0,
-     "2011": 467850290.0,
-     "2012": 474015206.0,
-     "2013": 480191750.0,
-     "2014": 486355090.0,
-     "2015": 492456717.0,
-     "2016": 498469478.0,
-     "2017": 504298406.0,
-     "2018": 509850275.0,
-     "2019": 515328187.0,
-     "2020": 520323796.0,
-     "2021": 524603214.00000006,
-     "2022": 529012208.0,
-     "2023": 534087939.99999994,
-     "2024": 539305413.0,
-     "2025": 544462509.0,
-     "2026": 549538151.0,
-     "2027": 554560334.0,
-     "2028": 559530759.0,
-     "2029": 564446775.0,
-     "2030": 569344840.0,
-     "2031": 573881732.0,
-     "2032": 578295626.0,
-     "2033": 582631664.0,
-     "2034": 586887455.0,
-     "2035": 591056627.0,
-     "2036": 595127658.0,
-     "2037": 599094636.0,
-     "2038": 602959819.0,
-     "2039": 606714756.0,
-     "2040": 610351270.0,
-     "2041": 613862444.0,
-     "2042": 617241237.0,
-     "2043": 620484496.0,
-     "2044": 623589710.0,
-     "2045": 626555315.0,
-     "2046": 629380456.0,
-     "2047": 632070768.0,
-     "2048": 634623281.0,
-     "2049": 637025887.0,
-     "2050": 639287597.0
-    },
-    "ruralPopulation": {
-     "1950": 97141344.0,
-     "1951": 98541680.0,
-     "1952": 99971143.0,
-     "1953": 101430336.0,
-     "1954": 102919019.0,
-     "1955": 104426868.0,
-     "1956": 105949695.0,
-     "1957": 107483517.0,
-     "1958": 109019308.0,
-     "1959": 110559671.0,
-     "1960": 112104534.0,
-     "1961": 113643646.0,
-     "1962": 115155686.0,
-     "1963": 116613560.0,
-     "1964": 118005685.0,
-     "1965": 119308216.0,
-     "1966": 120505694.0,
-     "1967": 121596762.0,
-     "1968": 122582948.0,
-     "1969": 123474102.0,
-     "1970": 124270689.0,
-     "1971": 124880971.0,
-     "1972": 125308938.0,
-     "1973": 125544339.0,
-     "1974": 125617762.0,
-     "1975": 125565087.0,
-     "1976": 125433296.0,
-     "1977": 125298630.0,
-     "1978": 125230272.0,
-     "1979": 125270566.0,
-     "1980": 125492469.0,
-     "1981": 125836681.0,
-     "1982": 126196135.0,
-     "1983": 126593375.0,
-     "1984": 127023352.0,
-     "1985": 127459655.0,
-     "1986": 127833324.0,
-     "1987": 128171750.0,
-     "1988": 128497090.0,
-     "1989": 128792488.0,
-     "1990": 129077673.0,
-     "1991": 129306484.0,
-     "1992": 129520305.0,
-     "1993": 129746447.0,
-     "1994": 129904755.0,
-     "1995": 129920688.0,
-     "1996": 129718784.0,
-     "1997": 129215719.0,
-     "1998": 128488928.0,
-     "1999": 127761385.0,
-     "2000": 127196465.0,
-     "2001": 126812759.0,
-     "2002": 126516477.0,
-     "2003": 126317393.0,
-     "2004": 126237685.0,
-     "2005": 126289535.0,
-     "2006": 126464747.0,
-     "2007": 126656567.0,
-     "2008": 126853199.0,
-     "2009": 127044370.0,
-     "2010": 127212740.0,
-     "2011": 127392398.0,
-     "2012": 127561713.0,
-     "2013": 127645749.0,
-     "2014": 127660143.0,
-     "2015": 127585890.0,
-     "2016": 127453166.0,
-     "2017": 127277029.0,
-     "2018": 127161887.0,
-     "2019": 126867353.0,
-     "2020": 126405590.0,
-     "2021": 125862075.0,
-     "2022": 125354581.0,
-     "2023": 124803577.0,
-     "2024": 124160664.0,
-     "2025": 123426043.0,
-     "2026": 122597411.0,
-     "2027": 121681793.0,
-     "2028": 120680656.0,
-     "2029": 119594968.0,
-     "2030": 118398556.0,
-     "2031": 117431220.0,
-     "2032": 116451926.0,
-     "2033": 115412569.0,
-     "2034": 114318385.0,
-     "2035": 113170572.0,
-     "2036": 111969968.0,
-     "2037": 110718279.0,
-     "2038": 109418781.0,
-     "2039": 108071958.0,
-     "2040": 106679070.0,
-     "2041": 105243140.0,
-     "2042": 103765935.0,
-     "2043": 102249392.0,
-     "2044": 100696339.0,
-     "2045": 99109507.0,
-     "2046": 97491610.0,
-     "2047": 95845894.0,
-     "2048": 94175330.0,
-     "2049": 92481381.0,
-     "2050": 90769149.0
-    },
-    "totalPopulation": {
-     "1950": 167782162.0,
-     "1951": 172178659.0,
-     "1952": 176742753.0,
-     "1953": 181465137.0,
-     "1954": 186352245.0,
-     "1955": 191408103.0,
-     "1956": 196635238.0,
-     "1957": 202034630.0,
-     "1958": 207597404.0,
-     "1959": 213338426.0,
-     "1960": 219267877.0,
-     "1961": 225391657.0,
-     "1962": 231696479.0,
-     "1963": 238151657.0,
-     "1964": 244733711.0,
-     "1965": 251412631.0,
-     "1966": 258167640.0,
-     "1967": 264985009.00000003,
-     "1968": 271854377.0,
-     "1969": 278778837.0,
-     "1970": 285740931.0,
-     "1971": 292776297.0,
-     "1972": 299924710.0,
-     "1973": 307173853.0,
-     "1974": 314507387.0,
-     "1975": 321910244.0,
-     "1976": 329387956.0,
-     "1977": 336994369.0,
-     "1978": 344747767.0,
-     "1979": 352587370.0,
-     "1980": 360493166.0,
-     "1981": 368410519.0,
-     "1982": 376371995.0,
-     "1983": 384476548.0,
-     "1984": 392668978.0,
-     "1985": 400865353.0,
-     "1986": 409041727.0,
-     "1987": 417217345.0,
-     "1988": 425425704.0,
-     "1989": 433640836.0,
-     "1990": 441884656.0,
-     "1991": 450078867.0,
-     "1992": 458219791.0,
-     "1993": 466312650.0,
-     "1994": 474323152.0,
-     "1995": 482311067.0,
-     "1996": 490233950.0,
-     "1997": 498098888.0,
-     "1998": 505972767.0,
-     "1999": 513769075.0,
-     "2000": 521323345.0,
-     "2001": 528625861.99999994,
-     "2002": 535741248.0,
-     "2003": 542687944.0,
-     "2004": 549493925.0,
-     "2005": 556212183.0,
-     "2006": 562854900.0,
-     "2007": 569468003.0,
-     "2008": 576049101.0,
-     "2009": 582545347.0,
-     "2010": 588907844.0,
-     "2011": 595242688.0,
-     "2012": 601576919.0,
-     "2013": 607837499.0,
-     "2014": 614015233.0,
-     "2015": 620042607.0,
-     "2016": 625922644.0,
-     "2017": 631575435.0,
-     "2018": 637012162.0,
-     "2019": 642195540.0,
-     "2020": 646729386.0,
-     "2021": 650465289.0,
-     "2022": 654366789.0,
-     "2023": 658891517.0,
-     "2024": 663466077.0,
-     "2025": 667888552.0,
-     "2026": 672135562.0,
-     "2027": 676242127.0,
-     "2028": 680211415.0,
-     "2029": 684041743.0,
-     "2030": 687743396.0,
-     "2031": 691312952.0,
-     "2032": 694747552.0,
-     "2033": 698044233.0,
-     "2034": 701205840.0,
-     "2035": 704227199.0,
-     "2036": 707097626.0,
-     "2037": 709812915.0,
-     "2038": 712378600.0,
-     "2039": 714786714.0,
-     "2040": 717030340.0,
-     "2041": 719105584.0,
-     "2042": 721007172.0,
-     "2043": 722733888.0,
-     "2044": 724286049.0,
-     "2045": 725664822.0,
-     "2046": 726872066.0,
-     "2047": 727916662.0,
-     "2048": 728798611.0,
-     "2049": 729507268.0,
-     "2050": 730056746.0
-    },
-    "urbanShare": {
-     "1950": 42.1027,
-     "1951": 42.7678,
-     "1952": 43.4369,
-     "1953": 44.1048,
-     "1954": 44.7718,
-     "1955": 45.4428,
-     "1956": 46.1187,
-     "1957": 46.7995,
-     "1958": 47.4852,
-     "1959": 48.1764,
-     "1960": 48.8733,
-     "1961": 49.5795,
-     "1962": 50.2989,
-     "1963": 51.0339,
-     "1964": 51.782,
-     "1965": 52.5449,
-     "1966": 53.3227,
-     "1967": 54.1118,
-     "1968": 54.9086,
-     "1969": 55.7089,
-     "1970": 56.5093,
-     "1971": 57.3459,
-     "1972": 58.2199,
-     "1973": 59.1292,
-     "1974": 60.0589,
-     "1975": 60.9938,
-     "1976": 61.9193,
-     "1977": 62.8188,
-     "1978": 63.6748,
-     "1979": 64.4711,
-     "1980": 65.1887,
-     "1981": 65.8434,
-     "1982": 66.4704,
-     "1983": 67.0738,
-     "1984": 67.6513,
-     "1985": 68.2039,
-     "1986": 68.7481,
-     "1987": 69.2794,
-     "1988": 69.7956,
-     "1989": 70.2997,
-     "1990": 70.7893,
-     "1991": 71.2703,
-     "1992": 71.734,
-     "1993": 72.1761,
-     "1994": 72.6126,
-     "1995": 73.0629,
-     "1996": 73.5394,
-     "1997": 74.0582,
-     "1998": 74.6056,
-     "1999": 75.1325,
-     "2000": 75.6012,
-     "2001": 76.0109,
-     "2002": 76.3848,
-     "2003": 76.7238,
-     "2004": 77.0266,
-     "2005": 77.2947,
-     "2006": 77.5316,
-     "2007": 77.7588,
-     "2008": 77.9788,
-     "2009": 78.1915,
-     "2010": 78.3985,
-     "2011": 78.5982,
-     "2012": 78.7954,
-     "2013": 79.0,
-     "2014": 79.209,
-     "2015": 79.423,
-     "2016": 79.6376,
-     "2017": 79.8477,
-     "2018": 80.0378,
-     "2019": 80.2447,
-     "2020": 80.4546,
-     "2021": 80.6505,
-     "2022": 80.8434,
-     "2023": 81.0586,
-     "2024": 81.2861,
-     "2025": 81.52,
-     "2026": 81.76,
-     "2027": 82.0062,
-     "2028": 82.2584,
-     "2029": 82.5164,
-     "2030": 82.7845,
-     "2031": 83.0133,
-     "2032": 83.2382,
-     "2033": 83.4663,
-     "2034": 83.6969,
-     "2035": 83.9298,
-     "2036": 84.1649,
-     "2037": 84.4018,
-     "2038": 84.6404,
-     "2039": 84.8805,
-     "2040": 85.1221,
-     "2041": 85.3647,
-     "2042": 85.6082,
-     "2043": 85.8524,
-     "2044": 86.0972,
-     "2045": 86.3422,
-     "2046": 86.5875,
-     "2047": 86.8328,
-     "2048": 87.078,
-     "2049": 87.3228,
-     "2050": 87.5668
-    }
-   }
-  },
   "아프리카": {
    "location": {
     "id": 903,
     "iso3": null,
     "sourceName": "AFRICA",
-    "type": "Geographic region"
+    "type": "Geographic region",
+    "sdmxCode": "2"
    },
    "series": {
     "urbanPopulation": {
@@ -1286,7 +866,8 @@
     "id": 231,
     "iso3": "ETH",
     "sourceName": "Ethiopia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "231"
    },
    "series": {
     "urbanPopulation": {
@@ -1708,7 +1289,8 @@
     "id": 404,
     "iso3": "KEN",
     "sourceName": "Kenya",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "404"
    },
    "series": {
     "urbanPopulation": {
@@ -2130,7 +1712,8 @@
     "id": 450,
     "iso3": "MDG",
     "sourceName": "Madagascar",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "450"
    },
    "series": {
     "urbanPopulation": {
@@ -2552,7 +2135,8 @@
     "id": 508,
     "iso3": "MOZ",
     "sourceName": "Mozambique",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "508"
    },
    "series": {
     "urbanPopulation": {
@@ -2974,7 +2558,8 @@
     "id": 706,
     "iso3": "SOM",
     "sourceName": "Somalia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "706"
    },
    "series": {
     "urbanPopulation": {
@@ -3396,7 +2981,8 @@
     "id": 800,
     "iso3": "UGA",
     "sourceName": "Uganda",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "800"
    },
    "series": {
     "urbanPopulation": {
@@ -3818,7 +3404,8 @@
     "id": 834,
     "iso3": "TZA",
     "sourceName": "United Republic of Tanzania",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "834"
    },
    "series": {
     "urbanPopulation": {
@@ -4240,7 +3827,8 @@
     "id": 894,
     "iso3": "ZMB",
     "sourceName": "Zambia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "894"
    },
    "series": {
     "urbanPopulation": {
@@ -4662,7 +4250,8 @@
     "id": 716,
     "iso3": "ZWE",
     "sourceName": "Zimbabwe",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "716"
    },
    "series": {
     "urbanPopulation": {
@@ -5084,7 +4673,8 @@
     "id": 24,
     "iso3": "AGO",
     "sourceName": "Angola",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "24"
    },
    "series": {
     "urbanPopulation": {
@@ -5506,7 +5096,8 @@
     "id": 120,
     "iso3": "CMR",
     "sourceName": "Cameroon",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "120"
    },
    "series": {
     "urbanPopulation": {
@@ -5928,7 +5519,8 @@
     "id": 148,
     "iso3": "TCD",
     "sourceName": "Chad",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "148"
    },
    "series": {
     "urbanPopulation": {
@@ -6350,7 +5942,8 @@
     "id": 180,
     "iso3": "COD",
     "sourceName": "Democratic Republic of the Congo",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "180"
    },
    "series": {
     "urbanPopulation": {
@@ -6772,7 +6365,8 @@
     "id": 12,
     "iso3": "DZA",
     "sourceName": "Algeria",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "12"
    },
    "series": {
     "urbanPopulation": {
@@ -7194,7 +6788,8 @@
     "id": 818,
     "iso3": "EGY",
     "sourceName": "Egypt",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "818"
    },
    "series": {
     "urbanPopulation": {
@@ -7616,7 +7211,8 @@
     "id": 434,
     "iso3": "LBY",
     "sourceName": "Libya",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "434"
    },
    "series": {
     "urbanPopulation": {
@@ -8038,7 +7634,8 @@
     "id": 504,
     "iso3": "MAR",
     "sourceName": "Morocco",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "504"
    },
    "series": {
     "urbanPopulation": {
@@ -8460,7 +8057,8 @@
     "id": 729,
     "iso3": "SDN",
     "sourceName": "Sudan",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "729"
    },
    "series": {
     "urbanPopulation": {
@@ -8882,7 +8480,8 @@
     "id": 788,
     "iso3": "TUN",
     "sourceName": "Tunisia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "788"
    },
    "series": {
     "urbanPopulation": {
@@ -9304,7 +8903,8 @@
     "id": 72,
     "iso3": "BWA",
     "sourceName": "Botswana",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "72"
    },
    "series": {
     "urbanPopulation": {
@@ -9726,7 +9326,8 @@
     "id": 516,
     "iso3": "NAM",
     "sourceName": "Namibia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "516"
    },
    "series": {
     "urbanPopulation": {
@@ -10148,7 +9749,8 @@
     "id": 710,
     "iso3": "ZAF",
     "sourceName": "South Africa",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "710"
    },
    "series": {
     "urbanPopulation": {
@@ -10570,7 +10172,8 @@
     "id": 204,
     "iso3": "BEN",
     "sourceName": "Benin",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "204"
    },
    "series": {
     "urbanPopulation": {
@@ -10992,7 +10595,8 @@
     "id": 384,
     "iso3": "CIV",
     "sourceName": "Côte d'Ivoire",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "384"
    },
    "series": {
     "urbanPopulation": {
@@ -11414,7 +11018,8 @@
     "id": 288,
     "iso3": "GHA",
     "sourceName": "Ghana",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "288"
    },
    "series": {
     "urbanPopulation": {
@@ -11836,7 +11441,8 @@
     "id": 324,
     "iso3": "GIN",
     "sourceName": "Guinea",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "324"
    },
    "series": {
     "urbanPopulation": {
@@ -12258,7 +11864,8 @@
     "id": 430,
     "iso3": "LBR",
     "sourceName": "Liberia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "430"
    },
    "series": {
     "urbanPopulation": {
@@ -12680,7 +12287,8 @@
     "id": 466,
     "iso3": "MLI",
     "sourceName": "Mali",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "466"
    },
    "series": {
     "urbanPopulation": {
@@ -13102,7 +12710,8 @@
     "id": 478,
     "iso3": "MRT",
     "sourceName": "Mauritania",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "478"
    },
    "series": {
     "urbanPopulation": {
@@ -13524,7 +13133,8 @@
     "id": 562,
     "iso3": "NER",
     "sourceName": "Niger",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "562"
    },
    "series": {
     "urbanPopulation": {
@@ -13946,7 +13556,8 @@
     "id": 566,
     "iso3": "NGA",
     "sourceName": "Nigeria",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "566"
    },
    "series": {
     "urbanPopulation": {
@@ -14368,7 +13979,8 @@
     "id": 686,
     "iso3": "SEN",
     "sourceName": "Senegal",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "686"
    },
    "series": {
     "urbanPopulation": {
@@ -14790,7 +14402,8 @@
     "id": 694,
     "iso3": "SLE",
     "sourceName": "Sierra Leone",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "694"
    },
    "series": {
     "urbanPopulation": {
@@ -15212,7 +14825,8 @@
     "id": 935,
     "iso3": null,
     "sourceName": "ASIA",
-    "type": "Geographic region"
+    "type": "Geographic region",
+    "sdmxCode": "142"
    },
    "series": {
     "urbanPopulation": {
@@ -15634,7 +15248,8 @@
     "id": 398,
     "iso3": "KAZ",
     "sourceName": "Kazakhstan",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "398"
    },
    "series": {
     "urbanPopulation": {
@@ -16056,7 +15671,8 @@
     "id": 417,
     "iso3": "KGZ",
     "sourceName": "Kyrgyzstan",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "417"
    },
    "series": {
     "urbanPopulation": {
@@ -16478,7 +16094,8 @@
     "id": 762,
     "iso3": "TJK",
     "sourceName": "Tajikistan",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "762"
    },
    "series": {
     "urbanPopulation": {
@@ -16900,7 +16517,8 @@
     "id": 795,
     "iso3": "TKM",
     "sourceName": "Turkmenistan",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "795"
    },
    "series": {
     "urbanPopulation": {
@@ -17322,7 +16940,8 @@
     "id": 860,
     "iso3": "UZB",
     "sourceName": "Uzbekistan",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "860"
    },
    "series": {
     "urbanPopulation": {
@@ -17744,7 +17363,8 @@
     "id": 156,
     "iso3": "CHN",
     "sourceName": "China",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "156"
    },
    "series": {
     "urbanPopulation": {
@@ -18166,7 +17786,8 @@
     "id": 158,
     "iso3": "TWN",
     "sourceName": "China, Taiwan Province of China",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "158"
    },
    "series": {
     "urbanPopulation": {
@@ -18588,7 +18209,8 @@
     "id": 392,
     "iso3": "JPN",
     "sourceName": "Japan",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "392"
    },
    "series": {
     "urbanPopulation": {
@@ -19010,7 +18632,8 @@
     "id": 496,
     "iso3": "MNG",
     "sourceName": "Mongolia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "496"
    },
    "series": {
     "urbanPopulation": {
@@ -19432,7 +19055,8 @@
     "id": 410,
     "iso3": "KOR",
     "sourceName": "Republic of Korea",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "410"
    },
    "series": {
     "urbanPopulation": {
@@ -19854,7 +19478,8 @@
     "id": 4,
     "iso3": "AFG",
     "sourceName": "Afghanistan",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "4"
    },
    "series": {
     "urbanPopulation": {
@@ -20276,7 +19901,8 @@
     "id": 50,
     "iso3": "BGD",
     "sourceName": "Bangladesh",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "50"
    },
    "series": {
     "urbanPopulation": {
@@ -20698,7 +20324,8 @@
     "id": 356,
     "iso3": "IND",
     "sourceName": "India",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "356"
    },
    "series": {
     "urbanPopulation": {
@@ -21120,7 +20747,8 @@
     "id": 364,
     "iso3": "IRN",
     "sourceName": "Iran (Islamic Republic of)",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "364"
    },
    "series": {
     "urbanPopulation": {
@@ -21542,7 +21170,8 @@
     "id": 524,
     "iso3": "NPL",
     "sourceName": "Nepal",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "524"
    },
    "series": {
     "urbanPopulation": {
@@ -21964,7 +21593,8 @@
     "id": 586,
     "iso3": "PAK",
     "sourceName": "Pakistan",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "586"
    },
    "series": {
     "urbanPopulation": {
@@ -22386,7 +22016,8 @@
     "id": 144,
     "iso3": "LKA",
     "sourceName": "Sri Lanka",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "144"
    },
    "series": {
     "urbanPopulation": {
@@ -22808,7 +22439,8 @@
     "id": 96,
     "iso3": "BRN",
     "sourceName": "Brunei Darussalam",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "96"
    },
    "series": {
     "urbanPopulation": {
@@ -23230,7 +22862,8 @@
     "id": 116,
     "iso3": "KHM",
     "sourceName": "Cambodia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "116"
    },
    "series": {
     "urbanPopulation": {
@@ -23652,7 +23285,8 @@
     "id": 360,
     "iso3": "IDN",
     "sourceName": "Indonesia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "360"
    },
    "series": {
     "urbanPopulation": {
@@ -24074,7 +23708,8 @@
     "id": 418,
     "iso3": "LAO",
     "sourceName": "Lao People's Democratic Republic",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "418"
    },
    "series": {
     "urbanPopulation": {
@@ -24496,7 +24131,8 @@
     "id": 458,
     "iso3": "MYS",
     "sourceName": "Malaysia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "458"
    },
    "series": {
     "urbanPopulation": {
@@ -24918,7 +24554,8 @@
     "id": 104,
     "iso3": "MMR",
     "sourceName": "Myanmar",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "104"
    },
    "series": {
     "urbanPopulation": {
@@ -25340,7 +24977,8 @@
     "id": 608,
     "iso3": "PHL",
     "sourceName": "Philippines",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "608"
    },
    "series": {
     "urbanPopulation": {
@@ -25762,7 +25400,8 @@
     "id": 702,
     "iso3": "SGP",
     "sourceName": "Singapore",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "702"
    },
    "series": {
     "urbanPopulation": {
@@ -26184,7 +25823,8 @@
     "id": 764,
     "iso3": "THA",
     "sourceName": "Thailand",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "764"
    },
    "series": {
     "urbanPopulation": {
@@ -26606,7 +26246,8 @@
     "id": 626,
     "iso3": "TLS",
     "sourceName": "Timor-Leste",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "626"
    },
    "series": {
     "urbanPopulation": {
@@ -27028,7 +26669,8 @@
     "id": 704,
     "iso3": "VNM",
     "sourceName": "Viet Nam",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "704"
    },
    "series": {
     "urbanPopulation": {
@@ -27450,7 +27092,8 @@
     "id": 31,
     "iso3": "AZE",
     "sourceName": "Azerbaijan",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "31"
    },
    "series": {
     "urbanPopulation": {
@@ -27872,7 +27515,8 @@
     "id": 48,
     "iso3": "BHR",
     "sourceName": "Bahrain",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "48"
    },
    "series": {
     "urbanPopulation": {
@@ -28294,7 +27938,8 @@
     "id": 196,
     "iso3": "CYP",
     "sourceName": "Cyprus",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "196"
    },
    "series": {
     "urbanPopulation": {
@@ -28716,7 +28361,8 @@
     "id": 368,
     "iso3": "IRQ",
     "sourceName": "Iraq",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "368"
    },
    "series": {
     "urbanPopulation": {
@@ -29138,7 +28784,8 @@
     "id": 376,
     "iso3": "ISR",
     "sourceName": "Israel",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "376"
    },
    "series": {
     "urbanPopulation": {
@@ -29560,7 +29207,8 @@
     "id": 400,
     "iso3": "JOR",
     "sourceName": "Jordan",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "400"
    },
    "series": {
     "urbanPopulation": {
@@ -29982,7 +29630,8 @@
     "id": 414,
     "iso3": "KWT",
     "sourceName": "Kuwait",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "414"
    },
    "series": {
     "urbanPopulation": {
@@ -30404,7 +30053,8 @@
     "id": 422,
     "iso3": "LBN",
     "sourceName": "Lebanon",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "422"
    },
    "series": {
     "urbanPopulation": {
@@ -30826,7 +30476,8 @@
     "id": 512,
     "iso3": "OMN",
     "sourceName": "Oman",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "512"
    },
    "series": {
     "urbanPopulation": {
@@ -31248,7 +30899,8 @@
     "id": 634,
     "iso3": "QAT",
     "sourceName": "Qatar",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "634"
    },
    "series": {
     "urbanPopulation": {
@@ -31670,7 +31322,8 @@
     "id": 682,
     "iso3": "SAU",
     "sourceName": "Saudi Arabia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "682"
    },
    "series": {
     "urbanPopulation": {
@@ -32092,7 +31745,8 @@
     "id": 760,
     "iso3": "SYR",
     "sourceName": "Syrian Arab Republic",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "760"
    },
    "series": {
     "urbanPopulation": {
@@ -32514,7 +32168,8 @@
     "id": 792,
     "iso3": "TUR",
     "sourceName": "Türkiye",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "792"
    },
    "series": {
     "urbanPopulation": {
@@ -32936,7 +32591,8 @@
     "id": 784,
     "iso3": "ARE",
     "sourceName": "United Arab Emirates",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "784"
    },
    "series": {
     "urbanPopulation": {
@@ -33358,7 +33014,8 @@
     "id": 908,
     "iso3": null,
     "sourceName": "EUROPE",
-    "type": "Geographic region"
+    "type": "Geographic region",
+    "sdmxCode": "150"
    },
    "series": {
     "urbanPopulation": {
@@ -33780,7 +33437,8 @@
     "id": 100,
     "iso3": "BGR",
     "sourceName": "Bulgaria",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "100"
    },
    "series": {
     "urbanPopulation": {
@@ -34202,7 +33860,8 @@
     "id": 203,
     "iso3": "CZE",
     "sourceName": "Czechia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "203"
    },
    "series": {
     "urbanPopulation": {
@@ -34624,7 +34283,8 @@
     "id": 348,
     "iso3": "HUN",
     "sourceName": "Hungary",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "348"
    },
    "series": {
     "urbanPopulation": {
@@ -35046,7 +34706,8 @@
     "id": 616,
     "iso3": "POL",
     "sourceName": "Poland",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "616"
    },
    "series": {
     "urbanPopulation": {
@@ -35468,7 +35129,8 @@
     "id": 642,
     "iso3": "ROU",
     "sourceName": "Romania",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "642"
    },
    "series": {
     "urbanPopulation": {
@@ -35890,7 +35552,8 @@
     "id": 643,
     "iso3": "RUS",
     "sourceName": "Russian Federation",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "643"
    },
    "series": {
     "urbanPopulation": {
@@ -36312,7 +35975,8 @@
     "id": 703,
     "iso3": "SVK",
     "sourceName": "Slovakia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "703"
    },
    "series": {
     "urbanPopulation": {
@@ -36734,7 +36398,8 @@
     "id": 804,
     "iso3": "UKR",
     "sourceName": "Ukraine",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "804"
    },
    "series": {
     "urbanPopulation": {
@@ -37156,7 +36821,8 @@
     "id": 208,
     "iso3": "DNK",
     "sourceName": "Denmark",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "208"
    },
    "series": {
     "urbanPopulation": {
@@ -37578,7 +37244,8 @@
     "id": 233,
     "iso3": "EST",
     "sourceName": "Estonia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "233"
    },
    "series": {
     "urbanPopulation": {
@@ -38000,7 +37667,8 @@
     "id": 246,
     "iso3": "FIN",
     "sourceName": "Finland",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "246"
    },
    "series": {
     "urbanPopulation": {
@@ -38422,7 +38090,8 @@
     "id": 352,
     "iso3": "ISL",
     "sourceName": "Iceland",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "352"
    },
    "series": {
     "urbanPopulation": {
@@ -38844,7 +38513,8 @@
     "id": 372,
     "iso3": "IRL",
     "sourceName": "Ireland",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "372"
    },
    "series": {
     "urbanPopulation": {
@@ -39266,7 +38936,8 @@
     "id": 428,
     "iso3": "LVA",
     "sourceName": "Latvia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "428"
    },
    "series": {
     "urbanPopulation": {
@@ -39688,7 +39359,8 @@
     "id": 440,
     "iso3": "LTU",
     "sourceName": "Lithuania",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "440"
    },
    "series": {
     "urbanPopulation": {
@@ -40110,7 +39782,8 @@
     "id": 578,
     "iso3": "NOR",
     "sourceName": "Norway",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "578"
    },
    "series": {
     "urbanPopulation": {
@@ -40532,7 +40205,8 @@
     "id": 752,
     "iso3": "SWE",
     "sourceName": "Sweden",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "752"
    },
    "series": {
     "urbanPopulation": {
@@ -40954,7 +40628,8 @@
     "id": 826,
     "iso3": "GBR",
     "sourceName": "United Kingdom",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "826"
    },
    "series": {
     "urbanPopulation": {
@@ -41376,7 +41051,8 @@
     "id": 20,
     "iso3": "AND",
     "sourceName": "Andorra",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "20"
    },
    "series": {
     "urbanPopulation": {
@@ -41798,7 +41474,8 @@
     "id": 70,
     "iso3": "BIH",
     "sourceName": "Bosnia and Herzegovina",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "70"
    },
    "series": {
     "urbanPopulation": {
@@ -42220,7 +41897,8 @@
     "id": 191,
     "iso3": "HRV",
     "sourceName": "Croatia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "191"
    },
    "series": {
     "urbanPopulation": {
@@ -42642,7 +42320,8 @@
     "id": 300,
     "iso3": "GRC",
     "sourceName": "Greece",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "300"
    },
    "series": {
     "urbanPopulation": {
@@ -43064,7 +42743,8 @@
     "id": 336,
     "iso3": "VAT",
     "sourceName": "Holy See",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "336"
    },
    "series": {
     "urbanPopulation": {
@@ -43486,7 +43166,8 @@
     "id": 380,
     "iso3": "ITA",
     "sourceName": "Italy",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "380"
    },
    "series": {
     "urbanPopulation": {
@@ -43908,7 +43589,8 @@
     "id": 470,
     "iso3": "MLT",
     "sourceName": "Malta",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "470"
    },
    "series": {
     "urbanPopulation": {
@@ -44330,7 +44012,8 @@
     "id": 620,
     "iso3": "PRT",
     "sourceName": "Portugal",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "620"
    },
    "series": {
     "urbanPopulation": {
@@ -44752,7 +44435,8 @@
     "id": 674,
     "iso3": "SMR",
     "sourceName": "San Marino",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "674"
    },
    "series": {
     "urbanPopulation": {
@@ -45174,7 +44858,8 @@
     "id": 688,
     "iso3": "SRB",
     "sourceName": "Serbia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "688"
    },
    "series": {
     "urbanPopulation": {
@@ -45596,7 +45281,8 @@
     "id": 705,
     "iso3": "SVN",
     "sourceName": "Slovenia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "705"
    },
    "series": {
     "urbanPopulation": {
@@ -46018,7 +45704,8 @@
     "id": 724,
     "iso3": "ESP",
     "sourceName": "Spain",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "724"
    },
    "series": {
     "urbanPopulation": {
@@ -46440,7 +46127,8 @@
     "id": 40,
     "iso3": "AUT",
     "sourceName": "Austria",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "40"
    },
    "series": {
     "urbanPopulation": {
@@ -46862,7 +46550,8 @@
     "id": 56,
     "iso3": "BEL",
     "sourceName": "Belgium",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "56"
    },
    "series": {
     "urbanPopulation": {
@@ -47284,7 +46973,8 @@
     "id": 250,
     "iso3": "FRA",
     "sourceName": "France",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "250"
    },
    "series": {
     "urbanPopulation": {
@@ -47706,7 +47396,8 @@
     "id": 276,
     "iso3": "DEU",
     "sourceName": "Germany",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "276"
    },
    "series": {
     "urbanPopulation": {
@@ -48128,7 +47819,8 @@
     "id": 438,
     "iso3": "LIE",
     "sourceName": "Liechtenstein",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "438"
    },
    "series": {
     "urbanPopulation": {
@@ -48550,7 +48242,8 @@
     "id": 442,
     "iso3": "LUX",
     "sourceName": "Luxembourg",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "442"
    },
    "series": {
     "urbanPopulation": {
@@ -48972,7 +48665,8 @@
     "id": 528,
     "iso3": "NLD",
     "sourceName": "Netherlands",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "528"
    },
    "series": {
     "urbanPopulation": {
@@ -49394,7 +49088,8 @@
     "id": 756,
     "iso3": "CHE",
     "sourceName": "Switzerland",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "756"
    },
    "series": {
     "urbanPopulation": {
@@ -49811,12 +49506,436 @@
     }
    }
   },
+  "라틴 아메리카": {
+   "location": {
+    "id": 904,
+    "iso3": null,
+    "sourceName": "LATIN AMERICA AND THE CARIBBEAN",
+    "type": "Geographic region",
+    "sdmxCode": "419"
+   },
+   "series": {
+    "urbanPopulation": {
+     "1950": 70640818.0,
+     "1951": 73636979.0,
+     "1952": 76771610.0,
+     "1953": 80034801.0,
+     "1954": 83433226.0,
+     "1955": 86981235.0,
+     "1956": 90685543.0,
+     "1957": 94551113.0,
+     "1958": 98578096.0,
+     "1959": 102778755.0,
+     "1960": 107163343.0,
+     "1961": 111748011.0,
+     "1962": 116540793.0,
+     "1963": 121538097.0,
+     "1964": 126728026.0,
+     "1965": 132104415.00000001,
+     "1966": 137661946.0,
+     "1967": 143388247.0,
+     "1968": 149271429.0,
+     "1969": 155304735.0,
+     "1970": 161470242.0,
+     "1971": 167895326.0,
+     "1972": 174615772.0,
+     "1973": 181629514.0,
+     "1974": 188889625.0,
+     "1975": 196345157.0,
+     "1976": 203954660.0,
+     "1977": 211695739.0,
+     "1978": 219517495.0,
+     "1979": 227316804.0,
+     "1980": 235000697.0,
+     "1981": 242573838.0,
+     "1982": 250175860.0,
+     "1983": 257883173.0,
+     "1984": 265645626.0,
+     "1985": 273405698.0,
+     "1986": 281208403.0,
+     "1987": 289045595.0,
+     "1988": 296928614.0,
+     "1989": 304848348.0,
+     "1990": 312806983.0,
+     "1991": 320772383.0,
+     "1992": 328699486.0,
+     "1993": 336566203.0,
+     "1994": 344418397.0,
+     "1995": 352390379.0,
+     "1996": 360515166.0,
+     "1997": 368883169.0,
+     "1998": 377483839.0,
+     "1999": 386007690.0,
+     "2000": 394126880.0,
+     "2001": 401813103.0,
+     "2002": 409224771.0,
+     "2003": 416370551.0,
+     "2004": 423256240.0,
+     "2005": 429922648.0,
+     "2006": 436390153.0,
+     "2007": 442811436.0,
+     "2008": 449195902.0,
+     "2009": 455500977.0,
+     "2010": 461695104.0,
+     "2011": 467850290.0,
+     "2012": 474015206.0,
+     "2013": 480191750.0,
+     "2014": 486355090.0,
+     "2015": 492456717.0,
+     "2016": 498469478.0,
+     "2017": 504298406.0,
+     "2018": 509850275.0,
+     "2019": 515328187.0,
+     "2020": 520323796.0,
+     "2021": 524603214.00000006,
+     "2022": 529012208.0,
+     "2023": 534087939.99999994,
+     "2024": 539305413.0,
+     "2025": 544462509.0,
+     "2026": 549538151.0,
+     "2027": 554560334.0,
+     "2028": 559530759.0,
+     "2029": 564446775.0,
+     "2030": 569344840.0,
+     "2031": 573881732.0,
+     "2032": 578295626.0,
+     "2033": 582631664.0,
+     "2034": 586887455.0,
+     "2035": 591056627.0,
+     "2036": 595127658.0,
+     "2037": 599094636.0,
+     "2038": 602959819.0,
+     "2039": 606714756.0,
+     "2040": 610351270.0,
+     "2041": 613862444.0,
+     "2042": 617241237.0,
+     "2043": 620484496.0,
+     "2044": 623589710.0,
+     "2045": 626555315.0,
+     "2046": 629380456.0,
+     "2047": 632070768.0,
+     "2048": 634623281.0,
+     "2049": 637025887.0,
+     "2050": 639287597.0
+    },
+    "ruralPopulation": {
+     "1950": 97141344.0,
+     "1951": 98541680.0,
+     "1952": 99971143.0,
+     "1953": 101430336.0,
+     "1954": 102919019.0,
+     "1955": 104426868.0,
+     "1956": 105949695.0,
+     "1957": 107483517.0,
+     "1958": 109019308.0,
+     "1959": 110559671.0,
+     "1960": 112104534.0,
+     "1961": 113643646.0,
+     "1962": 115155686.0,
+     "1963": 116613560.0,
+     "1964": 118005685.0,
+     "1965": 119308216.0,
+     "1966": 120505694.0,
+     "1967": 121596762.0,
+     "1968": 122582948.0,
+     "1969": 123474102.0,
+     "1970": 124270689.0,
+     "1971": 124880971.0,
+     "1972": 125308938.0,
+     "1973": 125544339.0,
+     "1974": 125617762.0,
+     "1975": 125565087.0,
+     "1976": 125433296.0,
+     "1977": 125298630.0,
+     "1978": 125230272.0,
+     "1979": 125270566.0,
+     "1980": 125492469.0,
+     "1981": 125836681.0,
+     "1982": 126196135.0,
+     "1983": 126593375.0,
+     "1984": 127023352.0,
+     "1985": 127459655.0,
+     "1986": 127833324.0,
+     "1987": 128171750.0,
+     "1988": 128497090.0,
+     "1989": 128792488.0,
+     "1990": 129077673.0,
+     "1991": 129306484.0,
+     "1992": 129520305.0,
+     "1993": 129746447.0,
+     "1994": 129904755.0,
+     "1995": 129920688.0,
+     "1996": 129718784.0,
+     "1997": 129215719.0,
+     "1998": 128488928.0,
+     "1999": 127761385.0,
+     "2000": 127196465.0,
+     "2001": 126812759.0,
+     "2002": 126516477.0,
+     "2003": 126317393.0,
+     "2004": 126237685.0,
+     "2005": 126289535.0,
+     "2006": 126464747.0,
+     "2007": 126656567.0,
+     "2008": 126853199.0,
+     "2009": 127044370.0,
+     "2010": 127212740.0,
+     "2011": 127392398.0,
+     "2012": 127561713.0,
+     "2013": 127645749.0,
+     "2014": 127660143.0,
+     "2015": 127585890.0,
+     "2016": 127453166.0,
+     "2017": 127277029.0,
+     "2018": 127161887.0,
+     "2019": 126867353.0,
+     "2020": 126405590.0,
+     "2021": 125862075.0,
+     "2022": 125354581.0,
+     "2023": 124803577.0,
+     "2024": 124160664.0,
+     "2025": 123426043.0,
+     "2026": 122597411.0,
+     "2027": 121681793.0,
+     "2028": 120680656.0,
+     "2029": 119594968.0,
+     "2030": 118398556.0,
+     "2031": 117431220.0,
+     "2032": 116451926.0,
+     "2033": 115412569.0,
+     "2034": 114318385.0,
+     "2035": 113170572.0,
+     "2036": 111969968.0,
+     "2037": 110718279.0,
+     "2038": 109418781.0,
+     "2039": 108071958.0,
+     "2040": 106679070.0,
+     "2041": 105243140.0,
+     "2042": 103765935.0,
+     "2043": 102249392.0,
+     "2044": 100696339.0,
+     "2045": 99109507.0,
+     "2046": 97491610.0,
+     "2047": 95845894.0,
+     "2048": 94175330.0,
+     "2049": 92481381.0,
+     "2050": 90769149.0
+    },
+    "totalPopulation": {
+     "1950": 167782162.0,
+     "1951": 172178659.0,
+     "1952": 176742753.0,
+     "1953": 181465137.0,
+     "1954": 186352245.0,
+     "1955": 191408103.0,
+     "1956": 196635238.0,
+     "1957": 202034630.0,
+     "1958": 207597404.0,
+     "1959": 213338426.0,
+     "1960": 219267877.0,
+     "1961": 225391657.0,
+     "1962": 231696479.0,
+     "1963": 238151657.0,
+     "1964": 244733711.0,
+     "1965": 251412631.0,
+     "1966": 258167640.0,
+     "1967": 264985009.00000003,
+     "1968": 271854377.0,
+     "1969": 278778837.0,
+     "1970": 285740931.0,
+     "1971": 292776297.0,
+     "1972": 299924710.0,
+     "1973": 307173853.0,
+     "1974": 314507387.0,
+     "1975": 321910244.0,
+     "1976": 329387956.0,
+     "1977": 336994369.0,
+     "1978": 344747767.0,
+     "1979": 352587370.0,
+     "1980": 360493166.0,
+     "1981": 368410519.0,
+     "1982": 376371995.0,
+     "1983": 384476548.0,
+     "1984": 392668978.0,
+     "1985": 400865353.0,
+     "1986": 409041727.0,
+     "1987": 417217345.0,
+     "1988": 425425704.0,
+     "1989": 433640836.0,
+     "1990": 441884656.0,
+     "1991": 450078867.0,
+     "1992": 458219791.0,
+     "1993": 466312650.0,
+     "1994": 474323152.0,
+     "1995": 482311067.0,
+     "1996": 490233950.0,
+     "1997": 498098888.0,
+     "1998": 505972767.0,
+     "1999": 513769075.0,
+     "2000": 521323345.0,
+     "2001": 528625861.99999994,
+     "2002": 535741248.0,
+     "2003": 542687944.0,
+     "2004": 549493925.0,
+     "2005": 556212183.0,
+     "2006": 562854900.0,
+     "2007": 569468003.0,
+     "2008": 576049101.0,
+     "2009": 582545347.0,
+     "2010": 588907844.0,
+     "2011": 595242688.0,
+     "2012": 601576919.0,
+     "2013": 607837499.0,
+     "2014": 614015233.0,
+     "2015": 620042607.0,
+     "2016": 625922644.0,
+     "2017": 631575435.0,
+     "2018": 637012162.0,
+     "2019": 642195540.0,
+     "2020": 646729386.0,
+     "2021": 650465289.0,
+     "2022": 654366789.0,
+     "2023": 658891517.0,
+     "2024": 663466077.0,
+     "2025": 667888552.0,
+     "2026": 672135562.0,
+     "2027": 676242127.0,
+     "2028": 680211415.0,
+     "2029": 684041743.0,
+     "2030": 687743396.0,
+     "2031": 691312952.0,
+     "2032": 694747552.0,
+     "2033": 698044233.0,
+     "2034": 701205840.0,
+     "2035": 704227199.0,
+     "2036": 707097626.0,
+     "2037": 709812915.0,
+     "2038": 712378600.0,
+     "2039": 714786714.0,
+     "2040": 717030340.0,
+     "2041": 719105584.0,
+     "2042": 721007172.0,
+     "2043": 722733888.0,
+     "2044": 724286049.0,
+     "2045": 725664822.0,
+     "2046": 726872066.0,
+     "2047": 727916662.0,
+     "2048": 728798611.0,
+     "2049": 729507268.0,
+     "2050": 730056746.0
+    },
+    "urbanShare": {
+     "1950": 42.1027,
+     "1951": 42.7678,
+     "1952": 43.4369,
+     "1953": 44.1048,
+     "1954": 44.7718,
+     "1955": 45.4428,
+     "1956": 46.1187,
+     "1957": 46.7995,
+     "1958": 47.4852,
+     "1959": 48.1764,
+     "1960": 48.8733,
+     "1961": 49.5795,
+     "1962": 50.2989,
+     "1963": 51.0339,
+     "1964": 51.782,
+     "1965": 52.5449,
+     "1966": 53.3227,
+     "1967": 54.1118,
+     "1968": 54.9086,
+     "1969": 55.7089,
+     "1970": 56.5093,
+     "1971": 57.3459,
+     "1972": 58.2199,
+     "1973": 59.1292,
+     "1974": 60.0589,
+     "1975": 60.9938,
+     "1976": 61.9193,
+     "1977": 62.8188,
+     "1978": 63.6748,
+     "1979": 64.4711,
+     "1980": 65.1887,
+     "1981": 65.8434,
+     "1982": 66.4704,
+     "1983": 67.0738,
+     "1984": 67.6513,
+     "1985": 68.2039,
+     "1986": 68.7481,
+     "1987": 69.2794,
+     "1988": 69.7956,
+     "1989": 70.2997,
+     "1990": 70.7893,
+     "1991": 71.2703,
+     "1992": 71.734,
+     "1993": 72.1761,
+     "1994": 72.6126,
+     "1995": 73.0629,
+     "1996": 73.5394,
+     "1997": 74.0582,
+     "1998": 74.6056,
+     "1999": 75.1325,
+     "2000": 75.6012,
+     "2001": 76.0109,
+     "2002": 76.3848,
+     "2003": 76.7238,
+     "2004": 77.0266,
+     "2005": 77.2947,
+     "2006": 77.5316,
+     "2007": 77.7588,
+     "2008": 77.9788,
+     "2009": 78.1915,
+     "2010": 78.3985,
+     "2011": 78.5982,
+     "2012": 78.7954,
+     "2013": 79.0,
+     "2014": 79.209,
+     "2015": 79.423,
+     "2016": 79.6376,
+     "2017": 79.8477,
+     "2018": 80.0378,
+     "2019": 80.2447,
+     "2020": 80.4546,
+     "2021": 80.6505,
+     "2022": 80.8434,
+     "2023": 81.0586,
+     "2024": 81.2861,
+     "2025": 81.52,
+     "2026": 81.76,
+     "2027": 82.0062,
+     "2028": 82.2584,
+     "2029": 82.5164,
+     "2030": 82.7845,
+     "2031": 83.0133,
+     "2032": 83.2382,
+     "2033": 83.4663,
+     "2034": 83.6969,
+     "2035": 83.9298,
+     "2036": 84.1649,
+     "2037": 84.4018,
+     "2038": 84.6404,
+     "2039": 84.8805,
+     "2040": 85.1221,
+     "2041": 85.3647,
+     "2042": 85.6082,
+     "2043": 85.8524,
+     "2044": 86.0972,
+     "2045": 86.3422,
+     "2046": 86.5875,
+     "2047": 86.8328,
+     "2048": 87.078,
+     "2049": 87.3228,
+     "2050": 87.5668
+    }
+   }
+  },
   "쿠바": {
    "location": {
     "id": 192,
     "iso3": "CUB",
     "sourceName": "Cuba",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "192"
    },
    "series": {
     "urbanPopulation": {
@@ -50238,7 +50357,8 @@
     "id": 214,
     "iso3": "DOM",
     "sourceName": "Dominican Republic",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "214"
    },
    "series": {
     "urbanPopulation": {
@@ -50660,7 +50780,8 @@
     "id": 332,
     "iso3": "HTI",
     "sourceName": "Haiti",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "332"
    },
    "series": {
     "urbanPopulation": {
@@ -51082,7 +51203,8 @@
     "id": 388,
     "iso3": "JAM",
     "sourceName": "Jamaica",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "388"
    },
    "series": {
     "urbanPopulation": {
@@ -51504,7 +51626,8 @@
     "id": 188,
     "iso3": "CRI",
     "sourceName": "Costa Rica",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "188"
    },
    "series": {
     "urbanPopulation": {
@@ -51926,7 +52049,8 @@
     "id": 222,
     "iso3": "SLV",
     "sourceName": "El Salvador",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "222"
    },
    "series": {
     "urbanPopulation": {
@@ -52348,7 +52472,8 @@
     "id": 484,
     "iso3": "MEX",
     "sourceName": "Mexico",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "484"
    },
    "series": {
     "urbanPopulation": {
@@ -52770,7 +52895,8 @@
     "id": 591,
     "iso3": "PAN",
     "sourceName": "Panama",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "591"
    },
    "series": {
     "urbanPopulation": {
@@ -53192,7 +53318,8 @@
     "id": 32,
     "iso3": "ARG",
     "sourceName": "Argentina",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "32"
    },
    "series": {
     "urbanPopulation": {
@@ -53614,7 +53741,8 @@
     "id": 68,
     "iso3": "BOL",
     "sourceName": "Bolivia (Plurinational State of)",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "68"
    },
    "series": {
     "urbanPopulation": {
@@ -54036,7 +54164,8 @@
     "id": 76,
     "iso3": "BRA",
     "sourceName": "Brazil",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "76"
    },
    "series": {
     "urbanPopulation": {
@@ -54458,7 +54587,8 @@
     "id": 152,
     "iso3": "CHL",
     "sourceName": "Chile",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "152"
    },
    "series": {
     "urbanPopulation": {
@@ -54880,7 +55010,8 @@
     "id": 170,
     "iso3": "COL",
     "sourceName": "Colombia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "170"
    },
    "series": {
     "urbanPopulation": {
@@ -55302,7 +55433,8 @@
     "id": 218,
     "iso3": "ECU",
     "sourceName": "Ecuador",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "218"
    },
    "series": {
     "urbanPopulation": {
@@ -55724,7 +55856,8 @@
     "id": 328,
     "iso3": "GUY",
     "sourceName": "Guyana",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "328"
    },
    "series": {
     "urbanPopulation": {
@@ -56146,7 +56279,8 @@
     "id": 600,
     "iso3": "PRY",
     "sourceName": "Paraguay",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "600"
    },
    "series": {
     "urbanPopulation": {
@@ -56568,7 +56702,8 @@
     "id": 604,
     "iso3": "PER",
     "sourceName": "Peru",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "604"
    },
    "series": {
     "urbanPopulation": {
@@ -56990,7 +57125,8 @@
     "id": 740,
     "iso3": "SUR",
     "sourceName": "Suriname",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "740"
    },
    "series": {
     "urbanPopulation": {
@@ -57412,7 +57548,8 @@
     "id": 858,
     "iso3": "URY",
     "sourceName": "Uruguay",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "858"
    },
    "series": {
     "urbanPopulation": {
@@ -57834,7 +57971,8 @@
     "id": 862,
     "iso3": "VEN",
     "sourceName": "Venezuela (Bolivarian Republic of)",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "862"
    },
    "series": {
     "urbanPopulation": {
@@ -58251,12 +58389,436 @@
     }
    }
   },
+  "앵글로아메리카": {
+   "location": {
+    "id": 905,
+    "iso3": null,
+    "sourceName": "NORTHERN AMERICA",
+    "type": "Geographic region",
+    "sdmxCode": "21"
+   },
+   "series": {
+    "urbanPopulation": {
+     "1950": 107227197.0,
+     "1951": 110050812.0,
+     "1952": 112975777.0,
+     "1953": 115976855.0,
+     "1954": 119060331.0,
+     "1955": 122206112.0,
+     "1956": 125402614.0,
+     "1957": 128647122.0,
+     "1958": 131877818.0,
+     "1959": 135185568.0,
+     "1960": 138578625.0,
+     "1961": 142055469.0,
+     "1962": 145614528.0,
+     "1963": 149123344.0,
+     "1964": 152565598.0,
+     "1965": 155860275.0,
+     "1966": 158916036.0,
+     "1967": 161736266.0,
+     "1968": 164323872.0,
+     "1969": 166704949.0,
+     "1970": 169094208.0,
+     "1971": 171484566.0,
+     "1972": 173565966.0,
+     "1973": 175389540.0,
+     "1974": 177151864.0,
+     "1975": 178913295.0,
+     "1976": 180670969.0,
+     "1977": 182462702.0,
+     "1978": 184284923.0,
+     "1979": 186167614.0,
+     "1980": 188185988.0,
+     "1981": 190313109.0,
+     "1982": 192534482.0,
+     "1983": 194830021.0,
+     "1984": 197148336.0,
+     "1985": 199487621.0,
+     "1986": 201821197.0,
+     "1987": 204176322.0,
+     "1988": 206627345.0,
+     "1989": 209186270.0,
+     "1990": 212092781.0,
+     "1991": 215421663.0,
+     "1992": 219004726.0,
+     "1993": 222696651.0,
+     "1994": 226372743.0,
+     "1995": 230030017.0,
+     "1996": 233627004.0,
+     "1997": 237123692.0,
+     "1998": 240545341.0,
+     "1999": 243833018.0,
+     "2000": 246983959.0,
+     "2001": 250181114.0,
+     "2002": 253422916.0,
+     "2003": 256671073.0,
+     "2004": 259939913.0,
+     "2005": 263213077.0,
+     "2006": 266487892.0,
+     "2007": 269766720.0,
+     "2008": 272970195.0,
+     "2009": 275996950.0,
+     "2010": 278847446.0,
+     "2011": 281612203.0,
+     "2012": 284317883.0,
+     "2013": 286973800.0,
+     "2014": 289565285.0,
+     "2015": 292097819.0,
+     "2016": 294654974.0,
+     "2017": 297178905.0,
+     "2018": 299516752.0,
+     "2019": 301673396.0,
+     "2020": 302941102.0,
+     "2021": 303874244.0,
+     "2022": 305426642.0,
+     "2023": 307578334.0,
+     "2024": 309758397.0,
+     "2025": 311862277.0,
+     "2026": 313911729.0,
+     "2027": 315939304.0,
+     "2028": 317998128.0,
+     "2029": 320077743.0,
+     "2030": 322165748.0,
+     "2031": 324282984.0,
+     "2032": 326427895.0,
+     "2033": 328596941.0,
+     "2034": 330803909.0,
+     "2035": 333040684.0,
+     "2036": 335298656.0,
+     "2037": 337593780.0,
+     "2038": 339926021.0,
+     "2039": 342274163.0,
+     "2040": 344629241.0,
+     "2041": 347005040.0,
+     "2042": 349418944.0,
+     "2043": 351856983.0,
+     "2044": 354296031.0,
+     "2045": 356752953.0,
+     "2046": 359220846.0,
+     "2047": 361708415.0,
+     "2048": 364222612.0,
+     "2049": 366754880.0,
+     "2050": 369326646.0
+    },
+    "ruralPopulation": {
+     "1950": 60782141.0,
+     "1951": 60579802.0,
+     "1952": 60368332.0,
+     "1953": 60157618.0,
+     "1954": 59964509.0,
+     "1955": 59793065.0,
+     "1956": 59654305.0,
+     "1957": 59567331.0,
+     "1958": 59517128.0,
+     "1959": 59553050.0,
+     "1960": 59674025.0,
+     "1961": 59778611.0,
+     "1962": 59807226.0,
+     "1963": 59752455.0,
+     "1964": 59664296.0,
+     "1965": 59570270.0,
+     "1966": 59496855.0,
+     "1967": 59468731.0,
+     "1968": 59519973.0,
+     "1969": 59733694.0,
+     "1970": 60245378.0,
+     "1971": 60942387.0,
+     "1972": 61613359.0,
+     "1973": 62236061.0,
+     "1974": 62856353.0,
+     "1975": 63473324.0,
+     "1976": 64062439.0,
+     "1977": 64636239.0,
+     "1978": 65199232.0,
+     "1979": 65754104.00000001,
+     "1980": 66316399.00000001,
+     "1981": 66844346.00000001,
+     "1982": 67300702.0,
+     "1983": 67681882.0,
+     "1984": 67990023.0,
+     "1985": 68245324.0,
+     "1986": 68459585.0,
+     "1987": 68642766.0,
+     "1988": 68811693.0,
+     "1989": 68973630.0,
+     "1990": 69189591.0,
+     "1991": 69327002.0,
+     "1992": 69221918.0,
+     "1993": 68888210.0,
+     "1994": 68370822.0,
+     "1995": 67756711.0,
+     "1996": 67123137.0,
+     "1997": 66526100.00000001,
+     "1998": 66027115.99999999,
+     "1999": 65675490.00000001,
+     "2000": 65516026.0,
+     "2001": 65436654.0,
+     "2002": 65321980.0,
+     "2003": 65198866.0,
+     "2004": 65104645.0,
+     "2005": 65069535.0,
+     "2006": 65127274.0,
+     "2007": 65295517.0,
+     "2008": 65575221.00000001,
+     "2009": 65978990.00000001,
+     "2010": 66538606.0,
+     "2011": 67174907.0,
+     "2012": 67846407.0,
+     "2013": 68556455.0,
+     "2014": 69310019.0,
+     "2015": 70116344.0,
+     "2016": 71003235.0,
+     "2017": 71959819.0,
+     "2018": 72960566.0,
+     "2019": 74025673.0,
+     "2020": 74793248.0,
+     "2021": 74867723.0,
+     "2022": 75055134.0,
+     "2023": 75324406.0,
+     "2024": 75536708.0,
+     "2025": 75666127.0,
+     "2026": 75717094.0,
+     "2027": 75696579.0,
+     "2028": 75616426.0,
+     "2029": 75473423.0,
+     "2030": 75263928.0,
+     "2031": 74992140.0,
+     "2032": 74657199.0,
+     "2033": 74257970.0,
+     "2034": 73796731.0,
+     "2035": 73271108.0,
+     "2036": 72678682.0,
+     "2037": 72022221.0,
+     "2038": 71301389.0,
+     "2039": 70511374.0,
+     "2040": 69650176.0,
+     "2041": 68720345.0,
+     "2042": 67725076.0,
+     "2043": 66661405.0,
+     "2044": 65524856.0,
+     "2045": 64318693.0,
+     "2046": 63041941.0,
+     "2047": 61696357.0,
+     "2048": 60283063.0,
+     "2049": 58800880.0,
+     "2050": 57253239.0
+    },
+    "totalPopulation": {
+     "1950": 168009338.0,
+     "1951": 170630614.0,
+     "1952": 173344109.0,
+     "1953": 176134473.0,
+     "1954": 179024840.0,
+     "1955": 181999177.0,
+     "1956": 185056919.0,
+     "1957": 188214453.0,
+     "1958": 191394946.0,
+     "1959": 194738618.0,
+     "1960": 198252650.0,
+     "1961": 201834080.0,
+     "1962": 205421754.0,
+     "1963": 208875799.0,
+     "1964": 212229894.0,
+     "1965": 215430545.0,
+     "1966": 218412891.0,
+     "1967": 221204997.0,
+     "1968": 223843845.0,
+     "1969": 226438643.0,
+     "1970": 229339586.0,
+     "1971": 232426953.0,
+     "1972": 235179325.0,
+     "1973": 237625601.0,
+     "1974": 240008217.0,
+     "1975": 242386619.0,
+     "1976": 244733408.0,
+     "1977": 247098941.0,
+     "1978": 249484155.0,
+     "1979": 251921718.0,
+     "1980": 254502387.0,
+     "1981": 257157455.0,
+     "1982": 259835184.0,
+     "1983": 262511903.0,
+     "1984": 265138359.0,
+     "1985": 267732945.0,
+     "1986": 270280782.0,
+     "1987": 272819088.0,
+     "1988": 275439038.0,
+     "1989": 278159900.0,
+     "1990": 281282372.0,
+     "1991": 284748665.0,
+     "1992": 288226644.0,
+     "1993": 291584861.0,
+     "1994": 294743565.0,
+     "1995": 297786728.0,
+     "1996": 300750141.0,
+     "1997": 303649792.0,
+     "1998": 306572457.0,
+     "1999": 309508508.0,
+     "2000": 312499985.0,
+     "2001": 315617768.0,
+     "2002": 318744896.0,
+     "2003": 321869939.0,
+     "2004": 325044558.0,
+     "2005": 328282612.0,
+     "2006": 331615166.0,
+     "2007": 335062237.0,
+     "2008": 338545416.0,
+     "2009": 341975940.0,
+     "2010": 345386052.0,
+     "2011": 348787110.0,
+     "2012": 352164290.0,
+     "2013": 355530255.0,
+     "2014": 358875304.0,
+     "2015": 362214163.0,
+     "2016": 365658209.0,
+     "2017": 369138724.0,
+     "2018": 372477318.0,
+     "2019": 375699069.0,
+     "2020": 377734350.0,
+     "2021": 378741967.0,
+     "2022": 380481776.0,
+     "2023": 382902740.0,
+     "2024": 385295105.0,
+     "2025": 387528404.0,
+     "2026": 389628823.0,
+     "2027": 391635883.0,
+     "2028": 393614554.0,
+     "2029": 395551166.0,
+     "2030": 397429676.0,
+     "2031": 399275124.0,
+     "2032": 401085094.0,
+     "2033": 402854911.0,
+     "2034": 404600640.0,
+     "2035": 406311792.0,
+     "2036": 407977338.0,
+     "2037": 409616001.0,
+     "2038": 411227410.0,
+     "2039": 412785537.0,
+     "2040": 414279417.0,
+     "2041": 415725385.0,
+     "2042": 417144020.0,
+     "2043": 418518388.0,
+     "2044": 419820887.0,
+     "2045": 421071646.0,
+     "2046": 422262787.0,
+     "2047": 423404772.0,
+     "2048": 424505675.0,
+     "2049": 425555760.0,
+     "2050": 426579885.0
+    },
+    "urbanShare": {
+     "1950": 63.8222,
+     "1951": 64.4965,
+     "1952": 65.1743,
+     "1953": 65.8456,
+     "1954": 66.5049,
+     "1955": 67.1465,
+     "1956": 67.7643,
+     "1957": 68.3514,
+     "1958": 68.9035,
+     "1959": 69.419,
+     "1960": 69.9,
+     "1961": 70.3823,
+     "1962": 70.8856,
+     "1963": 71.3933,
+     "1964": 71.887,
+     "1965": 72.3483,
+     "1966": 72.7595,
+     "1967": 73.116,
+     "1968": 73.41,
+     "1969": 73.6204,
+     "1970": 73.7309,
+     "1971": 73.78,
+     "1972": 73.8015,
+     "1973": 73.8092,
+     "1974": 73.8107,
+     "1975": 73.8132,
+     "1976": 73.8236,
+     "1977": 73.842,
+     "1978": 73.8664,
+     "1979": 73.899,
+     "1980": 73.9427,
+     "1981": 74.0065,
+     "1982": 74.0987,
+     "1983": 74.2176,
+     "1984": 74.3568,
+     "1985": 74.5099,
+     "1986": 74.6709,
+     "1987": 74.8395,
+     "1988": 75.0175,
+     "1989": 75.2036,
+     "1990": 75.4021,
+     "1991": 75.6533,
+     "1992": 75.9835,
+     "1993": 76.3746,
+     "1994": 76.8033,
+     "1995": 77.2466,
+     "1996": 77.6814,
+     "1997": 78.0912,
+     "1998": 78.4628,
+     "1999": 78.7807,
+     "2000": 79.0349,
+     "2001": 79.2671,
+     "2002": 79.5065,
+     "2003": 79.7437,
+     "2004": 79.9705,
+     "2005": 80.1788,
+     "2006": 80.3606,
+     "2007": 80.5124,
+     "2008": 80.6303,
+     "2009": 80.7065,
+     "2010": 80.735,
+     "2011": 80.7404,
+     "2012": 80.7344,
+     "2013": 80.7171,
+     "2014": 80.6869,
+     "2015": 80.6423,
+     "2016": 80.5821,
+     "2017": 80.506,
+     "2018": 80.4121,
+     "2019": 80.2966,
+     "2020": 80.1995,
+     "2021": 80.2325,
+     "2022": 80.2737,
+     "2023": 80.3281,
+     "2024": 80.3951,
+     "2025": 80.4747,
+     "2026": 80.5669,
+     "2027": 80.6717,
+     "2028": 80.7892,
+     "2029": 80.9194,
+     "2030": 81.0623,
+     "2031": 81.2179,
+     "2032": 81.3862,
+     "2033": 81.5671,
+     "2034": 81.7606,
+     "2035": 81.9668,
+     "2036": 82.1856,
+     "2037": 82.4171,
+     "2038": 82.6613,
+     "2039": 82.9182,
+     "2040": 83.1876,
+     "2041": 83.4698,
+     "2042": 83.7646,
+     "2043": 84.072,
+     "2044": 84.3922,
+     "2045": 84.725,
+     "2046": 85.0704,
+     "2047": 85.4285,
+     "2048": 85.7992,
+     "2049": 86.1826,
+     "2050": 86.5785
+    }
+   }
+  },
   "캐나다": {
    "location": {
     "id": 124,
     "iso3": "CAN",
     "sourceName": "Canada",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "124"
    },
    "series": {
     "urbanPopulation": {
@@ -58678,7 +59240,8 @@
     "id": 840,
     "iso3": "USA",
     "sourceName": "United States of America",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "840"
    },
    "series": {
     "urbanPopulation": {
@@ -59100,7 +59663,8 @@
     "id": 909,
     "iso3": null,
     "sourceName": "OCEANIA",
-    "type": "Geographic region"
+    "type": "Geographic region",
+    "sdmxCode": "9"
    },
    "series": {
     "urbanPopulation": {
@@ -59522,7 +60086,8 @@
     "id": 36,
     "iso3": "AUS",
     "sourceName": "Australia",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "36"
    },
    "series": {
     "urbanPopulation": {
@@ -59944,7 +60509,8 @@
     "id": 554,
     "iso3": "NZL",
     "sourceName": "New Zealand",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "554"
    },
    "series": {
     "urbanPopulation": {
@@ -60366,7 +60932,8 @@
     "id": 598,
     "iso3": "PNG",
     "sourceName": "Papua New Guinea",
-    "type": "Country/Area"
+    "type": "Country/Area",
+    "sdmxCode": "598"
    },
    "series": {
     "urbanPopulation": {

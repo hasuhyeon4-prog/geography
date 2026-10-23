@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "stations": {
+  "다르에스살람": {
+   "wmoId": "63894",
+   "period": [
+    1991,
+    2020
+   ],
+   "sourceFile": "jma-dar.html",
+   "periodSource": "jma-outline.html",
+   "climateGraph": true,
+   "lectureBlockId": "L1-B0494",
+   "monthlyMeanTemperatureC": [
+    28.2,
+    28.2,
+    27.7,
+    26.7,
+    26.0,
+    24.6,
+    23.8,
+    24.1,
+    24.9,
+    26.1,
+    26.9,
+    27.9
+   ],
+   "monthlyPrecipitationMm": [
+    53.4,
+    66.0,
+    167.6,
+    259.5,
+    162.8,
+    22.0,
+    16.5,
+    15.3,
+    21.8,
+    79.0,
+    121.7,
+    135.2
+   ]
+  },
+  "이키토스": {
+   "wmoId": "84377",
+   "period": [
+    1991,
+    2020
+   ],
+   "sourceFile": "jma-iquitos.html",
+   "periodSource": "jma-outline.html",
+   "climateGraph": true,
+   "policy": "JMA 84377의 기온·강수를 함께 사용. 기존 San Roque/다른 관측소 강수와 결합하지 않는다.",
+   "monthlyMeanTemperatureC": [
+    26.2,
+    26.1,
+    26.1,
+    26.0,
+    25.8,
+    25.5,
+    25.2,
+    25.8,
+    26.3,
+    26.4,
+    26.4,
+    26.2
+   ],
+   "monthlyPrecipitationMm": [
+    312.1,
+    294.8,
+    399.6,
+    340.2,
+    291.6,
+    218.6,
+    201.4,
+    165.8,
+    200.5,
+    271.2,
+    304.4,
+    361.6
+   ]
+  }
+ },
+ "metadata": {
+  "아디스아바바": {
+   "wmoId": "63450",
+   "nameInSource": "ADDIS ABABA-BOLE",
+   "elevationM": 2354,
+   "sourceFile": "jma-addis.html",
+   "verification": "같은 WMO 번호인 JMA 관측소 표기",
+   "policy": "다른 등록 시점/관측점의 2332·2355m를 혼합하지 않는다."
+  }
+ },
+ "partialCandidates": {
+  "다르에스살람-NOAA": {
+   "wmoId": "63894",
+   "coordinates": [
+    39.2,
+    -6.87
+   ],
+   "elevationM": 53,
+   "period": [
+    1991,
+    2020
+   ],
+   "monthlyPrecipitationMm": [
+    54.2,
+    70.8,
+    169.6,
+    263.6,
+    172.2,
+    31.3,
+    15.8,
+    17.8,
+    20.2,
+    77.3,
+    114.4,
+    110.2
+   ],
+   "monthlyMeanTemperatureC": null,
+   "sourceFile": "dar.csv",
+   "climateGraph": false,
+   "reason": "WMO CSV에는 parameter 5 월평균 기온이 없다. 최고·최저의 평균으로 채우지 않는다."
+  },
+  "키토": {
+   "climateGraph": false,
+   "reason": "JMA n=84072가 WAKKANAI로 반환됨. INAMHI M0024와 다른 지점 자료를 합치지 않는다."
+  },
+  "아부자": {
+   "climateGraph": false,
+   "reason": "JMA n=65125가 WAKKANAI로 반환됨. 12개 수치가 있다는 이유로 아부자 기온으로 채택하지 않는다."
+  }
+ }
+}

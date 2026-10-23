@@ -4,3 +4,9 @@ __pycache__/
 data/extension-sources/lecture-blocks.json
 data/extension-sources/workbook-records.json
 assets/source-figures/
+# Round-two working downloads; only selected evidence and the pinned archive ship.
+data/round2-sources/*
+!data/round2-sources/curation.json
+!data/round2-sources/lecture-evidence.json
+!data/round2-sources/country-curation.json
+!data/round2-sources/pew2012-nigeria-row.json

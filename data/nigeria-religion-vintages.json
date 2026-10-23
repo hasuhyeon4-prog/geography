@@ -1,0 +1,53 @@
+{
+ "schemaVersion": 1,
+ "country": "나이지리아",
+ "practice": "suppliedData",
+ "recallEligible": false,
+ "vintages": [
+  {
+   "publication": 2012,
+   "referenceYear": 2010,
+   "values": {
+    "christianity": 49.3,
+    "islam": 48.8,
+    "unaffiliated": 0.4,
+    "folk": 1.4,
+    "hinduism": "<0.1",
+    "buddhism": "<0.1",
+    "other": "<0.1",
+    "judaism": "<0.1"
+   },
+   "sourceFile": "pew2012-nigeria-row.json",
+   "largestReligion": "christianity"
+  },
+  {
+   "publication": 2025,
+   "referenceYear": 2010,
+   "values": {
+    "christianity": 44.39326477,
+    "islam": 54.54431915,
+    "unaffiliated": 0.423864573,
+    "buddhism": 0.0006213,
+    "hinduism": 0.00018639,
+    "judaism": 6.213e-05,
+    "other": 0.637677431
+   },
+   "largestReligion": "islam"
+  },
+  {
+   "publication": 2025,
+   "referenceYear": 2020,
+   "values": {
+    "christianity": 43.35137558,
+    "islam": 56.06650925,
+    "unaffiliated": 0.379311502,
+    "buddhism": 0.000480014,
+    "hinduism": 0.000144004,
+    "judaism": 4.80014e-05,
+    "other": 0.202133209
+   },
+   "largestReligion": "islam"
+  }
+ ],
+ "policy": "같은 2010년 추정도 2012·2025 발행판에서 1위가 달라진다. 연도 변화와 추정판 개정을 분리한다. 현재의 고정 1위 회상으로 사용하지 않는다. <0.1을 0으로 바꾸지 않는다."
+}

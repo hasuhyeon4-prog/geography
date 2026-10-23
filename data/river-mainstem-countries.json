@@ -1,0 +1,51 @@
+{
+ "schemaVersion": 1,
+ "rivers": {
+  "메콩강": {
+   "mainstemCountries": [
+    "중국",
+    "미얀마",
+    "라오스",
+    "타이",
+    "캄보디아",
+    "베트남"
+   ],
+   "includesBoundarySections": true,
+   "complete": true,
+   "sourceFile": "mekong.html",
+   "publisher": "Mekong River Commission"
+  },
+  "라인강": {
+   "mainstemCountries": [
+    "스위스",
+    "리히텐슈타인",
+    "오스트리아",
+    "독일",
+    "프랑스",
+    "네덜란드"
+   ],
+   "includesBoundarySections": true,
+   "complete": true,
+   "sourceFiles": [
+    "rhine-waterworks.html",
+    "rhine-alpine.html"
+   ],
+   "publisher": "IAWR / International Commission for the Protection of the Rhine",
+   "notMainstem": [
+    "룩셈부르크"
+   ],
+   "note": "룩셈부르크는 유역·위원회 회원국과 본류 통과국을 혼동하지 않도록 별도로 둔다."
+  }
+ },
+ "unresolved": [
+  "이라와디강",
+  "짜오프라야강",
+  "인더스강",
+  "갠지스강",
+  "콩고강",
+  "잠베지강",
+  "나일강"
+ ],
+ "practice": "suppliedData",
+ "policy": "complete:true는 해당 하천의 본류(국경 구간 포함)만. 미해결 하천의 지류·유역 국가를 임의로 true/false에 넣지 않는다."
+}

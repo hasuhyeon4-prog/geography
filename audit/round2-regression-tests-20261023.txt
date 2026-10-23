@@ -1,0 +1,10 @@
+✔ the committed knowledge base is what the builder produces from committed inputs (56769.27124ms)
+✔ two-period tables: cells are the WUP values of their years, and change <보기> recompute from them (18053.537165ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 56888.962511

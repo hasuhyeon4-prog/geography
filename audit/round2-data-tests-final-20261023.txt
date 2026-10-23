@@ -1,0 +1,27 @@
+✔ UN geographical rows include Northern America 905, not USA + Canada (19.528205ms)
+✔ claim truth and falsehood never overlap; omissions remain unknown (1.136588ms)
+✔ overlapping stilt houses, frozen soils, and pastoralism never become false distractors (0.582054ms)
+✔ each claim and its contrast retain available lecture evidence blocks (2.313475ms)
+✔ highland seasonal contrast does not universalise tropical highland conditions (1.184288ms)
+✔ Iran has coal; the four reported-zero countries are independently labelled (0.311993ms)
+✔ Chile lignite zero is not total coal zero; gem diamonds remain a separate commodity (6.737383ms)
+✔ manufacturing has all 45 state-years and separate same-year measure denominators (5.417904ms)
+✔ five US state geometries and all nine named rivers preserve source geometry (3.864238ms)
+✔ net migration reads UN regional series rather than similarly named OWID aggregates (0.429988ms)
+✔ printed exam values retain their own units, periods and old vintage (0.317131ms)
+✔ Nigeria reversal is a publication-vintage difference even at the same reference year (0.393844ms)
+✔ landlocked complete list has 44 unique ISO identities; Caspian coasts and DRC are handled (0.515265ms)
+✔ OPEC year-end membership keeps join/exit years and the Indonesia intrayear exception (0.24262ms)
+✔ GaWC tiers keep ties and vintage changes instead of inventing a total rank (0.72068ms)
+✔ complete climate graphs use one station and the documented 1991-2020 period (0.301247ms)
+✔ round-two outputs regenerate offline from pinned source bytes (5287.259213ms)
+✔ all delivered source snapshots match the manifest hashes and byte counts (145.402162ms)
+✔ offline regeneration works without the original working-download directory (5213.73718ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10791.937749

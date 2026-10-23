@@ -1,0 +1,163 @@
+{
+ "schemaVersion": 1,
+ "forms": [
+  {
+   "exam": "2024학년도 수능 14번",
+   "practice": "suppliedData",
+   "year": 2020,
+   "unit": "천 명",
+   "columns": [
+    "지역(대륙)",
+    "순 이주"
+   ],
+   "values": {
+    "유럽": 1436,
+    "앵글로아메리카": 871,
+    "오세아니아": 151,
+    "라틴 아메리카": -164,
+    "아프리카": -202,
+    "아시아": -2092
+   },
+   "aliases": {
+    "(가)": "유럽",
+    "(나)": "라틴 아메리카",
+    "(다)": "아프리카",
+    "(라)": "아시아"
+   },
+   "notes": [
+    "러시아는 유럽에 포함",
+    "순 이주=유입 인구−유출 인구",
+    "해당 대륙에 속한 모든 국가의 순 이주를 합산한 값"
+   ],
+   "fertilityChart": {
+    "years": [
+     1960,
+     1990,
+     2020
+    ],
+    "unit": "명/여성 1명",
+    "exactValues": null,
+    "reason": "막대에 정확한 수치가 표기되지 않았다. 원문 그림으로 제시한다."
+   },
+   "source": {
+    "snapshot": "q2024-q14-data.png",
+    "originalDocument": "2024학년도 수능 문제지",
+    "page": 3,
+    "question": 14,
+    "verification": "rendered PDF visual review"
+   },
+   "lectureBlockIds": [
+    "L1-B1415",
+    "L1-B1416"
+   ]
+  },
+  {
+   "exam": "2026학년도 9월 15번",
+   "practice": "suppliedData",
+   "source": {
+    "snapshot": "q2026-q15-data.png",
+    "originalDocument": "2026학년도 9월 문제지",
+    "page": 3,
+    "question": 15,
+    "verification": "원문 표·그래프를 렌더링하여 대조"
+   },
+   "lectureBlockIds": [
+    "L1-B1420",
+    "L1-B1421"
+   ],
+   "table": {
+    "title": "미국 내 이민자 수",
+    "year": 2020,
+    "unit": "천 명",
+    "columns": [
+     "출신 국가",
+     "이민자 수"
+    ],
+    "values": {
+     "멕시코": 10853,
+     "세네갈": 61,
+     "인도": 2724,
+     "독일": 534
+    },
+    "aliases": {
+     "(가)": "멕시코",
+     "(나)": "세네갈",
+     "(다)": "인도",
+     "(라)": "독일"
+    }
+   },
+   "pairedChart": {
+    "title": "인구의 자연 증가율",
+    "periods": [
+     "1960–1965",
+     "2015–2020"
+    ],
+    "unit": "‰",
+    "exactValues": null,
+    "reason": "눈금 10‰ 간격이며 점에 정확한 숫자가 없다. 원문 그림을 함께 제시한다."
+   }
+  },
+  {
+   "exam": "2026학년도 9월 11번",
+   "practice": "suppliedData",
+   "source": {
+    "snapshot": "q2026-q11-data.png",
+    "originalDocument": "2026학년도 9월 문제지",
+    "page": 3,
+    "question": 11,
+    "verification": "강의 rId210 및 원문 대조"
+   },
+   "chart": {
+    "title": "오스트레일리아의 무역 상대국",
+    "periods": [
+     1950,
+     2020
+    ],
+    "unit": "%",
+    "directions": [
+     "수출",
+     "수입"
+    ],
+    "aliases": {
+     "A": "미국",
+     "B": "중국",
+     "C": "일본"
+    },
+    "displayedTop3": {
+     "1950": {
+      "수출": [
+       "영국",
+       "미국",
+       "프랑스"
+      ],
+      "수입": [
+       "영국",
+       "미국",
+       "인도"
+      ]
+     },
+     "2020": {
+      "수출": [
+       "중국",
+       "일본",
+       "대한민국"
+      ],
+      "수입": [
+       "중국",
+       "미국",
+       "일본"
+      ]
+     }
+    },
+    "remainderLabel": "기타",
+    "exactValues": null,
+    "reason": "각 조각의 수치가 표기되지 않은 누적 막대이다. 픽셀을 정확한 백분율로 바꾸지 않는다."
+   },
+   "originalDfatPeriods": [
+    "1949-50",
+    "1950-51"
+   ],
+   "periodPolicy": "강의·기출의 1950 표기는 그대로 given에 보존. DFAT 회계연도 수치로 덮어쓰지 않는다."
+  }
+ ]
+}

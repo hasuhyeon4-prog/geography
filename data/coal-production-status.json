@@ -1,0 +1,633 @@
+{
+ "schemaVersion": 1,
+ "source": "U.S. EIA International annual coal production, product 7/activity 1/unit TST",
+ "unit": "thousand short tons",
+ "countries": {
+  "사우디아라비아": {
+   "iso3": "SAU",
+   "series": {
+    "2024": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2023": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2022": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2021": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2020": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2019": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2018": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2017": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2016": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2015": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2014": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2013": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    }
+   }
+  },
+  "카타르": {
+   "iso3": "QAT",
+   "series": {
+    "2024": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2023": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2022": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2021": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2020": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2019": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2018": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2017": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2016": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2015": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2014": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2013": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    }
+   }
+  },
+  "이란": {
+   "iso3": "IRN",
+   "series": {
+    "2024": {
+     "value": 2172.71622095408,
+     "rawValue": "2172.71622095408",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2023": {
+     "value": 2006.08184359,
+     "rawValue": "2006.08184359",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2022": {
+     "value": 1814.40226,
+     "rawValue": "1814.40226",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2021": {
+     "value": 1810.176664846,
+     "rawValue": "1810.176664846",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2020": {
+     "value": 1699.85351173,
+     "rawValue": "1699.85351173",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2019": {
+     "value": 1670.42073242,
+     "rawValue": "1670.42073242",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2018": {
+     "value": 1888.20081219,
+     "rawValue": "1888.20081219",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2017": {
+     "value": 1739.23133186,
+     "rawValue": "1739.23133186",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2016": {
+     "value": 1471.58385,
+     "rawValue": "1471.58385",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2015": {
+     "value": 1329.38586,
+     "rawValue": "1329.38586",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2014": {
+     "value": 1184.98325000005,
+     "rawValue": "1184.98325000005",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2013": {
+     "value": 1218.05254999999,
+     "rawValue": "1218.05254999999",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    }
+   }
+  },
+  "이라크": {
+   "iso3": "IRQ",
+   "series": {
+    "2024": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2023": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2022": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2021": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2020": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2019": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2018": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2017": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2016": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2015": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2014": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2013": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    }
+   }
+  },
+  "쿠웨이트": {
+   "iso3": "KWT",
+   "series": {
+    "2024": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2023": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2022": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2021": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2020": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2019": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2018": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2017": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2016": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2015": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2014": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2013": {
+     "value": 0.0,
+     "rawValue": "0",
+     "status": "reportedZero",
+     "flag": null,
+     "flagDescription": null
+    }
+   }
+  },
+  "칠레": {
+   "iso3": "CHL",
+   "series": {
+    "2024": {
+     "value": 26.753095516135,
+     "rawValue": "26.753095516135",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2023": {
+     "value": 134.0078267,
+     "rawValue": "134.0078267",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2022": {
+     "value": 16.4795345,
+     "rawValue": "16.4795345",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2021": {
+     "value": 47.35854453,
+     "rawValue": "47.35854453",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2020": {
+     "value": 528.2600213,
+     "rawValue": "528.2600213",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2019": {
+     "value": 1572.81007961,
+     "rawValue": "1572.81007961",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2018": {
+     "value": 2487.53337305,
+     "rawValue": "2487.53337305",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2017": {
+     "value": 2673.10175,
+     "rawValue": "2673.10175",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2016": {
+     "value": 2783.33275,
+     "rawValue": "2783.33275",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2015": {
+     "value": 3464.56033,
+     "rawValue": "3464.56033",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2014": {
+     "value": 3487.7088397328,
+     "rawValue": "3487.7088397328",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2013": {
+     "value": 3337.79468,
+     "rawValue": "3337.79468",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    }
+   }
+  },
+  "남아프리카 공화국": {
+   "iso3": "ZAF",
+   "series": {
+    "2024": {
+     "value": 261716.6688275684,
+     "rawValue": "261716.6688275684",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2023": {
+     "value": 262310.519884623,
+     "rawValue": "262310.519884623",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2022": {
+     "value": 269291.767241702,
+     "rawValue": "269291.767241702",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2021": {
+     "value": 259844.247564,
+     "rawValue": "259844.247564",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2020": {
+     "value": 272391.8241,
+     "rawValue": "272391.8241",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2019": {
+     "value": 284234.48717576,
+     "rawValue": "284234.48717576",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2018": {
+     "value": 281553.1555793,
+     "rawValue": "281553.1555793",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2017": {
+     "value": 283431.17325171,
+     "rawValue": "283431.17325171",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2016": {
+     "value": 281986.33034,
+     "rawValue": "281986.33034",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2015": {
+     "value": 282333.55799,
+     "rawValue": "282333.55799",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2014": {
+     "value": 287195.847400001,
+     "rawValue": "287195.847400001",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    },
+    "2013": {
+     "value": 282161.597630004,
+     "rawValue": "282161.597630004",
+     "status": "reportedNonzero",
+     "flag": null,
+     "flagDescription": null
+    }
+   }
+  }
+ },
+ "policy": "0은 원표에 0으로 명시된 경우만. 이란은 생산국이다. OWID TWh null을 0으로 덮어쓰거나 물리 단위와 혼합하지 않는다.",
+ "practice": "suppliedData",
+ "sourceFile": "eia-coal-production.json"
+}

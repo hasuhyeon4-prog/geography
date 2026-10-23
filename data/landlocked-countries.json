@@ -1,0 +1,985 @@
+{
+ "schemaVersion": 1,
+ "countries": {
+  "아프가니스탄": {
+   "iso2": "AF",
+   "iso3": "AFG",
+   "sourceName": "Afghanistan",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "아르메니아": {
+   "iso2": "AM",
+   "iso3": "ARM",
+   "sourceName": "Armenia",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "아제르바이잔": {
+   "iso2": "AZ",
+   "iso3": "AZE",
+   "sourceName": "Azerbaijan",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "부탄": {
+   "iso2": "BT",
+   "iso3": "BTN",
+   "sourceName": "Bhutan",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "볼리비아": {
+   "iso2": "BO",
+   "iso3": "BOL",
+   "sourceName": "Bolivia",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "보츠와나": {
+   "iso2": "BW",
+   "iso3": "BWA",
+   "sourceName": "Botswana",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "부르키나파소": {
+   "iso2": "BF",
+   "iso3": "BFA",
+   "sourceName": "Burkina Faso",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "부룬디": {
+   "iso2": "BI",
+   "iso3": "BDI",
+   "sourceName": "Burundi",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "중앙아프리카 공화국": {
+   "iso2": "CF",
+   "iso3": "CAF",
+   "sourceName": "Central African Republic",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "차드": {
+   "iso2": "TD",
+   "iso3": "TCD",
+   "sourceName": "Chad",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "에스와티니": {
+   "iso2": "SZ",
+   "iso3": "SWZ",
+   "sourceName": "Eswatini",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "에티오피아": {
+   "iso2": "ET",
+   "iso3": "ETH",
+   "sourceName": "Ethiopia",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "카자흐스탄": {
+   "iso2": "KZ",
+   "iso3": "KAZ",
+   "sourceName": "Kazakhstan",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "키르기스스탄": {
+   "iso2": "KG",
+   "iso3": "KGZ",
+   "sourceName": "Kyrgyzstan",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "라오스": {
+   "iso2": "LA",
+   "iso3": "LAO",
+   "sourceName": "Laos",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "레소토": {
+   "iso2": "LS",
+   "iso3": "LSO",
+   "sourceName": "Lesotho",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "말라위": {
+   "iso2": "MW",
+   "iso3": "MWI",
+   "sourceName": "Malawi",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "말리": {
+   "iso2": "ML",
+   "iso3": "MLI",
+   "sourceName": "Mali",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "몽골": {
+   "iso2": "MN",
+   "iso3": "MNG",
+   "sourceName": "Mongolia",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "네팔": {
+   "iso2": "NP",
+   "iso3": "NPL",
+   "sourceName": "Nepal",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "니제르": {
+   "iso2": "NE",
+   "iso3": "NER",
+   "sourceName": "Niger",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "북마케도니아": {
+   "iso2": "MK",
+   "iso3": "MKD",
+   "sourceName": "North Macedonia",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "파라과이": {
+   "iso2": "PY",
+   "iso3": "PRY",
+   "sourceName": "Paraguay",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "몰도바": {
+   "iso2": "MD",
+   "iso3": "MDA",
+   "sourceName": "Moldova",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "르완다": {
+   "iso2": "RW",
+   "iso3": "RWA",
+   "sourceName": "Rwanda",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "남수단": {
+   "iso2": "SS",
+   "iso3": "SDS",
+   "sourceName": "South Sudan",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "타지키스탄": {
+   "iso2": "TJ",
+   "iso3": "TJK",
+   "sourceName": "Tajikistan",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "투르크메니스탄": {
+   "iso2": "TM",
+   "iso3": "TKM",
+   "sourceName": "Turkmenistan",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "우간다": {
+   "iso2": "UG",
+   "iso3": "UGA",
+   "sourceName": "Uganda",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "우즈베키스탄": {
+   "iso2": "UZ",
+   "iso3": "UZB",
+   "sourceName": "Uzbekistan",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "잠비아": {
+   "iso2": "ZM",
+   "iso3": "ZMB",
+   "sourceName": "Zambia",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "짐바브웨": {
+   "iso2": "ZW",
+   "iso3": "ZWE",
+   "sourceName": "Zimbabwe",
+   "source": {
+    "sourceFile": "un-lldc.html",
+    "scope": "UN LLDC 32개국"
+   }
+  },
+  "안도라": {
+   "iso2": "AD",
+   "iso3": "AND",
+   "sourceName": "Andorra",
+   "source": {
+    "sourceFile": "landlocked-anu-excerpt.json",
+    "locator": "printed page 3, footnote 3",
+    "scope": "유럽 내륙 9개국을 명시한 연구 원문"
+   }
+  },
+  "오스트리아": {
+   "iso2": "AT",
+   "iso3": "AUT",
+   "sourceName": "Austria",
+   "source": {
+    "sourceFile": "landlocked-anu-excerpt.json",
+    "locator": "printed page 3, footnote 3",
+    "scope": "유럽 내륙 9개국을 명시한 연구 원문"
+   }
+  },
+  "스위스": {
+   "iso2": "CH",
+   "iso3": "CHE",
+   "sourceName": "Switzerland",
+   "source": {
+    "sourceFile": "landlocked-anu-excerpt.json",
+    "locator": "printed page 3, footnote 3",
+    "scope": "유럽 내륙 9개국을 명시한 연구 원문"
+   }
+  },
+  "체코": {
+   "iso2": "CZ",
+   "iso3": "CZE",
+   "sourceName": "Czechia",
+   "source": {
+    "sourceFile": "landlocked-anu-excerpt.json",
+    "locator": "printed page 3, footnote 3",
+    "scope": "유럽 내륙 9개국을 명시한 연구 원문"
+   }
+  },
+  "헝가리": {
+   "iso2": "HU",
+   "iso3": "HUN",
+   "sourceName": "Hungary",
+   "source": {
+    "sourceFile": "landlocked-anu-excerpt.json",
+    "locator": "printed page 3, footnote 3",
+    "scope": "유럽 내륙 9개국을 명시한 연구 원문"
+   }
+  },
+  "리히텐슈타인": {
+   "iso2": "LI",
+   "iso3": "LIE",
+   "sourceName": "Liechtenstein",
+   "source": {
+    "sourceFile": "landlocked-anu-excerpt.json",
+    "locator": "printed page 3, footnote 3",
+    "scope": "유럽 내륙 9개국을 명시한 연구 원문"
+   }
+  },
+  "룩셈부르크": {
+   "iso2": "LU",
+   "iso3": "LUX",
+   "sourceName": "Luxembourg",
+   "source": {
+    "sourceFile": "landlocked-anu-excerpt.json",
+    "locator": "printed page 3, footnote 3",
+    "scope": "유럽 내륙 9개국을 명시한 연구 원문"
+   }
+  },
+  "산마리노": {
+   "iso2": "SM",
+   "iso3": "SMR",
+   "sourceName": "San Marino",
+   "source": {
+    "sourceFile": "landlocked-anu-excerpt.json",
+    "locator": "printed page 3, footnote 3",
+    "scope": "유럽 내륙 9개국을 명시한 연구 원문"
+   }
+  },
+  "슬로바키아": {
+   "iso2": "SK",
+   "iso3": "SVK",
+   "sourceName": "Slovakia",
+   "source": {
+    "sourceFile": "landlocked-anu-excerpt.json",
+    "locator": "printed page 3, footnote 3",
+    "scope": "유럽 내륙 9개국을 명시한 연구 원문"
+   }
+  },
+  "벨라루스": {
+   "iso2": "BY",
+   "iso3": "BLR",
+   "sourceName": "Belarus",
+   "source": {
+    "sourceFile": "worldbank-landlocked-excerpt.json",
+    "locator": "printed page 22, Box 3"
+   }
+  },
+  "세르비아": {
+   "iso2": "RS",
+   "iso3": "SRB",
+   "sourceName": "Serbia",
+   "source": {
+    "sourceFile": "serbia-geography-excerpt.json",
+    "locator": "Executive summary / Introduction"
+   }
+  },
+  "바티칸": {
+   "iso2": "VA",
+   "iso3": "VAT",
+   "sourceName": "Vatican",
+   "source": {
+    "sourceFile": "vatican-geography-excerpt.json",
+    "inference": "로마 안에 있는 국토와 그 경계의 공식 지리 설명. 외국 내 치외법권 부동산을 국토·해안으로 계산하지 않는다."
+   }
+  }
+ },
+ "scope": "UN 회원국 및 교황청. 부분 승인국·속령은 이 전체 목록의 범위 밖.",
+ "completeForScope": true,
+ "caspians": {
+  "landlocked": [
+   "아제르바이잔",
+   "카자흐스탄",
+   "투르크메니스탄"
+  ],
+  "notLandlocked": [
+   "러시아",
+   "이란"
+  ],
+  "rule": "카스피해는 외양으로 직접 통하는 해안으로 세지 않는다. 러시아·이란은 다른 바다의 해안으로 구별."
+ },
+ "appValues": {
+  "영국": {
+   "iso3": "GBR",
+   "isLandlocked": false
+  },
+  "포르투갈": {
+   "iso3": "PRT",
+   "isLandlocked": false
+  },
+  "에스파냐": {
+   "iso3": "ESP",
+   "isLandlocked": false
+  },
+  "프랑스": {
+   "iso3": "FRA",
+   "isLandlocked": false
+  },
+  "벨기에": {
+   "iso3": "BEL",
+   "isLandlocked": false
+  },
+  "네덜란드": {
+   "iso3": "NLD",
+   "isLandlocked": false
+  },
+  "독일": {
+   "iso3": "DEU",
+   "isLandlocked": false
+  },
+  "덴마크": {
+   "iso3": "DNK",
+   "isLandlocked": false
+  },
+  "노르웨이": {
+   "iso3": "NOR",
+   "isLandlocked": false
+  },
+  "스웨덴": {
+   "iso3": "SWE",
+   "isLandlocked": false
+  },
+  "핀란드": {
+   "iso3": "FIN",
+   "isLandlocked": false
+  },
+  "스위스": {
+   "iso3": "CHE",
+   "isLandlocked": true
+  },
+  "오스트리아": {
+   "iso3": "AUT",
+   "isLandlocked": true
+  },
+  "이탈리아": {
+   "iso3": "ITA",
+   "isLandlocked": false
+  },
+  "폴란드": {
+   "iso3": "POL",
+   "isLandlocked": false
+  },
+  "크로아티아": {
+   "iso3": "HRV",
+   "isLandlocked": false
+  },
+  "그리스": {
+   "iso3": "GRC",
+   "isLandlocked": false
+  },
+  "우크라이나": {
+   "iso3": "UKR",
+   "isLandlocked": false
+  },
+  "러시아": {
+   "iso3": "RUS",
+   "isLandlocked": false
+  },
+  "튀르키예": {
+   "iso3": "TUR",
+   "isLandlocked": false
+  },
+  "아이슬란드": {
+   "iso3": "ISL",
+   "isLandlocked": false
+  },
+  "바티칸": {
+   "iso3": "VAT",
+   "isLandlocked": true
+  },
+  "산마리노": {
+   "iso3": "SMR",
+   "isLandlocked": true
+  },
+  "안도라": {
+   "iso3": "AND",
+   "isLandlocked": true
+  },
+  "룩셈부르크": {
+   "iso3": "LUX",
+   "isLandlocked": true
+  },
+  "모로코": {
+   "iso3": "MAR",
+   "isLandlocked": false
+  },
+  "알제리": {
+   "iso3": "DZA",
+   "isLandlocked": false
+  },
+  "튀니지": {
+   "iso3": "TUN",
+   "isLandlocked": false
+  },
+  "리비아": {
+   "iso3": "LBY",
+   "isLandlocked": false
+  },
+  "이집트": {
+   "iso3": "EGY",
+   "isLandlocked": false
+  },
+  "말리": {
+   "iso3": "MLI",
+   "isLandlocked": true
+  },
+  "니제르": {
+   "iso3": "NER",
+   "isLandlocked": true
+  },
+  "차드": {
+   "iso3": "TCD",
+   "isLandlocked": true
+  },
+  "수단": {
+   "iso3": "SDN",
+   "isLandlocked": false
+  },
+  "남수단": {
+   "iso3": "SDS",
+   "isLandlocked": true
+  },
+  "시에라리온": {
+   "iso3": "SLE",
+   "isLandlocked": false
+  },
+  "라이베리아": {
+   "iso3": "LBR",
+   "isLandlocked": false
+  },
+  "베냉": {
+   "iso3": "BEN",
+   "isLandlocked": false
+  },
+  "나이지리아": {
+   "iso3": "NGA",
+   "isLandlocked": false
+  },
+  "에티오피아": {
+   "iso3": "ETH",
+   "isLandlocked": true
+  },
+  "소말리아": {
+   "iso3": "SOM",
+   "isLandlocked": false
+  },
+  "케냐": {
+   "iso3": "KEN",
+   "isLandlocked": false
+  },
+  "우간다": {
+   "iso3": "UGA",
+   "isLandlocked": true
+  },
+  "탄자니아": {
+   "iso3": "TZA",
+   "isLandlocked": false
+  },
+  "콩고 민주 공화국": {
+   "iso3": "COD",
+   "isLandlocked": false
+  },
+  "앙골라": {
+   "iso3": "AGO",
+   "isLandlocked": false
+  },
+  "잠비아": {
+   "iso3": "ZMB",
+   "isLandlocked": true
+  },
+  "짐바브웨": {
+   "iso3": "ZWE",
+   "isLandlocked": true
+  },
+  "나미비아": {
+   "iso3": "NAM",
+   "isLandlocked": false
+  },
+  "보츠와나": {
+   "iso3": "BWA",
+   "isLandlocked": true
+  },
+  "남아프리카 공화국": {
+   "iso3": "ZAF",
+   "isLandlocked": false
+  },
+  "마다가스카르": {
+   "iso3": "MDG",
+   "isLandlocked": false
+  },
+  "시리아": {
+   "iso3": "SYR",
+   "isLandlocked": false
+  },
+  "이스라엘": {
+   "iso3": "ISR",
+   "isLandlocked": false
+  },
+  "이라크": {
+   "iso3": "IRQ",
+   "isLandlocked": false
+  },
+  "이란": {
+   "iso3": "IRN",
+   "isLandlocked": false
+  },
+  "사우디아라비아": {
+   "iso3": "SAU",
+   "isLandlocked": false
+  },
+  "카타르": {
+   "iso3": "QAT",
+   "isLandlocked": false
+  },
+  "아랍 에미리트": {
+   "iso3": "ARE",
+   "isLandlocked": false
+  },
+  "오만": {
+   "iso3": "OMN",
+   "isLandlocked": false
+  },
+  "카자흐스탄": {
+   "iso3": "KAZ",
+   "isLandlocked": true
+  },
+  "우즈베키스탄": {
+   "iso3": "UZB",
+   "isLandlocked": true
+  },
+  "키르기스스탄": {
+   "iso3": "KGZ",
+   "isLandlocked": true
+  },
+  "아프가니스탄": {
+   "iso3": "AFG",
+   "isLandlocked": true
+  },
+  "파키스탄": {
+   "iso3": "PAK",
+   "isLandlocked": false
+  },
+  "인도": {
+   "iso3": "IND",
+   "isLandlocked": false
+  },
+  "네팔": {
+   "iso3": "NPL",
+   "isLandlocked": true
+  },
+  "방글라데시": {
+   "iso3": "BGD",
+   "isLandlocked": false
+  },
+  "스리랑카": {
+   "iso3": "LKA",
+   "isLandlocked": false
+  },
+  "중국": {
+   "iso3": "CHN",
+   "isLandlocked": false
+  },
+  "몽골": {
+   "iso3": "MNG",
+   "isLandlocked": true
+  },
+  "대한민국": {
+   "iso3": "KOR",
+   "isLandlocked": false
+  },
+  "일본": {
+   "iso3": "JPN",
+   "isLandlocked": false
+  },
+  "타이완": {
+   "iso3": "TWN",
+   "isLandlocked": null
+  },
+  "미얀마": {
+   "iso3": "MMR",
+   "isLandlocked": false
+  },
+  "타이": {
+   "iso3": "THA",
+   "isLandlocked": false
+  },
+  "라오스": {
+   "iso3": "LAO",
+   "isLandlocked": true
+  },
+  "캄보디아": {
+   "iso3": "KHM",
+   "isLandlocked": false
+  },
+  "베트남": {
+   "iso3": "VNM",
+   "isLandlocked": false
+  },
+  "말레이시아": {
+   "iso3": "MYS",
+   "isLandlocked": false
+  },
+  "싱가포르": {
+   "iso3": "SGP",
+   "isLandlocked": false
+  },
+  "인도네시아": {
+   "iso3": "IDN",
+   "isLandlocked": false
+  },
+  "필리핀": {
+   "iso3": "PHL",
+   "isLandlocked": false
+  },
+  "캐나다": {
+   "iso3": "CAN",
+   "isLandlocked": false
+  },
+  "미국": {
+   "iso3": "USA",
+   "isLandlocked": false
+  },
+  "멕시코": {
+   "iso3": "MEX",
+   "isLandlocked": false
+  },
+  "코스타리카": {
+   "iso3": "CRI",
+   "isLandlocked": false
+  },
+  "아이티": {
+   "iso3": "HTI",
+   "isLandlocked": false
+  },
+  "콜롬비아": {
+   "iso3": "COL",
+   "isLandlocked": false
+  },
+  "에콰도르": {
+   "iso3": "ECU",
+   "isLandlocked": false
+  },
+  "페루": {
+   "iso3": "PER",
+   "isLandlocked": false
+  },
+  "볼리비아": {
+   "iso3": "BOL",
+   "isLandlocked": true
+  },
+  "브라질": {
+   "iso3": "BRA",
+   "isLandlocked": false
+  },
+  "우루과이": {
+   "iso3": "URY",
+   "isLandlocked": false
+  },
+  "칠레": {
+   "iso3": "CHL",
+   "isLandlocked": false
+  },
+  "아르헨티나": {
+   "iso3": "ARG",
+   "isLandlocked": false
+  },
+  "오스트레일리아": {
+   "iso3": "AUS",
+   "isLandlocked": false
+  },
+  "뉴질랜드": {
+   "iso3": "NZL",
+   "isLandlocked": false
+  },
+  "바레인": {
+   "iso3": "BHR",
+   "isLandlocked": false
+  },
+  "아일랜드": {
+   "iso3": "IRL",
+   "isLandlocked": false
+  },
+  "모리타니": {
+   "iso3": "MRT",
+   "isLandlocked": false
+  },
+  "모잠비크": {
+   "iso3": "MOZ",
+   "isLandlocked": false
+  },
+  "코트디부아르": {
+   "iso3": "CIV",
+   "isLandlocked": false
+  },
+  "가나": {
+   "iso3": "GHA",
+   "isLandlocked": false
+  },
+  "세네갈": {
+   "iso3": "SEN",
+   "isLandlocked": false
+  },
+  "기니": {
+   "iso3": "GIN",
+   "isLandlocked": false
+  },
+  "카메룬": {
+   "iso3": "CMR",
+   "isLandlocked": false
+  },
+  "슬로베니아": {
+   "iso3": "SVN",
+   "isLandlocked": false
+  },
+  "슬로바키아": {
+   "iso3": "SVK",
+   "isLandlocked": true
+  },
+  "세르비아": {
+   "iso3": "SRB",
+   "isLandlocked": true
+  },
+  "보스니아 헤르체고비나": {
+   "iso3": "BIH",
+   "isLandlocked": false
+  },
+  "체코": {
+   "iso3": "CZE",
+   "isLandlocked": true
+  },
+  "헝가리": {
+   "iso3": "HUN",
+   "isLandlocked": true
+  },
+  "루마니아": {
+   "iso3": "ROU",
+   "isLandlocked": false
+  },
+  "불가리아": {
+   "iso3": "BGR",
+   "isLandlocked": false
+  },
+  "에스토니아": {
+   "iso3": "EST",
+   "isLandlocked": false
+  },
+  "라트비아": {
+   "iso3": "LVA",
+   "isLandlocked": false
+  },
+  "리투아니아": {
+   "iso3": "LTU",
+   "isLandlocked": false
+  },
+  "키프로스": {
+   "iso3": "CYP",
+   "isLandlocked": false
+  },
+  "브루나이": {
+   "iso3": "BRN",
+   "isLandlocked": false
+  },
+  "동티모르": {
+   "iso3": "TLS",
+   "isLandlocked": false
+  },
+  "투르크메니스탄": {
+   "iso3": "TKM",
+   "isLandlocked": true
+  },
+  "타지키스탄": {
+   "iso3": "TJK",
+   "isLandlocked": true
+  },
+  "아제르바이잔": {
+   "iso3": "AZE",
+   "isLandlocked": true
+  },
+  "쿠웨이트": {
+   "iso3": "KWT",
+   "isLandlocked": false
+  },
+  "요르단": {
+   "iso3": "JOR",
+   "isLandlocked": false
+  },
+  "레바논": {
+   "iso3": "LBN",
+   "isLandlocked": false
+  },
+  "파푸아뉴기니": {
+   "iso3": "PNG",
+   "isLandlocked": false
+  },
+  "파라과이": {
+   "iso3": "PRY",
+   "isLandlocked": true
+  },
+  "베네수엘라": {
+   "iso3": "VEN",
+   "isLandlocked": false
+  },
+  "가이아나": {
+   "iso3": "GUY",
+   "isLandlocked": false
+  },
+  "수리남": {
+   "iso3": "SUR",
+   "isLandlocked": false
+  },
+  "쿠바": {
+   "iso3": "CUB",
+   "isLandlocked": false
+  },
+  "도미니카 공화국": {
+   "iso3": "DOM",
+   "isLandlocked": false
+  },
+  "자메이카": {
+   "iso3": "JAM",
+   "isLandlocked": false
+  },
+  "엘살바도르": {
+   "iso3": "SLV",
+   "isLandlocked": false
+  },
+  "파나마": {
+   "iso3": "PAN",
+   "isLandlocked": false
+  },
+  "몰타": {
+   "iso3": "MLT",
+   "isLandlocked": false
+  },
+  "리히텐슈타인": {
+   "iso3": "LIE",
+   "isLandlocked": true
+  }
+ },
+ "practice": "suppliedData",
+ "policy": "목록에 없는 모든 이름을 해안국으로 단정하지 않는다. appValues에 없는 새 대상·부분 승인국은 unknown. 항구와 운하·호수·카스피해 연안을 바다 해안으로 간주하지 않는다. 국가 식별 문제의 회상 승인은 강의·기출 허용 범위와 별도로 연결해야 한다.",
+ "nameMappingSource": "GeoNames countryInfo CC-BY 4.0, ISO identity mapping only"
+}

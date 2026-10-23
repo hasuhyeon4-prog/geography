@@ -1,0 +1,17 @@
+{
+ "referenceYear": 2010,
+ "publishedAt": "2012-12-18",
+ "unit": "%",
+ "christianity": 49.3,
+ "islam": 48.8,
+ "unaffiliated": 0.4,
+ "folk": 1.4,
+ "hinduism": "<0.1",
+ "buddhism": "<0.1",
+ "other": "<0.1",
+ "judaism": "<0.1",
+ "sourceUrl": "https://www.pewresearch.org/religion/2012/12/18/table-religious-composition-by-country-in-percentages/",
+ "retrieval": "공식 표의 웹 검색 서비스 직접 열람. 원 서버 HTML 직접 취득 403. Nigeria 행만 전사.",
+ "sourceLocator": "Nigeria row, estimated 2010 percentages",
+ "rawHtmlAvailable": false
+}

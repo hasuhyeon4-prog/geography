@@ -158,22 +158,22 @@ write('data/mineral-production-shares.json',{'source':'BGS World Mineral Statist
 
 # World Urbanization Prospects 2025: NATIONAL definitions, not DEGURBA.
 pop={};locations={};m49_iso={}
-region_alias={'WORLD':'세계','AFRICA':'아프리카','ASIA':'아시아','EUROPE':'유럽','OCEANIA':'오세아니아',
-    'Latin America and the Caribbean':'라틴 아메리카','Northern America':'앵글로아메리카'}
+region_by_id={900:'세계',903:'아프리카',935:'아시아',908:'유럽',909:'오세아니아',
+    904:'라틴 아메리카',905:'앵글로아메리카'}
 for sheet,key in [('Urban','urbanPopulation'),('Rural','ruralPopulation'),('Total','totalPopulation')]:
     for ri,row in xlsx_rows('wup2025-pop.xlsx',sheet):
         if ri==1:continue
         if len(row)<11:continue
-        iso=row[4];name=ISO_KO.get(iso) or region_alias.get(row[1])
+        iso=row[4];name=ISO_KO.get(iso) or region_by_id.get(int(row[3]))
         if iso:m49_iso[int(row[3])]=iso
         if not name:continue
-        loc={'id':int(row[3]),'iso3':iso,'sourceName':row[1],'type':row[8]}
+        loc={'id':int(row[3]),'iso3':iso,'sourceName':row[1],'type':row[8],'sdmxCode':row[6]}
         locations[name]=loc
         series={str(1950+i):v*1000 for i,v in enumerate(row[10:]) if number(v) is not None}
         pop.setdefault(name,{'location':loc,'series':{}})['series'][key]=series
 for ri,row in xlsx_rows('wup2025-share.xlsx','Urban'):
     if ri==1 or len(row)<11:continue
-    name=ISO_KO.get(row[4]) or region_alias.get(row[1])
+    name=ISO_KO.get(row[4]) or region_by_id.get(int(row[3]))
     if name not in pop:continue
     pop[name]['series']['urbanShare']={str(1950+i):v for i,v in enumerate(row[10:]) if number(v) is not None}
 write('data/urbanization-change.json',{'schemaVersion':1,'source':'UN DESA World Urbanization Prospects 2025, F14/F15',

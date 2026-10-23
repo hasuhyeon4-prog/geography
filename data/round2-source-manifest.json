@@ -1,0 +1,334 @@
+{
+ "retrievedAt": "2026-10-23",
+ "archive": "data/round2-source-snapshots.zip",
+ "sources": [
+  {
+   "path": "bgs-silver-mine.json",
+   "url": "https://ogcapi.bgs.ac.uk/collections/world-mineral-statistics/items?f=json&limit=10000&bgs_statistic_type_trans=Production&bgs_commodity_trans=silver%2C+mine",
+   "retrievedAt": "2026-10-22T23:14:13.494338+00:00",
+   "sha256": "57dc2255d5ee221c33fef244677032c878517c3a3ddf1f513caeb9820cb653f5",
+   "bytes": 5992477
+  },
+  {
+   "path": "bgs-diamond.json",
+   "url": "https://ogcapi.bgs.ac.uk/collections/world-mineral-statistics/items?f=json&limit=10000&bgs_statistic_type_trans=Production&bgs_commodity_trans=diamond",
+   "retrievedAt": "2026-10-22T23:12:33.760022+00:00",
+   "sha256": "fe39054671e6e0d3db42394e72955da62c18710d99913ad1cd5f1ad0c481abe3",
+   "bytes": 2201962
+  },
+  {
+   "path": "bgs-coal-chile.json",
+   "url": "https://ogcapi.bgs.ac.uk/collections/world-mineral-statistics/items?f=json&limit=10000&bgs_statistic_type_trans=Production&bgs_commodity_trans=coal&country_iso3_code=CHL",
+   "retrievedAt": "2026-10-22T23:14:07.302917+00:00",
+   "sha256": "8a09a9aaf76ff630e89f752675d8f71b59f0eb762096070d129515004945e9c0",
+   "bytes": 173158
+  },
+  {
+   "path": "eia-coal-production.json",
+   "url": "https://api.eia.gov/v2/international/data/?api_key=DEMO_KEY&frequency=annual&data%5B0%5D=value&start=2013&end=2024&length=5000&facets%5BproductId%5D%5B%5D=7&facets%5BactivityId%5D%5B%5D=1&facets%5Bunit%5D%5B%5D=TST",
+   "retrievedAt": "2026-10-22T23:14:07.410884+00:00",
+   "sha256": "6aaf7f2e8f26d35c76317c55fdf12feea9dfbf504c40c1c5eef48dc9dc34b74a",
+   "bytes": 1041879
+  },
+  {
+   "path": "net-migration-metrics.csv",
+   "url": "https://ourworldindata.org/grapher/net-migration-metrics.csv",
+   "retrievedAt": "2026-10-22T23:15:31.108442+00:00",
+   "sha256": "f0241250ca6a142493658b547243f4c6cc898ee87da99ca167a44d6a64e3d7aa",
+   "bytes": 502313
+  },
+  {
+   "path": "net-migration-metrics.metadata.json",
+   "url": "https://ourworldindata.org/grapher/net-migration-metrics.metadata.json",
+   "retrievedAt": "2026-10-22T23:15:31.104456+00:00",
+   "sha256": "75d99e76dd9907995e15e9de28eca7526294f9c2592423b78d07f839975e58cd",
+   "bytes": 2083
+  },
+  {
+   "path": "asm-2014.xlsx",
+   "url": "https://www2.census.gov/programs-surveys/asm/data/2014/ASM_2014_31AS101_with_ann.xlsx",
+   "retrievedAt": "2026-10-22T23:16:50.155992+00:00",
+   "sha256": "ca3900411838b76673e750ed7553abac22e90561a805ab53d3f3ebf9f758be63",
+   "bytes": 2006631
+  },
+  {
+   "path": "asm-2015.xlsx",
+   "url": "https://www2.census.gov/programs-surveys/asm/data/2015/ASM_2015_31AS101_with_ann.xlsx",
+   "retrievedAt": "2026-10-22T23:16:49.444816+00:00",
+   "sha256": "458b6e8c34bf1b9015514c465f4c57987106fd6b1288eafab3f1a2cb0d4d5606",
+   "bytes": 1395321
+  },
+  {
+   "path": "asm-2016.xlsx",
+   "url": "https://www2.census.gov/programs-surveys/asm/data/2016/ASM_2016_31AS101_with_ann.xlsx",
+   "retrievedAt": "2026-10-22T23:16:49.802302+00:00",
+   "sha256": "5ec2facc60465cbc277cff24d2821cf991e0e88577dacebd7959425fcb41d555",
+   "bytes": 1403053
+  },
+  {
+   "path": "ec-2017.zip",
+   "url": "https://www2.census.gov/programs-surveys/economic-census/data/2017/sector31/EC1731BASIC.zip",
+   "retrievedAt": "2026-10-22T23:16:47.887442+00:00",
+   "sha256": "d32bd0d70f5bd19bf47bb11ac62c4a8a5cc9d7b3e003341edf38457356f9f8a1",
+   "bytes": 3539042
+  },
+  {
+   "path": "ec-2022.zip",
+   "url": "https://www2.census.gov/programs-surveys/economic-census/data/2022/sector31/EC2231BASIC.zip",
+   "retrievedAt": "2026-10-22T23:16:48.145325+00:00",
+   "sha256": "eb1fd1a27a54550cffdaa1c19a97f2807547a47d15ed8c63ee14e97f04dbca0b",
+   "bytes": 4264760
+  },
+  {
+   "path": "asm-state-2021.zip",
+   "url": "https://www2.census.gov/programs-surveys/asm/data/2021/AM1831BASIC02.zip",
+   "retrievedAt": "2026-10-22T23:21:36.866860+00:00",
+   "sha256": "6004a670899337769208a24921a8616666186d868ffaacaa45eb0c5ae2563df0",
+   "bytes": 981782
+  },
+  {
+   "path": "naturalearth-states.geojson",
+   "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_1_states_provinces.geojson",
+   "retrievedAt": "2026-10-22T23:12:38.411765+00:00",
+   "sha256": "69a0e06e640b2d505858ae1cb63034e4677f3000b35a98e16312932b98c426b9",
+   "bytes": 2325694
+  },
+  {
+   "path": "naturalearth-rivers.geojson",
+   "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_rivers_lake_centerlines.geojson",
+   "retrievedAt": "2026-10-22T23:12:38.799128+00:00",
+   "sha256": "bb854a900ecbd3b408df46d5e16e3e0f974ba55993f9d8b5c26e855273c0905a",
+   "bytes": 7307743
+  },
+  {
+   "path": "gawc2020.html",
+   "url": "https://gawc.lboro.ac.uk/gawc-worlds/the-world-according-to-gawc/world-cities-2020/",
+   "retrievedAt": "2026-10-22T23:12:34.030351+00:00",
+   "sha256": "82bad8cbde3c3bbdb4a7510e3fba409ff18210a5a119643a781767620ac01cc9",
+   "bytes": 106048
+  },
+  {
+   "path": "gawc2022.html",
+   "url": "https://gawc.lboro.ac.uk/gawc-worlds/the-world-according-to-gawc/world-cities-2022/",
+   "retrievedAt": "2026-10-22T23:12:33.810464+00:00",
+   "sha256": "93568c961fac8ca8e16a28afb821d17418c62229a71686911dc2e6d23c74af2f",
+   "bytes": 106011
+  },
+  {
+   "path": "gawc2024.html",
+   "url": "https://gawc.lboro.ac.uk/gawc-worlds/the-world-according-to-gawc/world-cities-2024/",
+   "retrievedAt": "2026-10-22T23:12:34.002262+00:00",
+   "sha256": "728ed3d6551d854083e67cd3a01815af5859bb3fa843d87cf3125e8d80dd63f6",
+   "bytes": 104768
+  },
+  {
+   "path": "dar.csv",
+   "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-1-WMO-Normals-9120/Tanzania/CSV/DAR_ES_SALAAM_63894.csv",
+   "retrievedAt": "2026-10-22T23:14:07.619370+00:00",
+   "sha256": "d870ef496ef4f92ebf158ea2937acc67fdb98d03a1649ab1b77fbfa5c4e97321",
+   "bytes": 15478
+  },
+  {
+   "path": "jma-addis.html",
+   "url": "https://ds.data.jma.go.jp/gmd/tcc/tcc/products/climate/climatview/graph_mkhtml_nrm.php?m=1&n=63450",
+   "retrievedAt": "2026-10-22T23:14:07.823902+00:00",
+   "sha256": "f78c404e34d468833b662002405f4501967633eb7dd5b0650bde303c335bdf82",
+   "bytes": 5461
+  },
+  {
+   "path": "jma-dar.html",
+   "url": "https://ds.data.jma.go.jp/gmd/tcc/tcc/products/climate/climatview/graph_mkhtml_nrm.php?m=1&n=63894",
+   "retrievedAt": "2026-10-22T23:21:23.899871+00:00",
+   "sha256": "3aba5b6301472afadf9404abbdac7d6be856065959fe063e84179d386aae2780",
+   "bytes": 5500
+  },
+  {
+   "path": "jma-iquitos.html",
+   "url": "https://ds.data.jma.go.jp/gmd/tcc/tcc/products/climate/climatview/graph_mkhtml_nrm.php?m=1&n=84377",
+   "retrievedAt": "2026-10-22T23:14:07.802704+00:00",
+   "sha256": "bc24268849fe6c9698fdf3686f197c08b6ebb537054ab9e8a8c8d40a426ba8e0",
+   "bytes": 5442
+  },
+  {
+   "path": "jma-outline.html",
+   "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/climatview/outline.html",
+   "retrievedAt": "2026-10-22T23:21:36.202534+00:00",
+   "sha256": "7db6d671cc5a485f8de08020fbc22afbb7ced8fc3effe8a29b129e7ea6fd994a",
+   "bytes": 9250
+  },
+  {
+   "path": "jma-abuja.html",
+   "url": "https://ds.data.jma.go.jp/gmd/tcc/tcc/products/climate/climatview/graph_mkhtml_nrm.php?m=1&n=65125",
+   "retrievedAt": "2026-10-22T23:14:07.733750+00:00",
+   "sha256": "e61e17218eb2c5be4d578070f85aa07eaa67ed239a82becb54b7ecfc6333a8f5",
+   "bytes": 5660,
+   "usage": "rejected: returned WAKKANAI station, not the requested station"
+  },
+  {
+   "path": "jma-quito.html",
+   "url": "https://ds.data.jma.go.jp/gmd/tcc/tcc/products/climate/climatview/graph_mkhtml_nrm.php?m=1&n=84072",
+   "retrievedAt": "2026-10-22T23:21:35.882659+00:00",
+   "sha256": "e61e17218eb2c5be4d578070f85aa07eaa67ed239a82becb54b7ecfc6333a8f5",
+   "bytes": 5660,
+   "usage": "rejected: returned WAKKANAI station, not the requested station"
+  },
+  {
+   "path": "geonames-countryInfo.txt",
+   "url": "https://download.geonames.org/export/dump/countryInfo.txt",
+   "retrievedAt": "2026-10-22T23:14:11.808096+00:00",
+   "sha256": "c55f638cfaafb4fe45a9aa15120a0f1f78e8a34a8e1847d7b9320cf740fbc9ab",
+   "bytes": 31690
+  },
+  {
+   "path": "un-lldc.html",
+   "url": "https://unctad.org/topic/landlocked-developing-countries/list-of-LLDCs",
+   "retrievedAt": "2026-10-22T23:14:13.582350+00:00",
+   "sha256": "c869a1d521f841b1803acd195cfc6ddc13bb892836eca49a03940baeba98e6a5",
+   "bytes": 74101
+  },
+  {
+   "path": "mekong.html",
+   "url": "https://www.mrcmekong.org/mekong-river-basin/",
+   "retrievedAt": "2026-10-22T23:22:58.848614+00:00",
+   "sha256": "a5efc957bd3cd166e577e86b05ebfa54e0920284df8f4a45c6dea3414c907ad7",
+   "bytes": 556352
+  },
+  {
+   "path": "rhine-waterworks.html",
+   "url": "https://en.iawr.org/aims/",
+   "retrievedAt": "2026-10-22T23:26:57.922587+00:00",
+   "sha256": "affbab3215b915dfccf31332ae38d005cbaeac9ab894bbdbb9579092477d95d2",
+   "bytes": 8039
+  },
+  {
+   "path": "rhine-alpine.html",
+   "url": "https://www.iksr.org/en/topics/rhine/sub-basins/alpine-rhine-/-lake-constance",
+   "retrievedAt": "2026-10-22T23:22:57.204429+00:00",
+   "sha256": "1d3246bca32973c25e9c781f74ed2bd78ab1307c7cebb8285d6f36edb193c5d6",
+   "bytes": 162675
+  },
+  {
+   "path": "q2024-q14-data.png",
+   "url": "https://image.donga.com/education/exam/2024su/4_5.pdf",
+   "retrievedAt": "2026-10-23",
+   "sha256": "2d52ea764c2c62d92c016cf5fef2027b2b7eac0c3fcc5c58b9c68e047690d0ff",
+   "bytes": 42986,
+   "derivation": "PDF p3 numerical chart/table, crop from 1273×1800 render: x685 y320 x1150 y610",
+   "originalFile": "q2024.pdf",
+   "originalSha256": "9e653e5f741ec3ea4fe55d0c2d46295c324c72c315b0579631fd8dd83bbf0f15",
+   "originalBytes": 2347336,
+   "fullDocumentRedistributed": false
+  },
+  {
+   "path": "q2026-q15-data.png",
+   "url": "https://legendstudy.com/1686",
+   "retrievedAt": "2026-10-23",
+   "sha256": "508f2ea1450837e0cc1dfbd6905101b0f4d818ac83a43f6d2de9c87731478e07",
+   "bytes": 26546,
+   "derivation": "PDF p3 paired numerical chart/table, crop from 1414×2000 render: x760 y1360 x1300 y1635",
+   "originalFile": "q2026-09.pdf",
+   "originalSha256": "2bba8653b5a5e18124db8a22c91fd76b29c253bca006a813ec8d1bc7f5c33206",
+   "originalBytes": 2940002,
+   "fullDocumentRedistributed": false
+  },
+  {
+   "path": "q2026-q11-data.png",
+   "url": "https://legendstudy.com/1686",
+   "retrievedAt": "2026-10-23",
+   "sha256": "461fddd98a6e2de30111bb50587d60bce63c9e2ede45f2bfed97511631ae361a",
+   "bytes": 29733,
+   "derivation": "PDF p3 trade numerical chart, crop from 1414×2000 render: x160 y335 x650 y655",
+   "originalFile": "q2026-09.pdf",
+   "originalSha256": "2bba8653b5a5e18124db8a22c91fd76b29c253bca006a813ec8d1bc7f5c33206",
+   "originalBytes": 2940002,
+   "fullDocumentRedistributed": false
+  },
+  {
+   "path": "landlocked-anu-excerpt.json",
+   "url": "https://crawford.anu.edu.au/sites/default/files/2025-03/acde_wp_econ_2014_01.pdf",
+   "retrievedAt": "2026-10-23",
+   "sha256": "795ee7a5fbd6b1c247a949bae4a480ae0974d215916c45c50c2cbbdf5f78923e",
+   "bytes": 614,
+   "derivation": "printed p3 footnote 3, factual country list",
+   "originalFile": "landlocked-anu.pdf",
+   "originalSha256": "e178f155bd78ade70382c7ce1e4733353f8892726bc9cf53cfc63a01ef531d4d",
+   "originalBytes": 627718,
+   "fullDocumentRedistributed": false
+  },
+  {
+   "path": "worldbank-landlocked-excerpt.json",
+   "url": "https://www.worldbank.org/content/dam/Worldbank/document/Trade/Landlocked_Countries.pdf",
+   "retrievedAt": "2026-10-23",
+   "sha256": "a30fed7644689c51e6a7146dbf3234bb0025014e2b4d0bdf239e06f8e4e4d385",
+   "bytes": 482,
+   "derivation": "printed p22 Box 3, Belarus fact",
+   "originalFile": "worldbank-landlocked.pdf",
+   "originalSha256": "34db2d585f7cd209ddd0575fbe876390473a13cb8aba57a8b05b563cf765855d",
+   "originalBytes": 1268249,
+   "fullDocumentRedistributed": false
+  },
+  {
+   "path": "serbia-geography-excerpt.json",
+   "url": "https://upravazasume.gov.rs/wp-content/uploads/2025/01/Annex-6-ESMF_English_final.pdf",
+   "retrievedAt": "2026-10-23",
+   "sha256": "d0d44362b680d313100cd8215861e2d2b2f395147490be4eb12b6c0bc0156394",
+   "bytes": 501,
+   "derivation": "Executive summary and Introduction, landlocked classification",
+   "originalFile": "serbia-geography.pdf",
+   "originalSha256": "695182b066bf31f68e5b962872c508bb3845686fa5aa993a5d58f4ea41fc54c4",
+   "originalBytes": 2625628,
+   "fullDocumentRedistributed": false
+  },
+  {
+   "path": "vatican-geography-excerpt.json",
+   "url": "https://www.vaticanstate.va/en/state-and-government/general-informations/geography.html",
+   "retrievedAt": "2026-10-23",
+   "sha256": "dce44176684c06e353e9f892562982505588b06ae5757df69c5a56d286a9bc86",
+   "bytes": 666,
+   "derivation": "Territorial location facts; classification inference recorded",
+   "originalFile": "vatican-geography.html",
+   "originalSha256": "e5e71cb2e4ca709021bb849270c2edce96d0e19d90fd2075b2426a4993dc74ef",
+   "originalBytes": 179668,
+   "fullDocumentRedistributed": false
+  },
+  {
+   "path": "opec-profile-events.json",
+   "url": "https://wpcenergy2026.org/exhibitor/478/",
+   "retrievedAt": "2026-10-23",
+   "sha256": "1afcd78c7f83bece4bf7e8a629df0891aff399c6c8b13b105cc0c7ebcf35231b",
+   "bytes": 996,
+   "derivation": "Membership chronology facts",
+   "originalFile": "opec-self-profile.html",
+   "originalSha256": "be26aacac47f4f2818ad92cbb62849d51ccb4e55ad07a9f7a7f3e7a2f3ec0a2d",
+   "originalBytes": 1123329,
+   "fullDocumentRedistributed": false
+  }
+ ],
+ "curatedSources": [
+  {
+   "path": "data/round2-sources/curation.json",
+   "sha256": "1f84b2e7fe04eb2a1dc1c80b478381aaf0ea1d0ee8e5515077a6af2b02777459",
+   "bytes": 78751,
+   "derivation": "강의 일부 원문 발췌/수작업 검토 목록. 전체 강의 원문은 공개하지 않음."
+  },
+  {
+   "path": "data/round2-sources/lecture-evidence.json",
+   "sha256": "f76f28f015a3e47013a584d3f4c7882464ae90476a77a6a724562d77c446d95e",
+   "bytes": 45359,
+   "derivation": "강의 일부 원문 발췌/수작업 검토 목록. 전체 강의 원문은 공개하지 않음."
+  },
+  {
+   "path": "data/round2-sources/country-curation.json",
+   "sha256": "c861eccfdfda6d3cffda2ea66eb39cb4e1e4f29c5696b0dd36eec5ec39847b44",
+   "bytes": 5256,
+   "derivation": "강의 일부 원문 발췌/수작업 검토 목록. 전체 강의 원문은 공개하지 않음."
+  },
+  {
+   "path": "data/round2-sources/pew2012-nigeria-row.json",
+   "sha256": "239df6d69b7475cfca042f2b90fd50726551b4c6afc8a64cfe825936a31e5814",
+   "bytes": 560,
+   "derivation": "Pew 공식 표 웹 직접 열람의 Nigeria 2010 행 전사. 원 HTML 직접 취득은 403."
+  }
+ ],
+ "policy": "통계 원자료와 선별 근거 스냅숏의 실제 바이트·해시 보존. 발췌본에는 원본 해시·위치·발췌 방법을 함께 기록한다. 전체 강의·문제지·연구 문헌을 재배포하지 않는다. 기출 사본은 평가원 배포 바이트와 직접 대조하지 못함."
+}
