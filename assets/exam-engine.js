@@ -62,8 +62,10 @@
 
   function entity(name){return kb.entities[name]}
   function value(name,ind){var e=entity(name);return e&&e.values?e.values[ind]:undefined}
+  function sameCell(names,ind){var seen={};return names.some(function(n){var t=cellText(n,ind);if(seen[t])return true;seen[t]=1;return false})}
   // An indicator with `decimals` keeps them in the table (13.0, not 13), as exam tables do.
-  function cellText(name,ind){var v=value(name,ind),d=meta(ind)&&meta(ind).decimals;return d!=null?v.toLocaleString('ko-KR',{minimumFractionDigits:d,maximumFractionDigits:d}):fmt(v)}
+  var cellCache={};
+  function cellText(name,ind){var k=name+'|'+ind;if(k in cellCache)return cellCache[k];var v=value(name,ind),d=meta(ind)&&meta(ind).decimals;return cellCache[k]=d!=null?v.toLocaleString('ko-KR',{minimumFractionDigits:d,maximumFractionDigits:d}):fmt(v)}
   function meta(ind){return kb.indicators[ind]}
   function relation(ind,a,b){for(var i=0;i<REL.length;i++){var x=REL[i];if(x.indicator===ind&&(x.hi===a&&x.lo===b||x.hi===b&&x.lo===a))return x}return null}
   function clearlyAbove(ind,x,y){var m=meta(ind).compare;if(x==null||y==null)return false;return m.type==='ratio'?x>0&&y>0&&x/y>=m.min:x-y>=m.min}
@@ -213,6 +215,7 @@
    if(theme.kind==='indicators')return theme.indicators.filter(function(ind){return meta(ind)&&!meta(ind).disabled&&(theme.always||[]).indexOf(ind)<0});
    return theme.kind==='composition'?(theme.hideable||[]):[];
   }
+  function apart(theme,list){var out=[];list.forEach(function(id){if(!(theme.apart||[]).some(function(p){return p.indexOf(id)>=0&&p.some(function(o){return o!==id&&out.indexOf(o)>=0})}))out.push(id)});return out}
   function columnName(theme,id){return theme.kind==='indicators'?meta(id).label:catLabel(theme,id)}
   // guess[j] is what the learner takes column j to be; the column really holds hidden[j].
   function columnsConsistent(theme,rows,hidden,guess){
@@ -279,7 +282,7 @@
   function stage1(chosen,r){
    var all=permutations(chosen),key=function(p){return p.join('|')},right=key(chosen);
    var near=all.filter(function(p){var d=p.filter(function(x,i){return x!==chosen[i]}).length;return d===2}),far=all.filter(function(p){var d=p.filter(function(x,i){return x!==chosen[i]}).length;return d>2});
-   var distract=shuffle(near,r).concat(shuffle(far,r)).slice(0,4);
+   var distract=chosen.length===3?shuffle(near.concat(far),r).slice(0,4):shuffle(shuffle(near,r).slice(0,2).concat(shuffle(far,r).slice(0,2)),r);
    var options=shuffle([chosen].concat(distract),r);
    return {options:options,answer:options.map(key).indexOf(right)};
   }
@@ -426,7 +429,9 @@
     });
     if(e.ns&&e.eqDist<=NEAR_EQUATOR&&allowed(theme,'hemisphere')&&!stated(n,'hemisphere')){var north=e.ns==='N',trueIt=r()<.5;add({kind:'fact',key:'ns|'+n,text:S(n)+' '+((north===trueIt)?'북반구':'남반구')+'에 위치한다.',truth:trueIt,explain:n+'의 국토는 '+(north?'북반구':'남반구')+'에 있다.',check:{ns:(north===trueIt)?'N':'S',entity:n}})}
    });
+   var polarity={};SIGNS.forEach(function(x){if(has(x.entity))(polarity[x.indicator]=polarity[x.indicator]||{})[x.positive]=1});
    SIGNS.forEach(function(x){
+    var pol=polarity[x.indicator]||{};if(!pol[true]||!pol[false])return;
     if(!has(x.entity)||visible(shown,x.indicator)||!inScope(theme,x.indicator)||(theme.noRecall||[]).indexOf(x.indicator)>=0)return;
     var m=meta(x.indicator),v=value(x.entity,x.indicator),yes=x.positive?m.sign.pos:m.sign.neg,no=x.positive?m.sign.neg:m.sign.pos;
     var why=x.entity+' '+m.label+' '+fmt(v)+m.unit+' ('+m.year+', '+m.source+') · '+span(x,x.indicator)+' '+(x.positive?'양(+)':'음(−)')+' · 근거: '+x.basis;
@@ -435,9 +440,9 @@
    });
    REL.forEach(function(x){
     if(!has(x.hi)||!has(x.lo)||visible(shown,x.indicator)||meta(x.indicator).entityType!==entity(x.hi).type||!inScope(theme,x.indicator)||(theme.noRecall||[]).indexOf(x.indicator)>=0)return;
-    var m=meta(x.indicator),truth=r()<.5,s=truth?[x.hi,x.lo]:[x.lo,x.hi];
-    add({kind:'compare',key:x.indicator+'|'+[x.hi,x.lo].sort().join('|'),text:S(s[0])+' '+L(s[1])+'보다 '+m.more+'.',truth:truth,
-     explain:x.hi+' '+fmt(value(x.hi,x.indicator))+m.unit+', '+x.lo+' '+fmt(value(x.lo,x.indicator))+m.unit+' ('+m.label+', '+m.year+', '+m.source+') · '+span(x,x.indicator)+' 같은 순서 · 근거: '+x.basis,
+    var m=meta(x.indicator),truth=r()<.5,s=truth?[x.hi,x.lo]:[x.lo,x.hi],neg=m.negMore&&value(x.hi,x.indicator)<0&&value(x.lo,x.indicator)<0;
+    add({kind:'compare',key:x.indicator+'|'+[x.hi,x.lo].sort().join('|'),text:neg?S(s[1])+' '+L(s[0])+'보다 '+m.negMore+'.':S(s[0])+' '+L(s[1])+'보다 '+m.more+'.',truth:truth,
+     explain:x.hi+' '+cellText(x.hi,x.indicator)+m.unit+', '+x.lo+' '+cellText(x.lo,x.indicator)+m.unit+' ('+m.label+', '+m.year+', '+m.source+') · '+span(x,x.indicator)+' 같은 순서 · 근거: '+x.basis,
      check:{ind:x.indicator,subject:s[0],object:s[1]}});
    });
    // One statement per group of 대상, so a claim and its reverse never meet in a question.
@@ -449,9 +454,10 @@
    pairs(chosen).forEach(function(p){
     var a=entity(p[0]),b=entity(p[1]);
     Object.keys(a.facts||{}).forEach(function(set){
-     var m=kb.factSets[set];if(!m||!m.exclusive||!b.facts||!b.facts[set]||(theme.reveals||[]).indexOf(set)>=0||!allowed(theme,set)||stated(p[0],set)||stated(p[1],set))return;
-     var va=a.facts[set].values[0],vb=b.facts[set].values[0],pr=predicate(set,va);if(!pr)return;
-     if(va!==vb&&!plausible(set,p[1],va))return;
+     // A multi-valued set (도시가 있는 주) has no single value two 대상 could share.
+     var m=kb.factSets[set];if(!m||!m.exclusive||m.multi||theme.noBoth||!b.facts||!b.facts[set]||(theme.reveals||[]).indexOf(set)>=0||!allowed(theme,set)||stated(p[0],set)||stated(p[1],set))return;
+     var va=a.facts[set].values[0],vb=b.facts[set].values[0];if(va==null||vb==null)return;var pr=predicate(set,va);if(!pr)return;
+     if(va!==vb&&!plausible(set,p[1],va)&&!m.falseFromOthers)return;
      add({kind:'both',key:set+'|'+p[0],keys:[set+'|'+p[0],set+'|'+p[1]],text:W(p[0])+' '+S(p[1])+' 모두 '+pr+'.',truth:va===vb,explain:factExplain(set,p[0])+' / '+factExplain(set,p[1]),check:{set:set,a:p[0],b:p[1],value:va}});
     });
     if(theme.kind==='composition'&&composition(theme).total){
@@ -473,7 +479,7 @@
      var truth=r()<.5,s=truth?s0:[s0[1],s0[0]];
      var line=function(n){return n+' '+fmt(value(n,d.total))+tm.unit+' × '+fmt(value(n,d.rate))+rm.unit+' ≈ '+fmt(value(n,d.total)*value(n,d.rate)/d.per)+tm.unit};
      add({kind:'data',key:'derived|'+d.rate+'|'+p[0]+'|'+p[1],check:{rate:d.rate,total:d.total,per:d.per,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+d.noun+subjectParticle(d.noun)+' 많다.',truth:truth,
-      explain:'표의 '+tm.label+' × '+rm.label+': '+line(s0[0])+', '+line(s0[1])+' — '+rm.label+'은 반대지만 '+tm.label+' 차이 때문에 '+d.noun+topic(d.noun)+' 이렇다. ('+rm.year+', '+rm.source+')'});
+      explain:'표의 '+tm.label+' × '+rm.label+': '+line(s0[0])+', '+line(s0[1])+' — '+rm.label+'은 반대지만 '+tm.label+' 차이 때문에 '+d.noun+topic(d.noun)+' '+s0[0]+subjectParticle(s0[0])+' 더 많다. ('+rm.year+', '+rm.source+')'});
     });
     // Two-period tables: which row changed more between the two columns (3%p apart at least).
     if(theme.kind==='indicators')(theme.changes||[]).forEach(function(d){
@@ -482,9 +488,9 @@
      var ch=function(n){return d.ratio?value(n,d.to)/value(n,d.from):(value(n,d.to)-value(n,d.from))*(d.drop?-1:1)},ca=ch(p[0]),cb=ch(p[1]);
      if(d.ratio?!(Math.min(ca,cb)>0)||Math.max(ca,cb)/Math.min(ca,cb)<d.min:Math.abs(ca-cb)<d.min)return;
      var hi=ca>cb?p[0]:p[1],lo=hi===p[0]?p[1]:p[0],truth=r()<.5,s=truth?[hi,lo]:[lo,hi],fm=meta(d.from),tm=meta(d.to);
-     var line=function(n){return n+' '+fmt(value(n,d.from))+' → '+fmt(value(n,d.to))+(d.ratio?'('+fmt(Math.round(ch(n)*10)/10)+'배)':(function(v){return '('+(v>=0?'+':'')+fmt(Math.round(v*100)/100)+fm.unit+(fm.unit==='%'?'p':'')+')'})(value(n,d.to)-value(n,d.from)))};
+     var line=function(n){return n+' '+fmt(value(n,d.from))+' → '+fmt(value(n,d.to))+(d.ratio?'('+fmt(Math.round(ch(n)*10)/10)+'배)':(function(v){var u=fm.unit+(fm.unit==='%'?'p':'');return d.drop?'('+fmt(Math.round(-v*100)/100)+u+' 감소)':'('+(v>=0?'+':'')+fmt(Math.round(v*100)/100)+u+')'})(value(n,d.to)-value(n,d.from)))};
      add({kind:'data',key:'change|'+d.from+'|'+p.slice().sort().join('|'),check:{from:d.from,to:d.to,ratio:!!d.ratio,drop:!!d.drop,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+d.noun+subjectParticle(d.noun)+' '+(d.more||'크다')+'.',truth:truth,
-      explain:'표의 '+fm.label+'·'+tm.label+': '+line(hi)+', '+line(lo)+' ('+fm.source+')'});
+      explain:'표의 '+fm.label+'·'+tm.label+': '+line(s[0])+', '+line(s[1])+' ('+fm.source+')'});
     });
    });
    if(theme.kind==='indicators')chosen.forEach(function(n){
@@ -542,25 +548,38 @@
    return c.kind==='concept'||c.kind==='category'||c.kind==='climateClaim'||c.kind==='compare'||c.kind==='sign'||c.kind==='data'||c.kind==='graph'||c.kind==='climate'||!!(c.check&&c.check.set&&focusSets.indexOf(c.check.set)>=0)}
   function chooseStatements(theme,cands,r){
    var isFocus=function(c){return isFocus0(theme,c)};
-   var picked=[],used={},kinds={},both=0;
-   function take(pool,truth,need){
-    var list=shuffle(pool.filter(function(c){return c.truth===truth}),r),got=0;
-    while(got<need&&list.length){
+   var groups={},list0=[];
+   cands.forEach(function(c){var g=c.kind+'|'+c.key;if(!groups[g]){groups[g]={kind:c.kind,focus:isFocus(c),T:[],F:[]};list0.push(groups[g])}groups[g][c.truth?'T':'F'].push(c)});
+   // Table readings: at most two, one true and one false, or they settle the answer by themselves.
+   var picked=[],used={},kinds={},both=0,need={T:2,F:2},readTruth=null;
+   var free=function(c){return !(c.keys||[c.key]).some(function(k){return used[k]})&&!(c.kind==='both'&&both)&&!(c.kind==='data'&&kinds.data>=2)};
+   function take(pool,limit,loose){
+    var list=shuffle(pool,r),got=0;
+    while(got<limit&&(need.T||need.F)&&list.length){
      list.sort(function(a,b){return (kinds[a.kind]||0)-(kinds[b.kind]||0)});
-     var c=list.shift(),keys=c.keys||[c.key];
-     if(keys.some(function(k){return used[k]})||c.kind==='both'&&both)continue;
-     picked.push(c);keys.forEach(function(k){used[k]=1});kinds[c.kind]=(kinds[c.kind]||0)+1;if(c.kind==='both')both++;got++;
+     // A fact with only one wording available makes its truth follow the kind; it is a last resort.
+     var g=list.shift(),can=['T','F'].filter(function(t){return need[t]&&g[t].some(free)&&!(g.kind==='data'&&readTruth===t)});
+     if(!loose&&g.kind==='fact'&&!(g.T.length&&g.F.length))continue;
+     if(!can.length)continue;
+     var t=can.length===2?(r()<need.T/(need.T+need.F)?'T':'F'):can[0],c=pick(g[t].filter(free),r);
+     picked.push(c);(c.keys||[c.key]).forEach(function(k){used[k]=1});kinds[c.kind]=(kinds[c.kind]||0)+1;if(c.kind==='both')both++;if(c.kind==='data')readTruth=t;need[t]--;got++;
     }
     return got;
    }
-   var focus=cands.filter(isFocus),rest=cands.filter(function(c){return !isFocus(c)});
-   var ft=r()<.5?2:1,t=take(focus,true,ft),f=take(focus,false,3-ft);
-   t+=take(rest,true,2-t);f+=take(rest,false,2-f);
-   t+=take(focus,true,2-t);f+=take(focus,false,2-f);
+   var focus=list0.filter(function(g){return g.focus}),rest=list0.filter(function(g){return !g.focus});
+   take(focus,3);take(rest,4);take(focus,4);take(list0,4,true);
+   var t=2-need.T,f=2-need.F;
    if(t<2||f<2)return null;
-   var target=Math.floor(r()*COMBOS.length),slots=[null,null,null,null],tr=picked.filter(function(c){return c.truth}),fa=shuffle(picked.filter(function(c){return !c.truth}),r);
-   COMBOS[target].forEach(function(pos,i){slots[pos]=tr[i]});
-   for(var i=0;i<4;i++)if(!slots[i])slots[i]=fa.shift();
+   // <보기> read straight from the table (kind 'data') need no identification; their places may
+   // not leave only one answer combination, or the question is solved without identifying anything.
+   var tr0=picked.filter(function(c){return c.truth}),fa0=picked.filter(function(c){return !c.truth}),slots=null,target=-1;
+   shuffle(COMBOS.map(function(c,i){return i}),r).some(function(ti){for(var tries=0;tries<2;tries++){
+    var tr=shuffle(tr0,r),fa=shuffle(fa0,r),sl=[null,null,null,null];
+    COMBOS[ti].forEach(function(pos,i){sl[pos]=tr[i]});for(var i=0;i<4;i++)if(!sl[i])sl[i]=fa.shift();
+    var left=COMBOS.filter(function(c){return sl.every(function(x,i){return x.kind!=='data'||(c.indexOf(i)>=0)===x.truth})}).length;
+    if(left>1){slots=sl;target=ti;return true}
+   }return false});
+   if(!slots)return null;
    return {statements:slots.map(function(c,i){return Object.assign({mark:MARKS[i]},c)}),options:COMBOS.map(function(c,i){return {mark:ROUND[i],text:c.map(function(x){return MARKS[x]}).join(', ')}}),answer:target};
   }
 
@@ -573,8 +592,10 @@
    names.forEach(function(n,i){injective(names.slice(0,i).concat(names.slice(i+1)),k-1).forEach(function(rest){out.push([n].concat(rest))})});
    return out;
   }
-  function markerStage(theme,chosen,shown,avail,r){
-   var k=chosen.length,room=Math.min(5,avail.length)-k,right=chosen.join('|');
+  function markerStage(theme,chosen,shown,avail,r,strict){
+   // 실전형 (strict) has no options to narrow the pins, so only the 대상 themselves are marked: an
+   // extra pin could fit a row as well (audit 2026-10-23), and their uniqueness is already checked.
+   var k=chosen.length,room=strict?0:theme.mapExtras!=null?Math.min(theme.mapExtras,avail.length-k):Math.min(5,avail.length)-k,right=chosen.join('|');
    var known1=function(n){return theme.kind==='indicators'?REL.some(function(x){return visible(shown,x.indicator)&&(x.hi===n&&chosen.indexOf(x.lo)>=0||x.lo===n&&chosen.indexOf(x.hi)>=0)}):
     theme.kind==='composition'?!!orderOf(theme,n):theme.kind==='climate'?!!cl(n).type:theme.kind==='clues'?!!entity(n).clues:!!(theme.items&&theme.items[n])};
    var region=function(n){return chosen.some(function(c){return entity(c).region===entity(n).region})};
@@ -605,6 +626,7 @@
   // linked to them, so questions centre on the comparisons exams make; the rest are random.
   function draw(theme,avail,k,r,inds){
    var has=function(list,n){return list.indexOf(n)>=0};
+   if(theme.sets){var fit=theme.sets.map(function(s){return s.filter(function(n){return has(avail,n)})}).filter(function(s){return s.length>=k});return fit.length?shuffle(pick(fit,r),r).slice(0,k):[]}
    if(theme.kind==='clues'){
     var first=pick(avail,r),near=shuffle(avail.filter(function(n){return n!==first&&entity(n).region===entity(first).region}),r);
     return shuffle([first].concat(near,shuffle(avail.filter(function(n){return n!==first&&!has(near,n)}),r)).slice(0,k),r);
@@ -624,7 +646,7 @@
   }
 
   function buildColumns(theme,avail,k,r,avoid,attempt){
-   var hidden=shuffle(columnsFor(theme),r).slice(0,3),own=function(n){return theme.kind!=='composition'||!!orderOf(theme,n)};
+   var hidden=apart(theme,shuffle(columnsFor(theme).filter(function(id){return (theme.noHide||[]).indexOf(id)<0}),r)).slice(0,3),own=function(n){return theme.kind!=='composition'||!!orderOf(theme,n)};
    var from=theme.kind==='composition'?avail.filter(own):avail.filter(function(n){return hidden.every(function(ind){return value(n,ind)!=null})});if(from.length<k)return null;
    var rows=theme.kind==='indicators'?draw(theme,from,k,r,hidden):shuffle(from,r).slice(0,k);
    var shown=theme.kind==='indicators'?(theme.always||[]).concat(hidden):[];
@@ -714,7 +736,7 @@
     if(theme.kind==='indicators'){
      var always=theme.always||[],inds=theme.indicators.filter(function(ind){return meta(ind)&&!meta(ind).disabled&&always.indexOf(ind)<0});
      // A source without a value for one 대상 (no coffee in France) is not shown as 0; the column is left out.
-     shown=always.concat(shuffle(inds.filter(function(ind){return chosen.every(function(n){return value(n,ind)!=null})}),r).slice(0,theme.show));
+     shown=always.concat(apart(theme,shuffle(inds.filter(function(ind){return chosen.every(function(n){return value(n,ind)!=null})&&!sameCell(chosen,ind)}),r)).slice(0,theme.show));
     }
     // Skip a question the learner saw recently (opts.avoid), while other ones can still be made.
     var signature=theme.id+'|'+chosen.slice().sort(koSort).join(',')+'|'+shown.slice().sort().join(',');
@@ -724,9 +746,10 @@
     // identified the 대상, the theme's own indicators would be decoration.
     // A two-period table (periodTable) is read through its two year columns, so they may identify.
     if(theme.always&&theme.always.length&&!theme.periodTable&&identifiable(theme,chosen,theme.always))continue;
+    if(theme.needsAlways&&identifiable(theme,chosen,shown.filter(function(i){return theme.always.indexOf(i)<0})))continue;
     // everyKnown: each 대상 is identified by its own verified knowledge, never by elimination.
     if(theme.everyKnown&&chosen.some(function(n){return theme.kind!=='indicators'?!own(n):!REL.some(function(x){return visible(shown,x.indicator)&&(x.hi===n||x.lo===n)&&chosen.indexOf(x.hi)>=0&&chosen.indexOf(x.lo)>=0})}))continue;
-    var pair=theme.map?markerStage(theme,chosen,shown,avail,r):null;if(theme.map&&!pair)continue;
+    var pair=theme.map?markerStage(theme,chosen,shown,avail,r,format==='implicit'):null;if(theme.map&&!pair)continue;
     var s2=chooseStatements(theme,candidates(theme,chosen,shown,r),r);if(!s2)continue;
     // Fewer 대상 leave fewer pairs to compare; such a draw whose <보기> are mostly background is redrawn.
     if(k<theme.pick[1]&&attempt<400&&s2.statements.filter(function(s){return isFocus0(theme,s)}).length<2)continue;

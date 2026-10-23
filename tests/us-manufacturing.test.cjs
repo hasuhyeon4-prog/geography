@@ -70,3 +70,15 @@ test('questions use only usMfg knowledge; facts never claim 워싱턴주 for a b
   }
   assert.ok(built >= 250, 'built ' + built);
 });
+
+test('draws stay in the two exam sets, the map marks only them, and overlapping columns stay apart', () => {
+  const sets = theme.sets.map(s => new Set(s));
+  for (let seed = 1; seed <= 300; seed++) {
+    const q = E.build({themeId: 'us-manufacturing', seed});
+    assert.ok(q, 'seed ' + seed);
+    assert.ok(sets.some(s => q.entities.every(n => s.has(n))), seed + ' ' + q.entities.join(','));
+    if (q.stage1.markers) assert.deepEqual(q.stage1.markers.map(m => m.name).sort(), q.entities.slice().sort(), 'seed ' + seed);
+    for (const pair of theme.apart) assert.ok(!pair.every(id => q.shown.includes(id)), seed + ' shows ' + pair.join(' and '));
+    if (q.format === 'columns') assert.ok(!q.hidden.includes('us-total'), 'seed ' + seed + ' hides 총출하액');
+  }
+});

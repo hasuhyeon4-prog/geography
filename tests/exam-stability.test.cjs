@@ -258,7 +258,7 @@ test('identification rests only on whitelisted knowledge that holds in every yea
         // City clues are the lecture's reference-point cells (data/exam-world-cities.json).
         if (t.entityType === 'site') assert.ok(data('data/exam-world-cities.json').cities[n].clues.some(x => x.text === c.text), n + ': ' + c.text);
         else assert.ok(clueData.countries[n].some(x => x.eligibleIdentification && x.text.includes(c.text)), n + ': ' + c.text);
-        assert.ok(c.text.endsWith(q.display.rows[i].cells[0].replace(/^이 나라의 /, '')), n + ' shown text');
+        assert.ok(c.text.endsWith(q.display.rows[i].cells[0].replace(/^이 (나라|도시)(의|에는) /, '')), n + ' shown text');
         assert.ok(!q.display.rows[i].cells[0].includes(n), n + ' named in its own clue');
         for (const o of marked) if (o !== n) for (const d of K.entities[o].clues || []) for (const k of c.keys) assert.ok(!d.text.includes(k), `${n} clue key ${k} also in ${o}`);
       });
@@ -566,7 +566,7 @@ test('agriculture: concept statements keep the card truth; non-exclusive card se
   const cards = data('data/concepts/agriculture.json');
   let n = 0;
   for (const q of questions()) for (const s of q.stage2.statements) {
-    if (s.kind === 'concept') {
+    if (s.kind === 'concept' && q.theme.entityType !== 'site') {
       const card = cards.statements.find(x => s.explain.startsWith(x.claim));
       assert.ok(card, s.explain);
       assert.equal(s.truth, card.truth, s.text);

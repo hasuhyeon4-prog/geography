@@ -32,7 +32,7 @@ h2{font-size:17px;line-height:1.45;margin:14px 0 8px;word-break:keep-all}.step{d
 .big{width:100%;min-height:54px;font-size:17px;border-radius:13px;margin-top:10px}
 .small{font-size:12px;line-height:1.5}.muted{color:var(--muted)}
 .mapBox{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#e7f0f5;margin:8px 0}.mapBox svg{display:block;width:100%;height:auto}
-.mapBox .land{fill:#f6f7f2;stroke:#a9b6ba}.mapBox .marked{fill:#ffe3a3;stroke:#8a6a12}.mapBox .pin circle{fill:var(--ink);stroke:#fff}.mapBox .pin text{fill:#fff;font-weight:800;text-anchor:middle;dominant-baseline:central}.mapBox .pinName{fill:var(--ink);font-weight:700;paint-order:stroke;stroke:#fff;dominant-baseline:central}
+.mapBox .land{fill:#f6f7f2;stroke:#a9b6ba}.mapBox .marked{fill:#ffe3a3;stroke:#8a6a12}.mapBox .pin circle{fill:var(--ink);stroke:#fff}.mapBox .pin text{fill:#fff;font-weight:800;text-anchor:middle;dominant-baseline:central}.mapBox .pinLine{stroke:var(--ink);stroke-width:1.5}.mapBox .pinDot{fill:var(--ink);stroke:#fff;stroke-width:1}.mapBox .pinName{fill:var(--ink);font-weight:700;paint-order:stroke;stroke:#fff;dominant-baseline:central}
 .climateGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin:6px 0}.climateFig{margin:0;border:1px solid var(--line);border-radius:10px;padding:6px 6px 2px}
 .climateFig figcaption{font-weight:800;color:var(--accent);font-size:14px}.climateFig svg{display:block;width:100%;height:auto}.climateFig text{font-size:9px;fill:var(--muted)}
 .climateFig .bar{fill:#74a9cf}.climateFig .tline{fill:none;stroke:#c4441c;stroke-width:2}.climateFig .tdot{fill:#c4441c}.climateFig .grid{stroke:#e3e9ea}.climateFig .zero{stroke:#9aa8ad}
@@ -50,9 +50,9 @@ td.text{white-space:normal;text-align:left;line-height:1.55;word-break:keep-all;
 <div class="scope"><label for="themeSelect">주제<select id="themeSelect"></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><span class="score" id="score"></span></div>
 <main id="main" aria-live="polite"></main>
 <div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 항목마다 적은 기간(대개 2015~2025년)의 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
-<script src="assets/entity-kb.js?v=20261023-8"></script>
-<script src="assets/exam-themes.js?v=20261023-8"></script>
-<script src="assets/exam-engine.js?v=20261023-7"></script>
+<script src="assets/entity-kb.js?v=20261023-9"></script>
+<script src="assets/exam-themes.js?v=20261023-9"></script>
+<script src="assets/exam-engine.js?v=20261023-8"></script>
 <script>
 (function(){
 'use strict';
@@ -141,7 +141,7 @@ function drawMap(q,revealed){
  if(states)needStates();
  if(shapes!=='ready'||states&&stateShapes!=='ready'){needShapes();return el('p',{className:'small muted',text:shapes==='failed'||states&&stateShapes==='failed'?'지도를 불러오지 못했어요. 위의 "이름으로"를 켜면 이름 후보로 풀 수 있어요.':'지도를 불러오는 중…'})}
  var v=mapView(q),x0=(v[0]+180)*10,y0=(90-v[3])*10,w=(v[2]-v[0])*10,h=(v[3]-v[1])*10,tol=(v[2]-v[0])/500;
- var svg=svgEl('svg',{viewBox:[x0,y0,w,h].map(function(n){return n.toFixed(1)}).join(' '),role:'img','aria-label':(states?'주가 ':'국가가 ')+q.stage1.markers.map(function(m){return m.letter}).join('·')+'로 표시된 지도'});
+ var svg=svgEl('svg',{viewBox:[x0,y0,w,h].map(function(n){return n.toFixed(1)}).join(' '),role:'img','aria-label':(states?'주가 ':q.theme.entityType==='site'?'도시가 ':'국가가 ')+q.stage1.markers.map(function(m){return m.letter}).join('·')+'로 표시된 지도'});
  var marked={};q.stage1.markers.forEach(function(m){marked[m.name]=1});
  Object.keys(WGCountryShapes.byName).forEach(function(n){
   var g=countryGeo(n),b=g.box;if(b[2]<v[0]||b[0]>v[2]||b[3]<v[1]||b[1]>v[3])return;
@@ -160,6 +160,11 @@ function drawMap(q,revealed){
   var dx=pos[j].x-pos[i].x,dy=pos[j].y-pos[i].y,d=Math.hypot(dx,dy)||.01,need=r*2.4;
   if(d<need){var k=(need-d)/2/d;pos[i].x-=dx*k;pos[i].y-=dy*k;pos[j].x+=dx*k;pos[j].y+=dy*k}
  }
+ // A pin pushed off its place keeps a dot on the true spot and a line to it.
+ q.stage1.markers.forEach(function(m,mi){
+  var tx=(m.point[0]+180)*10,ty=(90-m.point[1])*10;
+  if(Math.hypot(pos[mi].x-tx,pos[mi].y-ty)>r*.5){svgEl('line',{x1:tx.toFixed(1),y1:ty.toFixed(1),x2:pos[mi].x.toFixed(1),y2:pos[mi].y.toFixed(1),class:'pinLine','vector-effect':'non-scaling-stroke'},svg);svgEl('circle',{cx:tx.toFixed(1),cy:ty.toFixed(1),r:(r*.28).toFixed(1),class:'pinDot'},svg)}
+ });
  q.stage1.markers.forEach(function(m,mi){
   var x=pos[mi].x,y=pos[mi].y,g=svgEl('g',{class:'pin'},svg);
   svgEl('circle',{cx:x.toFixed(1),cy:y.toFixed(1),r:r.toFixed(1),'stroke-width':(r/6).toFixed(1)},g);

@@ -234,6 +234,10 @@ for (const r of R.rankings) {
   }
 }
 
+// Exam tables keep one precision per column. 순 이주 is the lecture's term (유입 − 유출); two
+// net-outflow continents are compared by the size of the outflow (negMore), as the lecture does.
+Object.assign(indicators['cont-netmig'], {label: '순 이주(유입 − 유출)', decimals: 1, negMore: '순 유출 규모가 크다'});
+indicators['cont-density'].decimals = 1;
 // --- multi-year check of the whitelist (data/exam-relations.json) ---
 // An ageing index is a ratio of the two age groups, not the elderly share itself.
 indicators['cont-agingIndex'] = {label:'노령화 지수(유소년 100명당 노년 인구)',unit:'명',more:'노령화 지수가 높다',
@@ -718,10 +722,14 @@ for (const [set, s] of Object.entries(USM_REL.facts)) {
 const usCities = read('data/concepts/us-city-states.json');
 US_FACT_SETS.usCity = {title: '주에 있는 강의 속 도시', multi: true, negationSafe: false, exclusive: true, falseFromOthers: true, template: '{value}이/가 위치한 주이다',
   options: {}, source: '강의 2권 P08 · ' + usCities.sets.state.source};
+// The eight places are a complete scope, so a state holding none of them (오하이오) says so: its
+// false '디트로이트가 위치한 주이다' is the trap L2-B0701 warns about.
+for (const e of Object.values(entities)) if (e.type === 'usState') e.facts.usCity = {values: [], note: '', source: '강의 2권 P08 · ' + usCities.sets.state.source};
 for (const [city, [state]] of Object.entries(usCities.sets.state.values)) {
   if (!entities[state] || entities[state].type !== 'usState') continue;
   US_FACT_SETS.usCity.options[city] = city;
-  const f = entities[state].facts.usCity || (entities[state].facts.usCity = {values: [], note: '', source: '강의 2권 P08 / ' + usCities.entities[city].source.blockId});
+  const f = entities[state].facts.usCity;
+  if (!f.values.length) f.source = '강의 2권 P08 / ' + usCities.entities[city].source.blockId;
   f.values.push(city);
   if (!f.source.includes(usCities.entities[city].source.blockId)) f.source += '·' + usCities.entities[city].source.blockId;
 }
@@ -969,21 +977,22 @@ for (const s of climateSites) {
       station: s.station.name, sourceId: s.sourceId}};
 }
 
-// --- 세계 도시 기준점 (round two: data/exam-world-cities.json, 강의 1권 P05 L1-B1706) ---
-// Cities are place 대상 like the climate sites ('런던'·'파리' are both), with lecture clues and
-// three exclusive fact sets. Hierarchy ranks are never recalled: the lecture reads them from a table.
+// --- 세계 도시 (round two and three: data/exam-world-cities.json, 강의 1권 P05) ---
+// Cities are place 대상 like the climate sites ('런던'·'파리'·'로스앤젤레스' are both), with lecture
+// clues (name-free sentences first), two exclusive fact sets with a source per city, and pair
+// statements the lecture states (도시 역사, EU 탈퇴, 뉴욕 > 토론토). Tier ranks are never recalled.
 const WC = read('data/exam-world-cities.json'), CITY_SETS = {};
 const cityPlaces = Object.assign({}, read('data/concepts/cities.json').entities, {토론토: {place: read('data/toronto-clues-round3.json').place}});
-const cityPoint = n => cityPlaces[n].place;
 for (const [n, c] of Object.entries(WC.cities)) {
-  const e = entities[n] || (entities[n] = {type: 'site', name: n, region: c.region, label: cityPoint(n), facts: {}, values: {}});
+  const e = entities[n] || (entities[n] = {type: 'site', name: n, region: c.region, label: cityPlaces[n].place, facts: {}, values: {}});
   if (e.type !== 'site') throw new Error('city name taken by a ' + e.type + ': ' + n);
-  e.clues = c.clues.map(k => ({text: k.text, shown: k.text, keys: [k.text], source: k.source}));
+  e.clues = c.clues.map(k => ({text: k.text, shown: k.shown || k.text, keys: [k.text], source: k.source}));
 }
 for (const [set, s] of Object.entries(WC.facts)) {
-  CITY_SETS[set] = {title: s.title, multi: false, negationSafe: false, exclusive: true, falseFromOthers: true, template: s.template || '{value}', options: s.options, source: s.source};
-  for (const [n, v] of Object.entries(s.values)) entities[n].facts[set] = {values: [v], note: '', source: s.source};
+  CITY_SETS[set] = {title: s.title, multi: false, negationSafe: false, exclusive: true, falseFromOthers: true, template: '{value}', options: s.options};
+  for (const [n, v] of Object.entries(s.values)) entities[n].facts[set] = {values: [v.value], note: v.note, source: v.source};
 }
+WC.statements.forEach((st, i) => concepts.push({id: 'city-' + (i + 1), about: st.about, claim: st.claim, truth: st.truth, source: st.source}));
 
 const out = {
   generated: 'scripts/build-entity-kb.cjs',

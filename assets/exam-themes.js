@@ -31,12 +31,15 @@
   // identify through data/exam-relations-fertility.json; 순이동 and 인구 recall the shared continent pairs.
   {
    id:'continent-fertility',status:'ready',title:'대륙별 합계 출산율 변화와 순 이주',lecture:'1권 P05',exams:['2024학년도 수능 14번'],
-   // Population pairs come first: every TFR column is in the table, so only 순이동·인구 are recalled.
-   kind:'indicators',entityType:'continent',periodTable:true,domains:[null,'fertility'],noRecall:['cont-urban','cont-agingIndex','cont-gdp','cont-gdppc','cont-area'],
+   // Every TFR column is in the table, so <보기> recall 순 이주·총인구·인구 밀도, as the exam did
+   // (audit 2026-10-23: 연령 구조·자연 증가율 recalls only needed 아프리카 and 유럽 placed). needsAlways:
+   // a draw the fourth column alone identifies is redrawn.
+   kind:'indicators',entityType:'continent',periodTable:true,needsAlways:true,domains:[null,'fertility'],
+   noRecall:['cont-urban','cont-agingIndex','cont-gdp','cont-gdppc','cont-area','cont-old','cont-young','cont-nir'],
    pool:['아시아','아프리카','유럽','라틴 아메리카','앵글로아메리카'],pick:[3,4],
    always:['ctfr@1960','ctfr@1990','ctfr@2020'],indicators:['cont-netmig','cont-pop','cont-density'],show:1,
    changes:[{from:'ctfr@1960',to:'ctfr@2020',drop:true,noun:'1960~2020년 합계 출산율 감소 폭',min:0.5}],
-   note:'합계 출산율은 UN WPP 2024 추정치, 순이동·인구는 세계은행 WDI 2023년 값이다. 기출의 2020년 순 이주 값과 판본·연도가 다르다. 러시아는 유럽에 포함한다.',
+   note:'합계 출산율은 UN WPP 2024 추정치이다. 넷째 열은 2023년 값(세계은행 WDI, 인구 밀도는 2024년 면적 기준)으로, 기출의 2020년 값과 판본·연도가 다르다. 러시아는 유럽에 포함한다.',
    prompt:'{range}는 {candidates} 중 하나이다. 표는 1960·1990·2020년의 합계 출산율과 다른 지표이다.'
   },
   {
@@ -169,20 +172,26 @@
    note:'광물마다 세계 총량(분모)과 단위가 다르다(구리는 금속 함량, 철광석은 광석 무게). 그래서 서로 다른 광물의 비중끼리는 생산량을 비교할 수 없다.',
    prompt:'{range}는 {candidates} 중 하나이다. 표는 세계 생산량에서 각 나라가 차지하는 비중(%)이다.'
   },
-  // 미국 주별 제조업 (data/us-state-manufacturing-series.json). The two exam sets never put 오하이오
-  // with 미시간 or 워싱턴주, so the whitelist has no pair between them and such draws are not built.
+  // 미국 주별 제조업 (data/us-state-manufacturing-series.json). Draws stay inside the two exam sets
+  // (2016학년도 9월: 오하이오·캘리포니아·텍사스, 2027학년도 6월: 캘리포니아·텍사스·워싱턴주·미시간), and the
+  // map marks only the chosen states, as both exams do (audit 2026-10-23).
   {
    id:'us-manufacturing',status:'ready',title:'미국 주별 제조업 구성',lecture:'2권 P08',exams:['2016학년도 9월 7번','2027학년도 6월 5번'],
-   kind:'indicators',entityType:'usState',map:true,domains:['usMfg'],
+   // noBoth: with five states a '모두 …' is true or false by its value alone (모두 오대호: never true).
+   kind:'indicators',entityType:'usState',map:true,mapExtras:0,noBoth:true,domains:['usMfg'],
    pool:['캘리포니아','텍사스','오하이오','미시간','워싱턴주'],pick:[3,4],
-   always:[],indicators:['us-computer','us-petchem','us-machTrans','us-metal','us-aero','us-parts','us-total'],show:3,
+   sets:[['오하이오','캘리포니아','텍사스'],['캘리포니아','텍사스','워싱턴주','미시간']],
+   always:[],indicators:['us-computer','us-petchem','us-machTrans','us-metal','us-aero','us-parts','us-total'],show:4,
+   // 기계·운송 장비(333+336) holds 항공 우주(3364) and 자동차 부품(3363), so they are never side by side;
+   // 총출하액 beside shares would give itself away as a hidden column.
+   apart:[['us-machTrans','us-aero'],['us-machTrans','us-parts']],noHide:['us-total'],
    // 업종 출하액 = 총출하액 × 비중 (L2-B0698): asked only where share and amount point opposite ways.
    derived:[{rate:'us-computer',total:'us-total',per:100,noun:'컴퓨터·전자 제품 출하액'},{rate:'us-petchem',total:'us-total',per:100,noun:'석유·석탄 제품과 화학 제품 출하액'},
     {rate:'us-machTrans',total:'us-total',per:100,noun:'기계·운송 장비 출하액'},{rate:'us-metal',total:'us-total',per:100,noun:'1차 금속·금속 가공 제품 출하액'},
     {rate:'us-aero',total:'us-total',per:100,noun:'항공 우주 제품·부품 출하액'},{rate:'us-parts',total:'us-total',per:100,noun:'자동차 부품 출하액'}],
    followups:{facts:['usBelt','usCoast','usCity'],focus:[]},
-   note:'비중은 각 주의 제조업 총출하액 대비 업종 출하액이다(부가가치·주 총생산과 다른 지표). 업종 출하액은 총출하액 × 비중으로 구한다. 2027학년도 6월 문항의 2024년 생산액과 같은 지표로 보지 않는다.',
-   prompt:'{range}는 {candidates} 중 하나이다. 표는 각 주의 제조업 출하액에서 업종이 차지하는 비중(%)과 총출하액이다.'
+   note:'비중은 각 주의 제조업 총출하액 대비 업종 출하액이다(부가가치·주 총생산과 다른 지표). 업종 출하액은 총출하액 × 비중으로 구한다. 2027학년도 6월 문항의 2024년 생산액과 같은 지표로 보지 않는다. 워싱턴주의 항공 우주 비중은 해마다 크게 달라진다(2016년 약 48% → 2022년 약 24%).',
+   prompt:'{range}는 {candidates} 중 하나이다. 표는 각 주의 제조업 출하액 자료이다.'
   },
   // 지역지리: (가)~(다) are described by lecture sentences (data/country-clues.json, filtered in
   // scripts/build-entity-kb.cjs) and found on the map. The pool is every country with a clue.
@@ -198,15 +207,16 @@
     focus:['religion','christianity','islam','buddhism','bloc','apec','euro','latinLanguage','capitalCity','exportType']},
    prompt:'{range}는 {candidates} 중 하나이다. 표의 문장은 강의에서 각 나라를 설명한 것이다.'
   },
-  // 세계 도시 (data/exam-world-cities.json): the lecture's reference points per city, found on the
-  // map. Ranks and tiers are left to supplied tables, as the lecture asks.
+  // 세계 도시 (data/exam-world-cities.json): lecture sentences about each city, found on the map,
+  // then capital and UN facts and the pair statements the lecture states (concepts). Ranks and
+  // tiers are left to supplied tables, as the lecture asks.
   {
-   id:'world-city-clues',status:'ready',title:'세계 도시의 기준점',lecture:'1권 P05',exams:['2027학년도 6월 11번','2027학년도 9월 16번'],
-   kind:'clues',entityType:'site',map:true,
-   pool:['뉴욕','토론토','런던','파리','도쿄','시드니'],pick:[3,3],
-   followups:{facts:['cityCapital','cityUN','cityRegion'],focus:['cityCapital','cityUN','cityRegion']},
+   id:'world-city-clues',status:'ready',title:'세계 도시의 위치와 기능',lecture:'1권 P05',exams:['2027학년도 6월 11번','2027학년도 9월 16번'],
+   kind:'clues',entityType:'site',map:true,concepts:true,noBoth:true,
+   pool:['뉴욕','토론토','로스앤젤레스','런던','파리','도쿄','시드니'],pick:[3,3],
+   followups:{facts:['cityCapital','cityUN'],focus:['cityCapital','cityUN']},
    note:'세계 도시의 계층과 순위는 조사 기관·기준 연도에 따라 다르다. 계층표가 주어지면 기억한 순위보다 표를 따른다.',
-   prompt:'{range}는 {candidates} 중 하나이다. 표의 설명은 강의에서 각 도시의 기준점으로 정리한 것이다.'
+   prompt:'{range}는 {candidates} 중 하나이다. 표의 설명은 강의에서 각 도시를 설명한 것이다.'
   },
   // 농목업 (data/agriculture.json, FAOSTAT). `domains` lets these themes recall the agriculture
   // relations and keeps them out of the others; `concepts` adds the concept-card statements.

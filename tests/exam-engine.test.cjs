@@ -93,15 +93,18 @@ test('every ready theme builds full two-stage questions', () => {
       assert.doesNotMatch(q.prompt, /[{}]/, t.id + ' unresolved prompt');
       assert.ok(['rows', 'columns', 'implicit', 'joint'].includes(q.format), t.id + ' format ' + q.format);
       if (t.map && q.format !== 'columns' && q.format !== 'joint') {
-        // The 대상 and extra countries are marked A~E, lettered west to east, at points inside them.
+        // The 대상 and extra places are marked A~E, lettered west to east, at points inside them.
+        // 실전형 has no options to narrow the pins, and a theme with mapExtras: 0 marks no extras,
+        // so there only the 대상 are marked (an extra pin could fit a row as well).
         const m = q.stage1.markers;
-        assert.ok(m.length >= Math.min(4, t.pool.length) && m.length <= 5, t.id + ' markers ' + m.length);
+        if (q.format === 'implicit' || t.mapExtras === 0) assert.equal(m.length, q.entities.length, t.id + ' markers ' + m.length);
+        else assert.ok(m.length >= Math.min(4, t.pool.length) && m.length <= 5, t.id + ' markers ' + m.length);
         assert.deepEqual(m.map(x => x.letter), 'ABCDE'.slice(0, m.length).split(''), t.id);
         for (let i = 1; i < m.length; i++) assert.ok(m[i - 1].point[0] <= m[i].point[0], t.id + ' letters west to east');
         for (const e of q.entities) assert.ok(m.some(x => x.name === e), t.id + ' answer not on the map');
         for (const o of q.stage1.options) for (const name of o) assert.ok(m.some(x => x.name === name), t.id + ' option outside the map');
         assert.deepEqual(q.stage1.candidates, m.map(x => x.name).sort((a, b) => a.localeCompare(b, 'ko')));
-        assert.match(q.mapPrompt, /지도에 표시된 A~[DE]/, t.id);
+        assert.match(q.mapPrompt, /지도에 표시된 A~[C-E]/, t.id);
         assert.doesNotMatch(q.mapPrompt, /[{}]/, t.id);
       }
       if (q.format === 'joint') {
@@ -363,4 +366,31 @@ test('the identification cue of each row names every known relation it takes par
         assert.ok(c.cue.includes(K.indicators[x.indicator].label) && c.cue.includes(c.name === x.hi ? x.lo : x.hi), t.id + ' ' + seed + ' ' + c.name + ': ' + x.indicator + ' ' + x.hi + '>' + x.lo);
     });
   }
+});
+
+test('table readings never settle the <보기> answer, and the options cannot be gamed by their shape', () => {
+  const COMBOS = [[0, 1], [0, 2], [1, 2], [1, 3], [2, 3]];
+  const parity = p => { let s = 0; for (let i = 0; i < p.length; i++) for (let j = i + 1; j < p.length; j++) if (p[i] > p[j]) s++; return s % 2; };
+  let cols = 0, colsHit = 0, rows = 0, oddHit = 0;
+  for (const t of engine.themes) for (let seed = 1; seed <= 40; seed++) {
+    const q = engine.build({themeId: t.id, seed});
+    if (!q) continue;
+    const st = q.stage2.statements;
+    // Statements read straight from the table (kind 'data') need no identification.
+    const left = COMBOS.filter(c => st.every((x, i) => x.kind !== 'data' || c.includes(i) === x.truth)).length;
+    assert.ok(left > 1, t.id + ' ' + seed + ': the table alone settles the answer');
+    const o = q.stage1.options, ans = q.stage1.answer;
+    if (q.format === 'columns' && q.hidden.length === 3) {
+      // Before 2026-10-23 the left-out ordering was always a 3-cycle, so parity halved the options.
+      const idx = o.map(x => x.map(id => q.hidden.indexOf(id))), all = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
+      const miss = all.find(p => !idx.some(x => x.join() === p.join())), keep = idx.map((x, i) => [x, i]).filter(([x]) => parity(x) === parity(miss)).map(([, i]) => i);
+      cols++; colsHit += keep.includes(ans) ? 1 / keep.length : 0;
+    } else if (q.format !== 'joint') {
+      // The option agreeing least with the others, place by place.
+      const sc = o.map((x, i) => o.reduce((a, y, j) => a + (j === i ? 0 : x.filter((v, k) => v === y[k]).length), 0)), lo = Math.min(...sc), L = sc.map((v, i) => (v === lo ? i : -1)).filter(i => i >= 0);
+      rows++; oddHit += L.includes(ans) ? 1 / L.length : 0;
+    }
+  }
+  assert.ok(colsHit / cols < 0.3, 'columns parity guess ' + (colsHit / cols).toFixed(2));
+  assert.ok(oddHit / rows < 0.3, 'odd-one-out guess ' + (oddHit / rows).toFixed(2));
 });
