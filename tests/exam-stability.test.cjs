@@ -90,6 +90,10 @@ function periodRaw(ind, n) {
   return out;
 }
 function raw(ind, name) {
+  if (ind === 'manufacturingInIndustry') {
+    const c = economy.countries[name], a = c.series.manufacturing || {}, b = c.series.industry || {};
+    return Object.fromEntries(Object.entries(a).filter(([y,v]) => v != null && b[y] > 0 && v >= 0 && v <= b[y]).map(([y,v]) => [y, v / b[y] * 100]));
+  }
   if (PERIOD.test(ind)) return periodRaw(ind, name);
   if (CTFR.test(ind)) return tfrRaw(ind, name);
   if (US_COL[ind]) return usRaw(ind, name);
@@ -230,8 +234,8 @@ test('identification rests only on whitelisted knowledge that holds in every yea
     const t = q.theme, b = q.stage1.basis, col = ind => q.display.columns.findIndex(c => c.id === ind);
     // A change between two shown columns is read from those two cells.
     const cellOf = (name, ind) => num(q.display.rows[q.entities.indexOf(name)].cells[col(ind)]);
-    const fromOf = ind => { const m = ind.match(PERIOD); return m && m[4] ? [m[1] + '-' + CHANGE[m[2]][0] + '@' + m[3], m[1] + '-' + CHANGE[m[2]][0] + '@' + m[4]] : null; };
-    const shownValue = (name, ind) => { const f = fromOf(ind); return f ? CHANGE[ind.match(PERIOD)[2]][1](cellOf(name, f[0]), cellOf(name, f[1])) : cellOf(name, ind); };
+    const fromOf = ind => { if (ind === 'manufacturing') return ['industry', 'manufacturingInIndustry']; const m = ind.match(PERIOD); return m && m[4] ? [m[1] + '-' + CHANGE[m[2]][0] + '@' + m[3], m[1] + '-' + CHANGE[m[2]][0] + '@' + m[4]] : null; };
+    const shownValue = (name, ind) => { if (q.shown.includes(ind)) return cellOf(name, ind); const f = fromOf(ind); return f ? ind === 'manufacturing' ? cellOf(name, f[0]) * cellOf(name, f[1]) / 100 : CHANGE[ind.match(PERIOD)[2]][1](cellOf(name, f[0]), cellOf(name, f[1])) : cellOf(name, ind); };
     const readable = ind => q.shown.includes(ind) || (fromOf(ind) || [null]).every(x => x && q.shown.includes(x));
     for (const x of b.relations || []) {
       assert.ok(allowedPair(x.indicator, x.hi, x.lo), 'identification uses ' + x.indicator + ' ' + x.hi + '/' + x.lo);
@@ -567,7 +571,7 @@ test('agriculture: concept statements keep the card truth; non-exclusive card se
   const cards = data('data/concepts/agriculture.json');
   let n = 0;
   for (const q of questions()) for (const s of q.stage2.statements) {
-    if (s.kind === 'concept' && q.theme.entityType !== 'site') {
+    if (s.kind === 'concept' && /^agri-/.test(s.check.concept)) {
       const card = cards.statements.find(x => s.explain.startsWith(x.claim));
       assert.ok(card, s.explain);
       assert.equal(s.truth, card.truth, s.text);

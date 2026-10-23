@@ -15,7 +15,8 @@
   {
    id:'bloc-indicators',status:'ready',title:'경제 블록의 지표 비교',lecture:'2권 P08',exams:['2023학년도 6월 10번','2026학년도 6월 10번'],
    kind:'indicators',entityType:'bloc',pool:['EU','USMCA','ASEAN','MERCOSUR'],pick:[4,4],
-   indicators:['bloc-pop','bloc-gdp','bloc-trade','bloc-gdppc','bloc-members','bloc-area'],show:2,
+   // Population isolates ASEAN; GDP separates the other blocs. Neither column alone suffices.
+   indicators:['bloc-pop','bloc-gdp'],show:2,requiresAllColumns:true,
    prompt:'{range}는 {candidates} 중 하나이다.'
   },
   {
@@ -85,9 +86,11 @@
   {
    id:'country-economy',status:'ready',title:'국가별 GDP·산업 구조',lecture:'1권 P05 · 2권 P08·P10',exams:['2026학년도 수능 7번','2024학년도 6월 9번','2026학년도 6월 18번'],
    damp:{일본:0.45,중국:0.45,인도:0.6},kind:'indicators',entityType:'country',map:true,
-   pool:['중국','일본','영국','프랑스','폴란드','알제리','나이지리아','보츠와나','콩고 민주 공화국','독일','멕시코','이집트','인도','브라질','아르헨티나','칠레','타이','탄자니아','사우디아라비아','튀르키예'],
+   pool:['중국','일본','영국','프랑스','폴란드','알제리','나이지리아','보츠와나','콩고 민주 공화국','독일','우크라이나','멕시코','이집트','인도','브라질','아르헨티나','칠레','타이','탄자니아','사우디아라비아','튀르키예'],
    pick:[2,3],indicators:['pop','gdp','gdppc','manufacturing','agriculture','industry','services','industryEmployment','exports'],show:2,
-   derived:[{rate:'manufacturing',total:'gdp',per:100,noun:'제조업 부가가치'}],
+   tableRecipes:[{chance:0.4,pool:['중국','일본','영국'],columns:['industry','manufacturingInIndustry']}],
+   derived:[{rate:'manufacturing',total:'gdp',per:100,noun:'제조업 부가가치'},{rate:'manufacturingInIndustry',total:'industry',per:100,noun:'전체 GDP 중 제조업 비중',more:'높다'}],
+   note:'GDP 중 제조업 비중 = GDP 중 2차 산업 비중 × 2차 산업 중 제조업 비중 ÷ 100. 종사자 비율은 생산액 비중과 다르다.',
    followups:{facts:['exportType','opec','bloc','apec','religion','capitalCity','hemisphere','equator','meridian','landlocked'],focus:['exportType','opec']},
    prompt:'{range}는 {candidates} 중 하나이다. 제조업·2차 산업의 GDP 비중과 종사자 비율을 구별한다.'
   },

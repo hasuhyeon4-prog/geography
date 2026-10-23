@@ -207,6 +207,25 @@ for (const [id, meta] of Object.entries(COUNTRY_INDICATORS)) {
   indicators[id] = {...meta, entityType: 'country', year: stats.meta.baseYear, source: stats.meta.source, disabled: false, unstablePairs: []};
   seriesOf[id] = Object.fromEntries(Object.entries(stats.countries).map(([n, c]) => [n, (c.series || {})[id] || (((economy.countries[n] || {}).series || {})[id]) || {}]));
 }
+// The denominator in the lecture's second bar is industry GDP, not total GDP.
+// Derive it only from two published, same-year WDI values. Missing is never zero.
+indicators.manufacturingInIndustry = {label: '2차 산업 중 제조업 비중', unit: '%', more: '2차 산업 중 제조업 비중이 높다',
+  compare: {type: 'diff', min: 3}, entityType: 'country', year: economy.meta.baseYear,
+  source: '세계은행 WDI NV.IND.MANF.ZS ÷ NV.IND.TOTL.ZS × 100', disabled: false, unstablePairs: []};
+seriesOf.manufacturingInIndustry = {};
+for (const [name, e] of Object.entries(entities)) {
+  if (e.type !== 'country') continue;
+  const m = seriesOf.manufacturing[name] || {}, d = seriesOf.industry[name] || {};
+  seriesOf.manufacturingInIndustry[name] = Object.fromEntries(Object.entries(m)
+    .filter(([y, v]) => v != null && d[y] > 0 && v >= 0 && v <= d[y])
+    .map(([y, v]) => [y, v / d[y] * 100]));
+  const v = seriesOf.manufacturingInIndustry[name][economy.meta.baseYear];
+  if (v != null) e.values.manufacturingInIndustry = v;
+}
+// The total-GDP share is also readable when both factors are shown.
+indicators.manufacturing.from = ['industry', 'manufacturingInIndustry'];
+indicators.manufacturing.formula = {operation: 'product', per: 100};
+
 // Bloc and continent indicators reuse the audited ranking tables, including their
 // disabled tables and pairs whose order flips between years.
 function predicate(phrase) { return phrase.endsWith('큰') ? phrase.slice(0, -1) + '크다' : phrase.replace(/은$/, '다'); }

@@ -65,9 +65,14 @@ test('themes reference existing 대상, indicators, and compositions', () => {
     assert.ok(t.pick[0] >= 2 && t.pick[1] <= 4 && t.pick[0] <= t.pick[1], t.id + ' pick');
     for (const n of t.pool) assert.equal((K.entities[n] || {}).type, t.entityType, t.id + ' ' + n);
     if (t.kind === 'indicators') {
-      for (const i of t.indicators.concat(t.always || [])) assert.equal(K.indicators[i].entityType, t.entityType, t.id + ' ' + i);
+      const available = t.indicators.concat(t.always || [], ...(t.tableRecipes || []).map(r => r.columns));
+      for (const r of t.tableRecipes || []) {
+        assert.ok(r.chance > 0 && r.chance <= 1 && r.columns.length >= 2, t.id);
+        for (const n of r.pool) assert.ok(t.pool.includes(n), t.id + ' recipe pool ' + n);
+      }
+      for (const i of available) assert.equal(K.indicators[i].entityType, t.entityType, t.id + ' ' + i);
       for (const d of t.derived || []) {
-        assert.ok(t.indicators.concat(t.always || []).includes(d.rate) && t.indicators.concat(t.always || []).includes(d.total), t.id + ' derived amounts need both available columns; generated statements must show both');
+        assert.ok(available.includes(d.rate) && available.includes(d.total), t.id + ' derived amounts need both available columns; generated statements must show both');
         assert.ok(d.noun && [100, 1000].includes(d.per), t.id);
       }
     }
@@ -248,8 +253,12 @@ test('each statement is true exactly when the knowledge base says so', () => {
           assert.ok(k && k.about.every(n => q.entities.includes(n)), s.text);
           assert.equal(s.truth, k.truth, s.text);
           if (q.format !== 'columns') for (const n of k.about) assert.ok(s.text.includes(q.labels[q.entities.indexOf(n)]) && !new RegExp('(^|[^가-힣])' + n + '(?![가-힣])').test(s.text.replace(/\([가-마]\)/g, '')), s.text);
+        } else if (s.kind === 'colid') {
+          // 항목 식별: true only when the letter is the hidden column it names.
+          assert.equal(q.hidden['ABC'.indexOf(c.letter)] === c.column, s.truth, s.text);
+          assert.match(s.text, /^[ABC]는 /, s.text);
         } else assert.fail('unknown kind ' + s.kind);
-        if (s.kind === 'category') assert.match(s.text, /^[ABC]는 |^[가-힣]+(은|는) /, s.text);
+        if (s.kind === 'category' || s.kind === 'colid') assert.match(s.text, /^[ABC]는 |^[가-힣]+(은|는) /, s.text);
         else assert.ok(s.text.startsWith(q.labels.find(l => s.text.startsWith(l)) || '?'), s.text);
         // A share × total <보기> calls a hidden column by its letter.
         if (q.hidden && t.kind === 'composition' && s.kind === 'data' && q.hidden.includes(c.category)) {

@@ -166,8 +166,11 @@
    if(theme.kind==='climate'){
     // All graphs share one scale, as on an exam page, so they can be compared by eye.
     var T=[],P=[];chosen.forEach(function(n){T=T.concat(cl(n).temperature);P=P.concat(cl(n).precipitation)});
+    var tMin=Math.min(0,Math.floor(Math.min.apply(null,T)/10)*10),tMax=Math.max(10,Math.ceil(Math.max.apply(null,T)/10)*10);
+    var peak=Math.max(100,Math.max.apply(null,P)),rough=peak/4,power=Math.pow(10,Math.floor(Math.log(rough)/Math.LN10));
+    var pStep=[1,2,2.5,5,10].map(function(n){return n*power}).filter(function(n){return n>=rough})[0];
     return {kind:'climate',columns:[],rows:chosen.map(function(n,i){var c=cl(n);return {label:LABELS[i],temperature:c.temperature,precipitation:c.precipitation,cells:[]}}),
-     scale:{tMin:Math.min(0,Math.floor(Math.min.apply(null,T)/10)*10),tMax:Math.max(10,Math.ceil(Math.max.apply(null,T)/10)*10),pMax:Math.max(100,Math.ceil(Math.max.apply(null,P)/100)*100)},
+     scale:{tMin:tMin,tMax:tMax,tStep:10,pMax:Math.ceil(peak/pStep)*pStep,pStep:pStep,plotHeight:Math.max(160,(tMax-tMin)*3)},
      source:CLIMATE.period.join('~')+'년 평년값 · '+CLIMATE.source};
    }
    if(theme.kind==='clues'){
@@ -499,7 +502,7 @@
      var amtA=ta*ra/d.per,amtB=tb*rb/d.per,s0=trap(p,ra,rb,amtA,amtB,1.2);if(!s0||!keepTrap(theme,trapCase(ra,rb,amtA,amtB),r))return;
      var truth=r()<.5,s=truth?s0:[s0[1],s0[0]];
      var line=function(n){return n+' '+fmt(value(n,d.total))+tm.unit+' × '+fmt(value(n,d.rate))+rm.unit+' ≈ '+fmt(value(n,d.total)*value(n,d.rate)/d.per)+tm.unit};
-     add({kind:'data',key:'derived|'+d.rate+'|'+p[0]+'|'+p[1],check:{rate:d.rate,total:d.total,per:d.per,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+d.noun+subjectParticle(d.noun)+' 많다.',truth:truth,
+     add({kind:'data',key:'derived|'+d.rate+'|'+p[0]+'|'+p[1],check:{rate:d.rate,total:d.total,per:d.per,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+d.noun+subjectParticle(d.noun)+' '+(d.more||'많다')+'.',truth:truth,
       explain:'표의 '+tm.label+' × '+rm.label+': '+line(s0[0])+', '+line(s0[1])+' — '+rm.label+'과 '+tm.label+'의 순서가 서로 달라 곱해서 비교한다. '+d.noun+topic(d.noun)+' '+s0[0]+subjectParticle(s0[0])+' 더 많다. ('+rm.year+', '+rm.source+')'});
     });
     // Two-period tables: which row changed more between the two columns (3%p apart at least).
@@ -586,6 +589,9 @@
    if(c.kind==='sign')return 's|'+k.ind+'|'+k.positive;
    if(c.kind==='climateClaim')return 'cc|'+k.claim;
    if(c.kind==='colid')return 'id|'+k.column;
+   // A claim about one 대상 has its truth in its words ('…이므로 원유 매장량이 많다'); a two-대상 claim
+   // ('A는 B보다 …') reads the same either way round, so only that kind is two-sided.
+   if(c.kind==='concept')return 'k|'+c.text.replace(/\([가-라]\)/g,'#');
    if(c.kind==='climate')return 'ct|'+k.type;
    if(c.kind==='place'&&k.place==='hemisphere')return 'ph|'+k.value;
    if(c.kind==='category'&&k.value!=null)return 'cv|'+k.trait+'|'+k.value;
@@ -711,7 +717,7 @@
     var first=pick(avail,r),near=shuffle(avail.filter(function(n){return n!==first&&entity(n).region===entity(first).region}),r);
     return shuffle([first].concat(near,shuffle(avail.filter(function(n){return n!==first&&!has(near,n)}),r)).slice(0,k),r);
    }
-   var rels=theme.kind==='indicators'?REL.filter(function(x){return has(avail,x.hi)&&has(avail,x.lo)&&(!inds||has(inds,x.indicator))&&inScope(theme,x.indicator)}):[];
+   var rels=theme.kind==='indicators'?REL.filter(function(x){return has(avail,x.hi)&&has(avail,x.lo)&&(!inds||visible(inds,x.indicator))&&inScope(theme,x.indicator)}):[];
    if(!rels.length||r()<.25)return shuffle(avail,r).slice(0,k);
    // Half the draws start from a 대상 picked uniformly, so countries with many relations
    // (중국·일본·인도) do not crowd out the rest; the other half from a relation, which keeps
@@ -815,13 +821,17 @@
     // The format is fixed for the first attempts; later ones re-roll, so when the recent questions
     // have used up one format (전력 대상 식별 has four), another format is tried instead of a repeat.
     // A joint theme (종교) splits the 항목 식별 share with 동시 식별, where rows and columns are both hidden.
-    var canHide=columnsFor(theme).length>=3&&!theme.periodTable,canJoint=canHide&&!!theme.joint&&theme.kind==='composition',roll=attempt<150?roll0:r();
+    var recipe=!target&&theme.tableRecipes&&roll0<theme.tableRecipes[0].chance?theme.tableRecipes[0]:null;
+    var canHide=columnsFor(theme).length>=3&&!theme.periodTable&&!recipe,canJoint=canHide&&!!theme.joint&&theme.kind==='composition',roll=attempt<150?roll0:r();
     var format=(mode==='columns'&&!canHide)||(mode==='joint'&&!canJoint)?'rows':mode||(roll<.35&&canHide&&attempt<300?(canJoint&&roll>=.15?'joint':'columns'):roll>.8?'implicit':'rows');
     if(format==='columns'){var cq=buildColumns(theme,avail,k,r,avoid,attempt);if(cq)return cq;continue}
     if(format==='joint'){var jq=buildJoint(theme,avail,k,r,avoid,attempt);if(jq)return jq;continue}
     var known0=theme.everyKnown&&theme.kind!=='indicators'?avail.filter(own):avail;
     if(known0.length<k)continue;
-    var chosen=draw(theme,known0,k,r),shown=[];
+    // A recipe is a lecture-backed exercise in computing a share with two denominators.
+    // Keep the ordinary tables as well; targeted pair practice retains its existing draw path.
+    if(recipe)known0=known0.filter(function(n){return recipe.pool.indexOf(n)>=0});
+    var chosen=draw(theme,known0,k,r,recipe&&recipe.columns),shown=[];
     // theme.damp: a 대상 with many relations (중국) is kept in a draw only with this chance, so the
     // theme is not mostly about it (audit 2026-10-23: 중국 in 83% of 국가별 농목업 questions).
     if(theme.damp&&!target&&attempt<300&&chosen.some(function(n){return theme.damp[n]!=null&&r()>theme.damp[n]}))continue;
@@ -834,12 +844,13 @@
     if(theme.kind==='indicators'){
      var always=theme.always||[],inds=theme.indicators.filter(function(ind){return meta(ind)&&!meta(ind).disabled&&always.indexOf(ind)<0});
      // A source without a value for one 대상 (no coffee in France) is not shown as 0; the column is left out.
-     shown=always.concat(apart(theme,shuffle(inds.filter(function(ind){return chosen.every(function(n){return value(n,ind)!=null})&&!sameCell(chosen,ind)}),r)).slice(0,theme.show));
+     shown=recipe?recipe.columns.slice():always.concat(apart(theme,shuffle(inds.filter(function(ind){return chosen.every(function(n){return value(n,ind)!=null})&&!sameCell(chosen,ind)}),r)).slice(0,theme.show));
     }
     // Skip a question the learner saw recently (opts.avoid), while other ones can still be made.
     var signature=theme.id+'|'+chosen.slice().sort(koSort).join(',')+'|'+shown.slice().sort().join(',');
     if(avoid.indexOf(signature)>=0&&attempt<450)continue;
     if(!identifiable(theme,chosen,shown))continue;
+    if(theme.requiresAllColumns&&shown.some(function(ind){return identifiable(theme,chosen,shown.filter(function(x){return x!==ind}))}))continue;
     // A column shown on every question (총인구) is there for computing totals; if it alone
     // identified the 대상, the theme's own indicators would be decoration.
     // A two-period table (periodTable) is read through its two year columns, so they may identify.
