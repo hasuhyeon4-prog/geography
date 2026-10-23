@@ -192,7 +192,8 @@ test('each statement is true exactly when the knowledge base says so', () => {
         } else if (s.kind === 'data' && c.category) {
           const amount = n => engine.comp(t, n)[c.category] * engine.total(t, n);
           assert.equal(amount(c.subject) > amount(c.object), s.truth, s.text);
-          assert.notEqual(engine.comp(t, c.subject)[c.category] > engine.comp(t, c.object)[c.category], amount(c.subject) > amount(c.object), 'data items are share-versus-total traps');
+          // A trap needs the product: the share order and the total order differ.
+          assert.notEqual(engine.comp(t, c.subject)[c.category] > engine.comp(t, c.object)[c.category], engine.total(t, c.subject) > engine.total(t, c.object), 'data items are share-versus-total traps');
         } else if (s.kind === 'data' && c.majority) {
           // 도시화율 50%: the claim is made only 2%p or more away from it.
           const v = engine.value(c.entity, c.majority);
@@ -213,7 +214,8 @@ test('each statement is true exactly when the knowledge base says so', () => {
         } else if (s.kind === 'data') {
           const amount = n => engine.value(n, c.total) * engine.value(n, c.rate) / c.per;
           assert.equal(amount(c.subject) > amount(c.object), s.truth, s.text);
-          assert.notEqual(engine.value(c.subject, c.rate) > engine.value(c.object, c.rate), amount(c.subject) > amount(c.object), 'data items are rate-versus-total traps');
+          // A trap needs the product: the rate order and the total order differ.
+          assert.notEqual(engine.value(c.subject, c.rate) > engine.value(c.object, c.rate), engine.value(c.subject, c.total) > engine.value(c.object, c.total), 'data items are rate-versus-total traps');
         } else if (s.kind === 'category') {
           // Facts about a religion itself, from the lecture whitelist; at least one side is hidden.
           const f = K.categoryFacts[t.composition].find(x => x.id === c.trait);
@@ -393,4 +395,41 @@ test('table readings never settle the <보기> answer, and the options cannot be
   }
   assert.ok(colsHit / cols < 0.3, 'columns parity guess ' + (colsHit / cols).toFixed(2));
   assert.ok(oddHit / rows < 0.3, 'odd-one-out guess ' + (oddHit / rows).toFixed(2));
+});
+
+test('a statement\'s wording does not tell its truth, and the amount traps need the product', () => {
+  // Audit 2026-10-23: a solver that saw only the wording (labels and names removed) answered 37.8% of
+  // <보기> questions (chance 20%); statements are now used only when both truths of a wording meet.
+  const names = Object.keys(K.entities).sort((a, b) => b.length - a.length);
+  const strip = t => { t = t.replace(/\([가-라]\)/g, '#').replace(/\b[A-E]\b/g, '#'); for (const n of names) if (t.includes(n)) t = t.split(n).join('#'); return t.replace(/#(은|는|이|가|와|과|의|보다|에는)/g, '#'); };
+  const rate = {}, amount = [0, 0];
+  for (const t of engine.themes) for (let seed = 1; seed <= 120; seed++) {
+    const q = engine.build({themeId: t.id, seed});
+    if (!q) continue;
+    for (const s of q.stage2.statements) {
+      const w = t.id + ' ' + s.kind + ' ' + strip(s.text);
+      (rate[w] = rate[w] || [0, 0])[s.truth ? 0 : 1]++;
+      const c = s.check;
+      if (s.kind === 'data' && (c.category || c.rate)) {
+        const tot = n => (c.category ? engine.total(t, n) : engine.value(n, c.total));
+        amount[0]++; if ((tot(c.subject) > tot(c.object)) === s.truth) amount[1]++;
+      }
+    }
+  }
+  for (const [w, [a, b]] of Object.entries(rate)) if (a + b >= 25) assert.ok(a / (a + b) >= 0.15 && a / (a + b) <= 0.85, w + ' ' + a + '/' + (a + b));
+  assert.ok(amount[1] / amount[0] > 0.3 && amount[1] / amount[0] < 0.7, 'larger total wins ' + (amount[1] / amount[0]).toFixed(2));
+});
+
+test('joint options do not give the answer by their shape, and prompts name only the drawn candidates', () => {
+  let n = 0, hit = 0;
+  for (let seed = 1; seed <= 200; seed++) {
+    const q = engine.build({themeId: 'religion-composition', seed, format: 'joint'});
+    if (!q || q.format !== 'joint') continue;
+    const o = q.stage1.options, P = q.stage1.rows, cp = o.map(x => x.slice(0, P).join()), gp = o.map(x => x.slice(P).join());
+    const both = o.map((x, i) => cp.filter(c => c === cp[i]).length > 1 && gp.filter(g => g === gp[i]).length > 1).map((b, i) => (b ? i : -1)).filter(i => i >= 0);
+    n++; hit += both.includes(q.stage1.answer) ? 1 / both.length : 0;
+  }
+  assert.ok(n > 50 && hit / n < 0.35, 'joint shape guess ' + (hit / n).toFixed(2));
+  // A prompt listing a fixed set wider than the 대상 left 실전형 open to other assignments.
+  for (const t of engine.themes) if (t.kind !== 'clues' && t.kind !== 'climate') assert.match(t.prompt, /\{candidates\}/, t.id);
 });

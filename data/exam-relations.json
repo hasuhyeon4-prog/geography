@@ -17,7 +17,7 @@
   "orders": "구성비 자료에서 대상의 1위(·2위) 항목. 식별의 근거가 된다. fromSet은 entities에 적은 대상에 한해 분류 지도 세트의 채점 항목을 1위 항목으로 쓴다"
  },
  "relations": [
-  {"indicator": "bloc-pop","group": ["EU","USMCA","ASEAN","MERCOSUR"],"basis": "강의 2권 P08 · 2023학년도 6월 10번(총인구는 ASEAN이 가장 많음)"},
+  {"indicator": "bloc-pop","pairs": [["ASEAN","EU"],["ASEAN","USMCA"],["ASEAN","MERCOSUR"]],"basis": "강의 2권 P08 / L2-B0841 · 2023학년도 6월 10번(총인구는 ASEAN이 네 블록 중 가장 많음. 나머지 블록끼리의 순서는 말하지 않음)"},
   {"indicator": "bloc-gdp","group": ["EU","USMCA","ASEAN","MERCOSUR"],"basis": "강의 2권 P08 · 2023학년도 6월 10번(역내 총생산)"},
   {"indicator": "bloc-trade","group": ["EU","USMCA","ASEAN","MERCOSUR"],"basis": "강의 2권 P08 · 2023학년도 6월 10번(역내·역외 무역액)"},
   {"indicator": "bloc-members","group": ["EU","USMCA","ASEAN","MERCOSUR"],"basis": "강의 2권 P08 · 2026학년도 6월 10번(회원 범위)"},
@@ -38,7 +38,7 @@
   {"indicator": "young","tiers": [["에티오피아"],["튀르키예","프랑스"]],"basis": "강의 1권 P05 삼각도표(에티오피아의 유소년층 약 40%로 가장 높음)"},
   {"indicator": "young","tiers": [["말리"],["튀르키예"],["스웨덴"]],"basis": "강의 1권 P05(스웨덴·튀르키예·말리: 말리의 유소년층 비중이 높고 튀르키예는 중간)"},
   {"indicator": "young","tiers": [["나이지리아","인도"],["스웨덴","일본"]],"basis": "강의 1권 P05(스웨덴·일본 같은 고령화 국가와 인도·나이지리아처럼 젊은 인구 구조의 국가)"},
-  {"indicator": "old","tiers": [["프랑스"],["튀르키예"],["에티오피아"]],"basis": "강의 1권 P05 삼각도표(프랑스의 노년층 비율이 가장 높음) · 2015년 프랑스는 튀르키예보다 고령화"},
+  {"indicator": "old","pairs": [["프랑스","튀르키예"],["프랑스","에티오피아"]],"basis": "강의 1권 P05 / L1-B1385·L2-B1384(세 나라 중 프랑스의 노년층 비율이 가장 높음. 튀르키예와 에티오피아의 노년층 순서는 말하지 않음)"},
   {"indicator": "old","tiers": [["벨기에"],["니제르","카타르"]],"basis": "강의 1권 P05(벨기에는 세 나라 중 노년층 비중이 높음)"},
   {"indicator": "old","tiers": [["프랑스"],["나이지리아"]],"basis": "강의 1권 P05(2015년 프랑스는 노년층 비중이 큼)"},
   {"indicator": "old","tiers": [["스웨덴","일본"],["인도","나이지리아"]],"basis": "강의 1권 P05(스웨덴·일본 같은 고령화 국가)"},

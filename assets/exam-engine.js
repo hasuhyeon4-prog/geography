@@ -282,8 +282,7 @@
   function stage1(chosen,r){
    var all=permutations(chosen),key=function(p){return p.join('|')},right=key(chosen);
    var near=all.filter(function(p){var d=p.filter(function(x,i){return x!==chosen[i]}).length;return d===2}),far=all.filter(function(p){var d=p.filter(function(x,i){return x!==chosen[i]}).length;return d>2});
-   var distract=chosen.length===3?shuffle(near.concat(far),r).slice(0,4):shuffle(shuffle(near,r).slice(0,2).concat(shuffle(far,r).slice(0,2)),r);
-   var options=shuffle([chosen].concat(distract),r);
+   var options=balanced(chosen,[],near.concat(far),r);
    return {options:options,answer:options.map(key).indexOf(right)};
   }
 
@@ -300,9 +299,29 @@
 
   // Share-versus-total traps read from the table: amounts differ by 1.5× (composition) or
   // 1.2× (indicators) and run against the order of the shares, so rounding never decides.
+  // Share × total: asked only when the share order and the total order differ, so the amount needs
+  // the product. Both cases are used, the larger total with the larger amount and the larger share
+  // with it, so neither 'the larger total wins' nor 'the smaller share wins' answers it (audit 2026-10-23).
+  // How often each trap case occurs over a theme's pool, so the commoner one can be thinned to the
+  // rarer one: case 'O' (the larger total has the larger amount), case 'S' (the larger share has it).
+  var trapKeep={};
+  function trapCase(rateA,rateB,amtA,amtB){return (amtA>amtB)===(amtA/rateA>amtB/rateB)?'O':'S'}
+  function keepTrap(theme,cs,r){
+   if(!trapKeep[theme.id]){
+    var n={O:0,S:0},pool=theme.pool||[];
+    pool.forEach(function(a,i){pool.slice(i+1).forEach(function(b){
+     if(theme.kind==='composition'&&composition(theme).total){var ca=comp(theme,a),cb=comp(theme,b),ta=total(theme,a),tb=total(theme,b);if(!ca||!cb||!ta||!tb)return;
+      (theme.show||Object.keys(ca)).forEach(function(cat){if(cat==='other'||!(ca[cat]>=1&&cb[cat]>=1))return;var x=ca[cat]*ta/100,y=cb[cat]*tb/100;if(trap([a,b],ca[cat],cb[cat],x,y,1.5))n[trapCase(ca[cat],cb[cat],x,y)]++})}
+     (theme.derived||[]).forEach(function(d){var ra=value(a,d.rate),rb=value(b,d.rate),ta=value(a,d.total),tb=value(b,d.total);if([ra,rb,ta,tb].some(function(v){return v==null}))return;
+      var x=ta*ra/d.per,y=tb*rb/d.per;if(trap([a,b],ra,rb,x,y,1.2))n[trapCase(ra,rb,x,y)]++});
+    })});
+    trapKeep[theme.id]={O:n.O&&n.S?Math.min(1,n.S/n.O):1,S:n.O&&n.S?Math.min(1,n.O/n.S):1};
+   }
+   return r()<trapKeep[theme.id][cs];
+  }
   function trap(p,rateA,rateB,amtA,amtB,minRatio){
-   if(!(amtA>0&&amtB>0)||Math.abs(rateA-rateB)<1||Math.max(amtA,amtB)/Math.min(amtA,amtB)<minRatio)return null;
-   if((rateA>rateB)===(amtA>amtB))return null;
+   if(!(amtA>0&&amtB>0&&rateA>0&&rateB>0)||Math.abs(rateA-rateB)<1||Math.max(amtA,amtB)/Math.min(amtA,amtB)<minRatio)return null;
+   if((rateA>rateB)===(amtA/rateA>amtB/rateB))return null;
    return amtA>amtB?[p[0],p[1]]:[p[1],p[0]];
   }
 
@@ -352,7 +371,7 @@
     // A lecture statement about the site's verified type (vegetation, soil, life, cause), true when
     // the type is one it describes and false only for the types the lecture contrasts it with.
     (CLIMATE.claims||[]).forEach(function(k){
-     var truth=k.trueFor.indexOf(c.type)>=0;if(!truth&&k.falseFor.indexOf(c.type)<0)return;
+     var truth=k.trueFor.indexOf(c.type)>=0;if(!truth&&k.falseFor.indexOf(c.type)<0||(k.skip||[]).indexOf(n)>=0)return;
      add({kind:'climateClaim',key:'type|'+n,text:S(n)+' '+k.claim,truth:truth,
       explain:n+' — 강의 기후형 '+typeLabel(c.type)+'. 이 설명은 '+k.trueFor.map(function(t){return typeLabel(t)}).join('·')+'에 해당한다 · '+k.source,check:{claim:k.id,entity:n,type:c.type}});
     });
@@ -378,7 +397,8 @@
 
   // What a clue sentence already tells about its country, so no <보기> asks it again: '수도 다카르'
   // settles 수도와 최대 도시, '남부 아프리카' the hemisphere, '내륙국' the coast.
-  var CLUE_STATES={capitalCity:/수도/,cityCapital:/수도/,cityUN:/UN|국제 연합/,exportType:/수출|상업적 농업/,landlocked:/내륙국/,seas:/연안|접하|바다/,equator:/적도/,meridian:/본초 자오선/,
+  // A clue that names a coast or industry already answers landlocked and export-type <보기>.
+  var CLUE_STATES={capitalCity:/수도/,cityCapital:/수도/,cityUN:/UN|국제 연합/,exportType:/수출|상업적 농업|공업|제조업/,landlocked:/내륙국|연안|접하|해안|반도국|섬들/,seas:/연안|접하|바다/,equator:/적도/,meridian:/본초 자오선/,
    hemisphere:/남반구|북반구|회귀선|남부 아프리카|적도/};
   // The religion fact is stated only when the clue names the country's own 1위 religion: a past
   // Buddhist site (바미얀) does not settle Afghanistan's religion, and stays a fair lure.
@@ -465,21 +485,21 @@
      (theme.show||Object.keys(ca)).forEach(function(cat){
       // A catch-all category ('기타') names no single thing whose amount could be compared.
       if(cat==='other'||ca[cat]<1||cb[cat]<1)return;
-      var amtA=ca[cat]*ta/100,amtB=cb[cat]*tb/100,s0=trap(p,ca[cat],cb[cat],amtA,amtB,1.5);if(!s0)return;
+      var amtA=ca[cat]*ta/100,amtB=cb[cat]*tb/100,s0=trap(p,ca[cat],cb[cat],amtA,amtB,1.5);if(!s0||!keepTrap(theme,trapCase(ca[cat],cb[cat],amtA,amtB),r))return;
       var truth=r()<.5,s=truth?s0:[s0[1],s0[0]],amt=function(n){return n===p[0]?amtA:amtB};
-      var noun=CN(cat)+' '+(theme.amountNoun||'인구');
+      var noun=CN(cat)+' '+(cat==='unaffiliated'?'인구':theme.amountNoun||'인구');
       add({kind:'data',key:'amount|'+cat+'|'+p[0]+'|'+p[1],check:{category:cat,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+noun+subjectParticle(noun)+' 많다.',truth:truth,
-       explain:(hidden.indexOf(cat)>=0?CN(cat)+'는 '+catLabel(theme,cat)+'. ':'')+'표의 비율 × '+c.total.label+': '+s0[0]+' 약 '+fmt(amt(s0[0]))+c.total.unit+', '+s0[1]+' 약 '+fmt(amt(s0[1]))+c.total.unit+' — 비율은 반대지만 '+c.total.label+' 차이 때문에 실제 '+(/수$/.test(theme.amountNoun||'')?'수는':'양은')+' 이렇다. (비율·'+c.total.label+' 모두 '+c.year+'년 '+c.source+')'});
+       explain:(hidden.indexOf(cat)>=0?CN(cat)+'는 '+catLabel(theme,cat)+'. ':'')+'표의 비율 × '+c.total.label+': '+s0[0]+' 약 '+fmt(amt(s0[0]))+c.total.unit+', '+s0[1]+' 약 '+fmt(amt(s0[1]))+c.total.unit+' — 비율과 '+c.total.label+'의 순서가 서로 달라 곱해서 비교한다. 실제 '+(/수$/.test(theme.amountNoun||'')?'수는':'양은')+' '+s0[0]+subjectParticle(s0[0])+' 더 많다. (비율·'+c.total.label+' 모두 '+c.year+'년 '+c.source+')'});
      });
     }
     if(theme.kind==='indicators')(theme.derived||[]).forEach(function(d){
      if(shown.indexOf(d.rate)<0||shown.indexOf(d.total)<0)return;
      var rm=meta(d.rate),tm=meta(d.total),ra=value(p[0],d.rate),rb=value(p[1],d.rate),ta=value(p[0],d.total),tb=value(p[1],d.total);
-     var amtA=ta*ra/d.per,amtB=tb*rb/d.per,s0=trap(p,ra,rb,amtA,amtB,1.2);if(!s0)return;
+     var amtA=ta*ra/d.per,amtB=tb*rb/d.per,s0=trap(p,ra,rb,amtA,amtB,1.2);if(!s0||!keepTrap(theme,trapCase(ra,rb,amtA,amtB),r))return;
      var truth=r()<.5,s=truth?s0:[s0[1],s0[0]];
      var line=function(n){return n+' '+fmt(value(n,d.total))+tm.unit+' × '+fmt(value(n,d.rate))+rm.unit+' ≈ '+fmt(value(n,d.total)*value(n,d.rate)/d.per)+tm.unit};
      add({kind:'data',key:'derived|'+d.rate+'|'+p[0]+'|'+p[1],check:{rate:d.rate,total:d.total,per:d.per,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+d.noun+subjectParticle(d.noun)+' 많다.',truth:truth,
-      explain:'표의 '+tm.label+' × '+rm.label+': '+line(s0[0])+', '+line(s0[1])+' — '+rm.label+'은 반대지만 '+tm.label+' 차이 때문에 '+d.noun+topic(d.noun)+' '+s0[0]+subjectParticle(s0[0])+' 더 많다. ('+rm.year+', '+rm.source+')'});
+      explain:'표의 '+tm.label+' × '+rm.label+': '+line(s0[0])+', '+line(s0[1])+' — '+rm.label+'과 '+tm.label+'의 순서가 서로 달라 곱해서 비교한다. '+d.noun+topic(d.noun)+' '+s0[0]+subjectParticle(s0[0])+' 더 많다. ('+rm.year+', '+rm.source+')'});
     });
     // Two-period tables: which row changed more between the two columns (3%p apart at least).
     if(theme.kind==='indicators')(theme.changes||[]).forEach(function(d){
@@ -520,7 +540,8 @@
     if(f.kind==='order'){
      var why=f.label+': '+f.order.map(function(x){return catLabel(theme,x)}).join(' > ')+(f.values?' (세계 인구 중 비율 '+Object.keys(f.values).map(function(y){return y+'년 '+f.order.map(function(x){return fmt(f.values[y][x])}).join('·')}).join(', ')+'%, '+f.source+')':'')+' · 근거: '+f.basis;
      pairs(f.order.filter(function(x){return named0.indexOf(x)>=0})).forEach(function(p){
-      if(hidden.indexOf(p[0])<0&&hidden.indexOf(p[1])<0)return;
+      // Both religions hidden: against a named one, the visible religion alone decided it (audit 2026-10-23).
+      if(hidden.indexOf(p[0])<0||hidden.indexOf(p[1])<0)return;
       var truth=r()<.5,s=truth?p:[p[1],p[0]];
       add({kind:'category',key:'cat|'+f.id+'|'+p.slice().sort().join('|'),text:CS(s[0])+' '+CN(s[1])+'보다 '+f.more+'.',truth:truth,explain:name(s[0])+', '+name(s[1])+' — '+why,check:{trait:f.id,subject:s[0],object:s[1]}});
      });
@@ -546,28 +567,50 @@
    // A theme that borrows another domain (대륙 곡물 with population) keeps the borrowed ones as background.
    if(theme.domains&&c.check&&c.check.ind&&(meta(c.check.ind).domain||null)!==theme.domains[0])return false;
    return c.kind==='concept'||c.kind==='category'||c.kind==='climateClaim'||c.kind==='compare'||c.kind==='sign'||c.kind==='data'||c.kind==='graph'||c.kind==='climate'||!!(c.check&&c.check.set&&focusSets.indexOf(c.check.set)>=0)}
-  function chooseStatements(theme,cands,r){
+  // Read straight from the table or graph, with no identification needed.
+  function reading(c){return c.kind==='data'||c.kind==='graph'||c.kind==='place'&&c.check.place==='hemisphere'}
+  // The predicate of a statement whatever its subject: '…는 OPEC 회원국이다', '…는 남반구에 위치한다'.
+  function wording(c){var k=c.check||{};
+   if(c.kind==='fact')return k.set?'f|'+k.set+'|'+k.value:k.line?'l|'+k.line:k.ns?'ns|'+k.ns:'f|'+c.key;
+   if(c.kind==='both')return 'b|'+k.set+'|'+k.value;
+   if(c.kind==='sign')return 's|'+k.ind+'|'+k.positive;
+   if(c.kind==='climateClaim')return 'cc|'+k.claim;
+   if(c.kind==='climate')return 'ct|'+k.type;
+   if(c.kind==='place'&&k.place==='hemisphere')return 'ph|'+k.value;
+   if(c.kind==='category'&&k.value!=null)return 'cv|'+k.trait+'|'+k.value;
+   if(c.kind==='category'&&k.category)return 'cl|'+k.trait;
+   if(c.kind==='data'&&k.majority)return 'dm|'+k.majority+'|'+k.claim;
+   if(c.kind==='data'&&k.up!=null)return 'du|'+k.from+'|'+k.up;
+   return c.kind+'|'+c.key}
+  function chooseStatements(theme,cands,r,loose){
    var isFocus=function(c){return isFocus0(theme,c)};
+   // Statements are grouped by their wording (same predicate, any subject), and a wording is used
+   // only when this question holds both a true and a false instance of it: then the wording cannot
+   // tell the truth, and the truth depends on which 대상 is which (audit 2026-10-23: a solver reading
+   // only the wording answered 37.8% of questions, now about 22%; chance is 20%).
    var groups={},list0=[];
-   cands.forEach(function(c){var g=c.kind+'|'+c.key;if(!groups[g]){groups[g]={kind:c.kind,focus:isFocus(c),T:[],F:[]};list0.push(groups[g])}groups[g][c.truth?'T':'F'].push(c)});
+   // A comparison's truth is drawn at random with the order of its two 대상, so its wording never tells.
+   var FLIP={compare:1,graph:1};
+   cands.forEach(function(c){var g=wording(c);if(!groups[g]){groups[g]={kind:c.kind,focus:isFocus(c),flip:!!FLIP[c.kind]||c.kind==='data'&&c.check.subject!=null||c.kind==='place'&&c.check.subject!=null||c.kind==='category'&&c.check.subject!=null,T:[],F:[]};list0.push(groups[g])}groups[g][c.truth?'T':'F'].push(c)});
    // Table readings: at most two, one true and one false, or they settle the answer by themselves.
    var picked=[],used={},kinds={},both=0,need={T:2,F:2},readTruth=null;
-   var free=function(c){return !(c.keys||[c.key]).some(function(k){return used[k]})&&!(c.kind==='both'&&both)&&!(c.kind==='data'&&kinds.data>=2)};
-   function take(pool,limit,loose){
+   var free=function(c){return !(c.keys||[c.key]).some(function(k){return used[k]})&&!(c.kind==='both'&&both)&&!(reading(c)&&kinds.reading>=2)};
+   function take(pool,limit,last){
     var list=shuffle(pool,r),got=0;
     while(got<limit&&(need.T||need.F)&&list.length){
      list.sort(function(a,b){return (kinds[a.kind]||0)-(kinds[b.kind]||0)});
-     // A fact with only one wording available makes its truth follow the kind; it is a last resort.
-     var g=list.shift(),can=['T','F'].filter(function(t){return need[t]&&g[t].some(free)&&!(g.kind==='data'&&readTruth===t)});
-     if(!loose&&g.kind==='fact'&&!(g.T.length&&g.F.length))continue;
+     var g=list.shift(),can=['T','F'].filter(function(t){return need[t]&&g[t].some(free)&&!(reading(g.T[0]||g.F[0])&&readTruth===t)});
+     if(!last&&!g.flip&&!(g.T.some(free)&&g.F.some(free)))continue;
      if(!can.length)continue;
      var t=can.length===2?(r()<need.T/(need.T+need.F)?'T':'F'):can[0],c=pick(g[t].filter(free),r);
-     picked.push(c);(c.keys||[c.key]).forEach(function(k){used[k]=1});kinds[c.kind]=(kinds[c.kind]||0)+1;if(c.kind==='both')both++;if(c.kind==='data')readTruth=t;need[t]--;got++;
+     picked.push(c);(c.keys||[c.key]).forEach(function(k){used[k]=1});kinds[c.kind]=(kinds[c.kind]||0)+1;if(c.kind==='both')both++;if(reading(c)){readTruth=t;kinds.reading=(kinds.reading||0)+1}need[t]--;got++;
     }
     return got;
    }
    var focus=list0.filter(function(g){return g.focus}),rest=list0.filter(function(g){return !g.focus});
-   take(focus,3);take(rest,4);take(focus,4);take(list0,4,true);
+   // One one-sided wording may fill the last place, so 대상 sets with few two-sided ones (니제르·카타르·
+   // 벨기에) still appear; a targeted practice ('이 비교 연습') may use more to reach its pair.
+   take(focus,3);take(rest,4);take(focus,4);take(list0,loose?4:1,true);
    var t=2-need.T,f=2-need.F;
    if(t<2||f<2)return null;
    // <보기> read straight from the table (kind 'data') need no identification; their places may
@@ -576,7 +619,7 @@
    shuffle(COMBOS.map(function(c,i){return i}),r).some(function(ti){for(var tries=0;tries<2;tries++){
     var tr=shuffle(tr0,r),fa=shuffle(fa0,r),sl=[null,null,null,null];
     COMBOS[ti].forEach(function(pos,i){sl[pos]=tr[i]});for(var i=0;i<4;i++)if(!sl[i])sl[i]=fa.shift();
-    var left=COMBOS.filter(function(c){return sl.every(function(x,i){return x.kind!=='data'||(c.indexOf(i)>=0)===x.truth})}).length;
+    var left=COMBOS.filter(function(c){return sl.every(function(x,i){return !reading(x)||(c.indexOf(i)>=0)===x.truth})}).length;
     if(left>1){slots=sl;target=ti;return true}
    }return false});
    if(!slots)return null;
@@ -587,6 +630,32 @@
   // on a map, lettered west to east. Wrong options are assignments that the shown data and
   // verified knowledge rule out. Three or more 대상 always have enough among permutations;
   // two 대상 need at least two ruled-out pairs (three options).
+  // Wrong options are a uniform random choice among the ruled-out ones (at most two using a marked
+  // place outside the answer). Taking the nearest swaps first left the answer at the centre of the
+  // options, and 'pick the option sharing most places' found it 36~73% of the time (audit 2026-10-23).
+  // With two 대상 the ruled-out assignments share a hub place, so the answer was the option sharing
+  // fewest places (64%). There the four wrong options are the set that spreads each (row, place) most
+  // evenly, avoiding sets where the answer is the one sharing fewest; ties are broken at random.
+  function balanced(right,first,rest,r){
+   var key=function(a){return a.join('|')},pool=[],seen={};seen[key(right)]=1;
+   shuffle(first.concat(rest),r).forEach(function(a){if(!seen[key(a)]){seen[key(a)]=1;pool.push(a)}});
+   var isMap=function(a){return first.indexOf(a)>=0};
+   if(right.length!==2){var wrong=[],nMap=0;pool.forEach(function(a){if(wrong.length>=4)return;if(isMap(a)&&nMap>=2)return;wrong.push(a);if(isMap(a))nMap++});return shuffle([right].concat(wrong),r)}
+   var best=null;
+   (function choose(start,acc){
+    if(acc.length===Math.min(4,pool.length)){
+     if(acc.filter(isMap).length>2)return;
+     var opts=[right].concat(acc),cnt={},spread=0;opts.forEach(function(o){o.forEach(function(n,i){cnt[i+n]=(cnt[i+n]||0)+1})});
+     Object.keys(cnt).forEach(function(k){spread+=cnt[k]*cnt[k]});
+     var sc=opts.map(function(x,i){return opts.reduce(function(s,y,j){return s+(i===j?0:x.filter(function(v,q){return v===y[q]}).length)},0)}),lo=Math.min.apply(null,sc);
+     var cost=(sc[0]===lo&&sc.filter(function(v){return v===lo}).length===1?100:0)+spread;
+     if(!best||cost<best.cost)best={cost:cost,opts:opts};
+     return;
+    }
+    for(var i=start;i<pool.length;i++){acc.push(pool[i]);choose(i+1,acc);acc.pop()}
+   })(0,[]);
+   return shuffle(best.opts,r);
+  }
   function injective(names,k){
    if(!k)return [[]];var out=[];
    names.forEach(function(n,i){injective(names.slice(0,i).concat(names.slice(i+1)),k-1).forEach(function(rest){out.push([n].concat(rest))})});
@@ -616,7 +685,7 @@
    // Up to two wrong options use a marked country outside the answer, so the map matters.
    var useMap=shuffle(best.viaMap,r).slice(0,2),key=function(a){return a.join('|')};
    var rest=shuffle(best.wrong.filter(function(a){return useMap.map(key).indexOf(key(a))<0}),r);
-   var options=shuffle([chosen].concat(useMap,rest).slice(0,5),r);
+   var options=balanced(chosen,useMap,rest,r);
    var markers=best.names.map(function(n){return {name:n,point:entity(n).label}}).sort(function(a,b){return a.point[0]-b.point[0]});
    markers.forEach(function(m,i){m.letter='ABCDE'[i]});
    return {markers:markers,candidates:best.names.slice().sort(koSort),extra:best.extra,options:options,answer:options.map(key).indexOf(right)};
@@ -649,7 +718,9 @@
    var hidden=apart(theme,shuffle(columnsFor(theme).filter(function(id){return (theme.noHide||[]).indexOf(id)<0}),r)).slice(0,3),own=function(n){return theme.kind!=='composition'||!!orderOf(theme,n)};
    var from=theme.kind==='composition'?avail.filter(own):avail.filter(function(n){return hidden.every(function(ind){return value(n,ind)!=null})});if(from.length<k)return null;
    var rows=theme.kind==='indicators'?draw(theme,from,k,r,hidden):shuffle(from,r).slice(0,k);
-   var shown=theme.kind==='indicators'?(theme.always||[]).concat(hidden):[];
+   // A composition's total column is in these tables too, so its comparisons are readings, not recall.
+   var tot=theme.kind==='composition'&&composition(theme).total&&composition(theme).total.indicator;
+   var shown=theme.kind==='indicators'?(theme.always||[]).concat(hidden):tot?[tot]:[];
    var signature=theme.id+'|columns|'+rows.slice().sort(koSort).join(',')+'|'+hidden.slice().sort().join(',');
    if(avoid.indexOf(signature)>=0&&attempt<450)return null;
    if(!columnsIdentifiable(theme,rows,hidden))return null;
@@ -668,7 +739,8 @@
    var signature=theme.id+'|joint|'+chosen.slice().sort(koSort).join(',')+'|'+hidden.slice().sort().join(',');
    if(avoid.indexOf(signature)>=0&&attempt<450)return null;
    if(!jointIdentifiable(theme,chosen,hidden))return null;
-   var s2=chooseStatements(theme,candidates(theme,chosen,[],r,false,hidden),r);if(!s2)return null;
+   var tot=composition(theme).total&&composition(theme).total.indicator;
+   var s2=chooseStatements(theme,candidates(theme,chosen,tot?[tot]:[],r,false,hidden),r);if(!s2)return null;
    if(k<theme.pick[1]&&attempt<400&&s2.statements.filter(function(s){return isFocus0(theme,s)}).length<2)return null;
    // Wrong options: one with only the 대상 swapped, one with only the columns, the rest both.
    var right=chosen.concat(hidden),key=function(o){return o.join('|')},wrong={rows:[],cols:[],both:[]};
@@ -676,8 +748,15 @@
     var o=p.concat(g);if(key(o)===key(right))return;
     wrong[p.join()===chosen.join()?'cols':g.join()===hidden.join()?'rows':'both'].push(o);
    })});
-   var picked=shuffle(wrong.rows,r).slice(0,1).concat(shuffle(wrong.cols,r).slice(0,1));
-   picked=picked.concat(shuffle(wrong.both,r).slice(0,4-picked.length));
+   // Pairs of wrong options share each part, like the answer does with them, so no option is the only
+   // one whose 대상 order and column order both recur (that shape gave the answer 70%, audit 2026-10-23).
+   var P=chosen.length,picked=null,rw=shuffle(wrong.rows,r),cw=shuffle(wrong.cols,r),bw=shuffle(wrong.both,r);
+   for(var i=0;i<rw.length&&!picked;i++)for(var j=0;j<cw.length&&!picked;j++){
+    var p1=rw[i].slice(0,P),g1=cw[j].slice(P),both=bw.find(function(o){return o.slice(0,P).join()===p1.join()&&o.slice(P).join()===g1.join()});
+    var other=both&&bw.find(function(o){return o.slice(0,P).join()!==p1.join()&&o.slice(P).join()!==g1.join()});
+    if(both&&other)picked=[rw[i],cw[j],both,other];
+   }
+   if(!picked){picked=rw.slice(0,1).concat(cw.slice(0,1));picked=picked.concat(bw.slice(0,4-picked.length))}
    var options=shuffle([right].concat(picked),r),names={};hidden.forEach(function(id){names[id]=columnName(theme,id)});
    var range=LABELS[0]+'~'+LABELS[k-1],list=hidden.map(function(id){return names[id]}).sort(koSort).join(', '),who=chosen.slice().sort(koSort).join(', ');
    var basis=known(theme,chosen,[]);basis.columns=hidden;
@@ -714,6 +793,9 @@
    for(var attempt=0;attempt<600&&pool.length;attempt++){
     var theme=pick(pool,r),avail=theme.pool.filter(function(n){return hasData(theme,n)});
     var k=theme.pick[0]+Math.floor((attempt<400?size:r())*(theme.pick[1]-theme.pick[0]+1));if(avail.length<k)continue;
+    // Two 대상 only for targeted practice of a pair: their wrong options cannot share a place with the
+    // answer, so 'pick the option sharing fewest' found it 56~64% of the time (audit 2026-10-23).
+    if(k===2&&!target&&theme.pick[1]>2)k=3;
     // everyKnown themes draw the 대상 from those with verified knowledge; extras on the map may be any.
     var own=function(n){return theme.kind==='composition'?!!orderOf(theme,n):theme.kind==='climate'?!!cl(n).type:true};
     // A theme without three columns to hide, or a 항목 식별 draw that keeps failing, falls back to 대상 식별.
@@ -727,6 +809,9 @@
     var known0=theme.everyKnown&&theme.kind!=='indicators'?avail.filter(own):avail;
     if(known0.length<k)continue;
     var chosen=draw(theme,known0,k,r),shown=[];
+    // theme.damp: a 대상 with many relations (중국) is kept in a draw only with this chance, so the
+    // theme is not mostly about it (audit 2026-10-23: 중국 in 83% of 국가별 농목업 questions).
+    if(theme.damp&&!target&&attempt<300&&chosen.some(function(n){return theme.damp[n]!=null&&r()>theme.damp[n]}))continue;
     if(target){
      if(avail.indexOf(target.hi)<0||avail.indexOf(target.lo)<0)continue;
      chosen=shuffle([target.hi,target.lo].concat(shuffle(avail.filter(function(n){return n!==target.hi&&n!==target.lo}),r).slice(0,k-2)),r);
@@ -750,7 +835,7 @@
     // everyKnown: each 대상 is identified by its own verified knowledge, never by elimination.
     if(theme.everyKnown&&chosen.some(function(n){return theme.kind!=='indicators'?!own(n):!REL.some(function(x){return visible(shown,x.indicator)&&(x.hi===n||x.lo===n)&&chosen.indexOf(x.hi)>=0&&chosen.indexOf(x.lo)>=0})}))continue;
     var pair=theme.map?markerStage(theme,chosen,shown,avail,r,format==='implicit'):null;if(theme.map&&!pair)continue;
-    var s2=chooseStatements(theme,candidates(theme,chosen,shown,r),r);if(!s2)continue;
+    var s2=chooseStatements(theme,candidates(theme,chosen,shown,r),r,!!target);if(!s2)continue;
     // Fewer 대상 leave fewer pairs to compare; such a draw whose <보기> are mostly background is redrawn.
     if(k<theme.pick[1]&&attempt<400&&s2.statements.filter(function(s){return isFocus0(theme,s)}).length<2)continue;
     if(target){
@@ -769,7 +854,9 @@
       .concat(o?[o.order.map(function(id){return catLabel(theme,id)}).join(' > ')+(o.order.length===1?' 1위':'')]:[],it?[it[0][0]+' 1위 품목']:[],
        ct?[ct.type?typeLabel(ct.type):null,ct.hemisphere==='S'?'남반구':'북반구'].filter(Boolean):[]);
      var inOptions=s1.options.some(function(o){return o.indexOf(n)>=0});
-     cueList.push({label:'후보',name:n,cue:!inOptions?'선택지에 나오지 않음':why.length?why.join(' · '):'다른 선택지로 소거'});
+     // A place that the shown data and knowledge cannot exclude is out only because no option uses it.
+     var fits=injective(names,chosen.length).some(function(a){return a.indexOf(n)>=0&&consistent(theme,chosen,known(theme,a,shown),a)});
+     cueList.push({label:'후보',name:n,cue:!inOptions?'선택지에 나오지 않음':fits?'표와 지식만으로는 배제되지 않음 · 그 배정이 선택지에 없음':why.length?why.join(' · '):'다른 선택지로 소거'});
     });
     cueList.forEach(function(c){c.letter=letterOf(c.name)});
     return {theme:theme,format:format,signature:signature,labels:LABELS.slice(0,k),entities:chosen,shown:shown,display:display(theme,chosen,shown),

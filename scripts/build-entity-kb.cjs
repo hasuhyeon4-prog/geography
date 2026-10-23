@@ -98,7 +98,9 @@ const FACT_SCOPE = {latinLanguage: name => C.regionOf[name] === 'americas'};
 // 어느 하나의 종교만으로 설명하기 어렵다' (2권 P10), and the Pew editions disagree on its 1위.
 // 일본: the Pew 불교 1위 folds 신토 into 기타, the lecture never names Japan's religion, and a learner
 // who knows '신토·불교' could fairly reject it.
-const FACT_UNSAFE = {religion: ['나이지리아', '일본']};
+// 중국: the Pew 불교 1위 (3.7%) is within 1%p of 기타 and under the 2%p order margin, and no lecture
+// block names it (audit 2026-10-23).
+const FACT_UNSAFE = {religion: ['나이지리아', '일본', '중국']};
 
 function ringArea(ring) {
   let a = 0;
@@ -812,7 +814,10 @@ for (const o of REL.orders) {
   for (const [n, order] of list) orders.push(Object.assign(checkOrder(o.composition, n, order), {basis: o.basis}));
 }
 // The energy whitelist (R2) names each country's leading sources in primary energy.
-for (const o of ENERGY.orders) for (const [n, order] of Object.entries(o.orders)) orders.push(Object.assign(checkOrder(o.composition, n, order), {basis: o.basis}));
+// L2-B0373 says only that 중국·인도 lead with 석탄; the 석유 second place in the whitelist is not stated
+// (its own validatedIndicatorOrders scope says so), so only the first place is recalled.
+const ORDER_STATED = {중국: ['coal'], 인도: ['coal']};
+for (const o of ENERGY.orders) for (const [n, order] of Object.entries(o.orders)) orders.push(Object.assign(checkOrder(o.composition, n, ORDER_STATED[n] || order), {basis: o.basis}));
 
 // Facts about the categories themselves (religions), asked once a hidden column A~C is identified.
 // The world adherent order must also hold in the Pew world rows (2010, 2020) by the order margin.
@@ -994,6 +999,7 @@ for (const [set, s] of Object.entries(WC.facts)) {
 }
 WC.statements.forEach((st, i) => concepts.push({id: 'city-' + (i + 1), about: st.about, claim: st.claim, truth: st.truth, source: st.source}));
 
+const CLAIM_SKIP = {'climate-18': ['선양', '창춘', '블라디보스토크', '몬트리올', '모스크바'], 'climate-24': ['보스토크(남극)'], 'climate-14': ['케이프타운', '샌프란시스코']};
 const out = {
   generated: 'scripts/build-entity-kb.cjs',
   sources: {countries: stats.meta, economy: economy.meta, groups: groupSeries.meta, extraFacts: extra.about, rankingsCheckedAt: R.checkedAt || null},
@@ -1007,7 +1013,10 @@ const out = {
   climate: {period: climate.normalPeriod, source: '관측소 월평년값(WMO 제출 자료 우선, JMA·ECCC 보충)', margin: CLIMATE_MARGIN, types: CLIMATE_LABEL, verdicts: climateTypes,
     // Lecture statements about each climate type (data/climate-type-claims.json, round two). Only
     // those with types they are false for: a statement true wherever it appears would be a tell.
-    claims: read('data/climate-type-claims.json').claims.filter(c => c.falseFor.length).map(c => ({id: c.id, claim: c.claim,
+    // Stations a type-level sentence does not fit (audit 2026-10-23): 타이가 for warm-summer Dw/Df
+    // stations of mixed or broadleaf forest; 해발 고도 as the main cause of cold for 보스토크, where
+    // latitude is; '연중 편서풍' as false for Csb stations, whose cool summer the graph shows.
+    claims: read('data/climate-type-claims.json').claims.filter(c => c.falseFor.length).map(c => ({id: c.id, claim: c.claim, skip: CLAIM_SKIP[c.id] || [],
       trueFor: c.trueFor.map(t => t.toLowerCase()), falseFor: c.falseFor.map(t => t.toLowerCase()),
       source: '강의 ' + c.source.volume + '권 ' + c.source.section + ' ' + c.source.blockId + (c.source.column ? ' (' + c.source.column.split(';')[0] + ')' : '')}))},
 };

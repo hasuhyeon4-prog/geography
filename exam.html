@@ -50,9 +50,9 @@ td.text{white-space:normal;text-align:left;line-height:1.55;word-break:keep-all;
 <div class="scope"><label for="themeSelect">주제<select id="themeSelect"></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><span class="score" id="score"></span></div>
 <main id="main" aria-live="polite"></main>
 <div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 항목마다 적은 기간(대개 2015~2025년)의 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
-<script src="assets/entity-kb.js?v=20261023-9"></script>
-<script src="assets/exam-themes.js?v=20261023-9"></script>
-<script src="assets/exam-engine.js?v=20261023-8"></script>
+<script src="assets/entity-kb.js?v=20261023-10"></script>
+<script src="assets/exam-themes.js?v=20261023-10"></script>
+<script src="assets/exam-engine.js?v=20261023-9"></script>
 <script>
 (function(){
 'use strict';
@@ -133,7 +133,8 @@ function mapView(q){
  var pad=Math.max(f[2]-f[0],f[3]-f[1])*.08+3;f=[f[0]-pad,f[1]-pad,f[2]+pad,f[3]+pad];
  var w=f[2]-f[0],h=f[3]-f[1];
  if(w<h*1.4){var dx=(h*1.4-w)/2;f[0]-=dx;f[2]+=dx}else if(w>h*2.2){var dy=(w/2.2-h)/2;f[1]-=dy;f[3]+=dy}
- return [Math.max(-180,f[0]),Math.max(-75,f[1]),Math.min(180,f[2]),Math.min(85,f[3])];
+ // The south edge stops at 75°S unless a pin lies beyond it (보스토크 78°S was drawn off the map).
+ return [Math.max(-180,f[0]),Math.max(-90,f[1]),Math.min(180,f[2]),Math.min(85,f[3])];
 }
 function svgEl(tag,attrs,parent,text){var e=document.createElementNS('http://www.w3.org/2000/svg',tag);Object.keys(attrs).forEach(function(k){e.setAttribute(k,attrs[k])});if(text!=null)e.textContent=text;if(parent)parent.appendChild(e);return e}
 function drawMap(q,revealed){

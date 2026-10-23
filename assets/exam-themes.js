@@ -16,7 +16,7 @@
    id:'bloc-indicators',status:'ready',title:'경제 블록의 지표 비교',lecture:'2권 P08',exams:['2023학년도 6월 10번','2026학년도 6월 10번'],
    kind:'indicators',entityType:'bloc',pool:['EU','USMCA','ASEAN','MERCOSUR'],pick:[4,4],
    indicators:['bloc-pop','bloc-gdp','bloc-trade','bloc-gdppc','bloc-members','bloc-area'],show:2,
-   prompt:'{range}는 EU, USMCA, ASEAN, MERCOSUR 중 하나이다.'
+   prompt:'{range}는 {candidates} 중 하나이다.'
   },
   {
    id:'continent-indicators',status:'ready',title:'대륙(권역)별 인구·경제·곡물 지표',lecture:'1권 P05 · 2권 P06',exams:['2024학년도 수능','2020학년도 6월 17번','2025학년도 수능 12번'],
@@ -25,7 +25,8 @@
    kind:'indicators',entityType:'continent',domains:[null,'agri'],pool:['아시아','아프리카','유럽','라틴 아메리카','앵글로아메리카','오세아니아'],pick:[3,4],
    always:['cont-pop'],indicators:['cont-density','cont-urban','cont-nir','cont-old','cont-young','cont-netmig','cont-agingIndex','cont-grainNet','cont-rice'],show:2,
    derived:[{rate:'cont-urban',total:'cont-pop',per:100,noun:'도시 인구'},{rate:'cont-old',total:'cont-pop',per:100,noun:'노년층 인구'},{rate:'cont-young',total:'cont-pop',per:100,noun:'유소년층 인구'}],
-   prompt:'{range}는 아시아, 아프리카, 유럽, 라틴 아메리카, 앵글로아메리카, 오세아니아 중 하나이다. 러시아는 유럽에 포함한다.'
+   note:'2023년 값이다. 강의(2015년 자료)와 달리 라틴 아메리카의 도시화율이 앵글로아메리카보다 조금 높다(81.0%·80.3%). 이 둘의 도시화율 순서는 묻지 않는다.',
+   prompt:'{range}는 {candidates} 중 하나이다. 러시아는 유럽에 포함한다.'
   },
   // 2024학년도 수능 14번: 합계 출산율 세 시점(UN WPP 2024)과 순 이주·인구. The TFR columns
   // identify through data/exam-relations-fertility.json; 순이동 and 인구 recall the shared continent pairs.
@@ -78,12 +79,12 @@
    changes:[{from:'cwup-urban@1950',to:'cwup-urban@2020',ratio:true,noun:'1950~2020년 도시 인구 증가율',more:'높다',min:1.2}],
    changeSigns:[{from:'cwup-rural@1950',to:'cwup-rural@2020',noun:'1950~2020년 촌락 인구',min:5}],
    majority:['cwup-share@1950','cwup-share@2020'],
-   note:'UN WUP 2025의 추정치(국가별 도시 정의)이다. 라틴 아메리카는 카리브 지역을 포함하고, 앵글로아메리카는 UN의 Northern America이다. 도시화율이 올라도 촌락 인구가 늘 수 있다.',
+   note:'UN WUP 2025의 추정치(국가별 도시 정의)이다. 라틴 아메리카는 카리브 지역을 포함하고, 앵글로아메리카는 UN의 Northern America이다. 도시화율이 올라도 촌락 인구가 늘 수 있다. 강의(2015년 자료)와 달리 이 추정치에서는 2020년 무렵부터 라틴 아메리카의 도시화율이 앵글로아메리카보다 조금 높다.',
    prompt:'{range}는 {candidates} 중 하나이다. 표는 1950년과 2020년의 대륙별 도시 인구·촌락 인구(백만 명)이다.'
   },
   {
    id:'country-economy',status:'ready',title:'국가별 GDP·산업 구조',lecture:'1권 P05 · 2권 P08·P10',exams:['2026학년도 수능 7번','2024학년도 6월 9번','2026학년도 6월 18번'],
-   kind:'indicators',entityType:'country',map:true,
+   damp:{일본:0.45,중국:0.45,인도:0.6},kind:'indicators',entityType:'country',map:true,
    pool:['중국','일본','영국','프랑스','폴란드','알제리','나이지리아','보츠와나','콩고 민주 공화국','독일','멕시코','이집트','인도','브라질','아르헨티나','칠레','타이','탄자니아','사우디아라비아','튀르키예'],
    pick:[2,3],indicators:['pop','gdp','gdppc','manufacturing','agriculture','industry','services','industryEmployment','exports'],show:2,
    derived:[{rate:'manufacturing',total:'gdp',per:100,noun:'제조업 부가가치'}],
@@ -165,8 +166,9 @@
   {
    id:'country-minerals',status:'ready',title:'국가별 광물 생산 비중',lecture:'2권 P07',exams:['2026학년도 수능 9번','2025학년도 6월 12번','2027학년도 6월 13번'],
    kind:'indicators',entityType:'country',map:true,domains:['mineral',null],
-   // 콩고 민주 has no 철광석 value and its 구리 order against 페루 flips, so it comes with 칠레 alone.
-   pool:['브라질','칠레','볼리비아','남아프리카 공화국','페루','콩고 민주 공화국'],pick:[2,3],
+   // 콩고 민주 공화국 left: its only relation (칠레 > 콩고 민주 구리) rested on a list the lecture says is not
+   // a ranking (L2-B0495), and it has no 철광석 value (audit 2026-10-23).
+   pool:['브라질','칠레','볼리비아','남아프리카 공화국','페루'],pick:[2,3],
    always:[],indicators:['min-copper','min-iron'],show:2,
    followups:{facts:['latinLanguage','bloc','apec','religion','capitalCity','hemisphere','equator','meridian','landlocked'],focus:['latinLanguage']},
    note:'광물마다 세계 총량(분모)과 단위가 다르다(구리는 금속 함량, 철광석은 광석 무게). 그래서 서로 다른 광물의 비중끼리는 생산량을 비교할 수 없다.',
@@ -239,7 +241,7 @@
   },
   {
    id:'country-agriculture',status:'ready',title:'국가별 곡물 생산과 가축 사육',lecture:'2권 P06',exams:['2026학년도 수능 12번','2023학년도 9월 16번','2024학년도 9월 9번'],
-   kind:'indicators',entityType:'country',map:true,domains:['agri'],
+   damp:{중국:0.3},kind:'indicators',entityType:'country',map:true,domains:['agri'],
    pool:['중국','인도','미국','브라질','오스트레일리아','프랑스','아르헨티나','이집트','멕시코','에스파냐','타이','미얀마','베트남','인도네시아','에티오피아','케냐'],
    pick:[3,3],indicators:['agri-wheat','agri-rice','agri-maize','agri-cattle','agri-pigs','agri-sheep','agri-riceExports','agri-coffee','agri-grainNet'],show:2,
    followups:{facts:['religion','bloc','capitalCity','hemisphere','equator','landlocked'],focus:[]},

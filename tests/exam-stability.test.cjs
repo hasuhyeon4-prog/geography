@@ -170,8 +170,9 @@ for (const o of REL.orders.concat(ENERGY_REL.orders)) {
       const e = C.entry(C.byId[o.fromSet], n);
       if (e.status === 'graded' && e.values.length === 1) (c[n] || (c[n] = [])).push(e.values);
     }
-  } else for (const [n, order] of Object.entries(o.orders)) (c[n] || (c[n] = [])).push(order);
+  } else for (const [n, order] of Object.entries(o.orders)) (c[n] || (c[n] = [])).push(o.composition === 'primaryEnergy' && ['중국', '인도'].includes(n) ? order.slice(0, 1) : order);
 }
+// L2-B0373 states only the 석탄 first place for 중국·인도 (the builder's ORDER_STATED).
 const compositionSeries = {
   exports: n => Object.fromEntries(Object.entries(economy.exports[n].series).filter(([y]) => y >= Y0 && y <= Y1)),
   electricity: n => Object.fromEntries(Object.entries(electricity.countries[n].series).filter(([y]) => y >= Y0 && y <= Y1)),
