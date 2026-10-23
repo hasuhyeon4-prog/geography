@@ -108,7 +108,7 @@ a['2024']=99;r=m.validate_pair(a,b,c)['status'];a['2024']=105;q=m.validate_pair(
 `);assert.deepEqual(result,['reversed','belowMargin','insufficientYears']);
 });
 test('scoped concept cards and Korean country names preserve their source boundaries',()=>{
- assert.equal(Object.keys(cards.entities).length,19);assert.equal(Object.keys(cards.sets).length,9);assert.equal(cards.statements.length,28);
+ assert.equal(Object.keys(cards.entities).length,19);assert.equal(Object.keys(cards.sets).length,9);assert.equal(cards.statements.length,29); // 28 delivered + the false wording of agri-4 (L2-B0135, audit 2026-10-23)
  for(const s of Object.values(cards.sets)){
   assert.equal(s.complete,false);assert.ok(s.source.includes('P06'));assert.deepEqual(Object.keys(s.values),s.scope);
   for(const [n,vs]of Object.entries(s.values)){assert.ok(cards.entities[n]);if(s.exclusive)assert.equal(vs.length,1);for(const v of vs)assert.ok(s.options.includes(v));}
