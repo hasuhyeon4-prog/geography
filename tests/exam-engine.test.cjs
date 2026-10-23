@@ -447,6 +447,8 @@ test('a chosen format is what is built, from every theme that can make it', () =
   for (const t of engine.themes) for (const f of engine.formatsFor(t)) for (let seed = 1; seed <= 6; seed++) {
     const q = engine.build({themeId: t.id, format: f, seed});
     assert.ok(q && q.format === f, t.id + ' ' + f + ' seed ' + seed);
+    // 항목 식별 always asks what a letter is, so stage 2 needs the columns identified.
+    if (f === 'columns') assert.ok(q.stage2.statements.some(s => s.kind === 'colid' || s.kind === 'category'), t.id + ' seed ' + seed + ' has no A~C 보기');
   }
   for (const f of ['columns', 'implicit']) {
     const can = engine.themes.filter(t => engine.formatsFor(t).includes(f)).map(t => t.id), seen = new Set();

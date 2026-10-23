@@ -412,7 +412,8 @@
   function candidates(theme,chosen,shown,r,named,hidden){
    if(theme.kind==='climate')return climateCandidates(theme,chosen,r);
    var out=[],has=function(n){return chosen.indexOf(n)>=0};
-   hidden=theme.kind==='composition'&&hidden||[];
+   // The A~C items of a 항목 식별 table; only a composition's hidden categories are renamed below.
+   var items=hidden||[];hidden=theme.kind==='composition'&&hidden||[];
    var CN=function(cat){var j=hidden.indexOf(cat);return j>=0?COLS[j]:catLabel(theme,cat)},CS=function(cat){return CN(cat)+(hidden.indexOf(cat)>=0?'는':topic(CN(cat)))};
    // A fact the clue sentence already states ('힌두교 신자가 가장 많은 국가') is not asked about.
    var given={};if(theme.kind==='clues')chosen.forEach(function(n,i){given[n]=clueOf(shown[i]).text});
@@ -537,11 +538,11 @@
    });
    // 항목 식별: which item a letter is, as the exam's own <보기> do ('A는 1인당 GDP이다'). A false one
    // names the item of another letter, so the wording never tells; one per question (key 'colid').
-   if(named&&hidden.length===COLS.length)hidden.forEach(function(x,j){
-    var item=columnName(theme,x),k=(j+1+Math.floor(r()*(hidden.length-1)))%hidden.length;
+   if(named&&items.length===COLS.length)items.forEach(function(x,j){
+    var item=columnName(theme,x),k=(j+1+Math.floor(r()*(items.length-1)))%items.length;
     [j,k].forEach(function(letter){
      add({kind:'colid',key:'colid|'+x,keys:['colid'],text:COLS[letter]+'는 '+item+'이다.',truth:letter===j,
-      explain:COLS[j]+'는 '+item+'이다'+(letter===j?'':' ('+COLS[letter]+'는 '+columnName(theme,hidden[letter])+')'),check:{column:x,letter:COLS[letter]}});
+      explain:COLS[j]+'는 '+item+'이다'+(letter===j?'':' ('+COLS[letter]+'는 '+columnName(theme,items[letter])+')'),check:{column:x,letter:COLS[letter]}});
     });
    });
    // What a hidden category is (religion: world adherents, origin, founding time, 보편/민족).
