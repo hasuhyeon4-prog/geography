@@ -200,7 +200,8 @@
     else if(theme.kind==='climate'){var c=cl(n);if(c.type)parts.push(typeLabel(c.type));if(c.signal)parts.push((c.signal==='S'?'남반구':'북반구')+'(최한월 '+c.coldest+'월)')}
     else if(theme.kind==='clues'){var q=clueOf(shown[i]);parts.push(q.keys.join('·')+' ('+q.source+')')}
     else parts.push(theme.items[n].slice(0,2).map(function(x){return x[0]}).join('·')+' 조합');
-    return {label:LABELS[i],name:n,cue:parts.length?parts.slice(0,3).join(' · '):'나머지 대상(소거)'};
+    // Every line is kept: with three year columns the deciding relation is often the fourth.
+    return {label:LABELS[i],name:n,cue:parts.length?parts.join(' · '):'나머지 대상(소거)'};
    });
   }
 
@@ -745,7 +746,7 @@
       .concat(o?[o.order.map(function(id){return catLabel(theme,id)}).join(' > ')+(o.order.length===1?' 1위':'')]:[],it?[it[0][0]+' 1위 품목']:[],
        ct?[ct.type?typeLabel(ct.type):null,ct.hemisphere==='S'?'남반구':'북반구'].filter(Boolean):[]);
      var inOptions=s1.options.some(function(o){return o.indexOf(n)>=0});
-     cueList.push({label:'후보',name:n,cue:!inOptions?'선택지에 나오지 않음':why.length?why.slice(0,3).join(' · '):'다른 선택지로 소거'});
+     cueList.push({label:'후보',name:n,cue:!inOptions?'선택지에 나오지 않음':why.length?why.join(' · '):'다른 선택지로 소거'});
     });
     cueList.forEach(function(c){c.letter=letterOf(c.name)});
     return {theme:theme,format:format,signature:signature,labels:LABELS.slice(0,k),entities:chosen,shown:shown,display:display(theme,chosen,shown),

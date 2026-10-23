@@ -352,3 +352,15 @@ test('questions come in three formats and recent ones are not repeated', () => {
   assert.equal(E.topic('ASEAN'), '은');
   assert.equal(E.topic('EU'), '는');
 });
+
+test('the identification cue of each row names every known relation it takes part in', () => {
+  for (const t of engine.themes.filter(x => x.kind === 'indicators')) for (let seed = 1; seed <= 40; seed++) {
+    const q = engine.build({themeId: t.id, seed});
+    if (!q || q.format === 'columns') continue;
+    const k = engine.known(t, q.entities, q.shown);
+    q.stage1.cues.filter(c => c.label !== '후보').forEach(c => {
+      for (const x of k.relations) if (x.hi === c.name || x.lo === c.name)
+        assert.ok(c.cue.includes(K.indicators[x.indicator].label) && c.cue.includes(c.name === x.hi ? x.lo : x.hi), t.id + ' ' + seed + ' ' + c.name + ': ' + x.indicator + ' ' + x.hi + '>' + x.lo);
+    });
+  }
+});
