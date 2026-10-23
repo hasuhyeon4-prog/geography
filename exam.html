@@ -46,6 +46,7 @@ h2{font-size:17px;line-height:1.45;margin:14px 0 8px;word-break:keep-all}.step{d
 .climateFig .pgrid{stroke:#b6d3e5;stroke-dasharray:2 3}.climateFig .axis{stroke:#667b85}.climateFig .ptick{fill:#356582}
 td.text{white-space:normal;text-align:left;line-height:1.55;word-break:keep-all;min-width:12em}
 .numbers summary{cursor:pointer;font-size:12px;color:var(--muted)}.numbers table{font-size:11px}
+.reviewBtn{flex:0 0 auto;min-height:36px;padding:4px 10px;font-size:12px;white-space:nowrap}.reviewBtn.on{background:var(--accent);color:#fff;border-color:var(--accent)}.reviewBtn.due{border-color:var(--accent);color:var(--accent)}
 .toggle{flex:0 0 auto!important;gap:4px!important;cursor:pointer}.toggle input{width:18px;height:18px;margin:0}
 .below{max-width:720px;margin:0 auto;padding:0 12px calc(28px + env(safe-area-inset-bottom))}
 .kb summary{cursor:pointer;font-weight:800;font-size:15px;min-height:28px}.kb>p{margin:8px 0}.kb details{border-top:1px solid var(--line);padding:8px 0}.kb details summary{font-size:14px;font-weight:700}
@@ -56,12 +57,12 @@ td.text{white-space:normal;text-align:left;line-height:1.55;word-break:keep-all;
 </head>
 <body>
 <header><a class="navLink" href="index.html">← 위치</a><h1 class="sr">기출형 연습</h1><nav class="nav" aria-label="퀴즈 종류"><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html">OX</a><a href="concepts.html">강의 표</a><a href="exam.html" aria-current="page">기출형</a></nav></header>
-<div class="scope"><label for="themeSelect">주제<select id="themeSelect"></select></label><label for="formatSelect">형식<select id="formatSelect"></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><span class="score" id="score"></span></div>
+<div class="scope"><label for="themeSelect">주제<select id="themeSelect"></select></label><label for="formatSelect">형식<select id="formatSelect"></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><button type="button" id="reviewBtn" class="reviewBtn"></button><span class="score" id="score"></span></div>
 <main id="main" aria-live="polite"></main>
 <div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 항목마다 적은 기간(대개 2015~2025년)의 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
 <script src="assets/entity-kb.js?v=20261023-14"></script>
 <script src="assets/exam-themes.js?v=20261023-14"></script>
-<script src="assets/exam-engine.js?v=20261023-14"></script>
+<script src="assets/exam-engine.js?v=20261023-15"></script>
 <script>
 (function(){
 'use strict';
@@ -72,12 +73,57 @@ function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_exam_v1')||'{
 var store=readStore();if(!store.stats||typeof store.stats!=='object')store.stats={};if(!Array.isArray(store.recent))store.recent=[];
 var FORMATS=[['all','전체 형식'],['rows','대상 식별'],['columns','항목 식별 (A~C)'],['joint','동시 식별'],['implicit','실전형 (지도)']];
 var state={theme:engine.themes.some(function(t){return t.id===store.theme})?store.theme:'all',format:FORMATS.some(function(f){return f[0]===store.format})?store.format:'all',nameMode:store.nameMode===true,targetKey:null,q:null,a1:null,a2:null,session:{s1:0,s2:0,n1:0,n2:0}};
-function save(){try{localStorage.setItem('wg_exam_v1',JSON.stringify({theme:state.theme,format:state.format,nameMode:state.nameMode,stats:store.stats,recent:store.recent}))}catch(e){}}
+function save(){try{localStorage.setItem('wg_exam_v1',JSON.stringify({theme:state.theme,format:state.format,nameMode:state.nameMode,stats:store.stats,recent:store.recent,review:store.review}))}catch(e){}}
 // The last questions shown are not repeated while others can be made (kept across visits).
 var RECENT=40;
 function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(c){if(c!=null&&c!==false)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
+// Spaced review (2026-10-23): what a wrong answer missed (the comparisons behind a misplaced row, each
+// <보기> judged wrongly) comes back in a new question after 10 minutes, then 1, 3, 7 and 21 days
+// while it is answered right; after the fifth it leaves the list. A miss sends it back to the start.
+var STEPS=[6e5,864e5,2592e5,6048e5,18144e5];
+if(!store.review||typeof store.review!=='object'||Array.isArray(store.review))store.review={};
+function remember(item){var old=store.review[item.key];item.box=0;item.due=Date.now()+STEPS[0];item.misses=(old&&old.misses||0)+1;store.review[item.key]=item}
+function relItem(ind,a,b){var x=engine.relation(ind,a,b);if(!x||['active','belowMargin'].indexOf(x.status)<0)return null;var m=WGEntityKB.indicators[ind];
+ return {key:'rel|'+ind+'|'+[a,b].sort().join('|'),build:{targetKey:ind+'|'+[a,b].sort().join('|')},label:(m?m.label:ind)+': '+x.hi+' > '+x.lo}}
+function statementItems(q,st){
+ var c=st.check||{},th=q.theme.id,short=(st.explain||st.text).split(' (')[0].slice(0,70);
+ if(st.kind==='compare'){var x=relItem(c.ind,c.subject,c.object);return x?[x]:[]}
+ if(st.kind==='fact')return [{key:'fact|'+th+'|'+c.entity+'|'+c.set,build:{themeId:th,focus:{entity:c.entity,set:c.set}},label:short}];
+ if(st.kind==='both')return [c.a,c.b].map(function(n){return {key:'fact|'+th+'|'+n+'|'+c.set,build:{themeId:th,focus:{entity:n,set:c.set}},label:short}});
+ var n=c.entity||c.subject||(st.kind==='concept'&&(WGEntityKB.concepts||[]).filter(function(k){return k.id===c.concept}).map(function(k){return k.about[0]})[0]);
+ if(n&&q.theme.pool.indexOf(n)>=0)return [{key:'ent|'+th+'|'+n,build:{themeId:th,focus:{entity:n}},label:th===q.theme.id?q.theme.title+' · '+n:n}];
+ return [{key:'theme|'+th,build:{themeId:th},label:q.theme.title}];
+}
+function missed1(q,pick){
+ var opt=q.stage1.options[pick],ans=q.stage1.options[q.stage1.answer],out=[],th=q.theme.id;
+ if(q.format==='columns'||q.format==='joint')return [{key:'fmt|'+th+'|'+q.format,build:{themeId:th,format:q.format},label:q.theme.title+' · '+(q.format==='joint'?'동시 식별':'항목 식별')}];
+ ans.forEach(function(n,i){if(opt[i]===n)return;
+  var rels=(q.stage1.basis.relations||[]).filter(function(x){return x.hi===n||x.lo===n}).slice(0,1).map(function(x){return relItem(x.indicator,x.hi,x.lo)}).filter(Boolean);
+  out=out.concat(rels.length?rels:[{key:'ent|'+th+'|'+n,build:{themeId:th,focus:{entity:n}},label:q.theme.title+' · '+n}]);
+ });
+ return out;
+}
+function missed2(q,pick){
+ if(q.readingOnly)return q.stage2.statements.map(function(st){return statementItems(q,st)}).reduce(function(a,b){return a.concat(b)},[]);
+ var said=engine.COMBOS[pick],right=engine.COMBOS[q.stage2.answer],out=[];
+ q.stage2.statements.forEach(function(st,i){if((said.indexOf(i)>=0)!==(right.indexOf(i)>=0))out=out.concat(statementItems(q,st))});
+ return out;
+}
+function dueItems(){var now=Date.now();return Object.keys(store.review).map(function(k){return store.review[k]}).filter(function(x){return x.due<=now}).sort(function(a,b){return a.due-b.due})}
+function grade(ok){var x=state.reviewItem&&store.review[state.reviewItem.key];if(!x)return;
+ if(ok){x.box++;if(x.box>=STEPS.length)delete store.review[x.key];else x.due=Date.now()+STEPS[x.box]}else{x.box=0;x.due=Date.now()+STEPS[0]}}
 function record(themeId,stage,ok){var s=store.stats[themeId]||(store.stats[themeId]={s1:[0,0],s2:[0,0]});s[stage][1]++;if(ok)s[stage][0]++;save()}
 function next(){
+ state.reviewItem=null;
+ if(state.reviewing){
+  // The earliest due item; one whose question can no longer be made (data changed) is dropped.
+  state.q=null;var due=dueItems();
+  for(var j=0;j<due.length&&!state.q;j++){
+   for(var k=0;k<3&&!state.q;k++)state.q=engine.build(Object.assign({avoid:store.recent},due[j].build));
+   if(state.q)state.reviewItem=due[j];else delete store.review[due[j].key];
+  }
+  save();state.a1=state.q&&(state.q.readingOnly||state.q.stage1.implicit)?-1:null;state.a2=null;render();window.scrollTo({top:0});return;
+ }
  // A draw that finds no question (rare, with a format chosen) is retried with new seeds.
  for(var tries=0;tries<3;tries++){state.q=engine.build({themeId:state.targetKey||state.theme==='all'?null:state.theme,format:state.targetKey||state.format==='all'?null:state.format,targetKey:state.targetKey,avoid:store.recent});if(state.q)break}
  if(state.q&&state.q.signature){store.recent=store.recent.filter(function(x){return x!==state.q.signature}).concat([state.q.signature]).slice(-RECENT);save()}state.a1=state.q&&(state.q.readingOnly||state.q.stage1.implicit)?-1:null;state.a2=null;render();window.scrollTo({top:0});
@@ -236,9 +282,16 @@ function assignment(q,opt,revealed){
 function render(){
  var main=$('main'),q=state.q;main.replaceChildren();
  $('score').textContent=state.session.n1||state.session.n2?('식별 '+state.session.s1+'/'+state.session.n1+' · 판단 '+state.session.s2+'/'+state.session.n2):'';
+ var n=dueItems().length,all=Object.keys(store.review).length,rb=$('reviewBtn');
+ rb.textContent=state.reviewing?'복습 끝내기':'복습 '+n;rb.className='reviewBtn'+(state.reviewing?' on':n?' due':'');rb.title='틀린 비교·사실을 간격을 두고 다시 풉니다 (전체 '+all+'개)';
+ if(!q&&state.reviewing){
+  var later=Object.keys(store.review).map(function(k){return store.review[k].due}).sort(function(a,b){return a-b})[0];
+  main.append(el('section',{className:'card'},[el('p',{text:all?'지금 복습할 항목이 없어요. 남은 '+all+'개는 '+new Date(later).toLocaleString('ko-KR',{month:'long',day:'numeric',hour:'numeric',minute:'2-digit'})+'부터 다시 나옵니다.':'복습할 항목이 없어요. 틀린 비교와 사실이 여기에 모입니다.'}),
+   el('button',{type:'button',onclick:function(){state.reviewing=false;next()},text:'일반 문제로'})]));return}
  if(!q){main.append(el('section',{className:'card'},[el('p',{text:'이 주제·형식으로 문항을 만들지 못했어요. 다른 주제나 형식을 골라 주세요.'})]));return}
  var t=q.theme,card=el('section',{className:'card'});
  if(state.targetKey)card.append(el('p',{className:'small',text:'선택한 비교를 집중 연습하고 있어요. 주제를 바꾸면 전체 연습으로 돌아갑니다.'}));
+ if(state.reviewItem)card.append(el('p',{className:'small',text:'복습 ('+(state.reviewItem.box+1)+'/'+STEPS.length+'단계): '+state.reviewItem.label+' · 남은 복습 '+n+'개'}));
  // 실전형 asks the <보기> straight away, as on the exam paper; the identification is shown afterwards.
  var implicit=!!q.stage1.implicit&&!q.readingOnly,revealed=implicit?state.a2!==null:state.a1!==null;
  var kind=q.readingOnly?'':q.format==='columns'?'항목 식별 · ':q.format==='joint'?'동시 식별 · ':implicit?'실전형 · ':'대상 식별 · ';
@@ -286,8 +339,11 @@ function render(){
  var focus=state.a2!==null?main.querySelector('.big'):state.a1!==null?main.querySelector('.combo button'):null;
  if(focus){focus.focus({preventScroll:true});focus.scrollIntoView({block:'nearest'})}
 }
-function answer1(i){if(state.a1!==null||i<0||i>=state.q.stage1.options.length)return;state.a1=i;var ok=i===state.q.stage1.answer;state.session.n1++;if(ok)state.session.s1++;record(state.q.theme.id,'s1',ok);render()}
-function answer2(i){if(state.a1===null||state.a2!==null||i<0||i>=state.q.stage2.options.length)return;state.a2=i;var ok=i===state.q.stage2.answer;state.session.n2++;if(ok)state.session.s2++;record(state.q.theme.id,'s2',ok);render()}
+function answer1(i){if(state.a1!==null||i<0||i>=state.q.stage1.options.length)return;state.a1=i;var ok=i===state.q.stage1.answer;state.session.n1++;if(ok)state.session.s1++;if(!ok)missed1(state.q,i).forEach(remember);record(state.q.theme.id,'s1',ok);render()}
+function answer2(i){if(state.a1===null||state.a2!==null||i<0||i>=state.q.stage2.options.length)return;state.a2=i;var ok=i===state.q.stage2.answer;state.session.n2++;if(ok)state.session.s2++;
+ if(!ok)missed2(state.q,i).forEach(remember);
+ // A review question is passed when both stages are right (or stage 1 was not asked).
+ grade(ok&&(state.a1<0||state.a1===state.q.stage1.answer));record(state.q.theme.id,'s2',ok);render()}
 // What the mode recalls, what it only shows as data, and why.
 function knowledge(){
  var kb=WGEntityKB,n=function(v){return Number(v).toLocaleString('ko-KR')};
@@ -328,7 +384,7 @@ function knowledge(){
   $('knowledge').append(el('details',{},[el('summary',{text:g[0]+' ('+list.length+')'}),g[2]?el('p',{className:'small muted',text:g[2]}):null,
    el('ul',{},list.map(function(x){
     var given=x.given?'기출 자료('+x.given.source+', '+x.given.year+'년): '+(x.given.rankedEntities?'순서 '+x.given.rankedEntities.join(' > '):Object.keys(x.given.values).map(function(k){return k+' '+x.given.values[k]+x.given.unit}).join(' · '))+' — '+x.given.note:null;
-    var practice=x.hi&&!x.first&&['active','belowMargin'].indexOf(x.status)>=0?el('button',{type:'button',className:'small',text:x.status==='active'?'이 비교 연습':'자료로 비교 연습',onclick:function(){state.targetKey=x.indicator+'|'+[x.hi,x.lo].sort().join('|');next()}}):null;
+    var practice=x.hi&&!x.first&&['active','belowMargin'].indexOf(x.status)>=0?el('button',{type:'button',className:'small',text:x.status==='active'?'이 비교 연습':'자료로 비교 연습',onclick:function(){state.targetKey=x.indicator+'|'+[x.hi,x.lo].sort().join('|');state.reviewing=false;next()}}):null;
     return el('li',{},[title(x),el('span',{text:detail(x)}),given?el('span',{text:given}):null,el('span',{text:'근거: '+x.basis}),practice]);
    }))]));
  });
@@ -347,10 +403,11 @@ function formats(){
  $('formatSelect').value=state.format;
 }
 formats();
-$('formatSelect').onchange=function(){state.format=this.value;state.targetKey=null;save();next()};
+$('formatSelect').onchange=function(){state.format=this.value;state.targetKey=null;state.reviewing=false;save();next()};
 $('nameMode').checked=state.nameMode;
 $('nameMode').onchange=function(){state.nameMode=this.checked;save();render()};
-$('themeSelect').onchange=function(){state.theme=this.value;state.targetKey=null;formats();save();next()};
+$('themeSelect').onchange=function(){state.theme=this.value;state.targetKey=null;state.reviewing=false;formats();save();next()};
+$('reviewBtn').onclick=function(){state.reviewing=!state.reviewing;state.targetKey=null;next()};
 document.addEventListener('keydown',function(e){
  if(e.target.tagName==='SELECT'||e.altKey||e.ctrlKey||e.metaKey||!state.q)return;
  var n=parseInt(e.key,10);

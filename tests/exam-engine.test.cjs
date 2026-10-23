@@ -477,3 +477,13 @@ test('no one column identifies the 대상, and drawn columns identify only by vi
     for (const c of q.display.columns) if (c.stack) assert.equal(c.exact, cats.has(c.id), id + ' ' + c.id);
   }
 });
+
+test('a review question holds the missed 대상 and asks the missed fact again', () => {
+  for (const [themeId, entity, set] of [['country-population', '타이', 'religion'], ['us-manufacturing', '미시간', 'usBelt'], ['world-city-clues', '시드니', 'cityCapital'], ['climate-graphs', '선양', null], ['electricity-mix', '프랑스', null]]) {
+    for (let seed = 1; seed <= 8; seed++) {
+      const q = engine.build({themeId, focus: {entity, set}, seed});
+      assert.ok(q && q.entities.includes(entity), themeId + ' ' + entity + ' seed ' + seed);
+      if (set) assert.ok(q.stage2.statements.some(s => s.check && s.check.set === set && [s.check.entity, s.check.a, s.check.b].includes(entity)), themeId + ' asks ' + set);
+    }
+  }
+});

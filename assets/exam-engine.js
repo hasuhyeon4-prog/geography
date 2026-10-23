@@ -864,7 +864,10 @@
    var size=r(),avoid=opts.avoid||[];
    // One question format per build: 대상 식별 (rows), 항목 식별 (columns) where the theme has
    // columns to hide, or 실전형 (implicit: no separate stage 1, as on the exam paper).
-   var mode=opts.format||(target?'rows':null),roll0=r();
+   // Review (opts.focus): a missed fact or 대상 comes back in a new question that holds it, and a
+   // missed fact is asked again (focus.set).
+   var focus=opts.focus;if(focus)pool=pool.filter(function(t){return t.pool.indexOf(focus.entity)>=0});
+   var mode=opts.format||(target||focus?'rows':null),roll0=r();
    for(var attempt=0;attempt<600&&pool.length;attempt++){
     var theme=pick(pool,r),avail=theme.pool.filter(function(n){return hasData(theme,n)});
     var k=theme.pick[0]+Math.floor((attempt<400?size:r())*(theme.pick[1]-theme.pick[0]+1));if(avail.length<k)continue;
@@ -891,6 +894,7 @@
     // theme.damp: a 대상 with many relations (중국) is kept in a draw only with this chance, so the
     // theme is not mostly about it (audit 2026-10-23: 중국 in 83% of 국가별 농목업 questions).
     if(theme.damp&&!target&&attempt<300&&chosen.some(function(n){return theme.damp[n]!=null&&r()>theme.damp[n]}))continue;
+    if(focus&&chosen.indexOf(focus.entity)<0){if(theme.sets||known0.indexOf(focus.entity)<0)continue;chosen[Math.floor(r()*chosen.length)]=focus.entity}
     if(target){
      if(avail.indexOf(target.hi)<0||avail.indexOf(target.lo)<0)continue;
      chosen=shuffle([target.hi,target.lo].concat(shuffle(avail.filter(function(n){return n!==target.hi&&n!==target.lo}),r).slice(0,k-2)),r);
@@ -924,7 +928,8 @@
     // everyKnown: each 대상 is identified by its own verified knowledge, never by elimination.
     if(theme.everyKnown&&chosen.some(function(n){return theme.kind!=='indicators'?!own(n):!REL.some(function(x){return visible(shown,x.indicator)&&(x.hi===n||x.lo===n)&&chosen.indexOf(x.hi)>=0&&chosen.indexOf(x.lo)>=0})}))continue;
     var pair=theme.map?markerStage(theme,chosen,shown,avail,r,format==='implicit'):null;if(theme.map&&!pair)continue;
-    var s2=chooseStatements(theme,candidates(theme,chosen,shown,r),r,!!target);if(!s2)continue;
+    var s2=chooseStatements(theme,candidates(theme,chosen,shown,r),r,!!target||!!focus);
+    if(s2&&focus&&focus.set&&attempt<500&&!s2.statements.some(function(s){var c=s.check||{};return c.set===focus.set&&[c.entity,c.a,c.b].indexOf(focus.entity)>=0}))continue;if(!s2)continue;
     // Fewer 대상 leave fewer pairs to compare; such a draw whose <보기> are mostly background is redrawn.
     if(k<theme.pick[1]&&attempt<400&&s2.statements.filter(function(s){return isFocus0(theme,s)}).length<2)continue;
     if(target){
