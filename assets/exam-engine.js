@@ -68,7 +68,15 @@
   function cellText(name,ind){var k=name+'|'+ind;if(k in cellCache)return cellCache[k];var v=value(name,ind),d=meta(ind)&&meta(ind).decimals;return cellCache[k]=d!=null?v.toLocaleString('ko-KR',{minimumFractionDigits:d,maximumFractionDigits:d}):fmt(v)}
   function meta(ind){return kb.indicators[ind]}
   function relation(ind,a,b){for(var i=0;i<REL.length;i++){var x=REL[i];if(x.indicator===ind&&(x.hi===a&&x.lo===b||x.hi===b&&x.lo===a))return x}return null}
-  function clearlyAbove(ind,x,y){var m=meta(ind).compare;if(x==null||y==null)return false;return m.type==='ratio'?x>0&&y>0&&x/y>=m.min:x-y>=m.min}
+  // Graphs (review 2026-10-23): a value no <보기> computes with is drawn as a bar without its number,
+  // so a difference counts only when it shows: GAP of the axis, which runs from 0 (or the lowest
+  // negative value) to the highest value of the 대상 drawn. sp is that axis length.
+  var GAP=.05;
+  function spread(vals){vals=vals.filter(function(x){return x!=null});return vals.length?Math.max(0,Math.max.apply(null,vals))-Math.min(0,Math.min.apply(null,vals)):0}
+  function spanOf(names,ind){return spread(names.map(function(n){return value(n,ind)}))}
+  function clearlyAbove(ind,x,y,sp){var m=meta(ind).compare;if(x==null||y==null)return false;return (m.type==='ratio'?x>0&&y>0&&x/y>=m.min:x-y>=m.min)&&(sp==null||x-y>=GAP*sp)}
+  // A known sign is contradicted only by a bar clearly on the other side of 0.
+  function signFits(x,v,sp){var min=meta(x.indicator).sign.min,g=sp==null?0:GAP*sp;return x.positive?v>-min||-v<g:v<min||v<g}
   function composition(theme){return kb.compositions[theme.composition]}
   function comp(theme,name){var c=composition(theme);return c&&c.values[name]}
   function total(theme,name){var c=composition(theme);return c&&c.total?c.total.values[name]:undefined}
@@ -133,20 +141,21 @@
   // A row clearly breaks an order when a category ranked below beats it by the margin.
   function orderBroken(c,order,v){
    var rest=c.categories.map(function(x){return x[0]}).filter(function(k){return order.indexOf(k)<0&&c.rankExclude.indexOf(k)<0});
-   return order.some(function(k,i){return (i+1<order.length?[order[i+1]]:rest).some(function(b){return (v[b]||0)-(v[k]||0)>=c.orderMargin})});
+   var margin=Math.max(c.orderMargin,GAP*100);
+   return order.some(function(k,i){return (i+1<order.length?[order[i+1]]:rest).some(function(b){return (v[b]||0)-(v[k]||0)>=margin})});
   }
   // perm[i] is the 대상 a student would put on the row that holds chosen[i]'s data. The
   // assignment is ruled out only by a clear contradiction; a near tie stays possible.
   function consistent(theme,chosen,k,perm){
    var row={};perm.forEach(function(n,i){row[n]=chosen[i]});
    if(theme.kind==='indicators')
-    return k.relations.every(function(x){return !clearlyAbove(x.indicator,value(row[x.lo],x.indicator),value(row[x.hi],x.indicator))})&&
-     k.signs.every(function(x){var v=value(row[x.entity],x.indicator),min=meta(x.indicator).sign.min;return x.positive?v>-min:v<min});
+    return k.relations.every(function(x){return !clearlyAbove(x.indicator,value(row[x.lo],x.indicator),value(row[x.hi],x.indicator),spanOf(chosen,x.indicator))})&&
+     k.signs.every(function(x){return signFits(x,value(row[x.entity],x.indicator),spanOf(chosen,x.indicator))});
    if(theme.kind==='climate')return perm.every(function(n,i){return !climateBreaks(n,chosen[i])});
    // A clue names a place or item that no other country's clue names, so it fits only its own row.
    if(theme.kind==='clues')return perm.every(function(n,i){return n===chosen[i]});
    if(theme.kind==='composition'){var c=composition(theme);return k.orders.every(function(o){return !orderBroken(c,o.order,comp(theme,row[o.entity]))})&&
-    (k.relations||[]).every(function(x){return !clearlyAbove(x.indicator,total(theme,row[x.lo]),total(theme,row[x.hi]))});}
+    (k.relations||[]).every(function(x){return !clearlyAbove(x.indicator,total(theme,row[x.lo]),total(theme,row[x.hi]),spread(chosen.map(function(n){return total(theme,n)})))});}
    return k.items.every(function(x){return theme.items[row[x.entity]][0][0]===x.top});
   }
   // Identification holds when the true assignment is the only one left.
@@ -187,6 +196,31 @@
     source:c.year+' · '+c.source+' · '+c.unit+(c.total?' · '+(c.total.note||c.total.label+'도 '+c.total.year+'년 같은 출처'):'')};
   }
 
+  // Graphs: a column that a <보기> computes with keeps its numbers; every other one is drawn as bars
+  // on an axis without values (review 2026-10-23: exact numbers let a learner recognise a country by
+  // its number). A composition is drawn as stacked 100% bars; a share × total <보기> labels the share it
+  // multiplies on its segments and keeps the totals as numbers.
+  function niceAxis(vals){
+   var lo=Math.min(0,Math.min.apply(null,vals)),hi=Math.max(0,Math.max.apply(null,vals)),rough=(hi-lo)/4||1,power=Math.pow(10,Math.floor(Math.log(rough)/Math.LN10));
+   var step=[1,2,2.5,5,10].map(function(n){return n*power}).filter(function(n){return n>=rough})[0],min=Math.floor(lo/step)*step,max=Math.ceil(hi/step)*step,ticks=[];
+   for(var t=min;t<=max+step/2;t+=step)ticks.push(Math.round(t/step)*step);
+   return {min:min,max:max,ticks:ticks};
+  }
+  function graphs(theme,d,entities,statements){
+   if(theme.kind!=='indicators'&&theme.kind!=='composition')return d;
+   var c=theme.kind==='composition'&&composition(theme),tot=c&&c.total&&(c.total.indicator||'total'),exact={};
+   statements.forEach(function(s){var k=s.check||{};if(s.kind==='data')[k.category,k.category&&tot,k.rate,k.total,k.from,k.to,k.majority].forEach(function(id){if(id)exact[id]=1})});
+   d.graph=true;
+   d.columns.forEach(function(col){
+    if(c&&col.id!==tot){col.stack=true;col.exact=!!exact[col.id];return}
+    if(exact[col.id])return;
+    var vals=entities.map(function(n){return c?total(theme,n):value(n,col.id)});
+    col.bar={values:vals,axis:niceAxis(vals)};
+   });
+   if(c)d.stack={values:entities.map(function(n){return d.columns.map(function(col){return col.stack?comp(theme,n)[col.id]||0:null})})};
+   return d;
+  }
+
   function cues(theme,chosen,shown){
    var k=known(theme,chosen,shown);
    return chosen.map(function(n,i){
@@ -224,8 +258,8 @@
   function columnsConsistent(theme,rows,hidden,guess){
    var has=function(n){return rows.indexOf(n)>=0},col=function(id){return hidden[guess.indexOf(id)]};
    if(theme.kind==='indicators')
-    return REL.every(function(x){return guess.indexOf(x.indicator)<0||!has(x.hi)||!has(x.lo)||!clearlyAbove(x.indicator,value(x.lo,col(x.indicator)),value(x.hi,col(x.indicator)))})&&
-     SIGNS.every(function(x){if(guess.indexOf(x.indicator)<0||!has(x.entity))return true;var v=value(x.entity,col(x.indicator)),min=meta(x.indicator).sign.min;return x.positive?v>-min:v<min});
+    return REL.every(function(x){return guess.indexOf(x.indicator)<0||!has(x.hi)||!has(x.lo)||!clearlyAbove(x.indicator,value(x.lo,col(x.indicator)),value(x.hi,col(x.indicator)),spanOf(rows,col(x.indicator)))})&&
+     SIGNS.every(function(x){if(guess.indexOf(x.indicator)<0||!has(x.entity))return true;return signFits(x,value(x.entity,col(x.indicator)),spanOf(rows,col(x.indicator)))});
    var c=composition(theme);
    return rows.every(function(n){
     var o=orderOf(theme,n);if(!o)return true;
@@ -711,6 +745,10 @@
 
   // Most draws start from a verified relation between two 대상 in the pool and add 대상
   // linked to them, so questions centre on the comparisons exams make; the rest are random.
+  var degrees={};
+  function degree(theme,n){var k=theme.id+'|'+n;if(!(k in degrees))degrees[k]=REL.filter(function(x){return (x.hi===n||x.lo===n)&&theme.pool.indexOf(x.hi)>=0&&theme.pool.indexOf(x.lo)>=0&&inScope(theme,x.indicator)&&(theme.indicators||[]).concat(theme.always||[]).some(function(ind){return visible([ind],x.indicator)||ind===x.indicator})}).length;return degrees[k]}
+  // Recipes share the roll: each takes its chance in turn, the rest of the roll draws freely.
+  function recipeAt(list,roll){for(var i=0,c=0;i<list.length;i++){c+=list[i].chance;if(roll<c)return list[i]}return null}
   function draw(theme,avail,k,r,inds){
    var has=function(list,n){return list.indexOf(n)>=0};
    if(theme.sets){var fit=theme.sets.map(function(s){return s.filter(function(n){return has(avail,n)})}).filter(function(s){return s.length>=k});return fit.length?shuffle(pick(fit,r),r).slice(0,k):[]}
@@ -729,7 +767,9 @@
     var linked=[];rels.forEach(function(x){if(has(chosen,x.hi)===has(chosen,x.lo))return;var n=has(chosen,x.hi)?x.lo:x.hi;if(!has(linked,n))linked.push(n)});
     chosen.push(linked.length&&r()<.8?pick(linked,r):pick(avail.filter(function(n){return !has(chosen,n)}),r));
    }
-   return shuffle(chosen,r);
+   // The table built around a comparison shows its column (lead), or a 대상 with one comparison in
+   // the theme (타이: 2차 산업 종사자 비율) is drawn but never identified.
+   var out=shuffle(chosen,r);out.lead=first.indicator;return out;
   }
 
   function buildColumns(theme,avail,k,r,avoid,attempt){
@@ -748,7 +788,7 @@
    if(k<theme.pick[1]&&attempt<400&&s2.statements.filter(function(s){return isFocus0(theme,s)}).length<2)return null;
    var s1=stage1(hidden,r),names={};hidden.forEach(function(id){names[id]=columnName(theme,id)});
    var list=hidden.map(function(id){return names[id]}).sort(koSort).join(', ');
-   return {theme:theme,format:'columns',signature:signature,labels:rows.slice(),entities:rows,hidden:hidden,shown:shown,display:columnsDisplay(theme,rows,shown,hidden),
+   return {theme:theme,format:'columns',signature:signature,labels:rows.slice(),entities:rows,hidden:hidden,shown:shown,display:graphs(theme,columnsDisplay(theme,rows,shown,hidden),rows,s2.statements),
     prompt:'표는 '+rows.join(', ')+'의 '+(theme.what||'자료')+'이다. A~C는 '+list+' 중 하나이다.',
     stage1:{question:'A~C에 해당하는 것으로 옳은 것은?',labels:COLS,names:names,options:s1.options,answer:s1.answer,cues:columnsCues(theme,rows,hidden),basis:{columns:hidden}},
     stage2:{question:'자료에 대한 설명으로 옳은 것만을 <보기>에서 고른 것은?',statements:s2.statements,options:s2.options,answer:s2.answer}};
@@ -780,7 +820,7 @@
    var options=shuffle([right].concat(picked),r),names={};hidden.forEach(function(id){names[id]=columnName(theme,id)});
    var range=LABELS[0]+'~'+LABELS[k-1],list=hidden.map(function(id){return names[id]}).sort(koSort).join(', '),who=chosen.slice().sort(koSort).join(', ');
    var basis=known(theme,chosen,[]);basis.columns=hidden;
-   return {theme:theme,format:'joint',signature:signature,labels:LABELS.slice(0,k),entities:chosen,hidden:hidden,shown:[],display:columnsDisplay(theme,chosen,[],hidden,LABELS),
+   return {theme:theme,format:'joint',signature:signature,labels:LABELS.slice(0,k),entities:chosen,hidden:hidden,shown:[],display:graphs(theme,columnsDisplay(theme,chosen,[],hidden,LABELS),chosen,s2.statements),
     prompt:(theme.jointPrompt||theme.prompt).split('{range}').join(range).split('{candidates}').join(who).split('{columns}').join(list),
     stage1:{question:range+'와 A~C에 해당하는 것으로 옳은 것은?',rows:k,labels:COLS,names:names,options:options,answer:options.map(key).indexOf(key(right)),cues:cues(theme,chosen,[]).concat(columnsCues(theme,chosen,hidden)),basis:basis},
     stage2:{question:range+'와 A~C에 대한 설명으로 옳은 것만을 <보기>에서 고른 것은?',statements:s2.statements,options:s2.options,answer:s2.answer}};
@@ -837,7 +877,7 @@
     // The format is fixed for the first attempts; later ones re-roll, so when the recent questions
     // have used up one format (전력 대상 식별 has four), another format is tried instead of a repeat.
     // A joint theme (종교) splits the 항목 식별 share with 동시 식별, where rows and columns are both hidden.
-    var recipe=!target&&mode!=='columns'&&mode!=='joint'&&theme.tableRecipes&&roll0<theme.tableRecipes[0].chance?theme.tableRecipes[0]:null;
+    var recipe=!target&&mode!=='columns'&&mode!=='joint'&&theme.tableRecipes?recipeAt(theme.tableRecipes,roll0):null;
     var canHide=columnsFor(theme).length>=3&&!theme.periodTable&&!recipe,canJoint=canHide&&!!theme.joint&&theme.kind==='composition',roll=attempt<150?roll0:r();
     var format=(mode==='columns'&&!canHide)||(mode==='joint'&&!canJoint)?'rows':mode||(roll<.35&&canHide&&attempt<300?(canJoint&&roll>=.15?'joint':'columns'):roll>.8?'implicit':'rows');
     if(format==='columns'){var cq=buildColumns(theme,avail,k,r,avoid,attempt);if(cq)return cq;continue}
@@ -860,13 +900,22 @@
     if(theme.kind==='indicators'){
      var always=theme.always||[],inds=theme.indicators.filter(function(ind){return meta(ind)&&!meta(ind).disabled&&always.indexOf(ind)<0});
      // A source without a value for one 대상 (no coffee in France) is not shown as 0; the column is left out.
-     shown=recipe?recipe.columns.slice():always.concat(apart(theme,shuffle(inds.filter(function(ind){return chosen.every(function(n){return value(n,ind)!=null})&&!sameCell(chosen,ind)}),r)).slice(0,theme.show));
+     var fit=shuffle(inds.filter(function(ind){return chosen.every(function(n){return value(n,ind)!=null})&&!sameCell(chosen,ind)}),r);
+     if(chosen.lead&&fit.indexOf(chosen.lead)>0&&r()<.5)fit=[chosen.lead].concat(fit.filter(function(ind){return ind!==chosen.lead}));
+     shown=recipe?recipe.columns.slice():always.concat(apart(theme,fit).slice(0,theme.show));
     }
     // Skip a question the learner saw recently (opts.avoid), while other ones can still be made.
     var signature=theme.id+'|'+chosen.slice().sort(koSort).join(',')+'|'+shown.slice().sort().join(',');
     if(avoid.indexOf(signature)>=0&&attempt<450)continue;
     if(!identifiable(theme,chosen,shown))continue;
     if(theme.requiresAllColumns&&shown.some(function(ind){return identifiable(theme,chosen,shown.filter(function(x){return x!==ind}))}))continue;
+    // No one column identifies the 대상, so the table is read as a whole (review 2026-10-23: a quarter
+    // of the tables were read off a single column). theme.oneColumn exempts a closed set of 대상 whose
+    // every column orders them all; late attempts relax it only where no other table can be drawn.
+    // A 대상 with at most two comparisons in the theme (말레이시아) is identified by one column or not at
+    // all, so half the tables holding one are exempt; without that it never appears.
+    // A targeted practice ('이 비교 연습') is about its pair, so it is exempt too.
+    if(shown.length>=2&&!theme.oneColumn&&!target&&attempt<500&&!(chosen.some(function(n){return degree(theme,n)<=2})&&r()<.5)&&shown.some(function(ind){return identifiable(theme,chosen,[ind])}))continue;
     // A column shown on every question (총인구) is there for computing totals; if it alone
     // identified the 대상, the theme's own indicators would be decoration.
     // A two-period table (periodTable) is read through its two year columns, so they may identify.
@@ -899,7 +948,7 @@
      cueList.push({label:'후보',name:n,cue:!inOptions?'선택지에 나오지 않음':fits?'표와 지식만으로는 배제되지 않음 · 그 배정이 선택지에 없음':why.length?why.join(' · '):'다른 선택지로 소거'});
     });
     cueList.forEach(function(c){c.letter=letterOf(c.name)});
-    return {theme:theme,format:format,signature:signature,labels:LABELS.slice(0,k),entities:chosen,shown:shown,display:display(theme,chosen,shown),
+    return {theme:theme,format:format,signature:signature,labels:LABELS.slice(0,k),entities:chosen,shown:shown,display:graphs(theme,display(theme,chosen,shown),chosen,s2.statements),
      prompt:theme.prompt.split('{range}').join(range).split('{candidates}').join(names.join(', ')),
      mapPrompt:pair?theme.prompt.split('{range}').join(range).split('{candidates}').join('지도에 표시된 '+letters[0]+'~'+letters[letters.length-1]):null,
      stage1:{question:range+'에 해당하는 것으로 옳은 것은?',implicit:format==='implicit',options:s1.options,answer:s1.answer,candidates:pair?names:null,markers:pair?pair.markers:null,cues:cueList,basis:basis},
@@ -907,7 +956,7 @@
    }
    return null;
   }
-  return {themes:ready,build:build,formatsFor:formatsFor,identifiable:identifiable,columnsIdentifiable:columnsIdentifiable,columnsConsistent:columnsConsistent,jointIdentifiable:jointIdentifiable,jointLeft:jointLeft,catLabel:catLabel,candidates:candidates,known:known,relation:relation,value:value,comp:comp,total:total,seeded:seeded,LABELS:LABELS,COMBOS:COMBOS};
+  return {themes:ready,build:build,formatsFor:formatsFor,degree:degree,identifiable:identifiable,columnsIdentifiable:columnsIdentifiable,columnsConsistent:columnsConsistent,jointIdentifiable:jointIdentifiable,jointLeft:jointLeft,catLabel:catLabel,candidates:candidates,known:known,relation:relation,value:value,comp:comp,total:total,seeded:seeded,LABELS:LABELS,COMBOS:COMBOS};
  }
  return {create:create,seeded:seeded,topic:topic};
 });

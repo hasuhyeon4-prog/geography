@@ -41,7 +41,7 @@
    pool:['아시아','아프리카','유럽','라틴 아메리카','앵글로아메리카'],pick:[3,4],
    always:['ctfr@1960','ctfr@1990','ctfr@2020'],indicators:['cont-netmig','cont-pop','cont-density'],show:1,
    changes:[{from:'ctfr@1960',to:'ctfr@2020',drop:true,noun:'1960~2020년 합계 출산율 감소 폭',min:0.5}],
-   note:'합계 출산율은 UN WPP 2024 추정치이다. 넷째 열은 2023년 값(세계은행 WDI, 인구 밀도는 2024년 면적 기준)으로, 기출의 2020년 값과 판본·연도가 다르다. 러시아는 유럽에 포함한다.',
+   note:'합계 출산율은 UN WPP 2024 추정치이다. 합계 출산율이 아닌 지표는 2023년 값(세계은행 WDI, 인구 밀도는 2024년 면적 기준)으로, 기출의 2020년 값과 판본·연도가 다르다. 러시아는 유럽에 포함한다.',
    prompt:'{range}는 {candidates} 중 하나이다. 표는 1960·1990·2020년의 합계 출산율과 다른 지표이다.'
   },
   {
@@ -88,7 +88,11 @@
    damp:{일본:0.45,중국:0.45,인도:0.6},kind:'indicators',entityType:'country',map:true,
    pool:['중국','일본','영국','프랑스','폴란드','알제리','나이지리아','보츠와나','콩고 민주 공화국','독일','우크라이나','멕시코','이집트','인도','브라질','아르헨티나','칠레','타이','탄자니아','사우디아라비아','튀르키예'],
    pick:[2,3],indicators:['pop','gdp','gdppc','manufacturing','agriculture','industry','services','industryEmployment','exports'],show:2,
-   tableRecipes:[{chance:0.4,pool:['중국','일본','영국'],columns:['industry','manufacturingInIndustry']}],
+   tableRecipes:[{chance:0.4,pool:['중국','일본','영국'],columns:['industry','manufacturingInIndustry']},
+    // 2026학년도 6월 18번 (L1-B1590): 영국 > 타이 도시화율, 타이 > 탄자니아 2차 산업 종사자 비율,
+    // 영국 > 탄자니아 1인당 GDP. The first two columns identify the three only together; the third
+    // comparison is left for a <보기>.
+    {chance:0.08,pool:['영국','타이','탄자니아'],columns:['urban','industryEmployment']}],
    derived:[{rate:'manufacturing',total:'gdp',per:100,noun:'제조업 부가가치'},{rate:'manufacturingInIndustry',total:'industry',per:100,noun:'전체 GDP 중 제조업 비중',more:'높다'}],
    note:'GDP 중 제조업 비중 = GDP 중 2차 산업 비중 × 2차 산업 중 제조업 비중 ÷ 100. 종사자 비율은 생산액 비중과 다르다.',
    followups:{facts:['exportType','opec','bloc','apec','religion','capitalCity','hemisphere','equator','meridian','landlocked'],focus:['exportType','opec']},
@@ -240,6 +244,8 @@
    id:'livestock-identification',status:'ready',title:'주요 가축 식별',lecture:'2권 P06',exams:['2023학년도 9월 12번','2023학년도 수능 10번','2027학년도 6월 10번'],
    kind:'indicators',entityType:'livestock',domains:['agri'],concepts:true,
    pool:['소','돼지','양'],pick:[3,3],indicators:['lv-stocks','lv-meat','lv-americas','lv-oceania','lv-africa','lv-australia','lv-brazil','lv-china'],show:2,
+   // Every column orders all three animals, so any one column identifies them (oneColumn).
+   oneColumn:true,
    followups:{facts:['topRaiser'],focus:['topRaiser']},
    note:'소는 물소를 제외한 값이다. 육류 생산량은 사육 두수와 다른 지표이다.',
    prompt:'{range}는 {candidates} 중 하나이다.'

@@ -456,3 +456,24 @@ test('a chosen format is what is built, from every theme that can make it', () =
     assert.deepEqual([...seen].sort(), can.sort(), f);
   }
 });
+
+test('no one column identifies the 대상, and drawn columns identify only by visible gaps', () => {
+  for (const t of engine.themes) {
+    if (t.kind !== 'indicators') continue;
+    for (let seed = 1; seed <= 25; seed++) {
+      const q = engine.build({themeId: t.id, format: 'rows', seed});
+      // A 대상 with at most two comparisons may be read off its one column (half its tables).
+      if (!t.oneColumn && q.shown.length >= 2 && !q.entities.some(n => engine.degree(t, n) <= 2)) for (const ind of q.shown) assert.ok(!engine.identifiable(t, q.entities, [ind]), t.id + ' seed ' + seed + ' read off ' + ind);
+      // Every column a <보기> does not compute with is drawn, without its numbers.
+      const exact = new Set(q.stage2.statements.filter(s => s.kind === 'data').flatMap(s => [s.check.rate, s.check.total, s.check.from, s.check.to, s.check.majority]).filter(Boolean));
+      for (const c of q.display.columns) assert.equal(!!c.bar, !exact.has(c.id), t.id + ' seed ' + seed + ' ' + c.id);
+    }
+  }
+  // A composition is always stacked; only a share a <보기> multiplies is labelled.
+  for (const id of ['electricity-mix', 'religion-composition', 'export-composition', 'primary-energy']) for (let seed = 1; seed <= 15; seed++) {
+    const q = engine.build({themeId: id, seed});
+    assert.ok(q.display.graph && q.display.stack, id);
+    const cats = new Set(q.stage2.statements.filter(s => s.kind === 'data' && s.check.category).map(s => s.check.category));
+    for (const c of q.display.columns) if (c.stack) assert.equal(c.exact, cats.has(c.id), id + ' ' + c.id);
+  }
+});

@@ -20,6 +20,13 @@ main{max-width:720px;margin:0 auto;padding:12px 12px calc(28px + env(safe-area-i
 .meta{font-size:12px;color:var(--muted);line-height:1.5}.prompt{font-size:14px;line-height:1.6;margin:8px 0}
 .tableWrap{overflow-x:auto;margin:6px 0}table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}th,td{border:1px solid var(--line);padding:6px 7px;text-align:center;white-space:nowrap}th{background:#f3f7f7;font-weight:700;font-size:12px;white-space:normal;word-break:keep-all;min-width:64px}td.items{white-space:normal;text-align:left}td.name{font-weight:700;color:var(--accent)}
 .source{font-size:11px;color:var(--muted);text-align:right;margin-top:3px}
+.barPanels{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;margin:6px 0}.barPanel{border:1px solid var(--line);border-radius:10px;padding:8px 10px 6px}.barPanel h4{margin:0 0 6px;font-size:12px}
+.barRow{display:flex;align-items:center;gap:6px;margin:5px 0}.barRow .who{flex:0 0 auto;min-width:34px;font-size:12px;font-weight:700}.track{position:relative;flex:1;height:14px}
+.track .grid{position:absolute;top:-3px;bottom:-3px;width:1px;background:var(--line)}.track .zero{position:absolute;top:-4px;bottom:-4px;width:1px;background:var(--muted)}.track .bar{position:absolute;top:0;height:14px;background:#2a78d6;border-radius:0 4px 4px 0}.track .bar.neg{border-radius:4px 0 0 4px}
+.ticks{position:relative;height:14px;margin-left:40px;font-size:10px;color:var(--muted)}.ticks span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.legend{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:11px;margin:2px 0 6px}.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:3px;vertical-align:-1px}
+.stackBar{display:flex;flex:1;height:18px;gap:2px}.stackBar b{display:block;height:18px}.stackBar b:first-child{border-radius:4px 0 0 4px}.stackBar b:last-child{border-radius:0 4px 4px 0}
+.numbers summary{font-size:12px;color:var(--muted);cursor:pointer}
 h2{font-size:17px;line-height:1.45;margin:14px 0 8px;word-break:keep-all}.step{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--ink);border-radius:6px;padding:2px 6px;margin-right:6px;vertical-align:2px}
 .choices{display:grid;gap:7px}.choices button{min-height:48px;font-size:14px;line-height:1.45;border-width:2px;border-radius:12px;word-break:keep-all}
 .choices button.right{border-color:var(--good);background:#ebfbee;color:#1f5f2c}.choices button.chosenWrong{border-color:var(--bad);background:#fff4e6;color:#8a3a0c}.choices button:disabled:not(.right):not(.chosenWrong){opacity:.5}
@@ -52,9 +59,9 @@ td.text{white-space:normal;text-align:left;line-height:1.55;word-break:keep-all;
 <div class="scope"><label for="themeSelect">주제<select id="themeSelect"></select></label><label for="formatSelect">형식<select id="formatSelect"></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><span class="score" id="score"></span></div>
 <main id="main" aria-live="polite"></main>
 <div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 항목마다 적은 기간(대개 2015~2025년)의 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
-<script src="assets/entity-kb.js?v=20261023-13"></script>
-<script src="assets/exam-themes.js?v=20261023-13"></script>
-<script src="assets/exam-engine.js?v=20261023-13"></script>
+<script src="assets/entity-kb.js?v=20261023-14"></script>
+<script src="assets/exam-themes.js?v=20261023-14"></script>
+<script src="assets/exam-engine.js?v=20261023-14"></script>
 <script>
 (function(){
 'use strict';
@@ -71,7 +78,8 @@ var RECENT=40;
 function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(c){if(c!=null&&c!==false)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
 function record(themeId,stage,ok){var s=store.stats[themeId]||(store.stats[themeId]={s1:[0,0],s2:[0,0]});s[stage][1]++;if(ok)s[stage][0]++;save()}
 function next(){
- state.q=engine.build({themeId:state.targetKey||state.theme==='all'?null:state.theme,format:state.targetKey||state.format==='all'?null:state.format,targetKey:state.targetKey,avoid:store.recent});
+ // A draw that finds no question (rare, with a format chosen) is retried with new seeds.
+ for(var tries=0;tries<3;tries++){state.q=engine.build({themeId:state.targetKey||state.theme==='all'?null:state.theme,format:state.targetKey||state.format==='all'?null:state.format,targetKey:state.targetKey,avoid:store.recent});if(state.q)break}
  if(state.q&&state.q.signature){store.recent=store.recent.filter(function(x){return x!==state.q.signature}).concat([state.q.signature]).slice(-RECENT);save()}state.a1=state.q&&(state.q.readingOnly||state.q.stage1.implicit)?-1:null;state.a2=null;render();window.scrollTo({top:0});
 }
 // Climate graphs: precipitation bars (right scale, mm) and temperature line (left scale, ℃),
@@ -98,12 +106,53 @@ function climateCharts(q,revealed){
  var numbers=el('details',{className:'numbers'},[el('summary',{text:'월별 수치 보기'}),el('div',{className:'tableWrap'},[el('table',{},[el('thead',{},[el('tr',{},[el('th',{text:'월'})].concat(months.map(function(m){return el('th',{text:m})})))]),el('tbody',{},rows)])])]);
  return el('div',{},[grid,numbers,el('div',{className:'source',text:'자료: '+d.source})]);
 }
+// Graphs (2026-10-23): values the <보기> do not compute with are drawn without numbers, so a country
+// is recognised by what the learner knows, not by a number seen before. The full table opens only
+// after the question is answered.
+var SERIES=['#2a78d6','#eb6834','#1baf7a','#eda100','#e87ba4','#008300','#6250d6','#e34948'];
+function fmtTick(v){var a=Math.abs(v);return v.toLocaleString('ko-KR',{maximumFractionDigits:a>=10||a===0?0:a>=1?1:2})}
+function barPanel(col,labels,revealed){
+ var ax=col.bar.axis,w=ax.max-ax.min,pos=function(v){return (v-ax.min)/w*100+'%'},hide=!!col.reveal;
+ var title=col.label+(revealed&&col.reveal?' '+col.reveal:'')+(!hide&&col.unit?' ('+col.unit+')':'');
+ var rows=labels.map(function(l,i){var v=col.bar.values[i],z=(0-ax.min)/w*100,x=(v-ax.min)/w*100,tr=el('div',{className:'track'});
+  ax.ticks.forEach(function(t){var g=el('span',{className:t===0?'zero':'grid'});g.style.left=pos(t);tr.append(g)});
+  var b=el('span',{className:'bar'+(v<0?' neg':'')});b.style.left=Math.min(z,x)+'%';b.style.width=Math.abs(x-z)+'%';tr.append(b);
+  return el('div',{className:'barRow'},[el('span',{className:'who',text:l}),tr])});
+ var ticks=el('div',{className:'ticks'});if(!hide)ax.ticks.forEach(function(t){var s=el('span',{text:fmtTick(t)});s.style.left=pos(t);ticks.append(s)});
+ return el('div',{className:'barPanel'},[el('h4',{text:title})].concat(rows,[ticks]));
+}
+function stackPanel(d,labels,revealed){
+ var cols=d.columns.filter(function(c){return c.stack});
+ var legend=el('div',{className:'legend'},cols.map(function(c,j){return el('span',{},[el('i',{style:'background:'+SERIES[j%SERIES.length]}),document.createTextNode(c.label+(revealed&&c.reveal?' '+c.reveal:''))])}));
+ var rows=labels.map(function(l,i){var vals=d.stack.values[i].filter(function(v){return v!=null}),sum=vals.reduce(function(a,b){return a+b},0)||1;
+  return el('div',{className:'barRow'},[el('span',{className:'who',text:l}),el('div',{className:'stackBar'},vals.map(function(v,j){var b=el('b',{title:cols[j].label});b.style.width=(v/sum*100)+'%';b.style.background=SERIES[j%SERIES.length];return v>0?b:null}).filter(Boolean))])});
+ return el('div',{className:'barPanel'},[el('h4',{text:'구성비 (%)'}),legend].concat(rows));
+}
+function graphView(q,revealed){
+ var d=q.display,labels=d.rows.map(function(r,i){return r.label+(revealed&&q.format!=='columns'?' '+q.entities[i]:'')});
+ var panels=[];if(d.stack)panels.push(stackPanel(d,labels,revealed));
+ d.columns.forEach(function(c){if(c.bar)panels.push(barPanel(c,labels,revealed))});
+ // Numbers stay only for what a <보기> computes with.
+ var exact=d.columns.map(function(c,j){return j}).filter(function(j){var c=d.columns[j];return c.stack?c.exact:!c.bar});
+ var parts=[el('div',{className:'barPanels'},panels)];
+ if(exact.length)parts.push(el('div',{className:'tableWrap'},[el('table',{},[el('thead',{},[el('tr',{},[el('th',{text:'구분'})].concat(exact.map(function(j){var c=d.columns[j];return el('th',{text:c.label+(revealed&&c.reveal?' '+c.reveal:'')+(c.unit?' ('+c.unit+')':'')})})))]),
+  el('tbody',{},d.rows.map(function(r,i){return el('tr',{},[el('td',{className:'name',text:labels[i]})].concat(exact.map(function(j){return el('td',{text:r.cells[j]})})))}))])]));
+ if(state.a2!==null)parts.push(el('details',{className:'numbers'},[el('summary',{text:'표의 수치 보기'}),plainTable(q,revealed)]));
+ parts.push(el('div',{className:'source',text:'자료: '+d.source+(exact.length<d.columns.length?' · 그래프는 대략적인 크기만 나타냄':'')}));
+ return el('div',{},parts);
+}
+// A drawn question calls its data '자료', not '표'.
+function graphWords(q,text){return q.display&&q.display.graph?text.replace(/표는 /g,'자료는 ').replace(/표의 /g,'자료의 ').replace(/표에서 /g,'자료에서 '):text}
 function table(q,revealed){
  if(q.display.kind==='climate')return climateCharts(q,revealed);
+ if(q.display.graph)return graphView(q,revealed);
+ return el('div',{},[plainTable(q,revealed),el('div',{className:'source',text:'자료: '+q.display.source})]);
+}
+function plainTable(q,revealed){
  // 항목 식별 hides column names as A~C until stage 1 is answered; rows already carry names.
  var d=q.display,head=el('tr',{},[el('th',{text:'구분'})].concat(d.columns.map(function(c){return el('th',{text:c.label+(revealed&&c.reveal?' '+c.reveal:'')+(c.unit?' ('+c.unit+')':'')})})));
  var body=d.rows.map(function(r,i){return el('tr',{},[el('td',{className:'name',text:r.label+(revealed&&q.format!=='columns'?' '+q.entities[i]:'')})].concat(r.cells.map(function(c){return el('td',{className:q.theme.kind==='items'?'items':q.theme.kind==='clues'?'text':null,text:c})})))});
- return el('div',{},[el('div',{className:'tableWrap'},[el('table',{},[el('thead',{},[head]),el('tbody',{},body)])]),el('div',{className:'source',text:'자료: '+d.source})]);
+ return el('div',{className:'tableWrap'},[el('table',{},[el('thead',{},[head]),el('tbody',{},body)])]);
 }
 // The boundaries (about 1 MB) load only when a map question first appears.
 var shapes=window.WGCountryShapes?'ready':'idle',geoCache={};
@@ -193,8 +242,8 @@ function render(){
  // 실전형 asks the <보기> straight away, as on the exam paper; the identification is shown afterwards.
  var implicit=!!q.stage1.implicit&&!q.readingOnly,revealed=implicit?state.a2!==null:state.a1!==null;
  var kind=q.readingOnly?'':q.format==='columns'?'항목 식별 · ':q.format==='joint'?'동시 식별 · ':implicit?'실전형 · ':'대상 식별 · ';
- card.append.apply(card,[el('div',{className:'meta',text:kind+t.title+' · '+t.lecture+(t.exams&&t.exams.length?' · 기출 유형: '+t.exams.join(', '):'')}),el('p',{className:'prompt',text:(mapMode(q)&&q.mapPrompt)||q.prompt||t.prompt}),mapMode(q)?drawMap(q,revealed):null,table(q,revealed)].filter(Boolean));
- if(t.note)card.append(el('p',{className:'small muted',text:t.note}));
+ card.append.apply(card,[el('div',{className:'meta',text:kind+t.title+' · '+t.lecture+(t.exams&&t.exams.length?' · 기출 유형: '+t.exams.join(', '):'')}),el('p',{className:'prompt',text:graphWords(q,(mapMode(q)&&q.mapPrompt)||q.prompt||t.prompt)}),mapMode(q)?drawMap(q,revealed):null,table(q,revealed)].filter(Boolean));
+ if(t.note)card.append(el('p',{className:'small muted',text:graphWords(q,t.note)}));
  // Stage 1: identification.
  if(!q.readingOnly&&!implicit)card.append(el('h2',{},[el('span',{className:'step',text:'1차 식별'}),q.stage1.question]));
  var c1=el('div',{className:'choices'});
