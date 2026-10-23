@@ -290,7 +290,8 @@
    var e=entity(name),f=e.facts[set],m=kb.factSets[set]||kb.extraFacts[set];
    var labels=f.values.map(function(v){return (kb.factSets[set]&&kb.factSets[set].options[v])||v}).join('·');
    var note=(f.note||'').replace(/ ?무종교를 제외한 개별 종교 중 1위이며, 과반 여부와 다릅니다\.?/,'').trim();
-   return name+' — '+(m?m.title||m.label:set)+': '+labels+(note?' · '+note:'')+(f.source?' ('+f.source+')':'');
+   // Without a lecture source for this country, the fact is marked as background with its set's basis.
+   return name+' — '+(m?m.title||m.label:set)+': '+labels+(note?' · '+note:'')+(f.source?' ('+f.source+')':m&&m.source?' (배경 사실 · '+m.source+')':'');
   }
   function optionLabel(set,id){return kb.factSets[set]?kb.factSets[set].options[id]:id}
   // Concept-card sets carry their own phrase: '{value}을/를 …' takes the particle the value needs.
@@ -531,6 +532,15 @@
       explain:'표의 '+m.label+' '+n+' '+fmt(v)+'% — 50%보다 '+(v>50?'높으므로 도시 인구가 더 많다.':'낮으므로 촌락 인구가 더 많다.')});
     });
    });
+   // 항목 식별: which item a letter is, as the exam's own <보기> do ('A는 1인당 GDP이다'). A false one
+   // names the item of another letter, so the wording never tells; one per question (key 'colid').
+   if(named&&hidden.length===COLS.length)hidden.forEach(function(x,j){
+    var item=columnName(theme,x),k=(j+1+Math.floor(r()*(hidden.length-1)))%hidden.length;
+    [j,k].forEach(function(letter){
+     add({kind:'colid',key:'colid|'+x,keys:['colid'],text:COLS[letter]+'는 '+item+'이다.',truth:letter===j,
+      explain:COLS[j]+'는 '+item+'이다'+(letter===j?'':' ('+COLS[letter]+'는 '+columnName(theme,hidden[letter])+')'),check:{column:x,letter:COLS[letter]}});
+    });
+   });
    // What a hidden category is (religion: world adherents, origin, founding time, 보편/민족).
    // Asked only once a column is identified, so at least one category of each item is hidden.
    var CF=hidden.length&&(kb.categoryFacts||{})[theme.composition]||[],named0=CF.length?(theme.show||[]).filter(function(x){return composition(theme).rankExclude.indexOf(x)<0}):[];
@@ -566,7 +576,7 @@
   function isFocus0(theme,c){var focusSets=(theme.followups&&theme.followups.focus)||[];
    // A theme that borrows another domain (대륙 곡물 with population) keeps the borrowed ones as background.
    if(theme.domains&&c.check&&c.check.ind&&(meta(c.check.ind).domain||null)!==theme.domains[0])return false;
-   return c.kind==='concept'||c.kind==='category'||c.kind==='climateClaim'||c.kind==='compare'||c.kind==='sign'||c.kind==='data'||c.kind==='graph'||c.kind==='climate'||!!(c.check&&c.check.set&&focusSets.indexOf(c.check.set)>=0)}
+   return c.kind==='colid'||c.kind==='concept'||c.kind==='category'||c.kind==='climateClaim'||c.kind==='compare'||c.kind==='sign'||c.kind==='data'||c.kind==='graph'||c.kind==='climate'||!!(c.check&&c.check.set&&focusSets.indexOf(c.check.set)>=0)}
   // Read straight from the table or graph, with no identification needed.
   function reading(c){return c.kind==='data'||c.kind==='graph'||c.kind==='place'&&c.check.place==='hemisphere'}
   // The predicate of a statement whatever its subject: '…는 OPEC 회원국이다', '…는 남반구에 위치한다'.
@@ -575,6 +585,7 @@
    if(c.kind==='both')return 'b|'+k.set+'|'+k.value;
    if(c.kind==='sign')return 's|'+k.ind+'|'+k.positive;
    if(c.kind==='climateClaim')return 'cc|'+k.claim;
+   if(c.kind==='colid')return 'id|'+k.column;
    if(c.kind==='climate')return 'ct|'+k.type;
    if(c.kind==='place'&&k.place==='hemisphere')return 'ph|'+k.value;
    if(c.kind==='category'&&k.value!=null)return 'cv|'+k.trait+'|'+k.value;
@@ -725,6 +736,8 @@
    if(avoid.indexOf(signature)>=0&&attempt<450)return null;
    if(!columnsIdentifiable(theme,rows,hidden))return null;
    var s2=chooseStatements(theme,candidates(theme,rows,shown,r,true,hidden),r);if(!s2)return null;
+   // 항목 식별: at least one <보기> is about A~C, or stage 2 is answered without identifying the columns.
+   if(attempt<450&&!s2.statements.some(function(x){return x.kind==='colid'||x.kind==='category'}))return null;
    if(k<theme.pick[1]&&attempt<400&&s2.statements.filter(function(s){return isFocus0(theme,s)}).length<2)return null;
    var s1=stage1(hidden,r),names={};hidden.forEach(function(id){names[id]=columnName(theme,id)});
    var list=hidden.map(function(id){return names[id]}).sort(koSort).join(', ');

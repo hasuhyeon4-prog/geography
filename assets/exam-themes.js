@@ -102,7 +102,7 @@
   },
   {
    id:'export-items',status:'ready',title:'국가별 수출 상위 품목',lecture:'2권 P08',exams:['2022학년도 수능 3번'],
-   kind:'items',entityType:'country',map:true,pool:['나이지리아','칠레','케냐','브라질'],pick:[3,4],
+   kind:'items',entityType:'country',map:true,concepts:true,pool:['나이지리아','칠레','케냐','브라질'],pick:[3,4],
    year:'2019',source:'한국교육과정평가원 2022학년도 수능 3번(강의 2권 P08)',
    items:{
     '나이지리아':[['원유',76.5],['천연가스',10.1],['선박',4.2]],

@@ -837,10 +837,20 @@ for (const f of REL.categoryFacts || []) {
 // Lecture statements about each religion (data/religion-type-claims.json, round two): true for the
 // religions listed, false only for those the lecture contrasts. Claims that are only ever true or
 // only ever false would be tells and stay out.
+// Lecture notes worded as '…를 연결한다' read as broken exam sentences after '(가)는'/'A는'; these are
+// the same statements in exam wording (audit 2026-10-23). Scope and truth are unchanged.
+const CLAIM_STYLE = {
+  'climate-10': '짧은 풀 중심의 초원이 나타나고 흑토가 발달한다.', 'climate-16': '경엽수림이 나타나고 올리브·포도 등의 수목 농업이 활발하다.',
+  'climate-18': '타이가(침엽수림)가 대표적인 식생이다.', 'climate-24': '해발 고도가 높아 같은 위도의 저지대보다 기온이 낮다.',
+  'religion-07': '라마단 기간의 금식과 메카 순례가 대표적인 의례이다.', 'religion-08': '성탄절과 부활절이 대표적인 축제이다.',
+  'religion-09': '디왈리와 홀리가 대표적인 축제이다.', 'religion-10': '불상과 불탑이 대표적인 종교 경관이다.',
+  'religion-11': '미나레트(첨탑)가 대표적인 종교 경관이다.', 'religion-12': '룸비니와 부다가야가 대표적인 성지이다.',
+  'religion-13': '갠지스강에서의 목욕 의례가 대표적이다.', 'religion-16': '코셔 식품 규범을 따른다.',
+};
 const RELIGION_ID = Object.fromEntries(compositions.religion.categories.map(([id, label]) => [label, id]));
 for (const c of read('data/religion-type-claims.json').claims) {
   if (!c.trueFor.length || !c.falseFor.length) continue;
-  categoryFacts.religion.push({composition: 'religion', id: c.id, kind: 'claim', claim: c.claim, status: 'active', label: c.claim.replace(/\.$/, ''),
+  categoryFacts.religion.push({composition: 'religion', id: c.id, kind: 'claim', claim: CLAIM_STYLE[c.id] || c.claim, status: 'active', label: (CLAIM_STYLE[c.id] || c.claim).replace(/\.$/, ''),
     trueFor: c.trueFor.map(n => RELIGION_ID[n]), falseFor: c.falseFor.map(n => RELIGION_ID[n]),
     basis: '강의 ' + c.source.volume + '권 ' + c.source.section + ' ' + c.source.blockId + ' (' + c.source.column + ')'});
 }
@@ -998,6 +1008,8 @@ for (const [set, s] of Object.entries(WC.facts)) {
   for (const [n, v] of Object.entries(s.values)) entities[n].facts[set] = {values: [v.value], note: v.note, source: v.source};
 }
 WC.statements.forEach((st, i) => concepts.push({id: 'city-' + (i + 1), about: st.about, claim: st.claim, truth: st.truth, source: st.source}));
+// The lecture's traps on the 2022학년도 수능 3번 export items (data/exam-export-items-claims.json).
+read('data/exam-export-items-claims.json').statements.forEach((st, i) => concepts.push({id: 'export-' + (i + 1), about: st.about, claim: st.claim, truth: st.truth, source: st.source}));
 
 const CLAIM_SKIP = {'climate-18': ['선양', '창춘', '블라디보스토크', '몬트리올', '모스크바'], 'climate-24': ['보스토크(남극)'], 'climate-14': ['케이프타운', '샌프란시스코']};
 const out = {
@@ -1006,6 +1018,8 @@ const out = {
   check: REL.check,
   factSets: Object.assign(Object.fromEntries(FACT_SETS.filter(id => C.byId[id]).map(id => [id, {
     title: C.byId[id].title, multi: !!C.byId[id].multi, negationSafe: NEGATION_SAFE[id] === 'all', exclusive: EXCLUSIVE.includes(id),
+    // Country values come from the classification map's data, not a lecture sentence per country.
+    source: '강의 ' + C.byId[id].lecture + ' 분류 기준' + (C.byId[id].period ? ' · ' + C.byId[id].period : ''),
     options: Object.fromEntries(C.optionsFor(C.byId[id]).map(o => [o.id, o.label])),
   }])), agriFactSets, OPEC_SETS, US_FACT_SETS, CITY_SETS),
   extraFacts: Object.fromEntries(Object.entries(extra.facts).map(([k, f]) => [k, {label: f.label, complete: f.complete, source: f.source}])),
@@ -1016,7 +1030,7 @@ const out = {
     // Stations a type-level sentence does not fit (audit 2026-10-23): 타이가 for warm-summer Dw/Df
     // stations of mixed or broadleaf forest; 해발 고도 as the main cause of cold for 보스토크, where
     // latitude is; '연중 편서풍' as false for Csb stations, whose cool summer the graph shows.
-    claims: read('data/climate-type-claims.json').claims.filter(c => c.falseFor.length).map(c => ({id: c.id, claim: c.claim, skip: CLAIM_SKIP[c.id] || [],
+    claims: read('data/climate-type-claims.json').claims.filter(c => c.falseFor.length).map(c => ({id: c.id, claim: CLAIM_STYLE[c.id] || c.claim, skip: CLAIM_SKIP[c.id] || [],
       trueFor: c.trueFor.map(t => t.toLowerCase()), falseFor: c.falseFor.map(t => t.toLowerCase()),
       source: '강의 ' + c.source.volume + '권 ' + c.source.section + ' ' + c.source.blockId + (c.source.column ? ' (' + c.source.column.split(';')[0] + ')' : '')}))},
 };
