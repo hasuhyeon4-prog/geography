@@ -1,0 +1,180 @@
+{
+ "date": "2026-10-23",
+ "baseCommit": "b9845eee2d1aab7294bdbe0b61da438fc1fb0667",
+ "requestSha256": "0421822658f35e0f8f27f5272bee294947cbf3f1cef6e59dae8959617cfd557d",
+ "scope": "현재 2차 요청 24개 항목과 구체화된 R6 하위 항목 재대조. 추가 보완이며 전체 요청 완료가 아님.",
+ "engineChanged": false,
+ "items": [
+  {
+   "request": "R7.1",
+   "priorDataStatus": "delivered",
+   "existingFiles": "data/urbanization-change.json",
+   "followup": "existingDataPresent",
+   "finding": "UN LocID 905 앵글로아메리카, 904 라틴 아메리카의 1950~2050 계열. SDG 중복 행도 배제."
+  },
+  {
+   "request": "R7.2",
+   "priorDataStatus": "delivered",
+   "existingFiles": "data/net-migration-un-regions.json; data/exam-given-round2.json",
+   "followup": "alreadyIntegrated",
+   "finding": "最新요청은 연결 완료로 표시. WPP판과 기존 WDI 대륙판을 구별한다."
+  },
+  {
+   "request": "R7.3",
+   "priorDataStatus": "held",
+   "existingFiles": "",
+   "followup": "held",
+   "finding": "독일·일본·인도의 새 두 시점 강의 문장·특정 기출 표는 여전히 특정하지 못함."
+  },
+  {
+   "request": "R7.4",
+   "priorDataStatus": "delivered",
+   "existingFiles": "data/exam-given-round2.json",
+   "followup": "existingDataPresent",
+   "finding": "2026학년도9월15 원문 표 전체·자연 증가율 그래프·연도·단위·후보 대응. 점의 소수점 수치를 만들지 않음."
+  },
+  {
+   "request": "R4.1",
+   "priorDataStatus": "delivered",
+   "existingFiles": "data/climate-type-claims.json",
+   "followup": "existingDataPresent",
+   "finding": "14기후형을 다루는 27개 trueFor/falseFor 문장. 겹치는 특징은 함께 참, 미기재는 unknown."
+  },
+  {
+   "request": "R4.2",
+   "priorDataStatus": "partial",
+   "existingFiles": "data/climate-normals-round2.json",
+   "followup": "partialWithQualityEvidence",
+   "finding": "이키토스는 기존 제공. 아부자 원본 XLSX에서도 1월 평균이 일최고와 동일한 이상을 확인해 1월 null, 11개월만 보존. 키토 M0024 강수 보류."
+  },
+  {
+   "request": "R4.3",
+   "priorDataStatus": "delivered",
+   "existingFiles": "data/climate-normals-round2.json",
+   "followup": "existingDataPresent",
+   "finding": "같은 WMO63450 ADDIS ABABA-BOLE JMA 메타데이터 해발2354m. 다른 관측점/등록 시점의 수치와 구분."
+  },
+  {
+   "request": "R4.4",
+   "priorDataStatus": "delivered",
+   "existingFiles": "data/concepts/highlands.json; data/climate-normals-round2.json",
+   "followup": "existingDataPresent",
+   "finding": "다르에스살람63894 JMA 완전 평년, 티베트 대 열대고산 카드. NOAA 파일은 parameter5가 없으므로 별도 부분 자료."
+  },
+  {
+   "request": "R5.1",
+   "priorDataStatus": "delivered",
+   "existingFiles": "data/religion-type-claims.json",
+   "followup": "existingDataPresent",
+   "finding": "종교의 분류·기원지·신관·의례·성지·경관 등에 대한 명시적 참/거짓 범위17개."
+  },
+  {
+   "request": "R5.2",
+   "priorDataStatus": "delivered",
+   "existingFiles": "data/nigeria-religion-vintages.json",
+   "followup": "existingDataPresent",
+   "finding": "Pew2012와2025의 같은2010 추정에서도 1위 역전. 판본별로 보존하고 회상은 승인하지 않음."
+  },
+  {
+   "request": "R6.1",
+   "priorDataStatus": "partial",
+   "existingFiles": "data/us-state-manufacturing-series.json",
+   "followup": "partialWithNewData",
+   "finding": "AIES 2023·2024 260행과 BEA 부가가치 2013~2025 1300행 추가. 3364 비중 비교는 기존 2016~2022와 합쳐 9년 같은 방향. 2014·15 출하액 D와 자동차 3361 D는 유지. 2024 기출 원출처는 BEA 후보이나 확정 아님."
+  },
+  {
+   "request": "R6.2",
+   "priorDataStatus": "partial",
+   "existingFiles": "data/us-state-boundaries.geojson",
+   "followup": "partialWithNewEvidence",
+   "finding": "미국 7개 도시+실리콘 밸리 소속 주·Census 지명 ID·앱 좌표 제공. 오하이오–미시간/워싱턴 공동 기출 근거는 확인한 범위에서 미확보."
+  },
+  {
+   "request": "R6.3",
+   "priorDataStatus": "deliveredAsFigure",
+   "existingFiles": "data/exam-given-round2.json",
+   "followup": "existingDataPresent",
+   "finding": "1950·2020 원문 그림·범례·회계연도 구별은 기존 exam-given-round2 및 원자료 ZIP에 있음. 숫자 없는 조각을 정확한 백분율로 바꾸지 않음."
+  },
+  {
+   "request": "R6.4",
+   "priorDataStatus": "delivered",
+   "existingFiles": "data/world-city-gawc.json; data/world-city-clues-round2.json",
+   "followup": "deliveredWithScope",
+   "finding": "2016학년도6월13번은 숫자 계층표가 아니라 계층 평균의 3축 비교임을 확인. 원그림+개념카드 제공. 토론토 L1-B1673 단서 추가. GaWC 등급 회상 승인 아님."
+  },
+  {
+   "request": "R2.1",
+   "priorDataStatus": "deliveredWithBoundary",
+   "existingFiles": "data/coal-production-status.json; data/energy-evidence-round2.json",
+   "followup": "existingDataPresent",
+   "finding": "EIA 원표상 사우디·카타르·이라크·쿠웨이트0, 이란양수. 대륙별 고정순서는 강의에 없으므로 suppliedData만."
+  },
+  {
+   "request": "R2.2",
+   "priorDataStatus": "partial",
+   "existingFiles": "data/mineral-production-round2.json",
+   "followup": "partial",
+   "finding": "은은 기존 제공. 최근 보석용 다이아몬드 BGS는 총량과 구별 필요. USGS 원표 재시도도403, 새 Gem 계열 미확보."
+  },
+  {
+   "request": "R2.3",
+   "priorDataStatus": "delivered",
+   "existingFiles": "data/mineral-production-round2.json; data/coal-production-status.json",
+   "followup": "existingDataPresent",
+   "finding": "칠레2017~2024 갈탄·역청탄 구분. 갈탄0이어도 역청탄양수. EIA 남아공과 같은 단위 비교 자료도 제공."
+  },
+  {
+   "request": "R2.4",
+   "priorDataStatus": "resolvedSuppliedDataOnly",
+   "existingFiles": "data/energy-evidence-round2.json",
+   "followup": "existingDataPresent",
+   "finding": "강의는 오스트레일리아·기니 대표 생산국을 말하며 브라질까지의 고정 순서가 없음. BGS 연도별 제시자료만 사용."
+  },
+  {
+   "request": "R2.5",
+   "priorDataStatus": "heldForIntegrationPolicy",
+   "existingFiles": "data/energy-evidence-round2.json",
+   "followup": "heldForIntegrationPolicy",
+   "finding": "미국 총량 비교 근거와 구성 식별 후보 자격은 별개. 구성 고정 순위를 창작하지 않음."
+  },
+  {
+   "request": "R3.1",
+   "priorDataStatus": "delivered",
+   "existingFiles": "data/landlocked-countries.json",
+   "followup": "existingDataPresent",
+   "finding": "내륙국44개, 카스피해 처리, 기존지도139개 이름 대응. 부분승인국은 목록 밖이라고 해안국으로 단정하지 않음."
+  },
+  {
+   "request": "R3.2",
+   "priorDataStatus": "held",
+   "existingFiles": "",
+   "followup": "heldForScopeAndEvidence",
+   "finding": "본토/속령·바다/대양/만의 범위가 통일된 국가별 완전 목록은 여전히 미확보."
+  },
+  {
+   "request": "R3.3",
+   "priorDataStatus": "partial",
+   "existingFiles": "data/river-mainstems.geojson; data/river-mainstem-countries.json",
+   "followup": "partialWithNewData",
+   "finding": "앞선 메콩·라인에 이어 이름 붙은 본류와 국경을 포함한 5개 강 목록 추가. 총7/9. 콩고·나일은 보류. 유역·지류와 회상 허용 별개."
+  },
+  {
+   "request": "R3.4",
+   "priorDataStatus": "partial",
+   "existingFiles": "data/entity-facts-round2.json",
+   "followup": "partial",
+   "finding": "서아프리카4개국의 기존 강의 긍정 사실 유지. 유럽 전역의 헌법/법정/사실상/지역 공용어 완전 목록은 미확보."
+  },
+  {
+   "request": "R3.5",
+   "priorDataStatus": "deliveredWithLimitations",
+   "existingFiles": "data/opec-membership-by-year.json",
+   "followup": "existingDataPresent",
+   "finding": "OPEC2015~2025 연말 목록,2016 인도네시아의 기간중 재가입/정지 별도. EI2025 기준목록과 OPEC 자체 전시소개 연혁. 공식본부/ASB403으로 전시소개 근거 사용."
+  }
+ ],
+ "newNormalizedOutputCount": 9,
+ "sourceSnapshotCount": 30,
+ "policy": "existingDataPresent는 자료가 이미 존재한다는 뜻이며 엔진 연결 완료를 보증하지 않는다. 전체 강의·기출 부재에 대한 부정 증명은 하지 않는다."
+}

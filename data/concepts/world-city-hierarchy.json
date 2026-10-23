@@ -1,0 +1,109 @@
+{
+ "about": "기출의 최상위·하위 세계 도시 계층 평균 비교. GaWC 도시별 등급과 별개.",
+ "entities": {
+  "최상위 세계 도시": {
+   "type": "cityTier",
+   "place": null,
+   "source": "2016학년도 6월 13번"
+  },
+  "하위 세계 도시": {
+   "type": "cityTier",
+   "place": null,
+   "source": "2016학년도 6월 13번"
+  }
+ },
+ "sets": {
+  "headquarters": {
+   "label": "다국적 기업 본사 수",
+   "template": "계층 평균의 다국적 기업 본사 수을 비교하면 ‘{value}’에 해당한다",
+   "exclusive": true,
+   "complete": true,
+   "completeScope": "Only the two named tier-average entities in this card. No city-level inference.",
+   "options": [
+    "많음",
+    "적음"
+   ],
+   "values": {
+    "최상위 세계 도시": [
+     "많음"
+    ],
+    "하위 세계 도시": [
+     "적음"
+    ]
+   },
+   "source": "2016학년도 6월 13번 및 강의 1권 P05 L1-B1695",
+   "scope": "계층 평균의 상대 비교만. 특정 도시 쌍의 실측 비교가 아니다."
+  },
+  "producerServicesShare": {
+   "label": "생산자 서비스업 비중",
+   "template": "계층 평균의 생산자 서비스업 비중을 비교하면 ‘{value}’에 해당한다",
+   "exclusive": true,
+   "complete": true,
+   "completeScope": "Only the two named tier-average entities in this card. No city-level inference.",
+   "options": [
+    "높음",
+    "낮음"
+   ],
+   "values": {
+    "최상위 세계 도시": [
+     "높음"
+    ],
+    "하위 세계 도시": [
+     "낮음"
+    ]
+   },
+   "source": "2016학년도 6월 13번 및 강의 1권 P05 L1-B1695",
+   "scope": "계층 평균의 상대 비교만. 특정 도시 쌍의 실측 비교가 아니다."
+  },
+  "nearestSameTierDistance": {
+   "label": "가장 인접한 동일 계층 도시까지 거리",
+   "template": "계층 평균의 가장 인접한 동일 계층 도시까지 거리을 비교하면 ‘{value}’에 해당한다",
+   "exclusive": true,
+   "complete": true,
+   "completeScope": "Only the two named tier-average entities in this card. No city-level inference.",
+   "options": [
+    "멀음",
+    "가까움"
+   ],
+   "values": {
+    "최상위 세계 도시": [
+     "멀음"
+    ],
+    "하위 세계 도시": [
+     "가까움"
+    ]
+   },
+   "source": "2016학년도 6월 13번 및 강의 1권 P05 L1-B1695",
+   "scope": "계층 평균의 상대 비교만. 특정 도시 쌍의 실측 비교가 아니다."
+  }
+ },
+ "statements": [],
+ "examGiven": {
+  "exam": "2016학년도 6월 13번",
+  "type": "qualitative tier-average comparison, not numerical city ranking table",
+  "aliases": {
+   "(가)": "최상위 세계 도시",
+   "(나)": "하위 세계 도시"
+  },
+  "topTierExamples": [
+   "뉴욕",
+   "런던",
+   "도쿄"
+  ],
+  "lowerRelativeToTop": {
+   "headquarters": "less",
+   "producerServicesShare": "lower",
+   "nearestSameTierDistance": "closer"
+  },
+  "exactValues": null,
+  "correctOption": 4,
+  "correctPoint": "D",
+  "figure": "exam-2016-6-q13.png",
+  "lectureBlockIds": [
+   "L1-B1693",
+   "L1-B1695",
+   "L1-B1698"
+  ]
+ },
+ "policy": "숫자 계층표를 창작하지 않는다. 뉴욕·런던·도쿄는 이 문항의 대표 기준점이며 다른 기관·판본의 등급을 강제로 맞추지 않는다."
+}

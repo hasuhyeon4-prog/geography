@@ -11,7 +11,10 @@ const concepts=fs.readdirSync(path.join(ROOT,'data/concepts')).filter(n=>n.endsW
 
 test('all delivered lecture property values equal their exact source table cells',needsLecture,()=>{
   for(const [file,d] of concepts)for(const s of Object.values(d.sets||{})){
-    assert.equal(s.complete,false,file+' does not permit inference from omissions');
+    if(s.complete===true){
+      assert.ok(s.completeScope,file+' complete sets require an explicit finite scope');
+      assert.deepEqual(Object.keys(s.values).sort(),Object.keys(d.entities).sort(),file+' complete scope must cover every named entity');
+    }else assert.equal(s.complete,false,file+' does not permit inference from omissions');
     for(const [entity,evs] of Object.entries(s.evidence||{}))for(const ev of evs){
       const r=ev.source,b=blocks[r.blockId];assert.ok(b?.rows,file+' '+r.blockId);
       assert.equal(ev.value,b.rows[r.tableRow-1][r.tableColumn-1],file+' '+entity);
@@ -38,11 +41,21 @@ test('source-country facts have individual evidence and never mark omissions fal
 });
 test('every supplied coordinate is an exact existing app point with its identity',()=>{
   const loc=read('data/extension-sources/location-items.json');
+  const html=fs.readFileSync(path.join(ROOT,'index.html'),'utf8');
+  const embedded=id=>JSON.parse(html.match(new RegExp('<script id="'+id+'"[^>]*>([\\s\\S]*?)</script>'))[1]);
+  const current=new Map(embedded('auditData').map(x=>[x.id,x]));
+  for(const x of embedded('contentData').items)current.set(x.id,x);
+  const overrides=embedded('geometryData').items;
   for(const [,d] of concepts)for(const [name,e] of Object.entries(d.entities||{})){
     if(e.place==null)continue;
     assert.equal(e.place.length,2);assert.ok(e.placeSource,name);
-    const p=loc.find(x=>x.id===e.placeSource.id);assert.ok(p,name);
-    assert.deepEqual(e.place,[p.geometry.lon,p.geometry.lat]);
+    if(e.placeSource.file==='index.html'){
+      const p=current.get(e.placeSource.id);assert.ok(p,name);
+      const g=overrides[p.id]||p.geometry;assert.deepEqual(e.place,[g.lon,g.lat]);
+    }else{
+      const p=loc.find(x=>x.id===e.placeSource.id);assert.ok(p,name);
+      assert.deepEqual(e.place,[p.geometry.lon,p.geometry.lat]);
+    }
   }
 });
 test('all 19 requested countries have actual lecture evidence; absent eligibility stays visible',()=>{

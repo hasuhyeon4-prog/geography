@@ -1,0 +1,18 @@
+{
+ "schemaVersion": 1,
+ "city": "토론토",
+ "place": [
+  -79.3832,
+  43.6532
+ ],
+ "appPlaceId": "도시·도시 단서::토론토",
+ "verbatim": "토론토는 미국이 아니라 캐나다의 온타리오호 연안 도시이다.",
+ "clueWithoutName": "미국이 아니라 캐나다의 온타리오호 연안 도시이다.",
+ "source": {
+  "file": "lecture-selected.json",
+  "blockId": "L1-B1673",
+  "volume": 1,
+  "section": "P05"
+ },
+ "policy": "단서 문장이 없다는 상태를 보완. 온타리오호와 캐나다를 설명에 제시하면 그 사실을 다시 회상 보기로 묻지 않는다. 토론토를 수도나 최상위 도시로 추가하지 않는다."
+}

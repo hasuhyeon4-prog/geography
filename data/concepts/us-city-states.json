@@ -1,0 +1,526 @@
+{
+ "about": "강의에 등장한 미국 7개 도시와 실리콘 밸리의 소속 주. 좌표는 기존 위치 모드를 그대로 사용.",
+ "entities": {
+  "휴스턴": {
+   "type": "city",
+   "place": [
+    -95.3698,
+    29.7604
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0684",
+    "locator": "강의 2권 P08 / L2-B0684"
+   },
+   "sourceRefs": [
+    {
+     "file": "lecture-selected.json",
+     "blockId": "L2-B0684",
+     "volume": 2,
+     "section": "P08"
+    },
+    {
+     "file": "census-places-2025.zip",
+     "member": "2025_Gaz_place_national.txt",
+     "GEOID": "4835000",
+     "USPS": "TX",
+     "placeName": "Houston city"
+    }
+   ],
+   "appPlaceId": "도시·도시 단서::휴스턴",
+   "placeSource": {
+    "file": "index.html",
+    "id": "도시·도시 단서::휴스턴",
+    "snapshot": "app-places-selected.json",
+    "rule": "현재 auditData/contentData에 geometryData의 좌표 재정의를 적용한 값"
+   }
+  },
+  "시애틀": {
+   "type": "city",
+   "place": [
+    -122.3321,
+    47.6062
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0669",
+    "locator": "강의 2권 P08 / L2-B0669"
+   },
+   "sourceRefs": [
+    {
+     "file": "lecture-selected.json",
+     "blockId": "L2-B0669",
+     "volume": 2,
+     "section": "P08"
+    },
+    {
+     "file": "census-places-2025.zip",
+     "member": "2025_Gaz_place_national.txt",
+     "GEOID": "5363000",
+     "USPS": "WA",
+     "placeName": "Seattle city"
+    }
+   ],
+   "appPlaceId": "도시·도시 단서::시애틀",
+   "placeSource": {
+    "file": "index.html",
+    "id": "도시·도시 단서::시애틀",
+    "snapshot": "app-places-selected.json",
+    "rule": "현재 auditData/contentData에 geometryData의 좌표 재정의를 적용한 값"
+   }
+  },
+  "디트로이트": {
+   "type": "city",
+   "place": [
+    -83.0458,
+    42.3314
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0676",
+    "locator": "강의 2권 P08 / L2-B0676"
+   },
+   "sourceRefs": [
+    {
+     "file": "lecture-selected.json",
+     "blockId": "L2-B0676",
+     "volume": 2,
+     "section": "P08"
+    },
+    {
+     "file": "census-places-2025.zip",
+     "member": "2025_Gaz_place_national.txt",
+     "GEOID": "2622000",
+     "USPS": "MI",
+     "placeName": "Detroit city"
+    }
+   ],
+   "appPlaceId": "도시·도시 단서::디트로이트",
+   "placeSource": {
+    "file": "index.html",
+    "id": "도시·도시 단서::디트로이트",
+    "snapshot": "app-places-selected.json",
+    "rule": "현재 auditData/contentData에 geometryData의 좌표 재정의를 적용한 값"
+   }
+  },
+  "시카고": {
+   "type": "city",
+   "place": [
+    -87.6298,
+    41.8781
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0674",
+    "locator": "강의 2권 P08 / L2-B0674"
+   },
+   "sourceRefs": [
+    {
+     "file": "lecture-selected.json",
+     "blockId": "L2-B0674",
+     "volume": 2,
+     "section": "P08"
+    },
+    {
+     "file": "census-places-2025.zip",
+     "member": "2025_Gaz_place_national.txt",
+     "GEOID": "1714000",
+     "USPS": "IL",
+     "placeName": "Chicago city"
+    }
+   ],
+   "appPlaceId": "도시·도시 단서::시카고",
+   "placeSource": {
+    "file": "index.html",
+    "id": "도시·도시 단서::시카고",
+    "snapshot": "app-places-selected.json",
+    "rule": "현재 auditData/contentData에 geometryData의 좌표 재정의를 적용한 값"
+   }
+  },
+  "피츠버그": {
+   "type": "city",
+   "place": [
+    -80.00193,
+    40.43194
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0678",
+    "locator": "강의 2권 P08 / L2-B0678"
+   },
+   "sourceRefs": [
+    {
+     "file": "lecture-selected.json",
+     "blockId": "L2-B0678",
+     "volume": 2,
+     "section": "P08"
+    },
+    {
+     "file": "census-places-2025.zip",
+     "member": "2025_Gaz_place_national.txt",
+     "GEOID": "4261000",
+     "USPS": "PA",
+     "placeName": "Pittsburgh city"
+    }
+   ],
+   "appPlaceId": "강의보완::피츠버그",
+   "placeSource": {
+    "file": "index.html",
+    "id": "강의보완::피츠버그",
+    "snapshot": "app-places-selected.json",
+    "rule": "현재 auditData/contentData에 geometryData의 좌표 재정의를 적용한 값"
+   }
+  },
+  "로스앤젤레스": {
+   "type": "city",
+   "place": [
+    -118.2437,
+    34.0522
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0687",
+    "locator": "강의 2권 P08 / L2-B0687"
+   },
+   "sourceRefs": [
+    {
+     "file": "lecture-selected.json",
+     "blockId": "L2-B0687",
+     "volume": 2,
+     "section": "P08"
+    },
+    {
+     "file": "census-places-2025.zip",
+     "member": "2025_Gaz_place_national.txt",
+     "GEOID": "0644000",
+     "USPS": "CA",
+     "placeName": "Los Angeles city"
+    }
+   ],
+   "appPlaceId": "도시·도시 단서::로스앤젤레스",
+   "placeSource": {
+    "file": "index.html",
+    "id": "도시·도시 단서::로스앤젤레스",
+    "snapshot": "app-places-selected.json",
+    "rule": "현재 auditData/contentData에 geometryData의 좌표 재정의를 적용한 값"
+   }
+  },
+  "샌프란시스코": {
+   "type": "city",
+   "place": [
+    -122.4194,
+    37.7749
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0685",
+    "locator": "강의 2권 P08 / L2-B0685"
+   },
+   "sourceRefs": [
+    {
+     "file": "lecture-selected.json",
+     "blockId": "L2-B0685",
+     "volume": 2,
+     "section": "P08"
+    },
+    {
+     "file": "census-places-2025.zip",
+     "member": "2025_Gaz_place_national.txt",
+     "GEOID": "0667000",
+     "USPS": "CA",
+     "placeName": "San Francisco city"
+    }
+   ],
+   "appPlaceId": "도시·도시 단서::샌프란시스코",
+   "placeSource": {
+    "file": "index.html",
+    "id": "도시·도시 단서::샌프란시스코",
+    "snapshot": "app-places-selected.json",
+    "rule": "현재 auditData/contentData에 geometryData의 좌표 재정의를 적용한 값"
+   }
+  },
+  "실리콘 밸리": {
+   "type": "industrialRegion",
+   "place": [
+    -122.0,
+    37.38
+   ],
+   "source": {
+    "kind": "lecture",
+    "volume": 2,
+    "section": "P08",
+    "blockId": "L2-B0686",
+    "locator": "강의 2권 P08 / L2-B0686"
+   },
+   "sourceRefs": [
+    {
+     "file": "lecture-selected.json",
+     "blockId": "L2-B0686",
+     "volume": 2,
+     "section": "P08"
+    }
+   ],
+   "appPlaceId": "산업 지역::실리콘 밸리",
+   "placeSource": {
+    "file": "index.html",
+    "id": "산업 지역::실리콘 밸리",
+    "snapshot": "app-places-selected.json",
+    "rule": "현재 auditData/contentData에 geometryData의 좌표 재정의를 적용한 값"
+   }
+  }
+ },
+ "sets": {
+  "state": {
+   "label": "소속 주",
+   "template": "{value}에 위치한다",
+   "exclusive": true,
+   "complete": true,
+   "options": [
+    "미시간",
+    "워싱턴주",
+    "일리노이",
+    "캘리포니아",
+    "텍사스",
+    "펜실베이니아"
+   ],
+   "values": {
+    "휴스턴": [
+     "텍사스"
+    ],
+    "시애틀": [
+     "워싱턴주"
+    ],
+    "디트로이트": [
+     "미시간"
+    ],
+    "시카고": [
+     "일리노이"
+    ],
+    "피츠버그": [
+     "펜실베이니아"
+    ],
+    "로스앤젤레스": [
+     "캘리포니아"
+    ],
+    "샌프란시스코": [
+     "캘리포니아"
+    ],
+    "실리콘 밸리": [
+     "캘리포니아"
+    ]
+   },
+   "source": "강의 2권 P08 선택 블록 및 Census 2025 places",
+   "completeScope": "Only the eight named entities; not a complete list of cities in each state."
+  }
+ },
+ "statements": [],
+ "identityAudit": [
+  {
+   "city": "휴스턴",
+   "state": "텍사스",
+   "usps": "TX",
+   "censusPlace": "Houston city",
+   "place": [
+    -95.3698,
+    29.7604
+   ],
+   "sourceRefs": [
+    {
+     "file": "lecture-selected.json",
+     "blockId": "L2-B0684",
+     "volume": 2,
+     "section": "P08"
+    },
+    {
+     "file": "census-places-2025.zip",
+     "member": "2025_Gaz_place_national.txt",
+     "GEOID": "4835000",
+     "USPS": "TX",
+     "placeName": "Houston city"
+    }
+   ]
+  },
+  {
+   "city": "시애틀",
+   "state": "워싱턴주",
+   "usps": "WA",
+   "censusPlace": "Seattle city",
+   "place": [
+    -122.3321,
+    47.6062
+   ],
+   "sourceRefs": [
+    {
+     "file": "lecture-selected.json",
+     "blockId": "L2-B0669",
+     "volume": 2,
+     "section": "P08"
+    },
+    {
+     "file": "census-places-2025.zip",
+     "member": "2025_Gaz_place_national.txt",
+     "GEOID": "5363000",
+     "USPS": "WA",
+     "placeName": "Seattle city"
+    }
+   ]
+  },
+  {
+   "city": "디트로이트",
+   "state": "미시간",
+   "usps": "MI",
+   "censusPlace": "Detroit city",
+   "place": [
+    -83.0458,
+    42.3314
+   ],
+   "sourceRefs": [
+    {
+     "file": "lecture-selected.json",
+     "blockId": "L2-B0676",
+     "volume": 2,
+     "section": "P08"
+    },
+    {
+     "file": "census-places-2025.zip",
+     "member": "2025_Gaz_place_national.txt",
+     "GEOID": "2622000",
+     "USPS": "MI",
+     "placeName": "Detroit city"
+    }
+   ]
+  },
+  {
+   "city": "시카고",
+   "state": "일리노이",
+   "usps": "IL",
+   "censusPlace": "Chicago city",
+   "place": [
+    -87.6298,
+    41.8781
+   ],
+   "sourceRefs": [
+    {
+     "file": "lecture-selected.json",
+     "blockId": "L2-B0674",
+     "volume": 2,
+     "section": "P08"
+    },
+    {
+     "file": "census-places-2025.zip",
+     "member": "2025_Gaz_place_national.txt",
+     "GEOID": "1714000",
+     "USPS": "IL",
+     "placeName": "Chicago city"
+    }
+   ]
+  },
+  {
+   "city": "피츠버그",
+   "state": "펜실베이니아",
+   "usps": "PA",
+   "censusPlace": "Pittsburgh city",
+   "place": [
+    -80.00193,
+    40.43194
+   ],
+   "sourceRefs": [
+    {
+     "file": "lecture-selected.json",
+     "blockId": "L2-B0678",
+     "volume": 2,
+     "section": "P08"
+    },
+    {
+     "file": "census-places-2025.zip",
+     "member": "2025_Gaz_place_national.txt",
+     "GEOID": "4261000",
+     "USPS": "PA",
+     "placeName": "Pittsburgh city"
+    }
+   ]
+  },
+  {
+   "city": "로스앤젤레스",
+   "state": "캘리포니아",
+   "usps": "CA",
+   "censusPlace": "Los Angeles city",
+   "place": [
+    -118.2437,
+    34.0522
+   ],
+   "sourceRefs": [
+    {
+     "file": "lecture-selected.json",
+     "blockId": "L2-B0687",
+     "volume": 2,
+     "section": "P08"
+    },
+    {
+     "file": "census-places-2025.zip",
+     "member": "2025_Gaz_place_national.txt",
+     "GEOID": "0644000",
+     "USPS": "CA",
+     "placeName": "Los Angeles city"
+    }
+   ]
+  },
+  {
+   "city": "샌프란시스코",
+   "state": "캘리포니아",
+   "usps": "CA",
+   "censusPlace": "San Francisco city",
+   "place": [
+    -122.4194,
+    37.7749
+   ],
+   "sourceRefs": [
+    {
+     "file": "lecture-selected.json",
+     "blockId": "L2-B0685",
+     "volume": 2,
+     "section": "P08"
+    },
+    {
+     "file": "census-places-2025.zip",
+     "member": "2025_Gaz_place_national.txt",
+     "GEOID": "0667000",
+     "USPS": "CA",
+     "placeName": "San Francisco city"
+    }
+   ]
+  },
+  {
+   "city": "실리콘 밸리",
+   "state": "캘리포니아",
+   "usps": "CA",
+   "censusPlace": null,
+   "place": [
+    -122.0,
+    37.38
+   ],
+   "sourceRefs": [
+    {
+     "file": "lecture-selected.json",
+     "blockId": "L2-B0686",
+     "volume": 2,
+     "section": "P08"
+    }
+   ]
+  }
+ ]
+}

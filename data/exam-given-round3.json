@@ -1,0 +1,63 @@
+{
+ "schemaVersion": 1,
+ "practice": "suppliedData",
+ "forms": [
+  {
+   "exam": "2027학년도 6월 5번",
+   "referenceYear": 2024,
+   "unit": "%",
+   "aliases": {
+    "(가)": "캘리포니아",
+    "(나)": "텍사스",
+    "(다)": "워싱턴주",
+    "(라)": "미시간"
+   },
+   "columns": [
+    "컴퓨터 및 전자 제품",
+    "화학 제품",
+    "기타 운송 장비",
+    "석유 및 석탄 제품",
+    "자동차 및 부품",
+    "기타"
+   ],
+   "exactValues": null,
+   "totals": null,
+   "sourceAttributionInQuestion": null,
+   "sourceStatus": "original statistical publisher/measure not explicitly attributed in question; unconfirmed",
+   "figure": "exam-2027-6-q5.png",
+   "lectureBlockIds": [
+    "L2-B0704",
+    "L2-B0705",
+    "L2-B0706"
+   ]
+  },
+  {
+   "exam": "2016학년도 6월 13번",
+   "type": "qualitative tier-average comparison, not numerical city ranking table",
+   "aliases": {
+    "(가)": "최상위 세계 도시",
+    "(나)": "하위 세계 도시"
+   },
+   "topTierExamples": [
+    "뉴욕",
+    "런던",
+    "도쿄"
+   ],
+   "lowerRelativeToTop": {
+    "headquarters": "less",
+    "producerServicesShare": "lower",
+    "nearestSameTierDistance": "closer"
+   },
+   "exactValues": null,
+   "correctOption": 4,
+   "correctPoint": "D",
+   "figure": "exam-2016-6-q13.png",
+   "lectureBlockIds": [
+    "L1-B1693",
+    "L1-B1695",
+    "L1-B1698"
+   ]
+  }
+ ],
+ "policy": "수치 없는 원그림의 막대 길이·축을 정확한 백분율/점수로 바꾸지 않는다. 선택 문항 그림은 원자료 ZIP에 보존."
+}

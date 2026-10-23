@@ -1,0 +1,755 @@
+{
+ "schemaVersion": 1,
+ "archive": "data/round3-source-snapshots.zip",
+ "sources": [
+  {
+   "path": "aies-2023.zip",
+   "url": "https://www2.census.gov/programs-surveys/aies/data/2023/AIES31BASIC02.zip",
+   "retrievedAt": "2026-10-23T03:33:52.270978+00:00",
+   "sha256": "c8753a45a2d93ce4fd281a9a566129131a335aa36a8f141fba578af7aeccc705",
+   "bytes": 210904,
+   "status": "downloaded",
+   "kind": "original"
+  },
+  {
+   "path": "aies-2024.zip",
+   "url": "https://www2.census.gov/programs-surveys/aies/data/2024/AIES31BASIC02.zip",
+   "retrievedAt": "2026-10-23T03:33:52.267212+00:00",
+   "sha256": "417542f38d111b27dd188feea3cf1c8a19d709fac3b47eab08472cbabdd978b8",
+   "bytes": 216028,
+   "status": "downloaded",
+   "kind": "original"
+  },
+  {
+   "path": "aies-2024-changes.pdf",
+   "url": "https://www2.census.gov/programs-surveys/aies/information-respondents/2024_annual_integrated_economic_survey_summary_of_changes.pdf",
+   "retrievedAt": "2026-10-23T03:33:52.219233+00:00",
+   "sha256": "a4655809f6c38a52c444cf2c6611707dc9a947121cc7a2a528197fd259304900",
+   "bytes": 228891,
+   "status": "downloaded",
+   "kind": "original"
+  },
+  {
+   "path": "aies-methodology2023.pdf",
+   "url": "https://www2.census.gov/programs-surveys/aies/technical-documentation/methodology/2023-aies-methodology.pdf",
+   "retrievedAt": "2026-10-23T03:35:05.155176+00:00",
+   "sha256": "424b5bb6951ad7cafa836578aac5dfa665a8bd4db3b7a4e8f7226fe129e6863f",
+   "bytes": 343163,
+   "status": "downloaded",
+   "kind": "original"
+  },
+  {
+   "path": "census-places-2025.zip",
+   "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2025_Gazetteer/2025_Gaz_place_national.zip",
+   "retrievedAt": "2026-10-23T03:33:52.247427+00:00",
+   "sha256": "49644173a453469d9bd77fb7a493b027f87567e209edaf2078aac7543ac2ee29",
+   "bytes": 1214053,
+   "status": "downloaded",
+   "kind": "original"
+  },
+  {
+   "path": "asm-area-2016.zip",
+   "url": "https://www2.census.gov/programs-surveys/asm/data/2016/ASMAREA2012.zip",
+   "retrievedAt": "2026-10-23T03:34:31.863722+00:00",
+   "sha256": "0212b733a0a191995bbee17fc07ff05548ef9be3668c71d907870973d3100a38",
+   "bytes": 1373520,
+   "status": "downloaded",
+   "kind": "original"
+  },
+  {
+   "path": "nigeria-normals-actual.xlsx",
+   "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-1-WMO-Normals-9120/Nigeria/XLS/Nigeria_WMO_Normals_9120.xlsx",
+   "retrievedAt": "2026-10-23T03:37:49.558790+00:00",
+   "sha256": "e2104ec55eae62bc875e8bd0e129ff55ae454b2220800e44b9e707923283367b",
+   "bytes": 637388,
+   "status": "downloaded",
+   "kind": "original"
+  },
+  {
+   "path": "nigeria-XLS-index.html",
+   "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-1-WMO-Normals-9120/Nigeria/XLS/",
+   "retrievedAt": "2026-10-23T03:35:53.246755+00:00",
+   "sha256": "bf07c1cedec16f18598a8a89a26bf04b88ed6f432c4d3dbea959c4638bb0d06a",
+   "bytes": 1123,
+   "status": "downloaded",
+   "kind": "original"
+  },
+  {
+   "path": "ecuador-csv-index.html",
+   "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-3-WMO-Normals-9120/Ecuador/CSV/",
+   "retrievedAt": "2026-10-23T03:35:04.915944+00:00",
+   "sha256": "3418e642d1085c30f0386516628dee32b881425e404a12d20a158dc664a6ce29",
+   "bytes": 1114,
+   "status": "downloaded",
+   "kind": "original"
+  },
+  {
+   "path": "bea-methodology.pdf",
+   "url": "https://www.bea.gov/system/files/methodologies/BEA-GDP-by-State-Concepts-and-Methodology.pdf",
+   "retrievedAt": "2026-10-23T03:35:52.915833+00:00",
+   "sha256": "087b28985fc2b3072fca2dfb64b9628ecea8e16c79e88a71b0ce36f22e210cd6",
+   "bytes": 1605457,
+   "status": "downloaded",
+   "kind": "original"
+  },
+  {
+   "path": "SAGDP2__definition.xml",
+   "kind": "archiveMember",
+   "url": "https://apps.bea.gov/regional/zip/SAGDP.zip",
+   "retrievedAt": "2026-10-23T03:35:03.918082+00:00",
+   "sha256": "40cbbcbf23fb3b3acbb8b6d6826a5a40e6e2bf3661d97823787d3f249a899882",
+   "bytes": 103011,
+   "parentArchive": {
+    "path": "bea-SAGDP.zip",
+    "url": "https://apps.bea.gov/regional/zip/SAGDP.zip",
+    "retrievedAt": "2026-10-23T03:35:03.918082+00:00",
+    "sha256": "3d3c5bc7bd243138cd4ec07d6f5e862bdb533683a538c3a6db61aa2fbc7085ef",
+    "bytes": 10381511,
+    "status": "downloaded"
+   },
+   "extraction": "unaltered archive member"
+  },
+  {
+   "path": "SAGDP2__Footnotes.html",
+   "kind": "archiveMember",
+   "url": "https://apps.bea.gov/regional/zip/SAGDP.zip",
+   "retrievedAt": "2026-10-23T03:35:03.918082+00:00",
+   "sha256": "561a19d77e47a0b4d831394d0f758317f0b5284bf4d8c5da3ede168d80b6d76a",
+   "bytes": 1977,
+   "parentArchive": {
+    "path": "bea-SAGDP.zip",
+    "url": "https://apps.bea.gov/regional/zip/SAGDP.zip",
+    "retrievedAt": "2026-10-23T03:35:03.918082+00:00",
+    "sha256": "3d3c5bc7bd243138cd4ec07d6f5e862bdb533683a538c3a6db61aa2fbc7085ef",
+    "bytes": 10381511,
+    "status": "downloaded"
+   },
+   "extraction": "unaltered archive member"
+  },
+  {
+   "path": "SAGDP2_CA_1997_2025.csv",
+   "kind": "archiveMember",
+   "url": "https://apps.bea.gov/regional/zip/SAGDP.zip",
+   "retrievedAt": "2026-10-23T03:35:03.918082+00:00",
+   "sha256": "b59ae6c311db492db07424ccc75b4d6d4be14f33b6c9531c760ca785ddd8ca5d",
+   "bytes": 32184,
+   "parentArchive": {
+    "path": "bea-SAGDP.zip",
+    "url": "https://apps.bea.gov/regional/zip/SAGDP.zip",
+    "retrievedAt": "2026-10-23T03:35:03.918082+00:00",
+    "sha256": "3d3c5bc7bd243138cd4ec07d6f5e862bdb533683a538c3a6db61aa2fbc7085ef",
+    "bytes": 10381511,
+    "status": "downloaded"
+   },
+   "extraction": "unaltered archive member"
+  },
+  {
+   "path": "SAGDP2_MI_1997_2025.csv",
+   "kind": "archiveMember",
+   "url": "https://apps.bea.gov/regional/zip/SAGDP.zip",
+   "retrievedAt": "2026-10-23T03:35:03.918082+00:00",
+   "sha256": "fb0314a333c323fe642af6e736394b46aaa51a723ffa44dd74aa943d94c7ad80",
+   "bytes": 30031,
+   "parentArchive": {
+    "path": "bea-SAGDP.zip",
+    "url": "https://apps.bea.gov/regional/zip/SAGDP.zip",
+    "retrievedAt": "2026-10-23T03:35:03.918082+00:00",
+    "sha256": "3d3c5bc7bd243138cd4ec07d6f5e862bdb533683a538c3a6db61aa2fbc7085ef",
+    "bytes": 10381511,
+    "status": "downloaded"
+   },
+   "extraction": "unaltered archive member"
+  },
+  {
+   "path": "SAGDP2_OH_1997_2025.csv",
+   "kind": "archiveMember",
+   "url": "https://apps.bea.gov/regional/zip/SAGDP.zip",
+   "retrievedAt": "2026-10-23T03:35:03.918082+00:00",
+   "sha256": "dc9409ee78e74b0b51ab8df6cd06ebdb7b2201f682cab2a6747218ac87aca6a4",
+   "bytes": 30014,
+   "parentArchive": {
+    "path": "bea-SAGDP.zip",
+    "url": "https://apps.bea.gov/regional/zip/SAGDP.zip",
+    "retrievedAt": "2026-10-23T03:35:03.918082+00:00",
+    "sha256": "3d3c5bc7bd243138cd4ec07d6f5e862bdb533683a538c3a6db61aa2fbc7085ef",
+    "bytes": 10381511,
+    "status": "downloaded"
+   },
+   "extraction": "unaltered archive member"
+  },
+  {
+   "path": "SAGDP2_TX_1997_2025.csv",
+   "kind": "archiveMember",
+   "url": "https://apps.bea.gov/regional/zip/SAGDP.zip",
+   "retrievedAt": "2026-10-23T03:35:03.918082+00:00",
+   "sha256": "464cbb841f749bc7bbdf4c3a86b369f5ecc12b7f6d7ff62a69c7ae154ad73dca",
+   "bytes": 31179,
+   "parentArchive": {
+    "path": "bea-SAGDP.zip",
+    "url": "https://apps.bea.gov/regional/zip/SAGDP.zip",
+    "retrievedAt": "2026-10-23T03:35:03.918082+00:00",
+    "sha256": "3d3c5bc7bd243138cd4ec07d6f5e862bdb533683a538c3a6db61aa2fbc7085ef",
+    "bytes": 10381511,
+    "status": "downloaded"
+   },
+   "extraction": "unaltered archive member"
+  },
+  {
+   "path": "SAGDP2_WA_1997_2025.csv",
+   "kind": "archiveMember",
+   "url": "https://apps.bea.gov/regional/zip/SAGDP.zip",
+   "retrievedAt": "2026-10-23T03:35:03.918082+00:00",
+   "sha256": "724ab306e015568bb66fa654f3028b9fa9475faffd69c0133fd2330592630876",
+   "bytes": 29889,
+   "parentArchive": {
+    "path": "bea-SAGDP.zip",
+    "url": "https://apps.bea.gov/regional/zip/SAGDP.zip",
+    "retrievedAt": "2026-10-23T03:35:03.918082+00:00",
+    "sha256": "3d3c5bc7bd243138cd4ec07d6f5e862bdb533683a538c3a6db61aa2fbc7085ef",
+    "bytes": 10381511,
+    "status": "downloaded"
+   },
+   "extraction": "unaltered archive member"
+  },
+  {
+   "path": "exam-2027-6-q5.png",
+   "kind": "selectedQuestionFigure",
+   "sha256": "7f384fd68cb679631e2e5313620fe5dd1406700118377f46487bac21153345a3",
+   "bytes": 129626,
+   "url": "https://horaeng.com/wp-content/uploads/2027%ED%95%99%EB%85%84%EB%8F%84-6%EC%9B%94-%EB%AA%A8%EC%9D%98%ED%8F%89%EA%B0%80-%EC%84%B8%EA%B3%84%EC%A7%80%EB%A6%AC-%EB%AC%B8%EC%A0%9C.pdf",
+   "retrievedAt": "2026-10-23T03:29:14.424060+00:00",
+   "original": {
+    "path": "exam-2027-6.pdf",
+    "url": "https://horaeng.com/wp-content/uploads/2027%ED%95%99%EB%85%84%EB%8F%84-6%EC%9B%94-%EB%AA%A8%EC%9D%98%ED%8F%89%EA%B0%80-%EC%84%B8%EA%B3%84%EC%A7%80%EB%A6%AC-%EB%AC%B8%EC%A0%9C.pdf",
+    "retrievedAt": "2026-10-23T03:29:14.424060+00:00",
+    "sha256": "e10f948d8bb3855b40ce6df9cb011ee23373d8063b8b468cb98b4a850e5c9476",
+    "bytes": 3356530,
+    "status": "downloaded"
+   },
+   "page": 2,
+   "clipPdfPoints": [
+    64,
+    155,
+    411,
+    540
+   ],
+   "method": "PyMuPDF 2x raster, no edits to source content",
+   "publisher": "한국교육과정평가원",
+   "hosting": "third-party copy of original question booklet"
+  },
+  {
+   "path": "exam-2016-6-q13.png",
+   "kind": "selectedQuestionFigure",
+   "sha256": "f5decfbce091ded59ae751a5cb17fbce8f500c156b6b87c360ee605a83f634df",
+   "bytes": 73954,
+   "url": "https://kicegg.com/files/kice-v2/2016_mock06_social_segyeji_q.pdf",
+   "retrievedAt": "2026-10-23T03:29:12.265672+00:00",
+   "original": {
+    "path": "exam-2016-6.pdf",
+    "url": "https://kicegg.com/files/kice-v2/2016_mock06_social_segyeji_q.pdf",
+    "retrievedAt": "2026-10-23T03:29:12.265672+00:00",
+    "sha256": "83ad498bdf575c571c7fff3ad6be4c7b543c517ffd706bade1d1e4f2e4ce0a9c",
+    "bytes": 7086083,
+    "status": "downloaded"
+   },
+   "page": 3,
+   "clipPdfPoints": [
+    85,
+    811,
+    417,
+    1084
+   ],
+   "method": "PyMuPDF 2x raster, no edits to source content",
+   "publisher": "한국교육과정평가원",
+   "hosting": "third-party copy of original question booklet"
+  },
+  {
+   "path": "nmcg-ganga-facts.json",
+   "kind": "selectedFactualEvidence",
+   "url": "https://www.nmcg.nic.in/courseofganga.aspx",
+   "retrievedAt": "2026-10-23T03:32:49.151418+00:00",
+   "sha256": "ee52427e857f9be68eeb9f3a734d6c624e10acdbca063b06d239f151f04808ef",
+   "bytes": 636,
+   "original": {
+    "path": "nmcg-ganga.html",
+    "url": "https://www.nmcg.nic.in/courseofganga.aspx",
+    "retrievedAt": "2026-10-23T03:32:49.151418+00:00",
+    "sha256": "1b1a090a40199be6634a76b7a5176f2fb451f8a3a67283caf311563116a9a760",
+    "bytes": 99838,
+    "status": "downloaded"
+   },
+   "method": "only facts relevant to river mainstem/basin distinction retained; full page excluded"
+  },
+  {
+   "path": "unesco-ayeyarwady-facts.json",
+   "kind": "selectedFactualEvidence",
+   "url": "https://whc.unesco.org/en/tentativelists/5870/",
+   "retrievedAt": "2026-10-23T03:32:45.636082+00:00",
+   "sha256": "37766b8e04cb923fc3cfc6dd5eabff2021729c769dd85dc2847c1d60ae1d2e8b",
+   "bytes": 635,
+   "original": {
+    "path": "unesco-ayeyarwady.html",
+    "url": "https://whc.unesco.org/en/tentativelists/5870/",
+    "retrievedAt": "2026-10-23T03:32:45.636082+00:00",
+    "sha256": "18eeda0be1da6837ab3db1a2092acf79578e3fc73edd6d9b5fea135c36c88894",
+    "bytes": 118811,
+    "status": "downloaded"
+   },
+   "method": "only facts relevant to river mainstem/basin distinction retained; full page excluded"
+  },
+  {
+   "path": "tat-chao-facts.json",
+   "kind": "selectedFactualEvidence",
+   "url": "https://www.tatnews.org/2020/07/the-chao-phraya-river-begins-in-nakhon-sawan-and-its-beautiful/",
+   "retrievedAt": "2026-10-23T03:32:48.331373+00:00",
+   "sha256": "27057b85addaa5f5dc57c48267dd7b70dee63a00c751ea895afe1d7a1f2259b1",
+   "bytes": 575,
+   "original": {
+    "path": "tat-chao.html",
+    "url": "https://www.tatnews.org/2020/07/the-chao-phraya-river-begins-in-nakhon-sawan-and-its-beautiful/",
+    "retrievedAt": "2026-10-23T03:32:48.331373+00:00",
+    "sha256": "1723db11385e83168899f14d1350304045d163c812c9e0a69485da3a4d622307",
+    "bytes": 185631,
+    "status": "downloaded"
+   },
+   "method": "only facts relevant to river mainstem/basin distinction retained; full page excluded"
+  },
+  {
+   "path": "zambia-embassy-zambezi-facts.json",
+   "kind": "selectedFactualEvidence",
+   "url": "https://zebru.org/2014/04/20/nunc-ac-justo-hendrerit-2/",
+   "retrievedAt": "2026-10-23T03:38:22.226237+00:00",
+   "sha256": "b588e061b0440d36ad7a8ccdde320477bb06cacde19e09b8521aee6e9d604ab6",
+   "bytes": 720,
+   "original": {
+    "path": "zambia-embassy-zambezi.html",
+    "url": "https://zebru.org/2014/04/20/nunc-ac-justo-hendrerit-2/",
+    "retrievedAt": "2026-10-23T03:38:22.226237+00:00",
+    "sha256": "cee59c55afbc4d50833d6de0e971ab94015ff52b27f899376d0848b5a37b5848",
+    "bytes": 98604,
+    "status": "downloaded"
+   },
+   "method": "only facts relevant to river mainstem/basin distinction retained; full page excluded"
+  },
+  {
+   "path": "zambezi-geography-facts.json",
+   "kind": "selectedFactualEvidence",
+   "url": "https://www.zambezira.org/node/16",
+   "retrievedAt": "2026-10-23T03:31:20.194336+00:00",
+   "sha256": "9bc58860115d1160a9356b9fe078a2d6518cc6bc7d29e1b7e5b8fb5ba7568f5c",
+   "bytes": 523,
+   "original": {
+    "path": "zambezi-geography.html",
+    "url": "https://www.zambezira.org/node/16",
+    "retrievedAt": "2026-10-23T03:31:20.194336+00:00",
+    "sha256": "f61b1733843d4ad9866bd652d13bc5ccfd0ce6f0ade77d6783830fc54dfaa30a",
+    "bytes": 36644,
+    "status": "downloaded"
+   },
+   "method": "only facts relevant to river mainstem/basin distinction retained; full page excluded"
+  },
+  {
+   "path": "app-places-selected.json",
+   "kind": "reviewedCuratedEvidence",
+   "sha256": "ce1f9f6081b17b8c8826f8445ed67c77ede73e8fc8350dc353b3e86db6128141",
+   "bytes": 2318,
+   "retrievedAt": "2026-10-23"
+  },
+  {
+   "path": "cwc-indus-reviewed.json",
+   "kind": "reviewedCuratedEvidence",
+   "sha256": "06841b94e829c9586b7fd000c1cedb2a0590739641e30f044b0677bb66dbb3d9",
+   "bytes": 699,
+   "retrievedAt": "2026-10-23"
+  },
+  {
+   "path": "data-request-20261023.md",
+   "kind": "reviewedCuratedEvidence",
+   "sha256": "0421822658f35e0f8f27f5272bee294947cbf3f1cef6e59dae8959617cfd557d",
+   "bytes": 28648,
+   "retrievedAt": "2026-10-23"
+  },
+  {
+   "path": "lecture-selected.json",
+   "kind": "reviewedCuratedEvidence",
+   "sha256": "6d4210818a2cfdb36c93c5e6221e7d36d1f565c9fd467923f60f0b39448d0e23",
+   "bytes": 14785,
+   "retrievedAt": "2026-10-23"
+  },
+  {
+   "path": "reviewed.json",
+   "kind": "reviewedCuratedEvidence",
+   "sha256": "15d584929a348f70c9912f3b70f63410746e1381e887382ec92e1f4a0413945f",
+   "bytes": 5313,
+   "retrievedAt": "2026-10-23"
+  },
+  {
+   "path": "river-geometry-review.json",
+   "kind": "reviewedCuratedEvidence",
+   "sha256": "ab3318e9b5ef95e2fcd1c4f9690efa6c7e0965999e3d7f56e88feb19dc28435d",
+   "bytes": 881,
+   "retrievedAt": "2026-10-23"
+  }
+ ],
+ "workingDownloadAttempts": [
+  {
+   "path": "exam-2027-6.pdf",
+   "url": "https://horaeng.com/wp-content/uploads/2027%ED%95%99%EB%85%84%EB%8F%84-6%EC%9B%94-%EB%AA%A8%EC%9D%98%ED%8F%89%EA%B0%80-%EC%84%B8%EA%B3%84%EC%A7%80%EB%A6%AC-%EB%AC%B8%EC%A0%9C.pdf",
+   "retrievedAt": "2026-10-23T03:29:14.424060+00:00",
+   "sha256": "e10f948d8bb3855b40ce6df9cb011ee23373d8063b8b468cb98b4a850e5c9476",
+   "bytes": 3356530,
+   "status": "downloaded"
+  },
+  {
+   "path": "exam-2016-6.pdf",
+   "url": "https://kicegg.com/files/kice-v2/2016_mock06_social_segyeji_q.pdf",
+   "retrievedAt": "2026-10-23T03:29:12.265672+00:00",
+   "sha256": "83ad498bdf575c571c7fff3ad6be4c7b543c517ffd706bade1d1e4f2e4ce0a9c",
+   "bytes": 7086083,
+   "status": "downloaded"
+  },
+  {
+   "path": "exam-2016-6-answer.pdf",
+   "url": "https://kicegg.com/files/ebsi-mirror-v2/794d802fd118ef5f.pdf",
+   "retrievedAt": "2026-10-23T03:29:12.163160+00:00",
+   "sha256": "794d802fd118ef5f4cf83b171722fc89a3f698a6c12d9a8929c3c663b58e3c3a",
+   "bytes": 133214,
+   "status": "downloaded"
+  },
+  {
+   "path": "asm-supp-2014.xlsx",
+   "url": "https://www2.census.gov/programs-surveys/asm/data/2014/ASM_2014_31AS102_with_ann.xlsx",
+   "retrievedAt": "2026-10-23T03:29:12.619051+00:00",
+   "sha256": "eadc66585181befde0af1f8c5566074ff00107dbe1734e3cf6eb0bb3465c13ae",
+   "bytes": 63942,
+   "status": "downloaded"
+  },
+  {
+   "path": "asm-supp-2015.xlsx",
+   "url": "https://www2.census.gov/programs-surveys/asm/data/2015/ASM_2015_31AS102_with_ann.xlsx",
+   "retrievedAt": "2026-10-23T03:29:12.307146+00:00",
+   "sha256": "c195993e2e84046ee42f1789d79de28f67f4f61aa3141202ddaf165c5a4a6ccf",
+   "bytes": 47074,
+   "status": "downloaded"
+  },
+  {
+   "path": "asm-supp-2016.xlsx",
+   "url": "https://www2.census.gov/programs-surveys/asm/data/2016/ASM_2016_31AS102_with_ann.xlsx",
+   "retrievedAt": "2026-10-23T03:29:12.584397+00:00",
+   "sha256": "ec99ada7e38b530b6e6c9002fc19adf3ae7810cdf918540d801401dc2335ad76",
+   "bytes": 47251,
+   "status": "downloaded"
+  },
+  {
+   "path": "wmo-ecuador-index.html",
+   "url": "https://www.ncei.noaa.gov/data/normals-wmo/1991-2020/access/Ecuador/",
+   "status": "failed",
+   "error": "HTTP Error 404: Not Found"
+  },
+  {
+   "path": "wmo-nigeria-index.html",
+   "url": "https://www.ncei.noaa.gov/data/normals-wmo/1991-2020/access/Nigeria/",
+   "status": "failed",
+   "error": "HTTP Error 404: Not Found"
+  },
+  {
+   "path": "bea-SAGDP2N.zip",
+   "url": "https://apps.bea.gov/regional/zip/SAGDP2N.zip",
+   "retrievedAt": "2026-10-23T03:31:18.127351+00:00",
+   "sha256": "9578ca8e36ee33fe10a8164b936120a1ef9bb3f3cd36d48db19144543a49a9af",
+   "bytes": 28185,
+   "status": "downloaded"
+  },
+  {
+   "path": "wmo-ecuador-archive.html",
+   "url": "https://www.ncei.noaa.gov/pub/data/normals/WMO/1991-2020/Region-3-WMO-Normals-9120/Ecuador/",
+   "status": "failed",
+   "error": "HTTP Error 404: Not Found"
+  },
+  {
+   "path": "wmo-quito-ref.html",
+   "url": "https://en.wikipedia.org/wiki/Quito",
+   "retrievedAt": "2026-10-23T03:31:17.463161+00:00",
+   "sha256": "96ee6c49cdae96f6c345d600a9e77a64d91e5ba912ae64eac19efee024b213fd",
+   "bytes": 758226,
+   "status": "downloaded"
+  },
+  {
+   "path": "fao-ganges.html",
+   "url": "https://www.fao.org/4/y3618e/y3618e07.htm",
+   "retrievedAt": "2026-10-23T03:31:16.451146+00:00",
+   "sha256": "410c5be6f9959b75b36b37a10f5c5e0dbf88735199f6120fa40d4942dd354f86",
+   "bytes": 71744,
+   "status": "downloaded"
+  },
+  {
+   "path": "zambezi-geography.html",
+   "url": "https://www.zambezira.org/node/16",
+   "retrievedAt": "2026-10-23T03:31:20.194336+00:00",
+   "sha256": "f61b1733843d4ad9866bd652d13bc5ccfd0ce6f0ade77d6783830fc54dfaa30a",
+   "bytes": 36644,
+   "status": "downloaded"
+  },
+  {
+   "path": "fao-congo.html",
+   "url": "https://www.fao.org/4/W4347E/w4347e0n.htm",
+   "retrievedAt": "2026-10-23T03:31:16.431278+00:00",
+   "sha256": "8999f5e6b70ad44203f3ca53841558d07141facd25041c8f89fa3cd0bfb214d2",
+   "bytes": 34269,
+   "status": "downloaded"
+  },
+  {
+   "path": "nile-basin.html",
+   "url": "https://nilebasin.org/nile-basin",
+   "retrievedAt": "2026-10-23T03:31:22.101519+00:00",
+   "sha256": "6ce9d1e2e2e1fc0dad9fb3651a2205e798afd03afee1ae59acccbe999a181414",
+   "bytes": 89756,
+   "status": "downloaded"
+  },
+  {
+   "path": "nigeria-normals.xlsx",
+   "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-1-WMO-Normals-9120/Nigeria/Excel/Nigeria_WMO_Normals_9120.xlsx",
+   "status": "failed",
+   "error": "HTTP Error 404: Not Found"
+  },
+  {
+   "path": "inamhi-rain-M0024.pdf",
+   "url": "https://servicios.inamhi.gob.ec/wp-content/uploads/2024/01/NORMALES_PRE_M0024.pdf",
+   "status": "failed",
+   "error": "HTTP Error 404: Not Found"
+  },
+  {
+   "path": "cwc-indus.html",
+   "url": "https://cwc.gov.in/en/ibo/about-basins",
+   "status": "failed",
+   "error": "HTTP Error 401: Unauthorized"
+  },
+  {
+   "path": "nmcg-ganga.html",
+   "url": "https://www.nmcg.nic.in/courseofganga.aspx",
+   "retrievedAt": "2026-10-23T03:32:49.151418+00:00",
+   "sha256": "1b1a090a40199be6634a76b7a5176f2fb451f8a3a67283caf311563116a9a760",
+   "bytes": 99838,
+   "status": "downloaded"
+  },
+  {
+   "path": "unesco-ayeyarwady.html",
+   "url": "https://whc.unesco.org/en/tentativelists/5870/",
+   "retrievedAt": "2026-10-23T03:32:45.636082+00:00",
+   "sha256": "18eeda0be1da6837ab3db1a2092acf79578e3fc73edd6d9b5fea135c36c88894",
+   "bytes": 118811,
+   "status": "downloaded"
+  },
+  {
+   "path": "tat-chao.html",
+   "url": "https://www.tatnews.org/2020/07/the-chao-phraya-river-begins-in-nakhon-sawan-and-its-beautiful/",
+   "retrievedAt": "2026-10-23T03:32:48.331373+00:00",
+   "sha256": "1723db11385e83168899f14d1350304045d163c812c9e0a69485da3a4d622307",
+   "bytes": 185631,
+   "status": "downloaded"
+  },
+  {
+   "path": "ganges-jrc.html",
+   "url": "https://jrcb.portal.gov.bd/pages/static-pages/6922dd55933eb65569e148f8",
+   "status": "failed",
+   "error": "HTTP Error 503: Service Unavailable"
+  },
+  {
+   "path": "bea-alt.zip",
+   "url": "https://apps1.bea.gov/regional/zip/SAGDP2N.zip",
+   "status": "failed",
+   "error": "HTTP Error 503: Service Unavailable"
+  },
+  {
+   "path": "aies-2023.zip",
+   "url": "https://www2.census.gov/programs-surveys/aies/data/2023/AIES31BASIC02.zip",
+   "retrievedAt": "2026-10-23T03:33:52.270978+00:00",
+   "sha256": "c8753a45a2d93ce4fd281a9a566129131a335aa36a8f141fba578af7aeccc705",
+   "bytes": 210904,
+   "status": "downloaded"
+  },
+  {
+   "path": "aies-2024.zip",
+   "url": "https://www2.census.gov/programs-surveys/aies/data/2024/AIES31BASIC02.zip",
+   "retrievedAt": "2026-10-23T03:33:52.267212+00:00",
+   "sha256": "417542f38d111b27dd188feea3cf1c8a19d709fac3b47eab08472cbabdd978b8",
+   "bytes": 216028,
+   "status": "downloaded"
+  },
+  {
+   "path": "aies-2024-changes.pdf",
+   "url": "https://www2.census.gov/programs-surveys/aies/information-respondents/2024_annual_integrated_economic_survey_summary_of_changes.pdf",
+   "retrievedAt": "2026-10-23T03:33:52.219233+00:00",
+   "sha256": "a4655809f6c38a52c444cf2c6611707dc9a947121cc7a2a528197fd259304900",
+   "bytes": 228891,
+   "status": "downloaded"
+  },
+  {
+   "path": "census-places-2025.zip",
+   "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2025_Gazetteer/2025_Gaz_place_national.zip",
+   "retrievedAt": "2026-10-23T03:33:52.247427+00:00",
+   "sha256": "49644173a453469d9bd77fb7a493b027f87567e209edaf2078aac7543ac2ee29",
+   "bytes": 1214053,
+   "status": "downloaded"
+  },
+  {
+   "path": "bea-query.zip",
+   "url": "https://apps.bea.gov/regional/zip/SAGDP2N.zip?download=1",
+   "retrievedAt": "2026-10-23T03:33:52.991471+00:00",
+   "sha256": "9578ca8e36ee33fe10a8164b936120a1ef9bb3f3cd36d48db19144543a49a9af",
+   "bytes": 28185,
+   "status": "downloaded"
+  },
+  {
+   "path": "nigeria-root.xlsx",
+   "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-1-WMO-Normals-9120/Nigeria/Nigeria_WMO_Normals_9120.xlsx",
+   "status": "failed",
+   "error": "HTTP Error 404: Not Found"
+  },
+  {
+   "path": "ecuador-archive-index.html",
+   "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-3-WMO-Normals-9120/Ecuador/",
+   "retrievedAt": "2026-10-23T03:33:57.161598+00:00",
+   "sha256": "8567db8ca0fcaa4b2b634dd01ff6752307325f17589bec5d8fdd5f155ddf6269",
+   "bytes": 1056,
+   "status": "downloaded"
+  },
+  {
+   "path": "asm-area-2016.zip",
+   "url": "https://www2.census.gov/programs-surveys/asm/data/2016/ASMAREA2012.zip",
+   "retrievedAt": "2026-10-23T03:34:31.863722+00:00",
+   "sha256": "0212b733a0a191995bbee17fc07ff05548ef9be3668c71d907870973d3100a38",
+   "bytes": 1373520,
+   "status": "downloaded"
+  },
+  {
+   "path": "asm-area2016-dat.zip",
+   "url": "https://www2.census.gov/programs-surveys/asm/data/2016/AM1631AS101.zip",
+   "retrievedAt": "2026-10-23T03:34:32.668307+00:00",
+   "sha256": "2b5d1c6fb9a1420cc9489c87ab2ff322aeff7015f43bc8622e47b9f0f0d933cb",
+   "bytes": 848160,
+   "status": "downloaded"
+  },
+  {
+   "path": "nigeria-index.html",
+   "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-1-WMO-Normals-9120/Nigeria/",
+   "retrievedAt": "2026-10-23T03:34:31.700366+00:00",
+   "sha256": "6b0f93b1757101d9ca43d366bf651f806451383799145181cfeda162d8404c17",
+   "bytes": 1244,
+   "status": "downloaded"
+  },
+  {
+   "path": "wmo-region3-explanations.pdf",
+   "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/documents/Explanatory_Information_Region3.pdf",
+   "retrievedAt": "2026-10-23T03:34:31.890982+00:00",
+   "sha256": "6d9b5a8d4d4d6c106f7c5818170b9983efdac92cc8977d8e1f7ed193e37c7599",
+   "bytes": 2264041,
+   "status": "downloaded"
+  },
+  {
+   "path": "bea-SAGDP.zip",
+   "url": "https://apps.bea.gov/regional/zip/SAGDP.zip",
+   "retrievedAt": "2026-10-23T03:35:03.918082+00:00",
+   "sha256": "3d3c5bc7bd243138cd4ec07d6f5e862bdb533683a538c3a6db61aa2fbc7085ef",
+   "bytes": 10381511,
+   "status": "downloaded"
+  },
+  {
+   "path": "aies-methodology2023.pdf",
+   "url": "https://www2.census.gov/programs-surveys/aies/technical-documentation/methodology/2023-aies-methodology.pdf",
+   "retrievedAt": "2026-10-23T03:35:05.155176+00:00",
+   "sha256": "424b5bb6951ad7cafa836578aac5dfa665a8bd4db3b7a4e8f7226fe129e6863f",
+   "bytes": 343163,
+   "status": "downloaded"
+  },
+  {
+   "path": "aies-tables2024.html",
+   "url": "https://www.census.gov/data/tables/2024/econ/aies/2024-aies-tables.html",
+   "retrievedAt": "2026-10-23T03:35:04.445629+00:00",
+   "sha256": "bef86de401006fd3e9d5a1befd6be9da35917ce836caba366646d2bc8b252096",
+   "bytes": 328559,
+   "status": "downloaded"
+  },
+  {
+   "path": "aies-tables2023.html",
+   "url": "https://www.census.gov/data/tables/2023/econ/aies/2023-aies-tables.html",
+   "retrievedAt": "2026-10-23T03:35:04.449182+00:00",
+   "sha256": "fe447914989721023ed4a60dcb0118a478cd939230fe6123a7df4c5ad7be2f8b",
+   "bytes": 325989,
+   "status": "downloaded"
+  },
+  {
+   "path": "ecuador-csv-index.html",
+   "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-3-WMO-Normals-9120/Ecuador/CSV/",
+   "retrievedAt": "2026-10-23T03:35:04.915944+00:00",
+   "sha256": "3418e642d1085c30f0386516628dee32b881425e404a12d20a158dc664a6ce29",
+   "bytes": 1114,
+   "status": "downloaded"
+  },
+  {
+   "path": "usgs-gems2025.pdf",
+   "url": "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gemstones.pdf",
+   "status": "failed",
+   "error": "HTTP Error 403: Forbidden"
+  },
+  {
+   "path": "nigeria-XLS-index.html",
+   "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-1-WMO-Normals-9120/Nigeria/XLS/",
+   "retrievedAt": "2026-10-23T03:35:53.246755+00:00",
+   "sha256": "bf07c1cedec16f18598a8a89a26bf04b88ed6f432c4d3dbea959c4638bb0d06a",
+   "bytes": 1123,
+   "status": "downloaded"
+  },
+  {
+   "path": "cwc-indus-www.html",
+   "url": "https://www.cwc.gov.in/en/ibo/about-basins",
+   "status": "failed",
+   "error": "HTTP Error 401: Unauthorized"
+  },
+  {
+   "path": "bbmb-indus.html",
+   "url": "https://bbmb.gov.in/indus-basin.htm",
+   "status": "failed",
+   "error": "HTTP Error 503: Service Unavailable"
+  },
+  {
+   "path": "bea-methodology.pdf",
+   "url": "https://www.bea.gov/system/files/methodologies/BEA-GDP-by-State-Concepts-and-Methodology.pdf",
+   "retrievedAt": "2026-10-23T03:35:52.915833+00:00",
+   "sha256": "087b28985fc2b3072fca2dfb64b9628ecea8e16c79e88a71b0ce36f22e210cd6",
+   "bytes": 1605457,
+   "status": "downloaded"
+  },
+  {
+   "path": "nigeria-normals-actual.xlsx",
+   "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/6.6/data/0-data/Region-1-WMO-Normals-9120/Nigeria/XLS/Nigeria_WMO_Normals_9120.xlsx",
+   "retrievedAt": "2026-10-23T03:37:49.558790+00:00",
+   "sha256": "e2104ec55eae62bc875e8bd0e129ff55ae454b2220800e44b9e707923283367b",
+   "bytes": 637388,
+   "status": "downloaded"
+  },
+  {
+   "path": "zambia-zambezi.html",
+   "url": "https://www.zambiatourism.com/destinations/rivers/zambezi/",
+   "retrievedAt": "2026-10-23T03:37:50.403345+00:00",
+   "sha256": "2a3745a7e2ff03bccb21d3891d9f01010d7425ad5e4d4eaef0acf6942a34f87f",
+   "bytes": 210020,
+   "status": "downloaded"
+  },
+  {
+   "path": "zambia-embassy-zambezi.html",
+   "url": "https://zebru.org/2014/04/20/nunc-ac-justo-hendrerit-2/",
+   "retrievedAt": "2026-10-23T03:38:22.226237+00:00",
+   "sha256": "cee59c55afbc4d50833d6de0e971ab94015ff52b27f899376d0848b5a37b5848",
+   "bytes": 98604,
+   "status": "downloaded"
+  },
+  {
+   "path": "ganga-cwc.pdf",
+   "url": "https://www.cwc.gov.in/sites/default/files/gangacompressed.pdf",
+   "status": "failed",
+   "error": "HTTP Error 401: Unauthorized"
+  }
+ ],
+ "policy": "downloaded means transport succeeded only; malformed HTML returned under .zip names is excluded from source archive. Full lecture/workbook/exam booklets are excluded."
+}

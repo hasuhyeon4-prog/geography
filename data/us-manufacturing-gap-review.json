@@ -1,0 +1,408 @@
+{
+ "schemaVersion": 1,
+ "suppressionIn2016Release": [
+  {
+   "state": "캘리포니아",
+   "stateFips": "06",
+   "year": 2015,
+   "naics": "3361",
+   "shipmentsThousandUSD": 5595137.0,
+   "rawShipments": "5595137",
+   "shipmentsFlag": "",
+   "valueAddedThousandUSD": null,
+   "rawValueAdded": "0",
+   "valueAddedFlag": "D",
+   "source": {
+    "file": "asm-area-2016.zip",
+    "member": "ASMAREA2012.dat",
+    "line": 4495
+   }
+  },
+  {
+   "state": "캘리포니아",
+   "stateFips": "06",
+   "year": 2014,
+   "naics": "3361",
+   "shipmentsThousandUSD": 4575628.0,
+   "rawShipments": "4575628",
+   "shipmentsFlag": "",
+   "valueAddedThousandUSD": null,
+   "rawValueAdded": "0",
+   "valueAddedFlag": "D",
+   "source": {
+    "file": "asm-area-2016.zip",
+    "member": "ASMAREA2012.dat",
+    "line": 4496
+   }
+  },
+  {
+   "state": "캘리포니아",
+   "stateFips": "06",
+   "year": 2015,
+   "naics": "3364",
+   "shipmentsThousandUSD": 28545106.0,
+   "rawShipments": "28545106",
+   "shipmentsFlag": "",
+   "valueAddedThousandUSD": 18787063.0,
+   "rawValueAdded": "18787063",
+   "valueAddedFlag": "",
+   "source": {
+    "file": "asm-area-2016.zip",
+    "member": "ASMAREA2012.dat",
+    "line": 4507
+   }
+  },
+  {
+   "state": "캘리포니아",
+   "stateFips": "06",
+   "year": 2014,
+   "naics": "3364",
+   "shipmentsThousandUSD": 32016593.0,
+   "rawShipments": "32016593",
+   "shipmentsFlag": "",
+   "valueAddedThousandUSD": 19614196.0,
+   "rawValueAdded": "19614196",
+   "valueAddedFlag": "",
+   "source": {
+    "file": "asm-area-2016.zip",
+    "member": "ASMAREA2012.dat",
+    "line": 4508
+   }
+  },
+  {
+   "state": "워싱턴주",
+   "stateFips": "53",
+   "year": 2015,
+   "naics": "3361",
+   "shipmentsThousandUSD": null,
+   "rawShipments": "0",
+   "shipmentsFlag": "D",
+   "valueAddedThousandUSD": null,
+   "rawValueAdded": "0",
+   "valueAddedFlag": "D",
+   "source": {
+    "file": "asm-area-2016.zip",
+    "member": "ASMAREA2012.dat",
+    "line": 21691
+   }
+  },
+  {
+   "state": "워싱턴주",
+   "stateFips": "53",
+   "year": 2014,
+   "naics": "3361",
+   "shipmentsThousandUSD": null,
+   "rawShipments": "0",
+   "shipmentsFlag": "D",
+   "valueAddedThousandUSD": null,
+   "rawValueAdded": "0",
+   "valueAddedFlag": "D",
+   "source": {
+    "file": "asm-area-2016.zip",
+    "member": "ASMAREA2012.dat",
+    "line": 21692
+   }
+  },
+  {
+   "state": "워싱턴주",
+   "stateFips": "53",
+   "year": 2015,
+   "naics": "3364",
+   "shipmentsThousandUSD": null,
+   "rawShipments": "0",
+   "shipmentsFlag": "D",
+   "valueAddedThousandUSD": 36155985.0,
+   "rawValueAdded": "36155985",
+   "valueAddedFlag": "",
+   "source": {
+    "file": "asm-area-2016.zip",
+    "member": "ASMAREA2012.dat",
+    "line": 21703
+   }
+  },
+  {
+   "state": "워싱턴주",
+   "stateFips": "53",
+   "year": 2014,
+   "naics": "3364",
+   "shipmentsThousandUSD": null,
+   "rawShipments": "0",
+   "shipmentsFlag": "D",
+   "valueAddedThousandUSD": null,
+   "rawValueAdded": "0",
+   "valueAddedFlag": "D",
+   "source": {
+    "file": "asm-area-2016.zip",
+    "member": "ASMAREA2012.dat",
+    "line": 21704
+   }
+  }
+ ],
+ "suppressionConclusion": "워싱턴주 3364의 2014·2015 출하액은 후속 2016 발표판에도 D. 2015 부가가치는 공개되어 있어도 출하액 대체 불가. 자동차 3361 비공개 값은 계속 null.",
+ "aies2023and2024": "공개된 항공 우주 출하액이 추가되어, 기존 2016~2022와 합치면 9개 연도 방향을 검토할 수 있다. 공식 AIES 표본 연결 방법과 분류 판본을 함께 보존. 기존 엔진의 7개년 예외는 이 묶음에서 자동 수정하지 않는다.",
+ "aerospaceDirectionChecks": [
+  {
+   "higher": "워싱턴주",
+   "lower": "캘리포니아",
+   "metric": "share of shipments, NAICS 3364",
+   "years": [
+    {
+     "year": 2016,
+     "WashingtonSharePct": 47.505593728260486,
+     "otherSharePct": 6.007900481798318,
+     "greater": true
+    },
+    {
+     "year": 2017,
+     "WashingtonSharePct": 42.5415108273485,
+     "otherSharePct": 4.870924589720323,
+     "greater": true
+    },
+    {
+     "year": 2018,
+     "WashingtonSharePct": 40.652619129777094,
+     "otherSharePct": 4.73132317390472,
+     "greater": true
+    },
+    {
+     "year": 2019,
+     "WashingtonSharePct": 24.04788455599519,
+     "otherSharePct": 5.42112311574767,
+     "greater": true
+    },
+    {
+     "year": 2020,
+     "WashingtonSharePct": 17.87377786163541,
+     "otherSharePct": 5.511152678809902,
+     "greater": true
+    },
+    {
+     "year": 2021,
+     "WashingtonSharePct": 23.46389751283201,
+     "otherSharePct": 4.688214568822719,
+     "greater": true
+    },
+    {
+     "year": 2022,
+     "WashingtonSharePct": 23.50142725152541,
+     "otherSharePct": 3.9716937161911297,
+     "greater": true
+    },
+    {
+     "year": 2023,
+     "WashingtonSharePct": 29.847475363417903,
+     "otherSharePct": 4.718995492533711,
+     "greater": true
+    },
+    {
+     "year": 2024,
+     "WashingtonSharePct": 27.5693539101242,
+     "otherSharePct": 4.828775348129426,
+     "greater": true
+    }
+   ],
+   "completeYears": 9,
+   "allGreater": true,
+   "basis": "기존 허용 목록 L2-B0705에 있는 쌍만 검토. 오하이오와의 새 회상 관계는 만들지 않음."
+  },
+  {
+   "higher": "워싱턴주",
+   "lower": "텍사스",
+   "metric": "share of shipments, NAICS 3364",
+   "years": [
+    {
+     "year": 2016,
+     "WashingtonSharePct": 47.505593728260486,
+     "otherSharePct": 4.065998315778104,
+     "greater": true
+    },
+    {
+     "year": 2017,
+     "WashingtonSharePct": 42.5415108273485,
+     "otherSharePct": 4.727495433755494,
+     "greater": true
+    },
+    {
+     "year": 2018,
+     "WashingtonSharePct": 40.652619129777094,
+     "otherSharePct": 4.500767836117993,
+     "greater": true
+    },
+    {
+     "year": 2019,
+     "WashingtonSharePct": 24.04788455599519,
+     "otherSharePct": 4.301119403346849,
+     "greater": true
+    },
+    {
+     "year": 2020,
+     "WashingtonSharePct": 17.87377786163541,
+     "otherSharePct": 5.285704113953165,
+     "greater": true
+    },
+    {
+     "year": 2021,
+     "WashingtonSharePct": 23.46389751283201,
+     "otherSharePct": 3.847721415086336,
+     "greater": true
+    },
+    {
+     "year": 2022,
+     "WashingtonSharePct": 23.50142725152541,
+     "otherSharePct": 2.434359315017497,
+     "greater": true
+    },
+    {
+     "year": 2023,
+     "WashingtonSharePct": 29.847475363417903,
+     "otherSharePct": 2.8959283907972346,
+     "greater": true
+    },
+    {
+     "year": 2024,
+     "WashingtonSharePct": 27.5693539101242,
+     "otherSharePct": 3.15099450574591,
+     "greater": true
+    }
+   ],
+   "completeYears": 9,
+   "allGreater": true,
+   "basis": "기존 허용 목록 L2-B0705에 있는 쌍만 검토. 오하이오와의 새 회상 관계는 만들지 않음."
+  },
+  {
+   "higher": "워싱턴주",
+   "lower": "미시간",
+   "metric": "share of shipments, NAICS 3364",
+   "years": [
+    {
+     "year": 2016,
+     "WashingtonSharePct": 47.505593728260486,
+     "otherSharePct": 0.5534128813529328,
+     "greater": true
+    },
+    {
+     "year": 2017,
+     "WashingtonSharePct": 42.5415108273485,
+     "otherSharePct": 0.5463238177641347,
+     "greater": true
+    },
+    {
+     "year": 2018,
+     "WashingtonSharePct": 40.652619129777094,
+     "otherSharePct": 0.5211333233071885,
+     "greater": true
+    },
+    {
+     "year": 2019,
+     "WashingtonSharePct": 24.04788455599519,
+     "otherSharePct": 0.5157162080512188,
+     "greater": true
+    },
+    {
+     "year": 2020,
+     "WashingtonSharePct": 17.87377786163541,
+     "otherSharePct": 0.49765896092782913,
+     "greater": true
+    },
+    {
+     "year": 2021,
+     "WashingtonSharePct": 23.46389751283201,
+     "otherSharePct": 0.5254424791618106,
+     "greater": true
+    },
+    {
+     "year": 2022,
+     "WashingtonSharePct": 23.50142725152541,
+     "otherSharePct": 0.5845745802858736,
+     "greater": true
+    },
+    {
+     "year": 2023,
+     "WashingtonSharePct": 29.847475363417903,
+     "otherSharePct": 0.4926048766692136,
+     "greater": true
+    },
+    {
+     "year": 2024,
+     "WashingtonSharePct": 27.5693539101242,
+     "otherSharePct": 0.586528090012865,
+     "greater": true
+    }
+   ],
+   "completeYears": 9,
+   "allGreater": true,
+   "basis": "기존 허용 목록 L2-B0705에 있는 쌍만 검토. 오하이오와의 새 회상 관계는 만들지 않음."
+  }
+ ],
+ "exam2027Q5": {
+  "originalPublisherConfirmed": false,
+  "originalMeasureConfirmed": false,
+  "candidate": "BEA manufacturing value-added composition",
+  "evidence": "범례가 BEA 업종명과 대응하고 주별 구성 패턴이 유사함. 이것만으로 원출처나 원판본을 확정할 수 없음.",
+  "candidateData": [
+   {
+    "state": "캘리포니아",
+    "referenceYear": 2024,
+    "source": "current revised BEA SAGDP2 snapshot, not question given",
+    "percentages": {
+     "컴퓨터 및 전자 제품": 31.768831277760583,
+     "화학 제품": 20.077441644047667,
+     "기타 운송 장비": 7.3477457888319035,
+     "석유 및 석탄 제품": 3.90581826270172,
+     "자동차 및 부품": 2.946158734135956,
+     "기타": 33.95400429252217
+    }
+   },
+   {
+    "state": "텍사스",
+    "referenceYear": 2024,
+    "source": "current revised BEA SAGDP2 snapshot, not question given",
+    "percentages": {
+     "컴퓨터 및 전자 제품": 9.018994227031419,
+     "화학 제품": 25.43418138918705,
+     "기타 운송 장비": 4.472660593929197,
+     "석유 및 석탄 제품": 19.028132343129005,
+     "자동차 및 부품": 7.823424037596821,
+     "기타": 34.22260740912651
+    }
+   },
+   {
+    "state": "워싱턴주",
+    "referenceYear": 2024,
+    "source": "current revised BEA SAGDP2 snapshot, not question given",
+    "percentages": {
+     "컴퓨터 및 전자 제품": 9.058873697217146,
+     "화학 제품": 6.262255560330933,
+     "기타 운송 장비": 36.273604544966155,
+     "석유 및 석탄 제품": 7.529950574836144,
+     "자동차 및 부품": 1.686230794026002,
+     "기타": 39.18908482862362
+    }
+   },
+   {
+    "state": "미시간",
+    "referenceYear": 2024,
+    "source": "current revised BEA SAGDP2 snapshot, not question given",
+    "percentages": {
+     "컴퓨터 및 전자 제품": 2.7076124567474045,
+     "화학 제품": 9.70977508650519,
+     "기타 운송 장비": 1.6012975778546712,
+     "석유 및 석탄 제품": 1.8780276816608998,
+     "자동차 및 부품": 37.67006920415225,
+     "기타": 46.43321799307959
+    }
+   }
+  ],
+  "rejectedSubstitution": "2024 AIES는 시험 이후인 2026-09-03 발표. 현재 BEA 개정 수치와 Census 출하액 모두 기출 given을 덮어쓰지 않음."
+ },
+ "ohioJointExamEvidence": {
+  "status": "notEstablished",
+  "reviewed": [
+   "강의 L2-B0694~0706",
+   "2016학년도 9월 7번의 강의 연결",
+   "2027학년도 6월 5번 원문"
+  ],
+  "finding": "확인한 두 제조업 자료는 오하이오·캘리포니아·텍사스와 캘리포니아·텍사스·워싱턴주·미시간으로 서로 다름. 전체 구기출 원문을 전수 확인한 부재 증명은 아님.",
+  "policy": "오하이오–미시간/워싱턴주의 새 회상 관계는 계속 보류."
+ }
+}
