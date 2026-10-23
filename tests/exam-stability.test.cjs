@@ -78,6 +78,10 @@ const nearYears = y => { const lo = +y >= +Y0 ? +Y0 : Math.max(1950, +y - 5), hi
 const wup = (p, k, n, y) => { const v = WUP.areas[n].series[WUP_KEY[k]][y]; return k === 'share' ? v : v / WUP_SCALE[p]; };
 const CHANGE = {shareRise: ['share', (a, b) => b - a], ruralChange: ['rural', (a, b) => (b - a) / a * 100], urbanGrowth: ['urban', (a, b) => b / a]};
 const PERIOD = /^(c?wup)-(\w+)@(\d{4})(?:-(\d{4}))?$/;
+// 대륙 합계 출산율 (UN WPP 2024): a column read within five years of its year, up to the last estimate.
+const TFR = data('data/fertility-un-regions.json'), TFR_REL = data('data/exam-relations-fertility.json'), CTFR = /^ctfr@(\d{4})$/;
+const tfrRaw = (ind, n) => Object.fromEntries(nearYears(ind.match(CTFR)[1]).filter(y => y <= TFR_REL.lastEstimate).map(y => [y, TFR.areas[n].series[y]]));
+const periodAt = (name, ind) => { if (CTFR.test(ind)) return TFR.areas[name].series[ind.match(CTFR)[1]]; const [, p, k, y] = ind.match(PERIOD); return wup(p, k, name, y); };
 function periodRaw(ind, n) {
   const [, p, k, A, B] = ind.match(PERIOD);
   if (!B) return Object.fromEntries(nearYears(A).map(y => [y, wup(p, k, n, y)]));
@@ -87,6 +91,7 @@ function periodRaw(ind, n) {
 }
 function raw(ind, name) {
   if (PERIOD.test(ind)) return periodRaw(ind, name);
+  if (CTFR.test(ind)) return tfrRaw(ind, name);
   if (US_COL[ind]) return usRaw(ind, name);
   if (ind === 'energy-total') return energy.countries[name].series.primary_energy_consumption;
   if (MIN_COL[ind]) {
@@ -109,7 +114,7 @@ function raw(ind, name) {
   const [key, scale] = GROUP[ind];
   return Object.fromEntries(Object.entries(g[key] || {}).map(([y, v]) => [y, v / scale]));
 }
-const STATIC = ind => ind === 'bloc-members' || ind.endsWith('-area') || PERIOD.test(ind);
+const STATIC = ind => ind === 'bloc-members' || ind.endsWith('-area') || PERIOD.test(ind) || CTFR.test(ind);
 const inWindow = (ind, y) => STATIC(ind) || (US_COL[ind] ? y >= USM_REL.years[0] && y <= USM_REL.years[1] : y >= Y0 && y <= Y1);
 // Years in which `hi` is above `lo`, and years in which it is not.
 function yearly(ind, hi, lo) {
@@ -119,7 +124,7 @@ function yearly(ind, hi, lo) {
 
 // The whitelist, read here without the builder.
 const allowedPairs = new Map(), allowedSigns = new Set(), lectureDirected = [];
-for (const r of REL.relations.concat(POP.relations, MIN_REL.relations, USM_REL.relations)) {
+for (const r of REL.relations.concat(POP.relations, MIN_REL.relations, USM_REL.relations, TFR_REL.relations)) {
   const allow = (a, b) => allowedPairs.set(r.indicator + '|' + [a, b].sort().join('|'), r.basis);
   for (const [hi, lo] of r.pairs || []) { allow(hi, lo); lectureDirected.push([r.indicator, hi, lo]); }
   (r.tiers || []).forEach((tier, i) => r.tiers.slice(i + 1).flat().forEach(lo => tier.forEach(hi => { allow(hi, lo); lectureDirected.push([r.indicator, hi, lo]); })));
@@ -363,7 +368,7 @@ test('the table shows the data files’ base-year values', () => {
   for (const q of questions()) {
     if (q.theme.kind !== 'indicators') continue;
     q.shown.forEach((ind, j) => q.entities.forEach((n, i) => {
-      const year = PERIOD.test(ind) ? ind.match(PERIOD)[3] : MIN_COL[ind] ? '2024' : US_COL[ind] ? USM_REL.years[1] : ind.endsWith('-area') ? '2024' : q.theme.entityType === 'country' ? countries.meta.baseYear : '2023';
+      const year = PERIOD.test(ind) ? ind.match(PERIOD)[3] : CTFR.test(ind) ? ind.match(CTFR)[1] : MIN_COL[ind] ? '2024' : US_COL[ind] ? USM_REL.years[1] : ind.endsWith('-area') ? '2024' : q.theme.entityType === 'country' ? countries.meta.baseYear : '2023';
       const v = raw(ind, n)[year];
       const shown = num(q.display.rows[i].cells[j]);
       assert.ok(Math.abs(shown - v) <= Math.max(0.051, Math.abs(v) * 0.006), `${n} ${ind}: shown ${shown}, data ${v}`);
@@ -645,12 +650,13 @@ test('climate additions: complete stations only, under their own names; 고산 �
   for (const [n, e] of Object.entries(K.entities)) if (e.type === 'site' && e.climate.lecture !== 'h') assert.equal(highlandOf(n), 'no', n);
 });
 
-test('two-period tables: cells are the WUP values of their years, and change <보기> recompute from them', () => {
+test('period tables: cells are the WUP and WPP values of their years, and change <보기> recompute from them', () => {
   let n = 0;
   for (const q of questions()) {
     if (!q.theme.periodTable) continue;
-    const at = (name, ind) => { const [, p, k, y] = ind.match(PERIOD); return wup(p, k, name, y); };
-    q.display.columns.forEach((c, j) => q.entities.forEach((name, i) => {
+    const at = periodAt;
+    // Other columns (순이동·인구 next to the TFR) are checked with the base-year table values.
+    q.display.columns.forEach((c, j) => (PERIOD.test(c.id) || CTFR.test(c.id)) && q.entities.forEach((name, i) => {
       assert.ok(Math.abs(num(q.display.rows[i].cells[j]) - at(name, c.id)) <= Math.max(0.051, Math.abs(at(name, c.id)) * 0.006), `${name} ${c.id}`);
     }));
     for (const s of q.stage2.statements) {
@@ -660,7 +666,7 @@ test('two-period tables: cells are the WUP values of their years, and change <�
       if (c.majority) assert.equal(at(c.entity, c.majority) > 50 === c.claim, s.truth, s.text);
       else if (c.from && c.entity) assert.equal(at(c.entity, c.to) > at(c.entity, c.from) === c.up, s.truth, s.text);
       else if (c.from) {
-        const ch = x => (c.ratio ? at(x, c.to) / at(x, c.from) : at(x, c.to) - at(x, c.from));
+        const ch = x => (c.ratio ? at(x, c.to) / at(x, c.from) : (at(x, c.to) - at(x, c.from)) * (c.drop ? -1 : 1));
         assert.equal(ch(c.subject) > ch(c.object), s.truth, s.text);
       }
     }

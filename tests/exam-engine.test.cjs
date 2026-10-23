@@ -201,7 +201,7 @@ test('each statement is true exactly when the knowledge base says so', () => {
           assert.equal(b > a === c.up, s.truth, s.text);
         } else if (s.kind === 'data' && c.from) {
           // A change between two shown columns: difference, or growth (뒤 ÷ 앞).
-          const ch = n => (c.ratio ? engine.value(n, c.to) / engine.value(n, c.from) : engine.value(n, c.to) - engine.value(n, c.from));
+          const ch = n => (c.ratio ? engine.value(n, c.to) / engine.value(n, c.from) : (engine.value(n, c.to) - engine.value(n, c.from)) * (c.drop ? -1 : 1));
           assert.ok(q.shown.includes(c.from) && q.shown.includes(c.to), s.text);
           assert.equal(ch(c.subject) > ch(c.object), s.truth, s.text);
         } else if (s.kind === 'data' && c.indicator) {

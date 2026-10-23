@@ -27,6 +27,18 @@
    derived:[{rate:'cont-urban',total:'cont-pop',per:100,noun:'도시 인구'},{rate:'cont-old',total:'cont-pop',per:100,noun:'노년층 인구'},{rate:'cont-young',total:'cont-pop',per:100,noun:'유소년층 인구'}],
    prompt:'{range}는 아시아, 아프리카, 유럽, 라틴 아메리카, 앵글로아메리카, 오세아니아 중 하나이다. 러시아는 유럽에 포함한다.'
   },
+  // 2024학년도 수능 14번: 합계 출산율 세 시점(UN WPP 2024)과 순 이주·인구. The TFR columns
+  // identify through data/exam-relations-fertility.json; 순이동 and 인구 recall the shared continent pairs.
+  {
+   id:'continent-fertility',status:'ready',title:'대륙별 합계 출산율 변화와 순 이주',lecture:'1권 P05',exams:['2024학년도 수능 14번'],
+   // Population pairs come first: every TFR column is in the table, so only 순이동·인구 are recalled.
+   kind:'indicators',entityType:'continent',periodTable:true,domains:[null,'fertility'],noRecall:['cont-urban','cont-agingIndex','cont-gdp','cont-gdppc','cont-area'],
+   pool:['아시아','아프리카','유럽','라틴 아메리카','앵글로아메리카'],pick:[3,4],
+   always:['ctfr@1960','ctfr@1990','ctfr@2020'],indicators:['cont-netmig','cont-pop','cont-density'],show:1,
+   changes:[{from:'ctfr@1960',to:'ctfr@2020',drop:true,noun:'1960~2020년 합계 출산율 감소 폭',min:0.5}],
+   note:'합계 출산율은 UN WPP 2024 추정치, 순이동·인구는 세계은행 WDI 2023년 값이다. 기출의 2020년 순 이주 값과 판본·연도가 다르다. 러시아는 유럽에 포함한다.',
+   prompt:'{range}는 {candidates} 중 하나이다. 표는 1960·1990·2020년의 합계 출산율과 다른 지표이다.'
+  },
   {
    id:'country-population',status:'ready',title:'국가별 인구 구조와 도시화',lecture:'1권 P05',exams:['2023학년도 수능','2025학년도 6월 16번','2020학년도 6월 14번'],
    kind:'indicators',entityType:'country',map:true,

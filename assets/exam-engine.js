@@ -476,12 +476,12 @@
     // Two-period tables: which row changed more between the two columns (3%p apart at least).
     if(theme.kind==='indicators')(theme.changes||[]).forEach(function(d){
      if(shown.indexOf(d.from)<0||shown.indexOf(d.to)<0)return;
-     // d.ratio compares growth (뒤 ÷ 앞, 1.2배 apart); otherwise the difference in %p.
-     var ch=function(n){return d.ratio?value(n,d.to)/value(n,d.from):value(n,d.to)-value(n,d.from)},ca=ch(p[0]),cb=ch(p[1]);
+     // d.ratio compares growth (뒤 ÷ 앞, 1.2배 apart); otherwise the difference (d.drop: 앞 − 뒤, a fall).
+     var ch=function(n){return d.ratio?value(n,d.to)/value(n,d.from):(value(n,d.to)-value(n,d.from))*(d.drop?-1:1)},ca=ch(p[0]),cb=ch(p[1]);
      if(d.ratio?!(Math.min(ca,cb)>0)||Math.max(ca,cb)/Math.min(ca,cb)<d.min:Math.abs(ca-cb)<d.min)return;
      var hi=ca>cb?p[0]:p[1],lo=hi===p[0]?p[1]:p[0],truth=r()<.5,s=truth?[hi,lo]:[lo,hi],fm=meta(d.from),tm=meta(d.to);
-     var line=function(n){return n+' '+fmt(value(n,d.from))+' → '+fmt(value(n,d.to))+(d.ratio?'('+fmt(Math.round(ch(n)*10)/10)+'배)':'('+(ch(n)>=0?'+':'')+fmt(Math.round(ch(n)*10)/10)+fm.unit+'p)')};
-     add({kind:'data',key:'change|'+d.from+'|'+p.slice().sort().join('|'),check:{from:d.from,to:d.to,ratio:!!d.ratio,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+d.noun+subjectParticle(d.noun)+' '+(d.more||'크다')+'.',truth:truth,
+     var line=function(n){return n+' '+fmt(value(n,d.from))+' → '+fmt(value(n,d.to))+(d.ratio?'('+fmt(Math.round(ch(n)*10)/10)+'배)':(function(v){return '('+(v>=0?'+':'')+fmt(Math.round(v*100)/100)+fm.unit+(fm.unit==='%'?'p':'')+')'})(value(n,d.to)-value(n,d.from)))};
+     add({kind:'data',key:'change|'+d.from+'|'+p.slice().sort().join('|'),check:{from:d.from,to:d.to,ratio:!!d.ratio,drop:!!d.drop,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+d.noun+subjectParticle(d.noun)+' '+(d.more||'크다')+'.',truth:truth,
       explain:'표의 '+fm.label+'·'+tm.label+': '+line(hi)+', '+line(lo)+' ('+fm.source+')'});
     });
    });

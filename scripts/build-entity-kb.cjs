@@ -364,6 +364,24 @@ for (const r of REL.relations.concat(POP.relations)) {
   for (const n of r.signs || []) signs.push(Object.assign(checkSign(r.indicator, n), {basis: r.basis}));
 }
 
+// --- 대륙별 합계 출산율 세 시점 (round two: data/fertility-un-regions.json, UN WPP 2024) ---
+// 2024학년도 수능 14번: a column per year, each checked every year within five years of its own
+// (the 2020 column 2015~2023, the last estimate). Domain 'fertility': only that theme recalls them.
+const TFR = read('data/fertility-un-regions.json'), TFR_REL = read('data/exam-relations-fertility.json');
+for (const y of TFR_REL.years) {
+  const id = 'ctfr@' + y, ys = years5(y).filter(x => x <= TFR_REL.lastEstimate);
+  indicators[id] = {label: y + '년 합계 출산율', unit: '명', more: y + '년 합계 출산율이 높다', entityType: 'continent', year: y,
+    source: 'UN WPP 2024 지역 계열(OWID 배포)', compare: {type: 'diff', min: 0.3}, static: false, window: [ys[0], ys[ys.length - 1], ys.length],
+    domain: 'fertility', disabled: false, unstablePairs: [], decimals: 2};
+  seriesOf[id] = {};
+  for (const [n, a] of Object.entries(TFR.areas)) {
+    if (!entities[n] || entities[n].type !== 'continent') continue;
+    seriesOf[id][n] = Object.fromEntries(ys.filter(x => a.series[x] != null).map(x => [x, a.series[x]]));
+    entities[n].values[id] = Math.round(a.series[y] * 100) / 100;
+  }
+}
+for (const r of TFR_REL.relations) for (const [hi, lo] of r.pairs) relations.push(Object.assign(checkPair(r.indicator, hi, lo, true), {form: 'pairs', basis: r.basis}));
+
 // --- agriculture (R1: data/agriculture.json, docs/AGRICULTURE-DATA-HANDOFF.md) ---
 // Crops and livestock are 대상 themselves, valued by their world or regional totals;
 // countries and continents get crop and herd columns. Each column stays inside one FAOSTAT
