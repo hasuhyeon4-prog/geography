@@ -785,9 +785,24 @@
     stage2:{question:range+'와 A~C에 대한 설명으로 옳은 것만을 <보기>에서 고른 것은?',statements:s2.statements,options:s2.options,answer:s2.answer}};
   }
 
+  // The formats a theme can make: 대상 식별 always, 실전형 on a map, 항목 식별 with three columns to
+  // hide, 동시 식별 where rows and columns are both hidden (종교).
+  function formatsFor(theme){
+   var f=['rows'];if(theme.map)f.push('implicit');
+   if(columnsFor(theme).length>=3&&!theme.periodTable&&!theme.noColumns){f.push('columns');if(theme.joint&&theme.kind==='composition')f.push('joint')}
+   return f;
+  }
+
   function build(opts){
    opts=opts||{};var r=opts.rng||seeded(opts.seed==null?Math.floor(Math.random()*4294967296):opts.seed);
    var pool=opts.themeId?[byId[opts.themeId]].filter(Boolean):ready;
+   // A chosen format draws only from the themes that can make it.
+   if(opts.format&&!opts.targetKey){
+    pool=pool.filter(function(t){return formatsFor(t).indexOf(opts.format)>=0});if(!pool.length)return null;
+    // Over several themes the theme is drawn first: drawn per attempt, the themes whose tables pass
+    // the checks fastest crowded out the rest (항목 식별 came from 4 of its 10 themes).
+    if(pool.length>1){var order=shuffle(pool,r);for(var i=0;i<order.length;i++){var one=build(Object.assign({},opts,{themeId:order[i].id,rng:r}));if(one)return one}return null}
+   }
    var target=opts.targetKey?(kb.relations||[]).find(function(x){return x.indicator+'|'+[x.hi,x.lo].sort().join('|')===opts.targetKey&&['active','belowMargin'].indexOf(x.status)>=0}):null;
    if(opts.targetKey&&!target)return null;
    if(target)pool=pool.filter(function(t){return t.pool.indexOf(target.hi)>=0&&t.pool.indexOf(target.lo)>=0});
@@ -821,7 +836,7 @@
     // The format is fixed for the first attempts; later ones re-roll, so when the recent questions
     // have used up one format (전력 대상 식별 has four), another format is tried instead of a repeat.
     // A joint theme (종교) splits the 항목 식별 share with 동시 식별, where rows and columns are both hidden.
-    var recipe=!target&&theme.tableRecipes&&roll0<theme.tableRecipes[0].chance?theme.tableRecipes[0]:null;
+    var recipe=!target&&mode!=='columns'&&mode!=='joint'&&theme.tableRecipes&&roll0<theme.tableRecipes[0].chance?theme.tableRecipes[0]:null;
     var canHide=columnsFor(theme).length>=3&&!theme.periodTable&&!recipe,canJoint=canHide&&!!theme.joint&&theme.kind==='composition',roll=attempt<150?roll0:r();
     var format=(mode==='columns'&&!canHide)||(mode==='joint'&&!canJoint)?'rows':mode||(roll<.35&&canHide&&attempt<300?(canJoint&&roll>=.15?'joint':'columns'):roll>.8?'implicit':'rows');
     if(format==='columns'){var cq=buildColumns(theme,avail,k,r,avoid,attempt);if(cq)return cq;continue}
@@ -891,7 +906,7 @@
    }
    return null;
   }
-  return {themes:ready,build:build,identifiable:identifiable,columnsIdentifiable:columnsIdentifiable,columnsConsistent:columnsConsistent,jointIdentifiable:jointIdentifiable,jointLeft:jointLeft,catLabel:catLabel,candidates:candidates,known:known,relation:relation,value:value,comp:comp,total:total,seeded:seeded,LABELS:LABELS,COMBOS:COMBOS};
+  return {themes:ready,build:build,formatsFor:formatsFor,identifiable:identifiable,columnsIdentifiable:columnsIdentifiable,columnsConsistent:columnsConsistent,jointIdentifiable:jointIdentifiable,jointLeft:jointLeft,catLabel:catLabel,candidates:candidates,known:known,relation:relation,value:value,comp:comp,total:total,seeded:seeded,LABELS:LABELS,COMBOS:COMBOS};
  }
  return {create:create,seeded:seeded,topic:topic};
 });

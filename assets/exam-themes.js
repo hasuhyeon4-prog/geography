@@ -228,7 +228,9 @@
   {
    id:'crop-identification',status:'ready',title:'3대 식량 작물 식별',lecture:'2권 P06',exams:['2027학년도 9월 17번','2020학년도 수능 3번','2025학년도 9월 11번'],
    kind:'indicators',entityType:'crop',domains:['agri'],concepts:true,
-   pool:['밀','쌀','옥수수'],pick:[3,3],always:['crop-production'],indicators:['crop-exports','crop-exportRatio','crop-yield','crop-oceania'],show:2,
+   pool:['밀','쌀','옥수수'],pick:[3,3],
+   // Three crops in three rows: no table with hidden columns passes the identification check.
+   noColumns:true,always:['crop-production'],indicators:['crop-exports','crop-exportRatio','crop-yield','crop-oceania'],show:2,
    // Only exclusive card sets: a non-exclusive one ('…와 연결된다') would be true every time.
    followups:{facts:['originContinent','topProducer'],focus:['originContinent','topProducer']},
    note:'쌀 생산량은 벼 기준이고, 수출량은 가공품을 환산해 포함한 수급표 값이다.',

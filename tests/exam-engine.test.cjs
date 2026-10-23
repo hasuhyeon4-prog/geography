@@ -442,3 +442,15 @@ test('joint options do not give the answer by their shape, and prompts name only
   // A prompt listing a fixed set wider than the 대상 left 실전형 open to other assignments.
   for (const t of engine.themes) if (t.kind !== 'clues' && t.kind !== 'climate') assert.match(t.prompt, /\{candidates\}/, t.id);
 });
+
+test('a chosen format is what is built, from every theme that can make it', () => {
+  for (const t of engine.themes) for (const f of engine.formatsFor(t)) for (let seed = 1; seed <= 6; seed++) {
+    const q = engine.build({themeId: t.id, format: f, seed});
+    assert.ok(q && q.format === f, t.id + ' ' + f + ' seed ' + seed);
+  }
+  for (const f of ['columns', 'implicit']) {
+    const can = engine.themes.filter(t => engine.formatsFor(t).includes(f)).map(t => t.id), seen = new Set();
+    for (let seed = 1; seed <= 150; seed++) { const q = engine.build({format: f, seed}); assert.equal(q.format, f); seen.add(q.theme.id); }
+    assert.deepEqual([...seen].sort(), can.sort(), f);
+  }
+});
