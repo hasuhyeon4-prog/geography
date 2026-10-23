@@ -834,6 +834,36 @@
    return f;
   }
 
+  // Everything a question can ask, for 'not seen yet' practice (2026-10-23): verified comparisons,
+  // the facts a theme asks, and the 대상 whose own knowledge identifies them (climate type, clue,
+  // export item, composition order). Keys match what a shown question marks as seen (seenIn).
+  var inv=null;
+  function inventory(){
+   if(inv)return inv;var by={};
+   function put(key,themeId,b){var x=by[key]||(by[key]={key:key,themes:[],build:b});if(x.themes.indexOf(themeId)<0)x.themes.push(themeId)}
+   ready.forEach(function(t){
+    var has=function(n){return t.pool.indexOf(n)>=0};
+    if(t.kind==='indicators')REL.forEach(function(x){if(x.status==='active'&&has(x.hi)&&has(x.lo)&&inScope(t,x.indicator)&&meta(x.indicator).entityType===entity(x.hi).type)put('rel|'+x.indicator+'|'+[x.hi,x.lo].sort().join('|'),t.id,{targetKey:x.indicator+'|'+[x.hi,x.lo].sort().join('|')})});
+    t.pool.forEach(function(n){var e=entity(n);if(!e)return;
+     if(t.kind!=='indicators'&&(t.kind!=='composition'||orderOf(t,n))&&(t.kind!=='climate'||cl(n).type))put('ent|'+t.id+'|'+n,t.id,{focus:{entity:n}});
+     Object.keys(e.facts||{}).forEach(function(set){var m=kb.factSets[set];if(m&&m.exclusive&&allowed(t,set)&&(t.reveals||[]).indexOf(set)<0&&e.facts[set].values.some(function(v){return predicate(set,v)}))put('fact|'+n+'|'+set,t.id,{focus:{entity:n,set:set}})});
+    });
+   });
+   return inv=Object.keys(by).map(function(k){return by[k]});
+  }
+  // The inventory keys a shown question covers.
+  function seenIn(q){
+   var out=[],t=q.theme,rel=function(ind,a,b){out.push('rel|'+ind+'|'+[a,b].sort().join('|'))};
+   (q.stage1.basis&&q.stage1.basis.relations||[]).forEach(function(x){rel(x.indicator,x.hi,x.lo)});
+   if(t.kind!=='indicators')q.entities.forEach(function(n){out.push('ent|'+t.id+'|'+n)});
+   q.stage2.statements.forEach(function(s){var c=s.check||{};
+    if(s.kind==='compare')rel(c.ind,c.subject,c.object);
+    if(s.kind==='fact')out.push('fact|'+c.entity+'|'+c.set);
+    if(s.kind==='both'){out.push('fact|'+c.a+'|'+c.set);out.push('fact|'+c.b+'|'+c.set)}
+   });
+   return out;
+  }
+
   function build(opts){
    opts=opts||{};var r=opts.rng||seeded(opts.seed==null?Math.floor(Math.random()*4294967296):opts.seed);
    var pool=opts.themeId?[byId[opts.themeId]].filter(Boolean):ready;
@@ -961,7 +991,7 @@
    }
    return null;
   }
-  return {themes:ready,build:build,formatsFor:formatsFor,degree:degree,identifiable:identifiable,columnsIdentifiable:columnsIdentifiable,columnsConsistent:columnsConsistent,jointIdentifiable:jointIdentifiable,jointLeft:jointLeft,catLabel:catLabel,candidates:candidates,known:known,relation:relation,value:value,comp:comp,total:total,seeded:seeded,LABELS:LABELS,COMBOS:COMBOS};
+  return {themes:ready,build:build,formatsFor:formatsFor,degree:degree,inventory:inventory,seenIn:seenIn,identifiable:identifiable,columnsIdentifiable:columnsIdentifiable,columnsConsistent:columnsConsistent,jointIdentifiable:jointIdentifiable,jointLeft:jointLeft,catLabel:catLabel,candidates:candidates,known:known,relation:relation,value:value,comp:comp,total:total,seeded:seeded,LABELS:LABELS,COMBOS:COMBOS};
  }
  return {create:create,seeded:seeded,topic:topic};
 });

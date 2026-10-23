@@ -26,7 +26,6 @@ main{max-width:720px;margin:0 auto;padding:12px 12px calc(28px + env(safe-area-i
 .ticks{position:relative;height:14px;margin-left:40px;font-size:10px;color:var(--muted)}.ticks span{position:absolute;transform:translateX(-50%);white-space:nowrap}
 .legend{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:11px;margin:2px 0 6px}.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:3px;vertical-align:-1px}
 .stackBar{display:flex;flex:1;height:18px;gap:2px}.stackBar b{display:block;height:18px}.stackBar b:first-child{border-radius:4px 0 0 4px}.stackBar b:last-child{border-radius:0 4px 4px 0}
-.numbers summary{font-size:12px;color:var(--muted);cursor:pointer}
 h2{font-size:17px;line-height:1.45;margin:14px 0 8px;word-break:keep-all}.step{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--ink);border-radius:6px;padding:2px 6px;margin-right:6px;vertical-align:2px}
 .choices{display:grid;gap:7px}.choices button{min-height:48px;font-size:14px;line-height:1.45;border-width:2px;border-radius:12px;word-break:keep-all}
 .choices button.right{border-color:var(--good);background:#ebfbee;color:#1f5f2c}.choices button.chosenWrong{border-color:var(--bad);background:#fff4e6;color:#8a3a0c}.choices button:disabled:not(.right):not(.chosenWrong){opacity:.5}
@@ -45,6 +44,7 @@ h2{font-size:17px;line-height:1.45;margin:14px 0 8px;word-break:keep-all}.step{d
 .climateFig .bar{fill:#74a9cf}.climateFig .tline{fill:none;stroke:#c4441c;stroke-width:2}.climateFig .tdot{fill:#c4441c}.climateFig .grid{stroke:#e3e9ea}.climateFig .zero{stroke:#9aa8ad}
 .climateFig .pgrid{stroke:#b6d3e5;stroke-dasharray:2 3}.climateFig .axis{stroke:#667b85}.climateFig .ptick{fill:#356582}
 td.text{white-space:normal;text-align:left;line-height:1.55;word-break:keep-all;min-width:12em}
+.weakPanel summary{font-weight:700;cursor:pointer}.weakList{list-style:none;margin:0;padding:0}.weakList li{padding:7px 0;border-top:1px solid var(--line)}.weakList b{font-size:13px}.chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}.chip{font-size:11px;padding:2px 7px;border-radius:999px;background:var(--pale);color:var(--ink)}.chip.weak{background:#fdecea;color:var(--bad);font-weight:700}.chip.none{background:#f3f5f5;color:var(--muted)}
 .numbers summary{cursor:pointer;font-size:12px;color:var(--muted)}.numbers table{font-size:11px}
 .reviewBtn{flex:0 0 auto;min-height:36px;padding:4px 10px;font-size:12px;white-space:nowrap}.reviewBtn.on{background:var(--accent);color:#fff;border-color:var(--accent)}.reviewBtn.due{border-color:var(--accent);color:var(--accent)}
 .toggle{flex:0 0 auto!important;gap:4px!important;cursor:pointer}.toggle input{width:18px;height:18px;margin:0}
@@ -62,7 +62,7 @@ td.text{white-space:normal;text-align:left;line-height:1.55;word-break:keep-all;
 <div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 항목마다 적은 기간(대개 2015~2025년)의 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
 <script src="assets/entity-kb.js?v=20261023-14"></script>
 <script src="assets/exam-themes.js?v=20261023-14"></script>
-<script src="assets/exam-engine.js?v=20261023-15"></script>
+<script src="assets/exam-engine.js?v=20261023-16"></script>
 <script>
 (function(){
 'use strict';
@@ -73,7 +73,7 @@ function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_exam_v1')||'{
 var store=readStore();if(!store.stats||typeof store.stats!=='object')store.stats={};if(!Array.isArray(store.recent))store.recent=[];
 var FORMATS=[['all','전체 형식'],['rows','대상 식별'],['columns','항목 식별 (A~C)'],['joint','동시 식별'],['implicit','실전형 (지도)']];
 var state={theme:engine.themes.some(function(t){return t.id===store.theme})?store.theme:'all',format:FORMATS.some(function(f){return f[0]===store.format})?store.format:'all',nameMode:store.nameMode===true,targetKey:null,q:null,a1:null,a2:null,session:{s1:0,s2:0,n1:0,n2:0}};
-function save(){try{localStorage.setItem('wg_exam_v1',JSON.stringify({theme:state.theme,format:state.format,nameMode:state.nameMode,stats:store.stats,recent:store.recent,review:store.review}))}catch(e){}}
+function save(){try{localStorage.setItem('wg_exam_v1',JSON.stringify({theme:state.theme,format:state.format,nameMode:state.nameMode,stats:store.stats,recent:store.recent,review:store.review,seen:store.seen,tried:store.tried,types:store.types,count:store.count}))}catch(e){}}
 // The last questions shown are not repeated while others can be made (kept across visits).
 var RECENT=40;
 function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(c){if(c!=null&&c!==false)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
@@ -109,6 +109,38 @@ function missed2(q,pick){
  q.stage2.statements.forEach(function(st,i){if((said.indexOf(i)>=0)!==(right.indexOf(i)>=0))out=out.concat(statementItems(q,st))});
  return out;
 }
+// Practice follows the learner (2026-10-23). Each topic × format keeps its last 20 results, and the
+// draw weight grows with the cube of what is missed (one weak type among strong ones comes about
+// one question in seven); a floor keeps the strong ones coming back. Every third question is
+// built around a comparison, fact or 대상 not yet seen, so nothing waits on chance to appear.
+['seen','tried','types'].forEach(function(k){if(!store[k]||typeof store[k]!=='object'||Array.isArray(store[k]))store[k]={}});
+var INVENTORY=engine.inventory(),PRIOR={rows:.45,implicit:.2,columns:.35};
+function results(key){return store.types[key]||[]}
+function accuracy(key){var r=results(key),c=r.filter(Boolean).length;return (c+1)/(r.length+2)}
+function scopeThemes(){return state.theme==='all'?engine.themes:engine.themes.filter(function(t){return t.id===state.theme})}
+function weighted(){
+ var pairs=[],sum=0;
+ scopeThemes().forEach(function(t){
+  var fs=engine.formatsFor(t).filter(function(f){return state.format==='all'||f===state.format});
+  var pr=fs.map(function(f){return f==='joint'?.15:f==='columns'&&fs.indexOf('joint')>=0?.2:PRIOR[f]}),tot=pr.reduce(function(a,b){return a+b},0)||1;
+  fs.forEach(function(f,i){var need=.15+1-accuracy(t.id+'|'+f),w=pr[i]/tot*Math.max(need*need*need,.02);pairs.push({t:t.id,f:f,w:w});sum+=w});
+ });
+ for(var k=0;k<3&&pairs.length;k++){
+  var x=Math.random()*sum,p=pairs[pairs.length-1];for(var i=0;i<pairs.length;i++){x-=pairs[i].w;if(x<=0){p=pairs[i];break}}
+  var q=engine.build({themeId:p.t,format:p.f,avoid:store.recent});if(q)return q;
+ }
+ return null;
+}
+function unseen(){
+ var scope=scopeThemes().map(function(t){return t.id});
+ var open=INVENTORY.filter(function(x){return !store.seen[x.key]&&(store.tried[x.key]||0)<3&&x.themes.some(function(id){return scope.indexOf(id)>=0})});
+ if(!open.length)return null;
+ var x=open[Math.floor(Math.random()*open.length)],homes=x.themes.filter(function(id){return scope.indexOf(id)>=0});
+ store.tried[x.key]=(store.tried[x.key]||0)+1;
+ var q=engine.build(Object.assign({themeId:x.build.targetKey&&state.theme==='all'?null:homes[Math.floor(Math.random()*homes.length)],avoid:store.recent},x.build));
+ if(q&&engine.seenIn(q).indexOf(x.key)>=0)state.fresh=true;
+ return q;
+}
 function dueItems(){var now=Date.now();return Object.keys(store.review).map(function(k){return store.review[k]}).filter(function(x){return x.due<=now}).sort(function(a,b){return a.due-b.due})}
 function grade(ok){var x=state.reviewItem&&store.review[state.reviewItem.key];if(!x)return;
  if(ok){x.box++;if(x.box>=STEPS.length)delete store.review[x.key];else x.due=Date.now()+STEPS[x.box]}else{x.box=0;x.due=Date.now()+STEPS[0]}}
@@ -122,11 +154,23 @@ function next(){
    for(var k=0;k<3&&!state.q;k++)state.q=engine.build(Object.assign({avoid:store.recent},due[j].build));
    if(state.q)state.reviewItem=due[j];else delete store.review[due[j].key];
   }
-  save();state.a1=state.q&&(state.q.readingOnly||state.q.stage1.implicit)?-1:null;state.a2=null;render();window.scrollTo({top:0});return;
+  shown();return;
+ }
+ state.q=null;state.fresh=false;
+ if(!state.targetKey){
+  store.count=(store.count||0)+1;
+  if(store.count%3===0&&state.format==='all')state.q=unseen();
+  if(!state.q)state.q=weighted();
  }
  // A draw that finds no question (rare, with a format chosen) is retried with new seeds.
- for(var tries=0;tries<3;tries++){state.q=engine.build({themeId:state.targetKey||state.theme==='all'?null:state.theme,format:state.targetKey||state.format==='all'?null:state.format,targetKey:state.targetKey,avoid:store.recent});if(state.q)break}
- if(state.q&&state.q.signature){store.recent=store.recent.filter(function(x){return x!==state.q.signature}).concat([state.q.signature]).slice(-RECENT);save()}state.a1=state.q&&(state.q.readingOnly||state.q.stage1.implicit)?-1:null;state.a2=null;render();window.scrollTo({top:0});
+ for(var tries=0;tries<3&&!state.q;tries++){state.q=engine.build({themeId:state.targetKey||state.theme==='all'?null:state.theme,format:state.targetKey||state.format==='all'?null:state.format,targetKey:state.targetKey,avoid:store.recent});if(state.q)break}
+ shown();
+}
+function shown(){
+ var q=state.q;
+ if(q&&q.signature)store.recent=store.recent.filter(function(x){return x!==q.signature}).concat([q.signature]).slice(-RECENT);
+ if(q&&!q.readingOnly)engine.seenIn(q).forEach(function(k){store.seen[k]=1});
+ save();state.a1=q&&(q.readingOnly||q.stage1.implicit)?-1:null;state.a2=null;render();window.scrollTo({top:0});
 }
 // Climate graphs: precipitation bars (right scale, mm) and temperature line (left scale, ℃),
 // every graph on the same scale.
@@ -291,7 +335,9 @@ function render(){
  if(!q){main.append(el('section',{className:'card'},[el('p',{text:'이 주제·형식으로 문항을 만들지 못했어요. 다른 주제나 형식을 골라 주세요.'})]));return}
  var t=q.theme,card=el('section',{className:'card'});
  if(state.targetKey)card.append(el('p',{className:'small',text:'선택한 비교를 집중 연습하고 있어요. 주제를 바꾸면 전체 연습으로 돌아갑니다.'}));
- if(state.reviewItem)card.append(el('p',{className:'small',text:'복습 ('+(state.reviewItem.box+1)+'/'+STEPS.length+'단계): '+state.reviewItem.label+' · 남은 복습 '+n+'개'}));
+ // What a review is about is named only after answering; before, the name would give it away.
+ if(state.reviewItem)card.append(el('p',{className:'small',text:'복습 ('+(state.reviewItem.box+1)+'/'+STEPS.length+'단계)'+(state.a2!==null?': '+state.reviewItem.label:'')+' · 남은 복습 '+n+'개'}));
+ if(state.fresh)card.append(el('p',{className:'small muted',text:'아직 풀지 않은 비교·사실이 들어 있는 문항이에요.'}));
  // 실전형 asks the <보기> straight away, as on the exam paper; the identification is shown afterwards.
  var implicit=!!q.stage1.implicit&&!q.readingOnly,revealed=implicit?state.a2!==null:state.a1!==null;
  var kind=q.readingOnly?'':q.format==='columns'?'항목 식별 · ':q.format==='joint'?'동시 식별 · ':implicit?'실전형 · ':'대상 식별 · ';
@@ -336,14 +382,35 @@ function render(){
   var nb=el('button',{type:'button',className:'primary big',text:'다음 문항',onclick:next});card.append(nb);
  }
  main.append(card);
+ main.append(weakPanel());
  var focus=state.a2!==null?main.querySelector('.big'):state.a1!==null?main.querySelector('.combo button'):null;
  if(focus){focus.focus({preventScroll:true});focus.scrollIntoView({block:'nearest'})}
+}
+// 약점 현황: each topic's recent accuracy per format and how much of it is still unseen; the
+// draw weights follow the same numbers.
+function weakPanel(){
+ var NAMES={rows:'대상 식별',implicit:'실전형',columns:'항목 식별',joint:'동시 식별'};
+ var rows=engine.themes.map(function(t){
+  var items=INVENTORY.filter(function(x){return x.themes.indexOf(t.id)>=0}),left=items.filter(function(x){return !store.seen[x.key]}).length;
+  var chips=engine.formatsFor(t).map(function(f){
+   var r=results(t.id+'|'+f),a=r.length?r.filter(Boolean).length/r.length:null;
+   return el('span',{className:'chip'+(a!=null&&a<.5&&r.length>=3?' weak':a==null?' none':'')},[NAMES[f]+' '+(a==null?'안 품':Math.round(a*100)+'% ('+r.length+')')]);
+  });
+  return el('li',{},[el('b',{text:t.title}),el('div',{className:'chips'},chips.concat([el('span',{className:'chip none',text:'안 본 항목 '+left+'/'+items.length})]))]);
+ });
+ var d=el('details',{className:'card weakPanel',open:state.weakOpen?'':null},[el('summary',{text:'내 약점 현황'}),
+  el('p',{className:'small muted',text:'형식별 최근 20문항의 정답률(1·2단계 모두 맞힌 비율)이에요. 정답률이 낮거나 아직 안 푼 유형이 더 자주 나오고, 세 문항 중 한 문항은 아직 안 본 비교·사실로 만듭니다.'}),
+  el('ul',{className:'weakList'},rows)]);
+ // Kept open across questions once opened.
+ d.addEventListener('toggle',function(){state.weakOpen=d.open});return d;
 }
 function answer1(i){if(state.a1!==null||i<0||i>=state.q.stage1.options.length)return;state.a1=i;var ok=i===state.q.stage1.answer;state.session.n1++;if(ok)state.session.s1++;if(!ok)missed1(state.q,i).forEach(remember);record(state.q.theme.id,'s1',ok);render()}
 function answer2(i){if(state.a1===null||state.a2!==null||i<0||i>=state.q.stage2.options.length)return;state.a2=i;var ok=i===state.q.stage2.answer;state.session.n2++;if(ok)state.session.s2++;
  if(!ok)missed2(state.q,i).forEach(remember);
  // A review question is passed when both stages are right (or stage 1 was not asked).
- grade(ok&&(state.a1<0||state.a1===state.q.stage1.answer));record(state.q.theme.id,'s2',ok);render()}
+ var whole=ok&&(state.a1<0||state.a1===state.q.stage1.answer);grade(whole);
+ if(state.q.format){var key=state.q.theme.id+'|'+state.q.format;store.types[key]=results(key).concat([whole]).slice(-20)}
+ record(state.q.theme.id,'s2',ok);render()}
 // What the mode recalls, what it only shows as data, and why.
 function knowledge(){
  var kb=WGEntityKB,n=function(v){return Number(v).toLocaleString('ko-KR')};

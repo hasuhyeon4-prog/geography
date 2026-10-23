@@ -487,3 +487,27 @@ test('a review question holds the missed 대상 and asks the missed fact again',
     }
   }
 });
+
+test('the inventory lists what questions ask, and most of it can be built on demand', () => {
+  const inv = engine.inventory(), keys = new Set(inv.map(x => x.key));
+  assert.ok(inv.length > 500, 'inventory ' + inv.length);
+  // What shown questions cover is in the inventory (comparisons that only identify may be belowMargin).
+  let marked = 0, outside = 0;
+  for (const t of engine.themes) for (let seed = 1; seed <= 10; seed++) {
+    const q = engine.build({themeId: t.id, seed});
+    for (const k of engine.seenIn(q)) { marked++; if (!keys.has(k)) outside++; }
+  }
+  assert.ok(outside / marked < 0.1, 'outside the inventory ' + outside + '/' + marked);
+  // A sample of items is reached by a question built around it.
+  let hit = 0, tried = 0;
+  for (const x of inv.filter((_, i) => i % 9 === 0)) {
+    tried++;
+    let got = false;
+    for (const th of (x.build.targetKey ? [null] : x.themes)) for (let seed = 1; seed <= 2 && !got; seed++) {
+      const q = engine.build(Object.assign({themeId: th, seed}, x.build));
+      if (q && engine.seenIn(q).includes(x.key)) got = true;
+    }
+    if (got) hit++;
+  }
+  assert.ok(hit / tried > 0.85, 'reached ' + hit + '/' + tried);
+});
