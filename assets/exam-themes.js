@@ -180,7 +180,7 @@
    derived:[{rate:'us-computer',total:'us-total',per:100,noun:'컴퓨터·전자 제품 출하액'},{rate:'us-petchem',total:'us-total',per:100,noun:'석유·석탄 제품과 화학 제품 출하액'},
     {rate:'us-machTrans',total:'us-total',per:100,noun:'기계·운송 장비 출하액'},{rate:'us-metal',total:'us-total',per:100,noun:'1차 금속·금속 가공 제품 출하액'},
     {rate:'us-aero',total:'us-total',per:100,noun:'항공 우주 제품·부품 출하액'},{rate:'us-parts',total:'us-total',per:100,noun:'자동차 부품 출하액'}],
-   followups:{facts:['usBelt','usCoast'],focus:[]},
+   followups:{facts:['usBelt','usCoast','usCity'],focus:[]},
    note:'비중은 각 주의 제조업 총출하액 대비 업종 출하액이다(부가가치·주 총생산과 다른 지표). 업종 출하액은 총출하액 × 비중으로 구한다. 2027학년도 6월 문항의 2024년 생산액과 같은 지표로 보지 않는다.',
    prompt:'{range}는 {candidates} 중 하나이다. 표는 각 주의 제조업 출하액에서 업종이 차지하는 비중(%)과 총출하액이다.'
   },
@@ -203,7 +203,7 @@
   {
    id:'world-city-clues',status:'ready',title:'세계 도시의 기준점',lecture:'1권 P05',exams:['2027학년도 6월 11번','2027학년도 9월 16번'],
    kind:'clues',entityType:'site',map:true,
-   pool:['뉴욕','런던','파리','도쿄','시드니'],pick:[3,3],
+   pool:['뉴욕','토론토','런던','파리','도쿄','시드니'],pick:[3,3],
    followups:{facts:['cityCapital','cityUN','cityRegion'],focus:['cityCapital','cityUN','cityRegion']},
    note:'세계 도시의 계층과 순위는 조사 기관·기준 연도에 따라 다르다. 계층표가 주어지면 기억한 순위보다 표를 따른다.',
    prompt:'{range}는 {candidates} 중 하나이다. 표의 설명은 강의에서 각 도시의 기준점으로 정리한 것이다.'

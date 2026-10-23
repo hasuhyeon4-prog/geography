@@ -658,14 +658,15 @@ for (const r of MIN_REL.relations) {
   (r.tiers || []).forEach((tier, i) => r.tiers.slice(i + 1).flat().forEach(lo => tier.forEach(hi => relations.push(Object.assign(checkPair(r.indicator, hi, lo, true), {form: 'tiers', basis: r.basis})))));
 }
 // 미국 주별 제조업 (round two: data/us-state-manufacturing-series.json, Census ASM 2014~2016·
-// 2018~2021 and Economic Census 2017·2022). States are 대상 of their own type, valued by their
+// 2018~2021 and Economic Census 2017·2022; round three: AIES 2023·2024, checked but not shown). States are 대상 of their own type, valued by their
 // share of the state's manufacturing shipments (출하액, not value added). A column adding
 // several NAICS codes is filled only in years where every code is published; a code the Census
 // withholds (D) is missing, never 0. 336 운송 장비 is never added to its own parts (3361~3364).
 // 자동차·부품 uses 3363 alone: California's and Washington's 3361 is withheld in most years.
 // Domain 'usMfg': only the manufacturing theme recalls these.
 const USM = read('data/us-state-manufacturing-series.json'), USM_REL = read('data/exam-relations-us-manufacturing.json');
-const USM_YEAR = USM_REL.years[1], USM_SRC = 'U.S. Census Bureau 연간 제조업 조사(ASM)·경제 센서스(출하액)';
+const USM_YEAR = USM_REL.displayYear, USM_SRC = 'U.S. Census Bureau 경제 센서스(출하액)';
+const AIES = read('data/us-state-manufacturing-aies-2023-2024.json');
 const US_IND = {
   'us-computer': [['334'], '컴퓨터·전자 제품', '컴퓨터·전자 제품이 차지하는 비중이 높다'],
   'us-petchem': [['324', '325'], '석유·석탄 제품과 화학 제품', '석유·석탄 제품과 화학 제품이 차지하는 비중이 높다'],
@@ -674,10 +675,8 @@ const US_IND = {
   'us-aero': [['3364'], '항공 우주 제품·부품', '항공 우주 제품·부품이 차지하는 비중이 높다'],
   'us-parts': [['3363'], '자동차 부품', '자동차 부품이 차지하는 비중이 높다'],
 };
-// Washington's 3364 is withheld in 2014 and 2015, which leaves seven years (minYearsFor).
-const USM_MIN = USM_REL.minYearsFor;
 const usShares = {};
-for (const row of USM.rows) {
+for (const row of USM.rows.concat(AIES.rows)) {
   const n = USM.states[row.stateFips].name, s = ((usShares[n] = usShares[n] || {})[row.year] = usShares[n][row.year] || {});
   s[row.naics] = row.naics === '31-33' ? (row.shipmentsThousandUSD == null ? null : row.shipmentsThousandUSD / 1e5) : row.shareOfStateShipmentsPct;
 }
@@ -693,7 +692,7 @@ for (const [id, [codes, label, more]] of Object.entries(US_IND).concat([['us-tot
   const total = id === 'us-total';
   indicators[id] = {label: total ? label : label + ' 비중', unit: total ? '억 달러' : '%', more: total ? more : '제조업 출하액 중 ' + more,
     entityType: 'usState', year: USM_YEAR, source: USM_SRC, compare: {type: 'ratio', min: 1.3}, static: false,
-    window: [USM_REL.years[0], USM_REL.years[1], USM_MIN[id] || USM_REL.minYears], domain: 'usMfg', disabled: false, unstablePairs: []};
+    window: [USM_REL.years[0], USM_REL.years[1], USM_REL.minYears], domain: 'usMfg', disabled: false, unstablePairs: []};
   if (!total) indicators[id].decimals = 1;
   seriesOf[id] = {};
   for (const [n, byYear] of Object.entries(usShares)) {
@@ -713,6 +712,18 @@ for (const [set, s] of Object.entries(USM_REL.facts)) {
   US_FACT_SETS[set] = {title: s.title, multi: false, negationSafe: false, exclusive: true, falseFromOthers: true, template: s.template,
     options: Object.fromEntries(s.options.map(o => [o, o])), source: s.source};
   for (const [n, values] of Object.entries(s.values)) entities[n].facts[set] = {values: values.slice(), note: '', source: s.source};
+}
+// Lecture cities in each state (round three: data/concepts/us-city-states.json, the eight named
+// places matched to Census places). One state can hold several; 오하이오 holds none of them.
+const usCities = read('data/concepts/us-city-states.json');
+US_FACT_SETS.usCity = {title: '주에 있는 강의 속 도시', multi: true, negationSafe: false, exclusive: true, falseFromOthers: true, template: '{value}이/가 위치한 주이다',
+  options: {}, source: '강의 2권 P08 · ' + usCities.sets.state.source};
+for (const [city, [state]] of Object.entries(usCities.sets.state.values)) {
+  if (!entities[state] || entities[state].type !== 'usState') continue;
+  US_FACT_SETS.usCity.options[city] = city;
+  const f = entities[state].facts.usCity || (entities[state].facts.usCity = {values: [], note: '', source: '강의 2권 P08 / ' + usCities.entities[city].source.blockId});
+  f.values.push(city);
+  if (!f.source.includes(usCities.entities[city].source.blockId)) f.source += '·' + usCities.entities[city].source.blockId;
 }
 // L2-B0368 gives the 2018 totals as 중국, 미국, 인도 in that order, so 중국 > 인도 is the lecture's too.
 // The whitelist's 미국 pairs (총량 중국 > 미국 > 인도, 1인당·천연가스 미국 > 중국) wait for a theme where
@@ -962,7 +973,8 @@ for (const s of climateSites) {
 // Cities are place 대상 like the climate sites ('런던'·'파리' are both), with lecture clues and
 // three exclusive fact sets. Hierarchy ranks are never recalled: the lecture reads them from a table.
 const WC = read('data/exam-world-cities.json'), CITY_SETS = {};
-const cityPoint = n => read('data/concepts/cities.json').entities[n].place;
+const cityPlaces = Object.assign({}, read('data/concepts/cities.json').entities, {토론토: {place: read('data/toronto-clues-round3.json').place}});
+const cityPoint = n => cityPlaces[n].place;
 for (const [n, c] of Object.entries(WC.cities)) {
   const e = entities[n] || (entities[n] = {type: 'site', name: n, region: c.region, label: cityPoint(n), facts: {}, values: {}});
   if (e.type !== 'site') throw new Error('city name taken by a ' + e.type + ': ' + n);

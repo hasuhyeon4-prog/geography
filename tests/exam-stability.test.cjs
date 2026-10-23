@@ -62,11 +62,11 @@ const scaled = (ser, k) => Object.fromEntries(Object.entries(ser).map(([y, v]) =
 const minerals = data('data/mineral-production-shares.json').minerals, MIN_REL = data('data/exam-relations-minerals.json');
 const MIN_COL = {'min-copper': '구리', 'min-iron': '철광석'};
 // 미국 주별 제조업: shipment shares of the state total, a sum only where every code is published.
-const USM = data('data/us-state-manufacturing-series.json'), USM_REL = data('data/exam-relations-us-manufacturing.json');
+const USM = data('data/us-state-manufacturing-series.json'), USM_REL = data('data/exam-relations-us-manufacturing.json'), AIES = data('data/us-state-manufacturing-aies-2023-2024.json');
 const US_COL = {'us-computer': ['334'], 'us-petchem': ['324', '325'], 'us-machTrans': ['333', '336'], 'us-metal': ['331', '332'], 'us-aero': ['3364'], 'us-parts': ['3363'], 'us-total': ['31-33']};
 function usRaw(ind, name) {
   const fips = Object.keys(USM.states).find(f => USM.states[f].name === name), byYear = {};
-  for (const r of USM.rows) if (r.stateFips === fips && US_COL[ind].includes(r.naics)) (byYear[r.year] = byYear[r.year] || []).push(ind === 'us-total' ? (r.shipmentsThousandUSD == null ? null : r.shipmentsThousandUSD / 1e5) : r.shareOfStateShipmentsPct);
+  for (const r of USM.rows.concat(AIES.rows)) if (r.stateFips === fips && US_COL[ind].includes(r.naics)) (byYear[r.year] = byYear[r.year] || []).push(ind === 'us-total' ? (r.shipmentsThousandUSD == null ? null : r.shipmentsThousandUSD / 1e5) : r.shareOfStateShipmentsPct);
   return Object.fromEntries(Object.entries(byYear).filter(([, v]) => v.length === US_COL[ind].length && v.every(x => x != null)).map(([y, v]) => [y, v.reduce((a, b) => a + b, 0)]));
 }
 // Two-period urbanization (UN WUP 2025): a column in the window is read 2015~2025, an earlier one
@@ -204,7 +204,7 @@ test('recalled comparisons are whitelisted and hold in every year of the window'
       const [hi, lo] = s.truth ? [subject, object] : [object, subject];
       const {years, reversed} = yearly(ind, hi, lo);
       assert.deepEqual(reversed, [], `${ind} ${hi} > ${lo} reverses in ${reversed}`);
-      if (!STATIC(ind)) assert.ok(years.length >= (US_COL[ind] ? USM_REL.minYearsFor[ind] || USM_REL.minYears : MIN_YEARS), `${ind} ${hi}/${lo}: only ${years.length} years`);
+      if (!STATIC(ind)) assert.ok(years.length >= (US_COL[ind] ? USM_REL.minYears : MIN_YEARS), `${ind} ${hi}/${lo}: only ${years.length} years`);
       n++;
     }
   }
@@ -357,7 +357,7 @@ test('share × total uses one year and one source, and both numbers are in the t
         const v = n => raw(c.indicator, n)[c.indicator.includes('-') ? '2023' : countries.meta.baseYear];
         amount = n => v(n);
       } else {
-        const v = (n, ind) => raw(ind, n)[PERIOD.test(ind) ? ind.match(PERIOD)[3] : US_COL[ind] ? USM_REL.years[1] : countries.countries[n] && !ind.includes('-') ? countries.meta.baseYear : '2023'];
+        const v = (n, ind) => raw(ind, n)[PERIOD.test(ind) ? ind.match(PERIOD)[3] : US_COL[ind] ? USM_REL.displayYear : countries.countries[n] && !ind.includes('-') ? countries.meta.baseYear : '2023'];
         amount = n => v(n, c.total) * v(n, c.rate) / c.per;
         assert.ok(q.shown.includes(c.rate) && q.shown.includes(c.total), 'derived amounts need both columns shown');
       }
@@ -370,7 +370,7 @@ test('the table shows the data files’ base-year values', () => {
   for (const q of questions()) {
     if (q.theme.kind !== 'indicators') continue;
     q.shown.forEach((ind, j) => q.entities.forEach((n, i) => {
-      const year = PERIOD.test(ind) ? ind.match(PERIOD)[3] : CTFR.test(ind) ? ind.match(CTFR)[1] : MIN_COL[ind] ? '2024' : US_COL[ind] ? USM_REL.years[1] : ind.endsWith('-area') ? '2024' : q.theme.entityType === 'country' ? countries.meta.baseYear : '2023';
+      const year = PERIOD.test(ind) ? ind.match(PERIOD)[3] : CTFR.test(ind) ? ind.match(CTFR)[1] : MIN_COL[ind] ? '2024' : US_COL[ind] ? USM_REL.displayYear : ind.endsWith('-area') ? '2024' : q.theme.entityType === 'country' ? countries.meta.baseYear : '2023';
       const v = raw(ind, n)[year];
       const shown = num(q.display.rows[i].cells[j]);
       assert.ok(Math.abs(shown - v) <= Math.max(0.051, Math.abs(v) * 0.006), `${n} ${ind}: shown ${shown}, data ${v}`);

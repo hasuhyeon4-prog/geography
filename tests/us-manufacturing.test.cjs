@@ -8,26 +8,26 @@ const G = require(path.join(root, 'assets/location-grading.js'));
 const USM = read('data/us-state-manufacturing-series.json'), REL = read('data/exam-relations-us-manufacturing.json');
 const theme = T.byId['us-manufacturing'];
 
-test('every lecture pair holds 2014~2022 except the 2013 total order 텍사스 > 캘리포니아, which flips in 2020', () => {
+test('every lecture pair holds 2014~2024 except the 2013 total order 텍사스 > 캘리포니아, which flips in 2020', () => {
   const rows = K.relations.filter(r => r.indicator.startsWith('us-'));
   assert.equal(rows.length, REL.relations.reduce((n, r) => n + r.pairs.length, 0));
   for (const r of rows) {
     if (r.indicator === 'us-total' && r.hi === '텍사스' && r.lo === '캘리포니아') { assert.equal(r.status, 'reversed'); assert.match(r.reason, /2020년/); continue; }
     assert.equal(r.status, 'active', JSON.stringify(r));
-    assert.ok(r.n >= (REL.minYearsFor[r.indicator] || REL.minYears), r.indicator + ' ' + r.hi + ' ' + r.lo);
+    assert.ok(r.n >= REL.minYears, r.indicator + ' ' + r.hi + ' ' + r.lo);
   }
   // No whitelisted pair joins states that never share an exam set.
   for (const r of REL.relations) for (const p of r.pairs) assert.ok(!(p.includes('오하이오') && (p.includes('미시간') || p.includes('워싱턴주'))), p.join('/'));
 });
 
 test('withheld (D) cells stay missing, and sums use only fully published years', () => {
-  // Washington's 3364 is withheld in 2014·2015, so 워싱턴주 > 미시간 rests on 2016~2022.
+  // Washington's 3364 is withheld in 2014·2015 (also in the 2016 release); AIES 2023·2024 make nine years.
   const aero = K.relations.find(r => r.indicator === 'us-aero' && r.lo === '미시간');
-  assert.deepEqual(aero.years, ['2016', '2022']);
-  assert.equal(aero.n, 7);
+  assert.deepEqual(aero.years, ['2016', '2024']);
+  assert.equal(aero.n, 9);
   // 324+325 for 워싱턴주 is missing in 2014 (325 withheld), not counted as 324 alone.
   const pc = K.relations.find(r => r.indicator === 'us-petchem' && r.lo === '워싱턴주');
-  assert.deepEqual(pc.years, ['2015', '2022']);
+  assert.deepEqual(pc.years, ['2015', '2024']);
   const withheld = USM.rows.filter(r => r.shareOfStateShipmentsPct == null);
   assert.ok(withheld.length > 0 && withheld.every(r => r.rawShipments === 'D' || r.shipmentsFlag === 'D'));
   // Table values are the 2022 Economic Census rows, rounded to one decimal.
@@ -60,7 +60,7 @@ test('questions use only usMfg knowledge; facts never claim 워싱턴주 for a b
     for (const s of q.stage2.statements) {
       if (s.check.ind) assert.equal(K.indicators[s.check.ind].domain, 'usMfg', s.text);
       if (s.kind === 'fact') {
-        assert.ok(['usBelt', 'usCoast'].includes(s.check.set), s.text);
+        assert.ok(['usBelt', 'usCoast', 'usCity'].includes(s.check.set), s.text);
         if (s.check.set === 'usBelt') assert.notEqual(s.check.entity, '워싱턴주', s.text);
         const f = K.entities[s.check.entity].facts[s.check.set];
         assert.equal(f.values.includes(s.check.value), s.truth, s.text);

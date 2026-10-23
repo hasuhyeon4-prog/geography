@@ -13,6 +13,14 @@ test('clues are the lecture cells, and capital status matches the round-two list
     for (const x of fromTable) assert.deepEqual([x.text], cells[n], n);
     assert.ok(!c.clues.some(x => x.text.includes(n)), n + ' named in its own clue');
     assert.equal(K.entities[n].type, 'site');
+    if (n === '토론토') {
+      // Round three: the lecture's own sentence (L1-B1673) with the name taken out; no capital claim.
+      const t = read('data/toronto-clues-round3.json');
+      assert.deepEqual(K.entities[n].label, t.place);
+      assert.equal(t.verbatim, '토론토는 ' + c.clues[0].text);
+      assert.ok(!(n in WC.facts.cityCapital.values) && !(n in WC.facts.cityRegion.values));
+      continue;
+    }
     assert.deepEqual(K.entities[n].label, cards.entities[n].place, n);
     assert.equal(WC.facts.cityCapital.values[n] === 'capital', r2.capitalStatus[n], n);
   }
@@ -32,7 +40,7 @@ test('city <보기> are lecture facts; false ones use another city of the questi
       assert.ok(['cityCapital', 'cityUN', 'cityRegion'].includes(s.check.set), s.text);
       if (s.kind === 'fact') {
         assert.equal(K.entities[s.check.entity].facts[s.check.set].values.includes(s.check.value), s.truth, s.text);
-        if (!s.truth) assert.ok(q.entities.some(n => n !== s.check.entity && K.entities[n].facts[s.check.set].values.includes(s.check.value)), s.text);
+        if (!s.truth) assert.ok(q.entities.some(n => n !== s.check.entity && ((K.entities[n].facts[s.check.set] || {}).values || []).includes(s.check.value)), s.text);
       }
     }
     assert.ok(q.stage2.statements.some(s => !s.truth));
