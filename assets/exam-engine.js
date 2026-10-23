@@ -374,7 +374,7 @@
 
   // What a clue sentence already tells about its country, so no <보기> asks it again: '수도 다카르'
   // settles 수도와 최대 도시, '남부 아프리카' the hemisphere, '내륙국' the coast.
-  var CLUE_STATES={capitalCity:/수도/,exportType:/수출|상업적 농업/,landlocked:/내륙국/,seas:/연안|접하|바다/,equator:/적도/,meridian:/본초 자오선/,
+  var CLUE_STATES={capitalCity:/수도/,cityCapital:/수도/,cityUN:/UN|국제 연합/,exportType:/수출|상업적 농업/,landlocked:/내륙국/,seas:/연안|접하|바다/,equator:/적도/,meridian:/본초 자오선/,
    hemisphere:/남반구|북반구|회귀선|남부 아프리카|적도/};
   // The religion fact is stated only when the clue names the country's own 1위 religion: a past
   // Buddhist site (바미얀) does not settle Afghanistan's religion, and stays a fair lure.
@@ -405,7 +405,8 @@
      if(!m||!m.exclusive)return;
      f.values.forEach(function(v){var p=predicate(set,v);if(p)add({kind:'fact',key:set+'|'+n,text:S(n)+' '+p+'.',truth:true,explain:factExplain(set,n),check:{set:set,entity:n,value:v}})});
      if(m&&m.exclusive){
-      var opts=Object.keys(m.options).filter(function(o){return f.values.indexOf(o)<0&&predicate(set,o)&&plausible(set,n,o)});
+      // A value another 대상 here holds is plausible by construction (states and cities have no region).
+      var opts=Object.keys(m.options).filter(function(o){return f.values.indexOf(o)<0&&predicate(set,o)&&(plausible(set,n,o)||m.falseFromOthers)});
       var fromOthers=[];chosen.forEach(function(o){var g=o!==n&&entity(o).facts[set];if(g)g.values.forEach(function(v){if(opts.indexOf(v)>=0)fromOthers.push(v)})});
       // A two-valued set (내륙국, OPEC) lies only with a value another 대상 here holds, so its false
       // claims do not outnumber the true ones.

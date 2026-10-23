@@ -958,6 +958,21 @@ for (const s of climateSites) {
       station: s.station.name, sourceId: s.sourceId}};
 }
 
+// --- 세계 도시 기준점 (round two: data/exam-world-cities.json, 강의 1권 P05 L1-B1706) ---
+// Cities are place 대상 like the climate sites ('런던'·'파리' are both), with lecture clues and
+// three exclusive fact sets. Hierarchy ranks are never recalled: the lecture reads them from a table.
+const WC = read('data/exam-world-cities.json'), CITY_SETS = {};
+const cityPoint = n => read('data/concepts/cities.json').entities[n].place;
+for (const [n, c] of Object.entries(WC.cities)) {
+  const e = entities[n] || (entities[n] = {type: 'site', name: n, region: c.region, label: cityPoint(n), facts: {}, values: {}});
+  if (e.type !== 'site') throw new Error('city name taken by a ' + e.type + ': ' + n);
+  e.clues = c.clues.map(k => ({text: k.text, shown: k.text, keys: [k.text], source: k.source}));
+}
+for (const [set, s] of Object.entries(WC.facts)) {
+  CITY_SETS[set] = {title: s.title, multi: false, negationSafe: false, exclusive: true, falseFromOthers: true, template: s.template || '{value}', options: s.options, source: s.source};
+  for (const [n, v] of Object.entries(s.values)) entities[n].facts[set] = {values: [v], note: '', source: s.source};
+}
+
 const out = {
   generated: 'scripts/build-entity-kb.cjs',
   sources: {countries: stats.meta, economy: economy.meta, groups: groupSeries.meta, extraFacts: extra.about, rankingsCheckedAt: R.checkedAt || null},
@@ -965,7 +980,7 @@ const out = {
   factSets: Object.assign(Object.fromEntries(FACT_SETS.filter(id => C.byId[id]).map(id => [id, {
     title: C.byId[id].title, multi: !!C.byId[id].multi, negationSafe: NEGATION_SAFE[id] === 'all', exclusive: EXCLUSIVE.includes(id),
     options: Object.fromEntries(C.optionsFor(C.byId[id]).map(o => [o.id, o.label])),
-  }])), agriFactSets, OPEC_SETS, US_FACT_SETS),
+  }])), agriFactSets, OPEC_SETS, US_FACT_SETS, CITY_SETS),
   extraFacts: Object.fromEntries(Object.entries(extra.facts).map(([k, f]) => [k, {label: f.label, complete: f.complete, source: f.source}])),
   indicators, entities, compositions, relations, signs, orders, categoryFacts, concepts, outOfScope, cluesDropped: clueDropped,
   climate: {period: climate.normalPeriod, source: '관측소 월평년값(WMO 제출 자료 우선, JMA·ECCC 보충)', margin: CLIMATE_MARGIN, types: CLIMATE_LABEL, verdicts: climateTypes,

@@ -277,8 +277,10 @@ test('<보기> stay on the theme and avoid free distractors', () => {
           if (f.facts) assert.ok(f.facts.includes(set), t.id + ' uses ' + set + ': ' + s.text);
         }
         if (c.ns) assert.ok(K.entities[c.entity].eqDist <= 25, 'hemisphere far from the equator: ' + c.entity);
-        // A false claim names an option some country of the same region really has.
-        if (s.kind === 'fact' && !s.truth && c.set) assert.ok(holders[c.set + '|' + K.entities[c.entity].region + '|' + c.value], 'implausible: ' + c.entity + ' ' + s.text);
+        // A false claim names an option some country of the same region really has, or (a
+        // falseFromOthers set) one another 대상 of the question holds.
+        const heldHere = c.set && K.factSets[c.set] && K.factSets[c.set].falseFromOthers && q.entities.some(n => n !== c.entity && ((K.entities[n].facts[c.set] || {}).values || []).includes(c.value));
+        if (s.kind === 'fact' && !s.truth && c.set) assert.ok(heldHere || holders[c.set + '|' + K.entities[c.entity].region + '|' + c.value], 'implausible: ' + c.entity + ' ' + s.text);
         if (s.kind === 'both' && !s.truth) assert.ok(holders[c.set + '|' + K.entities[c.b].region + '|' + c.value], 'implausible: ' + c.b + ' ' + s.text);
         assert.ok(!(s.kind === 'data' && c.indicator), 'a <보기> must not just compare two numbers the table shows: ' + s.text);
       }

@@ -255,7 +255,9 @@ test('identification rests only on whitelisted knowledge that holds in every yea
       const marked = q.stage1.candidates || q.entities;
       q.entities.forEach((n, i) => {
         const c = K.entities[n].clues[+q.shown[i].split('#')[1]];
-        assert.ok(clueData.countries[n].some(x => x.eligibleIdentification && x.text.includes(c.text)), n + ': ' + c.text);
+        // City clues are the lecture's reference-point cells (data/exam-world-cities.json).
+        if (t.entityType === 'site') assert.ok(data('data/exam-world-cities.json').cities[n].clues.some(x => x.text === c.text), n + ': ' + c.text);
+        else assert.ok(clueData.countries[n].some(x => x.eligibleIdentification && x.text.includes(c.text)), n + ': ' + c.text);
         assert.ok(c.text.endsWith(q.display.rows[i].cells[0].replace(/^이 나라의 /, '')), n + ' shown text');
         assert.ok(!q.display.rows[i].cells[0].includes(n), n + ' named in its own clue');
         for (const o of marked) if (o !== n) for (const d of K.entities[o].clues || []) for (const k of c.keys) assert.ok(!d.text.includes(k), `${n} clue key ${k} also in ${o}`);
@@ -448,14 +450,14 @@ const climateClaims = data('data/climate-type-claims.json').claims;
 const station = Object.fromEntries(climateData.sites.map(x => [x.name, x]));
 // Added stations are found through the source file the knowledge base records for them.
 for (const x of climateExt.sites) {
-  const e = Object.values(K.entities).find(v => v.type === 'site' && v.climate.sourceId === 'ext:' + x.sourceFile);
+  const e = Object.values(K.entities).find(v => v.type === 'site' && v.climate && v.climate.sourceId === 'ext:' + x.sourceFile);
   if (e) station[e.name] = x;
 }
 // Round-two JMA stations: the monthly values from the file; the lecture type and the latitude are
 // the builder's documented choices (1권 P02, same WMO station or city point).
 for (const [n, x] of Object.entries(data('data/climate-normals-round2.json').stations)) {
   const e = K.entities[n];
-  if (!e || e.type !== 'site' || e.climate.sourceId !== 'jma-' + x.wmoId) continue;
+  if (!e || e.type !== 'site' || !e.climate || e.climate.sourceId !== 'jma-' + x.wmoId) continue;
   station[n] = {temperatureC: x.monthlyMeanTemperatureC, precipitationMm: x.monthlyPrecipitationMm, lectureClimate: e.climate.lecture, station: {latitude: e.climate.lat, elevationM: e.climate.elevation}};
 }
 function letters(T, P, lat) {
@@ -647,7 +649,7 @@ test('climate additions: complete stations only, under their own names; 고산 �
   assert.equal(K.climate.verdicts.filter(v => v.entity === '이키토스').length, 1);
   for (const n of ['보고타', '아디스아바바']) assert.equal(K.entities[n].climate.type, 'h', n);
   // No other graph could be read as 고산 기후.
-  for (const [n, e] of Object.entries(K.entities)) if (e.type === 'site' && e.climate.lecture !== 'h') assert.equal(highlandOf(n), 'no', n);
+  for (const [n, e] of Object.entries(K.entities)) if (e.type === 'site' && e.climate && e.climate.lecture !== 'h') assert.equal(highlandOf(n), 'no', n);
 });
 
 test('period tables: cells are the WUP and WPP values of their years, and change <보기> recompute from them', () => {

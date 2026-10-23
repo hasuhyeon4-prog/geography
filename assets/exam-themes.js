@@ -128,7 +128,8 @@
    // plus 싱가포르(창이) from data/climate-normals-extension.json and 이키토스·다르에스살람 from
    // data/climate-normals-round2.json).
    pool:['양곤','발릭파판','다윈','배로(우트키아빅)','퍼스','오클랜드','파리','케이프타운','푸저우','보고타','런던','마르세유','마나우스','딕슨','치타','몬트리올','상파울루','라바트','쿤밍','크라이스트처치','샌프란시스코','선양','덴버','로차','더블린','메시나','브리즈번','창춘','디트로이트','블라디보스토크','로마','보스토크(남극)','리마','브라질리아','아디스아바바','시안','모스크바','로스앤젤레스','싱가포르(창이)','이키토스','다르에스살람'],
-   pick:[3,4],
+   // City places share the site type; their fact sets belong to the world-city theme only.
+   pick:[3,4],followups:{facts:[],focus:[]},
    note:'1991~2020년 관측소 평년값이다. 연교차 = 최난월 평균 기온 − 최한월 평균 기온. 남반구는 계절이 반대이다. 고산 기후는 저위도인데도 연중 서늘하고 연교차가 작다.',
    prompt:'{range}는 {candidates} 중 하나이다. 그래프는 월평균 기온(선)과 월 강수량(막대)이다.'
   },
@@ -196,6 +197,16 @@
    followups:{facts:['religion','christianity','islam','buddhism','bloc','apec','euro','latinLanguage','capitalCity','exportType','hemisphere','equator','meridian','landlocked'],
     focus:['religion','christianity','islam','buddhism','bloc','apec','euro','latinLanguage','capitalCity','exportType']},
    prompt:'{range}는 {candidates} 중 하나이다. 표의 문장은 강의에서 각 나라를 설명한 것이다.'
+  },
+  // 세계 도시 (data/exam-world-cities.json): the lecture's reference points per city, found on the
+  // map. Ranks and tiers are left to supplied tables, as the lecture asks.
+  {
+   id:'world-city-clues',status:'ready',title:'세계 도시의 기준점',lecture:'1권 P05',exams:['2027학년도 6월 11번','2027학년도 9월 16번'],
+   kind:'clues',entityType:'site',map:true,
+   pool:['뉴욕','런던','파리','도쿄','시드니'],pick:[3,3],
+   followups:{facts:['cityCapital','cityUN','cityRegion'],focus:['cityCapital','cityUN','cityRegion']},
+   note:'세계 도시의 계층과 순위는 조사 기관·기준 연도에 따라 다르다. 계층표가 주어지면 기억한 순위보다 표를 따른다.',
+   prompt:'{range}는 {candidates} 중 하나이다. 표의 설명은 강의에서 각 도시의 기준점으로 정리한 것이다.'
   },
   // 농목업 (data/agriculture.json, FAOSTAT). `domains` lets these themes recall the agriculture
   // relations and keeps them out of the others; `concepts` adds the concept-card statements.
