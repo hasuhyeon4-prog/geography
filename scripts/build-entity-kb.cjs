@@ -28,6 +28,14 @@ const stats = read('data/country-indicators.json');
 const economy = read('data/economy-indicators.json');
 const groupSeries = read('data/group-series.json');
 const extra = read('data/entity-facts.json');
+const LANDLOCKED = read('data/landlocked-countries.json');
+const OPEC_YEARS = Object.values(read('data/opec-membership-by-year.json').years).map(y => y.members);
+const OPEC_STABLE = {member: OPEC_YEARS[0].filter(n => OPEC_YEARS.every(m => m.includes(n)))};
+// A non-member is told so only within the regions that hold a stable member; elsewhere it says nothing.
+const OPEC_REGIONS = new Set(OPEC_STABLE.member.map(n => C.regionOf[n]).filter(Boolean));
+OPEC_STABLE.never = Object.keys(LANDLOCKED.appValues).filter(n => OPEC_YEARS.every(m => !m.includes(n)) && OPEC_REGIONS.has(C.regionOf[n]));
+const OPEC_SETS = {landlocked: {title: '바다와 접하지 않은 내륙국', multi: false, negationSafe: false, exclusive: true, falseFromOthers: true, options: {yes: '내륙국', no: '해안국'}},
+  opec: {title: 'OPEC 회원국(2015~2025년 매년 연말)', multi: false, negationSafe: false, exclusive: true, falseFromOthers: true, options: {member: '회원국', no: '비회원국'}}};
 const electricity = read('data/electricity-mix.json');
 const religion = read('data/religion-composition.json');
 // The same Pew release unrounded (R5). Religion orders must also hold on these rows.
@@ -168,11 +176,19 @@ for (const name of Object.keys(shapes.byName)) {
     else if (e.status === 'other' && NEGATION_SAFE[id] === 'all' && e.values.length) facts[id] = {values: e.values.slice(), note: e.note || ''};
   }
   for (const [key, f] of Object.entries(extra.facts)) {
+    if (OPEC_SETS[key]) continue;  // replaced by the complete lists above
     // 'suppliedData' facts (OPEC by one edition's list, a 기출 table's largest group) are practised
     // with their data shown, never recalled.
     if (f.practice === 'suppliedData') continue;
     if (f.values[name]) facts[key] = {values: f.values[name].slice(), note: '', source: f.source};
   }
+  // 내륙국 (data/landlocked-countries.json): a complete list for UN members, Caspian coasts not
+  // counted as sea, so a coastal country can be told it is not landlocked. A name outside the
+  // list stays unknown. OPEC: only countries in, or out of, every year-end list 2015~2025.
+  const ll = LANDLOCKED.appValues[name];
+  if (ll) facts.landlocked = {values: [ll.isLandlocked ? 'yes' : 'no'], note: '', source: 'UN LLDC·지리 자료(2026-10 확인)'};
+  if (OPEC_STABLE.member.includes(name)) facts.opec = {values: ['member'], note: '', source: 'EI·OPEC 연말 회원국 목록 2015~2025 매년'};
+  else if (OPEC_STABLE.never.includes(name)) facts.opec = {values: ['no'], note: '', source: 'EI·OPEC 연말 회원국 목록 2015~2025 매년'};
   const s = stats.countries[name];
   entities[name] = {
     type: 'country', name, iso3: s ? s.iso3 : shapes.byName[name].code,
@@ -719,6 +735,16 @@ for (const f of REL.categoryFacts || []) {
   } else g.status = 'active';
   (categoryFacts[f.composition] = categoryFacts[f.composition] || []).push(g);
 }
+// Lecture statements about each religion (data/religion-type-claims.json, round two): true for the
+// religions listed, false only for those the lecture contrasts. Claims that are only ever true or
+// only ever false would be tells and stay out.
+const RELIGION_ID = Object.fromEntries(compositions.religion.categories.map(([id, label]) => [label, id]));
+for (const c of read('data/religion-type-claims.json').claims) {
+  if (!c.trueFor.length || !c.falseFor.length) continue;
+  categoryFacts.religion.push({composition: 'religion', id: c.id, kind: 'claim', claim: c.claim, status: 'active', label: c.claim.replace(/\.$/, ''),
+    trueFor: c.trueFor.map(n => RELIGION_ID[n]), falseFor: c.falseFor.map(n => RELIGION_ID[n]),
+    basis: '강의 ' + c.source.volume + '권 ' + c.source.section + ' ' + c.source.blockId + ' (' + c.source.column + ')'});
+}
 
 // --- climate graphs: lecture climate types checked against the station normals ---
 // Lecture 1권 P02 thresholds: A 최한월 18℃ 이상, B 건조 한계 미만, C 최한월 −3~18℃·최난월 10℃ 이상,
@@ -835,10 +861,15 @@ const out = {
   factSets: Object.assign(Object.fromEntries(FACT_SETS.filter(id => C.byId[id]).map(id => [id, {
     title: C.byId[id].title, multi: !!C.byId[id].multi, negationSafe: NEGATION_SAFE[id] === 'all', exclusive: EXCLUSIVE.includes(id),
     options: Object.fromEntries(C.optionsFor(C.byId[id]).map(o => [o.id, o.label])),
-  }])), agriFactSets),
+  }])), agriFactSets, OPEC_SETS),
   extraFacts: Object.fromEntries(Object.entries(extra.facts).map(([k, f]) => [k, {label: f.label, complete: f.complete, source: f.source}])),
   indicators, entities, compositions, relations, signs, orders, categoryFacts, concepts, outOfScope, cluesDropped: clueDropped,
-  climate: {period: climate.normalPeriod, source: '관측소 월평년값(WMO 제출 자료 우선, JMA·ECCC 보충)', margin: CLIMATE_MARGIN, types: CLIMATE_LABEL, verdicts: climateTypes},
+  climate: {period: climate.normalPeriod, source: '관측소 월평년값(WMO 제출 자료 우선, JMA·ECCC 보충)', margin: CLIMATE_MARGIN, types: CLIMATE_LABEL, verdicts: climateTypes,
+    // Lecture statements about each climate type (data/climate-type-claims.json, round two). Only
+    // those with types they are false for: a statement true wherever it appears would be a tell.
+    claims: read('data/climate-type-claims.json').claims.filter(c => c.falseFor.length).map(c => ({id: c.id, claim: c.claim,
+      trueFor: c.trueFor.map(t => t.toLowerCase()), falseFor: c.falseFor.map(t => t.toLowerCase()),
+      source: '강의 ' + c.source.volume + '권 ' + c.source.section + ' ' + c.source.blockId + (c.source.column ? ' (' + c.source.column.split(';')[0] + ')' : '')}))},
 };
 // Verified is not the same as practicable: count how often each active relation reaches a
 // generated question (identification basis or <보기>) in a fixed sample of seeds.

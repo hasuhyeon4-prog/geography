@@ -88,9 +88,6 @@
  ],
  "categoryFacts": [
   {"composition": "religion","id": "world","kind": "order","label": "세계 신자 수","more": "세계 신자 수가 많다","order": ["christianity","islam","hinduism","buddhism"],"basis": "강의 1권 P04 세계 신자 규모(세 보편 종교는 크리스트교>이슬람교>불교, 이슬람교>힌두교>불교, 기출 비교에서 크리스트교·이슬람교·힌두교·불교 순) · 2027학년도 9월 7번"},
-  {"composition": "religion","id": "founded","kind": "order","label": "발생 시기","more": "먼저 발생하였다","order": ["buddhism","christianity","islam"],"basis": "강의 1권 P04 종교의 발생(불교 기원전 6~5세기 인도 북부, 크리스트교 1세기 팔레스타인 일대, 이슬람교 7세기 아라비아반도). 힌두교는 단일한 창시 연도로 설명하지 않으므로 비교하지 않음"},
-  {"composition": "religion","id": "origin","kind": "value","label": "기원지","phrase": "{value}에서 발생하였다","values": {"christianity": "서남아시아","islam": "서남아시아","judaism": "서남아시아","buddhism": "남부 아시아","hinduism": "남부 아시아"},"basis": "강의 1권 P04 종교별 기원·분포 표"},
-  {"composition": "religion","id": "universal","kind": "value","label": "분류","phrase": "{value}이다","values": {"christianity": "보편 종교","islam": "보편 종교","buddhism": "보편 종교","hinduism": "민족 종교","judaism": "민족 종교"},"basis": "강의 1권 P04 종교별 분류(보편·민족)"},
-  {"composition": "religion","id": "god","kind": "value","label": "신관","phrase": "{value}이다","values": {"christianity": "유일신교","islam": "유일신교","judaism": "유일신교","hinduism": "다신교"},"basis": "강의 1권 P04 크리스트교·이슬람교는 유일신교, 유대교는 민족·유일신, 힌두교는 다신교적 성격. 불교는 정하지 않음"}
+  {"composition": "religion","id": "founded","kind": "order","label": "발생 시기","more": "먼저 발생하였다","order": ["buddhism","christianity","islam"],"basis": "강의 1권 P04 종교의 발생(불교 기원전 6~5세기 인도 북부, 크리스트교 1세기 팔레스타인 일대, 이슬람교 7세기 아라비아반도). 힌두교는 단일한 창시 연도로 설명하지 않으므로 비교하지 않음"}
  ]
 }

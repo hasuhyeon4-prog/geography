@@ -47,8 +47,8 @@
   minerals:function(o){return o+'의 대표 산지이다'},
   beverage:function(o){return o+'의 주요 생산국이다'},
   seas:function(o){return o+'에 접해 있다'},
-  landlocked:function(){return '바다와 접하지 않은 내륙국이다'},
-  opec:function(){return 'OPEC 회원국이다'}
+  landlocked:function(o,id){return id==='yes'?'바다와 접하지 않은 내륙국이다':null},
+  opec:function(o,id){return id==='member'?'OPEC 회원국이다':null}
  };
 
  function create(kb,themeApi){
@@ -343,6 +343,13 @@
     var group=Object.keys(CLIMATE.types).filter(function(t){return t!=='h'&&t!==c.type&&t[0]===c.type[0]&&!climateFits(c,t)});
     var w=others.length?pick(others,r):group.length?pick(group,r):null;
     if(w)add({kind:'climate',key:'type|'+n,text:S(n)+' '+typeLabel(w)+'가 나타난다.',truth:false,explain:climateExplain(n),check:{type:w,entity:n}});
+    // A lecture statement about the site's verified type (vegetation, soil, life, cause), true when
+    // the type is one it describes and false only for the types the lecture contrasts it with.
+    (CLIMATE.claims||[]).forEach(function(k){
+     var truth=k.trueFor.indexOf(c.type)>=0;if(!truth&&k.falseFor.indexOf(c.type)<0)return;
+     add({kind:'climateClaim',key:'type|'+n,text:S(n)+' '+k.claim,truth:truth,
+      explain:n+' — 강의 기후형 '+typeLabel(c.type)+'. 이 설명은 '+k.trueFor.map(function(t){return typeLabel(t)}).join('·')+'에 해당한다 · '+k.source,check:{claim:k.id,entity:n,type:c.type}});
+    });
    });
    return out;
   }
@@ -398,7 +405,9 @@
      if(m&&m.exclusive){
       var opts=Object.keys(m.options).filter(function(o){return f.values.indexOf(o)<0&&predicate(set,o)&&plausible(set,n,o)});
       var fromOthers=[];chosen.forEach(function(o){var g=o!==n&&entity(o).facts[set];if(g)g.values.forEach(function(v){if(opts.indexOf(v)>=0)fromOthers.push(v)})});
-      var o=fromOthers.length?pick(fromOthers,r):opts.length?pick(opts,r):null;
+      // A two-valued set (내륙국, OPEC) lies only with a value another 대상 here holds, so its false
+      // claims do not outnumber the true ones.
+      var o=fromOthers.length?pick(fromOthers,r):opts.length&&!m.falseFromOthers?pick(opts,r):null;
       if(o)add({kind:'fact',key:set+'|'+n,text:S(n)+' '+predicate(set,o)+'.',truth:false,explain:factExplain(set,n),check:{set:set,entity:n,value:o}});
      }
     });
@@ -505,7 +514,10 @@
       var truth=r()<.5,s=truth?p:[p[1],p[0]];
       add({kind:'category',key:'cat|'+f.id+'|'+p.slice().sort().join('|'),text:CS(s[0])+' '+CN(s[1])+'보다 '+f.more+'.',truth:truth,explain:name(s[0])+', '+name(s[1])+' — '+why,check:{trait:f.id,subject:s[0],object:s[1]}});
      });
-    }else hidden.forEach(function(x){
+    }else if(f.kind==='claim')hidden.forEach(function(x){
+     var truth=f.trueFor.indexOf(x)>=0;if(!truth&&f.falseFor.indexOf(x)<0)return;
+     add({kind:'category',key:'catclaim|'+x,text:CS(x)+' '+f.claim,truth:truth,explain:name(x)+' — 이 설명은 '+f.trueFor.map(function(t){return catLabel(theme,t)}).join('·')+'에 해당한다 · 근거: '+f.basis,check:{trait:f.id,category:x}});
+    });else hidden.forEach(function(x){
      var v0=f.values[x];if(v0==null)return;
      var others=Object.keys(f.values).map(function(k){return f.values[k]}).filter(function(v,i,a){return v!==v0&&a.indexOf(v)===i});
      var v=others.length&&r()<.5?pick(others,r):v0;
@@ -523,7 +535,7 @@
   function isFocus0(theme,c){var focusSets=(theme.followups&&theme.followups.focus)||[];
    // A theme that borrows another domain (대륙 곡물 with population) keeps the borrowed ones as background.
    if(theme.domains&&c.check&&c.check.ind&&(meta(c.check.ind).domain||null)!==theme.domains[0])return false;
-   return c.kind==='concept'||c.kind==='category'||c.kind==='compare'||c.kind==='sign'||c.kind==='data'||c.kind==='graph'||c.kind==='climate'||!!(c.check&&c.check.set&&focusSets.indexOf(c.check.set)>=0)}
+   return c.kind==='concept'||c.kind==='category'||c.kind==='climateClaim'||c.kind==='compare'||c.kind==='sign'||c.kind==='data'||c.kind==='graph'||c.kind==='climate'||!!(c.check&&c.check.set&&focusSets.indexOf(c.check.set)>=0)}
   function chooseStatements(theme,cands,r){
    var isFocus=function(c){return isFocus0(theme,c)};
    var picked=[],used={},kinds={},both=0;

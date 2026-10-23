@@ -218,6 +218,10 @@ test('each statement is true exactly when the knowledge base says so', () => {
           if (f.kind === 'order') {
             assert.equal(f.order.indexOf(c.subject) < f.order.indexOf(c.object), s.truth, s.text);
             assert.ok(q.hidden.includes(c.subject) || q.hidden.includes(c.object), s.text);
+          } else if (f.kind === 'claim') {
+            assert.ok(q.hidden.includes(c.category), s.text);
+            assert.ok(f.trueFor.includes(c.category) || f.falseFor.includes(c.category), s.text);
+            assert.equal(f.trueFor.includes(c.category), s.truth, s.text);
           } else {
             assert.ok(q.hidden.includes(c.category), s.text);
             assert.equal(f.values[c.category] === c.value, s.truth, s.text);
@@ -227,6 +231,12 @@ test('each statement is true exactly when the knowledge base says so', () => {
             if (j >= 0) assert.ok(new RegExp('(^|[^A-Z])' + 'ABC'[j] + '(?![A-Z])').test(s.text), s.text);
           }
           for (const x of [c.subject, c.object, c.category]) if (q.hidden.includes(x)) assert.ok(!s.text.includes(engine.catLabel(t, x)), 'names a hidden column: ' + s.text);
+        } else if (s.kind === 'climateClaim') {
+          // A lecture statement about a verified climate type: true for its types, false for its contrasts.
+          const k = K.climate.claims.find(x => x.id === c.claim), x = K.entities[c.entity].climate;
+          assert.ok(x.type && x.type === c.type, s.text);
+          assert.ok(k.falseFor.length && (k.trueFor.includes(c.type) || k.falseFor.includes(c.type)), s.text);
+          assert.equal(k.trueFor.includes(c.type), s.truth, s.text);
         } else if (s.kind === 'concept') {
           // A concept-card statement keeps the card's truth; its 대상 appear as their labels.
           const k = K.concepts.find(x => x.id === c.concept);

@@ -430,6 +430,7 @@ test('equator and prime-meridian statements agree with geography', () => {
 // Köppen letters re-derived here from data/climate-normals.json with the lecture's thresholds
 // (1권 P02), each with whether the deciding values clear 1℃ / 10mm / 15% of the limit.
 const climateData = data('data/climate-normals.json'), climateExt = data('data/climate-normals-extension.json');
+const climateClaims = data('data/climate-type-claims.json').claims;
 const station = Object.fromEntries(climateData.sites.map(x => [x.name, x]));
 // Added stations are found through the source file the knowledge base records for them.
 for (const x of climateExt.sites) {
@@ -499,6 +500,13 @@ test('climate questions use verified types and seasons, and every wrong option i
       if (s.kind === 'climate') assert.equal(c.type === station[c.entity].lectureClimate, s.truth, s.text);
       if (s.kind === 'climate' && !s.truth) assert.ok(clashes(c.entity, c.type), 'a wrong type the data do not rule out: ' + s.text);
       if (s.kind === 'place' && c.place === 'hemisphere') assert.equal(hemi(c.entity) === c.value, s.truth, s.text);
+      if (s.kind === 'climateClaim') {
+        const k = climateClaims.find(x => x.id === c.claim), L = station[c.entity].lectureClimate;
+        const has = list => list.map(t => t.toLowerCase()).includes(L);
+        assert.ok(confirmed(c.entity, L), 'claim about an unverified type: ' + s.text);
+        assert.equal(has(k.trueFor), s.truth, s.text);
+        if (!s.truth) assert.ok(has(k.falseFor), 'false only for a contrasted type: ' + s.text);
+      }
     }
   }
   assert.ok(n > 200, 'climate questions exercised: ' + n);
@@ -581,14 +589,23 @@ test('religion: recalled orders cite the lecture and hold on the unrounded Pew r
 
 test('religion facts asked about A~C follow the lecture, and the world order holds in the Pew world rows', () => {
   const W = religionRaw.world.series, facts = Object.fromEntries(REL.categoryFacts.map(f => [f.id, f]));
+  const claims = Object.fromEntries(data('data/religion-type-claims.json').claims.map(k => [k.id, k]));
   assert.deepEqual(Object.keys(W).sort(), ['2010', '2020']);
   for (const v of Object.values(W)) facts.world.order.slice(1).forEach((x, i) => assert.ok(v[facts.world.order[i]] - v[x] >= 2, facts.world.order[i] + ' > ' + x));
   let n = 0;
   for (const q of questions()) for (const s of q.stage2.statements.filter(x => x.kind === 'category')) {
     const f = facts[s.check.trait], c = s.check;
-    assert.match(f.basis, /강의 1권 P04/);
-    if (f.kind === 'order') assert.equal(f.order.indexOf(c.subject) < f.order.indexOf(c.object), s.truth, s.text);
-    else assert.equal(f.values[c.category] === c.value, s.truth, s.text);
+    if (claims[c.trait]) {
+      // The data session's list: true for trueFor, false only for falseFor.
+      const k = claims[c.trait], name = K.compositions.religion.categories.find(x => x[0] === c.category)[1];
+      assert.ok(k.trueFor.length && k.falseFor.length, c.trait);
+      assert.equal(k.trueFor.includes(name), s.truth, s.text);
+      if (!s.truth) assert.ok(k.falseFor.includes(name), s.text);
+    } else {
+      assert.match(f.basis, /강의 1권 P04/);
+      if (f.kind === 'order') assert.equal(f.order.indexOf(c.subject) < f.order.indexOf(c.object), s.truth, s.text);
+      else assert.equal(f.values[c.category] === c.value, s.truth, s.text);
+    }
     n++;
   }
   assert.ok(n > 50, 'category <보기> exercised: ' + n);
