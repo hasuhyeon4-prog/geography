@@ -111,7 +111,7 @@ function missed2(q,pick){
 }
 // Practice follows the learner (2026-10-23). Each topic × format keeps its last 20 results, and the
 // draw weight grows with the cube of what is missed (one weak type among strong ones comes about
-// one question in seven); a floor keeps the strong ones coming back. Every third question is
+// one question in seven); a floor keeps the strong ones coming back. Every other question is
 // built around a comparison, fact or 대상 not yet seen, so nothing waits on chance to appear.
 ['seen','tried','types'].forEach(function(k){if(!store[k]||typeof store[k]!=='object'||Array.isArray(store[k]))store[k]={}});
 var INVENTORY=engine.inventory(),PRIOR={rows:.45,implicit:.2,columns:.35};
@@ -135,9 +135,13 @@ function unseen(){
  var scope=scopeThemes().map(function(t){return t.id});
  var open=INVENTORY.filter(function(x){return !store.seen[x.key]&&(store.tried[x.key]||0)<3&&x.themes.some(function(id){return scope.indexOf(id)>=0})});
  if(!open.length)return null;
- var x=open[Math.floor(Math.random()*open.length)],homes=x.themes.filter(function(id){return scope.indexOf(id)>=0});
+ // With a format chosen, only topics that make it (실전형 needs a map).
+ var can=function(id){return state.format==='all'||engine.formatsFor(engine.themes.filter(function(t){return t.id===id})[0]).indexOf(state.format)>=0};
+ open=open.filter(function(x){return x.themes.some(function(id){return scope.indexOf(id)>=0&&can(id)})});
+ if(!open.length)return null;
+ var x=open[Math.floor(Math.random()*open.length)],homes=x.themes.filter(function(id){return scope.indexOf(id)>=0&&can(id)});
  store.tried[x.key]=(store.tried[x.key]||0)+1;
- var q=engine.build(Object.assign({themeId:x.build.targetKey&&state.theme==='all'?null:homes[Math.floor(Math.random()*homes.length)],avoid:store.recent},x.build));
+ var q=engine.build(Object.assign({themeId:x.build.targetKey&&state.theme==='all'&&state.format==='all'?null:homes[Math.floor(Math.random()*homes.length)],format:state.format==='all'?null:state.format,avoid:store.recent},x.build));
  if(q&&engine.seenIn(q).indexOf(x.key)>=0)state.fresh=true;
  return q;
 }
@@ -159,7 +163,7 @@ function next(){
  state.q=null;state.fresh=false;
  if(!state.targetKey){
   store.count=(store.count||0)+1;
-  if(store.count%3===0&&state.format==='all')state.q=unseen();
+  if(store.count%2===0&&['all','rows','implicit'].indexOf(state.format)>=0)state.q=unseen();
   if(!state.q)state.q=weighted();
  }
  // A draw that finds no question (rare, with a format chosen) is retried with new seeds.
@@ -399,7 +403,7 @@ function weakPanel(){
   return el('li',{},[el('b',{text:t.title}),el('div',{className:'chips'},chips.concat([el('span',{className:'chip none',text:'안 본 항목 '+left+'/'+items.length})]))]);
  });
  var d=el('details',{className:'card weakPanel',open:state.weakOpen?'':null},[el('summary',{text:'내 약점 현황'}),
-  el('p',{className:'small muted',text:'형식별 최근 20문항의 정답률(1·2단계 모두 맞힌 비율)이에요. 정답률이 낮거나 아직 안 푼 유형이 더 자주 나오고, 세 문항 중 한 문항은 아직 안 본 비교·사실로 만듭니다.'}),
+  el('p',{className:'small muted',text:'형식별 최근 20문항의 정답률(1·2단계 모두 맞힌 비율)이에요. 정답률이 낮거나 아직 안 푼 유형이 더 자주 나오고, 두 문항 중 한 문항은 아직 안 본 비교·사실로 만듭니다(항목·동시 식별을 고른 때는 제외).'}),
   el('ul',{className:'weakList'},rows)]);
  // Kept open across questions once opened.
  d.addEventListener('toggle',function(){state.weakOpen=d.open});return d;
