@@ -14,11 +14,9 @@ const held={
  'G086-1':'1990·2020년 소비량 문항 연결. 1985~1995년×2015~2024년의 가용 110쌍에서 석탄 변화 방향은 일치. 2025년이 비어 있어 ±5년 전체 검증은 유보.',
  'G020-2':'누적선과 지점 식별은 구현했으나 명세의 뭄바이 관측소 표본은 아직 없음. 양곤·다윈·퍼스 자료로 연습.',
  'G061-3':'제시 자료용 그래프와 stock/flow·분모 해석은 구현. 권역 묶기·언어·네트워크의 세부 목표 검토가 남음.',
- 'G005-1':'제작국·주체·표현을 분리해 출제. 시대·선후 열은 기간이 겹치는 선택지가 있어 출제에서 제외; 시기 목표는 아직 완료 아님.',
- 'G038-1':'지형과 하천 분류 표를 분리. 하천 분류는 정의를 묻는 정방향만 제공. 하구 퇴적 작용과 복합 적용의 추가 검토가 남음.'
 };
-const verified=new Set([...graphGoals].filter(id=>!held[id]).concat(['G025-2','G028-1','G028-4','G001-2','G004-1','G062-2','G097-3','G135-3']));
-const items=goals.map(g=>({id:g.id,group:g.group,venue:g.venue,status:implemented.has(g.id)?verified.has(g.id)?'검증':'구현':'미구현',evidence:implemented.get(g.id)||[],remaining:held[g.id]||(g.venue==='OX'?'대표 정오 쌍을 연결함. 복합 목표의 모든 사례·조건 충족은 아직 별도 검수 전.':implemented.has(g.id)?'':'자료와 화면 연결을 아직 구현하지 않음.')}));
+const verified=new Set([...graphGoals].filter(id=>!held[id]).concat(['G005-1','G038-1','G025-2','G028-1','G028-4','G001-2','G004-1','G062-2','G097-3','G135-3']));
+const items=goals.map(g=>({id:g.id,group:g.group,venue:g.venue,status:implemented.has(g.id)?verified.has(g.id)?'검증':'구현':'미구현',evidence:implemented.get(g.id)||[],remaining:held[g.id]||(g.venue==='OX'?'대표 정오 쌍을 연결함. 복합 목표의 모든 사례·조건 충족은 아직 별도 검수 전.':implemented.has(g.id)?'연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음.':'자료와 화면 연결을 아직 구현하지 않음.')}));
 for(const x of items)if(x.status==='검증')x.remaining='완료 기준의 계산·출제·범위 검사를 통과함.';
 if(process.argv.includes('--write-status')){
  for(const x of items){const g=goals.find(g=>g.id===x.id);if(g.status!=='검증'||x.status==='검증')g.status=x.status;}

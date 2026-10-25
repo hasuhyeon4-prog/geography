@@ -4,9 +4,9 @@
  "goalCount": 573,
  "groupCount": 139,
  "statusCounts": {
-  "미구현": 229,
-  "구현": 301,
-  "검증": 43
+  "미구현": 111,
+  "구현": 417,
+  "검증": 45
  },
  "completeGroups": [
   "G009",
@@ -19,7 +19,7 @@
  "content": {
   "newOX": 637,
   "representedOXGoals": 296,
-  "rebuiltTables": 6,
+  "rebuiltTables": 147,
   "materialFamilies": 30
  },
  "verification": [
@@ -52,8 +52,8 @@
   {
    "id": "G003",
    "total": 5,
-   "미구현": 4,
-   "구현": 1,
+   "미구현": 0,
+   "구현": 5,
    "검증": 0,
    "status": "진행 중"
   },
@@ -69,8 +69,8 @@
    "id": "G005",
    "total": 4,
    "미구현": 0,
-   "구현": 4,
-   "검증": 0,
+   "구현": 3,
+   "검증": 1,
    "status": "진행 중"
   },
   {
@@ -92,8 +92,8 @@
   {
    "id": "G008",
    "total": 4,
-   "미구현": 3,
-   "구현": 1,
+   "미구현": 2,
+   "구현": 2,
    "검증": 0,
    "status": "진행 중"
   },
@@ -116,16 +116,16 @@
   {
    "id": "G011",
    "total": 3,
-   "미구현": 1,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 3,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G012",
    "total": 3,
-   "미구현": 1,
-   "구현": 1,
+   "미구현": 0,
+   "구현": 2,
    "검증": 1,
    "status": "진행 중"
   },
@@ -140,8 +140,8 @@
   {
    "id": "G014",
    "total": 4,
-   "미구현": 1,
-   "구현": 3,
+   "미구현": 0,
+   "구현": 4,
    "검증": 0,
    "status": "진행 중"
   },
@@ -156,32 +156,32 @@
   {
    "id": "G016",
    "total": 6,
-   "미구현": 2,
-   "구현": 4,
+   "미구현": 0,
+   "구현": 6,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G017",
    "total": 4,
-   "미구현": 1,
-   "구현": 3,
+   "미구현": 0,
+   "구현": 4,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G018",
    "total": 6,
-   "미구현": 3,
-   "구현": 3,
+   "미구현": 1,
+   "구현": 5,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G019",
    "total": 4,
-   "미구현": 1,
-   "구현": 3,
+   "미구현": 0,
+   "구현": 4,
    "검증": 0,
    "status": "진행 중"
   },
@@ -228,8 +228,8 @@
   {
    "id": "G025",
    "total": 5,
-   "미구현": 1,
-   "구현": 3,
+   "미구현": 0,
+   "구현": 4,
    "검증": 1,
    "status": "진행 중"
   },
@@ -244,48 +244,48 @@
   {
    "id": "G027",
    "total": 5,
-   "미구현": 3,
-   "구현": 2,
+   "미구현": 1,
+   "구현": 4,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G028",
    "total": 5,
-   "미구현": 1,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 3,
    "검증": 2,
    "status": "진행 중"
   },
   {
    "id": "G029",
    "total": 3,
-   "미구현": 1,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 3,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G030",
    "total": 7,
-   "미구현": 1,
-   "구현": 6,
+   "미구현": 0,
+   "구현": 7,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G031",
    "total": 3,
-   "미구현": 1,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 3,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G032",
    "total": 4,
-   "미구현": 2,
-   "구현": 1,
+   "미구현": 0,
+   "구현": 3,
    "검증": 1,
    "status": "진행 중"
   },
@@ -308,8 +308,8 @@
   {
    "id": "G035",
    "total": 4,
-   "미구현": 2,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 4,
    "검증": 0,
    "status": "진행 중"
   },
@@ -324,8 +324,8 @@
   {
    "id": "G037",
    "total": 4,
-   "미구현": 2,
-   "구현": 2,
+   "미구현": 1,
+   "구현": 3,
    "검증": 0,
    "status": "진행 중"
   },
@@ -333,15 +333,15 @@
    "id": "G038",
    "total": 4,
    "미구현": 0,
-   "구현": 4,
-   "검증": 0,
+   "구현": 3,
+   "검증": 1,
    "status": "진행 중"
   },
   {
    "id": "G039",
    "total": 5,
-   "미구현": 1,
-   "구현": 4,
+   "미구현": 0,
+   "구현": 5,
    "검증": 0,
    "status": "진행 중"
   },
@@ -364,64 +364,64 @@
   {
    "id": "G042",
    "total": 5,
-   "미구현": 3,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 5,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G043",
    "total": 4,
-   "미구현": 3,
-   "구현": 1,
+   "미구현": 2,
+   "구현": 2,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G044",
    "total": 4,
-   "미구현": 3,
-   "구현": 1,
+   "미구현": 2,
+   "구현": 2,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G045",
    "total": 2,
-   "미구현": 1,
-   "구현": 1,
+   "미구현": 0,
+   "구현": 2,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G046",
    "total": 4,
-   "미구현": 2,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 4,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G047",
    "total": 4,
-   "미구현": 2,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 4,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G048",
    "total": 5,
-   "미구현": 1,
-   "구현": 4,
+   "미구현": 0,
+   "구현": 5,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G049",
    "total": 4,
-   "미구현": 1,
-   "구현": 3,
+   "미구현": 0,
+   "구현": 4,
    "검증": 0,
    "status": "진행 중"
   },
@@ -436,37 +436,29 @@
   {
    "id": "G051",
    "total": 7,
-   "미구현": 2,
-   "구현": 5,
+   "미구현": 1,
+   "구현": 6,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G052",
    "total": 6,
-   "미구현": 3,
-   "구현": 3,
+   "미구현": 1,
+   "구현": 5,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G053",
    "total": 4,
-   "미구현": 2,
-   "구현": 1,
+   "미구현": 1,
+   "구현": 2,
    "검증": 1,
    "status": "진행 중"
   },
   {
    "id": "G054",
-   "total": 4,
-   "미구현": 2,
-   "구현": 2,
-   "검증": 0,
-   "status": "진행 중"
-  },
-  {
-   "id": "G055",
    "total": 4,
    "미구현": 1,
    "구현": 3,
@@ -474,47 +466,23 @@
    "status": "진행 중"
   },
   {
+   "id": "G055",
+   "total": 4,
+   "미구현": 0,
+   "구현": 4,
+   "검증": 0,
+   "status": "진행 중"
+  },
+  {
    "id": "G056",
    "total": 5,
-   "미구현": 3,
-   "구현": 1,
+   "미구현": 2,
+   "구현": 2,
    "검증": 1,
    "status": "진행 중"
   },
   {
    "id": "G057",
-   "total": 5,
-   "미구현": 4,
-   "구현": 1,
-   "검증": 0,
-   "status": "진행 중"
-  },
-  {
-   "id": "G058",
-   "total": 4,
-   "미구현": 4,
-   "구현": 0,
-   "검증": 0,
-   "status": "미구현"
-  },
-  {
-   "id": "G059",
-   "total": 3,
-   "미구현": 2,
-   "구현": 1,
-   "검증": 0,
-   "status": "진행 중"
-  },
-  {
-   "id": "G060",
-   "total": 5,
-   "미구현": 2,
-   "구현": 3,
-   "검증": 0,
-   "status": "진행 중"
-  },
-  {
-   "id": "G061",
    "total": 5,
    "미구현": 3,
    "구현": 2,
@@ -522,10 +490,42 @@
    "status": "진행 중"
   },
   {
+   "id": "G058",
+   "total": 4,
+   "미구현": 2,
+   "구현": 2,
+   "검증": 0,
+   "status": "진행 중"
+  },
+  {
+   "id": "G059",
+   "total": 3,
+   "미구현": 1,
+   "구현": 2,
+   "검증": 0,
+   "status": "진행 중"
+  },
+  {
+   "id": "G060",
+   "total": 5,
+   "미구현": 0,
+   "구현": 5,
+   "검증": 0,
+   "status": "진행 중"
+  },
+  {
+   "id": "G061",
+   "total": 5,
+   "미구현": 0,
+   "구현": 5,
+   "검증": 0,
+   "status": "진행 중"
+  },
+  {
    "id": "G062",
    "total": 6,
-   "미구현": 4,
-   "구현": 1,
+   "미구현": 2,
+   "구현": 3,
    "검증": 1,
    "status": "진행 중"
   },
@@ -540,24 +540,24 @@
   {
    "id": "G064",
    "total": 5,
-   "미구현": 3,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 5,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G065",
    "total": 3,
-   "미구현": 1,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 3,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G066",
    "total": 3,
-   "미구현": 1,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 3,
    "검증": 0,
    "status": "진행 중"
   },
@@ -604,8 +604,8 @@
   {
    "id": "G072",
    "total": 6,
-   "미구현": 4,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 6,
    "검증": 0,
    "status": "진행 중"
   },
@@ -620,72 +620,72 @@
   {
    "id": "G074",
    "total": 6,
-   "미구현": 4,
-   "구현": 2,
+   "미구현": 2,
+   "구현": 4,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G075",
    "total": 5,
-   "미구현": 4,
-   "구현": 1,
+   "미구현": 2,
+   "구현": 3,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G076",
    "total": 4,
-   "미구현": 3,
-   "구현": 1,
+   "미구현": 2,
+   "구현": 2,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G077",
    "total": 3,
-   "미구현": 2,
-   "구현": 1,
+   "미구현": 1,
+   "구현": 2,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G078",
    "total": 3,
-   "미구현": 2,
-   "구현": 1,
+   "미구현": 1,
+   "구현": 2,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G079",
    "total": 6,
-   "미구현": 4,
-   "구현": 2,
-   "검증": 0,
-   "status": "진행 중"
-  },
-  {
-   "id": "G080",
-   "total": 6,
-   "미구현": 3,
-   "구현": 3,
-   "검증": 0,
-   "status": "진행 중"
-  },
-  {
-   "id": "G081",
-   "total": 6,
    "미구현": 2,
    "구현": 4,
    "검증": 0,
    "status": "진행 중"
   },
   {
+   "id": "G080",
+   "total": 6,
+   "미구현": 1,
+   "구현": 5,
+   "검증": 0,
+   "status": "진행 중"
+  },
+  {
+   "id": "G081",
+   "total": 6,
+   "미구현": 1,
+   "구현": 5,
+   "검증": 0,
+   "status": "진행 중"
+  },
+  {
    "id": "G082",
    "total": 7,
-   "미구현": 3,
-   "구현": 4,
+   "미구현": 0,
+   "구현": 7,
    "검증": 0,
    "status": "진행 중"
   },
@@ -708,16 +708,16 @@
   {
    "id": "G085",
    "total": 6,
-   "미구현": 5,
-   "구현": 1,
+   "미구현": 4,
+   "구현": 2,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G086",
    "total": 7,
-   "미구현": 4,
-   "구현": 2,
+   "미구현": 3,
+   "구현": 3,
    "검증": 1,
    "status": "진행 중"
   },
@@ -732,24 +732,24 @@
   {
    "id": "G088",
    "total": 6,
-   "미구현": 4,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 6,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G089",
    "total": 6,
-   "미구현": 3,
-   "구현": 3,
+   "미구현": 1,
+   "구현": 5,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G090",
    "total": 7,
-   "미구현": 2,
-   "구현": 5,
+   "미구현": 0,
+   "구현": 7,
    "검증": 0,
    "status": "진행 중"
   },
@@ -764,48 +764,48 @@
   {
    "id": "G092",
    "total": 5,
-   "미구현": 4,
-   "구현": 1,
+   "미구현": 3,
+   "구현": 2,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G093",
    "total": 4,
-   "미구현": 1,
-   "구현": 3,
+   "미구현": 0,
+   "구현": 4,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G094",
    "total": 3,
-   "미구현": 1,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 3,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G095",
    "total": 3,
-   "미구현": 1,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 3,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G096",
    "total": 3,
-   "미구현": 1,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 3,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G097",
    "total": 4,
-   "미구현": 2,
-   "구현": 1,
+   "미구현": 1,
+   "구현": 2,
    "검증": 1,
    "status": "진행 중"
   },
@@ -820,16 +820,16 @@
   {
    "id": "G099",
    "total": 5,
-   "미구현": 3,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 5,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G100",
    "total": 5,
-   "미구현": 2,
-   "구현": 3,
+   "미구현": 1,
+   "구현": 4,
    "검증": 0,
    "status": "진행 중"
   },
@@ -868,16 +868,16 @@
   {
    "id": "G105",
    "total": 3,
-   "미구현": 2,
-   "구현": 1,
+   "미구현": 0,
+   "구현": 3,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G106",
    "total": 4,
-   "미구현": 2,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 4,
    "검증": 0,
    "status": "진행 중"
   },
@@ -892,8 +892,8 @@
   {
    "id": "G108",
    "total": 4,
-   "미구현": 1,
-   "구현": 3,
+   "미구현": 0,
+   "구현": 4,
    "검증": 0,
    "status": "진행 중"
   },
@@ -908,8 +908,8 @@
   {
    "id": "G110",
    "total": 7,
-   "미구현": 2,
-   "구현": 4,
+   "미구현": 1,
+   "구현": 5,
    "검증": 1,
    "status": "진행 중"
   },
@@ -940,8 +940,8 @@
   {
    "id": "G114",
    "total": 5,
-   "미구현": 2,
-   "구현": 3,
+   "미구현": 1,
+   "구현": 4,
    "검증": 0,
    "status": "진행 중"
   },
@@ -964,16 +964,16 @@
   {
    "id": "G117",
    "total": 3,
-   "미구현": 1,
-   "구현": 2,
+   "미구현": 0,
+   "구현": 3,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G118",
    "total": 4,
-   "미구현": 1,
-   "구현": 3,
+   "미구현": 0,
+   "구현": 4,
    "검증": 0,
    "status": "진행 중"
   },
@@ -996,29 +996,21 @@
   {
    "id": "G121",
    "total": 3,
-   "미구현": 2,
-   "구현": 1,
+   "미구현": 1,
+   "구현": 2,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G122",
    "total": 2,
-   "미구현": 1,
-   "구현": 1,
-   "검증": 0,
-   "status": "진행 중"
-  },
-  {
-   "id": "G123",
-   "total": 5,
-   "미구현": 3,
+   "미구현": 0,
    "구현": 2,
    "검증": 0,
    "status": "진행 중"
   },
   {
-   "id": "G124",
+   "id": "G123",
    "total": 5,
    "미구현": 2,
    "구현": 3,
@@ -1026,18 +1018,26 @@
    "status": "진행 중"
   },
   {
+   "id": "G124",
+   "total": 5,
+   "미구현": 1,
+   "구현": 4,
+   "검증": 0,
+   "status": "진행 중"
+  },
+  {
    "id": "G125",
    "total": 4,
-   "미구현": 1,
-   "구현": 3,
+   "미구현": 0,
+   "구현": 4,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G126",
    "total": 6,
-   "미구현": 3,
-   "구현": 3,
+   "미구현": 2,
+   "구현": 4,
    "검증": 0,
    "status": "진행 중"
   },
@@ -1052,16 +1052,16 @@
   {
    "id": "G128",
    "total": 5,
-   "미구현": 1,
-   "구현": 4,
+   "미구현": 0,
+   "구현": 5,
    "검증": 0,
    "status": "진행 중"
   },
   {
    "id": "G129",
    "total": 5,
-   "미구현": 1,
-   "구현": 4,
+   "미구현": 0,
+   "구현": 5,
    "검증": 0,
    "status": "진행 중"
   },
@@ -1261,25 +1261,43 @@
    "id": "G003-1",
    "group": "G003",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0049",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G003-2",
    "group": "G003",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0053",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G003-3",
    "group": "G003",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0057",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G003-4",
@@ -1304,9 +1322,15 @@
    "id": "G003-5",
    "group": "G003",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0061",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G004-1",
@@ -1376,7 +1400,7 @@
    "id": "G005-1",
    "group": "G005",
    "venue": "강의 표",
-   "status": "구현",
+   "status": "검증",
    "evidence": [
     {
      "venue": "강의 표",
@@ -1384,7 +1408,7 @@
      "file": "data/lecture-goal-table-overrides.json"
     }
    ],
-   "remaining": "제작국·주체·표현을 분리해 출제. 시대·선후 열은 기간이 겹치는 선택지가 있어 출제에서 제외; 시기 목표는 아직 완료 아님."
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G005-2",
@@ -1526,9 +1550,15 @@
    "id": "G008-1",
    "group": "G008",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0220",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G008-2",
@@ -1685,9 +1715,20 @@
    "id": "G011-1",
    "group": "G011",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0293",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-planetary-winds",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G011-2",
@@ -1778,9 +1819,15 @@
    "id": "G012-3",
    "group": "G012",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0305",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G013-1",
@@ -1890,9 +1937,15 @@
    "id": "G014-4",
    "group": "G014",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-koppen-symbols",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G015-1",
@@ -1957,17 +2010,29 @@
    "id": "G016-1",
    "group": "G016",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0343",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G016-2",
    "group": "G016",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-desert-water",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G016-3",
@@ -2092,25 +2157,43 @@
    "id": "G017-4",
    "group": "G017",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0362",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G018-1",
    "group": "G018",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0372",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G018-2",
    "group": "G018",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0379",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G018-3",
@@ -2226,9 +2309,20 @@
    "id": "G019-4",
    "group": "G019",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0390",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0400",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G020-1",
@@ -2448,9 +2542,15 @@
    "id": "G025-1",
    "group": "G025",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0611",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G025-2",
@@ -2606,9 +2706,20 @@
    "id": "G027-1",
    "group": "G027",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0645",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-mountain-groups",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G027-2",
@@ -2631,9 +2742,15 @@
    "id": "G027-3",
    "group": "G027",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0670",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G027-4",
@@ -2695,9 +2812,15 @@
    "id": "G028-3",
    "group": "G028",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0689",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G028-4",
@@ -2734,9 +2857,20 @@
    "id": "G029-1",
    "group": "G029",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0729",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-field-trip-processes",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G029-2",
@@ -2861,9 +2995,15 @@
    "id": "G030-6",
    "group": "G030",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0767",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G030-7",
@@ -2886,9 +3026,15 @@
    "id": "G031-1",
    "group": "G031",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0758",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G031-2",
@@ -2928,9 +3074,20 @@
    "id": "G032-1",
    "group": "G032",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0783",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-permafrost-layers",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G032-2",
@@ -2950,9 +3107,15 @@
    "id": "G032-3",
    "group": "G032",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0790",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G032-4",
@@ -3095,17 +3258,29 @@
    "id": "G035-2",
    "group": "G035",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0855",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G035-3",
    "group": "G035",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0859",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G035-4",
@@ -3204,9 +3379,15 @@
    "id": "G037-2",
    "group": "G037",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0883",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G037-3",
@@ -3237,7 +3418,7 @@
    "id": "G038-1",
    "group": "G038",
    "venue": "강의 표",
-   "status": "구현",
+   "status": "검증",
    "evidence": [
     {
      "venue": "강의 표",
@@ -3250,7 +3431,7 @@
      "file": "data/lecture-goal-table-overrides.json"
     }
    ],
-   "remaining": "지형과 하천 분류 표를 분리. 하천 분류는 정의를 묻는 정방향만 제공. 하구 퇴적 작용과 복합 적용의 추가 검토가 남음."
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G038-2",
@@ -3345,9 +3526,15 @@
    "id": "G039-3",
    "group": "G039",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b0943",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G039-4",
@@ -3487,25 +3674,48 @@
    "id": "G042-1",
    "group": "G042",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1008",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1011",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G042-2",
    "group": "G042",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1014",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G042-3",
    "group": "G042",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1024",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G042-4",
@@ -3545,9 +3755,15 @@
    "id": "G043-1",
    "group": "G043",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1042",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G043-2",
@@ -3619,17 +3835,44 @@
    "id": "G044-4",
    "group": "G044",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1065",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1070",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1092",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1097",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G045-1",
    "group": "G045",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1107",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G045-2",
@@ -3652,9 +3895,25 @@
    "id": "G046-1",
    "group": "G046",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1111",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1115",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1119",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G046-2",
@@ -3694,9 +3953,15 @@
    "id": "G046-4",
    "group": "G046",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-film-festivals",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G047-1",
@@ -3719,17 +3984,29 @@
    "id": "G047-2",
    "group": "G047",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1155",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G047-3",
    "group": "G047",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1158",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G047-4",
@@ -3820,17 +4097,29 @@
    "id": "G048-5",
    "group": "G048",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1169",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G049-1",
    "group": "G049",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1188",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G049-2",
@@ -3988,9 +4277,15 @@
    "id": "G051-4",
    "group": "G051",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1250",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G051-5",
@@ -4080,9 +4375,15 @@
    "id": "G052-4",
    "group": "G052",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-food-ingredients",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G052-5",
@@ -4105,17 +4406,34 @@
    "id": "G052-6",
    "group": "G052",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1273",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1290",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G053-1",
    "group": "G053",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1349",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G053-2",
@@ -4165,9 +4483,15 @@
    "id": "G054-1",
    "group": "G054",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1364",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G054-2",
@@ -4215,9 +4539,15 @@
    "id": "G055-1",
    "group": "G055",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1371",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G055-2",
@@ -4274,9 +4604,15 @@
    "id": "G056-1",
    "group": "G056",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1378",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G056-2",
@@ -4334,9 +4670,15 @@
    "id": "G057-1",
    "group": "G057",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1398",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G057-2",
@@ -4391,9 +4733,15 @@
    "id": "G058-2",
    "group": "G058",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1434",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G058-3",
@@ -4407,9 +4755,20 @@
    "id": "G058-4",
    "group": "G058",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1440",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1443",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G059-1",
@@ -4423,9 +4782,15 @@
    "id": "G059-2",
    "group": "G059",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1463",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G059-3",
@@ -4448,17 +4813,29 @@
    "id": "G060-1",
    "group": "G060",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1484",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G060-2",
    "group": "G060",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1514",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G060-3",
@@ -4515,9 +4892,15 @@
    "id": "G061-1",
    "group": "G061",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1523",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G061-2",
@@ -4554,25 +4937,43 @@
    "id": "G061-4",
    "group": "G061",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1535",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G061-5",
    "group": "G061",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1527",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G062-1",
    "group": "G062",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1541",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G062-2",
@@ -4592,9 +4993,15 @@
    "id": "G062-3",
    "group": "G062",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1564",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G062-4",
@@ -4647,25 +5054,43 @@
    "id": "G064-1",
    "group": "G064",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1586",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G064-2",
    "group": "G064",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1589",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G064-3",
    "group": "G064",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1597",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G064-4",
@@ -4739,17 +5164,29 @@
    "id": "G065-3",
    "group": "G065",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1613",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G066-1",
    "group": "G066",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l1-b1641",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G066-2",
@@ -5064,17 +5501,29 @@
    "id": "G072-1",
    "group": "G072",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0041",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G072-2",
    "group": "G072",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0047",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G072-3",
@@ -5097,9 +5546,15 @@
    "id": "G072-4",
    "group": "G072",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0050",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G072-5",
@@ -5122,9 +5577,15 @@
    "id": "G072-6",
    "group": "G072",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0034",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G073-1",
@@ -5205,17 +5666,44 @@
    "id": "G074-2",
    "group": "G074",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0078",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0089",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0098",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0107",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G074-3",
    "group": "G074",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0084",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G074-4",
@@ -5279,9 +5767,15 @@
    "id": "G075-3",
    "group": "G075",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0144",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G075-4",
@@ -5304,9 +5798,20 @@
    "id": "G075-5",
    "group": "G075",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0148",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0151",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G076-1",
@@ -5328,9 +5833,15 @@
    "id": "G076-3",
    "group": "G076",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0162",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G076-4",
@@ -5353,9 +5864,20 @@
    "id": "G077-1",
    "group": "G077",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0169",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-food-ingredients",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G077-2",
@@ -5394,9 +5916,25 @@
    "id": "G078-2",
    "group": "G078",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0196",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0200",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0204",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G078-3",
@@ -5452,17 +5990,29 @@
    "id": "G079-4",
    "group": "G079",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0229",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G079-5",
    "group": "G079",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0239",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G079-6",
@@ -5485,17 +6035,34 @@
    "id": "G080-1",
    "group": "G080",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0252",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G080-2",
    "group": "G080",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0256",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0262",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G080-3",
@@ -5577,9 +6144,15 @@
    "id": "G081-2",
    "group": "G081",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0302",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G081-3",
@@ -5661,17 +6234,29 @@
    "id": "G082-2",
    "group": "G082",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0316",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G082-3",
    "group": "G082",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0324",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G082-4",
@@ -5694,9 +6279,15 @@
    "id": "G082-5",
    "group": "G082",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0332",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G082-6",
@@ -5845,9 +6436,15 @@
    "id": "G085-1",
    "group": "G085",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0359",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G085-2",
@@ -5971,9 +6568,15 @@
    "id": "G086-7",
    "group": "G086",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0389",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G087-1",
@@ -6038,33 +6641,57 @@
    "id": "G088-2",
    "group": "G088",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0403",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G088-3",
    "group": "G088",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0409",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G088-4",
    "group": "G088",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0418",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G088-5",
    "group": "G088",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0422",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G088-6",
@@ -6138,9 +6765,15 @@
    "id": "G089-4",
    "group": "G089",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0433",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G089-5",
@@ -6154,9 +6787,20 @@
    "id": "G089-6",
    "group": "G089",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0440",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0443",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G090-1",
@@ -6179,9 +6823,15 @@
    "id": "G090-2",
    "group": "G090",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0452",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G090-3",
@@ -6221,9 +6871,20 @@
    "id": "G090-5",
    "group": "G090",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0476",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-lithium-forms",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G090-6",
@@ -6330,9 +6991,15 @@
    "id": "G092-3",
    "group": "G092",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0510",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G092-4",
@@ -6397,9 +7064,20 @@
    "id": "G093-3",
    "group": "G093",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0526",
+     "file": "data/lecture-goal-table-overrides.json"
+    },
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0530",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G093-4",
@@ -6422,9 +7100,15 @@
    "id": "G094-1",
    "group": "G094",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0562",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G094-2",
@@ -6466,9 +7150,15 @@
    "id": "G095-1",
    "group": "G095",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0573",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G095-2",
@@ -6542,9 +7232,15 @@
    "id": "G096-3",
    "group": "G096",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0585",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G097-1",
@@ -6567,9 +7263,15 @@
    "id": "G097-2",
    "group": "G097",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0592",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G097-3",
@@ -6639,25 +7341,43 @@
    "id": "G099-1",
    "group": "G099",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0644",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G099-2",
    "group": "G099",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0649",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G099-3",
    "group": "G099",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0660",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G099-4",
@@ -6722,9 +7442,15 @@
    "id": "G100-3",
    "group": "G100",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0690",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G100-4",
@@ -6973,9 +7699,15 @@
    "id": "G105-1",
    "group": "G105",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0803",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G105-2",
@@ -6998,17 +7730,29 @@
    "id": "G105-3",
    "group": "G105",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0813",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G106-1",
    "group": "G106",
    "venue": "분류 지도",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-eu-currency-border",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G106-2",
@@ -7031,9 +7775,15 @@
    "id": "G106-3",
    "group": "G106",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0830",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G106-4",
@@ -7108,9 +7858,15 @@
    "id": "G108-1",
    "group": "G108",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0859",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G108-2",
@@ -7237,9 +7993,15 @@
    "id": "G110-1",
    "group": "G110",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0909",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G110-2",
@@ -7546,9 +8308,15 @@
    "id": "G114-1",
    "group": "G114",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b0981",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G114-2",
@@ -7715,9 +8483,15 @@
    "id": "G117-2",
    "group": "G117",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b1025",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G117-3",
@@ -7740,9 +8514,15 @@
    "id": "G118-1",
    "group": "G118",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b1029",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G118-2",
@@ -7881,9 +8661,15 @@
    "id": "G121-1",
    "group": "G121",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b1050",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G121-2",
@@ -7914,9 +8700,15 @@
    "id": "G122-1",
    "group": "G122",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-environment-days",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G122-2",
@@ -7956,9 +8748,15 @@
    "id": "G123-2",
    "group": "G123",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b1105",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G123-3",
@@ -8048,9 +8846,15 @@
    "id": "G124-4",
    "group": "G124",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b1118",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G124-5",
@@ -8064,9 +8868,15 @@
    "id": "G125-1",
    "group": "G125",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b1133",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G125-2",
@@ -8123,9 +8933,15 @@
    "id": "G126-1",
    "group": "G126",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b1145",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G126-2",
@@ -8214,9 +9030,15 @@
    "id": "G128-1",
    "group": "G128",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b1211",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G128-2",
@@ -8341,9 +9163,15 @@
    "id": "G129-4",
    "group": "G129",
    "venue": "강의 표",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "강의 표",
+     "table": "goal-table-l2-b1252",
+     "file": "data/lecture-goal-table-overrides.json"
+    }
+   ],
+   "remaining": "연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음."
   },
   {
    "id": "G129-5",
