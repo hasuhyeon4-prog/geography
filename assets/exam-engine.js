@@ -102,7 +102,7 @@
   Object.keys(kb.entities).forEach(function(n){var e=kb.entities[n];if(!e.region)return;Object.keys(e.facts||{}).forEach(function(set){var h=HOLDERS[set]||(HOLDERS[set]={}),g=h[e.region]||(h[e.region]={});e.facts[set].values.forEach(function(v){g[v]=(g[v]||0)+1})})});
   function plausible(set,name,v){var e=entity(name),g=e&&e.region&&HOLDERS[set]&&HOLDERS[set][e.region];return !!(g&&g[v]>=(set==='religion'?2:1))}
   // A hemisphere is worth a <보기> only for a country within this many degrees of the equator.
-  var NEAR_EQUATOR=12,LINE_NEAR={equator:12,meridian:8};
+  var NEAR_EQUATOR=12,LINE_NEAR={equator:12,meridian:8,cancer:70,capricorn:70,arcticCircle:70};
   function allowed(theme,set){var f=theme.followups&&theme.followups.facts;return !f||f.indexOf(set)>=0}
   // An indicator with a domain (agriculture) is recalled only by themes listing that domain,
   // and a theme with domains recalls only those.
@@ -121,7 +121,7 @@
    if(theme.kind==='items')return !!(theme.items&&theme.items[name]);
    if(theme.kind==='climate')return !!cl(name);
    if(theme.kind==='composition')return !!comp(theme,name)&&(!composition(theme).total||total(theme,name)!=null);
-   return (theme.always||[]).every(function(ind){return value(name,ind)!=null})&&theme.indicators.some(function(ind){return value(name,ind)!=null});
+   return (theme.always||[]).every(function(ind){return value(name,ind)!=null})&&(theme.indicators.some(function(ind){return value(name,ind)!=null})||theme.show===0&&(theme.always||[]).length>0);
   }
   function pairs(list){var out=[];for(var i=0;i<list.length;i++)for(var j=i+1;j<list.length;j++)out.push([list[i],list[j]]);return out}
 
@@ -479,13 +479,21 @@
     });
     // '적도가 지난다' / '본초 자오선이 지난다': true when a landmass crosses the line; false only
     // for a country near it (within LINE_NEAR degrees but at least half a degree away).
-    [['equator','적도'],['meridian','본초 자오선']].forEach(function(x){
+    [['equator','적도'],['meridian','본초 자오선'],['cancer','북회귀선'],['capricorn','남회귀선'],['arcticCircle','북극권선']].forEach(function(x){
      var l=e.lines&&e.lines[x[0]];if(!l||l.undecided||!allowed(theme,x[0])||stated(n,x[0]))return;
      if(!l.crosses&&(l.dist<.5||l.dist>LINE_NEAR[x[0]]))return;
      var w=x[1]+subjectParticle(x[1]);
      add({kind:'fact',key:x[0]+'|'+n,text:S(n)+' '+w+' 지난다.',truth:l.crosses,
       explain:n+'의 국토'+(l.crosses?'를 '+w+' 지난다.':'는 '+x[1]+'에서 약 '+fmt(l.dist)+'° 떨어져 있어 '+w+' 지나지 않는다.'),check:{line:x[0],entity:n,value:true}});
     });
+    if(theme.productivity&&shown.indexOf('industry')>=0&&shown.indexOf('industryEmployment')>=0){
+     var production=value(n,'industry'),employment=value(n,'industryEmployment'),benchmark=1.5;
+     if(production>0&&employment>0&&Math.abs(production/employment-benchmark)>.15&&meta('industry').year===meta('industryEmployment').year){
+      var trueIt=r()<.5,above=production/employment>benchmark;
+      add({kind:'data',key:'relativeProductivity|'+n,goalId:'G097-3',check:{op:'relativeProductivity',entity:n,subject:n,production:production,employment:employment,benchmark:benchmark,moreClaim:above===trueIt,year:meta('industry').year},text:S(n)+' 2차 산업의 종사자 1인당 부가가치는 자국 전 산업 평균의 1.5배보다 '+(above===trueIt?'많다.':'적다.'),truth:trueIt,
+       explain:n+'의 GDP 중 2차 산업 비중÷2차 산업 종사자 비율 = '+fmt(production)+'÷'+fmt(employment)+' ≈ '+fmt(production/employment)+'. 자국 전 산업 평균을 1로 놓은 상대 생산성이다. 서로 다른 국가의 실제 1인당 부가가치 순위로 바꾸지 않는다.'});
+     }
+    }
     if(e.ns&&e.eqDist<=NEAR_EQUATOR&&allowed(theme,'hemisphere')&&!stated(n,'hemisphere')){var north=e.ns==='N',trueIt=r()<.5;add({kind:'fact',key:'ns|'+n,text:S(n)+' '+((north===trueIt)?'북반구':'남반구')+'에 위치한다.',truth:trueIt,explain:n+'의 국토는 '+(north?'북반구':'남반구')+'에 있다.',check:{ns:(north===trueIt)?'N':'S',entity:n}})}
    });
    var polarity={};SIGNS.forEach(function(x){if(has(x.entity))(polarity[x.indicator]=polarity[x.indicator]||{})[x.positive]=1});
@@ -511,6 +519,26 @@
     add({kind:'concept',key:'concept|'+c.about.slice().sort().join('|'),text:text,truth:c.truth,explain:c.claim+' ('+c.source+')',check:{concept:c.id}});
    });
    pairs(chosen).forEach(function(p){
+    if(theme.positions&&p.every(function(n){return entity(n).type==='country'&&entity(n).label;})&&entity(p[0]).region===entity(p[1]).region){
+     [0,1].forEach(function(axis){
+      var a=entity(p[0]).label[axis],b=entity(p[1]).label[axis];
+      if(Math.abs(a-b)<5||(axis===0&&Math.abs(a-b)>180))return;
+      var higher=a>b?p[0]:p[1],lower=a>b?p[1]:p[0],truth=r()<.5,subject=truth?higher:lower,object=truth?lower:higher;
+      add({kind:'data',key:'position|'+axis+'|'+p.join('|'),goalId:'G004-1',text:S(subject)+' 지도 대표점은 '+L(object)+'의 지도 대표점보다 '+(axis===0?'동쪽':'북쪽')+'에 있다.',truth:truth,
+       check:{op:'relativePosition',entity:subject,subject:subject,object:object,axis:axis},explain:'국토 전체나 모든 도시가 아니라 지도의 대표점을 비교한다. '+p[0]+' '+fmt(a)+'°, '+p[1]+' '+fmt(b)+'° ('+(axis===0?'경도':'위도')+' 차이 5° 이상).'});
+     });
+    }
+    (theme.inverseUrban||[]).forEach(function(d){
+     if(shown.indexOf(d.part)<0||shown.indexOf(d.rate)<0)return;
+     ['total','rural'].forEach(function(kind){
+      var count=function(n){var part=value(n,d.part),rate=value(n,d.rate);if(!(part>0&&rate>0&&rate<=100))return null;return part*100/rate-(kind==='rural'?part:0);};
+      var a=count(p[0]),b=count(p[1]);if(!(a>0&&b>0)||Math.max(a,b)/Math.min(a,b)<1.2)return;
+      var hi=a>b?p[0]:p[1],lo=a>b?p[1]:p[0],truth=r()<.5,subject=truth?hi:lo,object=truth?lo:hi,noun=kind==='total'?'총인구':'촌락 인구';
+      add({kind:'data',key:'inverseUrban|'+kind+'|'+p.join('|'),goalId:'G062-2',check:{op:'inverseUrban',part:d.part,rate:d.rate,kind:kind,subject:subject,object:object},text:S(subject)+' '+L(object)+'보다 '+noun+'가 많다.',truth:truth,
+       explain:'총인구 = 도시 인구÷(도시화율/100), 촌락 인구 = 총인구−도시 인구. 제시한 같은 연도의 값으로 복원한다. '+p[0]+' 약 '+fmt(a)+meta(d.part).unit+', '+p[1]+' 약 '+fmt(b)+meta(d.part).unit+'.'});
+     });
+    });
+
     var a=entity(p[0]),b=entity(p[1]);
     Object.keys(a.facts||{}).forEach(function(set){
      // A multi-valued set (도시가 있는 주) has no single value two 대상 could share.

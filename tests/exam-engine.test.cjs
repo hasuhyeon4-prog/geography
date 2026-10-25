@@ -16,7 +16,8 @@ const SEEDS = 150;
 test('the committed knowledge base is what the builder produces from committed inputs', () => {
   const out = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'kb-')), 'entity-kb.js');
   execFileSync(process.execPath, [path.join(ROOT, 'scripts/build-entity-kb.cjs')], {env: {...process.env, KB_OUT: out}, stdio: 'pipe'});
-  assert.equal(fs.readFileSync(out, 'utf8'), fs.readFileSync(path.join(ROOT, 'assets/entity-kb.js'), 'utf8'), 'run node scripts/build-entity-kb.cjs');
+  const hash=p=>require('node:crypto').createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+  assert.equal(hash(out),hash(path.join(ROOT,'assets/entity-kb.js')),'run node scripts/build-entity-kb.cjs');
 });
 
 test('knowledge cards carry valid facts, units, years, and comparison margins', () => {
@@ -194,6 +195,18 @@ test('each statement is true exactly when the knowledge base says so', () => {
           assert.equal(k && k.status, 'active', s.text);
           assert.equal(k.hi === c.subject, s.truth, s.text);
           assert.equal(engine.value(c.subject, c.ind) > engine.value(c.object, c.ind), s.truth, s.text);
+        } else if (s.kind === 'data' && c.op === 'relativeProductivity') {
+          assert.ok(q.shown.includes('industry') && q.shown.includes('industryEmployment'));
+          assert.equal(K.indicators.industry.year, K.indicators.industryEmployment.year);
+          const ratio=engine.value(c.entity,'industry')/engine.value(c.entity,'industryEmployment');
+          assert.equal(c.moreClaim ? ratio > c.benchmark : ratio < c.benchmark,s.truth,s.text);
+        } else if (s.kind === 'data' && c.op === 'inverseUrban') {
+          const count=n=>{const u=engine.value(n,c.part),total=u*100/engine.value(n,c.rate);return c.kind==='rural'?total-u:total;};
+          assert.ok(q.shown.includes(c.part)&&q.shown.includes(c.rate));
+          assert.equal(count(c.subject)>count(c.object),s.truth,s.text);
+        } else if (s.kind === 'data' && c.op === 'relativePosition') {
+          const a=K.entities[c.entity].label[c.axis],b=K.entities[c.object].label[c.axis];
+          assert.ok(Math.abs(a-b)>=5);assert.equal(a>b,s.truth,s.text);
         } else if (s.kind === 'data' && c.category) {
           const amount = n => engine.comp(t, n)[c.category] * engine.total(t, n);
           assert.equal(amount(c.subject) > amount(c.object), s.truth, s.text);

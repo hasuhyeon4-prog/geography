@@ -139,10 +139,10 @@ function lines(name) {
   const rings = shapes.byName[name].polygons.map(p => p[0]);
   const lonSpan = r => { const l = r.map(p => p[0]); return Math.max(...l) - Math.min(...l); };
   const out = {};
-  for (const [line, axis] of [['equator', 1], ['meridian', 0]]) {
+  for (const [line, axis, offset] of [['equator', 1, 0], ['meridian', 0, 0], ['cancer', 1, 23.44], ['capricorn', 1, -23.44], ['arcticCircle', 1, 66.56]]) {
     const usable = rings.filter(r => axis === 1 || lonSpan(r) < 180);
-    const crosses = usable.some(r => r.some(p => p[axis] < 0) && r.some(p => p[axis] > 0));
-    const vals = usable.flat().map(p => p[axis]);
+    const crosses = usable.some(r => r.some(p => p[axis] < offset) && r.some(p => p[axis] > offset));
+    const vals = usable.flat().map(p => p[axis] - offset);
     out[line] = {crosses, undecided: !crosses && Math.min(...vals) < 0 && Math.max(...vals) > 0,
       dist: crosses ? 0 : Math.round(Math.min(...vals.map(Math.abs)) * 10) / 10};
   }

@@ -334,7 +334,7 @@ test('share × total uses one year and one source, and both numbers are in the t
       assert.match(q.display.source, /2020/);
       for (const n of q.entities) assert.equal(num(q.display.rows[q.entities.indexOf(n)].cells.at(-1)), religion.countries[n].population, n);
     }
-    for (const s of q.stage2.statements.filter(x => x.kind === 'data')) {
+    for (const s of q.stage2.statements.filter(x => x.kind === 'data' && !x.check.op)) {
       const c = s.check;
       let amount;
       if (c.category) {
@@ -441,7 +441,7 @@ test('equator and prime-meridian statements agree with geography', () => {
   assert.deepEqual(crossing('equator'), onMap(EQUATOR));
   assert.deepEqual(crossing('meridian'), onMap(MERIDIAN));
   for (const q of questions()) for (const s of q.stage2.statements) {
-    if (!s.check.line) continue;
+    if (!['equator','meridian'].includes(s.check.line)) continue;
     const list = s.check.line === 'equator' ? EQUATOR : MERIDIAN;
     assert.equal(list.includes(s.check.entity), s.truth, s.text + ' ' + s.check.entity);
     assert.match(s.text, s.check.line === 'equator' ? /적도가 지난다/ : /본초 자오선이 지난다/);

@@ -1,0 +1,27 @@
+✔ all 296 OX goals have real true and false questions and browser merge is idempotent (10.857443ms)
+✔ rebuilt cave tables use landforms as rows and duplicate crust values never give a single boundary answer (1.280586ms)
+✔ computed parallels respect country polygons and do not borrow city latitude (12.990151ms)
+✔ existing exam actually emits relative productivity, inverse urban totals and representative-point comparisons (5706.017925ms)
+✔ goal status never closes a group with an unverified child (5.736649ms)
+✔ all families really render and complete two answer steps without double grading (169.133049ms)
+✔ wrong attempts survive reload in the same family and leave review only after both steps are right (5.817772ms)
+✔ malformed saved data and unavailable storage do not prevent practice (4.675153ms)
+✔ assets reproduce from the pinned inputs without changing the original banks (293.683325ms)
+✔ monthly and cross-year cumulative differences invert the source months (2.173189ms)
+✔ solar calculations obey independent equinox, solstice and hemisphere cases (0.442145ms)
+✔ dependency, denominator and inverse calculations use working-age population (0.458639ms)
+✔ triangle vertices retain the actual expanded-axis values, radar uses each column maximum (0.507613ms)
+✔ September soil profile interpolation matches independent hand calculation (17.863282ms)
+✔ the original GIS examples and inclusive/exclusive boundaries are reproduced (1.56864ms)
+✔ all 30 families produce seeded, finite, uniquely scored two-step questions (1902.777766ms)
+✔ all generated numeric statement operands agree with independent recomputation (68.984257ms)
+✔ migrant numbers stay supplied data, and false statements carry corrections (0.616638ms)
+✔ historical energy keeps EJ conversion, endpoint reversal and missing 2025 values explicit (357.903186ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5856.073954

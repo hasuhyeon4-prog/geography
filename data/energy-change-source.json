@@ -1,0 +1,2325 @@
+{
+ "source": "OWID energy-data · Energy Institute Statistical Review of World Energy 2025",
+ "sourceUrl": "https://github.com/owid/energy-data",
+ "sourceArchive": "data/extensions-source-snapshots-02.zip",
+ "member": "owid_energy.csv",
+ "sourceSHA256": "266f2e2baad7975351bc9bb4aa061d22b1da9fe4c47d51d2ac6071e01e171f76",
+ "units": {
+  "consumption": "TWh",
+  "share": "% of primary energy consumption (substitution method)",
+  "TWhToEJ": 0.0036
+ },
+ "policy": "empty cell -> null; source category retained; no present-day values substituted for historical exam years",
+ "countries": {
+  "미국": {
+   "1965": {
+    "coal_consumption": 3224.244,
+    "oil_consumption": 6414.477,
+    "gas_consumption": 4159.206,
+    "renewables_consumption": 594.369,
+    "coal_share_energy": 22.386,
+    "oil_share_energy": 44.536,
+    "gas_share_energy": 28.877
+   },
+   "1966": {
+    "coal_consumption": 3380.846,
+    "oil_consumption": 6731.245,
+    "gas_consumption": 4482.756,
+    "renewables_consumption": 599.324,
+    "coal_share_energy": 22.227,
+    "oil_share_energy": 44.254,
+    "gas_share_energy": 29.472
+   },
+   "1967": {
+    "coal_consumption": 3316.997,
+    "oil_consumption": 6988.794,
+    "gas_consumption": 4733.188,
+    "renewables_consumption": 675.149,
+    "coal_share_energy": 21.078,
+    "oil_share_energy": 44.411,
+    "gas_share_energy": 30.078
+   },
+   "1968": {
+    "coal_consumption": 3433.077,
+    "oil_consumption": 7457.961,
+    "gas_consumption": 5066.815,
+    "renewables_consumption": 682.344,
+    "coal_share_energy": 20.586,
+    "oil_share_energy": 44.72,
+    "gas_share_energy": 30.382
+   },
+   "1969": {
+    "coal_consumption": 3447.238,
+    "oil_consumption": 7831.838,
+    "gas_consumption": 5454.107,
+    "renewables_consumption": 761.9,
+    "coal_share_energy": 19.658,
+    "oil_share_energy": 44.662,
+    "gas_share_energy": 31.103
+   },
+   "1970": {
+    "coal_consumption": 3414.659,
+    "oil_consumption": 8176.191,
+    "gas_consumption": 5748.658,
+    "renewables_consumption": 754.883,
+    "coal_share_energy": 18.805,
+    "oil_share_energy": 45.028,
+    "gas_share_energy": 31.659
+   },
+   "1971": {
+    "coal_consumption": 3229.201,
+    "oil_consumption": 8461.684,
+    "gas_consumption": 5926.526,
+    "renewables_consumption": 808.087,
+    "coal_share_energy": 17.42,
+    "oil_share_energy": 45.648,
+    "gas_share_energy": 31.971
+   },
+   "1972": {
+    "coal_consumption": 3362.425,
+    "oil_consumption": 9119.912,
+    "gas_consumption": 5986.964,
+    "renewables_consumption": 832.564,
+    "coal_share_energy": 17.279,
+    "oil_share_energy": 46.865,
+    "gas_share_energy": 30.765
+   },
+   "1973": {
+    "coal_consumption": 3611.49,
+    "oil_consumption": 9655.255,
+    "gas_consumption": 5937.959,
+    "renewables_consumption": 835.281,
+    "coal_share_energy": 17.805,
+    "oil_share_energy": 47.6,
+    "gas_share_energy": 29.274
+   },
+   "1974": {
+    "coal_consumption": 3525.567,
+    "oil_consumption": 9271.507,
+    "gas_consumption": 5732.247,
+    "renewables_consumption": 917.332,
+    "coal_share_energy": 17.824,
+    "oil_share_energy": 46.873,
+    "gas_share_energy": 28.98
+   },
+   "1975": {
+    "coal_consumption": 3525.541,
+    "oil_consumption": 9049.839,
+    "gas_consumption": 5261.532,
+    "renewables_consumption": 912.329,
+    "coal_share_energy": 18.311,
+    "oil_share_energy": 47.003,
+    "gas_share_energy": 27.327
+   },
+   "1976": {
+    "coal_consumption": 3782.042,
+    "oil_consumption": 9729.595,
+    "gas_consumption": 5366.39,
+    "renewables_consumption": 875.577,
+    "coal_share_energy": 18.619,
+    "oil_share_energy": 47.9,
+    "gas_share_energy": 26.419
+   },
+   "1977": {
+    "coal_consumption": 3876.157,
+    "oil_consumption": 10271.533,
+    "gas_consumption": 5256.951,
+    "renewables_consumption": 700.932,
+    "coal_share_energy": 18.6,
+    "oil_share_energy": 49.29,
+    "gas_share_energy": 25.226
+   },
+   "1978": {
+    "coal_consumption": 3832.577,
+    "oil_consumption": 10501.414,
+    "gas_consumption": 5275.385,
+    "renewables_consumption": 872.478,
+    "coal_share_energy": 18.002,
+    "oil_share_energy": 49.325,
+    "gas_share_energy": 24.779
+   },
+   "1979": {
+    "coal_consumption": 4187.284,
+    "oil_consumption": 10257.833,
+    "gas_consumption": 5450.898,
+    "renewables_consumption": 874.752,
+    "coal_share_energy": 19.461,
+    "oil_share_energy": 47.674,
+    "gas_share_energy": 25.333
+   },
+   "1980": {
+    "coal_consumption": 4293.98,
+    "oil_consumption": 9453.472,
+    "gas_consumption": 5337.385,
+    "renewables_consumption": 866.64,
+    "coal_share_energy": 20.758,
+    "oil_share_energy": 45.7,
+    "gas_share_energy": 25.802
+   },
+   "1981": {
+    "coal_consumption": 4428.934,
+    "oil_consumption": 8812.755,
+    "gas_consumption": 5208.629,
+    "renewables_consumption": 825.86,
+    "coal_share_energy": 22.064,
+    "oil_share_energy": 43.903,
+    "gas_share_energy": 25.948
+   },
+   "1982": {
+    "coal_consumption": 4265.796,
+    "oil_consumption": 8350.531,
+    "gas_consumption": 4841.709,
+    "renewables_consumption": 958.986,
+    "coal_share_energy": 22.167,
+    "oil_share_energy": 43.393,
+    "gas_share_energy": 25.16
+   },
+   "1983": {
+    "coal_consumption": 4425.291,
+    "oil_consumption": 8311.476,
+    "gas_consumption": 4542.236,
+    "renewables_consumption": 1033.926,
+    "coal_share_energy": 23.082,
+    "oil_share_energy": 43.353,
+    "gas_share_energy": 23.692
+   },
+   "1984": {
+    "coal_consumption": 4752.76,
+    "oil_consumption": 8573.317,
+    "gas_consumption": 4851.572,
+    "renewables_consumption": 1021.233,
+    "coal_share_energy": 23.579,
+    "oil_share_energy": 42.533,
+    "gas_share_energy": 24.069
+   },
+   "1985": {
+    "coal_consumption": 4866.301,
+    "oil_consumption": 8540.438,
+    "gas_consumption": 4669.541,
+    "renewables_consumption": 911.503,
+    "coal_share_energy": 24.199,
+    "oil_share_energy": 42.469,
+    "gas_share_energy": 23.22
+   },
+   "1986": {
+    "coal_consumption": 4805.599,
+    "oil_consumption": 8955.229,
+    "gas_consumption": 4376.204,
+    "renewables_consumption": 945.924,
+    "coal_share_energy": 23.68,
+    "oil_share_energy": 44.128,
+    "gas_share_energy": 21.564
+   },
+   "1987": {
+    "coal_consumption": 5013.868,
+    "oil_consumption": 9141.365,
+    "gas_consumption": 4652.744,
+    "renewables_consumption": 842.842,
+    "coal_share_energy": 23.896,
+    "oil_share_energy": 43.568,
+    "gas_share_energy": 22.175
+   },
+   "1988": {
+    "coal_consumption": 5247.144,
+    "oil_consumption": 9520.579,
+    "gas_consumption": 4866.021,
+    "renewables_consumption": 766.911,
+    "coal_share_energy": 23.914,
+    "oil_share_energy": 43.391,
+    "gas_share_energy": 22.177
+   },
+   "1989": {
+    "coal_consumption": 5309.355,
+    "oil_consumption": 9516.244,
+    "gas_consumption": 5170.197,
+    "renewables_consumption": 922.421,
+    "coal_share_energy": 23.633,
+    "oil_share_energy": 42.358,
+    "gas_share_energy": 23.013
+   },
+   "1990": {
+    "coal_consumption": 5337.998,
+    "oil_consumption": 9309.47,
+    "gas_consumption": 5170.636,
+    "renewables_consumption": 1017.039,
+    "coal_share_energy": 23.701,
+    "oil_share_energy": 41.335,
+    "gas_share_energy": 22.958
+   },
+   "1991": {
+    "coal_consumption": 5287.613,
+    "oil_consumption": 9111.919,
+    "gas_consumption": 5283.973,
+    "renewables_consumption": 1016.349,
+    "coal_share_energy": 23.51,
+    "oil_share_energy": 40.514,
+    "gas_share_energy": 23.494
+   },
+   "1992": {
+    "coal_consumption": 5324.031,
+    "oil_consumption": 9301.152,
+    "gas_consumption": 5463.51,
+    "renewables_consumption": 932.235,
+    "coal_share_energy": 23.32,
+    "oil_share_energy": 40.741,
+    "gas_share_energy": 23.931
+   },
+   "1993": {
+    "coal_consumption": 5522.453,
+    "oil_consumption": 9382.407,
+    "gas_consumption": 5599.419,
+    "renewables_consumption": 1020.35,
+    "coal_share_energy": 23.692,
+    "oil_share_energy": 40.252,
+    "gas_share_energy": 24.022
+   },
+   "1994": {
+    "coal_consumption": 5543.144,
+    "oil_consumption": 9623.489,
+    "gas_consumption": 5731.081,
+    "renewables_consumption": 967.664,
+    "coal_share_energy": 23.351,
+    "oil_share_energy": 40.54,
+    "gas_share_energy": 24.143
+   },
+   "1995": {
+    "coal_consumption": 5593.054,
+    "oil_consumption": 9600.031,
+    "gas_consumption": 5979.83,
+    "renewables_consumption": 1103.453,
+    "coal_share_energy": 23.069,
+    "oil_share_energy": 39.595,
+    "gas_share_energy": 24.664
+   },
+   "1996": {
+    "coal_consumption": 5847.301,
+    "oil_consumption": 9951.113,
+    "gas_consumption": 6088.898,
+    "renewables_consumption": 1200.768,
+    "coal_share_energy": 23.332,
+    "oil_share_energy": 39.708,
+    "gas_share_energy": 24.296
+   },
+   "1997": {
+    "coal_consumption": 5970.778,
+    "oil_consumption": 10083.609,
+    "gas_consumption": 6125.315,
+    "renewables_consumption": 1233.311,
+    "coal_share_energy": 23.646,
+    "oil_share_energy": 39.933,
+    "gas_share_energy": 24.258
+   },
+   "1998": {
+    "coal_consumption": 6029.338,
+    "oil_consumption": 10251.976,
+    "gas_consumption": 6021.791,
+    "renewables_consumption": 1140.747,
+    "coal_share_energy": 23.725,
+    "oil_share_energy": 40.34,
+    "gas_share_energy": 23.695
+   },
+   "1999": {
+    "coal_consumption": 6020.095,
+    "oil_consumption": 10537.062,
+    "gas_consumption": 6042.628,
+    "renewables_consumption": 1133.522,
+    "coal_share_energy": 23.277,
+    "oil_share_energy": 40.742,
+    "gas_share_energy": 23.364
+   },
+   "2000": {
+    "coal_consumption": 6286.536,
+    "oil_consumption": 10654.942,
+    "gas_consumption": 6283.907,
+    "renewables_consumption": 1019.879,
+    "coal_share_energy": 23.768,
+    "oil_share_energy": 40.284,
+    "gas_share_energy": 23.758
+   },
+   "2001": {
+    "coal_consumption": 6101.316,
+    "oil_consumption": 10642.425,
+    "gas_consumption": 6006.58,
+    "renewables_consumption": 849.316,
+    "coal_share_energy": 23.616,
+    "oil_share_energy": 41.193,
+    "gas_share_energy": 23.25
+   },
+   "2002": {
+    "coal_consumption": 6098.454,
+    "oil_consumption": 10641.834,
+    "gas_consumption": 6201.112,
+    "renewables_consumption": 1008.915,
+    "coal_share_energy": 23.277,
+    "oil_share_energy": 40.618,
+    "gas_share_energy": 23.668
+   },
+   "2003": {
+    "coal_consumption": 6214.537,
+    "oil_consumption": 10806.655,
+    "gas_consumption": 6021.901,
+    "renewables_consumption": 1054.698,
+    "coal_share_energy": 23.64,
+    "oil_share_energy": 41.108,
+    "gas_share_energy": 22.907
+   },
+   "2004": {
+    "coal_consumption": 6254.982,
+    "oil_consumption": 11199.437,
+    "gas_consumption": 6046.277,
+    "renewables_consumption": 1057.395,
+    "coal_share_energy": 23.333,
+    "oil_share_energy": 41.777,
+    "gas_share_energy": 22.554
+   },
+   "2005": {
+    "coal_consumption": 6346.957,
+    "oil_consumption": 11216.509,
+    "gas_consumption": 5951.93,
+    "renewables_consumption": 1087.422,
+    "coal_share_energy": 23.669,
+    "oil_share_energy": 41.828,
+    "gas_share_energy": 22.196
+   },
+   "2006": {
+    "coal_consumption": 6249.683,
+    "oil_consumption": 11072.753,
+    "gas_consumption": 5865.778,
+    "renewables_consumption": 1197.585,
+    "coal_share_energy": 23.494,
+    "oil_share_energy": 41.625,
+    "gas_share_energy": 22.051
+   },
+   "2007": {
+    "coal_consumption": 6333.85,
+    "oil_consumption": 11004.68,
+    "gas_consumption": 6241.383,
+    "renewables_consumption": 1139.041,
+    "coal_share_energy": 23.479,
+    "oil_share_energy": 40.793,
+    "gas_share_energy": 23.136
+   },
+   "2008": {
+    "coal_consumption": 6233.055,
+    "oil_consumption": 10275.43,
+    "gas_consumption": 6288.912,
+    "renewables_consumption": 1271.34,
+    "coal_share_energy": 23.693,
+    "oil_share_energy": 39.058,
+    "gas_share_energy": 23.905
+   },
+   "2009": {
+    "coal_consumption": 5482.376,
+    "oil_consumption": 9742.241,
+    "gas_consumption": 6176.281,
+    "renewables_consumption": 1400.781,
+    "coal_share_energy": 21.922,
+    "oil_share_energy": 38.955,
+    "gas_share_energy": 24.696
+   },
+   "2010": {
+    "coal_consumption": 5800.542,
+    "oil_consumption": 9892.91,
+    "gas_consumption": 6481.935,
+    "renewables_consumption": 1458.154,
+    "coal_share_energy": 22.443,
+    "oil_share_energy": 38.277,
+    "gas_share_energy": 25.079
+   },
+   "2011": {
+    "coal_consumption": 5473.071,
+    "oil_consumption": 9697.58,
+    "gas_consumption": 6582.108,
+    "renewables_consumption": 1703.818,
+    "coal_share_energy": 21.37,
+    "oil_share_energy": 37.864,
+    "gas_share_energy": 25.7
+   },
+   "2012": {
+    "coal_consumption": 4838.405,
+    "oil_consumption": 9472.091,
+    "gas_consumption": 6881.228,
+    "renewables_consumption": 1658.88,
+    "coal_share_energy": 19.402,
+    "oil_share_energy": 37.983,
+    "gas_share_energy": 27.594
+   },
+   "2013": {
+    "coal_consumption": 5022.271,
+    "oil_consumption": 9628.432,
+    "gas_consumption": 7070.228,
+    "renewables_consumption": 1763.835,
+    "coal_share_energy": 19.611,
+    "oil_share_energy": 37.598,
+    "gas_share_energy": 27.608
+   },
+   "2014": {
+    "coal_consumption": 5010.856,
+    "oil_consumption": 9692.96,
+    "gas_consumption": 7222.605,
+    "renewables_consumption": 1815.237,
+    "coal_share_energy": 19.364,
+    "oil_share_energy": 37.458,
+    "gas_share_energy": 27.911
+   },
+   "2015": {
+    "coal_consumption": 4329.078,
+    "oil_consumption": 9891.111,
+    "gas_consumption": 7435.795,
+    "renewables_consumption": 1850.341,
+    "coal_share_energy": 16.89,
+    "oil_share_energy": 38.591,
+    "gas_share_energy": 29.011
+   },
+   "2016": {
+    "coal_consumption": 3960.741,
+    "oil_consumption": 9965.476,
+    "gas_consumption": 7490.989,
+    "renewables_consumption": 2045.8,
+    "coal_share_energy": 15.475,
+    "oil_share_energy": 38.937,
+    "gas_share_energy": 29.269
+   },
+   "2017": {
+    "coal_consumption": 3852.593,
+    "oil_consumption": 10062.591,
+    "gas_consumption": 7398.232,
+    "renewables_consumption": 2248.143,
+    "coal_share_energy": 15.002,
+    "oil_share_energy": 39.185,
+    "gas_share_energy": 28.809
+   },
+   "2018": {
+    "coal_consumption": 3689.459,
+    "oil_consumption": 10303.763,
+    "gas_consumption": 8219.633,
+    "renewables_consumption": 2300.448,
+    "coal_share_energy": 13.856,
+    "oil_share_energy": 38.697,
+    "gas_share_energy": 30.87
+   },
+   "2019": {
+    "coal_consumption": 3150.46,
+    "oil_consumption": 10287.684,
+    "gas_consumption": 8509.999,
+    "renewables_consumption": 2369.579,
+    "coal_share_energy": 11.922,
+    "oil_share_energy": 38.929,
+    "gas_share_energy": 32.202
+   },
+   "2020": {
+    "coal_consumption": 2556.181,
+    "oil_consumption": 9035.32,
+    "gas_consumption": 8353.242,
+    "renewables_consumption": 2477.656,
+    "coal_share_energy": 10.444,
+    "oil_share_energy": 36.916,
+    "gas_share_energy": 34.129
+   },
+   "2021": {
+    "coal_consumption": 2936.894,
+    "oil_consumption": 9868.985,
+    "gas_consumption": 8364.249,
+    "renewables_consumption": 2610.055,
+    "coal_share_energy": 11.383,
+    "oil_share_energy": 38.25,
+    "gas_share_energy": 32.418
+   },
+   "2022": {
+    "coal_consumption": 2752.975,
+    "oil_consumption": 9930.587,
+    "gas_consumption": 8804.077,
+    "renewables_consumption": 2865.251,
+    "coal_share_energy": 10.448,
+    "oil_share_energy": 37.69,
+    "gas_share_energy": 33.414
+   },
+   "2023": {
+    "coal_consumption": 2275.209,
+    "oil_consumption": 9967.948,
+    "gas_consumption": 8884.396,
+    "renewables_consumption": 2919.287,
+    "coal_share_energy": 8.739,
+    "oil_share_energy": 38.285,
+    "gas_share_energy": 34.123
+   },
+   "2024": {
+    "coal_consumption": 2195.627,
+    "oil_consumption": 9948.951,
+    "gas_consumption": 9021.992,
+    "renewables_consumption": 3175.228,
+    "coal_share_energy": 8.333,
+    "oil_share_energy": 37.758,
+    "gas_share_energy": 34.24
+   },
+   "2025": {
+    "coal_consumption": null,
+    "oil_consumption": null,
+    "gas_consumption": null,
+    "renewables_consumption": null,
+    "coal_share_energy": null,
+    "oil_share_energy": null,
+    "gas_share_energy": null
+   }
+  },
+  "중국": {
+   "1965": {
+    "coal_consumption": 1330.705,
+    "oil_consumption": 129.063,
+    "gas_consumption": 11.087,
+    "renewables_consumption": 61.381,
+    "coal_share_energy": 86.847,
+    "oil_share_energy": 8.423,
+    "gas_share_energy": 0.724
+   },
+   "1966": {
+    "coal_consumption": 1423.512,
+    "oil_consumption": 165.8,
+    "gas_consumption": 13.505,
+    "renewables_consumption": 62.461,
+    "coal_share_energy": 85.482,
+    "oil_share_energy": 9.956,
+    "gas_share_energy": 0.811
+   },
+   "1967": {
+    "coal_consumption": 1265.344,
+    "oil_consumption": 163.693,
+    "gas_consumption": 14.715,
+    "renewables_consumption": 53.843,
+    "coal_share_energy": 84.492,
+    "oil_share_energy": 10.93,
+    "gas_share_energy": 0.983
+   },
+   "1968": {
+    "coal_consumption": 1255.924,
+    "oil_consumption": 179.035,
+    "gas_consumption": 14.11,
+    "renewables_consumption": 63.529,
+    "coal_share_energy": 83.031,
+    "oil_share_energy": 11.836,
+    "gas_share_energy": 0.933
+   },
+   "1969": {
+    "coal_consumption": 1516.61,
+    "oil_consumption": 240.044,
+    "gas_consumption": 19.754,
+    "renewables_consumption": 64.609,
+    "coal_share_energy": 82.379,
+    "oil_share_energy": 13.039,
+    "gas_share_energy": 1.073
+   },
+   "1970": {
+    "coal_consumption": 1929.65,
+    "oil_consumption": 332.046,
+    "gas_consumption": 28.926,
+    "renewables_consumption": 66.77,
+    "coal_share_energy": 81.855,
+    "oil_share_energy": 14.085,
+    "gas_share_energy": 1.227
+   },
+   "1971": {
+    "coal_consumption": 2224.877,
+    "oil_consumption": 451.578,
+    "gas_consumption": 37.694,
+    "renewables_consumption": 80.765,
+    "coal_share_energy": 79.605,
+    "oil_share_energy": 16.157,
+    "gas_share_energy": 1.349
+   },
+   "1972": {
+    "coal_consumption": 2352.924,
+    "oil_consumption": 519.697,
+    "gas_consumption": 48.781,
+    "renewables_consumption": 91.531,
+    "coal_share_energy": 78.094,
+    "oil_share_energy": 17.249,
+    "gas_share_energy": 1.619
+   },
+   "1973": {
+    "coal_consumption": 2383.743,
+    "oil_consumption": 633.983,
+    "gas_consumption": 60.27,
+    "renewables_consumption": 102.297,
+    "coal_share_energy": 74.954,
+    "oil_share_energy": 19.935,
+    "gas_share_energy": 1.895
+   },
+   "1974": {
+    "coal_consumption": 2358.564,
+    "oil_consumption": 729.073,
+    "gas_consumption": 75.892,
+    "renewables_consumption": 115.764,
+    "coal_share_energy": 71.923,
+    "oil_share_energy": 22.233,
+    "gas_share_energy": 2.314
+   },
+   "1975": {
+    "coal_consumption": 2658.211,
+    "oil_consumption": 804.078,
+    "gas_consumption": 89.196,
+    "renewables_consumption": 121.141,
+    "coal_share_energy": 72.379,
+    "oil_share_energy": 21.894,
+    "gas_share_energy": 2.429
+   },
+   "1976": {
+    "coal_consumption": 2723.165,
+    "oil_consumption": 919.186,
+    "gas_consumption": 101.794,
+    "renewables_consumption": 122.761,
+    "coal_share_energy": 70.422,
+    "oil_share_energy": 23.771,
+    "gas_share_energy": 2.632
+   },
+   "1977": {
+    "coal_consumption": 2995.539,
+    "oil_consumption": 971.042,
+    "gas_consumption": 122.153,
+    "renewables_consumption": 128.15,
+    "coal_share_energy": 71.037,
+    "oil_share_energy": 23.027,
+    "gas_share_energy": 2.897
+   },
+   "1978": {
+    "coal_consumption": 3289.197,
+    "oil_consumption": 1076.637,
+    "gas_consumption": 138.38,
+    "renewables_consumption": 120.073,
+    "coal_share_energy": 71.129,
+    "oil_share_energy": 23.282,
+    "gas_share_energy": 2.992
+   },
+   "1979": {
+    "coal_consumption": 3402.706,
+    "oil_consumption": 1079.3,
+    "gas_consumption": 146.241,
+    "renewables_consumption": 134.878,
+    "coal_share_energy": 71.439,
+    "oil_share_energy": 22.659,
+    "gas_share_energy": 3.07
+   },
+   "1980": {
+    "coal_consumption": 3539.019,
+    "oil_consumption": 972.533,
+    "gas_consumption": 143.823,
+    "renewables_consumption": 161.725,
+    "coal_share_energy": 73.468,
+    "oil_share_energy": 20.189,
+    "gas_share_energy": 2.986
+   },
+   "1981": {
+    "coal_consumption": 3520.195,
+    "oil_consumption": 921.531,
+    "gas_consumption": 128.402,
+    "renewables_consumption": 181.981,
+    "coal_share_energy": 74.076,
+    "oil_share_energy": 19.392,
+    "gas_share_energy": 2.702
+   },
+   "1982": {
+    "coal_consumption": 3724.838,
+    "oil_consumption": 911.753,
+    "gas_consumption": 120.238,
+    "renewables_consumption": 206.705,
+    "coal_share_energy": 75.044,
+    "oil_share_energy": 18.369,
+    "gas_share_energy": 2.422
+   },
+   "1983": {
+    "coal_consumption": 3989.005,
+    "oil_consumption": 930.099,
+    "gas_consumption": 123.06,
+    "renewables_consumption": 240.047,
+    "coal_share_energy": 75.518,
+    "oil_share_energy": 17.608,
+    "gas_share_energy": 2.33
+   },
+   "1984": {
+    "coal_consumption": 4338.266,
+    "oil_consumption": 964.89,
+    "gas_consumption": 125.278,
+    "renewables_consumption": 241.152,
+    "coal_share_energy": 76.518,
+    "oil_share_energy": 17.019,
+    "gas_share_energy": 2.21
+   },
+   "1985": {
+    "coal_consumption": 4736.265,
+    "oil_consumption": 1010.6,
+    "gas_consumption": 130.317,
+    "renewables_consumption": 256.632,
+    "coal_share_energy": 77.216,
+    "oil_share_energy": 16.476,
+    "gas_share_energy": 2.125
+   },
+   "1986": {
+    "coal_consumption": 4951.424,
+    "oil_consumption": 1074.421,
+    "gas_consumption": 138.682,
+    "renewables_consumption": 262.635,
+    "coal_share_energy": 77.039,
+    "oil_share_energy": 16.717,
+    "gas_share_energy": 2.158
+   },
+   "1987": {
+    "coal_consumption": 5372.242,
+    "oil_consumption": 1142.234,
+    "gas_consumption": 139.993,
+    "renewables_consumption": 277.845,
+    "coal_share_energy": 77.496,
+    "oil_share_energy": 16.477,
+    "gas_share_energy": 2.019
+   },
+   "1988": {
+    "coal_consumption": 5771.224,
+    "oil_consumption": 1229.358,
+    "gas_consumption": 143.722,
+    "renewables_consumption": 303.245,
+    "coal_share_energy": 77.492,
+    "oil_share_energy": 16.507,
+    "gas_share_energy": 1.93
+   },
+   "1989": {
+    "coal_consumption": 6046.902,
+    "oil_consumption": 1287.727,
+    "gas_consumption": 151.674,
+    "renewables_consumption": 328.914,
+    "coal_share_energy": 77.373,
+    "oil_share_energy": 16.477,
+    "gas_share_energy": 1.941
+   },
+   "1990": {
+    "coal_consumption": 6134.517,
+    "oil_consumption": 1274.573,
+    "gas_consumption": 154.183,
+    "renewables_consumption": 352.278,
+    "coal_share_energy": 77.5,
+    "oil_share_energy": 16.102,
+    "gas_share_energy": 1.948
+   },
+   "1991": {
+    "coal_consumption": 6433.428,
+    "oil_consumption": 1379.144,
+    "gas_consumption": 156.118,
+    "renewables_consumption": 346.589,
+    "coal_share_energy": 77.369,
+    "oil_share_energy": 16.586,
+    "gas_share_energy": 1.877
+   },
+   "1992": {
+    "coal_consumption": 6731.497,
+    "oil_consumption": 1495.912,
+    "gas_consumption": 159.142,
+    "renewables_consumption": 363.743,
+    "coal_share_energy": 76.929,
+    "oil_share_energy": 17.096,
+    "gas_share_energy": 1.819
+   },
+   "1993": {
+    "coal_consumption": 7170.356,
+    "oil_consumption": 1663.776,
+    "gas_consumption": 168.969,
+    "renewables_consumption": 422.761,
+    "coal_share_energy": 76.035,
+    "oil_share_energy": 17.643,
+    "gas_share_energy": 1.792
+   },
+   "1994": {
+    "coal_consumption": 7641.667,
+    "oil_consumption": 1690.638,
+    "gas_consumption": 176.971,
+    "renewables_consumption": 467.598,
+    "coal_share_energy": 76.28,
+    "oil_share_energy": 16.876,
+    "gas_share_energy": 1.767
+   },
+   "1995": {
+    "coal_consumption": 7736.85,
+    "oil_consumption": 1825.631,
+    "gas_consumption": 178.795,
+    "renewables_consumption": 540.539,
+    "coal_share_energy": 74.988,
+    "oil_share_energy": 17.695,
+    "gas_share_energy": 1.733
+   },
+   "1996": {
+    "coal_consumption": 8095.39,
+    "oil_consumption": 2023.029,
+    "gas_consumption": 187.362,
+    "renewables_consumption": 527.215,
+    "coal_share_energy": 74.455,
+    "oil_share_energy": 18.606,
+    "gas_share_energy": 1.723
+   },
+   "1997": {
+    "coal_consumption": 7931.912,
+    "oil_consumption": 2221.545,
+    "gas_consumption": 197.985,
+    "renewables_consumption": 553.476,
+    "coal_share_energy": 72.471,
+    "oil_share_energy": 20.297,
+    "gas_share_energy": 1.809
+   },
+   "1998": {
+    "coal_consumption": 7871.717,
+    "oil_consumption": 2287.591,
+    "gas_consumption": 204.163,
+    "renewables_consumption": 561.249,
+    "coal_share_energy": 71.797,
+    "oil_share_energy": 20.865,
+    "gas_share_energy": 1.862
+   },
+   "1999": {
+    "coal_consumption": 8099.033,
+    "oil_consumption": 2437.245,
+    "gas_consumption": 216.631,
+    "renewables_consumption": 555.294,
+    "coal_share_energy": 71.359,
+    "oil_share_energy": 21.474,
+    "gas_share_energy": 1.909
+   },
+   "2000": {
+    "coal_consumption": 8211.406,
+    "oil_consumption": 2626.896,
+    "gas_consumption": 246.957,
+    "renewables_consumption": 627.433,
+    "coal_share_energy": 69.83,
+    "oil_share_energy": 22.339,
+    "gas_share_energy": 2.1
+   },
+   "2001": {
+    "coal_consumption": 8635.755,
+    "oil_consumption": 2683.249,
+    "gas_consumption": 276.458,
+    "renewables_consumption": 776.435,
+    "coal_share_energy": 69.53,
+    "oil_share_energy": 21.604,
+    "gas_share_energy": 2.226
+   },
+   "2002": {
+    "coal_consumption": 9467.458,
+    "oil_consumption": 2895.598,
+    "gas_consumption": 294.136,
+    "renewables_consumption": 801.056,
+    "coal_share_energy": 69.989,
+    "oil_share_energy": 21.406,
+    "gas_share_energy": 2.174
+   },
+   "2003": {
+    "coal_consumption": 11283.059,
+    "oil_consumption": 3234.762,
+    "gas_consumption": 341.747,
+    "renewables_consumption": 788.52,
+    "coal_share_energy": 71.565,
+    "oil_share_energy": 20.517,
+    "gas_share_energy": 2.168
+   },
+   "2004": {
+    "coal_consumption": 13155.28,
+    "oil_consumption": 3777.772,
+    "gas_consumption": 399.84,
+    "renewables_consumption": 975.653,
+    "coal_share_energy": 71.32,
+    "oil_share_energy": 20.481,
+    "gas_share_energy": 2.168
+   },
+   "2005": {
+    "coal_consumption": 15405.106,
+    "oil_consumption": 3838.487,
+    "gas_consumption": 469.751,
+    "renewables_consumption": 1097.714,
+    "coal_share_energy": 73.52,
+    "oil_share_energy": 18.319,
+    "gas_share_energy": 2.242
+   },
+   "2006": {
+    "coal_consumption": 16918.381,
+    "oil_consumption": 4116.769,
+    "gas_consumption": 577.838,
+    "renewables_consumption": 1209.74,
+    "coal_share_energy": 73.656,
+    "oil_share_energy": 17.923,
+    "gas_share_energy": 2.516
+   },
+   "2007": {
+    "coal_consumption": 18423.914,
+    "oil_consumption": 4313.567,
+    "gas_consumption": 710.779,
+    "renewables_consumption": 1349.64,
+    "coal_share_energy": 73.804,
+    "oil_share_energy": 17.28,
+    "gas_share_energy": 2.847
+   },
+   "2008": {
+    "coal_consumption": 18715.92,
+    "oil_consumption": 4408.092,
+    "gas_consumption": 819.329,
+    "renewables_consumption": 1780.234,
+    "coal_share_energy": 72.251,
+    "oil_share_energy": 17.017,
+    "gas_share_energy": 3.163
+   },
+   "2009": {
+    "coal_consumption": 19605.02,
+    "oil_consumption": 4580.298,
+    "gas_consumption": 902.24,
+    "renewables_consumption": 1774.15,
+    "coal_share_energy": 72.489,
+    "oil_share_energy": 16.935,
+    "gas_share_energy": 3.336
+   },
+   "2010": {
+    "coal_consumption": 20340.543,
+    "oil_consumption": 5214.49,
+    "gas_consumption": 1088.741,
+    "renewables_consumption": 2080.64,
+    "coal_share_energy": 70.336,
+    "oil_share_energy": 18.031,
+    "gas_share_energy": 3.765
+   },
+   "2011": {
+    "coal_consumption": 22143.604,
+    "oil_consumption": 5390.733,
+    "gas_consumption": 1351.629,
+    "renewables_consumption": 2089.481,
+    "coal_share_energy": 70.97,
+    "oil_share_energy": 17.277,
+    "gas_share_energy": 4.332
+   },
+   "2012": {
+    "coal_consumption": 22422.357,
+    "oil_consumption": 5654.299,
+    "gas_consumption": 1508.776,
+    "renewables_consumption": 2618.516,
+    "coal_share_energy": 69.083,
+    "oil_share_energy": 17.421,
+    "gas_share_energy": 4.648
+   },
+   "2013": {
+    "coal_consumption": 22902.131,
+    "oil_consumption": 5907.47,
+    "gas_consumption": 1718.785,
+    "renewables_consumption": 2852.832,
+    "coal_share_energy": 68.027,
+    "oil_share_energy": 17.547,
+    "gas_share_energy": 5.105
+   },
+   "2014": {
+    "coal_consumption": 22804.703,
+    "oil_consumption": 6142.517,
+    "gas_consumption": 1883.631,
+    "renewables_consumption": 3344.307,
+    "coal_share_energy": 66.074,
+    "oil_share_energy": 17.797,
+    "gas_share_energy": 5.458
+   },
+   "2015": {
+    "coal_consumption": 22329.043,
+    "oil_consumption": 6609.896,
+    "gas_consumption": 1946.895,
+    "renewables_consumption": 3587.629,
+    "coal_share_energy": 63.967,
+    "oil_share_energy": 18.936,
+    "gas_share_energy": 5.577
+   },
+   "2016": {
+    "coal_consumption": 21675.779,
+    "oil_consumption": 6823.579,
+    "gas_consumption": 2094.411,
+    "renewables_consumption": 3891.976,
+    "coal_share_energy": 61.893,
+    "oil_share_energy": 19.484,
+    "gas_share_energy": 5.98
+   },
+   "2017": {
+    "coal_consumption": 21915.443,
+    "oil_consumption": 7183.172,
+    "gas_consumption": 2412.522,
+    "renewables_consumption": 4243.345,
+    "coal_share_energy": 60.249,
+    "oil_share_energy": 19.748,
+    "gas_share_energy": 6.632
+   },
+   "2018": {
+    "coal_consumption": 22352.146,
+    "oil_consumption": 7528.741,
+    "gas_consumption": 2839.26,
+    "renewables_consumption": 4659.087,
+    "coal_share_energy": 58.647,
+    "oil_share_energy": 19.754,
+    "gas_share_energy": 7.45
+   },
+   "2019": {
+    "coal_consumption": 22922.236,
+    "oil_consumption": 7891.51,
+    "gas_consumption": 3083.768,
+    "renewables_consumption": 5096.059,
+    "coal_share_energy": 57.512,
+    "oil_share_energy": 19.8,
+    "gas_share_energy": 7.737
+   },
+   "2020": {
+    "coal_consumption": 23402.553,
+    "oil_consumption": 7959.667,
+    "gas_consumption": 3366.173,
+    "renewables_consumption": 5511.566,
+    "coal_share_energy": 56.879,
+    "oil_share_energy": 19.346,
+    "gas_share_energy": 8.181
+   },
+   "2021": {
+    "coal_consumption": 24315.477,
+    "oil_consumption": 8174.095,
+    "gas_consumption": 3802.679,
+    "renewables_consumption": 6170.007,
+    "coal_share_energy": 55.941,
+    "oil_share_energy": 18.806,
+    "gas_share_energy": 8.749
+   },
+   "2022": {
+    "coal_consumption": 24397.779,
+    "oil_consumption": 8198.393,
+    "gas_consumption": 3776.475,
+    "renewables_consumption": 6712.969,
+    "coal_share_energy": 55.309,
+    "oil_share_energy": 18.585,
+    "gas_share_energy": 8.561
+   },
+   "2023": {
+    "coal_consumption": 25181.209,
+    "oil_consumption": 9091.228,
+    "gas_consumption": 4048.381,
+    "renewables_consumption": 7226.692,
+    "coal_share_energy": 54.028,
+    "oil_share_energy": 19.506,
+    "gas_share_energy": 8.686
+   },
+   "2024": {
+    "coal_consumption": 25599.307,
+    "oil_consumption": 8964.054,
+    "gas_consumption": 4343.913,
+    "renewables_consumption": 8470.082,
+    "coal_share_energy": 52.807,
+    "oil_share_energy": 18.491,
+    "gas_share_energy": 8.961
+   },
+   "2025": {
+    "coal_consumption": null,
+    "oil_consumption": null,
+    "gas_consumption": null,
+    "renewables_consumption": null,
+    "coal_share_energy": null,
+    "oil_share_energy": null,
+    "gas_share_energy": null
+   }
+  },
+  "이란": {
+   "1965": {
+    "coal_consumption": 2.454,
+    "oil_consumption": 81.94,
+    "gas_consumption": 7.813,
+    "renewables_consumption": 4.775,
+    "coal_share_energy": 2.53,
+    "oil_share_energy": 84.489,
+    "gas_share_energy": 8.056
+   },
+   "1966": {
+    "coal_consumption": 2.698,
+    "oil_consumption": 89.685,
+    "gas_consumption": 8.192,
+    "renewables_consumption": 5.131,
+    "coal_share_energy": 2.553,
+    "oil_share_energy": 84.844,
+    "gas_share_energy": 7.75
+   },
+   "1967": {
+    "coal_consumption": 2.977,
+    "oil_consumption": 99.205,
+    "gas_consumption": 8.588,
+    "renewables_consumption": 5.524,
+    "coal_share_energy": 2.56,
+    "oil_share_energy": 85.305,
+    "gas_share_energy": 7.385
+   },
+   "1968": {
+    "coal_consumption": 3.28,
+    "oil_consumption": 109.472,
+    "gas_consumption": 9.173,
+    "renewables_consumption": 5.942,
+    "coal_share_energy": 2.565,
+    "oil_share_energy": 85.614,
+    "gas_share_energy": 7.174
+   },
+   "1969": {
+    "coal_consumption": 3.617,
+    "oil_consumption": 119.566,
+    "gas_consumption": 10.764,
+    "renewables_consumption": 6.396,
+    "coal_share_energy": 2.577,
+    "oil_share_energy": 85.196,
+    "gas_share_energy": 7.67
+   },
+   "1970": {
+    "coal_consumption": 3.989,
+    "oil_consumption": 129.196,
+    "gas_consumption": 25.525,
+    "renewables_consumption": 6.887,
+    "coal_share_energy": 2.409,
+    "oil_share_energy": 78.019,
+    "gas_share_energy": 15.414
+   },
+   "1971": {
+    "coal_consumption": 2.81,
+    "oil_consumption": 141.647,
+    "gas_consumption": 29.543,
+    "renewables_consumption": 7.402,
+    "coal_share_energy": 1.549,
+    "oil_share_energy": 78.084,
+    "gas_share_energy": 16.286
+   },
+   "1972": {
+    "coal_consumption": 4.391,
+    "oil_consumption": 157.659,
+    "gas_consumption": 33.818,
+    "renewables_consumption": 9.723,
+    "coal_share_energy": 2.136,
+    "oil_share_energy": 76.686,
+    "gas_share_energy": 16.449
+   },
+   "1973": {
+    "coal_consumption": 7.383,
+    "oil_consumption": 189.242,
+    "gas_consumption": 41.077,
+    "renewables_consumption": 8.237,
+    "coal_share_energy": 3.002,
+    "oil_share_energy": 76.947,
+    "gas_share_energy": 16.702
+   },
+   "1974": {
+    "coal_consumption": 8.086,
+    "oil_consumption": 219.959,
+    "gas_consumption": 41.765,
+    "renewables_consumption": 9.072,
+    "coal_share_energy": 2.899,
+    "oil_share_energy": 78.872,
+    "gas_share_energy": 14.976
+   },
+   "1975": {
+    "coal_consumption": 14.979,
+    "oil_consumption": 257.92,
+    "gas_consumption": 42.609,
+    "renewables_consumption": 9.526,
+    "coal_share_energy": 4.609,
+    "oil_share_energy": 79.352,
+    "gas_share_energy": 13.109
+   },
+   "1976": {
+    "coal_consumption": 14.805,
+    "oil_consumption": 292.325,
+    "gas_consumption": 47.996,
+    "renewables_consumption": 10.656,
+    "coal_share_energy": 4.048,
+    "oil_share_energy": 79.918,
+    "gas_share_energy": 13.121
+   },
+   "1977": {
+    "coal_consumption": 14.977,
+    "oil_consumption": 339.159,
+    "gas_consumption": 49.081,
+    "renewables_consumption": 11.012,
+    "coal_share_energy": 3.616,
+    "oil_share_energy": 81.877,
+    "gas_share_energy": 11.849
+   },
+   "1978": {
+    "coal_consumption": 9.152,
+    "oil_consumption": 340.151,
+    "gas_consumption": 38.008,
+    "renewables_consumption": 17.248,
+    "coal_share_energy": 2.262,
+    "oil_share_energy": 84.079,
+    "gas_share_energy": 9.395
+   },
+   "1979": {
+    "coal_consumption": 13.21,
+    "oil_consumption": 357.921,
+    "gas_consumption": 50.921,
+    "renewables_consumption": 14.952,
+    "coal_share_energy": 3.023,
+    "oil_share_energy": 81.903,
+    "gas_share_energy": 11.652
+   },
+   "1980": {
+    "coal_consumption": 13.911,
+    "oil_consumption": 330.285,
+    "gas_consumption": 45.354,
+    "renewables_consumption": 15.505,
+    "coal_share_energy": 3.434,
+    "oil_share_energy": 81.541,
+    "gas_share_energy": 11.197
+   },
+   "1981": {
+    "coal_consumption": 11.617,
+    "oil_consumption": 328.618,
+    "gas_consumption": 49.28,
+    "renewables_consumption": 16.929,
+    "coal_share_energy": 2.858,
+    "oil_share_energy": 80.852,
+    "gas_share_energy": 12.125
+   },
+   "1982": {
+    "coal_consumption": 15.669,
+    "oil_consumption": 357.879,
+    "gas_consumption": 67.491,
+    "renewables_consumption": 17.764,
+    "coal_share_energy": 3.415,
+    "oil_share_energy": 78.003,
+    "gas_share_energy": 14.71
+   },
+   "1983": {
+    "coal_consumption": 14.783,
+    "oil_consumption": 435.68,
+    "gas_consumption": 77.133,
+    "renewables_consumption": 17.383,
+    "coal_share_energy": 2.713,
+    "oil_share_energy": 79.944,
+    "gas_share_energy": 14.153
+   },
+   "1984": {
+    "coal_consumption": 11.429,
+    "oil_consumption": 471.644,
+    "gas_consumption": 89.789,
+    "renewables_consumption": 16.254,
+    "coal_share_energy": 1.94,
+    "oil_share_energy": 80.06,
+    "gas_share_energy": 15.241
+   },
+   "1985": {
+    "coal_consumption": 11.245,
+    "oil_consumption": 518.389,
+    "gas_consumption": 96.864,
+    "renewables_consumption": 16.386,
+    "coal_share_energy": 1.749,
+    "oil_share_energy": 80.635,
+    "gas_share_energy": 15.067
+   },
+   "1986": {
+    "coal_consumption": 11.075,
+    "oil_consumption": 478.297,
+    "gas_consumption": 93.055,
+    "renewables_consumption": 19.583,
+    "coal_share_energy": 1.84,
+    "oil_share_energy": 79.45,
+    "gas_share_energy": 15.457
+   },
+   "1987": {
+    "coal_consumption": 10.894,
+    "oil_consumption": 498.836,
+    "gas_consumption": 113.918,
+    "renewables_consumption": 21.711,
+    "coal_share_energy": 1.688,
+    "oil_share_energy": 77.296,
+    "gas_share_energy": 17.652
+   },
+   "1988": {
+    "coal_consumption": 11.242,
+    "oil_consumption": 500.279,
+    "gas_consumption": 123.675,
+    "renewables_consumption": 22.906,
+    "coal_share_energy": 1.708,
+    "oil_share_energy": 76.019,
+    "gas_share_energy": 18.793
+   },
+   "1989": {
+    "coal_consumption": 8.259,
+    "oil_consumption": 536.641,
+    "gas_consumption": 156.168,
+    "renewables_consumption": 18.7,
+    "coal_share_energy": 1.147,
+    "oil_share_energy": 74.557,
+    "gas_share_energy": 21.697
+   },
+   "1990": {
+    "coal_consumption": 8.261,
+    "oil_consumption": 553.211,
+    "gas_consumption": 227.985,
+    "renewables_consumption": 20.503,
+    "coal_share_energy": 1.02,
+    "oil_share_energy": 68.301,
+    "gas_share_energy": 28.148
+   },
+   "1991": {
+    "coal_consumption": 11.792,
+    "oil_consumption": 586.546,
+    "gas_consumption": 265.31,
+    "renewables_consumption": 15.575,
+    "coal_share_energy": 1.341,
+    "oil_share_energy": 66.712,
+    "gas_share_energy": 30.176
+   },
+   "1992": {
+    "coal_consumption": 10.386,
+    "oil_consumption": 630.639,
+    "gas_consumption": 305.183,
+    "renewables_consumption": 25.567,
+    "coal_share_energy": 1.069,
+    "oil_share_energy": 64.896,
+    "gas_share_energy": 31.405
+   },
+   "1993": {
+    "coal_consumption": 12.767,
+    "oil_consumption": 691.704,
+    "gas_consumption": 165.132,
+    "renewables_consumption": 29.258,
+    "coal_share_energy": 1.42,
+    "oil_share_energy": 76.953,
+    "gas_share_energy": 18.371
+   },
+   "1994": {
+    "coal_consumption": 12.818,
+    "oil_consumption": 714.483,
+    "gas_consumption": 261.053,
+    "renewables_consumption": 19.156,
+    "coal_share_energy": 1.272,
+    "oil_share_energy": 70.916,
+    "gas_share_energy": 25.911
+   },
+   "1995": {
+    "coal_consumption": 12.005,
+    "oil_consumption": 702.648,
+    "gas_consumption": 318.68,
+    "renewables_consumption": 23.119,
+    "coal_share_energy": 1.136,
+    "oil_share_energy": 66.51,
+    "gas_share_energy": 30.165
+   },
+   "1996": {
+    "coal_consumption": 12.558,
+    "oil_consumption": 737.468,
+    "gas_consumption": 374.794,
+    "renewables_consumption": 24.483,
+    "coal_share_energy": 1.093,
+    "oil_share_energy": 64.167,
+    "gas_share_energy": 32.611
+   },
+   "1997": {
+    "coal_consumption": 12.872,
+    "oil_consumption": 758.171,
+    "gas_consumption": 397.523,
+    "renewables_consumption": 16.503,
+    "coal_share_energy": 1.086,
+    "oil_share_energy": 63.977,
+    "gas_share_energy": 33.544
+   },
+   "1998": {
+    "coal_consumption": 14.989,
+    "oil_consumption": 736.062,
+    "gas_consumption": 462.314,
+    "renewables_consumption": 20.8,
+    "coal_share_energy": 1.215,
+    "oil_share_energy": 59.641,
+    "gas_share_energy": 37.46
+   },
+   "1999": {
+    "coal_consumption": 14.265,
+    "oil_consumption": 752.266,
+    "gas_consumption": 549.726,
+    "renewables_consumption": 14.383,
+    "coal_share_energy": 1.072,
+    "oil_share_energy": 56.534,
+    "gas_share_energy": 41.313
+   },
+   "2000": {
+    "coal_consumption": 15.16,
+    "oil_consumption": 775.711,
+    "gas_consumption": 594.409,
+    "renewables_consumption": 10.604,
+    "coal_share_energy": 1.086,
+    "oil_share_energy": 55.571,
+    "gas_share_energy": 42.583
+   },
+   "2001": {
+    "coal_consumption": 14.862,
+    "oil_consumption": 799.744,
+    "gas_consumption": 665.327,
+    "renewables_consumption": 11.48,
+    "coal_share_energy": 0.997,
+    "oil_share_energy": 53.623,
+    "gas_share_energy": 44.611
+   },
+   "2002": {
+    "coal_consumption": 14.082,
+    "oil_consumption": 806.609,
+    "gas_consumption": 782.203,
+    "renewables_consumption": 22.034,
+    "coal_share_energy": 0.867,
+    "oil_share_energy": 49.64,
+    "gas_share_energy": 48.138
+   },
+   "2003": {
+    "coal_consumption": 15.257,
+    "oil_consumption": 810.284,
+    "gas_consumption": 802.767,
+    "renewables_consumption": 26.201,
+    "coal_share_energy": 0.922,
+    "oil_share_energy": 48.974,
+    "gas_share_energy": 48.52
+   },
+   "2004": {
+    "coal_consumption": 15.971,
+    "oil_consumption": 848.906,
+    "gas_consumption": 932.56,
+    "renewables_consumption": 32.464,
+    "coal_share_energy": 0.873,
+    "oil_share_energy": 46.391,
+    "gas_share_energy": 50.962
+   },
+   "2005": {
+    "coal_consumption": 18.103,
+    "oil_consumption": 910.154,
+    "gas_consumption": 970.469,
+    "renewables_consumption": 39.029,
+    "coal_share_energy": 0.934,
+    "oil_share_energy": 46.97,
+    "gas_share_energy": 50.082
+   },
+   "2006": {
+    "coal_consumption": 17.474,
+    "oil_consumption": 991.934,
+    "gas_consumption": 1057.84,
+    "renewables_consumption": 49.825,
+    "coal_share_energy": 0.825,
+    "oil_share_energy": 46.854,
+    "gas_share_energy": 49.967
+   },
+   "2007": {
+    "coal_consumption": 18.215,
+    "oil_consumption": 999.074,
+    "gas_consumption": 1185.522,
+    "renewables_consumption": 48.138,
+    "coal_share_energy": 0.809,
+    "oil_share_energy": 44.385,
+    "gas_share_energy": 52.668
+   },
+   "2008": {
+    "coal_consumption": 14.342,
+    "oil_consumption": 1029.706,
+    "gas_consumption": 1257.867,
+    "renewables_consumption": 20.142,
+    "coal_share_energy": 0.618,
+    "oil_share_energy": 44.345,
+    "gas_share_energy": 54.17
+   },
+   "2009": {
+    "coal_consumption": 9.255,
+    "oil_consumption": 1002.677,
+    "gas_consumption": 1347.944,
+    "renewables_consumption": 18.245,
+    "coal_share_energy": 0.389,
+    "oil_share_energy": 42.163,
+    "gas_share_energy": 56.681
+   },
+   "2010": {
+    "coal_consumption": 13.364,
+    "oil_consumption": 972.176,
+    "gas_consumption": 1443.894,
+    "renewables_consumption": 27.172,
+    "coal_share_energy": 0.544,
+    "oil_share_energy": 39.574,
+    "gas_share_energy": 58.776
+   },
+   "2011": {
+    "coal_consumption": 13.733,
+    "oil_consumption": 978.044,
+    "gas_consumption": 1531.926,
+    "renewables_consumption": 28.299,
+    "coal_share_energy": 0.538,
+    "oil_share_energy": 38.32,
+    "gas_share_energy": 60.022
+   },
+   "2012": {
+    "coal_consumption": 10.651,
+    "oil_consumption": 998.781,
+    "gas_consumption": 1525.455,
+    "renewables_consumption": 33.023,
+    "coal_share_energy": 0.414,
+    "oil_share_energy": 38.838,
+    "gas_share_energy": 59.318
+   },
+   "2013": {
+    "coal_consumption": 8.863,
+    "oil_consumption": 1075.391,
+    "gas_consumption": 1538.345,
+    "renewables_consumption": 38.024,
+    "coal_share_energy": 0.332,
+    "oil_share_energy": 40.254,
+    "gas_share_energy": 57.583
+   },
+   "2014": {
+    "coal_consumption": 10.552,
+    "oil_consumption": 991.938,
+    "gas_consumption": 1734.009,
+    "renewables_consumption": 37.562,
+    "coal_share_energy": 0.379,
+    "oil_share_energy": 35.625,
+    "gas_share_energy": 62.275
+   },
+   "2015": {
+    "coal_consumption": 12.695,
+    "oil_consumption": 864.857,
+    "gas_consumption": 1840.195,
+    "renewables_consumption": 33.961,
+    "coal_share_energy": 0.46,
+    "oil_share_energy": 31.329,
+    "gas_share_energy": 66.66
+   },
+   "2016": {
+    "coal_consumption": 10.56,
+    "oil_consumption": 888.29,
+    "gas_consumption": 1963.191,
+    "renewables_consumption": 39.221,
+    "coal_share_energy": 0.362,
+    "oil_share_energy": 30.447,
+    "gas_share_energy": 67.29
+   },
+   "2017": {
+    "coal_consumption": 11.982,
+    "oil_consumption": 896.906,
+    "gas_consumption": 2050.04,
+    "renewables_consumption": 44.166,
+    "coal_share_energy": 0.397,
+    "oil_share_energy": 29.694,
+    "gas_share_energy": 67.871
+   },
+   "2018": {
+    "coal_consumption": 15.849,
+    "oil_consumption": 933.499,
+    "gas_consumption": 2126.434,
+    "renewables_consumption": 26.966,
+    "coal_share_energy": 0.508,
+    "oil_share_energy": 29.921,
+    "gas_share_energy": 68.158
+   },
+   "2019": {
+    "coal_consumption": 18.933,
+    "oil_consumption": 985.508,
+    "gas_consumption": 2183.896,
+    "renewables_consumption": 86.908,
+    "coal_share_energy": 0.575,
+    "oil_share_energy": 29.945,
+    "gas_share_energy": 66.357
+   },
+   "2020": {
+    "coal_consumption": 21.401,
+    "oil_consumption": 950.843,
+    "gas_consumption": 2367.673,
+    "renewables_consumption": 61.588,
+    "coal_share_energy": 0.626,
+    "oil_share_energy": 27.826,
+    "gas_share_energy": 69.288
+   },
+   "2021": {
+    "coal_consumption": 20.255,
+    "oil_consumption": 1010.115,
+    "gas_consumption": 2295.314,
+    "renewables_consumption": 38.438,
+    "coal_share_energy": 0.601,
+    "oil_share_energy": 29.949,
+    "gas_share_energy": 68.053
+   },
+   "2022": {
+    "coal_consumption": 21.514,
+    "oil_consumption": 1017.021,
+    "gas_consumption": 2394.013,
+    "renewables_consumption": 38.778,
+    "coal_share_energy": 0.617,
+    "oil_share_energy": 29.162,
+    "gas_share_energy": 68.646
+   },
+   "2023": {
+    "coal_consumption": 18.063,
+    "oil_consumption": 1031.422,
+    "gas_consumption": 2465.833,
+    "renewables_consumption": 60.326,
+    "coal_share_energy": 0.503,
+    "oil_share_energy": 28.716,
+    "gas_share_energy": 68.651
+   },
+   "2024": {
+    "coal_consumption": 18.45,
+    "oil_consumption": 1044.638,
+    "gas_consumption": 2453.936,
+    "renewables_consumption": 51.378,
+    "coal_share_energy": 0.514,
+    "oil_share_energy": 29.128,
+    "gas_share_energy": 68.425
+   },
+   "2025": {
+    "coal_consumption": null,
+    "oil_consumption": null,
+    "gas_consumption": null,
+    "renewables_consumption": null,
+    "coal_share_energy": null,
+    "oil_share_energy": null,
+    "gas_share_energy": null
+   }
+  },
+  "오스트레일리아": {
+   "1965": {
+    "coal_consumption": 202.028,
+    "oil_consumption": 200.019,
+    "gas_consumption": 0.029,
+    "renewables_consumption": 22.285,
+    "coal_share_energy": 47.607,
+    "oil_share_energy": 47.134,
+    "gas_share_energy": 0.007
+   },
+   "1966": {
+    "coal_consumption": 209.389,
+    "oil_consumption": 214.048,
+    "gas_consumption": 0.039,
+    "renewables_consumption": 21.29,
+    "coal_share_energy": 47.078,
+    "oil_share_energy": 48.126,
+    "gas_share_energy": 0.009
+   },
+   "1967": {
+    "coal_consumption": 215.25,
+    "oil_consumption": 234.388,
+    "gas_consumption": 0.039,
+    "renewables_consumption": 22.033,
+    "coal_share_energy": 45.632,
+    "oil_share_energy": 49.689,
+    "gas_share_energy": 0.008
+   },
+   "1968": {
+    "coal_consumption": 221.694,
+    "oil_consumption": 255.285,
+    "gas_consumption": 0.305,
+    "renewables_consumption": 22.966,
+    "coal_share_energy": 44.317,
+    "oil_share_energy": 51.031,
+    "gas_share_energy": 0.061
+   },
+   "1969": {
+    "coal_consumption": 229.278,
+    "oil_consumption": 262.448,
+    "gas_consumption": 4.127,
+    "renewables_consumption": 25.001,
+    "coal_share_energy": 44.02,
+    "oil_share_energy": 50.388,
+    "gas_share_energy": 0.792
+   },
+   "1970": {
+    "coal_consumption": 231.694,
+    "oil_consumption": 290.195,
+    "gas_consumption": 17.304,
+    "renewables_consumption": 29.068,
+    "coal_share_energy": 40.773,
+    "oil_share_energy": 51.067,
+    "gas_share_energy": 3.045
+   },
+   "1971": {
+    "coal_consumption": 232.569,
+    "oil_consumption": 305.545,
+    "gas_consumption": 25.827,
+    "renewables_consumption": 32.787,
+    "coal_share_energy": 38.974,
+    "oil_share_energy": 51.203,
+    "gas_share_energy": 4.328
+   },
+   "1972": {
+    "coal_consumption": 242.931,
+    "oil_consumption": 311.033,
+    "gas_consumption": 37.074,
+    "renewables_consumption": 32.968,
+    "coal_share_energy": 38.931,
+    "oil_share_energy": 49.845,
+    "gas_share_energy": 5.941
+   },
+   "1973": {
+    "coal_consumption": 252.986,
+    "oil_consumption": 331.893,
+    "gas_consumption": 47.069,
+    "renewables_consumption": 35.184,
+    "coal_share_energy": 37.921,
+    "oil_share_energy": 49.749,
+    "gas_share_energy": 7.055
+   },
+   "1974": {
+    "coal_consumption": 264.069,
+    "oil_consumption": 351.735,
+    "gas_consumption": 53.702,
+    "renewables_consumption": 39.879,
+    "coal_share_energy": 37.225,
+    "oil_share_energy": 49.583,
+    "gas_share_energy": 7.57
+   },
+   "1975": {
+    "coal_consumption": 272.542,
+    "oil_consumption": 348.104,
+    "gas_consumption": 57.67,
+    "renewables_consumption": 42.883,
+    "coal_share_energy": 37.79,
+    "oil_share_energy": 48.267,
+    "gas_share_energy": 7.996
+   },
+   "1976": {
+    "coal_consumption": 281.792,
+    "oil_consumption": 355.821,
+    "gas_consumption": 68.077,
+    "renewables_consumption": 40.829,
+    "coal_share_energy": 37.747,
+    "oil_share_energy": 47.664,
+    "gas_share_energy": 9.119
+   },
+   "1977": {
+    "coal_consumption": 294.181,
+    "oil_consumption": 372.601,
+    "gas_consumption": 77.768,
+    "renewables_consumption": 38.963,
+    "coal_share_energy": 37.546,
+    "oil_share_energy": 47.555,
+    "gas_share_energy": 9.926
+   },
+   "1978": {
+    "coal_consumption": 301.861,
+    "oil_consumption": 380.947,
+    "gas_consumption": 83.725,
+    "renewables_consumption": 42.03,
+    "coal_share_energy": 37.333,
+    "oil_share_energy": 47.114,
+    "gas_share_energy": 10.355
+   },
+   "1979": {
+    "coal_consumption": 315.542,
+    "oil_consumption": 385.915,
+    "gas_consumption": 96.375,
+    "renewables_consumption": 40.879,
+    "coal_share_energy": 37.622,
+    "oil_share_energy": 46.013,
+    "gas_share_energy": 11.491
+   },
+   "1980": {
+    "coal_consumption": 324.764,
+    "oil_consumption": 367.768,
+    "gas_consumption": 110.666,
+    "renewables_consumption": 38.61,
+    "coal_share_energy": 38.579,
+    "oil_share_energy": 43.688,
+    "gas_share_energy": 13.146
+   },
+   "1981": {
+    "coal_consumption": 333.139,
+    "oil_consumption": 362.418,
+    "gas_consumption": 119.944,
+    "renewables_consumption": 39.78,
+    "coal_share_energy": 38.951,
+    "oil_share_energy": 42.374,
+    "gas_share_energy": 14.024
+   },
+   "1982": {
+    "coal_consumption": 336.681,
+    "oil_consumption": 356.849,
+    "gas_consumption": 116.981,
+    "renewables_consumption": 37.086,
+    "coal_share_energy": 39.722,
+    "oil_share_energy": 42.101,
+    "gas_share_energy": 13.801
+   },
+   "1983": {
+    "coal_consumption": 336.556,
+    "oil_consumption": 340.716,
+    "gas_consumption": 127.075,
+    "renewables_consumption": 35.024,
+    "coal_share_energy": 40.096,
+    "oil_share_energy": 40.592,
+    "gas_share_energy": 15.139
+   },
+   "1984": {
+    "coal_consumption": 355.903,
+    "oil_consumption": 349.914,
+    "gas_consumption": 125.317,
+    "renewables_consumption": 37.839,
+    "coal_share_energy": 40.957,
+    "oil_share_energy": 40.268,
+    "gas_share_energy": 14.421
+   },
+   "1985": {
+    "coal_consumption": 368.139,
+    "oil_consumption": 351.524,
+    "gas_consumption": 133.953,
+    "renewables_consumption": 40.149,
+    "coal_share_energy": 41.19,
+    "oil_share_energy": 39.331,
+    "gas_share_energy": 14.987
+   },
+   "1986": {
+    "coal_consumption": 377.486,
+    "oil_consumption": 345.653,
+    "gas_consumption": 146.329,
+    "renewables_consumption": 40.398,
+    "coal_share_energy": 41.488,
+    "oil_share_energy": 37.989,
+    "gas_share_energy": 16.082
+   },
+   "1987": {
+    "coal_consumption": 393.361,
+    "oil_consumption": 353.026,
+    "gas_consumption": 149.395,
+    "renewables_consumption": 39.285,
+    "coal_share_energy": 42.068,
+    "oil_share_energy": 37.754,
+    "gas_share_energy": 15.977
+   },
+   "1988": {
+    "coal_consumption": 413.764,
+    "oil_consumption": 369.837,
+    "gas_consumption": 152.993,
+    "renewables_consumption": 42.102,
+    "coal_share_energy": 42.277,
+    "oil_share_energy": 37.789,
+    "gas_share_energy": 15.632
+   },
+   "1989": {
+    "coal_consumption": 433.958,
+    "oil_consumption": 384.145,
+    "gas_consumption": 166.876,
+    "renewables_consumption": 42.125,
+    "coal_share_energy": 42.251,
+    "oil_share_energy": 37.401,
+    "gas_share_energy": 16.247
+   },
+   "1990": {
+    "coal_consumption": 444.347,
+    "oil_consumption": 392.904,
+    "gas_consumption": 167.759,
+    "renewables_consumption": 43.372,
+    "coal_share_energy": 42.384,
+    "oil_share_energy": 37.477,
+    "gas_share_energy": 16.002
+   },
+   "1991": {
+    "coal_consumption": 453.264,
+    "oil_consumption": 381.255,
+    "gas_consumption": 160.821,
+    "renewables_consumption": 45.746,
+    "coal_share_energy": 43.538,
+    "oil_share_energy": 36.621,
+    "gas_share_energy": 15.447
+   },
+   "1992": {
+    "coal_consumption": 455.958,
+    "oil_consumption": 388.779,
+    "gas_consumption": 166.37,
+    "renewables_consumption": 46.409,
+    "coal_share_energy": 43.116,
+    "oil_share_energy": 36.763,
+    "gas_share_energy": 15.732
+   },
+   "1993": {
+    "coal_consumption": 458.889,
+    "oil_consumption": 402.416,
+    "gas_consumption": 172.493,
+    "renewables_consumption": 47.659,
+    "coal_share_energy": 42.432,
+    "oil_share_energy": 37.211,
+    "gas_share_energy": 15.95
+   },
+   "1994": {
+    "coal_consumption": 468.264,
+    "oil_consumption": 415.674,
+    "gas_consumption": 191.567,
+    "renewables_consumption": 47.101,
+    "coal_share_energy": 41.712,
+    "oil_share_energy": 37.028,
+    "gas_share_energy": 17.064
+   },
+   "1995": {
+    "coal_consumption": 484.167,
+    "oil_consumption": 427.777,
+    "gas_consumption": 193.416,
+    "renewables_consumption": 46.077,
+    "coal_share_energy": 42.049,
+    "oil_share_energy": 37.152,
+    "gas_share_energy": 16.798
+   },
+   "1996": {
+    "coal_consumption": 503.958,
+    "oil_consumption": 439.015,
+    "gas_consumption": 194.827,
+    "renewables_consumption": 47.405,
+    "coal_share_energy": 42.521,
+    "oil_share_energy": 37.041,
+    "gas_share_energy": 16.438
+   },
+   "1997": {
+    "coal_consumption": 529.458,
+    "oil_consumption": 446.058,
+    "gas_consumption": 191.305,
+    "renewables_consumption": 47.534,
+    "coal_share_energy": 43.6,
+    "oil_share_energy": 36.732,
+    "gas_share_energy": 15.754
+   },
+   "1998": {
+    "coal_consumption": 553.083,
+    "oil_consumption": 445.97,
+    "gas_consumption": 196.953,
+    "renewables_consumption": 47.41,
+    "coal_share_energy": 44.481,
+    "oil_share_energy": 35.867,
+    "gas_share_energy": 15.84
+   },
+   "1999": {
+    "coal_consumption": 587.443,
+    "oil_consumption": 456.154,
+    "gas_consumption": 201.741,
+    "renewables_consumption": 49.001,
+    "coal_share_energy": 45.386,
+    "oil_share_energy": 35.242,
+    "gas_share_energy": 15.586
+   },
+   "2000": {
+    "coal_consumption": 591.662,
+    "oil_consumption": 455.982,
+    "gas_consumption": 205.551,
+    "renewables_consumption": 49.022,
+    "coal_share_energy": 45.435,
+    "oil_share_energy": 35.016,
+    "gas_share_energy": 15.785
+   },
+   "2001": {
+    "coal_consumption": 585.691,
+    "oil_consumption": 457.085,
+    "gas_consumption": 221.693,
+    "renewables_consumption": 47.975,
+    "coal_share_energy": 44.626,
+    "oil_share_energy": 34.827,
+    "gas_share_energy": 16.892
+   },
+   "2002": {
+    "coal_consumption": 598.872,
+    "oil_consumption": 461.975,
+    "gas_consumption": 228.148,
+    "renewables_consumption": 49.676,
+    "coal_share_energy": 44.736,
+    "oil_share_energy": 34.51,
+    "gas_share_energy": 17.043
+   },
+   "2003": {
+    "coal_consumption": 616.021,
+    "oil_consumption": 460.26,
+    "gas_consumption": 229.943,
+    "renewables_consumption": 51.548,
+    "coal_share_energy": 45.37,
+    "oil_share_energy": 33.898,
+    "gas_share_energy": 16.935
+   },
+   "2004": {
+    "coal_consumption": 641.921,
+    "oil_consumption": 471.296,
+    "gas_consumption": 234.536,
+    "renewables_consumption": 53.661,
+    "coal_share_energy": 45.805,
+    "oil_share_energy": 33.63,
+    "gas_share_energy": 16.736
+   },
+   "2005": {
+    "coal_consumption": 638.222,
+    "oil_consumption": 478.702,
+    "gas_consumption": 232.59,
+    "renewables_consumption": 57.624,
+    "coal_share_energy": 45.356,
+    "oil_share_energy": 34.02,
+    "gas_share_energy": 16.529
+   },
+   "2006": {
+    "coal_consumption": 655.499,
+    "oil_consumption": 493.642,
+    "gas_consumption": 259.431,
+    "renewables_consumption": 59.05,
+    "coal_share_energy": 44.664,
+    "oil_share_energy": 33.635,
+    "gas_share_energy": 17.677
+   },
+   "2007": {
+    "coal_consumption": 649.802,
+    "oil_consumption": 506.27,
+    "gas_consumption": 290.198,
+    "renewables_consumption": 56.918,
+    "coal_share_energy": 43.228,
+    "oil_share_energy": 33.68,
+    "gas_share_energy": 19.306
+   },
+   "2008": {
+    "coal_consumption": 677.291,
+    "oil_consumption": 512.716,
+    "gas_consumption": 285.35,
+    "renewables_consumption": 53.497,
+    "coal_share_energy": 44.301,
+    "oil_share_energy": 33.536,
+    "gas_share_energy": 18.664
+   },
+   "2009": {
+    "coal_consumption": 654.861,
+    "oil_consumption": 504.141,
+    "gas_consumption": 291.364,
+    "renewables_consumption": 56.072,
+    "coal_share_energy": 43.471,
+    "oil_share_energy": 33.466,
+    "gas_share_energy": 19.341
+   },
+   "2010": {
+    "coal_consumption": 607.394,
+    "oil_consumption": 519.306,
+    "gas_consumption": 317.064,
+    "renewables_consumption": 61.531,
+    "coal_share_energy": 40.35,
+    "oil_share_energy": 34.499,
+    "gas_share_energy": 21.063
+   },
+   "2011": {
+    "coal_consumption": 592.062,
+    "oil_consumption": 547.06,
+    "gas_consumption": 330.82,
+    "renewables_consumption": 83.776,
+    "coal_share_energy": 38.106,
+    "oil_share_energy": 35.21,
+    "gas_share_energy": 21.292
+   },
+   "2012": {
+    "coal_consumption": 554.468,
+    "oil_consumption": 561.419,
+    "gas_consumption": 332.849,
+    "renewables_consumption": 82.696,
+    "coal_share_energy": 36.206,
+    "oil_share_energy": 36.66,
+    "gas_share_energy": 21.734
+   },
+   "2013": {
+    "coal_consumption": 526.242,
+    "oil_consumption": 578.037,
+    "gas_consumption": 350.005,
+    "renewables_consumption": 95.674,
+    "coal_share_energy": 33.952,
+    "oil_share_energy": 37.294,
+    "gas_share_energy": 22.582
+   },
+   "2014": {
+    "coal_consumption": 521.888,
+    "oil_consumption": 575.428,
+    "gas_consumption": 375.677,
+    "renewables_consumption": 88.418,
+    "coal_share_energy": 33.424,
+    "oil_share_energy": 36.853,
+    "gas_share_energy": 24.06
+   },
+   "2015": {
+    "coal_consumption": 540.411,
+    "oil_consumption": 570.779,
+    "gas_consumption": 389.95,
+    "renewables_consumption": 95.058,
+    "coal_share_energy": 33.856,
+    "oil_share_energy": 35.759,
+    "gas_share_energy": 24.43
+   },
+   "2016": {
+    "coal_consumption": 540.062,
+    "oil_consumption": 572.201,
+    "gas_consumption": 379.527,
+    "renewables_consumption": 108.587,
+    "coal_share_energy": 33.746,
+    "oil_share_energy": 35.754,
+    "gas_share_energy": 23.715
+   },
+   "2017": {
+    "coal_consumption": 521.526,
+    "oil_consumption": 599.949,
+    "gas_consumption": 372.844,
+    "renewables_consumption": 101.723,
+    "coal_share_energy": 32.676,
+    "oil_share_energy": 37.59,
+    "gas_share_energy": 23.361
+   },
+   "2018": {
+    "coal_consumption": 508.897,
+    "oil_consumption": 610.595,
+    "gas_consumption": 371.908,
+    "renewables_consumption": 127.007,
+    "coal_share_energy": 31.444,
+    "oil_share_energy": 37.728,
+    "gas_share_energy": 22.98
+   },
+   "2019": {
+    "coal_consumption": 486.421,
+    "oil_consumption": 604.199,
+    "gas_consumption": 440.57,
+    "renewables_consumption": 140.546,
+    "coal_share_energy": 29.097,
+    "oil_share_energy": 36.142,
+    "gas_share_energy": 26.354
+   },
+   "2020": {
+    "coal_consumption": 468.104,
+    "oil_consumption": 522.173,
+    "gas_consumption": 423.173,
+    "renewables_consumption": 162.166,
+    "coal_share_energy": 29.709,
+    "oil_share_energy": 33.141,
+    "gas_share_energy": 26.858
+   },
+   "2021": {
+    "coal_consumption": 452.476,
+    "oil_consumption": 535.72,
+    "gas_consumption": 395.757,
+    "renewables_consumption": 193.787,
+    "coal_share_energy": 28.679,
+    "oil_share_energy": 33.955,
+    "gas_share_energy": 25.084
+   },
+   "2022": {
+    "coal_consumption": 428.356,
+    "oil_consumption": 569.0,
+    "gas_consumption": 432.269,
+    "renewables_consumption": 218.301,
+    "coal_share_energy": 25.994,
+    "oil_share_energy": 34.528,
+    "gas_share_energy": 26.231
+   },
+   "2023": {
+    "coal_consumption": 418.341,
+    "oil_consumption": 602.696,
+    "gas_consumption": 386.27,
+    "renewables_consumption": 235.274,
+    "coal_share_energy": 25.468,
+    "oil_share_energy": 36.692,
+    "gas_share_energy": 23.516
+   },
+   "2024": {
+    "coal_consumption": 422.99,
+    "oil_consumption": 620.483,
+    "gas_consumption": 369.924,
+    "renewables_consumption": 244.22,
+    "coal_share_energy": 25.518,
+    "oil_share_energy": 37.432,
+    "gas_share_energy": 22.317
+   },
+   "2025": {
+    "coal_consumption": null,
+    "oil_consumption": null,
+    "gas_consumption": null,
+    "renewables_consumption": null,
+    "coal_share_energy": null,
+    "oil_share_energy": null,
+    "gas_share_energy": null
+   }
+  }
+ },
+ "coalDirectionWindow": {
+  "미국": {
+   "expectedUp": false,
+   "validCases": 110,
+   "allAvailableHold": true,
+   "fullPlusMinusFiveVerified": false,
+   "missingPairs": [
+    [
+     1985,
+     2025
+    ],
+    [
+     1986,
+     2025
+    ],
+    [
+     1987,
+     2025
+    ],
+    [
+     1988,
+     2025
+    ],
+    [
+     1989,
+     2025
+    ],
+    [
+     1990,
+     2025
+    ],
+    [
+     1991,
+     2025
+    ],
+    [
+     1992,
+     2025
+    ],
+    [
+     1993,
+     2025
+    ],
+    [
+     1994,
+     2025
+    ],
+    [
+     1995,
+     2025
+    ]
+   ]
+  },
+  "중국": {
+   "expectedUp": true,
+   "validCases": 110,
+   "allAvailableHold": true,
+   "fullPlusMinusFiveVerified": false,
+   "missingPairs": [
+    [
+     1985,
+     2025
+    ],
+    [
+     1986,
+     2025
+    ],
+    [
+     1987,
+     2025
+    ],
+    [
+     1988,
+     2025
+    ],
+    [
+     1989,
+     2025
+    ],
+    [
+     1990,
+     2025
+    ],
+    [
+     1991,
+     2025
+    ],
+    [
+     1992,
+     2025
+    ],
+    [
+     1993,
+     2025
+    ],
+    [
+     1994,
+     2025
+    ],
+    [
+     1995,
+     2025
+    ]
+   ]
+  }
+ }
+}

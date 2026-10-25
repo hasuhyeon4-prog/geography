@@ -1,0 +1,949 @@
+{
+ "generatedAt": "2026-10-25",
+ "materialQuestions": 4800,
+ "materialGoals": {
+  "G086-1": {
+   "true": 320,
+   "false": 320,
+   "families": [
+    "energy-change"
+   ]
+  },
+  "G086-2": {
+   "true": 320,
+   "false": 320,
+   "families": [
+    "energy-composition"
+   ]
+  },
+  "G009-1": {
+   "true": 318,
+   "false": 322,
+   "families": [
+    "gis-filters",
+    "gis-medical"
+   ]
+  },
+  "G139-2": {
+   "true": 82,
+   "false": 78,
+   "families": [
+    "gis-medical"
+   ]
+  },
+  "G009-2": {
+   "true": 320,
+   "false": 320,
+   "families": [
+    "gis-scoring"
+   ]
+  },
+  "G009-4": {
+   "true": 320,
+   "false": 320,
+   "families": [
+    "gis-directions"
+   ]
+  },
+  "G009-3": {
+   "true": 320,
+   "false": 320,
+   "families": [
+    "gis-weighted"
+   ]
+  },
+  "G009-5": {
+   "true": 640,
+   "false": 640,
+   "families": [
+    "gis-top-two",
+    "gis-tie-break"
+   ]
+  },
+  "G020-1": {
+   "true": 134,
+   "false": 121,
+   "families": [
+    "cumulative"
+   ]
+  },
+  "G133-2": {
+   "true": 135,
+   "false": 119,
+   "families": [
+    "cumulative"
+   ]
+  },
+  "G020-2": {
+   "true": 51,
+   "false": 80,
+   "families": [
+    "cumulative"
+   ]
+  },
+  "G133-3": {
+   "true": 156,
+   "false": 164,
+   "families": [
+    "self-deviation"
+   ]
+  },
+  "G021-1": {
+   "true": 84,
+   "false": 76,
+   "families": [
+    "self-deviation"
+   ]
+  },
+  "G021-2": {
+   "true": 77,
+   "false": 83,
+   "families": [
+    "common-deviation"
+   ]
+  },
+  "G024-1": {
+   "true": 78,
+   "false": 82,
+   "families": [
+    "common-deviation"
+   ]
+  },
+  "G133-4": {
+   "true": 165,
+   "false": 155,
+   "families": [
+    "common-deviation"
+   ]
+  },
+  "G021-3": {
+   "true": 160,
+   "false": 160,
+   "families": [
+    "reference-deviation"
+   ]
+  },
+  "G020-3": {
+   "true": 160,
+   "false": 160,
+   "families": [
+    "precip-deviation"
+   ]
+  },
+  "G021-5": {
+   "true": 320,
+   "false": 320,
+   "families": [
+    "difference"
+   ]
+  },
+  "G002-1": {
+   "true": 77,
+   "false": 83,
+   "families": [
+    "daylight"
+   ]
+  },
+  "G012-2": {
+   "true": 576,
+   "false": 544,
+   "families": [
+    "daylight",
+    "solar-altitude",
+    "solar-month",
+    "solar-climate",
+    "solar-night"
+   ]
+  },
+  "G002-2": {
+   "true": 165,
+   "false": 155,
+   "families": [
+    "daylight"
+   ]
+  },
+  "G022-1": {
+   "true": 248,
+   "false": 232,
+   "families": [
+    "solar-altitude",
+    "solar-month",
+    "solar-climate"
+   ]
+  },
+  "G022-2": {
+   "true": 133,
+   "false": 107,
+   "families": [
+    "solar-month",
+    "solar-climate"
+   ]
+  },
+  "G024-2": {
+   "true": 81,
+   "false": 79,
+   "families": [
+    "solar-night"
+   ]
+  },
+  "G134-2": {
+   "true": 414,
+   "false": 442,
+   "families": [
+    "age-triangle",
+    "dependency"
+   ]
+  },
+  "G134-1": {
+   "true": 63,
+   "false": 70,
+   "families": [
+    "age-triangle"
+   ]
+  },
+  "G056-2": {
+   "true": 163,
+   "false": 128,
+   "families": [
+    "age-triangle",
+    "dependency"
+   ]
+  },
+  "G136-1": {
+   "true": 322,
+   "false": 331,
+   "families": [
+    "urban-weighted",
+    "urban-change"
+   ]
+  },
+  "G053-2": {
+   "true": 136,
+   "false": 176,
+   "families": [
+    "urban-weighted",
+    "urban-change"
+   ]
+  },
+  "G136-2": {
+   "true": 182,
+   "false": 133,
+   "families": [
+    "urban-weighted",
+    "urban-change"
+   ]
+  },
+  "G063-1": {
+   "true": 240,
+   "false": 240,
+   "families": [
+    "urban-radar"
+   ]
+  },
+  "G069-2": {
+   "true": 160,
+   "false": 160,
+   "families": [
+    "city-tier"
+   ]
+  },
+  "G110-5": {
+   "true": 238,
+   "false": 242,
+   "families": [
+    "soil-temperature"
+   ]
+  },
+  "G032-2": {
+   "true": 82,
+   "false": 78,
+   "families": [
+    "soil-temperature"
+   ]
+  },
+  "G070-1": {
+   "true": 320,
+   "false": 320,
+   "families": [
+    "headquarters"
+   ]
+  },
+  "G061-3": {
+   "true": 240,
+   "false": 240,
+   "families": [
+    "migrant-stock"
+   ]
+  },
+  "G137-2": {
+   "true": 320,
+   "false": 320,
+   "families": [
+    "population-index"
+   ]
+  }
+ },
+ "firstMaterialProof": {
+  "G086-1": {
+   "family": "energy-change",
+   "seed": 1,
+   "text": "(가)의 석탄 소비량은 1990~2020년에 증가했다.",
+   "check": {
+    "op": "energyChange",
+    "country": "미국",
+    "field": "coal_consumption",
+    "from": "1990",
+    "to": "2020",
+    "a": 19.216792799999997,
+    "b": 9.2022516
+   }
+  },
+  "G086-2": {
+   "family": "energy-composition",
+   "seed": 1,
+   "text": "(나)의 천연가스 비중은 2000~2018년에 하락했다.",
+   "check": {
+    "op": "energyShareChange",
+    "country": "미국",
+    "field": "gas_share_energy",
+    "from": "2000",
+    "to": "2018",
+    "a": 23.758,
+    "b": 30.87
+   }
+  },
+  "G009-1": {
+   "family": "gis-filters",
+   "seed": 1,
+   "text": "40% 이상이라는 조건은 정확히 40%인 값을 제외한다.",
+   "check": {
+    "op": "inclusiveBoundary"
+   }
+  },
+  "G139-2": {
+   "family": "gis-medical",
+   "seed": 1,
+   "text": "지원 대상은 1인당 GDP 447달러인 소말리아이다.",
+   "check": {
+    "op": "medicalWinner",
+    "rows": [
+     [
+      "소말리아",
+      27,
+      47,
+      11,
+      447
+     ],
+     [
+      "케냐",
+      53,
+      38,
+      4,
+      2082
+     ],
+     [
+      "탄자니아",
+      43,
+      44,
+      5,
+      1136
+     ],
+     [
+      "모잠비크",
+      44,
+      44,
+      7,
+      492
+     ],
+     [
+      "남아프리카 공화국",
+      71,
+      29,
+      3,
+      7055
+     ]
+    ],
+    "result": "소말리아"
+   }
+  },
+  "G009-2": {
+   "family": "gis-scoring",
+   "seed": 1,
+   "text": "앙골라의 점수 합계는 5점이다.",
+   "check": {
+    "op": "weightedScore",
+    "scores": [
+     1,
+     1,
+     1
+    ],
+    "weights": [
+     1,
+     1,
+     1
+    ],
+    "result": 3
+   }
+  },
+  "G009-4": {
+   "family": "gis-directions",
+   "seed": 1,
+   "text": "앙골라의 점수 합계는 9점이다.",
+   "check": {
+    "op": "weightedScore",
+    "scores": [
+     3,
+     1,
+     3
+    ],
+    "weights": [
+     1,
+     1,
+     1
+    ],
+    "result": 7
+   }
+  },
+  "G009-3": {
+   "family": "gis-weighted",
+   "seed": 1,
+   "text": "남아프리카 공화국의 점수 합계는 6점이다.",
+   "check": {
+    "op": "weightedScore",
+    "scores": [
+     1,
+     1,
+     1
+    ],
+    "weights": [
+     1,
+     1,
+     2
+    ],
+    "result": 4
+   }
+  },
+  "G009-5": {
+   "family": "gis-top-two",
+   "seed": 1,
+   "text": "베트남의 점수 합계는 6점이다.",
+   "check": {
+    "op": "weightedScore",
+    "scores": [
+     1,
+     1,
+     2
+    ],
+    "weights": [
+     1,
+     1,
+     1
+    ],
+    "result": 4
+   }
+  },
+  "G020-1": {
+   "family": "cumulative",
+   "seed": 1,
+   "text": "(가)의 연 강수량은 각 달 누적값을 모두 더한 값이다.",
+   "check": {
+    "op": "annual",
+    "result": 723.5000000000001
+   }
+  },
+  "G133-2": {
+   "family": "cumulative",
+   "seed": 1,
+   "text": "(가)의 12·1·2월 강수량 합은 242.9mm이다.",
+   "check": {
+    "op": "season",
+    "cumulative": [
+     19.1,
+     32.5,
+     52.2,
+     87.4,
+     175.10000000000002,
+     302.40000000000003,
+     444.70000000000005,
+     569.1,
+     651.8000000000001,
+     688.9000000000001,
+     713.1000000000001,
+     723.5000000000001
+    ],
+    "months": [
+     12,
+     1,
+     2
+    ],
+    "result": 42.89999999999998
+   }
+  },
+  "G020-2": {
+   "family": "cumulative",
+   "seed": 2,
+   "text": "누적선이 평탄할수록 그 기간의 월 강수량이 많다.",
+   "check": {
+    "op": "slope"
+   }
+  },
+  "G133-3": {
+   "family": "self-deviation",
+   "seed": 1,
+   "text": "서로 다른 지점의 1월 기온 차이는 각 지점의 편차 차이와 항상 같다.",
+   "check": {
+    "op": "selfDifference",
+    "means": [
+     18.841666666666665,
+     20.541666666666664,
+     27.84166666666667
+    ]
+   }
+  },
+  "G021-1": {
+   "family": "self-deviation",
+   "seed": 1,
+   "text": "(가)의 2월 실제 값은 약 25℃이다.",
+   "check": {
+    "op": "restore",
+    "deviation": 6.158333333333335,
+    "base": 18.841666666666665,
+    "result": 25
+   }
+  },
+  "G021-2": {
+   "family": "common-deviation",
+   "seed": 1,
+   "text": "(가)의 2월 실제 값은 약 10.4℃이다.",
+   "check": {
+    "op": "restore",
+    "deviation": -15.399999999999999,
+    "base": 15.799999999999999,
+    "result": 0.4
+   }
+  },
+  "G024-1": {
+   "family": "common-deviation",
+   "seed": 1,
+   "text": "(가)의 1월 실제 기온은 (나)보다 낮다.",
+   "check": {
+    "op": "compare",
+    "a": -0.2,
+    "b": 24.6
+   }
+  },
+  "G133-4": {
+   "family": "common-deviation",
+   "seed": 1,
+   "text": "서로 다른 달의 편차를 바로 빼면 실제 기온 차이가 된다.",
+   "check": {
+    "op": "commonDifference",
+    "bases": [
+     15.6,
+     15.799999999999999,
+     16.333333333333332,
+     15.433333333333332,
+     14.966666666666667,
+     15.333333333333334,
+     15.999999999999998,
+     16.233333333333334,
+     15.5,
+     14.666666666666666,
+     14.266666666666666,
+     14.433333333333332
+    ]
+   }
+  },
+  "G021-3": {
+   "family": "reference-deviation",
+   "seed": 1,
+   "text": "(가)의 2월 실제 값은 약 35℃이다.",
+   "check": {
+    "op": "restore",
+    "deviation": -2.3000000000000007,
+    "base": 27.3,
+    "result": 25
+   }
+  },
+  "G020-3": {
+   "family": "precip-deviation",
+   "seed": 1,
+   "text": "(가)의 2월 실제 값은 약 23.4mm이다.",
+   "check": {
+    "op": "restore",
+    "deviation": -46.89166666666668,
+    "base": 60.29166666666668,
+    "result": 13.4
+   }
+  },
+  "G021-5": {
+   "family": "difference",
+   "seed": 1,
+   "text": "(가)는 1월 기온이 7월보다 높다.",
+   "check": {
+    "op": "difference",
+    "a": -3.5,
+    "b": 23.4,
+    "result": -26.9
+   }
+  },
+  "G002-1": {
+   "family": "daylight",
+   "seed": 1,
+   "text": "마닐라는 웰링턴보다 낮 길이의 연중 변화 폭이 크다.",
+   "check": {
+    "op": "dayRange",
+    "hi": -41.2865,
+    "lo": 14.5995
+   }
+  },
+  "G012-2": {
+   "family": "daylight",
+   "seed": 1,
+   "text": "정오 태양 고도는 같은 날의 직사 위도에 가까울수록 높다.",
+   "check": {
+    "op": "declinationMeaning"
+   }
+  },
+  "G002-2": {
+   "family": "daylight",
+   "seed": 1,
+   "text": "웰링턴의 낮 길이는 7월이 1월보다 길다.",
+   "check": {
+    "op": "hemisphere"
+   }
+  },
+  "G022-1": {
+   "family": "solar-altitude",
+   "seed": 1,
+   "text": "(가)의 7월 태양 고도는 약 46.8°이다.",
+   "check": {
+    "op": "solarAltitude",
+    "lat": -36.84806,
+    "decl": 21.344572529408428,
+    "result": 31.807367470591572
+   }
+  },
+  "G022-2": {
+   "family": "solar-month",
+   "seed": 2,
+   "text": "태양 자료로 정한 7월 강수량은 양곤가 다윈보다 많다.",
+   "check": {
+    "op": "compare",
+    "a": 624.5,
+    "b": 0.9
+   }
+  },
+  "G024-2": {
+   "family": "solar-night",
+   "seed": 1,
+   "text": "(가)의 1월 밤 길이는 약 12.4시간이다.",
+   "check": {
+    "op": "night",
+    "lat": -41.2865,
+    "month": 1,
+    "result": 9.361043453006964
+   }
+  },
+  "G134-2": {
+   "family": "age-triangle",
+   "seed": 1,
+   "text": "부양 대상이 전체 인구의 36.7%이면 총부양비도 36.7이다.",
+   "check": {
+    "op": "dependencyDenominator"
+   }
+  },
+  "G134-1": {
+   "family": "age-triangle",
+   "seed": 1,
+   "text": "이 확대 삼각 도표의 꼭짓점은 세 축 모두 100%를 뜻하지 않는다.",
+   "check": {
+    "op": "ternaryBounds",
+    "minimum": [
+     10,
+     40,
+     0
+    ]
+   }
+  },
+  "G056-2": {
+   "family": "age-triangle",
+   "seed": 1,
+   "text": "(가)의 청장년층 비율은 약 50.4%이다.",
+   "check": {
+    "op": "workforce",
+    "D": 98.41269841269842,
+    "result": 50.4
+   }
+  },
+  "G136-1": {
+   "family": "urban-weighted",
+   "seed": 1,
+   "text": "브라질의 도시 인구 증가율은 약 257.5%, 촌락 인구 증가율은 약 -18.8%이다.",
+   "check": {
+    "op": "urbanRuralGrowth",
+    "u0": 50724,
+    "r0": 44652,
+    "u1": 181350,
+    "r1": 27311,
+    "urban": 257.52306600425834,
+    "rural": -38.83588641046314
+   }
+  },
+  "G053-2": {
+   "family": "urban-weighted",
+   "seed": 1,
+   "text": "파키스탄의 총인구 증가율은 약 290.6%이다.",
+   "check": {
+    "op": "weightedGrowth",
+    "u0": 14934,
+    "r0": 45232,
+    "u1": 88145,
+    "r1": 146857,
+    "result": 290.5893694112954
+   }
+  },
+  "G136-2": {
+   "family": "urban-weighted",
+   "seed": 2,
+   "text": "미국의 전체 증가율은 도시·촌락 증가율을 종료 비중으로 가중한 값이다.",
+   "check": {
+    "op": "weights",
+    "u0": 152720,
+    "r0": 55076,
+    "gu": 77.80251440544788,
+    "gr": 23.276926428934562,
+    "result": 63.350593851662204
+   }
+  },
+  "G063-1": {
+   "family": "urban-radar",
+   "seed": 1,
+   "text": "한 국가의 세 축 값은 구성비이므로 합계가 반드시 1이다.",
+   "check": {
+    "op": "radarSum",
+    "values": [
+     0.32461147528909184,
+     0.4315686093087987,
+     0.6923308075749184
+    ]
+   }
+  },
+  "G069-2": {
+   "family": "city-tier",
+   "seed": 1,
+   "text": "모든 상위 계층 도시의 생산자 서비스업 비중이 모든 하위 계층 도시보다 높다.",
+   "check": {
+    "op": "tierScope"
+   }
+  },
+  "G110-5": {
+   "family": "soil-temperature",
+   "seed": 1,
+   "text": "9월에 0℃ 위인 깊이는 연중 0℃ 위이다.",
+   "check": {
+    "op": "singleMonth"
+   }
+  },
+  "G032-2": {
+   "family": "soil-temperature",
+   "seed": 1,
+   "text": "두 점 사이를 직선으로 읽으면 2001년 0℃ 깊이는 약 3.6m이다.",
+   "check": {
+    "op": "zeroCrossing",
+    "depth": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "temp": [
+     4,
+     2,
+     0.4,
+     -0.3,
+     -1,
+     -1.7
+    ],
+    "result": 2.5714285714285716
+   }
+  },
+  "G070-1": {
+   "family": "headquarters",
+   "seed": 1,
+   "text": "A의 본사 매출 합계는 370십억 달러이다.",
+   "check": {
+    "op": "product",
+    "a": 40,
+    "b": 8,
+    "result": 320
+   }
+  },
+  "G061-3": {
+   "family": "migrant-stock",
+   "seed": 1,
+   "text": "이 자료는 2020년 한 해 미국으로 새로 들어온 이민자 수이다.",
+   "check": {
+    "op": "stock",
+    "practice": "suppliedData"
+   }
+  },
+  "G137-2": {
+   "family": "population-index",
+   "seed": 1,
+   "text": "인도의 인구 증가율은 약 115.7%이다.",
+   "check": {
+    "op": "indexGrowth",
+    "index": 115.65,
+    "result": 15.650000000000006
+   }
+  }
+ },
+ "existingExamQuestions": 960,
+ "existingExamGoals": {
+  "G004-1": {
+   "true": 122,
+   "false": 115
+  },
+  "G001-2": {
+   "true": 241,
+   "false": 271
+  },
+  "G097-3": {
+   "true": 16,
+   "false": 15
+  },
+  "G062-2": {
+   "true": 225,
+   "false": 229
+  }
+ },
+ "existingExamProofs": [
+  {
+   "themeId": "country-economy",
+   "seed": 1,
+   "goal": "G004-1",
+   "truth": false,
+   "text": "(나)는 지도 대표점은 (다)의 지도 대표점보다 동쪽에 있다.",
+   "check": {
+    "op": "relativePosition",
+    "entity": "중국",
+    "subject": "중국",
+    "object": "일본",
+    "axis": 0
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 1,
+   "goal": "G001-2",
+   "truth": true,
+   "text": "(나)는 북회귀선이 지난다.",
+   "check": {
+    "line": "cancer",
+    "entity": "중국",
+    "value": true
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 2,
+   "goal": "G004-1",
+   "truth": true,
+   "text": "(나)는 지도 대표점은 (다)의 지도 대표점보다 동쪽에 있다.",
+   "check": {
+    "op": "relativePosition",
+    "entity": "일본",
+    "subject": "일본",
+    "object": "중국",
+    "axis": 0
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 11,
+   "goal": "G097-3",
+   "truth": true,
+   "text": "(나)는 2차 산업의 종사자 1인당 부가가치는 자국 전 산업 평균의 1.5배보다 적다.",
+   "check": {
+    "op": "relativeProductivity",
+    "entity": "영국",
+    "subject": "영국",
+    "production": 17.67,
+    "employment": 15.92,
+    "benchmark": 1.5,
+    "moreClaim": false,
+    "year": "2023"
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 11,
+   "goal": "G097-3",
+   "truth": false,
+   "text": "(가)는 2차 산업의 종사자 1인당 부가가치는 자국 전 산업 평균의 1.5배보다 적다.",
+   "check": {
+    "op": "relativeProductivity",
+    "entity": "탄자니아",
+    "subject": "탄자니아",
+    "production": 28.03,
+    "employment": 8.04,
+    "benchmark": 1.5,
+    "moreClaim": false,
+    "year": "2023"
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 15,
+   "goal": "G001-2",
+   "truth": false,
+   "text": "(다)는 남회귀선이 지난다.",
+   "check": {
+    "line": "capricorn",
+    "entity": "탄자니아",
+    "value": true
+   }
+  },
+  {
+   "themeId": "country-urban-reverse",
+   "seed": 1,
+   "goal": "G062-2",
+   "truth": false,
+   "text": "(다)는 (가)보다 촌락 인구가 많다.",
+   "check": {
+    "op": "inverseUrban",
+    "part": "wup-urban@2020",
+    "rate": "wup-share@2020",
+    "kind": "rural",
+    "subject": "말레이시아",
+    "object": "탄자니아"
+   }
+  },
+  {
+   "themeId": "country-urban-reverse",
+   "seed": 1,
+   "goal": "G062-2",
+   "truth": true,
+   "text": "(나)는 (다)보다 촌락 인구가 많다.",
+   "check": {
+    "op": "inverseUrban",
+    "part": "wup-urban@2020",
+    "rate": "wup-share@2020",
+    "kind": "rural",
+    "subject": "영국",
+    "object": "말레이시아"
+   }
+  }
+ ],
+ "aliases": {
+  "G135-3": "G062-2"
+ },
+ "goalTableQuestions": {
+  "forward": 42,
+  "reverse": 34
+ },
+ "scope": "생성·계산 증거이다. OX 목표의 모든 의미상 조건 완료를 뜻하지 않는다."
+}
