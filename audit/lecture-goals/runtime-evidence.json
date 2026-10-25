@@ -1,7 +1,93 @@
 {
  "generatedAt": "2026-10-25",
- "materialQuestions": 4800,
+ "materialQuestions": 6400,
  "materialGoals": {
+  "G098-1": {
+   "true": 320,
+   "false": 320,
+   "families": [
+    "car-growth"
+   ]
+  },
+  "G062-5": {
+   "true": 320,
+   "false": 320,
+   "families": [
+    "capital-share"
+   ]
+  },
+  "G056-5": {
+   "true": 254,
+   "false": 265,
+   "families": [
+    "birth-death"
+   ]
+  },
+  "G134-3": {
+   "true": 66,
+   "false": 55,
+   "families": [
+    "birth-death"
+   ]
+  },
+  "G068-2": {
+   "true": 163,
+   "false": 157,
+   "families": [
+    "city-distance"
+   ]
+  },
+  "G130-1": {
+   "true": 157,
+   "false": 163,
+   "families": [
+    "city-distance"
+   ]
+  },
+  "G133-1": {
+   "true": 320,
+   "false": 320,
+   "families": [
+    "climate-restore"
+   ]
+  },
+  "G137-1": {
+   "true": 242,
+   "false": 238,
+   "families": [
+    "religion-relative"
+   ]
+  },
+  "G043-3": {
+   "true": 246,
+   "false": 234,
+   "families": [
+    "religion-relative",
+    "religion-selected"
+   ]
+  },
+  "G041-2": {
+   "true": 312,
+   "false": 328,
+   "families": [
+    "religion-selected",
+    "religion-other"
+   ]
+  },
+  "G075-1": {
+   "true": 320,
+   "false": 320,
+   "families": [
+    "crop-yield"
+   ]
+  },
+  "G062-4": {
+   "true": 320,
+   "false": 320,
+   "families": [
+    "urban-rural-scatter"
+   ]
+  },
   "G086-1": {
    "true": 320,
    "false": 320,
@@ -284,6 +370,137 @@
   }
  },
  "firstMaterialProof": {
+  "G098-1": {
+   "family": "car-growth",
+   "seed": 1,
+   "text": "브라질의 이 기간 생산 증가량은 3,146,386대이다.",
+   "check": {
+    "op": "subtract",
+    "a": 3146386,
+    "b": 3402508,
+    "result": -256122
+   }
+  },
+  "G062-5": {
+   "family": "capital-share",
+   "seed": 1,
+   "text": "페루의 수도 인구 비율은 약 35.7%이다.",
+   "check": {
+    "op": "capitalShare",
+    "capital": 10580.2,
+    "urban": 29596.4,
+    "rural": 4980.3,
+    "result": 30.59921854890721
+   }
+  },
+  "G056-5": {
+   "family": "birth-death",
+   "seed": 1,
+   "text": "일본의 출생률은 약 16‰이다.",
+   "check": {
+    "op": "add",
+    "a": -7,
+    "b": 13,
+    "result": 6
+   }
+  },
+  "G134-3": {
+   "family": "birth-death",
+   "seed": 1,
+   "text": "10‰는 1%와 같다.",
+   "check": {
+    "op": "perMille",
+    "perMille": 10,
+    "percent": 1
+   }
+  },
+  "G068-2": {
+   "family": "city-distance",
+   "seed": 1,
+   "text": "(가)~(나)의 거리는 1,366km이다.",
+   "check": {
+    "op": "cityDistance",
+    "a": {
+     "lat": 41.8781,
+     "lon": -87.6298
+    },
+    "b": {
+     "lat": 40.7128,
+     "lon": -74.006
+    },
+    "result": 1144
+   }
+  },
+  "G130-1": {
+   "family": "city-distance",
+   "seed": 1,
+   "text": "두 도시 사이 거리는 행과 열의 순서를 바꾸어 읽어도 같다.",
+   "check": {
+    "op": "distanceSymmetry"
+   }
+  },
+  "G133-1": {
+   "family": "climate-restore",
+   "seed": 1,
+   "text": "(가)의 최난월 기온은 약 1.8℃이다.",
+   "check": {
+    "op": "add",
+    "a": 26.8,
+    "b": 1.8,
+    "result": 28.6
+   }
+  },
+  "G137-1": {
+   "family": "religion-relative",
+   "seed": 1,
+   "text": "(가)에서 크리스트교의 국가 전체 인구 비율은 100%이다.",
+   "check": {
+    "op": "relativeShare",
+    "value": 100,
+    "total": 109.28999999999999,
+    "result": 91.49967975112088
+   }
+  },
+  "G043-3": {
+   "family": "religion-relative",
+   "seed": 1,
+   "text": "국가별 최대값=100이라는 상대값만으로 국가 간 실제 신자 수를 비교할 수 없다.",
+   "check": {
+    "op": "relativeDenominator"
+   }
+  },
+  "G041-2": {
+   "family": "religion-selected",
+   "seed": 1,
+   "text": "미얀마는 제시 세 종교 중 크리스트교 비중이 가장 높으므로 국가 전체에서도 크리스트교가 최대이다.",
+   "check": {
+    "op": "omittedReligion"
+   }
+  },
+  "G075-1": {
+   "family": "crop-yield",
+   "seed": 1,
+   "text": "프랑스의 복원한 값은 약 8.6 t/ha이다.",
+   "check": {
+    "op": "quotient",
+    "a": 35995.57,
+    "b": 4998.28,
+    "result": 7.201591347423514
+   }
+  },
+  "G062-4": {
+   "family": "urban-rural-scatter",
+   "seed": 1,
+   "text": "(가)의 도시화율은 두 시점 사이에 하락했다.",
+   "check": {
+    "op": "urbanShareChange",
+    "u0": 416,
+    "r0": 241,
+    "u1": 559.6,
+    "r1": 189.9,
+    "result": 11.344996105978318
+   }
+  },
   "G086-1": {
    "family": "energy-change",
    "seed": 1,
@@ -942,8 +1159,8 @@
   "G135-3": "G062-2"
  },
  "goalTableQuestions": {
-  "forward": 42,
-  "reverse": 34
+  "forward": 1292,
+  "reverse": 1254
  },
  "scope": "생성·계산 증거이다. OX 목표의 모든 의미상 조건 완료를 뜻하지 않는다."
 }

@@ -44,7 +44,7 @@ test('the original GIS examples and inclusive/exclusive boundaries are reproduce
  assert.equal(A.bandScore(15,[15,30],1),2);assert.equal(A.bandScore(30,[15,30],1),3);assert.equal(A.bandScore(15,[15,30],-1),2);
  const rows=[['A',40],['B',39],['C',41]];assert.deepEqual(A.filterRows(rows,[{column:1,operator:'>=',value:40}],'AND').map(r=>r[0]),['A','C']);assert.deepEqual(A.filterRows(rows,[{column:1,operator:'>',value:40}],'AND').map(r=>r[0]),['C']);
 });
-test('all 30 families produce seeded, finite, uniquely scored two-step questions',()=>{
+test('all material families produce seeded, finite, uniquely scored two-step questions',()=>{
  const polarities=new Map(),kinds=new Set();
  for(const f of E.families)for(let seed=1;seed<=160;seed++){
   const q=E.build(f.id,seed);assert.equal(q.id,f.id);assert.deepEqual(q,E.build(f.id,seed));

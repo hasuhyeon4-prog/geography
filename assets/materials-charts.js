@@ -17,7 +17,8 @@ function cartesian(f){
  else if(f.kind==='bars'){xs=f.labels.map(function(_,i){return i;});values=f.values;}
  else{xs=f.points.map(function(p){return p.x;});values=f.points.map(function(p){return p.y;});}
  if(!xs.length||!values.length||!xs.every(Number.isFinite)||!values.every(Number.isFinite))throw Error('Invalid chart data');
- var minX=Math.min.apply(null,xs),maxX=Math.max.apply(null,xs),xBounds=f.kind==='scatter'?nice(maxX,minX):{min:minX,max:maxX===minX?maxX+1:maxX};
+ var minX=Math.min.apply(null,xs),maxX=Math.max.apply(null,xs);if(f.zero&&f.kind==='scatter')minX=Math.min(0,minX);
+ var xBounds=f.kind==='scatter'?nice(maxX,minX):{min:minX,max:maxX===minX?maxX+1:maxX};
  var minY=Math.min.apply(null,values),maxY=Math.max.apply(null,values);
  if(f.zero||f.kind==='bars')minY=Math.min(0,minY);
  var b=f.domainY?{min:f.domainY[0],max:f.domainY[1],step:(f.domainY[1]-f.domainY[0])/6}:nice(maxY,minY);
@@ -31,10 +32,13 @@ function cartesian(f){
   if(xBounds.min<0&&xBounds.max>0)out+=line(X(0),top,X(0),bottom,'#91a7b3',1.5);
   if(b.min<0&&b.max>0)out+=line(left,Y(0),right,Y(0),'#91a7b3',1.5);
   if(f.diagonal)out+=line(X(xBounds.min),Y(xBounds.min),X(xBounds.max),Y(xBounds.max),'#6c7881',1.5,'6 4');
+  (f.movements||[]).forEach(function(m){var x0=X(m.from.x),y0=Y(m.from.y),x1=X(m.to.x),y1=Y(m.to.y),angle=Math.atan2(y1-y0,x1-x0),len=11;
+   out+=line(x0,y0,x1,y1,'#6c7881',1.5,'5 3')+'<polygon points="'+[[x1,y1],[x1-len*Math.cos(angle-.4),y1-len*Math.sin(angle-.4)],[x1-len*Math.cos(angle+.4),y1-len*Math.sin(angle+.4)]].map(function(p){return p.map(num).join(',');}).join(' ')+'" fill="#6c7881"/>';
+  });
   f.points.forEach(function(p,i){out+=dot(X(p.x),Y(p.y),p.size>1?Math.sqrt(p.size)*3:6,colors[i%4])+txt(X(p.x)+10,Y(p.y)-10,p.name,'start',14,colors[i%4]);});
  }else if(f.kind==='bars'){
   var bw=(right-left)/(f.labels.length*1.7),bx=function(i){return left+(i+.5)*(right-left)/f.labels.length;};
-  f.values.forEach(function(v,i){out+='<rect x="'+num(bx(i)-bw/2)+'" y="'+num(Y(Math.max(v,0)))+'" width="'+num(bw)+'" height="'+num(Math.abs(Y(v)-Y(0)))+'" fill="'+colors[i%4]+'"/>'+txt(bx(i),Y(v)-8,label(v),'middle',12)+txt(bx(i),bottom+24,f.labels[i],'middle',13);});
+  f.values.forEach(function(v,i){var inside=v>0&&Y(v)<top+22;out+='<rect x="'+num(bx(i)-bw/2)+'" y="'+num(Y(Math.max(v,0)))+'" width="'+num(bw)+'" height="'+num(Math.abs(Y(v)-Y(0)))+'" fill="'+colors[i%4]+'"/>'+txt(bx(i),Y(v)+(inside?20:-8),label(v),'middle',12,inside?'white':null)+txt(bx(i),bottom+24,f.labels[i],'middle',13);});
  }else{
   f.x.forEach(function(x){out+=txt(X(x),bottom+22,x,'middle',12);});
   f.series.forEach(function(s,i){out+='<polyline points="'+s.values.map(function(y,j){return num(X(f.x[j]))+','+num(Y(y));}).join(' ')+'" fill="none" stroke="'+colors[i%4]+'" stroke-width="2.3"'+(dash[i%4]?' stroke-dasharray="'+dash[i%4]+'"':'')+'/>';s.values.forEach(function(y,j){out+=dot(X(f.x[j]),Y(y),2.5,colors[i%4]);});});
@@ -84,7 +88,8 @@ function energyBars(f){
  var out=txt(350,23,f.name||'',null,16),left=90,right=650,top=58,bottom=330;
  if(f.kind==='stacked'){
   for(var v=0;v<=100;v+=20)out+=line(left+v/100*(right-left),top,left+v/100*(right-left),bottom,'#e0e8ec')+txt(left+v/100*(right-left),bottom+24,v);
-  f.values.forEach(function(row,i){var x=left,y=96+i*125;out+=txt(left-12,y+25,f.labels[i],'end',14);row.forEach(function(v,j){var width=v/100*(right-left);out+='<rect x="'+num(x)+'" y="'+num(y)+'" width="'+num(width)+'" height="45" fill="'+colors[j%4]+'"/>';if(width>38)out+=txt(x+width/2,y+27,label(v),null,14,'white');x+=width;});});
+  var band=(bottom-top)/f.values.length,bh=Math.min(45,band*.55);
+  f.values.forEach(function(row,i){var x=left,y=top+(i+.25)*band;out+=txt(left-12,y+bh/2+5,f.labels[i],'end',14);row.forEach(function(v,j){var width=v/100*(right-left);out+='<rect x="'+num(x)+'" y="'+num(y)+'" width="'+num(width)+'" height="'+num(bh)+'" fill="'+colors[j%4]+'"/>';if(width>38)out+=txt(x+width/2,y+bh/2+5,label(v),null,14,'white');x+=width;});});
   out+=txt(350,391,f.xLabel||'%',null,14);
  }else{
   var axis=nice(f.maximum,0),max=axis.max;

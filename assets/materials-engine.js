@@ -311,7 +311,139 @@ function create(data){
   rows.forEach(function(x){q.pairs.push(pair('G137-2',x.name+'의 인구 증가율은 약 '+fmt(x.index-100)+'%이다.',x.name+'의 인구 증가율은 약 '+fmt(x.index)+'%이다.','기준 연도=100일 때 증가율은 지수−100이다.',{op:'indexGrowth',index:x.index,result:x.index-100}));q.pairs.push(pair('G137-2',x.name+'의 2023년 인구는 약 '+fmt(x.later,0)+'만 명이다.',x.name+'의 2023년 인구는 약 '+fmt(x.later*1.2,0)+'만 명이다.','기준량과 지수를 곱해 실제량을 복원한다.',{op:'indexAmount',base:x.base,index:x.index,result:x.later}));});
   return finish(q,r);
  }
+ function carGrowthQ(seed){
+  var r=seedState(seed),d=data.continuation.cars,names=shuffle(['독일','멕시코','브라질'],r),periods=[[2010,2012],[2012,2014],[2010,2014]],period=periods[seed%3];
+  var q=base('car-growth','자동차 생산 증가량·증가율',seed,'OICA 공식 생산 통계 · 승용차+상용차 · 2010·2012·2014년');
+  q.note='국내에서 생산한 자동차 수(대)이다. 증가량과 증가율은 이번 문항에 지정한 기간으로 계산한다. 생산량·수출량·자국 기업의 해외 생산량을 구별한다.';
+  q.tables.push(table(['국가'].concat(d.years.map(function(y){return y+'년(대)';})),names.map(function(n){return[n].concat(d.years.map(function(y){return d.countries[n][y].total;}));}),'세 시점 자동차 생산량'));
+  var gs=names.map(function(n){var s=d.countries[n];return growth(s[period[0]].total,s[period[1]].total);});
+  q.stage1={question:period[0]+'~'+period[1]+'년 생산량 증가율이 가장 높은 국가는?',options:names,answer:gs.indexOf(Math.max.apply(null,gs)),explain:'증가율=(나중 생산량−처음 생산량)÷처음 생산량×100. 증가량 자체와 구별한다.'};
+  names.forEach(function(n){var a=d.countries[n][period[0]].total,b=d.countries[n][period[1]].total;
+   q.pairs.push(pair('G098-1',n+'의 이 기간 생산 증가량은 '+fmt(b-a,0)+'대이다.',n+'의 이 기간 생산 증가량은 '+fmt(b,0)+'대이다.','증가량은 나중 값에서 처음 값을 뺀다. 음수는 생산 감소를 뜻한다.',{op:'subtract',a:b,b:a,result:b-a}));
+   q.pairs.push(pair('G098-1',n+'의 이 기간 생산 증가율은 약 '+fmt(growth(a,b))+'%이다.',n+'의 이 기간 생산 증가율은 약 '+fmt(growth(a,b)+100)+'%이다.','나중÷처음×100은 지수이며 증가율은 거기서 100을 뺀다.',{op:'growth',a:a,b:b,result:growth(a,b)}));
+  });
+  q.pairs.push(pair('G098-1','2014년 멕시코의 생산량은 독일보다 적지만, 2010~2014년 증가율은 더 높다.','2014년 멕시코의 생산량이 독일보다 적으므로 2010~2014년 증가율도 반드시 더 낮다.','총량의 순서로 증가율을 정하지 않는다. 두 나라를 각각 2010년 생산량으로 나눈다.',{op:'growthVsLevel',mexico:d.countries['멕시코'],germany:d.countries['독일']}));
+  return finish(q,r);
+ }
+ function capitalShareQ(seed){
+  var r=seedState(seed),d=data.continuation.capitals,names=shuffle(Object.keys(d.countries),r),q=base('capital-share','수도 인구의 국가 내 비율',seed,'UN WUP 2025 · F20 수도 인구 / F14 도시·촌락 인구 · 2025년');
+  q.note=d.definition+' 단위는 모두 천 명이다. 수도 인구는 총인구의 일부이며 도시·촌락 합계에 다시 더하지 않는다.';
+  var rows=names.map(function(n){var x=d.countries[n];return{name:n,capital:x.capital,c:round(x.capitalPopulation,1),u:round(x.urban,1),r:round(x.rural,1)};});
+  q.tables.push(table(['국가','수도','수도 인구','도시 인구','촌락 인구'],rows.map(function(x){return[x.name,x.capital,x.c,x.u,x.r];}),'2025년 인구(천 명) · 수도는 DEGURBA 도시 범위'));
+  var shares=rows.map(function(x){return x.c/(x.u+x.r)*100;});
+  q.stage1={question:'제시 자료에서 수도 인구가 국가 총인구에서 차지하는 비율이 가장 높은 국가는?',options:names,answer:shares.indexOf(Math.max.apply(null,shares)),explain:'수도 인구÷(도시 인구+촌락 인구)×100. 수도 인구 자체가 가장 많은 국가를 고르지 않는다.'};
+  rows.forEach(function(x){var v=x.c/(x.u+x.r)*100;
+   q.pairs.push(pair('G062-5',x.name+'의 수도 인구 비율은 약 '+fmt(v)+'%이다.',x.name+'의 수도 인구 비율은 약 '+fmt(x.c/x.u*100)+'%이다.','분모는 국가 총인구인 도시+촌락이다. 수도÷도시는 도시 인구 중 수도 인구 비율로 다른 지표이다.',{op:'capitalShare',capital:x.c,urban:x.u,rural:x.r,result:v}));
+  });
+  q.pairs.push(pair('G062-5','국가 총인구는 도시 인구와 촌락 인구를 더해 구한다.','국가 총인구는 도시 인구·촌락 인구·수도 인구를 모두 더해 구한다.','수도 인구를 다시 더하면 총인구 일부를 중복 계산한다.',{op:'capitalDenominator'}));
+  return finish(q,r);
+ }
+ function birthDeathQ(seed){
+  var r=seedState(seed),names=shuffle(['일본','독일','니제르'],r),q=base('birth-death','자연 증가율로 출생률 복원',seed,'세계은행 WDI · SP.DYN.CBRT.IN / SP.DYN.CDRT.IN · 2023년');
+  q.note='출생률·사망률·자연 증가율은 모두 인구 1,000명당(‰)이다. 제시한 반올림 값으로 계산한다. 자연 증가에는 국제 이동이 포함되지 않는다.';
+  var rows=names.map(function(n){var s=data.continuation.rates.countries[n],birth=round(s.birth,2),death=round(s.death,2);return{name:n,birth:birth,death:death,nir:round(birth-death,2)};});
+  q.tables.push(table(['국가','자연 증가율(‰)','사망률(‰)'],rows.map(function(x){return[x.name,x.nir,x.death];}),'출생률은 표에 직접 제시하지 않는다'));
+  var births=rows.map(function(x){return x.nir+x.death;});q.stage1={question:'복원한 출생률이 가장 높은 국가는?',options:names,answer:births.indexOf(Math.max.apply(null,births)),explain:'출생률=자연 증가율+사망률. 자연 감소 국가도 부호를 그대로 넣는다.'};
+  rows.forEach(function(x){q.pairs.push(pair('G056-5',x.name+'의 출생률은 약 '+fmt(x.nir+x.death,2)+'‰이다.',x.name+'의 출생률은 약 '+fmt(x.nir+x.death+10,2)+'‰이다.','자연 증가율=출생률−사망률이므로 출생률은 두 제시값의 합이다.',{op:'add',a:x.nir,b:x.death,result:x.nir+x.death}));});
+  q.pairs.push(pair('G134-3','10‰는 1%와 같다.','10‰는 10%와 같다.','‰는 1,000분율, %는 100분율이다. 같은 수치의 ‰를 %로 바꾸려면 10으로 나눈다.',{op:'perMille',perMille:10,percent:1}));
+  q.pairs.push(pair('G056-5','사망률만으로 의료 수준의 높고 낮음을 확정할 수 없다.','사망률이 높은 국가의 의료 수준은 반드시 더 낮다.','조사망률은 연령 구성의 영향을 받는다. 고령 인구가 많은 국가의 높은 사망률을 의료 수준만으로 설명하지 않는다.',{op:'ageStructureConfound'}));
+  return finish(q,r);
+ }
+ function cityDistanceQ(seed){
+  var r=seedState(seed),candidates=seed%2?['뉴욕','보스턴','시카고']:['샌프란시스코','로스앤젤레스','휴스턴'],names=shuffle(candidates,r),q=base('city-distance','도시 간 거리 행렬 복원',seed,'앱 도시 좌표 · 구면 대권 거리 · 지구 반지름 6,371km');
+  function km(a,b){return a===b?0:Math.round(distance(data.cities[a],data.cities[b]));}
+  q.assignment=names;q.note='기준표와 익명 표는 같은 도시 좌표에서 계산한 대권 거리(km)이다. 실제 도로·비행 경로 거리나 항공편 수가 아니다. 거리 수치를 암기할 필요는 없다.';
+  q.tables.push(table(['기준 도시'].concat(candidates),candidates.map(function(n){return[n].concat(candidates.map(function(m){return km(n,m);}));}),'후보 도시 기준 거리표(km)'));
+  q.tables.push(table(['익명 도시'].concat(L),names.map(function(n,i){return[L[i]].concat(names.map(function(m){return km(n,m);}));}),'동일 도시를 순서만 바꾼 거리표(km)'));
+  q.identifyExplain='대칭인 칸은 같은 도시 쌍이다. 각 행에 연결된 두 거리의 조합을 기준표와 맞춘다.';
+  var a=km(names[0],names[1]),b=km(names[0],names[2]);
+  q.pairs.push(pair('G068-2','(가)~(나)의 거리는 '+fmt(a,0)+'km이다.','(가)~(나)의 거리는 '+fmt(b,0)+'km이다.','행과 열이 만나는 칸을 읽는다. 표의 반대편 대칭 칸도 같은 도시 쌍이다.',{op:'cityDistance',a:data.cities[names[0]],b:data.cities[names[1]],result:a}));
+  q.pairs.push(pair('G130-1','(가)에서 더 가까운 도시는 '+(a<b?'(나)':'(다)')+'이다.','(가)에서 더 가까운 도시는 '+(a<b?'(다)':'(나)')+'이다.','같은 출발 도시의 행 안에서 두 거리 값을 비교한다.',{op:'distanceCompare',a:a,b:b}));
+  q.pairs.push(pair('G068-2','거리표만으로 도시의 세계 도시 계층을 확정할 수 없다.','다른 도시와의 거리가 가장 짧은 도시는 반드시 최상위 세계 도시이다.','이 표는 거리를 제시한다. 본사·생산자 서비스·항공편 수 등 다른 기능 자료는 없다.',{op:'distanceScope'}));
+  q.pairs.push(pair('G130-1','두 도시 사이 거리는 행과 열의 순서를 바꾸어 읽어도 같다.','도시 사이 거리표에서는 행과 열을 바꾸면 반드시 다른 거리이다.','같은 두 점을 잇는 대권 거리는 대칭이다. 방향별 항공편·교역액과 구별한다.',{op:'distanceSymmetry'}));
+  return finish(q,r);
+ }
+ function climateRestoreQ(seed){
+  var r=seedState(seed),names=shuffle(['치타','딕슨','싱가포르'],r),q=base('climate-restore','최한월·연교차로 최난월 복원',seed,'앱의 관측소 월평년 자료');
+  q.assignment=names;q.note='연교차=최난월 기온−최한월 기온이다. 이번 문항의 관측소 평년값을 사용하며, 강의의 다른 도시 수치를 재현한 표는 아니다.';
+  q.tables.push(table(['자료','최한월 기온(℃)','연교차(℃)'],names.map(function(n,i){var a=site(n).t,min=Math.min.apply(null,a),max=Math.max.apply(null,a);return[L[i],min,round(max-min,3)];}),'최난월 기온은 숨긴 값'));
+  q.tables.push(table(['후보 관측소','기후 단서'],[['치타','북반구 대륙 내부 · 최난월 10℃ 이상'],['딕슨','북극해 연안 · 최난월 0~10℃ 미만'],['싱가포르','적도 부근 · 모든 달 18℃ 이상']],'이 문항의 지역 대응 기준'));
+  names.forEach(function(n,i){var ts=site(n).t,min=Math.min.apply(null,ts),max=Math.max.apply(null,ts),range=round(max-min,3);
+   q.pairs.push(pair('G133-1',L[i]+'의 최난월 기온은 약 '+fmt(min+range)+'℃이다.',L[i]+'의 최난월 기온은 약 '+fmt(range)+'℃이다.','최난월 기온=최한월 기온+연교차. 최한월이 음수여도 부호를 유지한다.',{op:'add',a:min,b:range,result:min+range}));
+  });
+  q.pairs.push(pair('G133-1','최난월 0~10℃ 미만인 자료는 제시한 기준에서 딕슨에 대응한다.','기온 연교차가 가장 큰 자료가 반드시 툰드라 기후이다.','툰드라 판정은 연교차가 아니라 최난월 0~10℃ 미만이라는 온도 기준을 쓴다.',{op:'warmestThreshold'}));
+  return finish(q,r);
+ }
+ function religionQ(mode,seed){
+  var r=seedState(seed),relative=mode==='religion-relative',names=shuffle(relative?['방글라데시','스리랑카','필리핀']:['미얀마','방글라데시','스리랑카'],r),keys=relative?['christianity','islam','hinduism','buddhism','judaism','unaffiliated','other']:['christianity','islam','hinduism'],labels=relative?['크리스트교','이슬람교','힌두교','불교','유대교','무종교','기타 종교']:['크리스트교','이슬람교','힌두교'];
+  var q=base(mode,relative?'최대 종교=100 상대값':'선택 종교 합=100 삼각 도표',seed,'Pew 2025 발표 · 2020년 국가별 종교 구성');q.assignment=names;
+  q.note=relative?'국가마다 가장 큰 종교 집단=100이다. 전체 인구=100%가 아니다. 무종교·기타 종교까지 포함한 모든 범주의 상대값을 제시한다. 반올림 오차가 있다.':'따로 표시한 세 종교만의 신자 합=100%이다. 불교·기타 종교·무종교는 제외된다. 국가 전체 인구=100%가 아니다.';
+  var rows=names.map(function(n){var s=data.religions[n].values,v=keys.map(function(k){return s[k];}),den=relative?Math.max.apply(null,v):sum(v);return v.map(function(x){return x/den*100;});});
+  q.tables.push(table(['자료'].concat(labels),rows.map(function(v,i){return[L[i]].concat(v.map(function(x){return round(x,3);}));}),relative?'국가별 최댓값=100 · 상대값':'선택 세 종교 신자 합=100%'));
+  q.tables.push(table(['후보 국가','대응 기준'],names.slice().sort().map(function(n){return[n,n==='방글라데시'?'제시 종교 중 이슬람교 우세':n==='스리랑카'?(relative?'불교 우세':'제시 세 종교 중 힌두교>이슬람교>크리스트교'):n==='필리핀'?'크리스트교 우세':'제시 세 종교 중 크리스트교>이슬람교>힌두교'];}),'범례의 범위를 확인한 뒤 대응'));
+  if(!relative)q.figures.push({kind:'ternary',labels:labels,points:rows.map(function(v,i){return{name:L[i],values:v};})});
+  if(relative){
+   rows.forEach(function(v,i){q.figures.push({kind:'bars',labels:labels,values:v.map(function(x){return round(x,3);}),yLabel:L[i]+' · 최대=100 상대값'});});
+   rows.forEach(function(v,i){var shown=v.map(function(x){return round(x,3);}),j=v.indexOf(100),share=shown[j]/sum(shown)*100;
+    q.pairs.push(pair('G137-1',L[i]+'에서 '+labels[j]+'의 국가 전체 인구 비율은 약 '+fmt(share)+'%이다.',L[i]+'에서 '+labels[j]+'의 국가 전체 인구 비율은 100%이다.','모든 범주의 상대값이 있으므로 해당 상대값÷상대값 합×100으로 구성비를 복원한다. 최대값 100을 인구 100%로 읽지 않는다.',{op:'relativeShare',value:shown[j],total:sum(shown),result:share}));
+   });
+   q.pairs.push(pair('G043-3','국가별 최대값=100이라는 상대값만으로 국가 간 실제 신자 수를 비교할 수 없다.','서로 다른 국가에서 상대값 100인 두 종교는 실제 신자 수가 같다.','각 국가의 기준 집단 실제 신자 수가 다를 수 있다. 구성비를 복원해도 인구 총량이 없으면 신자 수는 정할 수 없다.',{op:'relativeDenominator'}));
+  }else{
+   var values=rows[0],j=values.indexOf(Math.max.apply(null,values));
+   q.pairs.push(pair('G043-3',L[0]+'에서 '+labels[j]+'는 제시한 세 종교 신자 합 중 약 '+fmt(values[j])+'%이다.',L[0]+'에서 '+labels[j]+'는 국가 전체 인구 중 약 '+fmt(values[j])+'%이다.','이 삼각 도표의 분모는 국가 전체 인구가 아니라 선택한 세 종교의 신자 합이다.',{op:'selectedReligions',country:names[0],keys:keys,result:values[j]}));
+   q.pairs.push(pair('G041-2','이 도표만으로 미얀마의 국가 전체 최대 종교를 정할 수 없다.','미얀마는 제시 세 종교 중 크리스트교 비중이 가장 높으므로 국가 전체에서도 크리스트교가 최대이다.','불교를 범례에서 제외했다. 표시 집단끼리의 순위를 국가 전체 순위로 확장하지 않는다.',{op:'omittedReligion'}));
+   q.pairs.push(pair('G043-3','세 축의 비율 합은 제시 세 종교 신자 합을 기준으로 100%이다.','세 축의 합이 100%이므로 국가 내에 다른 종교나 무종교 인구는 없다.','선택 범주를 다시 100으로 만든 구성비이다. 제외 범주의 인구가 0이라는 뜻은 아니다.',{op:'subsetComposition'}));
+  }
+  return finish(q,r);
+ }
+ function cropYieldQ(seed){
+  var r=seedState(seed),names=shuffle(['프랑스','독일','인도'],r),mode=seed%3,q=base('crop-yield','수확 면적·단수·총생산량 복원',seed,'FAOSTAT QCL · 밀 · 2023년');
+  q.note='같은 연도·품목의 수확 면적(ha), 단수(t/ha), 생산량(t)을 사용한다. ha와 km², t와 kg을 섞지 않는다. 표시된 반올림 값을 기준으로 계산한다.';
+  var rows=names.map(function(n){var d=data.agriculture[n],a=round(d['qcl-area:밀']/1000,3),p=round(d['qcl-production:밀']/1000,3),y=round(p/a,3);return{name:n,a:a,p:p,y:y};});
+  q.tables.push(table(['국가'].concat(mode===0?['수확 면적(천 ha)','단수(t/ha)']:mode===1?['생산량(천 t)','수확 면적(천 ha)']:['생산량(천 t)','단수(t/ha)']).concat(['인구(만 명)']),rows.map(function(x){return[x.name].concat(mode===0?[x.a,x.y]:mode===1?[x.p,x.a]:[x.p,x.y]).concat([data.countries[x.name].series.pop['2023']]);}),'세 생산 지표 중 두 값만 제시 · 인구: 같은 해 WDI'));
+  var vals=rows.map(function(x){return mode===0?x.a*x.y:mode===1?x.p/x.a:x.p/x.y;});
+  q.stage1={question:'복원한 '+(mode===0?'생산량':mode===1?'단수':'수확 면적')+'이 가장 큰 국가는?',options:names,answer:vals.indexOf(Math.max.apply(null,vals)),explain:'생산량=면적×단수, 단수=생산량÷면적, 면적=생산량÷단수. 같은 단위 배율끼리 계산한다.'};
+  rows.forEach(function(x,i){var v=vals[i],unit=mode===0?'천 t':mode===1?'t/ha':'천 ha';q.pairs.push(pair('G075-1',x.name+'의 복원한 값은 약 '+fmt(v)+' '+unit+'이다.',x.name+'의 복원한 값은 약 '+fmt(v*1.2)+' '+unit+'이다.','이번 표에서 숨긴 값을 나머지 두 지표로 복원한다.',{op:mode===0?'product':'quotient',a:mode===0?x.a:x.p,b:mode===1?x.a:x.y,result:v}));});
+  var x=rows[seed%3],production=mode===0?x.a*x.y:x.p,population=data.countries[x.name].series.pop['2023'],perPerson=production*100/population;
+  q.pairs.push(pair('G075-1',x.name+'의 1인당 밀 생산량은 약 '+fmt(perPerson)+'kg이다.',x.name+'의 1인당 밀 생산량은 약 '+fmt(perPerson*10)+'kg이다.','생산량(천 t)×1,000,000kg을 인구(만 명)×10,000명으로 나눈다. 총생산량과 1인당 생산량을 구별한다.',{op:'cropPerPerson',productionThousandTonnes:production,populationTenThousands:population,result:perPerson}));
+  q.pairs.push(pair('G075-1','단수가 높다는 이유만으로 총생산량도 더 많다고 확정할 수 없다.','단수가 가장 높은 국가는 수확 면적과 관계없이 생산량도 반드시 가장 많다.','단수는 단위 면적당 생산량이다. 총생산량에는 수확 면적도 필요하다.',{op:'yieldVsTotal'}));
+  return finish(q,r);
+ }
+ function religionOtherQ(seed){
+  var r=seedState(seed),names=shuffle(['미얀마','스리랑카','방글라데시'],r),q=base('religion-other','종교 범례의 기타 묶음',seed,'Pew 2025 발표 · 2020년 구성 · 선택 범례로 재구성');q.assignment=names;
+  q.note='크리스트교·이슬람교·힌두교만 따로 표시하고, 불교·유대교·무종교·기타 종교를 모두 나머지 묶음으로 표시했다. 묶음 이름인 기타는 하나의 종교가 아니다.';
+  var vals=names.map(function(n){var v=data.religions[n].values;return[v.christianity,v.islam,v.hinduism,round(100-v.christianity-v.islam-v.hinduism,3)];});
+  q.figures.push({kind:'stacked',labels:L,categories:['크리스트교','이슬람교','힌두교','기타 묶음'],values:vals,xLabel:'국가 전체 인구=100%'});
+  q.tables.push(table(['자료','크리스트교','이슬람교','힌두교','기타 묶음'],vals.map(function(v,i){return[L[i]].concat(v);}),'국가 전체 인구 대비 % · 반올림 잔차는 기타에 포함'));
+  q.tables.push(table(['후보 국가','표시된 세 종교 중 큰 순서'],[['미얀마','크리스트교>이슬람교>힌두교'],['스리랑카','힌두교>이슬람교>크리스트교'],['방글라데시','이슬람교>힌두교>크리스트교']],'범례에 따로 표시된 집단끼리만 비교한 대응 기준'));
+  q.pairs.push(pair('G041-2','미얀마에서 따로 표시한 세 종교 중에는 크리스트교 비율이 가장 높다.','미얀마에서 크리스트교는 기타 묶음 안의 모든 개별 종교보다 비율이 높다.','나머지 묶음에는 불교 등이 들어 있다. 따로 표시한 세 종교 순위와 전체 종교 순위는 다르다.',{op:'religionOtherScope'}));
+  q.pairs.push(pair('G041-2','기타 묶음이 가장 커도 그 안의 어느 하나가 국가 최대 종교인지는 이 그래프만으로 확정할 수 없다.','기타 묶음이 가장 크면 기타라는 한 종교가 국가 최대 종교이다.','묶음 합과 묶음 안의 개별 집단 값을 구분한다. 기타에 여러 집단을 더했으므로 한 종교로 취급하지 않는다.',{op:'otherNotSingle'}));
+  q.pairs.push(pair('G041-2','범례 구성이 달라지면 같은 국가도 기타 묶음의 비율이 달라질 수 있다.','같은 국가에서 기타 묶음의 비율은 범례 구성과 관계없이 항상 같다.','따로 표시하지 않은 항목을 합친 잔여 범주이므로 어떤 항목을 따로 표시하는지 확인한다.',{op:'otherDependsOnLegend'}));
+  return finish(q,r);
+ }
+ function urbanScatterQ(seed){
+  var r=seedState(seed),names=shuffle(['아시아','아프리카','유럽'],r),q=base('urban-rural-scatter','도시·촌락 인구의 좌표와 이동',seed,'UN WUP 2025 · 국가별 도시 정의 · 권역 원집계');q.assignment=names;
+  q.note='가로=촌락 인구, 세로=도시 인구(모두 백만 명). 원점과 점을 이은 기울기는 도시÷촌락이다. 도시화율은 도시÷(도시+촌락)이며 기울기와 값 자체는 다르다.';
+  var rows=names.map(function(n){var a=data.urban[n]['1970'],b=data.urban[n]['2020'];return{name:n,a:{u:round(a.u/1000,1),r:round(a.r/1000,1)},b:{u:round(b.u/1000,1),r:round(b.r/1000,1)}};});
+  q.tables.push(table(['후보 권역','1970 도시','1970 촌락','2020 도시','2020 촌락'],rows.slice().sort(function(a,b){return a.name.localeCompare(b.name);}).map(function(x){return[x.name,x.a.u,x.a.r,x.b.u,x.b.r];}),'1970·2020년 인구(백만 명) · 대응 기준'));
+  q.figures.push({kind:'scatter',zero:true,xLabel:'촌락 인구(백만 명)',yLabel:'도시 인구(백만 명)',movements:rows.map(function(x){return{from:{x:x.a.r,y:x.a.u},to:{x:x.b.r,y:x.b.u}};}),points:rows.flatMap(function(x,i){return[{name:L[i]+' 1970',x:x.a.r,y:x.a.u,size:1},{name:L[i]+' 2020',x:x.b.r,y:x.b.u,size:1}];})});
+  rows.forEach(function(x,i){var s0=x.a.u/(x.a.u+x.a.r)*100,s1=x.b.u/(x.b.u+x.b.r)*100;
+   q.pairs.push(pair('G062-4',L[i]+'의 도시화율은 두 시점 사이에 '+(s1>s0?'상승했다.':'하락했다.'),L[i]+'의 도시화율은 두 시점 사이에 '+(s1>s0?'하락했다.':'상승했다.'),'도시÷(도시+촌락)으로 계산한다. 원점 기울기가 클수록 도시화율도 높다.',{op:'urbanShareChange',u0:x.a.u,r0:x.a.r,u1:x.b.u,r1:x.b.r,result:s1-s0}));
+  });
+  q.pairs.push(pair('G062-4','원점 기울기가 1인 점은 도시화율 50%에 해당한다.','원점 기울기가 1인 점은 도시화율 100%에 해당한다.','기울기 1은 도시=촌락이다. 도시화율은 1÷(1+1)=50%이다.',{op:'urbanSlope',slope:1,share:50}));
+  return finish(q,r);
+ }
  var families=[
+  ['car-growth','자동차 생산 증가량·증가율',carGrowthQ],
+  ['capital-share','수도 인구의 국가 내 비율',capitalShareQ],
+  ['birth-death','출생률 복원·‰와 %',birthDeathQ],
+  ['city-distance','도시 간 거리 행렬',cityDistanceQ],
+  ['climate-restore','최한월·연교차로 최난월 복원',climateRestoreQ],
+  ['religion-relative','최대 종교=100 상대값',function(s){return religionQ('religion-relative',s);}],
+  ['religion-selected','선택 종교 구성 삼각 도표',function(s){return religionQ('religion-selected',s);}],
+  ['religion-other','종교 범례의 기타 묶음',religionOtherQ],
+  ['crop-yield','수확 면적·단수·생산량',cropYieldQ],
+  ['urban-rural-scatter','도시·촌락 인구 좌표',urbanScatterQ],
   ['energy-change','미국·중국 에너지 두 시점',function(s){return energyQ('energy-change',s);}],
   ['energy-composition','에너지 구성의 두 시점',function(s){return energyQ('energy-composition',s);}],
   ['gis-filters','GIS 조건 필터',function(s){return gisQ('filters',s);}],

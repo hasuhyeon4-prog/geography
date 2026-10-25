@@ -1,12 +1,13 @@
 {
  "date": "2026-10-25",
  "baseCommit": "2665750a5e174d25f7cb7945bcfc1f1d30e98cc0",
+ "continuationBase": "a406f99",
  "goalCount": 573,
  "groupCount": 139,
  "statusCounts": {
-  "미구현": 111,
-  "구현": 417,
-  "검증": 45
+  "미구현": 99,
+  "구현": 419,
+  "검증": 55
  },
  "completeGroups": [
   "G009",
@@ -14,23 +15,26 @@
   "G024",
   "G063",
   "G070",
+  "G134",
   "G136"
  ],
  "content": {
   "newOX": 637,
   "representedOXGoals": 296,
   "rebuiltTables": 147,
-  "materialFamilies": 30
+  "materialFamilies": 40
  },
  "verification": [
   "tests/materials.test.cjs",
+  "tests/materials-continuation.test.cjs",
   "tests/materials-page.test.cjs",
   "tests/lecture-goal-integration.test.cjs",
   "tests/lecture-goal-progress.test.cjs"
  ],
  "limitations": [
   "OX 구현은 대표 문장 연결 상태이며 모든 복합 목표의 완료를 뜻하지 않음.",
-  "브라우저 설치 파일을 받을 수 없어 실제 Chromium 화면 검사는 수행하지 못함. DOM 동작 검사와 SVG 렌더 확인을 수행함."
+  "브라우저 설치 파일을 받을 수 없어 실제 Chromium 화면 검사는 수행하지 못함. DOM 동작 검사와 SVG 렌더 확인을 수행함.",
+  "G127-2·G137-3: WDI GDP 기준 산업 비중 합계는 세금·보조금 등의 차이로 100이 아닐 수 있음. 원자료를 100에서 바로 빼거나 조용히 재정규화하지 않음."
  ],
  "groups": [
   {
@@ -356,9 +360,9 @@
   {
    "id": "G041",
    "total": 4,
-   "미구현": 3,
+   "미구현": 2,
    "구현": 1,
-   "검증": 0,
+   "검증": 1,
    "status": "진행 중"
   },
   {
@@ -372,9 +376,9 @@
   {
    "id": "G043",
    "total": 4,
-   "미구현": 2,
+   "미구현": 1,
    "구현": 2,
-   "검증": 0,
+   "검증": 1,
    "status": "진행 중"
   },
   {
@@ -476,9 +480,9 @@
   {
    "id": "G056",
    "total": 5,
-   "미구현": 2,
+   "미구현": 1,
    "구현": 2,
-   "검증": 1,
+   "검증": 2,
    "status": "진행 중"
   },
   {
@@ -524,9 +528,9 @@
   {
    "id": "G062",
    "total": 6,
-   "미구현": 2,
-   "구현": 3,
-   "검증": 1,
+   "미구현": 0,
+   "구현": 4,
+   "검증": 2,
    "status": "진행 중"
   },
   {
@@ -572,9 +576,9 @@
   {
    "id": "G068",
    "total": 5,
-   "미구현": 1,
+   "미구현": 0,
    "구현": 4,
-   "검증": 0,
+   "검증": 1,
    "status": "진행 중"
   },
   {
@@ -628,9 +632,9 @@
   {
    "id": "G075",
    "total": 5,
-   "미구현": 2,
+   "미구현": 1,
    "구현": 3,
-   "검증": 0,
+   "검증": 1,
    "status": "진행 중"
   },
   {
@@ -812,9 +816,9 @@
   {
    "id": "G098",
    "total": 3,
-   "미구현": 1,
+   "미구현": 0,
    "구현": 2,
-   "검증": 0,
+   "검증": 1,
    "status": "진행 중"
   },
   {
@@ -1068,9 +1072,9 @@
   {
    "id": "G130",
    "total": 5,
-   "미구현": 2,
+   "미구현": 1,
    "구현": 3,
-   "검증": 0,
+   "검증": 1,
    "status": "진행 중"
   },
   {
@@ -1092,18 +1096,18 @@
   {
    "id": "G133",
    "total": 4,
-   "미구현": 1,
-   "구현": 0,
+   "미구현": 0,
+   "구현": 1,
    "검증": 3,
    "status": "진행 중"
   },
   {
    "id": "G134",
    "total": 3,
-   "미구현": 1,
+   "미구현": 0,
    "구현": 0,
-   "검증": 2,
-   "status": "진행 중"
+   "검증": 3,
+   "status": "완료"
   },
   {
    "id": "G135",
@@ -1124,9 +1128,9 @@
   {
    "id": "G137",
    "total": 3,
-   "미구현": 2,
+   "미구현": 1,
    "구현": 0,
-   "검증": 1,
+   "검증": 2,
    "status": "진행 중"
   },
   {
@@ -3641,9 +3645,20 @@
    "id": "G041-2",
    "group": "G041",
    "venue": "자료 계산",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "검증",
+   "evidence": [
+    {
+     "venue": "자료형·계산",
+     "family": "religion-selected",
+     "file": "assets/materials-engine.js"
+    },
+    {
+     "venue": "자료형·계산",
+     "family": "religion-other",
+     "file": "assets/materials-engine.js"
+    }
+   ],
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G041-3",
@@ -3786,9 +3801,20 @@
    "id": "G043-3",
    "group": "G043",
    "venue": "자료 계산",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "검증",
+   "evidence": [
+    {
+     "venue": "자료형·계산",
+     "family": "religion-relative",
+     "file": "assets/materials-engine.js"
+    },
+    {
+     "venue": "자료형·계산",
+     "family": "religion-selected",
+     "file": "assets/materials-engine.js"
+    }
+   ],
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G043-4",
@@ -4662,9 +4688,15 @@
    "id": "G056-5",
    "group": "G056",
    "venue": "자료 계산",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "검증",
+   "evidence": [
+    {
+     "venue": "자료형·계산",
+     "family": "birth-death",
+     "file": "assets/materials-engine.js"
+    }
+   ],
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G057-1",
@@ -5007,17 +5039,29 @@
    "id": "G062-4",
    "group": "G062",
    "venue": "새 자료형: 산점도",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "검증",
+   "evidence": [
+    {
+     "venue": "자료형·계산",
+     "family": "urban-rural-scatter",
+     "file": "assets/materials-engine.js"
+    }
+   ],
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G062-5",
    "group": "G062",
    "venue": "자료 계산",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "자료형·계산",
+     "family": "capital-share",
+     "file": "assets/materials-engine.js"
+    }
+   ],
+   "remaining": "2025년 WUP F20/F14로 같은 해 수도÷(도시+촌락) 연습을 구현. 수도 범위는 DEGURBA 도시이며, 2018년 강의 원자료의 재현은 아님. 2018년 판본 대응 검토가 남음."
   },
   {
    "id": "G062-6",
@@ -5293,9 +5337,15 @@
    "id": "G068-2",
    "group": "G068",
    "venue": "자료 계산",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "검증",
+   "evidence": [
+    {
+     "venue": "자료형·계산",
+     "family": "city-distance",
+     "file": "assets/materials-engine.js"
+    }
+   ],
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G068-3",
@@ -5751,9 +5801,15 @@
    "id": "G075-1",
    "group": "G075",
    "venue": "자료 계산",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "검증",
+   "evidence": [
+    {
+     "venue": "자료형·계산",
+     "family": "crop-yield",
+     "file": "assets/materials-engine.js"
+    }
+   ],
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G075-2",
@@ -7299,9 +7355,15 @@
    "id": "G098-1",
    "group": "G098",
    "venue": "자료 계산",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "검증",
+   "evidence": [
+    {
+     "venue": "자료형·계산",
+     "family": "car-growth",
+     "file": "assets/materials-engine.js"
+    }
+   ],
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G098-2",
@@ -9024,7 +9086,7 @@
    "venue": "기출형 <보기>",
    "status": "미구현",
    "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "remaining": "현재 WDI의 GDP 기준 1·2·3차 산업 비중은 합이 100이 아닐 수 있어 1차=100−2차−3차 문항을 연결하지 않음. 세 산업 합을 100으로 명시한 별도 자료가 필요."
   },
   {
    "id": "G128-1",
@@ -9194,9 +9256,15 @@
    "id": "G130-1",
    "group": "G130",
    "venue": "자료 계산",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "검증",
+   "evidence": [
+    {
+     "venue": "자료형·계산",
+     "family": "city-distance",
+     "file": "assets/materials-engine.js"
+    }
+   ],
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G130-2",
@@ -9378,9 +9446,15 @@
    "id": "G133-1",
    "group": "G133",
    "venue": "자료 계산",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "구현",
+   "evidence": [
+    {
+     "venue": "자료형·계산",
+     "family": "climate-restore",
+     "file": "assets/materials-engine.js"
+    }
+   ],
+   "remaining": "최한월+연교차 복원과 치타·딕슨·싱가포르 기후 식별 구현. 명세의 지도 대응과 몽골·기니만 표본은 아직 없음."
   },
   {
    "id": "G133-2",
@@ -9461,9 +9535,15 @@
    "id": "G134-3",
    "group": "G134",
    "venue": "자료 계산",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "검증",
+   "evidence": [
+    {
+     "venue": "자료형·계산",
+     "family": "birth-death",
+     "file": "assets/materials-engine.js"
+    }
+   ],
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G135-1",
@@ -9546,9 +9626,15 @@
    "id": "G137-1",
    "group": "G137",
    "venue": "자료 계산",
-   "status": "미구현",
-   "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "status": "검증",
+   "evidence": [
+    {
+     "venue": "자료형·계산",
+     "family": "religion-relative",
+     "file": "assets/materials-engine.js"
+    }
+   ],
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G137-2",
@@ -9570,7 +9656,7 @@
    "venue": "새 자료형: 산점도",
    "status": "미구현",
    "evidence": [],
-   "remaining": "자료와 화면 연결을 아직 구현하지 않음."
+   "remaining": "현재 WDI 산업 비중을 원자료 그대로 쓸 때 1차=100−2차−3차가 성립하지 않을 수 있음. 원 크기의 분모와 세 산업 합의 분모를 분리한 자료형 설계가 남음."
   },
   {
    "id": "G138-1",
