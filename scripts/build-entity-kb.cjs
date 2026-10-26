@@ -540,7 +540,7 @@ for (const o of AGRI.orders) {
 for (const [set, s] of Object.entries(agriCards.sets)) {
   const holders = s.scope.filter(n => entities[n] && AGRI_ITEMS[typeOf(n)]);
   if (!holders.length) continue;
-  agriFactSets[set] = {title: s.label, multi: !s.exclusive, negationSafe: false, exclusive: !!s.exclusive, template: s.template,
+  agriFactSets[set] = {title: s.label, multi: !s.exclusive, negationSafe: false, exclusive: !!s.exclusive, falseFromOthers:!!s.exclusive, template: s.template,
     options: Object.fromEntries(s.options.map(o => [o, o])), source: s.source};
   for (const n of holders) entities[n].facts[set] = {values: s.values[n].slice(), note: '', source: s.source};
 }
@@ -1031,16 +1031,53 @@ WC.statements.forEach((st, i) => concepts.push({id: 'city-' + (i + 1), about: st
 read('data/exam-export-items-claims.json').statements.forEach((st, i) => concepts.push({id: 'export-' + (i + 1), about: st.about, claim: st.claim, truth: st.truth, source: st.source}));
 
 const CLAIM_SKIP = {'climate-18': ['선양', '창춘', '블라디보스토크', '몬트리올', '모스크바'], 'climate-24': ['보스토크(남극)'], 'climate-14': ['케이프타운', '샌프란시스코']};
+// Explicitly bounded facts: never turn an incomplete positive list into a negative.
+const goalCountryFacts=read('data/goal-country-facts.json');
+const GOAL_FACT_SETS={
+ seas:{title:'접한 해역',multi:true,exclusive:false,falseFromKnownOnly:true,template:'{value}와/과 접한다',options:Object.fromEntries(['홍해','페르시아만','카스피해','흑해','기니만','지중해'].map(x=>[x,x])),source:goalCountryFacts.source,goalId:'G004-2'},
+ capitalHighland:{title:'수도의 해발 고도',multi:false,exclusive:true,falseFromOthers:true,template:'{value}',options:{high:'수도의 해발 고도가 2,000m 이상이다',low:'수도의 해발 고도가 2,000m 미만이다'},source:goalCountryFacts.source,goalId:'G131-2'},
+ riverMainstem:{title:'이름 붙은 하천 본류의 통과·국경 연안',multi:true,exclusive:false,falseFromKnownOnly:true,template:'{value} 본류가 지나거나 국경을 이룬다',options:{},source:'검증된 본류 통과국 목록 · 유역·지류 제외',goalId:'G124-5'}
+};
+for(const [n,x]of Object.entries(goalCountryFacts.seas))if(entities[n])entities[n].facts.seas={...x,source:goalCountryFacts.source};
+for(const [n,x]of Object.entries(goalCountryFacts.capitalHighland))if(entities[n])entities[n].facts.capitalHighland={values:[x.value],note:x.note,source:goalCountryFacts.source};
+const mainRivers=Object.entries(read('data/river-mainstem-countries.json').rivers).filter(([n,x])=>x.complete).map(([n,x])=>({name:n,countries:x.mainstemCountries})).concat(read('data/river-mainstem-countries-round3.json').rivers.filter(x=>x.completeForScope));
+for(const river of mainRivers)GOAL_FACT_SETS.riverMainstem.options[river.name]=river.name;
+for(const e of Object.values(entities).filter(e=>e.type==='country')){const values=mainRivers.filter(x=>x.countries.includes(e.name)).map(x=>x.name),falseValues=mainRivers.filter(x=>!x.countries.includes(e.name)).map(x=>x.name);e.facts.riverMainstem={values,falseValues,note:'이름 붙은 본류의 국내 통과와 국경 연안을 포함한다. 유역·지류를 본류 통과로 바꾸지 않는다.',source:'data/river-mainstem-countries*.json'};}
+
+// App-written identification clues, scoped to the reviewed goal examples.
+const goalClueRows={
+ '콜롬비아':['수도 보고타와 카리브해 연안의 항구 카르타헤나가 있다.','보고타','카르타헤나'],
+ '에콰도르':['수도 키토와 갈라파고스 제도가 있다.','키토','갈라파고스'],
+ '페루':['수도 리마와 잉카 유적이 있는 쿠스코가 있다.','리마','쿠스코'],
+ '볼리비아':['헌법상 수도 수크레와 행정 수도 라파스가 있다.','수크레','라파스'],
+ '사우디아라비아':['메카와 메디나 등 이슬람교의 성지가 있다.','메카','메디나'],
+ '카자흐스탄':['수도는 아스타나이며 알마티가 주요 도시이다.','아스타나','알마티'],
+ '라오스':['수도 비엔티안과 루앙프라방이 있다.','비엔티안','루앙프라방'],
+ '차드':['수도는 은자메나이며 서부의 내륙호 주변에서 물 이용과 사막화 문제가 나타난다.','은자메나'],
+ '인도네시아':['수마트라섬과 자와섬, 보르네오섬의 일부가 포함되는 도서 국가이다.','수마트라섬','자와섬'],
+ '중국':['상하이·베이징·광저우 등 동부의 대도시와 서부 내륙의 공간 차이가 크다.','베이징','광저우']
+};
+for(const [n,row] of Object.entries(goalClueRows)){
+ const e=entities[n];if(!e)throw Error('Missing country '+n);
+ if(JSON.stringify(row.slice(1))!==JSON.stringify(goalCountryFacts.clueAnchors[n]))throw Error('Unreviewed clue anchors '+n);
+ (e.clues||(e.clues=[])).push({text:row[0],shown:row[0],keys:row.slice(1),source:'앱 재서술 · 강의 G004·G114·G123·G131 지명 예시'});
+}
+// Historical exam pairings are explicitly dated: current rice leadership differs.
+const maxSource=read('data/agriculture.json');
+const goalAgricultureMaxima=[
+ {id:'rice-sheep',keys:['qcl-production:쌀','qcl-stocks:양'],labels:['쌀 생산량','양 사육 두수'],from:2015,to:2022},
+ {id:'wheat-pigs',keys:['qcl-production:밀','qcl-stocks:돼지'],labels:['밀 생산량','돼지 사육 두수'],from:2015,to:2024}
+].map(x=>({...x,leaders:x.keys.map(k=>{const winners=Array.from({length:x.to-x.from+1},(_,i)=>maxSource.rankings[k][x.from+i][0].name);if(new Set(winners).size!==1)throw Error('Historical maximum changed: '+x.id);return winners[0];})}));
 const out = {
   generated: 'scripts/build-entity-kb.cjs',
   sources: {countries: stats.meta, economy: economy.meta, groups: groupSeries.meta, extraFacts: extra.about, rankingsCheckedAt: R.checkedAt || null},
-  check: REL.check,
+  check: REL.check, goalAgricultureMaxima,
   factSets: Object.assign(Object.fromEntries(FACT_SETS.filter(id => C.byId[id]).map(id => [id, {
     title: C.byId[id].title, multi: !!C.byId[id].multi, negationSafe: NEGATION_SAFE[id] === 'all', exclusive: EXCLUSIVE.includes(id),
     // Country values come from the classification map's data, not a lecture sentence per country.
     source: '강의 ' + C.byId[id].lecture + ' 분류 기준' + (C.byId[id].period ? ' · ' + C.byId[id].period : ''),
     options: Object.fromEntries(C.optionsFor(C.byId[id]).map(o => [o.id, o.label])),
-  }])), agriFactSets, OPEC_SETS, US_FACT_SETS, CITY_SETS),
+  }])), agriFactSets, OPEC_SETS, US_FACT_SETS, CITY_SETS, GOAL_FACT_SETS),
   extraFacts: Object.fromEntries(Object.entries(extra.facts).map(([k, f]) => [k, {label: f.label, complete: f.complete, source: f.source}])),
   indicators, entities, compositions, relations, signs, orders, categoryFacts, concepts, outOfScope, cluesDropped: clueDropped,
   climate: {period: climate.normalPeriod, source: '관측소 월평년값(WMO 제출 자료 우선, JMA·ECCC 보충)', margin: CLIMATE_MARGIN, types: CLIMATE_LABEL, verdicts: climateTypes,

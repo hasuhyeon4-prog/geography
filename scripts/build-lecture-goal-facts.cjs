@@ -10,7 +10,7 @@ const topics=names.map((name,i)=>({id:'goal-p'+String(i).padStart(2,'0'),name:na
 for(const line of fs.readFileSync(path.join(root,'data/lecture-goal-ox.tsv'),'utf8').split(/\r?\n/)){
  if(!line||line.startsWith('#'))continue;
  const a=line.split('|');if(a.length!==3)throw Error('Expected goal|true|false: '+line);
- const [id,yes,no]=a,g=byid[id];if(!g||g.venue!=='OX')throw Error('Unknown OX goal '+id);
+ const [id,yes,no]=a,g=byid[id];if(!g||(g.venue!=='OX'&&id!=='G040-1'))throw Error('Unknown OX goal '+id);
  if(yes===no||yes.length<8||no.length<8)throw Error('Bad curated pair '+id);
  const n=counts[id]=(counts[id]||0)+1;
  for(const truth of [true,false]){

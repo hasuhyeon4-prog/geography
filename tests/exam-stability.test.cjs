@@ -195,8 +195,19 @@ function orderHoldsEveryYear(cid, name, order) {
   }) && (cid === 'religion' ? Object.keys(ser).length === 2 : Object.keys(ser).length >= MIN_YEARS);
 }
 
+// Each independent raw-source check inspects the same deterministic 300-seed bank.
+// Build it once; repeated generation adds no coverage and obscures failures behind retries.
+let questionBank;
 function* questions() {
-  for (const t of engine.themes) for (let seed = 1; seed <= SEEDS; seed++) yield engine.build({themeId: t.id, seed});
+  if (!questionBank) {
+    questionBank = [];
+    for (const t of engine.themes) for (let seed = 1; seed <= SEEDS; seed++) {
+      const q = engine.build({themeId: t.id, seed});
+      assert.ok(q, t.id + ' seed ' + seed);
+      questionBank.push(q);
+    }
+  }
+  yield* questionBank;
 }
 const num = cell => Number(String(cell).replace(/,/g, ''));
 
@@ -262,6 +273,7 @@ test('identification rests only on whitelisted knowledge that holds in every yea
         const c = K.entities[n].clues[+q.shown[i].split('#')[1]];
         // City clues are the lecture's reference-point cells (data/exam-world-cities.json).
         if (t.entityType === 'site') assert.ok(data('data/exam-world-cities.json').cities[n].clues.some(x => x.text === c.text), n + ': ' + c.text);
+        else if(c.source.startsWith('앱 재서술 · 강의 ')){const anchors=data('data/goal-country-facts.json').clueAnchors[n];assert.ok(anchors,n);assert.deepEqual(c.keys,anchors);assert.ok(anchors.every(k=>c.text.includes(k)),n+' clue anchors');}
         else assert.ok(clueData.countries[n].some(x => x.eligibleIdentification && x.text.includes(c.text)), n + ': ' + c.text);
         assert.ok(c.text.endsWith(q.display.rows[i].cells[0].replace(/^이 (나라|도시)(의|에는) /, '')), n + ' shown text');
         assert.ok(!q.display.rows[i].cells[0].includes(n), n + ' named in its own clue');
@@ -529,11 +541,18 @@ test('climate questions use verified types and seasons, and every wrong option i
       if (s.kind === 'climate' && !s.truth) assert.ok(clashes(c.entity, c.type), 'a wrong type the data do not rule out: ' + s.text);
       if (s.kind === 'place' && c.place === 'hemisphere') assert.equal(hemi(c.entity) === c.value, s.truth, s.text);
       if (s.kind === 'climateClaim') {
-        const k = climateClaims.find(x => x.id === c.claim), L = station[c.entity].lectureClimate;
-        const has = list => list.map(t => t.toLowerCase()).includes(L);
+        const L = station[c.entity].lectureClimate;
         assert.ok(confirmed(c.entity, L), 'claim about an unverified type: ' + s.text);
-        assert.equal(has(k.trueFor), s.truth, s.text);
-        if (!s.truth) assert.ok(has(k.falseFor), 'false only for a contrasted type: ' + s.text);
+        if(s.goalId){
+          if(c.claim==='wet-season'){const P=station[c.entity].precipitationMm,m=parseInt(c.month)-1;assert.equal(P[m]>P[(m+6)%12],s.truth,s.text);}
+          else if(c.claim==='winter-dry'){assert.ok(['cw','cfa'].includes(L));assert.equal(s.truth,!s.text.includes('겨울 강수에 관계없이 반드시 Cw'),s.text);}
+          else if(c.claim==='highland-scope'){assert.equal(L,'h');assert.equal(s.truth,s.text.includes('일반화해서는 안 된다'),s.text);}
+          else assert.fail('Unknown climate goal claim '+c.claim);
+        }else{
+          const k = climateClaims.find(x => x.id === c.claim), has = list => list.map(t => t.toLowerCase()).includes(L);
+          assert.ok(k,s.text);assert.equal(has(k.trueFor), s.truth, s.text);
+          if (!s.truth) assert.ok(has(k.falseFor), 'false only for a contrasted type: ' + s.text);
+        }
       }
     }
   }

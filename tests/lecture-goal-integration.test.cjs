@@ -4,7 +4,7 @@ const F=require('../assets/lecture-goal-facts.js'),G=require('../assets/goal-tab
 const K=require('../assets/entity-kb.js'),T=require('../assets/exam-themes.js'),E=require('../assets/exam-engine.js').create(K,T);
 test('all 296 OX goals have real true and false questions and browser merge is idempotent',()=>{
  const base=require('../assets/fact-statements.js'),all=[...base.items,...F.items],byid=new Map(all.map(q=>[q.id,q]));
- assert.equal(Object.keys(F.bindings).length,296);assert.equal(new Set(all.map(q=>q.id)).size,all.length);
+ assert.equal(Object.keys(F.bindings).length,297);assert.ok(F.bindings['G040-1']);const goals=require('../data/lecture-gap-goals.json');assert.equal(Object.keys(F.bindings).filter(id=>goals.find(g=>g.id===id).venue==='OX').length,296);assert.equal(new Set(all.map(q=>q.id)).size,all.length);
  for(const [id,ids]of Object.entries(F.bindings)){const qs=ids.map(qid=>byid.get(qid));assert.ok(qs.every(Boolean),id);assert.ok(qs.some(q=>q.answer)&&qs.some(q=>!q.answer),id);for(const q of qs){assert.ok(q.explain&&q.source);assert.equal(q.practice,'recall');}}
  const context={WGFacts:JSON.parse(JSON.stringify(base))};vm.createContext(context);const src=fs.readFileSync(require.resolve('../assets/lecture-goal-facts.js'),'utf8');vm.runInContext(src,context);vm.runInContext(src,context);assert.equal(context.WGFacts.items.length,base.items.length+F.items.length);
 });

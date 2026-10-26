@@ -1,0 +1,52 @@
+{
+ "date": "2026-10-26",
+ "fullRun": {
+  "command": "node --test tests/*.test.cjs",
+  "tests": 267,
+  "pass": 261,
+  "fail": 3,
+  "skipped": 3,
+  "failedChecks": [
+   "curated country clues distinguished from verbatim lecture excerpts and country-name disclosure",
+   "new climate claims checked from monthly data and scoped criteria",
+   "materials-data regeneration after goal-status update"
+  ]
+ },
+ "corrections": {
+  "rawSourceChecks": {
+   "tests": 2,
+   "pass": 2,
+   "fail": 0,
+   "skipped": 0
+  },
+  "materialAndGoalChecks": {
+   "tests": 41,
+   "pass": 41,
+   "fail": 0,
+   "skipped": 0
+  },
+  "status": "all targeted follow-up checks passed",
+  "fullSuiteRerunAfterFinalCorrections": false
+ },
+ "generation": {
+  "materials": 16640,
+  "existingExam": 10000
+ },
+ "browserQA": {
+  "status": "not completed",
+  "reason": "Browser security policy blocked the preview access attempt"
+ },
+ "sourceOnlySkips": 3,
+ "goalCounts": {
+  "verified": 116,
+  "implemented": 457,
+  "unimplemented": 0
+ },
+ "remote": {
+  "repository": "hasuhyeon4-prog/geography",
+  "branch": "implement/lecture-goals-20261025",
+  "status": "branch update blocked by automatic approval review; explicit destination-and-payload approval required",
+  "mainMerge": false,
+  "deployment": false
+ }
+}

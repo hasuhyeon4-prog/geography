@@ -1,0 +1,313 @@
+{
+ "source": {
+  "archive": "data/remaining-demographic-sources.zip",
+  "member": "wdi-demography.json",
+  "sha256": "9d05d686311e35be434d4ef1bb70de29a70ff87a5f2aff87ff1b6dd299f44de0",
+  "url": "https://api.worldbank.org/v2/country/IND;MEX;DEU/indicator/SP.POP.TOTL;SP.DYN.CBRT.IN;SP.DYN.CDRT.IN;SM.POP.NETM?source=2&date=2010:2023&format=json&per_page=20000",
+  "retrievedAt": "2026-10-25",
+  "source": "World Bank WDI / UN WPP",
+  "definition": "자연 증감 근삿값=같은 해 인구×(출생률−사망률)/1000. 순이동은 WDI 연간 인원. 합은 근사 수급 계산값이며 두 시점 인구의 정확한 차이와 동일하다고 가정하지 않는다."
+ },
+ "countries": {
+  "인도": {
+   "2010": {
+    "population": 1243481564,
+    "birthPerThousand": 21.633,
+    "deathPerThousand": 7.164,
+    "naturalApprox": 17991934.749516,
+    "netMigration": -50905
+   },
+   "2011": {
+    "population": 1261224954,
+    "birthPerThousand": 21.156,
+    "deathPerThousand": 7.048,
+    "naturalApprox": 17793361.651031997,
+    "netMigration": -247017
+   },
+   "2012": {
+    "population": 1278674502,
+    "birthPerThousand": 20.672,
+    "deathPerThousand": 6.945,
+    "naturalApprox": 17552364.888954,
+    "netMigration": -198935
+   },
+   "2013": {
+    "population": 1295829511,
+    "birthPerThousand": 20.061,
+    "deathPerThousand": 6.859,
+    "naturalApprox": 17107541.204222,
+    "netMigration": -151372
+   },
+   "2014": {
+    "population": 1312277191,
+    "birthPerThousand": 19.089,
+    "deathPerThousand": 6.77,
+    "naturalApprox": 16165942.715929,
+    "netMigration": -227263
+   },
+   "2015": {
+    "population": 1328024498,
+    "birthPerThousand": 18.936,
+    "deathPerThousand": 6.729,
+    "naturalApprox": 16211195.047086,
+    "netMigration": -655085
+   },
+   "2016": {
+    "population": 1343944296,
+    "birthPerThousand": 18.756,
+    "deathPerThousand": 6.7,
+    "naturalApprox": 16202592.432576003,
+    "netMigration": 81248
+   },
+   "2017": {
+    "population": 1359657400,
+    "birthPerThousand": 17.995,
+    "deathPerThousand": 6.673,
+    "naturalApprox": 15394041.0828,
+    "netMigration": -251642
+   },
+   "2018": {
+    "population": 1374659064,
+    "birthPerThousand": 17.91,
+    "deathPerThousand": 6.67,
+    "naturalApprox": 15451167.879360002,
+    "netMigration": -589794
+   },
+   "2019": {
+    "population": 1389030312,
+    "birthPerThousand": 17.368,
+    "deathPerThousand": 6.67,
+    "naturalApprox": 14859846.277775997,
+    "netMigration": -978969
+   },
+   "2020": {
+    "population": 1402617695,
+    "birthPerThousand": 16.744,
+    "deathPerThousand": 7.214,
+    "naturalApprox": 13366946.633349998,
+    "netMigration": -73806
+   },
+   "2021": {
+    "population": 1414203896,
+    "birthPerThousand": 16.491,
+    "deathPerThousand": 9.259,
+    "naturalApprox": 10227522.575872,
+    "netMigration": -348916
+   },
+   "2022": {
+    "population": 1425423212,
+    "birthPerThousand": 16.336,
+    "deathPerThousand": 6.576,
+    "naturalApprox": 13912130.549119998,
+    "netMigration": -1353478
+   },
+   "2023": {
+    "population": 1438069596,
+    "birthPerThousand": 16.146,
+    "deathPerThousand": 6.611,
+    "naturalApprox": 13711993.597860001,
+    "netMigration": -979179
+   }
+  },
+  "멕시코": {
+   "2010": {
+    "population": 113623895,
+    "birthPerThousand": 20.331,
+    "deathPerThousand": 5.733,
+    "naturalApprox": 1658681.6192099997,
+    "netMigration": -40845
+   },
+   "2011": {
+    "population": 115243504,
+    "birthPerThousand": 20.095,
+    "deathPerThousand": 5.698,
+    "naturalApprox": 1659160.727088,
+    "netMigration": -37826
+   },
+   "2012": {
+    "population": 116818208,
+    "birthPerThousand": 19.855,
+    "deathPerThousand": 5.674,
+    "naturalApprox": 1656599.007648,
+    "netMigration": -128485
+   },
+   "2013": {
+    "population": 118343573,
+    "birthPerThousand": 19.557,
+    "deathPerThousand": 5.677,
+    "naturalApprox": 1642608.7932399998,
+    "netMigration": -120058
+   },
+   "2014": {
+    "population": 119784261,
+    "birthPerThousand": 18.959,
+    "deathPerThousand": 5.705,
+    "naturalApprox": 1587620.5952939999,
+    "netMigration": -228816
+   },
+   "2015": {
+    "population": 121072306,
+    "birthPerThousand": 18.227,
+    "deathPerThousand": 5.768,
+    "naturalApprox": 1508439.860454,
+    "netMigration": -291044
+   },
+   "2016": {
+    "population": 122251351,
+    "birthPerThousand": 17.69,
+    "deathPerThousand": 5.868,
+    "naturalApprox": 1445255.4715220002,
+    "netMigration": -304472
+   },
+   "2017": {
+    "population": 123400057,
+    "birthPerThousand": 17.214,
+    "deathPerThousand": 5.997,
+    "naturalApprox": 1384178.439369,
+    "netMigration": -227499
+   },
+   "2018": {
+    "population": 124573711,
+    "birthPerThousand": 17.037,
+    "deathPerThousand": 6.071,
+    "naturalApprox": 1366075.314826,
+    "netMigration": -175356
+   },
+   "2019": {
+    "population": 125762982,
+    "birthPerThousand": 16.877,
+    "deathPerThousand": 6.083,
+    "naturalApprox": 1357485.627708,
+    "netMigration": -169628
+   },
+   "2020": {
+    "population": 126799054,
+    "birthPerThousand": 16.565,
+    "deathPerThousand": 8.429,
+    "naturalApprox": 1031637.1033440001,
+    "netMigration": -147456
+   },
+   "2021": {
+    "population": 127648148,
+    "birthPerThousand": 16.353,
+    "deathPerThousand": 9.015,
+    "naturalApprox": 936682.1100240002,
+    "netMigration": -122791
+   },
+   "2022": {
+    "population": 128613117,
+    "birthPerThousand": 16.041,
+    "deathPerThousand": 6.521,
+    "naturalApprox": 1224396.87384,
+    "netMigration": -108438
+   },
+   "2023": {
+    "population": 129739759,
+    "birthPerThousand": 15.706,
+    "deathPerThousand": 6.161,
+    "naturalApprox": 1238365.999655,
+    "netMigration": -101044
+   }
+  },
+  "독일": {
+   "2010": {
+    "population": 81776930,
+    "birthPerThousand": 8.3,
+    "deathPerThousand": 10.5,
+    "naturalApprox": -179909.24599999993,
+    "netMigration": 130116
+   },
+   "2011": {
+    "population": 80274983,
+    "birthPerThousand": 8.3,
+    "deathPerThousand": 10.6,
+    "naturalApprox": -184632.46089999992,
+    "netMigration": 295282
+   },
+   "2012": {
+    "population": 80425823,
+    "birthPerThousand": 8.4,
+    "deathPerThousand": 10.8,
+    "naturalApprox": -193021.97520000002,
+    "netMigration": 199143
+   },
+   "2013": {
+    "population": 80645605,
+    "birthPerThousand": 8.5,
+    "deathPerThousand": 11.1,
+    "naturalApprox": -209678.57299999997,
+    "netMigration": 462384
+   },
+   "2014": {
+    "population": 80982500,
+    "birthPerThousand": 8.8,
+    "deathPerThousand": 10.7,
+    "naturalApprox": -153866.74999999988,
+    "netMigration": 592338
+   },
+   "2015": {
+    "population": 81686611,
+    "birthPerThousand": 9,
+    "deathPerThousand": 11.3,
+    "naturalApprox": -187879.20530000006,
+    "netMigration": 1175283
+   },
+   "2016": {
+    "population": 82348669,
+    "birthPerThousand": 9.6,
+    "deathPerThousand": 11.1,
+    "naturalApprox": -123523.0035,
+    "netMigration": 517480
+   },
+   "2017": {
+    "population": 82657002,
+    "birthPerThousand": 9.5,
+    "deathPerThousand": 11.3,
+    "naturalApprox": -148782.60360000006,
+    "netMigration": 452988
+   },
+   "2018": {
+    "population": 82905782,
+    "birthPerThousand": 9.5,
+    "deathPerThousand": 11.5,
+    "naturalApprox": -165811.564,
+    "netMigration": 403908
+   },
+   "2019": {
+    "population": 83092962,
+    "birthPerThousand": 9.4,
+    "deathPerThousand": 11.3,
+    "naturalApprox": -157876.62780000005,
+    "netMigration": 319082
+   },
+   "2020": {
+    "population": 83160871,
+    "birthPerThousand": 9.3,
+    "deathPerThousand": 11.9,
+    "naturalApprox": -216218.26459999997,
+    "netMigration": 203468
+   },
+   "2021": {
+    "population": 83196078,
+    "birthPerThousand": 9.6,
+    "deathPerThousand": 12.3,
+    "naturalApprox": -224629.4106000001,
+    "netMigration": 310264
+   },
+   "2022": {
+    "population": 83177813,
+    "birthPerThousand": 8.9,
+    "deathPerThousand": 12.8,
+    "naturalApprox": -324393.47070000006,
+    "netMigration": 981552
+   },
+   "2023": {
+    "population": 83287273,
+    "birthPerThousand": 8.3,
+    "deathPerThousand": 12.3,
+    "naturalApprox": -333149.092,
+    "netMigration": 609553
+   }
+  }
+ }
+}

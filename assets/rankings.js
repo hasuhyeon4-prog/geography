@@ -4677,6 +4677,100 @@
      "flips": []
     }
    }
+  },
+  {
+   "id": "renewable-capacity-six",
+   "group": "energy",
+   "title": "재생에너지 설비 용량 — 제시 6개국",
+   "unit": "MW",
+   "year": "2023",
+   "source": "IRENA Renewable Energy Statistics 2025",
+   "phrase": "재생에너지 설비 용량 — 제시 6개국이 큰",
+   "low": "재생에너지 설비 용량 — 제시 6개국이 작은",
+   "digits": 0,
+   "items": [
+    {
+     "name": "중국",
+     "value": 1453701
+    },
+    {
+     "name": "미국",
+     "value": 385283
+    },
+    {
+     "name": "브라질",
+     "value": 194463
+    },
+    {
+     "name": "인도",
+     "value": 175874
+    },
+    {
+     "name": "독일",
+     "value": 159886
+    },
+    {
+     "name": "캐나다",
+     "value": 107672
+    }
+   ],
+   "scope": "총 재생에너지, 같은 국가·같은 해. 용량=연말 MW, 발전량=연간 GWh. 국가 전체를 망라한 세계 순위가 아니라 제시 6개국 내 순위.",
+   "note": "독일은 캐나다보다 설비 용량이 크지만 연간 발전량은 작다. 제시 국가 내 순위이며 세계 상위 6개국이 아니다.",
+   "audit": {
+    "checkedAt": "2026-10-25",
+    "status": "checked",
+    "sourceUrls": [
+     "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2025/Jul/IRENA_DAT_RE_Statistics_2025.pdf"
+    ],
+    "unstablePairs": []
+   }
+  },
+  {
+   "id": "renewable-generation-six",
+   "group": "energy",
+   "title": "재생에너지 발전량 — 제시 6개국",
+   "unit": "GWh",
+   "year": "2023",
+   "source": "IRENA Renewable Energy Statistics 2025",
+   "phrase": "재생에너지 발전량 — 제시 6개국이 큰",
+   "low": "재생에너지 발전량 — 제시 6개국이 작은",
+   "digits": 0,
+   "items": [
+    {
+     "name": "중국",
+     "value": 2842826
+    },
+    {
+     "name": "미국",
+     "value": 962076
+    },
+    {
+     "name": "브라질",
+     "value": 629904
+    },
+    {
+     "name": "캐나다",
+     "value": 418837
+    },
+    {
+     "name": "인도",
+     "value": 369970
+    },
+    {
+     "name": "독일",
+     "value": 270110
+    }
+   ],
+   "scope": "총 재생에너지, 같은 국가·같은 해. 용량=연말 MW, 발전량=연간 GWh. 국가 전체를 망라한 세계 순위가 아니라 제시 6개국 내 순위.",
+   "note": "독일은 캐나다보다 설비 용량이 크지만 연간 발전량은 작다. 제시 국가 내 순위이며 세계 상위 6개국이 아니다.",
+   "audit": {
+    "checkedAt": "2026-10-25",
+    "status": "checked",
+    "sourceUrls": [
+     "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2025/Jul/IRENA_DAT_RE_Statistics_2025.pdf"
+    ],
+    "unstablePairs": []
+   }
   }
  ],
  "groups": [

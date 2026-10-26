@@ -6,5 +6,6 @@ test('goal status never closes a group with an unverified child',()=>{
  for(const g of goals){const p=progress.items.find(x=>x.id===g.id);assert.ok(p);assert.equal(g.status,p.status);if(g.status!=='미구현')assert.ok(p.evidence.length,g.id);}
  for(const id of ['G020-2','G061-3','G086-1']){assert.notEqual(goals.find(g=>g.id===id).status,'검증');assert.ok(progress.items.find(g=>g.id===id).remaining);}
  for(const id of ['G005-1','G038-1'])assert.equal(goals.find(g=>g.id===id).status,'검증');
- for(const g of goals.filter(g=>g.venue==='OX'))assert.equal(g.status,'구현','representative pair is not proof that every clause was practised');
+ const v=require('../data/goal-verification.json');
+ for(const g of goals.filter(g=>g.venue==='OX'))if(g.status==='검증'){assert.ok(v.verifiedGoals.includes(g.id));assert.ok(v.reviews?.[g.id]?.criteria&&v.reviews[g.id].evidence.length,g.id+' needs individual content review');}else assert.equal(g.status,'구현');
 });

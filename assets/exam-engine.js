@@ -399,6 +399,18 @@
     var c=cl(n);
     if(Math.abs(c.lat)>=5){var south=c.hemisphere==='S',t=r()<.5;
      add({kind:'place',key:'hemi|'+n,text:S(n)+' '+(south===t?'남반구':'북반구')+'에 위치한다.',truth:t,explain:n+' 위도 '+fmt(c.lat)+'° — '+(south?'남반구':'북반구'),check:{place:'hemisphere',entity:n,value:south===t?'S':'N'}})}
+    if(n==='브라질리아'||n==='바마코'||n==='양곤'){
+     [true,false].forEach(function(wetTruth){var summer=c.hemisphere==='S'?'1월':'7월',winter=c.hemisphere==='S'?'7월':'1월';
+     add({kind:'climateClaim',key:'wet-season|'+n,goalId:'G015-4',text:S(n)+' '+(wetTruth?summer:winter)+'이 상대적으로 비가 많은 시기이다.',truth:wetTruth,explain:n+'의 월 강수량과 반구를 함께 읽는다. 반구가 바뀌면 여름의 달도 달라진다.',check:{claim:'wet-season',entity:n,summer:summer,month:wetTruth?summer:winter}});});
+    }
+    if(c.type==='cw'||c.type==='cfa'){
+     [true,false].forEach(function(cwTruth){
+     add({kind:'climateClaim',key:'winter-dry|'+n,goalId:'G018-4',text:S(n)+' '+(cwTruth?'기후를 Cw로 판정할 때는 여름 강수뿐 아니라 겨울의 뚜렷한 강수 감소 여부를 함께 확인한다.':'7월 강수량이 많다는 이유만으로 반구와 겨울 강수에 관계없이 반드시 Cw로 판정한다.'),truth:cwTruth,explain:'Cw의 w는 겨울 건조이다. Cfa와 비교하며 남반구의 여름은 12~2월이다.',check:{claim:'winter-dry',entity:n,type:c.type}});});
+    }
+    if(c.type==='h'){
+     [true,false].forEach(function(highTruth){
+     add({kind:'climateClaim',key:'highland-scope|'+n,goalId:'G023-1',text:S(n)+' '+(highTruth?'같은 저위도 고산의 특성을 티베트 등 모든 고산으로 일반화해서는 안 된다.':'연중 온화한 저위도 고산이므로 티베트 등 세계의 모든 고산도 연중 온화하다.'),truth:highTruth,explain:'저위도 열대 고산과 중위도 티베트를 구별한다. 티베트는 큰 계절 변화와 고산 툰드라·영구 동토 환경을 포함한다.',check:{claim:'highland-scope',entity:n}});});
+    }
     if(!c.type)return;
     add({kind:'climate',key:'type|'+n,text:S(n)+' '+typeLabel(c.type)+'가 나타난다.',truth:true,explain:climateExplain(n),check:{type:c.type,entity:n}});
     // A wrong type the data clearly rule out: another site's type in this question, else one of the same group.
@@ -458,6 +470,19 @@
    function add(c){if(c.text&&!out.some(function(x){return x.text===c.text}))out.push(c)}
    chosen.forEach(function(n){
     var e=entity(n);
+    if(theme.countryTaboo&&n==='인도'&&value(n,'agri-cattle')>0){
+     [true,false].forEach(function(tabooTruth){add({kind:'concept',key:'country-taboo|'+n,goalId:'G078-1',text:S(n)+' '+(tabooTruth?'소 숭배 문화가 있어도 소를 사육한다.':'소 숭배 문화가 있으므로 소를 전혀 사육하지 않는다.'),truth:tabooTruth,explain:'인도의 소 식용 제한·숭배와 사육 여부를 구별한다. 앱의 FAOSTAT 자료에서도 소 사육 두수는 0보다 크다.',check:{op:'tabooVsRaising',entity:n,indicator:'agri-cattle',value:value(n,'agri-cattle')}});});
+    }
+    if(theme.goalClues){
+     var scoped=n==='인도'?['G123-4','힌두교가 다수이면서 다종교·다언어 국가이고, 벵갈루루의 정보 기술 산업과 많은 농업 종사자가 함께 존재한다.','벵갈루루의 정보 기술 산업이 발달했으므로 전국의 농업 종사자는 거의 없고 모든 주민이 같은 종교·언어를 가진다.','국가 전체의 산업 구조와 특정 도시의 기능, 다수 종교와 내부 다양성을 구별한다.']:
+      n==='중국'?['G123-4','동부 연안의 공업·항만과 서부 내륙의 환경·인구 분포 차이를 함께 살펴야 한다.','동부 연안의 대도시 특성을 중국의 모든 내륙 지역에 그대로 적용해도 된다.','국가 내부의 공간 차이를 지운 일반화를 피한다.']:
+      n==='차드'?['G114-5','차드호 사례는 호수의 수면·물 이용과 주변 건조화 문제를 살피는 사례이다.','차드호 사례는 보르네오섬의 열대림 벌채 면적만을 나타낸 사례이다.','수면 범위 변화와 산림 범위 변화를 구별한다.']:
+      n==='인도네시아'?['G114-5','보르네오섬의 열대림 파괴는 산림 범위와 벌채·농장 확대 등을 살피는 사례이다.','보르네오섬의 열대림 파괴는 차드호 수면 축소와 같은 장소·같은 지표의 사례이다.','보르네오는 여러 국가가 나누어 가진 섬이며 산림 문제를 살핀다.']:null;
+     if(scoped){[true,false].forEach(function(correct){add({kind:'concept',key:'goal-clue|'+n,goalId:scoped[0],text:S(n)+' '+scoped[correct?1:2],truth:correct,explain:scoped[3]+' · 강의 '+scoped[0],check:{op:'goalClue',entity:n}});});}
+    }
+    if(theme.countryTaboo&&n==='인도네시아'&&value(n,'agri-pigs')>0){
+     [true,false].forEach(function(pigTruth){add({kind:'concept',key:'country-taboo|'+n,goalId:'G078-1',text:S(n)+' '+(pigTruth?'이슬람교 신자가 많아도 돼지 사육이 0인 것은 아니다.':'이슬람교 신자가 많으므로 돼지 사육 두수는 반드시 0이다.'),truth:pigTruth,explain:'식용 금기를 모든 주민·모든 생산 활동에 일반화하지 않는다. FAOSTAT의 돼지 사육 두수는 0보다 크다.',check:{op:'tabooVsRaising',entity:n,indicator:'agri-pigs',value:value(n,'agri-pigs')}});});
+    }
     Object.keys(e.facts||{}).forEach(function(set){
      // A fact the shown data already reveals would make the <보기> a reading exercise.
      if((theme.reveals||[]).indexOf(set)>=0||stated(n,set))return;
@@ -465,8 +490,13 @@
      var f=e.facts[set],m=kb.factSets[set];
      // A set that cannot also make a false statement (광물 산지, 음료, 접한 바다, 내륙국: lists that
      // are not complete) would make every such <보기> true, which teaches the pattern, not the fact.
-     if(!m||!m.exclusive)return;
-     f.values.forEach(function(v){var p=predicate(set,v);if(p)add({kind:'fact',key:set+'|'+n,text:S(n)+' '+p+'.',truth:true,explain:factExplain(set,n),check:{set:set,entity:n,value:v}})});
+     if(!m||(!m.exclusive&&!m.falseFromKnownOnly))return;
+     f.values.forEach(function(v){var p=predicate(set,v);if(p)add({kind:'fact',key:set+'|'+n,goalId:m.goalId||(set==='originContinent'?'G074-1':null),text:S(n)+' '+p+'.',truth:true,explain:factExplain(set,n),check:{set:set,entity:n,value:v}})});
+     if(m.falseFromKnownOnly&&f.falseValues&&f.falseValues.length){
+      var negativePool=[];chosen.forEach(function(o){var g=entity(o).facts[set];if(g)g.values.forEach(function(v){if(f.falseValues.indexOf(v)>=0&&negativePool.indexOf(v)<0)negativePool.push(v);});});
+      negativePool=negativePool.filter(function(v){return plausible(set,n,v);});
+      if(negativePool.length){var nv=pick(negativePool,r);add({kind:'fact',key:set+'|'+n,goalId:m.goalId||(set==='originContinent'?'G074-1':null),text:S(n)+' '+predicate(set,nv)+'.',truth:false,explain:factExplain(set,n)+' · 이 문장의 '+optionLabel(set,nv)+' 관계는 검토된 부정 범위에서 성립하지 않는다.',check:{set:set,entity:n,value:nv,explicitNegative:true}});}
+     }
      if(m&&m.exclusive){
       // A value another 대상 here holds is plausible by construction (states and cities have no region).
       var opts=Object.keys(m.options).filter(function(o){return f.values.indexOf(o)<0&&predicate(set,o)&&(plausible(set,n,o)||m.falseFromOthers)});
@@ -474,7 +504,7 @@
       // A two-valued set (내륙국, OPEC) lies only with a value another 대상 here holds, so its false
       // claims do not outnumber the true ones.
       var o=fromOthers.length?pick(fromOthers,r):opts.length&&!m.falseFromOthers?pick(opts,r):null;
-      if(o)add({kind:'fact',key:set+'|'+n,text:S(n)+' '+predicate(set,o)+'.',truth:false,explain:factExplain(set,n),check:{set:set,entity:n,value:o}});
+      if(o)add({kind:'fact',key:set+'|'+n,goalId:m.goalId||(set==='originContinent'?'G074-1':null),text:S(n)+' '+predicate(set,o)+'.',truth:false,explain:factExplain(set,n),check:{set:set,entity:n,value:o}});
      }
     });
     // '적도가 지난다' / '본초 자오선이 지난다': true when a landmass crosses the line; false only
@@ -496,9 +526,27 @@
     }
     if(e.ns&&e.eqDist<=NEAR_EQUATOR&&allowed(theme,'hemisphere')&&!stated(n,'hemisphere')){var north=e.ns==='N',trueIt=r()<.5;add({kind:'fact',key:'ns|'+n,text:S(n)+' '+((north===trueIt)?'북반구':'남반구')+'에 위치한다.',truth:trueIt,explain:n+'의 국토는 '+(north?'북반구':'남반구')+'에 있다.',check:{ns:(north===trueIt)?'N':'S',entity:n}})}
    });
+   if(theme.id==='crop-identification'&&has('밀'))[true,false].forEach(function(truth){
+    add({kind:'concept',key:'origin-region|밀',goalId:'G074-1',text:S('밀')+' '+(truth?'기원지는 서남아시아이다.':'기원지는 아메리카이다.'),truth:truth,explain:'밀은 서남아시아, 쌀은 아시아, 옥수수는 아메리카 기원으로 구별한다.',check:{op:'cropOriginRegion',entity:'밀'}});
+   });
+   if(theme.goalAgriculture){
+    (kb.goalAgricultureMaxima||[]).forEach(function(x){
+     chosen.forEach(function(n){var truth=x.leaders.every(function(leader){return leader===n;});
+      add({kind:'concept',key:'double-max|'+x.id+'|'+n,goalId:'G077-3',text:S(n)+' '+x.from+'~'+x.to+'년 FAOSTAT 자료에서 '+x.labels.join('와 ')+'가 모두 세계 최다이다.',truth:truth,explain:x.from+'~'+x.to+'년 매년 두 지표의 세계 1위는 '+x.leaders.join('·')+'이다. '+(x.id==='rice-sheep'?'이 판본에서 쌀은 2023~2024년 인도가 1위이므로 이 문장을 모든 시점으로 일반화하지 않는다.':''),check:{op:'historicalDoubleMax',variant:x.id,entity:n,leaders:x.leaders,from:x.from,to:x.to}});
+     });
+    });
+    REL.forEach(function(x){
+     if(!has(x.hi)||!has(x.lo)||!visible(shown,x.indicator)||!(x.indicator==='agri-riceExports'&&x.hi==='타이'&&x.lo==='미얀마'||x.indicator==='agri-maize'&&x.hi==='중국'&&x.lo==='오스트레일리아'))return;
+     [true,false].forEach(function(truth){var ns=truth?[x.hi,x.lo]:[x.lo,x.hi];
+      add({kind:'concept',key:x.indicator+'|'+[x.hi,x.lo].sort().join('|'),goalId:'G074-6',text:S(ns[0])+' '+x.years.join('~')+'년 매년 '+L(ns[1])+'보다 '+meta(x.indicator).more+'.',truth:truth,explain:x.basis+' · 표시된 한 해뿐 아니라 검증한 '+x.n+'개 연도 전체에서 같은 순서이다.',check:{op:'multiYearCompare',variant:x.indicator,ind:x.indicator,subject:ns[0],object:ns[1],years:x.years}});
+     });
+    });
+    var arg=SIGNS.find(function(x){return x.entity==='아르헨티나'&&x.indicator==='agri-maizeNet'&&x.positive;});
+    if(has('아르헨티나')&&arg){[true,false].forEach(function(netTruth){add({kind:'concept',key:'goal-maize-net|아르헨티나',goalId:'G074-6',text:S('아르헨티나')+' '+(netTruth?'옥수수 순수출국이다.':'옥수수 순수입국이다.'),truth:netTruth,explain:'FAOSTAT에서 '+arg.years.join('~')+'년 매년 옥수수 수출−수입이 양수이다. · '+arg.basis,check:{ind:'agri-maizeNet',entity:'아르헨티나',positive:netTruth}});});}
+   }
    var polarity={};SIGNS.forEach(function(x){if(has(x.entity))(polarity[x.indicator]=polarity[x.indicator]||{})[x.positive]=1});
    SIGNS.forEach(function(x){
-    var pol=polarity[x.indicator]||{};if(!pol[true]||!pol[false])return;
+    var pol=polarity[x.indicator]||{};if((!pol[true]||!pol[false])&&(theme.signRecall||[]).indexOf(x.indicator)<0)return;
     if(!has(x.entity)||visible(shown,x.indicator)||!inScope(theme,x.indicator)||(theme.noRecall||[]).indexOf(x.indicator)>=0)return;
     var m=meta(x.indicator),v=value(x.entity,x.indicator),yes=x.positive?m.sign.pos:m.sign.neg,no=x.positive?m.sign.neg:m.sign.pos;
     var why=x.entity+' '+m.label+' '+fmt(v)+m.unit+' ('+m.year+', '+m.source+') · '+span(x,x.indicator)+' '+(x.positive?'양(+)':'음(−)')+' · 근거: '+x.basis;
@@ -508,7 +556,7 @@
    REL.forEach(function(x){
     if(!has(x.hi)||!has(x.lo)||visible(shown,x.indicator)||meta(x.indicator).entityType!==entity(x.hi).type||!inScope(theme,x.indicator)||(theme.noRecall||[]).indexOf(x.indicator)>=0)return;
     var m=meta(x.indicator),truth=r()<.5,s=truth?[x.hi,x.lo]:[x.lo,x.hi],neg=m.negMore&&value(x.hi,x.indicator)<0&&value(x.lo,x.indicator)<0;
-    add({kind:'compare',key:x.indicator+'|'+[x.hi,x.lo].sort().join('|'),text:neg?S(s[1])+' '+L(s[0])+'보다 '+m.negMore+'.':S(s[0])+' '+L(s[1])+'보다 '+m.more+'.',truth:truth,
+    add({kind:'compare',goalId:theme.goalAgriculture&&(x.indicator==='agri-maize'&&x.hi==='중국'&&x.lo==='오스트레일리아'||x.indicator==='agri-riceExports'&&x.hi==='타이'&&x.lo==='미얀마')?'G074-6':null,key:x.indicator+'|'+[x.hi,x.lo].sort().join('|'),text:neg?S(s[1])+' '+L(s[0])+'보다 '+m.negMore+'.':S(s[0])+' '+L(s[1])+'보다 '+m.more+'.',truth:truth,
      explain:x.hi+' '+cellText(x.hi,x.indicator)+m.unit+', '+x.lo+' '+cellText(x.lo,x.indicator)+m.unit+' ('+m.label+', '+m.year+', '+m.source+') · '+span(x,x.indicator)+' 같은 순서 · 근거: '+x.basis,
      check:{ind:x.indicator,subject:s[0],object:s[1]}});
    });
@@ -555,8 +603,8 @@
       var amtA=ca[cat]*ta/100,amtB=cb[cat]*tb/100,s0=trap(p,ca[cat],cb[cat],amtA,amtB,1.5);if(!s0||!keepTrap(theme,trapCase(ca[cat],cb[cat],amtA,amtB),r))return;
       var truth=r()<.5,s=truth?s0:[s0[1],s0[0]],amt=function(n){return n===p[0]?amtA:amtB};
       var noun=CN(cat)+' '+(cat==='unaffiliated'?'인구':theme.amountNoun||'인구');
-      add({kind:'data',key:'amount|'+cat+'|'+p[0]+'|'+p[1],check:{category:cat,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+noun+subjectParticle(noun)+' 많다.',truth:truth,
-       explain:(hidden.indexOf(cat)>=0?CN(cat)+'는 '+catLabel(theme,cat)+'. ':'')+'표의 비율 × '+c.total.label+': '+s0[0]+' 약 '+fmt(amt(s0[0]))+c.total.unit+', '+s0[1]+' 약 '+fmt(amt(s0[1]))+c.total.unit+' — 비율과 '+c.total.label+'의 순서가 서로 달라 곱해서 비교한다. 실제 '+(/수$/.test(theme.amountNoun||'')?'수는':'양은')+' '+s0[0]+subjectParticle(s0[0])+' 더 많다. (비율·'+c.total.label+' 모두 '+c.year+'년 '+c.source+')'});
+      add({kind:'data',goalIds:theme.composition==='exports'?(['G092-4'].concat(p.indexOf('사우디아라비아')>=0&&p.indexOf('나이지리아')>=0?['G132-3']:[])):[],key:'amount|'+cat+'|'+p[0]+'|'+p[1],check:{category:cat,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+noun+subjectParticle(noun)+' 많다.',truth:truth,
+       explain:(hidden.indexOf(cat)>=0?CN(cat)+'는 '+catLabel(theme,cat)+'. ':'')+'표의 비율 × '+c.total.label+': '+s0[0]+' 약 '+fmt(amt(s0[0]))+c.total.unit+', '+s0[1]+' 약 '+fmt(amt(s0[1]))+c.total.unit+' — 비율과 '+c.total.label+'의 순서가 서로 달라 곱해서 비교한다. 실제 '+(/수$/.test(theme.amountNoun||'')?'수는':'양은')+' '+s0[0]+subjectParticle(s0[0])+' 더 많다. (비율·'+c.total.label+' 모두 '+c.year+'년 '+c.source+')'+(theme.composition==='exports'?' · 묶인 품목은 묶음 전체의 금액만 계산하며 그 안의 개별 품목 금액은 확정하지 않는다.':'')});
      });
     }
     if(theme.kind==='indicators')(theme.derived||[]).forEach(function(d){
@@ -565,8 +613,8 @@
      var amtA=ta*ra/d.per,amtB=tb*rb/d.per,s0=trap(p,ra,rb,amtA,amtB,1.2);if(!s0||!keepTrap(theme,trapCase(ra,rb,amtA,amtB),r))return;
      var truth=r()<.5,s=truth?s0:[s0[1],s0[0]];
      var line=function(n){return n+' '+fmt(value(n,d.total))+tm.unit+' × '+fmt(value(n,d.rate))+rm.unit+' ≈ '+fmt(value(n,d.total)*value(n,d.rate)/d.per)+tm.unit};
-     add({kind:'data',key:'derived|'+d.rate+'|'+p[0]+'|'+p[1],check:{rate:d.rate,total:d.total,per:d.per,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+d.noun+subjectParticle(d.noun)+' '+(d.more||'많다')+'.',truth:truth,
-      explain:'표의 '+tm.label+' × '+rm.label+': '+line(s0[0])+', '+line(s0[1])+' — '+rm.label+'과 '+tm.label+'의 순서가 서로 달라 곱해서 비교한다. '+d.noun+topic(d.noun)+' '+s0[0]+subjectParticle(s0[0])+' 더 많다. ('+rm.year+', '+rm.source+')'});
+     add({kind:'data',key:'derived|'+d.rate+'|'+p[0]+'|'+p[1],goalId:d.goalId||(theme.id==='us-manufacturing'?'G100-2':null),check:{rate:d.rate,total:d.total,per:d.per,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+d.noun+subjectParticle(d.noun)+' '+(d.more||'많다')+'.',truth:truth,
+      explain:'표의 '+tm.label+' × '+rm.label+': '+line(s0[0])+', '+line(s0[1])+' — '+rm.label+'과 '+tm.label+'을 곱해서 비교한다. '+d.noun+topic(d.noun)+' '+s0[0]+subjectParticle(s0[0])+' 더 많다. ('+rm.year+', '+rm.source+')'});
     });
     // Two-period tables: which row changed more between the two columns (3%p apart at least).
     if(theme.kind==='indicators')(theme.changes||[]).forEach(function(d){
@@ -654,6 +702,8 @@
    if(c.kind==='colid')return 'id|'+k.column;
    // A claim about one 대상 has its truth in its words ('…이므로 원유 매장량이 많다'); a two-대상 claim
    // ('A는 B보다 …') reads the same either way round, so only that kind is two-sided.
+   if(c.kind==='concept'&&c.goalId&&['goalClue','tabooVsRaising','cropOriginRegion','historicalDoubleMax','multiYearCompare'].indexOf(k.op)>=0)return 'goal|'+c.goalId+'|'+k.op+'|'+(k.variant||'');
+   if(c.kind==='concept'&&c.goalId==='G074-6'&&k.ind==='agri-maizeNet')return 'goal-net-maize';
    if(c.kind==='concept')return 'k|'+c.text.replace(/\([가-라]\)/g,'#');
    if(c.kind==='climate')return 'ct|'+k.type;
    if(c.kind==='place'&&k.place==='hemisphere')return 'ph|'+k.value;
@@ -662,7 +712,7 @@
    if(c.kind==='data'&&k.majority)return 'dm|'+k.majority+'|'+k.claim;
    if(c.kind==='data'&&k.up!=null)return 'du|'+k.from+'|'+k.up;
    return c.kind+'|'+c.key}
-  function chooseStatements(theme,cands,r,loose){
+  function chooseStatements(theme,cands,r,loose,priority){
    var isFocus=function(c){return isFocus0(theme,c)};
    // Statements are grouped by their wording (same predicate, any subject), and a wording is used
    // only when this question holds both a true and a false instance of it: then the wording cannot
@@ -690,6 +740,7 @@
    var focus=list0.filter(function(g){return g.focus}),rest=list0.filter(function(g){return !g.focus});
    // One one-sided wording may fill the last place, so 대상 sets with few two-sided ones (니제르·카타르·
    // 벨기에) still appear; a targeted practice ('이 비교 연습') may use more to reach its pair.
+   if(priority){var priorityGroups=list0.filter(function(g){return g.T.concat(g.F).some(function(c){var k=c.check||{};return k.ind===priority.indicator&&[k.subject,k.object].indexOf(priority.hi)>=0&&[k.subject,k.object].indexOf(priority.lo)>=0;});});take(priorityGroups,1);}
    take(focus,3);take(rest,4);take(focus,4);take(list0,loose?4:1,true);
    var t=2-need.T,f=2-need.F;
    if(t<2||f<2)return null;
@@ -938,7 +989,9 @@
     // The format is fixed for the first attempts; later ones re-roll, so when the recent questions
     // have used up one format (전력 대상 식별 has four), another format is tried instead of a repeat.
     // A joint theme (종교) splits the 항목 식별 share with 동시 식별, where rows and columns are both hidden.
-    var recipe=!target&&mode!=='columns'&&mode!=='joint'&&theme.tableRecipes?recipeAt(theme.tableRecipes,roll0):null;
+    var recipe=!target&&mode!=='columns'&&mode!=='joint'&&theme.tableRecipes&&attempt<300?recipeAt(theme.tableRecipes,roll0):null;
+    // A fixed pool whose supplied columns cannot identify its rows is impossible, not a redraw.
+    if(recipe&&recipe.pool.length===k&&!identifiable(theme,recipe.pool,recipe.columns))recipe=null;
     var canHide=columnsFor(theme).length>=3&&!theme.periodTable&&!recipe,canJoint=canHide&&!!theme.joint&&theme.kind==='composition',roll=attempt<150?roll0:r();
     var format=(mode==='columns'&&!canHide)||(mode==='joint'&&!canJoint)?'rows':mode||(roll<.35&&canHide&&attempt<300?(canJoint&&roll>=.15?'joint':'columns'):roll>.8?'implicit':'rows');
     if(format==='columns'){var cq=buildColumns(theme,avail,k,r,avoid,attempt);if(cq)return cq;continue}
@@ -986,7 +1039,7 @@
     // everyKnown: each 대상 is identified by its own verified knowledge, never by elimination.
     if(theme.everyKnown&&chosen.some(function(n){return theme.kind!=='indicators'?!own(n):!REL.some(function(x){return visible(shown,x.indicator)&&(x.hi===n||x.lo===n)&&chosen.indexOf(x.hi)>=0&&chosen.indexOf(x.lo)>=0})}))continue;
     var pair=theme.map?markerStage(theme,chosen,shown,avail,r,format==='implicit'):null;if(theme.map&&!pair)continue;
-    var s2=chooseStatements(theme,candidates(theme,chosen,shown,r),r,!!target||!!focus);
+    var s2=chooseStatements(theme,candidates(theme,chosen,shown,r),r,!!target||!!focus,target);
     if(s2&&focus&&focus.set&&attempt<500&&!s2.statements.some(function(s){var c=s.check||{};return c.set===focus.set&&[c.entity,c.a,c.b].indexOf(focus.entity)>=0}))continue;if(!s2)continue;
     // Fewer 대상 leave fewer pairs to compare; such a draw whose <보기> are mostly background is redrawn.
     if(k<theme.pick[1]&&attempt<400&&s2.statements.filter(function(s){return isFocus0(theme,s)}).length<2)continue;

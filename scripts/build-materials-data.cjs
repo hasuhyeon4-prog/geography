@@ -11,7 +11,7 @@ for(const s of [...normal.sites,...extra.sites]){
  sites[s.name]={name:s.name,lat:s.station.latitude,lon:s.station.longitude,t:s.temperatureC,p:s.precipitationMm,period:s.normalPeriod,station:s.station.name,source:s.sourceId||s.sourceFile};
 }
 const pop=read('data/country-indicators.json'),eco=read('data/economy-indicators.json'),wup=read('data/urbanization-change.json');
-const names=['일본','인도','니제르','차드','튀르키예','미국','브라질','영국','파키스탄','말레이시아','탄자니아','독일','프랑스','이집트','카자흐스탄','사우디아라비아'];
+const names=['중국','일본','인도','니제르','차드','튀르키예','미국','브라질','영국','파키스탄','말레이시아','탄자니아','독일','프랑스','이집트','카자흐스탄','사우디아라비아'];
 const countries={};
 for(const name of names){
  const p=pop.countries[name],e=eco.countries[name];if(!p)continue;

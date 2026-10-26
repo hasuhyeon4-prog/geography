@@ -72,6 +72,10 @@ for rid, record in data['rankings'].items():
         domain = {'qcl': 'FAOSTAT 생산·사육 통계', 'tcl': 'FAOSTAT 교역 통계', 'fbs': 'FAOSTAT 식량 수급표'}[FAO[rid][:3]]
         base['audit']['yearly'] = {'source': domain, 'window': '%d~%d' % WINDOW, 'flips': flips}
     rankings.append(base)
+comparison = json.loads((ROOT / 'data/renewable-capacity-comparison.json').read_text())
+for field, rid, title, unit in [('capacityMW','renewable-capacity-six','재생에너지 설비 용량 — 제시 6개국','MW'),('generationGWh','renewable-generation-six','재생에너지 발전량 — 제시 6개국','GWh')]:
+    rows = sorted(comparison['countries'].items(), key=lambda x: -x[1][field])
+    rankings.append({'id':rid,'group':'energy','title':title,'unit':unit,'year':'2023','source':'IRENA Renewable Energy Statistics 2025','phrase':title+'이 큰','low':title+'이 작은','digits':0,'items':[{'name':n,'value':v[field]} for n,v in rows],'scope':comparison['scope'],'note':'독일은 캐나다보다 설비 용량이 크지만 연간 발전량은 작다. 제시 국가 내 순위이며 세계 상위 6개국이 아니다.','audit':{'checkedAt':'2026-10-25','status':'checked','sourceUrls':[comparison['source']['url']],'unstablePairs':[]}})
 groups = [{'id': k, 'name': v} for k, v in [
     ('bloc', '경제 블록'), ('continent', '대륙별 인구·경제'), ('country', '국가 순위'),
     ('energy', '에너지·발전'), ('farm', '농업·가축'), ('religion', '종교')]]

@@ -34,7 +34,7 @@ function seedState(seed){return rng(seed==null?1:seed);}
 function table(headers,rows,caption){return{kind:'table',headers:headers,rows:rows,caption:caption||''};}
 function pair(goal,yes,no,explain,check){return{goal:goal,yes:yes,no:no,explain:explain,check:check||{}};}
 function finish(q,r){
- if(q.assignment){var options=shuffle(perms(q.assignment),r);q.stage1={question:q.identify||q.assignment.map(function(_,i){return L[i];}).join('·')+'에 해당하는 대상을 순서대로 고른 것은?',options:options.map(function(x){return x.join(' · ');}),answer:options.findIndex(function(x){return x.join('|')===q.assignment.join('|');}),explain:q.identifyExplain||'제시한 기준표의 값과 그래프의 값을 대응한다.'};}
+ if(q.assignment){var assignments=perms(q.assignment);if(assignments.length>6)assignments=[q.assignment].concat(shuffle(assignments.filter(function(x){return x.join('|')!==q.assignment.join('|');}),r).slice(0,4));var options=shuffle(assignments,r);q.stage1={question:q.identify||q.assignment.map(function(_,i){return L[i];}).join('·')+'에 해당하는 대상을 순서대로 고른 것은?',options:options.map(function(x){return x.join(' · ');}),answer:options.findIndex(function(x){return x.join('|')===q.assignment.join('|');}),explain:q.identifyExplain||'제시한 기준표의 값과 그래프의 값을 대응한다.'};}
  if(!q.stage1)throw Error('Identification is required');
  var selected=shuffle(q.pairs,r).slice(0,Math.min(4,q.pairs.length));
  var flags=selected.map(function(_,i){return ((q.seed||1)+i)%2===0;});
@@ -219,6 +219,7 @@ function create(data){
    q.figures.push({kind:'ternary',labels:['유소년','청장년','노년'],minimum:mins,points:rows.map(function(a,i){return{name:L[i],values:[a.y,a.w,a.o]};})});
    q.tables.push(table(['후보 국가','유소년 비율(%)','노년 비율(%)'],names.slice().sort().map(function(n){var v=data.countries[n].values;return[n,v.young,v.old];}),'대응 기준(2023년)'));
    q.pairs.push(pair('G134-1',seed%2?'이 확대 삼각 도표의 꼭짓점은 세 축 모두 100%를 뜻하지 않는다.':'이 전체 삼각 도표의 꼭짓점은 해당 축 100%를 뜻한다.',seed%2?'이 확대 삼각 도표의 모든 꼭짓점은 해당 축 100%이다.':'삼각 도표의 세 비율은 합계가 300%이다.','각 꼭짓점에 적힌 실제 세 비율을 읽는다. 확대 그래프는 최소값이 0이 아닐 수 있다.',{op:'ternaryBounds',minimum:mins}));
+   q.pairs.push(pair('G056-3','중위 연령은 인구를 나이순으로 배열했을 때 가운데에 놓이는 연령이다.','중위 연령은 모든 사람의 나이를 더해 총인구로 나눈 평균 연령이다.','중위 연령과 평균 연령을 구별한다. 세 연령 집단의 비율만으로 정확한 중위 연령 수치를 역산하지 않는다.',{op:'medianAgeDefinition'}));
   }else{
    q.title='부양비 계산과 역산';q.tables.push(table(['국가','총부양비','노년 부양비'],rows.map(function(a,i){return[names[i],round(a.total,2),round(a.old,2)];}),'청장년층 100명당 부양 인구 · 비율 반올림'));
    var ans=rows.map(function(a){return a.w;});var index=ans.indexOf(Math.max.apply(null,ans));q.stage1={question:'청장년층 인구 비율이 가장 높은 국가는?',options:names,answer:index,explain:'청장년 비율 = 10,000 ÷ (100 + 총부양비).'};
@@ -472,6 +473,9 @@ function create(data){
   ['soil-temperature','지중 온도·활동층',soilQ],['headquarters','본사 수·매출·집중도',corporateQ],
   ['migrant-stock','미국 이민자 제시 자료',migrantQ],['population-index','기준 연도 100 지수',indexQ]
  ];
+ var more=typeof module==='object'&&module.exports?require('./materials-remaining.js'):globalThis.WGRemainingMaterials;
+ var moreData=typeof module==='object'&&module.exports?require('./materials-remaining-data.js'):globalThis.WGRemainingData;
+ if(more&&moreData)families=families.concat(more.create(data,moreData,{shuffle:shuffle,seedState:seedState,base:base,pair:pair,finish:finish,table:table,round:round,fmt:fmt,math:{sum:sum,age:age,declination:declination,daylight:daylight}}));
  function build(id,seed){var f=families.find(function(x){return x[0]===id;});if(!f)throw Error('Unknown material '+id);var q=f[2](seed==null?1:seed);q.mode=q.id;q.id=id;return q;}
  return{families:families.map(function(f){return{id:f[0],title:f[1]};}),build:build};
 }
