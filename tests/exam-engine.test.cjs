@@ -16,7 +16,8 @@ const SEEDS = 150;
 test('the committed knowledge base is what the builder produces from committed inputs', () => {
   const out = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'kb-')), 'entity-kb.js');
   execFileSync(process.execPath, [path.join(ROOT, 'scripts/build-entity-kb.cjs')], {env: {...process.env, KB_OUT: out}, stdio: 'pipe'});
-  assert.equal(fs.readFileSync(out, 'utf8'), fs.readFileSync(path.join(ROOT, 'assets/entity-kb.js'), 'utf8'), 'run node scripts/build-entity-kb.cjs');
+  const hash=p=>require('node:crypto').createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+  assert.equal(hash(out),hash(path.join(ROOT,'assets/entity-kb.js')),'run node scripts/build-entity-kb.cjs');
 });
 
 test('knowledge cards carry valid facts, units, years, and comparison margins', () => {
@@ -194,6 +195,18 @@ test('each statement is true exactly when the knowledge base says so', () => {
           assert.equal(k && k.status, 'active', s.text);
           assert.equal(k.hi === c.subject, s.truth, s.text);
           assert.equal(engine.value(c.subject, c.ind) > engine.value(c.object, c.ind), s.truth, s.text);
+        } else if (s.kind === 'data' && c.op === 'relativeProductivity') {
+          assert.ok(q.shown.includes('industry') && q.shown.includes('industryEmployment'));
+          assert.equal(K.indicators.industry.year, K.indicators.industryEmployment.year);
+          const ratio=engine.value(c.entity,'industry')/engine.value(c.entity,'industryEmployment');
+          assert.equal(c.moreClaim ? ratio > c.benchmark : ratio < c.benchmark,s.truth,s.text);
+        } else if (s.kind === 'data' && c.op === 'inverseUrban') {
+          const count=n=>{const u=engine.value(n,c.part),total=u*100/engine.value(n,c.rate);return c.kind==='rural'?total-u:total;};
+          assert.ok(q.shown.includes(c.part)&&q.shown.includes(c.rate));
+          assert.equal(count(c.subject)>count(c.object),s.truth,s.text);
+        } else if (s.kind === 'data' && c.op === 'relativePosition') {
+          const a=K.entities[c.entity].label[c.axis],b=K.entities[c.object].label[c.axis];
+          assert.ok(Math.abs(a-b)>=5);assert.equal(a>b,s.truth,s.text);
         } else if (s.kind === 'data' && c.category) {
           const amount = n => engine.comp(t, n)[c.category] * engine.total(t, n);
           assert.equal(amount(c.subject) > amount(c.object), s.truth, s.text);
@@ -241,12 +254,26 @@ test('each statement is true exactly when the knowledge base says so', () => {
             if (j >= 0) assert.ok(new RegExp('(^|[^A-Z])' + 'ABC'[j] + '(?![A-Z])').test(s.text), s.text);
           }
           for (const x of [c.subject, c.object, c.category]) if (q.hidden.includes(x)) assert.ok(!s.text.includes(engine.catLabel(t, x)), 'names a hidden column: ' + s.text);
+        } else if(s.kind==='climateClaim'&&s.goalId){
+          const x=K.entities[c.entity].climate;assert.ok(x,s.text);
+          if(c.claim==='wet-season'){const month=parseInt(c.month)-1,opposite=(month+6)%12;assert.equal(s.truth,x.precipitation[month]>x.precipitation[opposite],s.text);}
+          else if(c.claim==='winter-dry'){assert.ok(['cw','cfa'].includes(x.type));assert.equal(s.truth,!s.text.includes('必ず')&&!s.text.includes('반드시 Cw로 판정'),s.text);}
+          else if(c.claim==='highland-scope'){assert.equal(x.type,'h');assert.equal(s.truth,s.text.includes('일반화해서는 안 된다'),s.text);}
+          else assert.fail('unreviewed climate goal '+c.claim);
         } else if (s.kind === 'climateClaim') {
           // A lecture statement about a verified climate type: true for its types, false for its contrasts.
           const k = K.climate.claims.find(x => x.id === c.claim), x = K.entities[c.entity].climate;
           assert.ok(x.type && x.type === c.type, s.text);
           assert.ok(k.falseFor.length && (k.trueFor.includes(c.type) || k.falseFor.includes(c.type)), s.text);
           assert.equal(k.trueFor.includes(c.type), s.truth, s.text);
+        } else if(s.kind==='concept'&&s.goalId){
+          if(c.op==='historicalDoubleMax'){const x=K.goalAgricultureMaxima.find(x=>x.id===c.variant);assert.ok(x);assert.equal(s.truth,x.leaders.every(n=>n===c.entity),s.text);assert.match(s.text,new RegExp(x.from+'~'+x.to));}
+          else if(c.op==='multiYearCompare'){const x=E.create(K,T).relation(c.ind,c.subject,c.object);assert.equal(x.status,'active');assert.equal(s.truth,x.hi===c.subject);assert.deepEqual(c.years,x.years);}
+          else if(c.op==='tabooVsRaising'){assert.ok(K.entities[c.entity].values[c.indicator]>0);assert.equal(s.truth,!/전혀 사육하지|반드시 0/.test(s.text),s.text);}
+          else if(c.op==='cropOriginRegion'){assert.equal(c.entity,'밀');assert.equal(s.truth,s.text.includes('서남아시아'),s.text);}
+          else if(c.op==='goalClue'){assert.ok(['인도','중국','차드','인도네시아'].includes(c.entity));assert.equal(s.truth,!/모든 주민|모든 내륙 지역|벌채 면적만|같은 장소·같은 지표/.test(s.text),s.text);}
+          else if(c.ind==='agri-maizeNet'){assert.equal(s.truth,c.positive);assert.ok(K.signs.some(x=>x.entity===c.entity&&x.indicator===c.ind&&x.status==='active'&&x.positive));}
+          else assert.fail('unreviewed concept goal '+c.op);
         } else if (s.kind === 'concept') {
           // A concept-card statement keeps the card's truth; its 대상 appear as their labels.
           const k = K.concepts.find(x => x.id === c.concept);
@@ -316,7 +343,7 @@ test('<보기> stay on the theme and avoid free distractors', () => {
 test('fact <보기> come only from sets that can also make a false statement', () => {
   for (const t of engine.themes) for (let seed = 1; seed <= SEEDS; seed++) {
     for (const s of engine.build({themeId: t.id, seed}).stage2.statements) {
-      if ((s.kind === 'fact' || s.kind === 'both') && s.check.set) assert.ok(K.factSets[s.check.set] && K.factSets[s.check.set].exclusive, t.id + ' true-only set ' + s.check.set + ': ' + s.text);
+      if ((s.kind === 'fact' || s.kind === 'both') && s.check.set) assert.ok(K.factSets[s.check.set] && (K.factSets[s.check.set].exclusive||K.factSets[s.check.set].falseFromKnownOnly), t.id + ' true-only set ' + s.check.set + ': ' + s.text);
     }
   }
 });

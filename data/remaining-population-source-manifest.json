@@ -1,0 +1,12 @@
+{
+ "archive": "data/remaining-population-sources.zip",
+ "member": "sex-age.json",
+ "sha256": "e652b84853d450bdde401e8080896ad1f10d4e48197633a4d63c0f8164d365a2",
+ "url": "https://api.worldbank.org/v2/country/ARE;EGY;TUR/indicator/SP.POP.TOTL.MA.IN;SP.POP.TOTL.FE.IN;SP.POP.0004.MA.5Y;SP.POP.0004.FE.5Y;SP.POP.0509.MA.5Y;SP.POP.0509.FE.5Y;SP.POP.1014.MA.5Y;SP.POP.1014.FE.5Y;SP.POP.1519.MA.5Y;SP.POP.1519.FE.5Y;SP.POP.2024.MA.5Y;SP.POP.2024.FE.5Y;SP.POP.2529.MA.5Y;SP.POP.2529.FE.5Y;SP.POP.3034.MA.5Y;SP.POP.3034.FE.5Y;SP.POP.3539.MA.5Y;SP.POP.3539.FE.5Y;SP.POP.4044.MA.5Y;SP.POP.4044.FE.5Y;SP.POP.4549.MA.5Y;SP.POP.4549.FE.5Y;SP.POP.5054.MA.5Y;SP.POP.5054.FE.5Y;SP.POP.5559.MA.5Y;SP.POP.5559.FE.5Y;SP.POP.6064.MA.5Y;SP.POP.6064.FE.5Y;SP.POP.6569.MA.5Y;SP.POP.6569.FE.5Y;SP.POP.7074.MA.5Y;SP.POP.7074.FE.5Y;SP.POP.7579.MA.5Y;SP.POP.7579.FE.5Y;SP.POP.80UP.MA.5Y;SP.POP.80UP.FE.5Y?source=2&date=2010:2020&format=json&per_page=10000",
+ "definitionURL": "https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SP.POP.3034.MA.5Y",
+ "source": "World Bank WDI, United Nations World Population Prospects age/sex estimates",
+ "years": [
+  2010,
+  2020
+ ]
+}

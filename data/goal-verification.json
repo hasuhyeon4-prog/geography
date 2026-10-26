@@ -1,0 +1,759 @@
+{
+ "baseline": "acecd887bea8f2f8d694417188fbe821bc1a4de7",
+ "verifiedGoals": [
+  "G001-2",
+  "G001-3",
+  "G002-1",
+  "G002-2",
+  "G002-3",
+  "G002-4",
+  "G003-4",
+  "G004-1",
+  "G004-2",
+  "G004-3",
+  "G004-4",
+  "G005-1",
+  "G005-2",
+  "G005-3",
+  "G005-4",
+  "G007-2",
+  "G009-1",
+  "G009-2",
+  "G009-3",
+  "G009-4",
+  "G009-5",
+  "G010-1",
+  "G010-2",
+  "G011-2",
+  "G011-3",
+  "G012-1",
+  "G012-2",
+  "G013-1",
+  "G013-2",
+  "G014-1",
+  "G014-2",
+  "G014-3",
+  "G015-1",
+  "G015-2",
+  "G015-3",
+  "G016-3",
+  "G016-4",
+  "G016-5",
+  "G016-6",
+  "G017-1",
+  "G017-2",
+  "G017-3",
+  "G018-3",
+  "G018-5",
+  "G018-6",
+  "G019-1",
+  "G019-2",
+  "G020-1",
+  "G020-3",
+  "G021-1",
+  "G021-2",
+  "G021-3",
+  "G021-4",
+  "G021-5",
+  "G022-1",
+  "G022-2",
+  "G023-1",
+  "G024-1",
+  "G024-2",
+  "G025-2",
+  "G027-5",
+  "G028-1",
+  "G028-4",
+  "G032-2",
+  "G038-1",
+  "G041-2",
+  "G043-3",
+  "G050-1",
+  "G050-4",
+  "G051-5",
+  "G053-2",
+  "G056-2",
+  "G056-5",
+  "G057-4",
+  "G058-1",
+  "G058-3",
+  "G062-2",
+  "G062-4",
+  "G063-1",
+  "G068-2",
+  "G069-2",
+  "G070-1",
+  "G074-1",
+  "G074-6",
+  "G075-1",
+  "G077-3",
+  "G078-1",
+  "G086-2",
+  "G087-3",
+  "G092-4",
+  "G097-3",
+  "G098-1",
+  "G100-2",
+  "G110-5",
+  "G114-5",
+  "G123-4",
+  "G124-5",
+  "G126-2",
+  "G126-4",
+  "G130-1",
+  "G131-2",
+  "G132-1",
+  "G132-3",
+  "G133-2",
+  "G133-3",
+  "G133-4",
+  "G134-1",
+  "G134-2",
+  "G134-3",
+  "G135-3",
+  "G136-1",
+  "G136-2",
+  "G137-1",
+  "G137-2",
+  "G137-3",
+  "G139-2"
+ ],
+ "note": "목표 연결과 검증은 구별한다. 새 검증은 reviews의 완료 기준별 검토 및 검사 증거를 포함해야 한다.",
+ "reviews": {
+  "G001-3": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G002-3": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G002-4": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G003-4": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "예니세이·레나 문장 참·거짓 각 1개 이상(오비강 l17과 별도)",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G004-3": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "쌍마다 참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G004-4": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G005-2": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "순서 쌍마다 참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G005-3": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G005-4": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G007-2": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G010-1": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G010-2": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G011-2": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G011-3": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G012-1": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G013-1": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G013-2": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G014-1": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G014-2": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G014-3": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G015-1": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상; KB에서 빠진 climate-05의 처리(되살리거나 OX로)를 정한다",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G015-2": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G015-3": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G016-3": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상; KB에서 빠진 climate-12의 처리를 정한다",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G016-4": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G016-5": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G016-6": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G017-1": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G017-2": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "해류 이름 대응 참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G017-3": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G018-3": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G018-5": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G018-6": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G019-1": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G019-2": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G021-4": {
+   "date": "2026-10-26",
+   "kind": "정오 문장 내용 대조",
+   "criteria": "참·거짓 각 1개 이상",
+   "evidence": [
+    "data/lecture-goal-ox.tsv",
+    "tests/lecture-goal-integration.test.cjs"
+   ],
+   "scope": "목표 문장의 모든 절과 정오 쌍을 대조했다. 선박의 수심·폭, 상승·하강과 강수·건조, 냉대·한대 경계 10℃는 누락 절을 추가했다. 외부 원자료 사실 재감사는 별개이다."
+  },
+  "G004-2": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "'○○와/과 접한다' 사실이 거짓 문장도 만들 수 있게(다른 대상의 값으로) 나온다",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G023-1": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "기후 그래프 주제에 고산 범위 제한 claim이 참·거짓 모두 나온다",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G027-5": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "기존 위치 모드에 산맥 최고봉 지점이 있는지 확인하고, 없으면 지점 추가",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G050-1": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "국가 대표 언어의 어파 분류 세트를 추가해 지도 퀴즈로 출제",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G050-4": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "라틴 아메리카 언어 세트에 기아나 세 지역이 들어 있는지 확인·보강",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G051-5": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "국가 총인구 × 집단 비중으로 그린 누적 막대에서 '비중이 높다 ≠ 인구수가 많다' <보기>가 생성된다",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G057-4": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "두 종류의 성별 막대를 주고 성비를 읽을 수 있는지 판정하는 문항",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G058-1": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "국가 피라미드(성·연령별)를 그려 국가를 식별하는 1차 문항이 생성된다",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G058-3": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "두 시점 피라미드에서 코호트 변화 원인을 판정하는 <보기>",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G074-1": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "작물 식별 주제의 기원 사실 <보기>가 1,000시드 표본에서 관측되고 참·거짓 모두 나온다(지금은 originContinent가 일부만 도달)",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G074-6": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "해당 비교가 KB 관계(여러 해 검증)로 있고 국가 농목업 주제에서 도달한다",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G077-3": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "국가 농목업 주제에서 중국의 두 비교가 '모두' 형식 <보기>로 도달한다",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G078-1": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "국가 농목업 주제에 '종교 금기와 사육' 함정 <보기>(참·거짓)가 나온다 — KB 개념 문장의 도달 문제 수정",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G087-3": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "순위표에 재생 에너지 설비 용량(IRENA)과 발전량을 나란히 보이고 다른 쌍을 표시",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G092-4": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "수출 구성 주제의 amount 함정 <보기>에 묶음 항목 조건이 해설에 드러난다",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G100-2": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "미국 제조업 주제에 총액 × 비중 <보기>(amount 함정)가 참·거짓 모두 나온다",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G114-5": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "국가 설명 주제(country-clues)에 환경 문제 사례 단서와 <보기>가 생성된다",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G123-4": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "국가 설명 주제(country-clues)에 인도·중국의 국가 내부 단서와 <보기>가 생성된다",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G124-5": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "river-mainstem 사실 세트를 국가 주제 <보기>로 쓸 수 있게 하고(지금은 extraFacts 제외 규칙) 참·거짓 모두 나온다",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G126-2": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "서남아·북아프리카 대표 언어 분류 세트 추가",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G126-4": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "세 나라 피라미드 식별 문항",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G131-2": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "국가 주제에 '수도의 해발 2,000m 이상' 사실 <보기>(참·거짓)가 나온다",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G132-1": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "수출 구성 주제의 대상에 네 나라가 들어 있는지 확인·보강",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G132-3": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "수출 구성 주제 amount 함정 <보기>로 이미 연결 — 회귀 검사로 확인",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  },
+  "G137-3": {
+   "date": "2026-10-26",
+   "kind": "완료 기준별 자료·생성·계산 검증",
+   "criteria": "국가 원형 기호 산점도 문항",
+   "evidence": [
+    "tests/lecture-goal-completion.test.cjs",
+    "tests/materials-remaining.test.cjs",
+    "audit/lecture-goals/runtime-evidence.json"
+   ],
+   "scope": "실제 문항 생성·자료 분모·연도·정오 양방향 및 지정 사례를 대조했다. 브라우저 시각 검수는 별개이다."
+  }
+ }
+}

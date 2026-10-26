@@ -1,0 +1,716 @@
+[
+ {
+  "id": "babylon",
+  "path": "assets/goal-figures/babylon.webp",
+  "answer": "바빌로니아 지도",
+  "sourceFigure": "L1-rId122",
+  "sourceSHA256": "5ac4986de29d8a3d87148e8c3a9205088927e521a52deb1e66dca7a3d144721a",
+  "crop": [
+   0.12,
+   0.025,
+   0.37,
+   0.42
+  ],
+  "width": 450,
+  "height": 553,
+  "sha256": "c86f6e2badde5b4341d2214b18caa073c4c0808300fcda1d51361eecbbc15396",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "ptolemy",
+  "path": "assets/goal-figures/ptolemy.webp",
+  "answer": "프톨레마이오스 지도",
+  "sourceFigure": "L1-rId122",
+  "sourceSHA256": "5ac4986de29d8a3d87148e8c3a9205088927e521a52deb1e66dca7a3d144721a",
+  "crop": [
+   0.61,
+   0.1,
+   0.88,
+   0.36
+  ],
+  "width": 486,
+  "height": 364,
+  "sha256": "4dba0941c9cb13926264adabf223748578f99e67bd51752b30397e41f1e84995",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "to-map",
+  "path": "assets/goal-figures/to-map.webp",
+  "answer": "T-O 지도",
+  "sourceFigure": "L1-rId122",
+  "sourceSHA256": "5ac4986de29d8a3d87148e8c3a9205088927e521a52deb1e66dca7a3d144721a",
+  "crop": [
+   0.13,
+   0.55,
+   0.36,
+   0.88
+  ],
+  "width": 414,
+  "height": 462,
+  "sha256": "4c200c8a0297c2a5880e8180ce11b941f7f86cd89854a69dc0eedff70f0c6da8",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "idrisi",
+  "path": "assets/goal-figures/idrisi.webp",
+  "answer": "알 이드리시 지도",
+  "sourceFigure": "L1-rId122",
+  "sourceSHA256": "5ac4986de29d8a3d87148e8c3a9205088927e521a52deb1e66dca7a3d144721a",
+  "crop": [
+   0.6,
+   0.54,
+   0.9,
+   0.92
+  ],
+  "width": 540,
+  "height": 532,
+  "sha256": "0bbdd4ad36da10000219fa34cb8a1ed7088af283d7b9c470a957062497e9c0c2",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "cheonhado",
+  "path": "assets/goal-figures/cheonhado.webp",
+  "answer": "천하도",
+  "sourceFigure": "L1-rId123",
+  "sourceSHA256": "738e08e28a403e3c69db9a90e2f8b92d11896f2ed0cac90a52ab9a4f2a43b788",
+  "crop": [
+   0.02,
+   0.04,
+   0.43,
+   0.43
+  ],
+  "width": 738,
+  "height": 546,
+  "sha256": "a24b37feb168f2d392ee7fbc5cc8f2246f1534193d3210297edd3c830a7520d4",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "daeming",
+  "path": "assets/goal-figures/daeming.webp",
+  "answer": "대명 혼일도",
+  "sourceFigure": "L1-rId123",
+  "sourceSHA256": "738e08e28a403e3c69db9a90e2f8b92d11896f2ed0cac90a52ab9a4f2a43b788",
+  "crop": [
+   0.53,
+   0.04,
+   0.94,
+   0.43
+  ],
+  "width": 738,
+  "height": 546,
+  "sha256": "e4ff698449b2c60ca09fc8b3dd889c94c29ee1e997c9d3a26a060bebbddd1894",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "kangnido",
+  "path": "assets/goal-figures/kangnido.webp",
+  "answer": "혼일강리",
+  "sourceFigure": "L1-rId123",
+  "sourceSHA256": "738e08e28a403e3c69db9a90e2f8b92d11896f2ed0cac90a52ab9a4f2a43b788",
+  "crop": [
+   0.04,
+   0.56,
+   0.45,
+   0.9
+  ],
+  "width": 738,
+  "height": 476,
+  "sha256": "fb6537e76dca18c27ecb6dffd4b045575e233add04797d15ee823b7a668a73d1",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "kunyu",
+  "path": "assets/goal-figures/kunyu.webp",
+  "answer": "곤여만국전도",
+  "sourceFigure": "L1-rId123",
+  "sourceSHA256": "738e08e28a403e3c69db9a90e2f8b92d11896f2ed0cac90a52ab9a4f2a43b788",
+  "crop": [
+   0.51,
+   0.55,
+   0.97,
+   0.91
+  ],
+  "width": 828,
+  "height": 504,
+  "sha256": "8819449bf5a8647b31ad54575cbe949b7d7541f985a2cb22e9f5e8852b6a6721",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "hemispheres",
+  "path": "assets/goal-figures/hemispheres.webp",
+  "answer": "지구전후도",
+  "sourceFigure": "L1-rId124",
+  "sourceSHA256": "eb3e70055f363fe60a2dc09ab615b6389ea6c891f73ccde01619599f733e04a5",
+  "crop": [
+   0.015,
+   0.035,
+   0.49,
+   0.43
+  ],
+  "width": 855,
+  "height": 553,
+  "sha256": "563795dd1ab0085ee65f6bfdd59b94ef31286028162d7d220ae0faa6266033bb",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "hereford",
+  "path": "assets/goal-figures/hereford.webp",
+  "answer": "헤리퍼드 지도",
+  "sourceFigure": "L1-rId124",
+  "sourceSHA256": "eb3e70055f363fe60a2dc09ab615b6389ea6c891f73ccde01619599f733e04a5",
+  "crop": [
+   0.57,
+   0.02,
+   0.94,
+   0.43
+  ],
+  "width": 666,
+  "height": 574,
+  "sha256": "eddd3643699f36c5f20a8368bb6d1ac50765f93e09ec2b0e815a351be46c12bb",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "portolan",
+  "path": "assets/goal-figures/portolan.webp",
+  "answer": "포르톨라노 해도",
+  "sourceFigure": "L1-rId124",
+  "sourceSHA256": "eb3e70055f363fe60a2dc09ab615b6389ea6c891f73ccde01619599f733e04a5",
+  "crop": [
+   0.055,
+   0.53,
+   0.47,
+   0.92
+  ],
+  "width": 747,
+  "height": 546,
+  "sha256": "87b7797af818d034f4cf9ca336d1794c130db75e08ad865b75c41b2c15d12804",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "mercator",
+  "path": "assets/goal-figures/mercator.webp",
+  "answer": "메르카토르 지도",
+  "sourceFigure": "L1-rId124",
+  "sourceSHA256": "eb3e70055f363fe60a2dc09ab615b6389ea6c891f73ccde01619599f733e04a5",
+  "crop": [
+   0.54,
+   0.53,
+   0.96,
+   0.91
+  ],
+  "width": 756,
+  "height": 532,
+  "sha256": "1c53b925822b25f80427f3ba6b66023dbd0fb6810be5e3d319bfb76f329a46e6",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "mangrove",
+  "path": "assets/goal-figures/mangrove.webp",
+  "answer": "맹그로브",
+  "sourceFigure": "L1-rId49",
+  "sourceSHA256": "b20e0158dbe1f7b964bffb7ee4cf8a3fae329b408bcc8693243632ca47151b52",
+  "crop": [
+   0.065,
+   0.025,
+   0.433,
+   0.3
+  ],
+  "width": 484,
+  "height": 304,
+  "sha256": "9fc7642095b5796a8a4b59ede1d2b7476ce9294817d844167466a7a1bf5014cf",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "coral",
+  "path": "assets/goal-figures/coral.webp",
+  "answer": "산호섬",
+  "sourceFigure": "L1-rId49",
+  "sourceSHA256": "b20e0158dbe1f7b964bffb7ee4cf8a3fae329b408bcc8693243632ca47151b52",
+  "crop": [
+   0.593,
+   0.025,
+   0.964,
+   0.3
+  ],
+  "width": 488,
+  "height": 304,
+  "sha256": "99663b7ef7d4bf60dfa91bc6fd0d0e96d63a9ead75dbfdc0280f61a9e3c0ef70",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "lagoon",
+  "path": "assets/goal-figures/lagoon.webp",
+  "answer": "석호",
+  "sourceFigure": "L1-rId49",
+  "sourceSHA256": "b20e0158dbe1f7b964bffb7ee4cf8a3fae329b408bcc8693243632ca47151b52",
+  "crop": [
+   0.065,
+   0.505,
+   0.434,
+   0.781
+  ],
+  "width": 486,
+  "height": 305,
+  "sha256": "a0acf11b1d7d32142be5299d2384c99f25bf17b95c15f6b6c2cd7b65a1cfaa59",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "sea-stack",
+  "path": "assets/goal-figures/sea-stack.webp",
+  "answer": "해식애·시스택",
+  "sourceFigure": "L1-rId49",
+  "sourceSHA256": "b20e0158dbe1f7b964bffb7ee4cf8a3fae329b408bcc8693243632ca47151b52",
+  "crop": [
+   0.593,
+   0.505,
+   0.962,
+   0.781
+  ],
+  "width": 485,
+  "height": 305,
+  "sha256": "a83acf8efdaed2b985b47814077b4a95776c9e3e74e439ac13c6f04b2e56e57b",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "hindu-temple",
+  "path": "assets/goal-figures/hindu-temple.webp",
+  "answer": "힌두교 사원",
+  "sourceFigure": "L1-rId130",
+  "sourceSHA256": "a991b662ea5366516e9005a0974d0aa901ca80cebd8616fb2e210d66188959a7",
+  "crop": [
+   0.008,
+   0.018,
+   0.321,
+   0.38
+  ],
+  "width": 274,
+  "height": 185,
+  "sha256": "f78a73ca143a432c3f9e8cab8f46ff415bfaa2de1a4225b487f1af53cccad94f",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "church",
+  "path": "assets/goal-figures/church.webp",
+  "answer": "크리스트교 성당",
+  "sourceFigure": "L1-rId130",
+  "sourceSHA256": "a991b662ea5366516e9005a0974d0aa901ca80cebd8616fb2e210d66188959a7",
+  "crop": [
+   0.733,
+   0.02,
+   0.924,
+   0.44
+  ],
+  "width": 167,
+  "height": 215,
+  "sha256": "373a056dfc7b4923d2cdd93d9ed8f626a4fe4614ef42e1b078e9480cd44bf4d7",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "buddhist-temple",
+  "path": "assets/goal-figures/buddhist-temple.webp",
+  "answer": "불교 사원",
+  "sourceFigure": "L1-rId130",
+  "sourceSHA256": "a991b662ea5366516e9005a0974d0aa901ca80cebd8616fb2e210d66188959a7",
+  "crop": [
+   0.012,
+   0.548,
+   0.326,
+   0.916
+  ],
+  "width": 275,
+  "height": 188,
+  "sha256": "74beda79f586bc7fa4372a5ce6ce539f6d00209c30d7ab5ba62180d7c4b525ef",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "mosque",
+  "path": "assets/goal-figures/mosque.webp",
+  "answer": "이슬람교 모스크",
+  "sourceFigure": "L1-rId130",
+  "sourceSHA256": "a991b662ea5366516e9005a0974d0aa901ca80cebd8616fb2e210d66188959a7",
+  "crop": [
+   0.737,
+   0.548,
+   0.99,
+   0.916
+  ],
+  "width": 221,
+  "height": 188,
+  "sha256": "0dffeccc0f08d90550154ba3af0e0e0567e547e49471653d9aecbdb61ca1e730",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "ger",
+  "path": "assets/goal-figures/ger.webp",
+  "answer": "게르",
+  "sourceFigure": "L1-rId66",
+  "sourceSHA256": "8e6cbe706ba3340c5f3683a0c34cc866ca4e611a175e4d6a06fef4fa0017fa33",
+  "crop": [
+   0.005,
+   0.09,
+   0.49,
+   0.5
+  ],
+  "width": 248,
+  "height": 159,
+  "sha256": "9ede61582a144a34126acd957afcffc27f21bb84e6827f383dba8d40276917b4",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "gassho",
+  "path": "assets/goal-figures/gassho.webp",
+  "answer": "갓쇼즈쿠리",
+  "sourceFigure": "L1-rId66",
+  "sourceSHA256": "8e6cbe706ba3340c5f3683a0c34cc866ca4e611a175e4d6a06fef4fa0017fa33",
+  "crop": [
+   0.515,
+   0.09,
+   0.99,
+   0.5
+  ],
+  "width": 243,
+  "height": 159,
+  "sha256": "b1427d39c54a2a67e52416030f2f346a6f20b22bd89c957f954e0662459d0b19",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "stilt",
+  "path": "assets/goal-figures/stilt.webp",
+  "answer": "고상 가옥",
+  "sourceFigure": "L1-rId66",
+  "sourceSHA256": "8e6cbe706ba3340c5f3683a0c34cc866ca4e611a175e4d6a06fef4fa0017fa33",
+  "crop": [
+   0.515,
+   0.59,
+   0.99,
+   0.995
+  ],
+  "width": 243,
+  "height": 157,
+  "sha256": "ce3753b19cb27b1c8c609af026899cbaae1895729153e7e913b90a40b9c41127",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "manhattan",
+  "path": "assets/goal-figures/manhattan.webp",
+  "answer": "맨해튼 격자형",
+  "sourceFigure": "L1-rId86",
+  "sourceSHA256": "cb7ba31f1a2dcddf07ece75a7395d624992435be17cf8e3bfad843a6213cba90",
+  "crop": [
+   0.005,
+   0.16,
+   0.495,
+   0.985
+  ],
+  "width": 319,
+  "height": 195,
+  "sha256": "cc23d827b34432f468439b80c8760409eded1eed789087d0e38926cd074e37c1",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "paris-roads",
+  "path": "assets/goal-figures/paris-roads.webp",
+  "answer": "파리 개선문 방사형",
+  "sourceFigure": "L1-rId86",
+  "sourceSHA256": "cb7ba31f1a2dcddf07ece75a7395d624992435be17cf8e3bfad843a6213cba90",
+  "crop": [
+   0.505,
+   0.16,
+   0.995,
+   0.985
+  ],
+  "width": 319,
+  "height": 195,
+  "sha256": "c053d0f99807504d0c54d87f4734f370e0313ea9b95f2d04dc3e5f2641a5df2b",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "rio",
+  "path": "assets/goal-figures/rio.webp",
+  "answer": "리우데자네이루",
+  "sourceFigure": "L1-rId89",
+  "sourceSHA256": "05f0981b66614476743441308ffdfc9b00cb1493150f466f1e56f9def8ee50f1",
+  "crop": [
+   0.005,
+   0.2,
+   0.326,
+   0.98
+  ],
+  "width": 209,
+  "height": 139,
+  "sha256": "111aba3d7795955c493af8f124bcafc614ccf5f62125412f1220cf505f235261",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "mexico-city",
+  "path": "assets/goal-figures/mexico-city.webp",
+  "answer": "멕시코시티",
+  "sourceFigure": "L1-rId89",
+  "sourceSHA256": "05f0981b66614476743441308ffdfc9b00cb1493150f466f1e56f9def8ee50f1",
+  "crop": [
+   0.338,
+   0.2,
+   0.659,
+   0.98
+  ],
+  "width": 209,
+  "height": 139,
+  "sha256": "6e6ea0f151e4f96307fd90a67ce58b08ec0192431e22570613b1164085f9508e",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "cusco",
+  "path": "assets/goal-figures/cusco.webp",
+  "answer": "쿠스코",
+  "sourceFigure": "L1-rId89",
+  "sourceSHA256": "05f0981b66614476743441308ffdfc9b00cb1493150f466f1e56f9def8ee50f1",
+  "crop": [
+   0.674,
+   0.2,
+   0.995,
+   0.98
+  ],
+  "width": 209,
+  "height": 139,
+  "sha256": "3d65e875ae202a24d4f73f4f3be913a59f6d3e080a96adaecf2b6e784e838e36",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "pivot-irrigation",
+  "path": "assets/goal-figures/pivot-irrigation.webp",
+  "answer": "중심축 회전식 관개",
+  "sourceFigure": "L2-rId239",
+  "sourceSHA256": "c0bd35517f1e1ad5d82d2e7d7c84ba02c0d109a5eb3699349ac43de5fe18ff15",
+  "crop": [
+   0.017,
+   0.16,
+   0.486,
+   0.98
+  ],
+  "width": 479,
+  "height": 317,
+  "sha256": "2c208b542c1644b4c68a97f5a88183ed1f1b62d96b814e91105763ed53cc7b1f",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "qanat",
+  "path": "assets/goal-figures/qanat.webp",
+  "answer": "카나트",
+  "sourceFigure": "L2-rId239",
+  "sourceSHA256": "c0bd35517f1e1ad5d82d2e7d7c84ba02c0d109a5eb3699349ac43de5fe18ff15",
+  "crop": [
+   0.514,
+   0.16,
+   0.988,
+   0.98
+  ],
+  "width": 484,
+  "height": 317,
+  "sha256": "ffc03b0be3d3acb805b3b616769022ac13675ae2ba208873546b57c77518706d",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "night-lights",
+  "path": "assets/goal-figures/night-lights.webp",
+  "answer": "스리랑카·타이완",
+  "sourceFigure": "L1-rId125",
+  "sourceSHA256": "66d9dd2c06c98f9f7bb829912956b054f752c022159ac624df94e3ab2da388c0",
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 907,
+  "height": 706,
+  "sha256": "6a91b48da07ebae722e7a7f56d0b40ea884fe8b3c417c5b536067326717d5200",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "china-grains",
+  "path": "assets/goal-figures/china-grains.webp",
+  "answer": "중국 곡물 분포",
+  "sourceFigure": "L2-rId100",
+  "sourceSHA256": "7c7b056720b404166fa45b79bb3a0076a6f96e271332476821fcf319a35289ad",
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 618,
+  "height": 374,
+  "sha256": "3b0d834ef48239101840925794670d84cebe6754e42c5c6adc70a882783588f0",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "asian-exports",
+  "path": "assets/goal-figures/asian-exports.webp",
+  "answer": "중국·일본·인도네시아·오스트레일리아",
+  "sourceFigure": "L2-rId232",
+  "sourceSHA256": "3d36adaf480a353e9176646acf6f1649a8bc2c206170166721f472ec94a7aed1",
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 933,
+  "height": 729,
+  "sha256": "cb9a86e872b3894dc4473065ded6423316af53b402f673352e37f695a9300b8e",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "cohort",
+  "path": "assets/goal-figures/cohort.webp",
+  "answer": "인구 코호트",
+  "sourceFigure": "L1-rId128",
+  "sourceSHA256": "2b34b4a753e617c11cc883b0972977a20553af04c6391f47e502a088662da4a7",
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "height": 525,
+  "sha256": "b2d96e40ca264c5bde1d0f5027349c93623149e733baa0c625d26ad02995eeaf",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "sea-ice-anomaly",
+  "path": "assets/goal-figures/sea-ice-anomaly.webp",
+  "answer": "북극 해빙 편차",
+  "sourceFigure": "L2-rId216",
+  "sourceSHA256": "fbedb0ff51855d8b82728af25a8ace8afa39e39b887522a0308de235eec6c92b",
+  "crop": [
+   0.015,
+   0.505,
+   0.985,
+   0.98
+  ],
+  "width": 628,
+  "height": 221,
+  "sha256": "4c219fd12500a23f71c8faac847c0ba5f7123a8dd1e5b191bf3555375f24cebb",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "ozone-area",
+  "path": "assets/goal-figures/ozone-area.webp",
+  "answer": "남반구 오존 구멍 면적",
+  "sourceFigure": "L2-rId217",
+  "sourceSHA256": "f399734524e8a8e767775c4c5d02d272b09d3ede5763f3dbea8484186fe12122",
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 921,
+  "height": 462,
+  "sha256": "c7c6baa6dbca5b0a058abec4468e72b532072a4f66c98e47c52d100383cb4082",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "ice-and-ozone-maps",
+  "path": "assets/goal-figures/ice-and-ozone-maps.webp",
+  "answer": "북극 해빙과 남극 오존",
+  "sourceFigure": "L2-rId218",
+  "sourceSHA256": "c47aac7240aec20cc8057b063e6807a9a03155922cd07a0a6f022b91c7692f56",
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 933,
+  "height": 705,
+  "sha256": "8d678c5ccb3db961fb4b29d760a674fc99fa2dc18d2394591352e56f5c3a4b85",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "trade-bubble",
+  "path": "assets/goal-figures/trade-bubble.webp",
+  "answer": "수입·수출·1인당 무역액",
+  "sourceFigure": "L2-rId206",
+  "sourceSHA256": "86083b8164a4d51436d7623a7bafc2def29040fe4a8dc055c339cade5cd6cef5",
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 519,
+  "height": 468,
+  "sha256": "7abd86550e7a2dd8eb5d3f062c8cbcdf4d0e52050d1e70a5382d387ea1efafe8",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "trade-triangle",
+  "path": "assets/goal-figures/trade-triangle.webp",
+  "answer": "수출·수입 품목 구성",
+  "sourceFigure": "L2-rId207",
+  "sourceSHA256": "9e93d7719c9fa8175e6ce07f0d541658d3a53f186a925b073f87e2c76b2d2537",
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 927,
+  "height": 339,
+  "sha256": "df69ddd838e44f18a54990ed26e1129270fd076f034b6359a713288b47f06baa",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "north-america-trade",
+  "path": "assets/goal-figures/north-america-trade.webp",
+  "answer": "북미 양방향 교역",
+  "sourceFigure": "L2-rId208",
+  "sourceSHA256": "d724783d0b9bb944b4a613e0ce25fff45b28e53c2df036f4d9edbd9edfd39655",
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 948,
+  "height": 390,
+  "sha256": "bf1353a494494d95971f0c27a06a700f58f33a8a9fcae6316a13f2c79231ebf7",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "eu-trade-arrows",
+  "path": "assets/goal-figures/eu-trade-arrows.webp",
+  "answer": "EU 교역 방향과 품목 비중",
+  "sourceFigure": "L2-rId209",
+  "sourceSHA256": "1d9009b666049cc5f79543afaafdc8f48e2a5b9977cb03ead5c2d93b11eae7d8",
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 936,
+  "height": 450,
+  "sha256": "3da046754ddfcef8f417160e82f198cd57714a45f68fc15e70d9338ec36367fb",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ },
+ {
+  "id": "bloc-trade",
+  "path": "assets/goal-figures/bloc-trade.webp",
+  "answer": "블록별 역내·역외 교역",
+  "sourceFigure": "L2-rId212",
+  "sourceSHA256": "23308aff972f0d8c9acf0f70bfc02c90b865497fb42755db0cd3f41cbe105144",
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 936,
+  "height": 444,
+  "sha256": "2c2df0b4eda8f013b833f1639bd72643f1b83b1a154ca34c7f0aa1a34e08231f",
+  "provenance": "강의에 수록된 평가원 원그림에서 문항용 패널만 분리. 원문 서술·원본 문서 제외."
+ }
+]

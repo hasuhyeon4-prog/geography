@@ -1,0 +1,26 @@
+{
+ "retrieved": "2026-10-25",
+ "archive": "data/goal-continuation-sources.zip",
+ "sources": {
+  "oica-production.html": {
+   "url": "https://oica.net/production-statistics/",
+   "sha256": "3a51510a51bd15c182b1ca98f1f2290821c943036a5dd8f3808079e4f6e92ca3",
+   "bytes": 210102
+  },
+  "wup2025-capitals.xlsx": {
+   "url": "https://population.un.org/wup/assets/Download/Cities/WUP2025-F20-DEGURBA-Capital_Cities.xlsx",
+   "sha256": "cf2f934b51412f12cb7c3ac58b211ceef4204b68460b4c691ca829c4caada3a5",
+   "bytes": 62818
+  },
+  "wb-birth.json": {
+   "url": "https://api.worldbank.org/v2/country/JPN;IND;NER;TCD;TUR;USA;BRA;DEU/indicator/SP.DYN.CBRT.IN?date=2023&format=json&per_page=1000",
+   "sha256": "9779e7bf6dd22097cab960dfa4c0ab1aa53de80555a4733e8a5c16577b8674ec",
+   "bytes": 1804
+  },
+  "wb-death.json": {
+   "url": "https://api.worldbank.org/v2/country/JPN;IND;NER;TCD;TUR;USA;BRA;DEU/indicator/SP.DYN.CDRT.IN?date=2023&format=json&per_page=1000",
+   "sha256": "f5fa251d9843a8167056c1ba64126dc038cbcd917a0c3e6611b90e38642f63f9",
+   "bytes": 1801
+  }
+ }
+}

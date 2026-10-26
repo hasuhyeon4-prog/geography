@@ -784,6 +784,17 @@
       }
     }
   ];
+  sets.push({id:'languageBranch',title:'대표 언어의 어파',period:'강의의 대표 언어 분류',lecture:'1권 P04 · G050-1',universe:'listed',
+    paintPhrase:'{x} 언어가 대표 언어인 나라를',assignQuestion:'색칠된 나라의 대표 언어가 속하는 어파는?',
+    basis:'강의에 나온 대표 언어만 분류한다. 같은 어파·어족에 속해도 같은 언어라는 뜻은 아니다. 다언어 국가 전체를 단일 언어로 규정하지 않는다.',
+    options:[{id:'germanic',label:'게르만어파',color:'#2f62b0'},{id:'romance',label:'로망스어파',color:'#b14622'}],
+    values:assign(assign({},'germanic','영국,독일,네덜란드,가이아나,수리남'),'romance','프랑스,에스파냐,포르투갈,브라질,멕시코'),mixed:{},
+    notes:{'가이아나':'영어: 게르만어파.','수리남':'네덜란드어: 게르만어파.','프랑스':'프랑스어: 로망스어파.','브라질':'포르투갈어: 로망스어파.'}});
+  sets.push({id:'westAsiaLanguage',title:'서남아·북아프리카 대표 언어',period:'강의의 대표 언어·종파 분포',lecture:'2권 P10 · G126-2',universe:'listed',view:[-18,12,65,45],
+    paintPhrase:'{x}가 대표 언어인 나라를',assignQuestion:'색칠된 나라의 대표 언어는?',
+    basis:'강의에 나온 대표 언어 분포이다. 이슬람교라는 공통점으로 언어·민족·종파까지 같다고 보지 않는다. 이란은 페르시아어·시아파, 튀르키예는 튀르키예어·수니파로 구분한다.',
+    options:[{id:'arabic',label:'아랍어',color:'#25864f'},{id:'persian',label:'페르시아어',color:'#b14622'},{id:'turkish',label:'튀르키예어',color:'#2f62b0'}],
+    values:assign(assign(assign({},'arabic','이집트,사우디아라비아,이라크,요르단,시리아,알제리,리비아'),'persian','이란'),'turkish','튀르키예'),mixed:{},notes:{'이란':'페르시아어·시아파.','튀르키예':'튀르키예어·수니파.'}});
   var climates=sets.find(function(s){return s.id==='climateCities'});
   Object.assign(climates.values,{'리마':'bw','브라질리아':'aw','아디스아바바':'h','시안':'cw','모스크바':'df','로스앤젤레스':'cs'});
   Object.assign(climates.notes,{'리마':'강의 1권 p.53에 사막 기후 명시. 남반구 여름에도 매우 건조한 페루 태평양 연안.',

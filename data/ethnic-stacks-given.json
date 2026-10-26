@@ -1,0 +1,44 @@
+{
+ "url": "https://wdown.ebsi.co.kr/W61001/01exam/20170906/analysis/s_saeji_EAOeIiGX_01.pdf",
+ "pdfSHA256": "0e82a777bb1f940846aa76736a4c934a709d176ab3353c9f214e7384e2676e0e",
+ "page": 2,
+ "cropPoints": [
+  98,
+  116,
+  224,
+  204
+ ],
+ "figure": "assets/goal-figures/ethnic-stacks.webp",
+ "figureSHA256": "22db02d887d8f3c89522c9ae60f161532e3d00bfe875e954ddfc25725696eb23",
+ "exam": "2018학년도 9월 13번",
+ "referenceYear": 2015,
+ "unit": "천만 명",
+ "method": "원도표의 2천만 명 간격 눈금을 보고 0.5천만 명 단위로 재구성한 근삿값. 계산 문항은 아래 표시값을 기준으로 한다. 원 통계의 정확한 인구수·비중이 아니다.",
+ "categories": [
+  "혼혈",
+  "유럽계",
+  "아프리카계",
+  "원주민 및 기타"
+ ],
+ "countries": {
+  "멕시코": [
+   7.5,
+   1,
+   0,
+   3.5
+  ],
+  "브라질": [
+   8.5,
+   9.5,
+   1.5,
+   0.5
+  ],
+  "아르헨티나": [
+   0,
+   4,
+   0,
+   0
+  ]
+ },
+ "zeroNote": "0은 도표의 해상도보다 작은 부분을 포함하며 실제 집단 인구가 0이라는 뜻이 아니다."
+}
