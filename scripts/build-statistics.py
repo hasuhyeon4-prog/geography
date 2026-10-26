@@ -361,10 +361,16 @@ extra_sites.append({'name':'키토','normalPeriod':q['normalPeriod'],'station':q
     'temperatureC':q['temperatureC'],'annualTemperatureC':q['annualTemperatureC'],
     'precipitationMm':[None]*12,'status':'partial','usage':{'climateGraph':False,'temperatureReading':True,'precipitationReading':False},
     'issues':['INAMHI 1991–2020 Iñaquito 월평균 기온을 확보. WWIS 강수는 1981–2010이며 기간이 달라 결합하지 않는다.']})
-write('data/climate-normals-extension.json',{'schemaVersion':1,'normalPeriod':[1991,2020],
+climate_extension={'schemaVersion':1,'normalPeriod':[1991,2020],
     'mode':'additive; 기존 data/climate-normals.json 41개를 보존','sites':extra_sites,
     'reviewedHolds':[{'name':'키토','status':'partial','reason':'INAMHI Iñaquito 기온 확보. 같은 1991–2020 기간 강수 미확보. WWIS 1981–2010 강수와 합성하지 않음.'},
-        {'name':'아부자','status':'hold','reason':'기존 1월 월평균 기온=최고 기온 35.2℃의 이상치가 재수집본에도 남음. JMA 65125 대체 페이지 404. 기존 강수 사용과 기온 보류 유지.'}]})
+        {'name':'아부자','status':'hold','reason':'기존 1월 월평균 기온=최고 기온 35.2℃의 이상치가 재수집본에도 남음. JMA 65125 대체 페이지 404. 기존 강수 사용과 기온 보류 유지.'}]}
+# Rebuild the final dataset, including the later pinned completion stations.
+# Importing this builder performs no writes, including during --check.
+completion_spec=importlib.util.spec_from_file_location('completion_climate',ROOT/'scripts/build-completion-climate.py')
+completion_climate=importlib.util.module_from_spec(completion_spec)
+completion_spec.loader.exec_module(completion_climate)
+write('data/climate-normals-extension.json',completion_climate.build(climate_extension))
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--check',action='store_true');args=ap.parse_args();bad=[]
