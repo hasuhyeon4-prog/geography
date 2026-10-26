@@ -41,7 +41,8 @@ function render(){
  var main=$('main');main.textContent='';$('score').textContent=state.right+' / '+state.total+' · 다시 풀기 '+review.length;
  if(!state.q){main.append(el('section',{className:'card empty'},[el('p',{text:state.error||'이 범위에 다시 풀 문항이 없어요.'}),el('a',{href:'exam.html',text:'기출형으로 돌아가기'})]));return;}
  var q=state.q,card=el('section',{className:'card'},[el('h2',{text:q.title}),el('p',{className:'note',text:q.note})]);
- q.figures.forEach(function(f){var frame=el('div',{className:'figure'});frame.innerHTML=C.render(f);card.append(frame);});
+ q.figures.forEach(function(f){var frame=el('div',{className:'figure'});frame.innerHTML=C.render(f);frame.querySelectorAll('[data-material-option]').forEach(function(marker){marker.addEventListener('click',function(){answer1(Number(marker.getAttribute('data-material-option')));});marker.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();answer1(Number(marker.getAttribute('data-material-option')));}});});card.append(frame);});
+ if(q.credit)card.append(el('p',{className:'source'},[document.createTextNode(q.credit.author+' · '),el('a',{href:q.credit.licenseUrl,text:q.credit.license,target:'_blank',rel:'noopener noreferrer'}),document.createTextNode(' · '),el('a',{href:q.credit.url,text:'사진 원출처',target:'_blank',rel:'noopener noreferrer'})]));
  if(q.figures.length)card.append(el('p',{className:'chartHint',text:'작은 화면에서는 그래프를 좌우로 밀어 볼 수 있어요.'}));
  q.tables.forEach(function(t){card.append(drawTable(t));});
  main.append(card);

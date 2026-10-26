@@ -36,8 +36,13 @@ function pair(goal,yes,no,explain,check){return{goal:goal,yes:yes,no:no,explain:
 function finish(q,r){
  if(q.assignment){var assignments=perms(q.assignment);if(assignments.length>6)assignments=[q.assignment].concat(shuffle(assignments.filter(function(x){return x.join('|')!==q.assignment.join('|');}),r).slice(0,4));var options=shuffle(assignments,r);q.stage1={question:q.identify||q.assignment.map(function(_,i){return L[i];}).join('·')+'에 해당하는 대상을 순서대로 고른 것은?',options:options.map(function(x){return x.join(' · ');}),answer:options.findIndex(function(x){return x.join('|')===q.assignment.join('|');}),explain:q.identifyExplain||'제시한 기준표의 값과 그래프의 값을 대응한다.'};}
  if(!q.stage1)throw Error('Identification is required');
+ // Reorder supplied options too: several fixed source examples otherwise
+ // expose the same answer position on every attempt.
+ var order=shuffle(q.stage1.options.map(function(_,i){return i;}),r),answer=q.stage1.answer;
+ q.stage1.options=order.map(function(i){return q.stage1.options[i];});
+ q.stage1.answer=order.indexOf(answer);
  var selected=shuffle(q.pairs,r).slice(0,Math.min(4,q.pairs.length));
- var flags=selected.map(function(_,i){return ((q.seed||1)+i)%2===0;});
+ var flags=selected.map(function(){return r()<.5;});
  q.statements=selected.map(function(p,i){var truth=flags[i];return{text:truth?p.yes:p.no,truth:truth,explain:p.explain,goal:p.goal,check:p.check,mark:MARKS[i]};});
  var correct=q.statements.map(function(x,i){return x.truth?i:-1;}).filter(function(i){return i>=0;});
  // All subsets, rather than a hard-coded five combinations, keep every truth pattern playable.
@@ -57,6 +62,7 @@ function create(data){
   var q=base(mode,composition?'두 시점 1차 에너지 소비 구성':'두 시점 에너지원별 소비량',seed,data.energy.source+' · 고정 원자료');q.assignment=names;
   q.note=composition?'원자료의 1차 에너지 소비 구성(대체법)이다. 기타는 100−세 화석 연료 비중이다. 비중 그래프만으로 총공급량 변화를 정하지 않는다.':'미국·중국 중 하나이다. TWh를 EJ로 환산했다(1TWh=0.0036EJ). 제시한 네 에너지원만의 자료이며 합계가 국가 전체 소비량은 아니다. 수치를 외우지 않고 변화 방향을 읽는다.';
   q.identifyExplain=composition?'미국의 석탄 비중 감소·가스 증가, 이란의 가스 증가, 오스트레일리아의 석탄→석유 1위 역전을 함께 대응한다.':'1990~2020년 미국의 석탄 소비량은 감소하고 중국은 증가했다. 석탄 방향은 기준 연도 주변의 가용 원자료에서도 같다.';
+  if(!composition)q.note+=' 기준 연도 ±5년의 석탄 방향 검증은 1985~1995×2015~2025의 121쌍이다. 2025년 끝점은 미국 EIA·중국 국가통계국의 국가 통계로 보완했고, 중국은 잠정 총량×비중 복원값이다. 기관·판본 차이가 있어 끝점 검증 외에 다른 값으로 일반화하지 않는다.';
   var values=names.map(function(n){return years.map(function(y){var row=data.energy.countries[n][y],v=fields.map(function(f){return finite(row[f]);});if(composition){var other=100-sum(v);if(other<0)throw Error('Invalid primary-energy shares');return v.concat(other);}return v.map(function(x){return x*.0036;});});});
   var max=Math.max.apply(null,values.flat(2));
   names.forEach(function(n,i){
@@ -125,7 +131,7 @@ function create(data){
   return finish(q,r);
  }
  function climate(mode,seed){
-  var r=seedState(seed),names=mode==='difference'?['창춘','덴버','디트로이트']:mode==='common-deviation'?(seed%2?['퍼스','로차','덴버']:['창춘','덴버','디트로이트']):mode==='self-deviation'?['푸저우','다윈','퍼스']:['양곤','다윈','퍼스'];
+  var r=seedState(seed),names=mode==='cumulative'?['뭄바이','다윈','퍼스']:mode==='difference'?['창춘','덴버','디트로이트']:mode==='common-deviation'?(seed%2?['퍼스','로차','덴버']:['창춘','덴버','디트로이트']):mode==='self-deviation'?['푸저우','다윈','퍼스']:['양곤','다윈','퍼스'];
   var chosen=picked(names,r),q=base(mode,'누적 강수·편차 자료',seed,'관측소 월평년값 · '+data.climate.period.join('~'));
   q.note='관측소 월평년값을 변환한 제시 자료이다. 수치의 세부 순위를 외우지 않는다.';q.assignment=chosen.map(function(s){return s.name;});
   q.tables.push(table(['후보 지점','1월 기온(℃)','7월 기온(℃)','1월 강수(mm)','7월 강수(mm)'],names.map(function(n){var s=site(n);return[n,s.t[0],s.t[6],s.p[0],s.p[6]];}),'대응에 사용할 기준 자료'));
@@ -196,7 +202,7 @@ function create(data){
   return finish(q,r);
  }
  function solarMonthQ(seed){
-  var r=seedState(seed),months=[1,4,7,10],month=months[seed%4],names=seed%2?['홍콩','카슈가르','오클랜드']:['양곤','다윈','퍼스'],q=base('solar-month','태양 고도로 제시 월 찾기',seed,'기존 도시·관측소 좌표 · 태양 적위 근사식');
+  var r=seedState(seed),months=[1,4,7,10],month=months[seed%4],names=Math.floor((seed-1)/4)%2===0?['홍콩','카슈가르','오클랜드']:['양곤','다윈','퍼스'],q=base('solar-month','태양 고도로 제시 월 찾기',seed,'기존 도시·관측소 좌표 · 태양 적위 근사식');
   q.note='각 달 15일 부근의 정오 태양 고도 근삿값이다. 태양 중심·평탄한 지평선을 기준으로 하며 대기 굴절은 제외한다.';
   var decl=declination(DAY[month-1]);
   q.tables.push(table(['지점','위도','제시 월의 정오 태양 고도(°)'],names.map(function(n){var p=data.cities[n]||site(n);return[n,round(p.lat,2),round(noonAltitude(p.lat,decl),1)];}),'1·4·7·10월 중 한 달의 계산 자료'));
@@ -204,7 +210,7 @@ function create(data){
   q.pairs.push(pair('G022-1','이 자료의 직사 위도는 약 '+fmt(decl)+'°이다.','이 자료의 직사 위도는 약 '+fmt(decl+15)+'°이다.','90°−태양 고도는 해당 지점과 직사 위도의 위도 차이다. 남북 부호를 구분한다.',{op:'declination',month:month,result:decl}));
   var a=noonAltitude((data.cities[names[0]]||site(names[0])).lat,decl),b=noonAltitude((data.cities[names[2]]||site(names[2])).lat,decl);
   q.pairs.push(pair('G012-2','이 시기의 정오 태양 고도는 '+names[0]+'가 '+names[2]+'보다 '+(a>b?'높다.':'낮다.'),'이 시기의 정오 태양 고도는 '+names[0]+'가 '+names[2]+'보다 '+(a>b?'낮다.':'높다.'),'절대 위도가 아니라 그날의 직사 위도와의 거리를 비교한다.',{op:'compare',a:a,b:b}));
-  if(seed%2===0){
+  if(names.every(function(n){return !!sites[n];})){
    q.tables.push(table(['지점','같은 달 기온(℃)','같은 달 강수(mm)'],names.map(function(n){var s=site(n);return[n,s.t[month-1],s.p[month-1]];}),'태양 고도로 정한 달의 관측소 월평년값'));
    var p0=site(names[0]).p[month-1],p1=site(names[1]).p[month-1];
    q.pairs.push(pair('G022-2','태양 자료로 정한 '+month+'월 강수량은 '+names[0]+'가 '+names[1]+'보다 '+(p0>p1?'많다.':'적다.'),'태양 자료로 정한 '+month+'월 강수량은 '+names[0]+'가 '+names[1]+'보다 '+(p0>p1?'적다.':'많다.'),'먼저 태양 고도로 달을 대응한 뒤 같은 달의 실제 관측소 강수 자료를 읽는다.',{op:'compare',a:p0,b:p1}));
@@ -301,6 +307,7 @@ function create(data){
   var max=names.reduce(function(a,b){return data.migrants[a]>data.migrants[b]?a:b;});q.stage1={question:'제시한 네 출신국 중 미국 거주 이민자 수가 가장 많은 출신국은?',options:names,answer:names.indexOf(max),explain:'제시한 2020년 stock 값을 비교한다. 과거 기출의 다른 판본으로 바꾸어 읽지 않는다.'};
   q.pairs.push(pair('G061-3','이 자료는 특정 시점 미국에 거주하는 이민자 수이다.','이 자료는 2020년 한 해 미국으로 새로 들어온 이민자 수이다.','국제 이주민 stock과 연간 이동 flow는 다르다.',{op:'stock',practice:'suppliedData'}));
   q.pairs.push(pair('G061-3','멕시코와 독일의 미국 거주 이민자 수는 제시한 값으로 비교할 수 있다.','막대가 긴 출신국일수록 그 출신국 전체 인구에서 이민자가 차지하는 비율도 반드시 높다.','출신국 전체 인구라는 분모가 없으므로 이민자 비율은 정할 수 없다.',{op:'migrantDenominator',practice:'suppliedData'}));
+  q.pairs.push(pair('G061-3','제시 출신국을 아메리카·아시아·유럽·아프리카 권역으로 묶어 합계를 비교할 수 있다.','출신국별 인원만으로 권역별 이주 원인이 오직 공용어 하나라고 확정한다.','멕시코·인도·독일·세네갈의 권역을 먼저 구분한다. 언어·인접성·기존 이주 네트워크는 가능한 해석 요인이며 단일 통계로 인과를 확정하지 않는다.',{op:'migrantRegions',practice:'suppliedData'}));
   q.pairs.push(pair('G061-3','멕시코는 미국의 인접국이라는 공간적 조건과 연결할 수 있다.','출신국별 이민자 수만으로 모든 이동의 원인이 오직 언어라고 확정할 수 있다.','인접성·이주 네트워크는 해석 조건이다. 한 통계만으로 단일 원인을 확정하지 않는다.',{op:'migrantContext',practice:'suppliedData'}));
   return finish(q,r);
  }
@@ -327,10 +334,10 @@ function create(data){
   return finish(q,r);
  }
  function capitalShareQ(seed){
-  var r=seedState(seed),d=data.continuation.capitals,names=shuffle(Object.keys(d.countries),r),q=base('capital-share','수도 인구의 국가 내 비율',seed,'UN WUP 2025 · F20 수도 인구 / F14 도시·촌락 인구 · 2025년');
+  var r=seedState(seed),d=data.continuation.capitals2018,names=shuffle(Object.keys(d.countries),r),q=base('capital-share','수도 인구의 국가 내 비율',seed,'강의 1권 P05 · 남아메리카 수도 인구 · 2025학년도 수능 8번 · 제시 자료 2018년');
   q.note=d.definition+' 단위는 모두 천 명이다. 수도 인구는 총인구의 일부이며 도시·촌락 합계에 다시 더하지 않는다.';
   var rows=names.map(function(n){var x=d.countries[n];return{name:n,capital:x.capital,c:round(x.capitalPopulation,1),u:round(x.urban,1),r:round(x.rural,1)};});
-  q.tables.push(table(['국가','수도','수도 인구','도시 인구','촌락 인구'],rows.map(function(x){return[x.name,x.capital,x.c,x.u,x.r];}),'2025년 인구(천 명) · 수도는 DEGURBA 도시 범위'));
+  q.tables.push(table(['국가','수도','수도 인구','도시 인구','촌락 인구'],rows.map(function(x){return[x.name,x.capital,x.c,x.u,x.r];}),'2018년 인구(천 명) · 해당 기출의 수도 범위'));
   var shares=rows.map(function(x){return x.c/(x.u+x.r)*100;});
   q.stage1={question:'제시 자료에서 수도 인구가 국가 총인구에서 차지하는 비율이 가장 높은 국가는?',options:names,answer:shares.indexOf(Math.max.apply(null,shares)),explain:'수도 인구÷(도시 인구+촌락 인구)×100. 수도 인구 자체가 가장 많은 국가를 고르지 않는다.'};
   rows.forEach(function(x){var v=x.c/(x.u+x.r)*100;
@@ -365,14 +372,14 @@ function create(data){
   return finish(q,r);
  }
  function climateRestoreQ(seed){
-  var r=seedState(seed),names=shuffle(['치타','딕슨','싱가포르'],r),q=base('climate-restore','최한월·연교차로 최난월 복원',seed,'앱의 관측소 월평년 자료');
-  q.assignment=names;q.note='연교차=최난월 기온−최한월 기온이다. 이번 문항의 관측소 평년값을 사용하며, 강의의 다른 도시 수치를 재현한 표는 아니다.';
+  var r=seedState(seed),names=shuffle(['울란바토르','배로(우트키아빅)','아비장'],r),q=base('climate-restore','최한월·연교차로 최난월 복원',seed,'앱의 관측소 월평년 자료');
+  q.assignment=names;q.figures.push({kind:'map',bounds:[-180,-60,180,85],regions:data.worldLand.concat(['울란바토르','배로(우트키아빅)','아비장'].map(function(n,i){var p=site(n);return{polygons:[],label:[p.lon,p.lat],letter:'ABC'[i]};}))});q.identifyExplain='A는 몽골 내륙 울란바토르, B는 알래스카 북극해 연안 배로, C는 기니만 연안 아비장이다. 최난월=최한월+연교차로 복원한 뒤 지도와 대응한다.';q.stationNames=names.slice();q.assignment=names.map(function(n){return {'울란바토르':'A','배로(우트키아빅)':'B','아비장':'C'}[n];});q.note='연교차=최난월 기온−최한월 기온이다. 몽골 내륙·알래스카 북극해 연안·기니만 연안의 관측소를 지도 문자와 대응한다.';
   q.tables.push(table(['자료','최한월 기온(℃)','연교차(℃)'],names.map(function(n,i){var a=site(n).t,min=Math.min.apply(null,a),max=Math.max.apply(null,a);return[L[i],min,round(max-min,3)];}),'최난월 기온은 숨긴 값'));
-  q.tables.push(table(['후보 관측소','기후 단서'],[['치타','북반구 대륙 내부 · 최난월 10℃ 이상'],['딕슨','북극해 연안 · 최난월 0~10℃ 미만'],['싱가포르','적도 부근 · 모든 달 18℃ 이상']],'이 문항의 지역 대응 기준'));
+  q.tables.push(table(['후보 관측소','기후 단서'],[['울란바토르','몽골 내륙 · 최난월 10℃ 이상'],['배로(우트키아빅)','알래스카 북극해 연안 · 최난월 0~10℃ 미만'],['아비장','기니만 연안 · 모든 달 18℃ 이상']],'이 문항의 지역 대응 기준'));
   names.forEach(function(n,i){var ts=site(n).t,min=Math.min.apply(null,ts),max=Math.max.apply(null,ts),range=round(max-min,3);
    q.pairs.push(pair('G133-1',L[i]+'의 최난월 기온은 약 '+fmt(min+range)+'℃이다.',L[i]+'의 최난월 기온은 약 '+fmt(range)+'℃이다.','최난월 기온=최한월 기온+연교차. 최한월이 음수여도 부호를 유지한다.',{op:'add',a:min,b:range,result:min+range}));
   });
-  q.pairs.push(pair('G133-1','최난월 0~10℃ 미만인 자료는 제시한 기준에서 딕슨에 대응한다.','기온 연교차가 가장 큰 자료가 반드시 툰드라 기후이다.','툰드라 판정은 연교차가 아니라 최난월 0~10℃ 미만이라는 온도 기준을 쓴다.',{op:'warmestThreshold'}));
+  q.pairs.push(pair('G133-1','최난월 0~10℃ 미만인 자료는 제시한 기준에서 배로(우트키아빅)에 대응한다.','기온 연교차가 가장 큰 자료가 반드시 툰드라 기후이다.','툰드라 판정은 연교차가 아니라 최난월 0~10℃ 미만이라는 온도 기준을 쓴다.',{op:'warmestThreshold'}));
   return finish(q,r);
  }
  function religionQ(mode,seed){

@@ -9,7 +9,35 @@
   "share": "% of primary energy consumption (substitution method)",
   "TWhToEJ": 0.0036
  },
- "policy": "empty cell -> null; source category retained; no present-day values substituted for historical exam years",
+ "policy": "empty cell -> null; source category retained; no present-day values substituted for historical exam years; 2025 coal endpoints explicitly sourced from national energy statistics",
+ "coal2025Endpoints": {
+  "year": 2025,
+  "policy": "2025년 끝점만 국가 공식 통계로 보완. 과거 EI/OWID 판본을 소급 재작성하지 않는다. 비교는 각국 석탄 소비 에너지량(EJ)의 증감 방향에 한정하며 다른 연료·생산량·구성비를 채우지 않는다. 중국 값은 공표된 반올림 총량×비중으로 복원한 잠정값이다. 기관 간 정의·판본 차이를 숨기지 않는다.",
+  "countries": {
+   "미국": {
+    "source": "US EIA Monthly Energy Review Table 1.3",
+    "url": "https://www.eia.gov/totalenergy/data/browser/csv.php?tbl=T01.03",
+    "rawSHA256": "b3b6c9b1bb49abeaea1837fd5049b65eae3306eeadc0c12c0b53986cb880fbed",
+    "series": "CLTCBUS",
+    "period": "202513",
+    "rawValue": 8.670671,
+    "unit": "Quadrillion Btu",
+    "toEJ": 1.05505585262,
+    "coalEJ": 9.148042184692509
+   },
+   "중국": {
+    "source": "중국 국가통계국 2025년 국민경제·사회발전 통계공보 (2026-02-28)",
+    "url": "https://www.stats.gov.cn/sj/zxfb/202602/t20260228_1962662.html",
+    "rawSHA256": "38686120cd89155f7614f959d12252b386ada9cda282edd1777616afab0bfcc6",
+    "totalHundredMillionTce": 61.7,
+    "coalSharePct": 51.4,
+    "GJPerTce": 29.3076,
+    "coalEJ": 92.945536488,
+    "provisional": true,
+    "method": "국가 공표 에너지 총량(억 tce)×석탄 비중×표준탄 열량 환산. 원탄 무게가 아니다."
+   }
+  }
+ },
  "countries": {
   "미국": {
    "1965": {
@@ -553,7 +581,7 @@
     "gas_share_energy": 34.24
    },
    "2025": {
-    "coal_consumption": null,
+    "coal_consumption": 2541.1228290812523,
     "oil_consumption": null,
     "gas_consumption": null,
     "renewables_consumption": null,
@@ -1104,7 +1132,7 @@
     "gas_share_energy": 8.961
    },
    "2025": {
-    "coal_consumption": null,
+    "coal_consumption": 25818.20458,
     "oil_consumption": null,
     "gas_consumption": null,
     "renewables_consumption": null,
@@ -2219,107 +2247,17 @@
  "coalDirectionWindow": {
   "미국": {
    "expectedUp": false,
-   "validCases": 110,
+   "validCases": 121,
    "allAvailableHold": true,
-   "fullPlusMinusFiveVerified": false,
-   "missingPairs": [
-    [
-     1985,
-     2025
-    ],
-    [
-     1986,
-     2025
-    ],
-    [
-     1987,
-     2025
-    ],
-    [
-     1988,
-     2025
-    ],
-    [
-     1989,
-     2025
-    ],
-    [
-     1990,
-     2025
-    ],
-    [
-     1991,
-     2025
-    ],
-    [
-     1992,
-     2025
-    ],
-    [
-     1993,
-     2025
-    ],
-    [
-     1994,
-     2025
-    ],
-    [
-     1995,
-     2025
-    ]
-   ]
+   "fullPlusMinusFiveVerified": true,
+   "missingPairs": []
   },
   "중국": {
    "expectedUp": true,
-   "validCases": 110,
+   "validCases": 121,
    "allAvailableHold": true,
-   "fullPlusMinusFiveVerified": false,
-   "missingPairs": [
-    [
-     1985,
-     2025
-    ],
-    [
-     1986,
-     2025
-    ],
-    [
-     1987,
-     2025
-    ],
-    [
-     1988,
-     2025
-    ],
-    [
-     1989,
-     2025
-    ],
-    [
-     1990,
-     2025
-    ],
-    [
-     1991,
-     2025
-    ],
-    [
-     1992,
-     2025
-    ],
-    [
-     1993,
-     2025
-    ],
-    [
-     1994,
-     2025
-    ],
-    [
-     1995,
-     2025
-    ]
-   ]
+   "fullPlusMinusFiveVerified": true,
+   "missingPairs": []
   }
  }
 }

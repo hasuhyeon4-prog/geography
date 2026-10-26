@@ -814,6 +814,9 @@
   // 외울 대상이 아니며, 생산 순위는 순위표와 기출형(다년도 검증)에서 다룬다.
   sets.find(function(s){return s.id==='religion'}).scopeNote='무종교를 제외한 개별 종교 중 신자 수 1위를 묻습니다. 국민 과반과는 다릅니다.';
   sets.find(function(s){return s.id==='grainNet'}).scopeByName={'이집트':'밀의 순수출·순수입을 판단하세요.'};
+  var schengen={};regions.find(function(r){return r.id==='europe';}).countries.forEach(function(n){schengen[n]='outside';});
+  assign(schengen,'member','오스트리아,벨기에,불가리아,크로아티아,체코,덴마크,에스토니아,핀란드,프랑스,독일,그리스,헝가리,아이슬란드,이탈리아,라트비아,리히텐슈타인,리투아니아,룩셈부르크,몰타,네덜란드,노르웨이,폴란드,포르투갈,루마니아,슬로바키아,슬로베니아,에스파냐,스웨덴,스위스');
+  sets.push({id:'schengen',title:'솅겐 참여국',lecture:'2권 P08',goalIds:['G106-1'],period:'2026-10-26 확인 · 정식 참여 29개국',sourceUrl:'https://www.consilium.europa.eu/en/policies/schengen-area/',basis:'EU·유로 사용과 정식 솅겐 참여를 구별한다. 아일랜드·키프로스는 비참여, 스위스·노르웨이·아이슬란드·리히텐슈타인은 EU 비회원이지만 참여한다. 일시적 내부 국경 검사는 회원 자격 탈퇴와 다르다.',paintPhrase:'솅겐 {x}를',otherLabel:'이 세트에서 다루지 않는 나라',assignQuestion:'색칠된 나라는 솅겐에 정식 참여하는가?',options:[{id:'member',label:'참여국',color:'#096b83'},{id:'outside',label:'비참여국',color:'#b14622'}],values:schengen,mixed:{},notes:{}});
   var byId={};sets.forEach(function(set){byId[set.id]=set});
   // Keep the source sets for provenance and existing records, expose one religion quiz.
   byId.religion.title='종교 · 큰 분류와 세부 분류';

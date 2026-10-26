@@ -34,7 +34,7 @@ spec=[
 books={}
 for v in [1,2]:
  f=next(source.glob(f'*{v}권*.docx'));z=zipfile.ZipFile(f);rels={x.attrib['Id']:x.attrib['Target'] for x in ET.fromstring(z.read('word/_rels/document.xml.rels'))};books[v]=(z,rels)
-result=[]
+result=[p for p in json.loads((ROOT/'data/goal-figure-panels.json').read_text()) if p.get('license')]
 for rid,panels in spec:
  v=int(rid[1]);r=rid.split('-')[1];z,rels=books[v];original=z.read('word/'+rels[r]);image=Image.open(io.BytesIO(original)).convert('RGB');w,h=image.size
  for name,box,answer in panels:

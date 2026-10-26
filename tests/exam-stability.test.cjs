@@ -13,6 +13,7 @@ const E = require('../assets/exam-engine.js');
 const C = require('../assets/classification-sets.js');
 const R = require('../assets/rankings.js');
 const REL = data('data/exam-relations.json');
+const FIXED=data('data/exam-relations-completion.json'),COMPLETE=data('data/goal-completion-source.json');
 const clueData = data('data/country-clues.json');
 const countries = data('data/country-indicators.json');
 const groups = data('data/group-series.json');
@@ -90,6 +91,12 @@ function periodRaw(ind, n) {
   return out;
 }
 function raw(ind, name) {
+  if(ind==='goal-gdp2021')return {'2021':countries.countries[name].series.gdp['2021']};
+  if(ind==='goal-industry2021')return {'2021':economy.countries[name].series.industry['2021']};
+  if(ind==='goal-sector2'||ind==='goal-sector3'){const v=economy.countries[name].values,a=['agriculture','industry','services'].map(k=>v[k]);return {'2023':a[ind==='goal-sector2'?1:2]/a.reduce((x,y)=>x+y,0)*100};}
+  if(ind==='goal-country-netrate'){const x=data('data/remaining-demographic-balances.json').countries[name]['2023'];return {'2023':x.netMigration/x.population*1000};}
+  if(ind==='goal-cont-netrate'){const g=groups.groups[name].series;return {'2023':g.netmig['2023']/g.pop['2023']*1000};}
+
   if (ind === 'manufacturingInIndustry') {
     const c = economy.countries[name], a = c.series.manufacturing || {}, b = c.series.industry || {};
     return Object.fromEntries(Object.entries(a).filter(([y,v]) => v != null && b[y] > 0 && v >= 0 && v <= b[y]).map(([y,v]) => [y, v / b[y] * 100]));
@@ -118,7 +125,7 @@ function raw(ind, name) {
   const [key, scale] = GROUP[ind];
   return Object.fromEntries(Object.entries(g[key] || {}).map(([y, v]) => [y, v / scale]));
 }
-const STATIC = ind => ind === 'bloc-members' || ind.endsWith('-area') || PERIOD.test(ind) || CTFR.test(ind);
+const STATIC = ind => ind.startsWith('goal-') || ind === 'bloc-members' || ind.endsWith('-area') || PERIOD.test(ind) || CTFR.test(ind);
 const inWindow = (ind, y) => STATIC(ind) || (US_COL[ind] ? y >= USM_REL.years[0] && y <= USM_REL.years[1] : y >= Y0 && y <= Y1);
 // Years in which `hi` is above `lo`, and years in which it is not.
 function yearly(ind, hi, lo) {
@@ -128,7 +135,7 @@ function yearly(ind, hi, lo) {
 
 // The whitelist, read here without the builder.
 const allowedPairs = new Map(), allowedSigns = new Set(), lectureDirected = [];
-for (const r of REL.relations.concat(POP.relations, MIN_REL.relations, USM_REL.relations, TFR_REL.relations)) {
+for (const r of REL.relations.concat(FIXED.relations,POP.relations, MIN_REL.relations, USM_REL.relations, TFR_REL.relations)) {
   const allow = (a, b) => allowedPairs.set(r.indicator + '|' + [a, b].sort().join('|'), r.basis);
   for (const [hi, lo] of r.pairs || []) { allow(hi, lo); lectureDirected.push([r.indicator, hi, lo]); }
   (r.tiers || []).forEach((tier, i) => r.tiers.slice(i + 1).flat().forEach(lo => tier.forEach(hi => { allow(hi, lo); lectureDirected.push([r.indicator, hi, lo]); })));
@@ -176,23 +183,25 @@ for (const o of REL.orders.concat(ENERGY_REL.orders)) {
     }
   } else for (const [n, order] of Object.entries(o.orders)) (c[n] || (c[n] = [])).push(o.composition === 'primaryEnergy' && ['중국', '인도'].includes(n) ? order.slice(0, 1) : order);
 }
+for(const o of FIXED.orders){const c=allowedOrders[o.composition]||(allowedOrders[o.composition]={});(c[o.entity]||(c[o.entity]=[])).push(o.order);}
 // L2-B0373 states only the 석탄 first place for 중국·인도 (the builder's ORDER_STATED).
 const compositionSeries = {
+  renewableFour:n=>({'2023':COMPLETE.renewables2023[n]}),
   exports: n => Object.fromEntries(Object.entries(economy.exports[n].series).filter(([y]) => y >= Y0 && y <= Y1)),
   electricity: n => Object.fromEntries(Object.entries(electricity.countries[n].series).filter(([y]) => y >= Y0 && y <= Y1)),
   religion: n => religion.countries[n].series,
   primaryEnergy: n => Object.fromEntries(Object.keys(energy.countries[n].series.coal_share_energy).filter(y => y >= Y0 && y <= Y1 && energyShare(n, y)).map(y => [y, energyShare(n, y)])),
 };
-const EXCLUDE = {electricity: [], exports: [], religion: ['unaffiliated', 'other'], primaryEnergy: []};
+const EXCLUDE = {renewableFour:[],electricity: [], exports: [], religion: ['unaffiliated', 'other'], primaryEnergy: []};
 function orderHoldsEveryYear(cid, name, order) {
-  const ser = compositionSeries[cid](name);
+  let ser = compositionSeries[cid](name);const fixed=FIXED.orders.find(o=>o.composition===cid&&o.entity===name&&o.order.join()===order.join());if(fixed)ser={[fixed.year]:ser[fixed.year]};
   // Religion: the rounded and the unrounded Pew rows, and no 무종교·기타 bundle above a ranked religion.
   const rows = Object.values(ser).concat(cid === 'religion' && religionRaw.countries[name] ? Object.values(religionRaw.countries[name].series) : []);
   return rows.every(v => {
     const rest = Object.keys(v).filter(k => !order.includes(k) && !EXCLUDE[cid].includes(k));
     return order.every((k, i) => (i + 1 < order.length ? v[k] > v[order[i + 1]] : rest.every(o => v[k] > v[o]))) &&
       EXCLUDE[cid].every(k => !(v[k] >= v[order[order.length - 1]]));
-  }) && (cid === 'religion' ? Object.keys(ser).length === 2 : Object.keys(ser).length >= MIN_YEARS);
+  }) && (fixed?Object.keys(ser).length===1:cid === 'religion' ? Object.keys(ser).length === 2 : Object.keys(ser).length >= MIN_YEARS);
 }
 
 // Each independent raw-source check inspects the same deterministic 300-seed bank.
@@ -374,7 +383,7 @@ test('share × total uses one year and one source, and both numbers are in the t
         const v = n => raw(c.indicator, n)[c.indicator.includes('-') ? '2023' : countries.meta.baseYear];
         amount = n => v(n);
       } else {
-        const v = (n, ind) => raw(ind, n)[PERIOD.test(ind) ? ind.match(PERIOD)[3] : US_COL[ind] ? USM_REL.displayYear : countries.countries[n] && !ind.includes('-') ? countries.meta.baseYear : '2023'];
+        const v = (n, ind) => raw(ind, n)[ind.startsWith('goal-')?K.indicators[ind].year:PERIOD.test(ind) ? ind.match(PERIOD)[3] : US_COL[ind] ? USM_REL.displayYear : countries.countries[n] && !ind.includes('-') ? countries.meta.baseYear : '2023'];
         amount = n => v(n, c.total) * v(n, c.rate) / c.per;
         assert.ok(q.shown.includes(c.rate) && q.shown.includes(c.total), 'derived amounts need both columns shown');
       }
@@ -387,7 +396,7 @@ test('the table shows the data files’ base-year values', () => {
   for (const q of questions()) {
     if (q.theme.kind !== 'indicators') continue;
     q.shown.forEach((ind, j) => q.entities.forEach((n, i) => {
-      const year = PERIOD.test(ind) ? ind.match(PERIOD)[3] : CTFR.test(ind) ? ind.match(CTFR)[1] : MIN_COL[ind] ? '2024' : US_COL[ind] ? USM_REL.displayYear : ind.endsWith('-area') ? '2024' : q.theme.entityType === 'country' ? countries.meta.baseYear : '2023';
+      const year = ind.startsWith('goal-')?K.indicators[ind].year:PERIOD.test(ind) ? ind.match(PERIOD)[3] : CTFR.test(ind) ? ind.match(CTFR)[1] : MIN_COL[ind] ? '2024' : US_COL[ind] ? USM_REL.displayYear : ind.endsWith('-area') ? '2024' : q.theme.entityType === 'country' ? countries.meta.baseYear : '2023';
       const v = raw(ind, n)[year];
       const shown = num(q.display.rows[i].cells[j]);
       assert.ok(Math.abs(shown - v) <= Math.max(0.051, Math.abs(v) * 0.006), `${n} ${ind}: shown ${shown}, data ${v}`);
@@ -515,8 +524,7 @@ test('climate questions use verified types and seasons, and every wrong option i
     const hemi = name => (station[name].station.latitude >= 0 ? 'N' : 'S');
     for (const name of q.entities) {
       const L = station[name].lectureClimate;
-      assert.ok(confirmed(name, L), name + ' identified by a type its data do not clearly confirm');
-      assert.equal(K.entities[name].climate.type, L, name + ' used without a verified type');
+      if((q.theme.allowSeasonalSites||[]).includes(name)){assert.equal(K.entities[name].climate.type,null);assert.equal(seasonOf(name),hemi(name));}else{assert.ok(confirmed(name,L),name+' identified by an unconfirmed type');assert.equal(K.entities[name].climate.type,L,name);}
     }
     // Each graph is the data of its 대상, and the rows sit on one common scale.
     q.display.rows.forEach((row, i) => assert.deepEqual(row.temperature, station[q.entities[i]].temperatureC));
@@ -542,7 +550,7 @@ test('climate questions use verified types and seasons, and every wrong option i
       if (s.kind === 'place' && c.place === 'hemisphere') assert.equal(hemi(c.entity) === c.value, s.truth, s.text);
       if (s.kind === 'climateClaim') {
         const L = station[c.entity].lectureClimate;
-        assert.ok(confirmed(c.entity, L), 'claim about an unverified type: ' + s.text);
+        if(c.claim==='wet-season'&&(q.theme.allowSeasonalSites||[]).includes(c.entity))assert.equal(K.entities[c.entity].climate.type,null,'seasonal reading must not activate a marginal type');else assert.ok(confirmed(c.entity,L),'claim about an unverified type: '+s.text);
         if(s.goalId){
           if(c.claim==='wet-season'){const P=station[c.entity].precipitationMm,m=parseInt(c.month)-1;assert.equal(P[m]>P[(m+6)%12],s.truth,s.text);}
           else if(c.claim==='winter-dry'){assert.ok(['cw','cfa'].includes(L));assert.equal(s.truth,!s.text.includes('겨울 강수에 관계없이 반드시 Cw'),s.text);}

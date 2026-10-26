@@ -172,5 +172,54 @@
     "death": 9.2
    }
   }
+ },
+ "capitals2018": {
+  "year": 2018,
+  "unit": "천 명",
+  "definition": "강의 1권 P05의 2018년 남아메리카 수도 인구 제시 자료. 수도 범위는 해당 자료를 따르며 현재 행정 경계·2025 DEGURBA 자료와 섞지 않는다.",
+  "countries": {
+   "브라질": {
+    "capital": "브라질리아",
+    "capitalPopulation": 4470,
+    "urban": 182550,
+    "rural": 28320,
+    "year": 2018
+   },
+   "콜롬비아": {
+    "capital": "보고타",
+    "capitalPopulation": 10570,
+    "urban": 39960,
+    "rural": 9510,
+    "year": 2018
+   },
+   "칠레": {
+    "capital": "산티아고",
+    "capitalPopulation": 6680,
+    "urban": 15930,
+    "rural": 2260,
+    "year": 2018
+   },
+   "우루과이": {
+    "capital": "몬테비데오",
+    "capitalPopulation": 1740,
+    "urban": 3310,
+    "rural": 160,
+    "year": 2018
+   }
+  }
+ },
+ "dependency1955": {
+  "차드": [
+   39.5,
+   4.1,
+   47.6,
+   2.5
+  ],
+  "튀르키예": [
+   40.7,
+   3.2,
+   25.6,
+   7.8
+  ]
  }
 }

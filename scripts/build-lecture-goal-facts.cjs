@@ -7,10 +7,10 @@ const old=require('../assets/fact-statements.js'),existing=new Map(old.items.map
 const section=g=>{const n=+g.slice(1);return n<=4?0:n<=10?1:n<=24?2:n<=38?3:n<=52?4:n<=70?5:n<=80?6:n<=93?7:n<=108?8:n<=122?9:n<=132?10:11;};
 const names=['위치·방위','지도·지리 정보','기후','지형','문화·종교','인구·도시','농목업','에너지·자원','공업·무역','환경','지역지리','자료 해석'];
 const topics=names.map((name,i)=>({id:'goal-p'+String(i).padStart(2,'0'),name:name+' · 강의 보완'})),items=[],bindings={},counts={};
-for(const line of fs.readFileSync(path.join(root,'data/lecture-goal-ox.tsv'),'utf8').split(/\r?\n/)){
+for(const line of ['data/lecture-goal-ox.tsv','data/goal-completion-ox.tsv'].map(p=>fs.readFileSync(path.join(root,p),'utf8')).join('\n').split(/\r?\n/)){
  if(!line||line.startsWith('#'))continue;
  const a=line.split('|');if(a.length!==3)throw Error('Expected goal|true|false: '+line);
- const [id,yes,no]=a,g=byid[id];if(!g||(g.venue!=='OX'&&id!=='G040-1'))throw Error('Unknown OX goal '+id);
+ const [id,yes,no]=a,g=byid[id];if(!g)throw Error('Unknown OX goal '+id);
  if(yes===no||yes.length<8||no.length<8)throw Error('Bad curated pair '+id);
  const n=counts[id]=(counts[id]||0)+1;
  for(const truth of [true,false]){

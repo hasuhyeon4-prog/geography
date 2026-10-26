@@ -1,0 +1,33 @@
+{
+ "date": "2026-10-26",
+ "baseCommit": "6ea1e83",
+ "criteria": {
+  "goals": 573,
+  "groups": 139,
+  "supplemented": 185,
+  "remaining": 0
+ },
+ "tests": {
+  "total": 285,
+  "passed": 282,
+  "failed": 0,
+  "skipped": 3,
+  "followupCitationOnly": {
+   "tests": 29,
+   "pass": 29,
+   "fail": 0,
+   "skipped": 0
+  }
+ },
+ "runtime": {
+  "materialQuestions": 16960,
+  "existingExamQuestions": 17000
+ },
+ "browser": {
+  "version": "153.0.8010.0",
+  "cases": 345,
+  "errors": 0,
+  "clippedLabels": 0
+ },
+ "scope": "개별 완료 기준·누락 절과 실제 출제물 대조. 수치·분모·경로·화면 검증. 외부 사실과 통계 전체 전수 재감사와 구별. 전체 검사 후 출처 표기를 문서 절 제목으로 명확히 한 변경은 관련 검사를 추가 실행했다."
+}

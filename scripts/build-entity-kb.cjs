@@ -1068,10 +1068,49 @@ const goalAgricultureMaxima=[
  {id:'rice-sheep',keys:['qcl-production:쌀','qcl-stocks:양'],labels:['쌀 생산량','양 사육 두수'],from:2015,to:2022},
  {id:'wheat-pigs',keys:['qcl-production:밀','qcl-stocks:돼지'],labels:['밀 생산량','돼지 사육 두수'],from:2015,to:2024}
 ].map(x=>({...x,leaders:x.keys.map(k=>{const winners=Array.from({length:x.to-x.from+1},(_,i)=>maxSource.rankings[k][x.from+i][0].name);if(new Set(winners).size!==1)throw Error('Historical maximum changed: '+x.id);return winners[0];})}));
+// Additive completion inputs retain their exact period and denominator.
+const completion=read('data/goal-completion-source.json');
+for(const [id,label,key] of [['goal-gdp2021','GDP (2021년)','gdp'],['goal-industry2021','GDP 중 2차 산업 비중 (2021년)','industry']]){
+ indicators[id]={label,unit:key==='gdp'?'십억 달러':'%',more:label+'이 크다',entityType:'country',year:'2021',source:'세계은행 WDI · 고정 연도 제시 자료',compare:{type:key==='gdp'?'ratio':'diff',min:key==='gdp'?1.1:5},static:true,domain:null};
+ for(const [n,v] of Object.entries(completion.economy2021))entities[n].values[id]=v[key];
+}
+for(const [id,j,label] of [['goal-sector2',1,'총산업부가가치 중 2차 산업'],['goal-sector3',2,'총산업부가가치 중 3차 산업']]){
+ indicators[id]={label,unit:'%',more:label+' 비중이 높다',entityType:'country',year:'2023',source:'WDI 산업별 부가가치의 3개 산업 합=100으로 재계산; GDP 대비 비중과 구별',compare:{type:'diff',min:5},static:true,domain:null};
+ for(const [n,v] of Object.entries(completion.sectorComposition2023))entities[n].values[id]=v[j];
+}
+for(const id of ['goal-gdp2021','goal-industry2021','goal-sector2','goal-sector3']){
+ const ns=Object.keys(entities).filter(n=>entities[n].values[id]!=null);
+ for(let a=0;a<ns.length;a++)for(let b=a+1;b<ns.length;b++){
+  const v=entities[ns[a]].values[id],w=entities[ns[b]].values[id],m=indicators[id].compare;
+  if(m.type==='ratio'?Math.max(v,w)/Math.min(v,w)<m.min:Math.abs(v-w)<m.min)continue;
+  relations.push({indicator:id,hi:v>w?ns[a]:ns[b],lo:v>w?ns[b]:ns[a],years:[indicators[id].year,indicators[id].year],n:1,minGap:'고정 연도 값 비교',status:'supplied',reason:'고정 연도 제시 자료 식별 전용; 회상 출제 제외',form:'pairs',basis:'명시한 고정 연도의 제시 자료 · 현재나 다른 시점 순위로 확장하지 않음'});
+ }
+}
+// Rates and totals are computed from the same pinned 2023 population and net-migration count.
+for(const [id,type,ns,denom] of [['goal-country-netrate','country',Object.keys(completion.migration2023),1e4],['goal-cont-netrate','continent',['아시아','아프리카','유럽'],1e8]]){
+ indicators[id]={label:'순이동률 (제시 인원÷총인구)',unit:'‰',more:'순이동률이 높다',entityType:type,year:'2023',source:'WDI/UN WPP · 2023년 순이동 인원과 같은 해 인구로 계산',compare:{type:'diff',min:0.5},static:true,domain:null};
+ for(const n of ns){const x=type==='country'?completion.migration2023[n]:null,population=x?x.population:entities[n].values['cont-pop']*1e8,net=x?x.netMigration:groupSeries.groups[n].series.netmig['2023'];entities[n].values[id]=net/population*1000;}
+}
+for(const id of ['goal-country-netrate','goal-cont-netrate']){
+ const ns=Object.keys(entities).filter(n=>entities[n].values[id]!=null);
+ for(let a=0;a<ns.length;a++)for(let b=a+1;b<ns.length;b++){const x=entities[ns[a]].values[id],y=entities[ns[b]].values[id];if(Math.abs(x-y)<.5)continue;relations.push({indicator:id,hi:x>y?ns[a]:ns[b],lo:x>y?ns[b]:ns[a],years:['2023','2023'],n:1,minGap:'0.5‰ 이상',status:'supplied',reason:'고정 연도 제시 자료 식별 전용; 회상 출제 제외',form:'pairs',basis:'2023년 제시 자료의 순이동률'});}
+}
+orders.push({composition:'electricity',entity:'중국',order:['coal'],status:'active',basis:'2023년 제시 전력 구성 · 석탄 최대',years:['2023','2023'],n:1});
+orders.push({composition:'primaryEnergy',entity:'미국',order:['oil'],status:'active',basis:'강의 기준점 · 2023년 제시 구성',years:['2023','2023'],n:1});
+const four=completion.renewables2023,world=four['세계'];
+compositions.renewableFour={year:'2023',source:'Ember·EI / pinned OWID snapshot',unit:'% (수력+풍력+태양광+바이오에너지 발전 합=100)',orderMargin:.05,rankExclude:[],categories:[['hydro','수력'],['wind','풍력'],['solar','태양광'],['bioenergy','바이오에너지']],values:{}};
+for(const [n,v] of Object.entries(four)){
+ if(n==='세계')continue;const sum=Object.values(v).reduce((a,b)=>a+b,0);
+ compositions.renewableFour.values[n]=Object.fromEntries(Object.entries(v).map(([k,x])=>[k,x/sum*100]));
+ const order=Object.keys(v).sort((a,b)=>v[b]-v[a]);
+ if(v[order[0]]/sum*100-v[order[1]]/sum*100>5)orders.push({composition:'renewableFour',entity:n,order:order.filter(k=>v[k]>0),status:'active',basis:'제시한 2023년 네 발전원 내부 순서',years:['2023','2023'],n:1});
+}
+const completionWhitelist=read('data/exam-relations-completion.json');
+for(const x of relations.filter(x=>x.status==='supplied'))if(!completionWhitelist.relations.some(w=>w.indicator===x.indicator&&w.pairs.some(p=>p[0]===x.hi&&p[1]===x.lo)))throw Error('Unreviewed supplied comparison '+x.indicator+' '+x.hi+' '+x.lo);
 const out = {
   generated: 'scripts/build-entity-kb.cjs',
   sources: {countries: stats.meta, economy: economy.meta, groups: groupSeries.meta, extraFacts: extra.about, rankingsCheckedAt: R.checkedAt || null},
-  check: REL.check, goalAgricultureMaxima,
+  check: REL.check, goalAgricultureMaxima, completion,
   factSets: Object.assign(Object.fromEntries(FACT_SETS.filter(id => C.byId[id]).map(id => [id, {
     title: C.byId[id].title, multi: !!C.byId[id].multi, negationSafe: NEGATION_SAFE[id] === 'all', exclusive: EXCLUSIVE.includes(id),
     // Country values come from the classification map's data, not a lecture sentence per country.
@@ -1111,12 +1150,22 @@ for (const t of engine.themes) for (let seed = 1; seed <= PRACTICE_SEEDS; seed++
     if (st.kind === 'category') hit('c|' + q.theme.composition + '|' + st.check.trait);
   }
 }
+// The app's unseen-item queue also uses targeted practice. A relation absent from
+// the random sample must be exercised through that real route before counting it.
+const targetedSamples=[];
+for(const x of relations.filter(x=>x.status==='active'&&!uses[pairKey(x.indicator,x.hi,x.lo)])){
+ const targetKey=x.indicator+'|'+[x.hi,x.lo].sort().join('|'),q=engine.build({targetKey,seed:19});
+ const same=y=>y.indicator===x.indicator&&[y.hi,y.lo].sort().join('|')===[x.hi,x.lo].sort().join('|');
+ if(q&&((q.stage1.basis.relations||[]).some(same)||q.stage2.statements.some(s=>s.kind==='compare'&&same({indicator:s.check.ind,hi:s.check.subject,lo:s.check.object})))){
+  hit(pairKey(x.indicator,x.hi,x.lo));targetedSamples.push({targetKey,seed:19,themeId:q.theme.id});
+ }
+}
 for (const x of relations) if (x.status === 'active') x.practice = uses[pairKey(x.indicator, x.hi, x.lo)] || 0;
 for (const x of signs) if (x.status === 'active') x.practice = uses['s|' + x.indicator + '|' + x.entity] || 0;
 for (const x of orders) if (x.status === 'active') x.practice = uses['o|' + x.composition + '|' + x.entity] || 0;
 for (const x of climateTypes) if (x.status === 'active') x.practice = uses['k|' + x.entity] || 0;
 for (const [cid, list] of Object.entries(categoryFacts)) for (const x of list) if (x.status === 'active') x.practice = uses['c|' + cid + '|' + x.id] || 0;
-out.practiceSample = {seedsPerTheme: PRACTICE_SEEDS, themes: engine.themes.map(t => t.id)};
+out.practiceSample = {seedsPerTheme: PRACTICE_SEEDS, themes: engine.themes.map(t => t.id),targetedSamples};
 
 fs.writeFileSync(process.env.KB_OUT || path.join(ROOT, 'assets/entity-kb.js'),
   '/* Generated by scripts/build-entity-kb.cjs. Do not edit by hand. */\n' +

@@ -1,0 +1,6 @@
+{
+ "date": "2026-10-26",
+ "scope": "초기 185개 누락은 data/goal-completion-review-20261026.json에 보존. 현재 잔여 조건만 아래에 기록.",
+ "resolvedIn": "data/goal-completion-review-20261026.json",
+ "gaps": {}
+}

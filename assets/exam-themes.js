@@ -24,7 +24,7 @@
    // The grain columns (FAOSTAT) are too few for a theme of their own; here they identify and
    // fill <보기> as background, while population stays the theme's focus.
    kind:'indicators',entityType:'continent',domains:[null,'agri'],pool:['아시아','아프리카','유럽','라틴 아메리카','앵글로아메리카','오세아니아'],pick:[3,4],
-   always:['cont-pop'],indicators:['cont-density','cont-urban','cont-nir','cont-old','cont-young','cont-netmig','cont-agingIndex','cont-grainNet','cont-rice'],show:2,
+   tableRecipes:[{chance:0.2,pool:['아시아','아프리카','유럽'],columns:['cont-pop','cont-old','goal-cont-netrate'],providedData:true}],always:['cont-pop'],indicators:['cont-density','cont-urban','cont-nir','cont-old','cont-young','cont-netmig','cont-agingIndex','cont-grainNet','cont-rice'],show:2,
    derived:[{rate:'cont-urban',total:'cont-pop',per:100,noun:'도시 인구'},{rate:'cont-old',total:'cont-pop',per:100,noun:'노년층 인구'},{rate:'cont-young',total:'cont-pop',per:100,noun:'유소년층 인구'}],
    note:'2023년 값이다. 강의(2015년 자료)와 달리 라틴 아메리카의 도시화율이 앵글로아메리카보다 조금 높다(81.0%·80.3%). 이 둘의 도시화율 순서는 묻지 않는다.',
    prompt:'{range}는 {candidates} 중 하나이다. 러시아는 유럽에 포함한다.'
@@ -48,7 +48,7 @@
    positions:true,id:'country-population',status:'ready',title:'국가별 인구 구조와 도시화',lecture:'1권 P05',exams:['2023학년도 수능','2025학년도 6월 16번','2020학년도 6월 14번'],
    kind:'indicators',entityType:'country',map:true,
    pool:['나이지리아','니제르','에티오피아','말리','세네갈','우간다','탄자니아','수단','이집트','알제리','일본','독일','프랑스','폴란드','스웨덴','벨기에','영국','미국','멕시코','브라질','아르헨티나','인도','인도네시아','베트남','말레이시아','타이','튀르키예','카타르','보츠와나','콩고 민주 공화국'],
-   pick:[2,3],always:['pop'],indicators:['young','old','urban','nir'],show:2,
+   tableRecipes:[{chance:0.2,pool:['인도','멕시코','독일'],columns:['pop','old','goal-country-netrate'],providedData:true}],pick:[2,3],always:['pop'],indicators:['young','old','urban','nir'],show:2,
    derived:[{rate:'urban',total:'pop',per:100,noun:'도시 인구'},{rate:'old',total:'pop',per:100,noun:'노년층 인구'},{rate:'young',total:'pop',per:100,noun:'유소년층 인구'},{rate:'nir',total:'pop',per:1000,noun:'자연 증가한 인구 수'}],
    // 인구·도시 문항의 <보기>가 함께 묻는 위치·도시·블록·종교.
    followups:{facts:['capitalCity','seas','capitalHighland','riverMainstem','bloc','euro','religion','hemisphere','equator','meridian','landlocked','cancer','capricorn','arcticCircle'],focus:['capitalCity']},
@@ -95,11 +95,11 @@
    prompt:'{range}는 {candidates} 중 하나이다. 표는 1950년과 2020년의 대륙별 도시 인구·촌락 인구(백만 명)이다.'
   },
   {
-   id:'country-economy',status:'ready',title:'국가별 GDP·산업 구조',lecture:'1권 P05 · 2권 P08·P10',exams:['2026학년도 수능 7번','2024학년도 6월 9번','2026학년도 6월 18번'],
+   id:'country-economy',completionVariants:[{pool:['미국','중국','일본'],pick:[3,3],indicators:['goal-gdp2021','goal-industry2021'],show:2,tableRecipes:null,always:[],oneColumn:true,derived:[{rate:'goal-industry2021',total:'goal-gdp2021',per:100,noun:'2021년 2차 산업 부가가치',goalId:'G097-4'}],note:'GDP와 2차 산업 비중은 모두 2021년 WDI 제시값이다.'},{pool:['중국','나이지리아','사우디아라비아'],pick:[3,3],indicators:['goal-sector2','goal-sector3'],show:2,always:[],oneColumn:true,tableRecipes:null,derived:[],note:'총산업부가가치=100. 1차+2차+3차=100으로 재계산한 구성비이며 GDP 대비 비중과 다르다.'}],status:'ready',title:'국가별 GDP·산업 구조',lecture:'1권 P05 · 2권 P08·P10',exams:['2026학년도 수능 7번','2024학년도 6월 9번','2026학년도 6월 18번'],
    productivity:true,positions:true,damp:{일본:0.45,중국:0.45,인도:0.6},kind:'indicators',entityType:'country',map:true,
    pool:['중국','일본','영국','프랑스','폴란드','알제리','나이지리아','보츠와나','콩고 민주 공화국','독일','우크라이나','멕시코','이집트','인도','브라질','아르헨티나','칠레','타이','탄자니아','사우디아라비아','튀르키예'],
    pick:[2,3],indicators:['pop','gdp','gdppc','manufacturing','agriculture','industry','services','industryEmployment','exports'],show:2,
-   tableRecipes:[{chance:0.20,pool:['독일','프랑스','영국'],columns:['gdp','industry']},{chance:0.4,pool:['중국','일본','영국'],columns:['industry','manufacturingInIndustry']},
+   tableRecipes:[{chance:0.20,pool:['독일','프랑스','영국'],columns:['gdp','industry']},{chance:0.5,pool:['중국','일본','영국'],columns:['industry','manufacturingInIndustry']},
     // 2026학년도 6월 18번 (L1-B1590): 영국 > 타이 도시화율, 타이 > 탄자니아 2차 산업 종사자 비율,
     // 영국 > 탄자니아 1인당 GDP. The first two columns identify the three only together; the third
     // comparison is left for a <보기>.
@@ -120,7 +120,7 @@
    prompt:'{range}는 {candidates} 중 하나이다. 표는 상품 수출액의 품목별 비중과 총액이다. 같은 품목의 비중과 수출 금액을 구별한다.'
   },
   {
-   id:'export-items',status:'ready',title:'국가별 수출 상위 품목',lecture:'2권 P08',exams:['2022학년도 수능 3번'],
+   id:'export-items',completionVariants:[{pool:['중국','일본','인도네시아','오스트레일리아'],pick:[4,4],year:'2018',source:'강의 L2-rId232 · 2018년 기출 제시 자료',itemShares:false,items:{'중국':[['기계류'],['의류'],['섬유 직물'],['금속 제품'],['자동차']],'일본':[['기계류'],['자동차'],['정밀 기계'],['철강'],['화학 제품']],'인도네시아':[['석탄'],['팜유'],['기계류'],['천연가스'],['의류']],'오스트레일리아':[['석탄'],['철광석'],['금'],['육류'],['기계류']]},note:'2018년 원그림에 나오는 품목을 순서대로 제시한다. 그림의 대략적인 막대 길이를 정확한 비중으로 옮기지 않는다.'}],status:'ready',title:'국가별 수출 상위 품목',lecture:'2권 P08',exams:['2022학년도 수능 3번'],
    kind:'items',entityType:'country',map:true,concepts:true,pool:['나이지리아','칠레','케냐','브라질'],pick:[3,4],
    year:'2019',source:'한국교육과정평가원 2022학년도 수능 3번(강의 2권 P08)',
    items:{
@@ -136,7 +136,7 @@
    prompt:'{range}는 {candidates} 중 하나이다. 표는 수출액 상위 세 품목과 비중(%)이다.'
   },
   {
-   id:'electricity-mix',status:'ready',title:'국가별 전력 생산 구성',lecture:'2권 P07',exams:['2025학년도 수능 9번','2027학년도 6월 8번'],
+   id:'electricity-mix',completionVariants:[{composition:'renewableFour',noColumns:true,pool:['중국','브라질','독일','덴마크','케냐','뉴질랜드'],pick:[3,3],show:['hydro','wind','solar','bioenergy'],hideable:['hydro','wind','solar','bioenergy'],note:'2023년 수력·풍력·태양광·바이오에너지의 자국 합=100%. 총발전량·세계 점유율과 구별한다.'}],status:'ready',title:'국가별 전력 생산 구성',lecture:'2권 P07',exams:['2025학년도 수능 9번','2027학년도 6월 8번'],
    kind:'composition',composition:'electricity',what:'발전량 구성과 총발전량',entityType:'country',reveals:[],map:true,
    pool:['프랑스','노르웨이','브라질','네팔','아이슬란드','덴마크','캐나다','중국','인도','러시아','이란','독일','케냐','미국','남아프리카 공화국','오스트레일리아'],
    // The verified top sources are only 원자력·수력·풍력, so three 대상, each identified by its own.
@@ -145,12 +145,12 @@
    prompt:'{range}는 {candidates} 중 하나이다. 표는 발전원별 발전량 비중(%)과 총발전량이다. 비중과 발전량을 구별한다.'
   },
   {
-   id:'climate-graphs',status:'ready',title:'기후 그래프로 지역 판별',lecture:'1권 P02',exams:['2025학년도 수능 13번','2024학년도 9월 6번','2026학년도 수능 11번'],
+   id:'climate-graphs',allowSeasonalSites:['바마코'],status:'ready',title:'기후 그래프로 지역 판별',lecture:'1권 P02',exams:['2025학년도 수능 13번','2024학년도 9월 6번','2026학년도 수능 11번'],
    kind:'climate',entityType:'site',map:true,everyKnown:true,
    // Stations with complete 1991~2020 monthly temperature and precipitation (data/climate-normals.json,
    // plus 싱가포르(창이) from data/climate-normals-extension.json and 이키토스·다르에스살람 from
    // data/climate-normals-round2.json).
-   pool:['양곤','발릭파판','다윈','배로(우트키아빅)','퍼스','오클랜드','파리','케이프타운','푸저우','보고타','런던','마르세유','마나우스','딕슨','치타','몬트리올','상파울루','라바트','쿤밍','크라이스트처치','샌프란시스코','선양','덴버','로차','더블린','메시나','브리즈번','창춘','디트로이트','블라디보스토크','로마','보스토크(남극)','리마','브라질리아','아디스아바바','시안','모스크바','로스앤젤레스','싱가포르(창이)','이키토스','다르에스살람'],
+   pool:['바마코','양곤','발릭파판','다윈','배로(우트키아빅)','퍼스','오클랜드','파리','케이프타운','푸저우','보고타','런던','마르세유','마나우스','딕슨','치타','몬트리올','상파울루','라바트','쿤밍','크라이스트처치','샌프란시스코','선양','덴버','로차','더블린','메시나','브리즈번','창춘','디트로이트','블라디보스토크','로마','보스토크(남극)','리마','브라질리아','아디스아바바','시안','모스크바','로스앤젤레스','싱가포르(창이)','이키토스','다르에스살람'],
    // City places share the site type; their fact sets belong to the world-city theme only.
    pick:[3,4],followups:{facts:[],focus:[]},
    note:'1991~2020년 관측소 평년값이다. 연교차 = 최난월 평균 기온 − 최한월 평균 기온. 남반구는 계절이 반대이다. 고산 기후는 저위도인데도 연중 서늘하고 연교차가 작다.',
@@ -173,7 +173,7 @@
   {
    id:'primary-energy',status:'ready',title:'국가별 1차 에너지 소비 구성',lecture:'2권 P07',exams:['2024학년도 6월 10번','2022학년도 6월 15번','2020학년도 수능 4번'],
    kind:'composition',composition:'primaryEnergy',entityType:'country',map:true,everyKnown:true,
-   pool:['중국','인도','러시아','이란','브라질','남아프리카 공화국'],
+   pool:['미국','중국','인도','러시아','이란','브라질','남아프리카 공화국'],
    // Two-country questions too: 중국·인도·남아공 (석탄 1위) and 러시아·이란 (가스 > 석유) cannot share a
    // question, so with three every question would hold 브라질.
    pick:[2,3],show:['coal','oil','gas','nuclear','hydro','renewables'],hideable:['coal','oil','gas','hydro'],amountNoun:'소비량',what:'1차 에너지 소비 구성과 소비량',

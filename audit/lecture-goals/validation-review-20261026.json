@@ -1,0 +1,51 @@
+{
+ "date": "2026-10-26",
+ "baseMain": "1c08ea9a35794f89534ea6b5bf79d0aeac82ca88",
+ "fullSuite": {
+  "command": "node --test tests/*.test.cjs",
+  "tests": 277,
+  "pass": 274,
+  "fail": 0,
+  "skipped": 3,
+  "cancelled": 0
+ },
+ "focused": {
+  "command": "node --test tests/materials*.test.cjs tests/lecture-goal*.test.cjs",
+  "tests": 51,
+  "pass": 51,
+  "fail": 0,
+  "skipped": 0,
+  "cancelled": 0
+ },
+ "regression": {
+  "newTests": 10,
+  "issueClasses": 8
+ },
+ "browser": {
+  "engine": "153.0.8010.0",
+  "cases": 312,
+  "errors": 0,
+  "clippedFamilies": 0,
+  "report": "audit/lecture-goals/browser-qa-20261026.json"
+ },
+ "generation": {
+  "materials": 16640,
+  "existingExam": 10000
+ },
+ "goals": {
+  "reviewed": 573,
+  "verified": 388,
+  "partial": 185,
+  "unimplemented": 0,
+  "completeGroups": 41,
+  "totalGroups": 139,
+  "reopenedVerifiedGoals": [
+   "G016-3",
+   "G018-3",
+   "G018-5",
+   "G022-1"
+  ]
+ },
+ "scope": "완료 기준·연결 내용·출제 계산과 화면 검수. 외부 통계 전체의 재감사는 아님.",
+ "skips": "강의 원문 lecture-blocks.json을 공개 저장소에서 제외하므로 원문 의존 3개 검사 생략. 원본 강의 DOCX·강의 전문은 이번 변경에도 추가하지 않음."
+}

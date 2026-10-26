@@ -65,7 +65,7 @@ test('all religion rank symbols are present and recover the two leaders in both 
 });
 
 test('all six statistical map types are drawable and four-country assignments have compact options',()=>{
- for(let seed=0;seed<6;seed++){const q=E.build('stat-map-types',seed);assert.equal(q.stage1.answer,seed);assert.equal(q.figures[0].mode,seed);assert.ok(!/NaN|Infinity|undefined/.test(C.render(q.figures[0])));}
+ for(let seed=0;seed<6;seed++){const q=E.build('stat-map-types',seed);assert.equal(q.stage1.options[q.stage1.answer],['단계 구분도','점묘도','유선도','도형표현도','등치선도','왜상 지도'][seed]);assert.equal(q.figures[0].mode,seed);assert.ok(!/NaN|Infinity|undefined/.test(C.render(q.figures[0])));}
  for(const id of ['andes-conditions','asian-export-items'])for(let seed=1;seed<=30;seed++){const q=E.build(id,seed);assert.equal(q.assignment.length,4);assert.equal(q.stage1.options.length,5);assert.equal(q.stage1.options[q.stage1.answer],q.assignment.join(' · '));assert.ok(!q.stage1.question.includes('undefined'));}
 });
 

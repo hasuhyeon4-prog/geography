@@ -91,17 +91,17 @@ test('relative and subset religion denominators remain distinct from country tot
 test('climate restoration preserves the sign of the coldest month and urban slopes are not urban percentages',()=>{
  for(let seed=1;seed<=60;seed++){
   const q=E.build('climate-restore',seed);
-  for(let i=0;i<3;i++)close(q.tables[0].rows[i][1]+q.tables[0].rows[i][2],Math.max(...D.climate.sites[q.assignment[i]].t));
+  for(let i=0;i<3;i++)close(q.tables[0].rows[i][1]+q.tables[0].rows[i][2],Math.max(...D.climate.sites[q.stationNames[i]].t));
   const s=E.build('urban-rural-scatter',seed);assert.equal(s.figures[0].movements.length,3);assert.equal(s.figures[0].zero,true);
   assert.match(s.note,/기울기와 값 자체는 다르다/);
   const svg=C.render(s.figures[0]);assert.match(svg,/<polygon/);assert.ok(!/NaN|Infinity/.test(svg));
  }
 });
 
-test('unfinished map and historical-capital clauses stay visible and GDP residuals are not renamed agriculture',()=>{
+test('restored map and historical-capital clauses retain evidence and GDP residuals are not renamed agriculture',()=>{
  const p=require('../audit/lecture-goals/progress.json');
- for(const id of ['G062-5','G133-1']){const x=p.items.find(x=>x.id===id);assert.equal(x.status,'구현');assert.ok(x.remaining);}
- assert.match(p.items.find(x=>x.id==='G133-1').remaining,/지도/);
+ for(const id of ['G062-5','G133-1']){const x=p.items.find(x=>x.id===id),c=require('../data/goal-completion-review-20261026.json').items.find(x=>x.id===id);assert.equal(x.status,'검증');assert.ok(c.initialRemaining&&c.evidence.length>=4);}
+ assert.match(E.build('capital-share',1).source,/2018/);assert.ok(E.build('climate-restore',1).figures.some(f=>f.kind==='map'));
  assert.ok(p.limitations.some(x=>/G127-2.*100/.test(x)));
  const v=require('../data/economy-indicators.json').countries['인도'].values;
  assert.ok(Math.abs((100-v.industry-v.services)-v.agriculture)>1);

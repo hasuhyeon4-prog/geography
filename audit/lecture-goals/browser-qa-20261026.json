@@ -1,0 +1,269 @@
+{
+ "date": "2026-10-26",
+ "browser": "153.0.8010.0",
+ "viewports": [
+  {
+   "viewport": {
+    "width": 390,
+    "height": 844
+   },
+   "families": 106,
+   "clippedLabels": []
+  },
+  {
+   "viewport": {
+    "width": 810,
+    "height": 1080
+   },
+   "families": 106,
+   "clippedLabels": []
+  },
+  {
+   "viewport": {
+    "width": 1280,
+    "height": 900
+   },
+   "families": 106,
+   "clippedLabels": []
+  }
+ ],
+ "errors": [],
+ "screenshots": [
+  "390-north-america-trade.png",
+  "390-population-pyramid.png",
+  "810-climate-restore.png",
+  "810-cumulative.png",
+  "810-age-triangle.png",
+  "810-stat-map-types.png",
+  "810-trade-bubble.png",
+  "810-population-pyramid.png",
+  "810-road-images.png",
+  "810-religious-landmarks.png",
+  "810-oldmap-regions.png",
+  "810-china-grain-map.png",
+  "810-industry-bubble.png"
+ ],
+ "extraCases": {
+  "date": "2026-10-26",
+  "browser": "153.0.8010.0",
+  "cases": [
+   {
+    "themeId": "country-economy",
+    "seed": 5,
+    "width": 390,
+    "composition": null,
+    "goals": [
+     "G127-2"
+    ]
+   },
+   {
+    "themeId": "country-economy",
+    "seed": 10,
+    "width": 390,
+    "composition": null,
+    "goals": [
+     "G097-4",
+     "G097-4"
+    ]
+   },
+   {
+    "themeId": "electricity-mix",
+    "seed": 5,
+    "width": 390,
+    "composition": "renewableFour",
+    "goals": [
+     "G138-3",
+     "G138-3",
+     "G089-5"
+    ]
+   },
+   {
+    "themeId": "export-items",
+    "seed": 5,
+    "width": 390,
+    "composition": null,
+    "goals": [
+     "G123-5"
+    ]
+   },
+   {
+    "themeId": "primary-energy",
+    "seed": 4,
+    "width": 390,
+    "composition": "primaryEnergy",
+    "goals": [
+     "G085-3"
+    ]
+   },
+   {
+    "themeId": "country-population",
+    "seed": 1,
+    "width": 390,
+    "composition": null,
+    "goals": [
+     "G057-3"
+    ]
+   },
+   {
+    "themeId": "continent-indicators",
+    "seed": 1,
+    "width": 390,
+    "composition": null,
+    "goals": [
+     "G057-3"
+    ]
+   },
+   {
+    "themeId": "climate-graphs",
+    "seed": 18,
+    "width": 390,
+    "composition": null,
+    "goals": [
+     "G015-4"
+    ]
+   },
+   {
+    "themeId": "country-economy",
+    "seed": 5,
+    "width": 810,
+    "composition": null,
+    "goals": [
+     "G127-2"
+    ]
+   },
+   {
+    "themeId": "country-economy",
+    "seed": 10,
+    "width": 810,
+    "composition": null,
+    "goals": [
+     "G097-4",
+     "G097-4"
+    ]
+   },
+   {
+    "themeId": "electricity-mix",
+    "seed": 5,
+    "width": 810,
+    "composition": "renewableFour",
+    "goals": [
+     "G138-3",
+     "G138-3",
+     "G089-5"
+    ]
+   },
+   {
+    "themeId": "export-items",
+    "seed": 5,
+    "width": 810,
+    "composition": null,
+    "goals": [
+     "G123-5"
+    ]
+   },
+   {
+    "themeId": "primary-energy",
+    "seed": 4,
+    "width": 810,
+    "composition": "primaryEnergy",
+    "goals": [
+     "G085-3"
+    ]
+   },
+   {
+    "themeId": "country-population",
+    "seed": 1,
+    "width": 810,
+    "composition": null,
+    "goals": [
+     "G057-3"
+    ]
+   },
+   {
+    "themeId": "continent-indicators",
+    "seed": 1,
+    "width": 810,
+    "composition": null,
+    "goals": [
+     "G057-3"
+    ]
+   },
+   {
+    "themeId": "climate-graphs",
+    "seed": 18,
+    "width": 810,
+    "composition": null,
+    "goals": [
+     "G015-4"
+    ]
+   },
+   {
+    "family": "religious-landmarks",
+    "seed": 1,
+    "width": 390
+   },
+   {
+    "family": "religious-landmarks",
+    "seed": 2,
+    "width": 390
+   },
+   {
+    "family": "religious-landmarks",
+    "seed": 3,
+    "width": 390
+   },
+   {
+    "family": "religious-landmarks",
+    "seed": 4,
+    "width": 390
+   },
+   {
+    "family": "religious-landmarks",
+    "seed": 5,
+    "width": 390
+   },
+   {
+    "family": "religious-landmarks",
+    "seed": 6,
+    "width": 390
+   },
+   {
+    "family": "religious-landmarks",
+    "seed": 7,
+    "width": 390
+   },
+   {
+    "family": "religious-landmarks",
+    "seed": 8,
+    "width": 390
+   },
+   {
+    "family": "religious-landmarks",
+    "seed": 9,
+    "width": 390
+   },
+   {
+    "family": "religious-landmarks",
+    "seed": 10,
+    "width": 390
+   },
+   {
+    "family": "religious-landmarks",
+    "seed": 11,
+    "width": 390
+   }
+  ],
+  "errors": []
+ },
+ "scope": "실제 페이지에서 단계별 채점·다음 문항·그림 클릭을 확인. 추가 27건은 지정 기출형 경로 16건과 종교 건축 사진 11건. 원시 평년값·통계 및 내용 검증은 별도 검사.",
+ "sourceSHA256": {
+  "exam.html": "4dd7477b5e566baa2f6711cfe50d157d34da4ea8f130f6589db400d982c67f27",
+  "materials.html": "0d406d2cc7f3a53b016e69fcd5d30b04f7198500987aa77fa4357917137466be",
+  "assets/materials-engine.js": "179f4a90759126feb1ce0a499da4492fbb5b4a5b69e103f95adee221c97619a8",
+  "assets/materials-remaining.js": "6d15f9bee97a163d09daca56fad6e076decf06b6a0fc6c478c25274b039c586a",
+  "assets/materials-charts.js": "4dd90ebe5b81484cadfd12ad7cb8a479cf47a438981365d864770dfab7cd5a27",
+  "assets/materials-page.js": "c64ac85f7bb134a393681ad7333699e163d4b1c91b70df0476f5ad5b15a6d6ea",
+  "assets/exam-engine.js": "d73549a2719dec8e127dcc1715c74c6899f2d98241506746fca0f3e40615a998",
+  "assets/exam-themes.js": "f66df5bb84cdd0fa2d05054041ce9e9e376ddc112c1e9243e21b00be87183526"
+ }
+}

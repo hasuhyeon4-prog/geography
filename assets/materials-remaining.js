@@ -48,11 +48,13 @@ function create(data,D,H){
   return finish(q,r);
  }
  function dependencyChange(seed){
-  var r=seedState(seed),names=shuffle(['차드','튀르키예','일본'],r),q=start('dependency-change','두 시점 부양비 변화',seed,'WDI 연령 구성 · 2010·2023년');q.note='같은 연도의 청장년 비율=100−유소년−노년이다. 노년층 비율 한 항목만으로 총부양비 변화를 정하지 않는다. 강의의 과거 차드 사례와 판본·기간은 다르다.';
-  var rows=names.map(function(n){var s=D.countries[n].series;return{name:n,a:A.age(s.young['2010'],s.old['2010']),b:A.age(s.young['2023'],s.old['2023'])};});
-  q.tables.push(table(['국가','2010 유소년(%)','2010 노년(%)','2023 유소년(%)','2023 노년(%)'],rows.map(function(x){return[x.name,x.a.y,x.a.o,x.b.y,x.b.o];}),'두 시점 연령 구성'));
-  winner(q,names,rows.map(function(x){return x.b.old-x.a.old;}),'노년 부양비 상승 폭이 가장 큰 국가는?','두 시점 각각 노년층÷청장년층×100을 계산한다.');
-  rows.forEach(function(x){q.pairs.push(pair('G059-1',x.name+'의 2023년 총부양비는 약 '+fmt(x.b.total)+'이다.',x.name+'의 2023년 총부양비는 약 '+fmt(x.b.y+x.b.o)+'이다.','총부양비의 분모는 전체 인구가 아니라 청장년층이다.',{op:'dependency',young:x.b.y,old:x.b.o,result:x.b.total}));});
+  var r=seedState(seed),names=shuffle(['차드','튀르키예'],r),q=start('dependency-change','두 시점 부양비 변화',seed,'강의 1권 P05 · 차드와 터키와 프랑스의 부양비 변화 · 1955·2015년 제시 자료');
+  q.note='강의의 두 시점 연령 구성을 사용한다. 청장년층=100−유소년층−노년층이며 실제 취업·부양 여부를 조사한 값이 아니다.';
+  var source=data.continuation.dependency1955,rows=names.map(function(n){var x=source[n];return{name:n,a:A.age(x[0],x[1]),b:A.age(x[2],x[3])};});
+  q.tables.push(table(['국가','1955 유소년(%)','1955 노년(%)','2015 유소년(%)','2015 노년(%)'],rows.map(function(x){return[x.name,x.a.y,x.a.o,x.b.y,x.b.o];}),'기출 제시 연령 구성'));
+  winner(q,names,rows.map(function(x){return x.b.total-x.a.total;}),'총부양비의 증가 폭이 가장 큰 국가는?','두 시점 각각 (유소년+노년)÷청장년×100을 계산한다.');
+  rows.forEach(function(x){q.pairs.push(pair('G059-1',x.name+'의 2015년 총부양비는 약 '+fmt(x.b.total)+'이다.',x.name+'의 2015년 총부양비는 약 '+fmt(x.b.y+x.b.o)+'이다.','총부양비의 분모는 전체 인구가 아니라 청장년층이다.',{op:'dependency',young:x.b.y,old:x.b.o,result:x.b.total}));});
+  q.pairs.push(pair('G059-1','차드는 노년층 비율이 낮아졌지만 유소년층 증가로 총부양비는 높아졌다.','차드는 노년층 비율이 낮아졌으므로 총부양비도 낮아졌다.','차드: 43.6÷56.4×100≈77.3 → 50.1÷49.9×100≈100.4. 두 연령층을 합한 뒤 분모를 복원한다.',{op:'dependencyCounterexample',country:'차드',before:[39.5,4.1],after:[47.6,2.5]}));
   q.pairs.push(pair('G059-1','청장년층 비율이 높아져도 노년 부양비가 높아질 수 있다.','청장년층 비율이 높아지면 노년 부양비는 반드시 낮아진다.','튀르키예의 두 시점에서 노년층 증가와 청장년층 변화를 함께 계산한다.',{op:'dependencyChange',turkiye:rows.find(function(x){return x.name==='튀르키예';})}));
   return finish(q,r);
  }
@@ -190,26 +192,47 @@ function create(data,D,H){
   q.pairs.push(pair('G137-3','원이 큰 국가는 1인당 GDP가 높지만 총GDP가 반드시 큰 것은 아니다.','원이 큰 국가는 총인구와 관계없이 총GDP도 반드시 크다.','총GDP=1인당 GDP×인구이다. 원의 범례를 먼저 확인한다.',{op:'gdpBubbleDenominator'}));
   return finish(q,r);
  }
+ function religiousLandmarks(seed){
+  var ids=['giralda','koutoubia','sultan-ahmed','hagia-sophia','angkor-wat','borobudur','prambanan','hindu-temple','church','buddhist-temple','mosque'],r=seedState(seed),p=D.panels.find(function(x){return x.id===ids[(seed-1)%ids.length];}),q=start('religious-landmarks','건축물·도시·국가 대응',seed,p.attribution||'강의 L1-rId130 · 싱가포르의 네 종교 건축');
+  q.credit=p.license?{author:p.author,license:p.license,licenseUrl:p.licenseUrl,url:p.sourceUrl}:null;var singapore={'hindu-temple':['스리 마리암만 사원','힌두교','인물 조각이 밀집한 고푸람'],church:['세인트앤드루스 성당','크리스트교','십자가와 고딕식 첨탑'],'buddhist-temple':['불아사(불아룡화원)','불교','동아시아식 여러 층 지붕과 불교 사원'],mosque:['술탄 모스크','이슬람교','황금색 돔과 미나레트']},x=singapore[p.id],name=x?x[0]:p.answer,city=x?'싱가포르':p.city,country=x?'싱가포르':p.country,religion=x?x[1]:p.religion,clue=x?x[2]:p.clue;
+  q.note='건축물의 기원과 이후 종교적 기능 변화를 구별한다. 복합 유산은 한 시점의 단일 종교로 고정하지 않는다.';q.figures.push({kind:'image',src:p.path,name:'제시 건축 사진'});
+  var correct=name+' · '+city+' · '+country,options=[correct,'히랄다 탑 · 마라케시 · 모로코','보로부두르 · 시엠레아프 · 캄보디아','프람바난 · 이스탄불 · 튀르키예','쿠투비아 모스크 · 세비야 · 에스파냐'];
+  q.stage1={question:'건축물·도시(인근)·국가의 연결로 옳은 것은?',options:options,answer:0,explain:correct+'. 단서: '+clue+'. 종교·기능: '+religion+'.'};
+  q.pairs.push(pair('G044-2',name+'는 '+city+' 일대의 '+country+' 문화유산이다.',name+'는 위 선택지에서 건축 이름을 바꾸어도 모두 같은 국가의 유산이다.',q.stage1.explain,{op:'landmarkLocation',panel:p.id,city:city,country:country,religion:religion}));
+  q.pairs.push(pair('G044-2',name+'의 종교·기능은 '+religion+'와 연결한다.','모든 종교 건축물은 건립 이후 종교·용도가 한 번도 변하지 않았다.','히랄다·아야소피아·앙코르와트는 특히 기원과 이후 기능을 구별한다. '+q.stage1.explain,{op:'landmarkHistory',panel:p.id}));
+  return finish(q,r);
+ }
+ function oldmapRegions(seed){
+  var r=seedState(seed),to=seed%2===1,p=D.panels.find(function(x){return x.id===(to?'to-map':'idrisi');}),targets=to?[['지중해',.49,.70],['나일강',.72,.53],['아시아',.50,.35]]:[['인도양',.23,.42],['대륙 내부',.50,.27],['대륙 내부',.73,.72]],target=targets[to?Math.floor((seed-1)/2)%3:0],pointLetters=shuffle(['A','B','C'],r),q=start('oldmap-regions','고지도 위 영역 선택',seed,'강의 L1-rId122 · 공개한 원그림의 상대 위치');
+  q.note=(to?'동쪽':'남쪽')+'이 위인 지도이다. 현대 북쪽 위 지도와 방향을 먼저 구별한다. 그림의 문자 원을 누르거나 아래 선택지를 고른다.';
+  q.stage1={question:'그림 위 '+target[0]+'에 표시한 문자는?',options:['A','B','C'],answer:'ABC'.indexOf(pointLetters[targets.indexOf(target)]),explain:(to?'T-O 지도의 세로 T줄기=지중해, 오른쪽 가로줄=나일강, 위쪽=아시아.':'알 이드리시 지도는 남쪽이 위이다. 아프리카 동쪽·아시아 남쪽에 해당하는 그림 왼쪽의 바다가 인도양이다.')};
+  q.figures.push({kind:'image-regions',src:p.path,name:to?'T-O 지도':'알 이드리시 지도',width:p.width,height:p.height,regions:targets.map(function(x,i){return{x:x[1],y:x[2],letter:pointLetters[i]};})});
+  q.pairs.push(pair('G006-2','지도 위쪽 방향을 먼저 확인하면 바다·대륙·하천의 상대 배치를 대응할 수 있다.','모든 고지도는 북쪽이 위이므로 위쪽은 언제나 북극 방향이다.',q.stage1.explain,{op:'historicalMapRegions',panel:p.id,target:target[0]}));
+  q.pairs.push(pair('G006-2','T-O 지도에서 아시아는 위쪽, 유럽은 왼쪽 아래, 아프리카는 오른쪽 아래이다.','T-O 지도에서 아시아는 아래쪽, 유럽은 오른쪽 위, 아프리카는 왼쪽 위이다.','T-O 지도는 동쪽이 위이다.',{op:'toMapContinents'}));
+  q=finish(q,r);q.figures[0].regions.forEach(function(m){m.option=q.stage1.options.indexOf(m.letter);});return q;
+ }
  function photo(mode,seed){
   var r=seedState(seed),spec={
    'oldmap-images':{title:'고지도 원그림 식별',goal:'G006-1',ids:['babylon','ptolemy','to-map','idrisi','cheonhado','daeming','kangnido','kunyu','hemispheres','hereford','portolan','mercator']},
    'coast-images':{title:'해안 경관과 형성 작용',goal:'G036-3',ids:['mangrove','coral','lagoon','sea-stack']},
-   'religious-buildings':{title:'건축 경관의 종교',goal:'G044-1',ids:['hindu-temple','church','buddhist-temple','mosque']},
+   'religious-buildings':{title:'건축 경관의 종교',goal:'G044-1',ids:['hindu-temple','church','buddhist-temple','mosque','saint-basil','borobudur','prambanan','koutoubia']},
    'traditional-houses':{title:'전통 가옥과 환경 적응',goal:'G052-3',ids:['ger','gassho','stilt']},
    'road-images':{title:'도시 일부 구역의 도로망',goal:'G067-1',ids:['manhattan','paris-roads']},
-   'city-images':{title:'도시 문화 경관',goal:'G067-2',ids:['rio','mexico-city','cusco']},
+   'city-images':{title:'도시 문화 경관',goal:'G067-2',ids:['rio','mexico-city','cusco','tower-bridge','sydney-opera']},
    'irrigation-images':{title:'두 관개 방식의 사진',goal:'G073-1',ids:['pivot-irrigation','qanat']}
-  }[mode],selected=D.panels.find(function(p){return p.id===spec.ids[(seed-1)%spec.ids.length];}),q=start(mode,spec.title,seed,'평가원 원그림 · 강의 '+selected.sourceFigure+' 수록 패널');
-  q.note='제시 그림의 구조·배치·경관 단서를 보고 판단한다. 해설용 이름·제목 부분은 그림에서 제외했다.';
+  }[mode],selected=D.panels.find(function(p){return p.id===spec.ids[(seed-1)%spec.ids.length];}),q=start(mode,spec.title,seed,selected.attribution||'평가원 원그림 · 강의 '+selected.sourceFigure+' 수록 패널');
+  q.credit=selected.license?{author:selected.author,license:selected.license,licenseUrl:selected.licenseUrl,url:selected.sourceUrl}:null;q.note='제시 그림의 구조·배치·경관 단서를 보고 판단한다. 해설용 이름·제목 부분은 그림에서 제외했다.';
   q.figures.push({kind:'image',src:selected.path,name:'제시 그림'});
-  var options=shuffle([selected.answer].concat(shuffle(spec.ids.filter(function(id){return id!==selected.id;}),r).slice(0,4).map(function(id){return D.panels.find(function(p){return p.id===id;}).answer;})),r);
-  q.stage1={question:'제시 그림에 해당하는 대상은?',options:options,answer:options.indexOf(selected.answer),explain:'정답은 '+selected.answer+'이다. 그림의 구체적인 식별 단서를 함께 확인한다.'};
+  var category=mode==='religious-buildings',answer=category?(selected.religion||{'hindu-temple':'힌두교',church:'크리스트교','buddhist-temple':'불교',mosque:'이슬람교'}[selected.id]):selected.answer;
+  var options=category?['힌두교','크리스트교','불교','이슬람교']:Array.from(new Set([answer].concat(spec.ids.filter(function(id){return id!==selected.id;}).map(function(id){return D.panels.find(function(p){return p.id===id;}).answer;}))));
+  options=shuffle(options,r).slice(0,5);if(options.indexOf(answer)<0)options[0]=answer;
+  q.stage1={question:category?'제시 건축의 종교는?':'제시 그림에 해당하는 대상은?',options:options,answer:options.indexOf(answer),explain:'정답은 '+answer+'이다.'};
   var clues={babylon:'점토판의 원형 세계',ptolemy:'경위선이 표현된 구세계', 'to-map':'원 안의 T자와 아시아·유럽·아프리카',idrisi:'남쪽이 위인 구세계',cheonhado:'실제·상상 지명이 섞인 원형 관념도',daeming:'중국이 크게 표현된 구세계',kangnido:'중국 중심의 구세계와 확대된 조선',kunyu:'아메리카가 보이는 타원형 세계',hemispheres:'동·서 두 반구의 원형 지도',hereford:'크리스트교 세계관의 T-O 계열',portolan:'연안·항구와 나침반 항해선',mercator:'직선 경위선의 세계 지도',mangrove:'물 위로 드러난 뿌리의 해안 숲',coral:'산호의 석회질 유해가 쌓인 섬',lagoon:'사주에 가로막힌 해안 호수','sea-stack':'해안 절벽과 분리된 바위섬', 'hindu-temple':'인물 조각이 밀집한 사원탑',church:'십자가가 있는 높은 첨탑과 성당 구조','buddhist-temple':'층을 이룬 동아시아식 지붕과 불교 사원',mosque:'돔과 첨탑이 결합한 모스크',ger:'분해·조립하는 원형 골조와 펠트 덮개',gassho:'눈을 흘려보내는 가파른 지붕',stilt:'높인 바닥과 통풍되는 하부 공간',manhattan:'직교하는 격자형 도로가 보이는 맨해튼 일부','paris-roads':'개선문 주변에서 뻗는 방사형 도로',rio:'산 정상의 예수상과 해안 도시 경관','mexico-city':'대규모 격자형 구시가와 소칼로 주변',cusco:'아르마스 광장과 식민 시대 건축','pivot-irrigation':'중앙 수원을 축으로 회전하는 장치와 원형 농지',qanat:'지하 수로의 유지·관리용 수직 구멍이 줄지어 있음'};
-  q.stage1.explain+=' 단서: '+clues[selected.id]+'.';
+  clues[selected.id]=selected.clue||clues[selected.id];q.stage1.explain+=' 단서: '+clues[selected.id]+'.';
   q.pairs.push(pair(spec.goal,'이 그림의 식별 단서는 '+clues[selected.id]+'이다.','이 그림만으로 해당 지역의 모든 주민·시설·지형이 같은 유형이라고 확정할 수 있다.','사진·지도에 나타난 범위와 대상의 구조를 확인한다. 일부 경관을 전체 지역으로 확대하지 않는다.',{op:'figureIdentification',panel:selected.id,answer:selected.answer,sha256:selected.sha256}));
   if(mode==='oldmap-images')q.pairs.push(pair('G006-2','T-O 지도는 동쪽, 알 이드리시 지도는 남쪽이 위에 표현된다.','T-O 지도와 알 이드리시 지도는 모두 북쪽이 위이므로 대륙 배치도 오늘날 지도와 같다.','위쪽 방향을 확인한 뒤 아시아·지중해·인도양·나일강의 배치를 연결한다.',{op:'historicalOrientation'}));
   else if(mode==='coast-images')q.pairs.push(pair(spec.goal,'맹그로브·산호섬의 생물 작용, 석호의 퇴적, 해식애·시스택의 침식을 구별한다.','맹그로브·산호섬·석호·시스택은 모두 같은 파랑 침식 지형이다.','생물 작용·해안 퇴적·파랑 침식은 형성 과정이 서로 다르다.',{op:'coastProcess'}));
-  else if(mode==='religious-buildings')q.pairs.push(pair('G044-2','이번 네 사원·성당·모스크는 싱가포르의 다종교 경관 사례이다.','한 도시에 서로 다른 종교 건축이 있으면 그 도시의 모든 주민은 같은 종교이다.','사원마다 구조·기능을 판별하고 같은 도시 안의 종교 다양성과 연결한다.',{op:'singaporeBuildings'}));
+  else if(mode==='religious-buildings')q.pairs.push(pair('G044-1','종교 건축의 구조·장식·용도를 함께 보고 해당 종교를 판별한다.','한 도시에 서로 다른 종교 건축이 있으면 그 도시의 모든 주민은 같은 종교이다.','사원마다 구조·기능을 판별하고 같은 도시 안의 종교 다양성과 연결한다.',{op:'singaporeBuildings'}));
   else if(mode==='traditional-houses')q.pairs.push(pair(spec.goal,'습윤 열대의 고상 구조와 영구 동토 지역의 고상 기초는 환경 적응의 이유가 다르다.','기둥 위에 지은 집은 기후·고도와 관계없이 모두 영구 동토를 피하기 위한 것이다.','높인 바닥이라는 형태가 같아도 통풍·습기 회피인지 동토 융해 방지인지 구별한다.',{op:'houseAdaptation'}));
   else if(mode==='road-images')q.pairs.push(pair(spec.goal,'이 도로 형태는 사진에 보이는 일부 구역의 특징이다.','맨해튼이나 파리의 모든 도로는 예외 없이 사진과 같은 형태이다.','관찰 범위를 도시 전체로 확대하지 않는다.',{op:'roadScope'}));
   else if(mode==='city-images')q.pairs.push(pair(spec.goal,'경관의 식별 단서와 그 도시의 수도 여부는 별도로 확인한다.','예수상이 보이는 리우데자네이루는 현재 브라질의 수도이다.','리우는 브라질의 구 수도이며 현재 수도는 브라질리아이다.',{op:'cityLandscapeVsCapital'}));
@@ -223,7 +246,7 @@ function create(data,D,H){
   return finish(q,r);
  }
  function chinaGrains(seed){
-  var r=seedState(seed),q=start('china-grain-map','중국 곡물 분포의 점지도',seed,'강의 L2-rId100 · 2013년 기출 제시 자료');q.note='점 1개=20만 t이라는 원문 범례를 읽는다. 점은 실제 농장 한 곳이나 단위 면적당 생산량을 뜻하지 않는다.';q.figures.push({kind:'image',src:D.panels.find(function(p){return p.id==='china-grains';}).path,name:'세 곡물의 분포'});q.assignment=['옥수수','밀','쌀'];
+  var r=seedState(seed),q=start('china-grain-map','중국 곡물 분포의 점지도',seed,'강의 L2-rId100 · 2013년 기출 제시 자료');q.note='점 1개=20만 t이라는 원문 범례를 읽는다. 점은 실제 농장 한 곳이나 단위 면적당 생산량을 뜻하지 않는다.';q.figures.push({kind:'image',src:D.panels.find(function(p){return p.id==='china-grains';}).path,name:'세 곡물의 분포'});q.assignment=['옥수수','밀','쌀'];q.identify='지도 A·B·C에 해당하는 곡물을 순서대로 고른 것은?';q.identifyExplain='지도 A는 동북부·북부의 옥수수, B는 화북 중심의 밀, C는 남부 중심의 쌀이다. 위쪽 막대 범례의 (가)·(나)·(다)는 대륙 기호이므로 구별한다.';
   q.pairs.push(pair('G073-4','동북부·북부에 집중한 A는 옥수수, 화북 중심 B는 밀, 남부 중심 C는 쌀이다.','중국 남부에 집중한 C는 밀, 화북 중심 B는 쌀이다.','온도·수분과 농업 지역의 남북 차이를 연결한다.',{op:'chinaGrainRegions'}));
   q.pairs.push(pair('G073-4','같은 범례의 점이 두 배 많으면 표시된 생산량도 두 배이다.','점이 두 배 많은 지역은 단위 면적당 생산량도 반드시 두 배이다.','점의 개수는 총생산량이다. 면적·단수·농장 수와 구별한다.',{op:'grainDotLegend',tonnesPerDot:200000}));
   return finish(q,r);
@@ -322,6 +345,7 @@ function create(data,D,H){
   var r=seedState(seed),symbols=['wheel','crescent','cross'],labels={'wheel':'불교','crescent':'이슬람교','cross':'크리스트교'},s=symbols[seed%3],q=start('religion-symbols','종교 상징과 국장 설명',seed,'강의 G041-4 · 기본 상징 모식도');q.figures.push({kind:'symbol',symbol:s});var opts=shuffle(['불교','이슬람교','크리스트교'],r);q.stage1={question:'제시된 상징을 강의의 종교와 대응한 것은?',options:opts,answer:opts.indexOf(labels[s]),explain:'수레바퀴(법륜)=불교, 초승달과 별=이슬람교, 십자가=크리스트교이다.'};
   q.note='상징의 강의상 대응을 묻는다. 한 상징이 보인다고 모든 주민의 종교·국가의 제도까지 같다고 단정하지 않는다.';
   q.tables.push(table(['국장 설명','국가'],[['법륜을 포함한 국장','스리랑카'],['초승달·별과 농작물을 포함한 국장','파키스탄'],['그리스도교 전통의 방패 문양을 포함한 국장','포르투갈']],'강의의 종교 상징·국가 연결'));
+  if(seed%2===0){var e=Math.floor(seed/2)%3,descs=['법륜·사자·연꽃이 있는 국장','초승달·별과 주요 농작물이 있는 국장','그리스도교 전통의 방패·혼천의가 있는 국장'],countries=['스리랑카','파키스탄','포르투갈'];q.figures=[];q.tables=[table(['국장 단서'],[[descs[e]]],'국가 이름은 숨긴 설명')];q.stage1={question:'이 국장 설명에 해당하는 국가는?',options:countries,answer:e,explain:descs[e]+' — '+countries[e]+'. 작물 하나만으로 종교를 판정하지 않는다.'};}
   q.pairs.push(pair('G041-4','파키스탄 국장의 초승달·별은 이슬람교와 연결한다.','파키스탄 국장의 초승달·별은 불교의 법륜과 같은 상징이다.','초승달·별과 법륜을 구별한다.',{op:'emblemReligion'}));
   q.pairs.push(pair('G041-4','국장에 있는 농작물 그림만으로 신자 수 1위 종교를 결정하지 않는다.','국장에 농작물이 있으면 그 작물을 재배하는 모든 나라는 같은 종교이다.','작물·역사·종교 상징이 국장에 함께 들어갈 수 있다. 단서의 성격을 분리한다.',{op:'cropEmblemScope'}));return finish(q,r);
  }
@@ -472,7 +496,7 @@ function create(data,D,H){
   ['north-america-trade','북미 교역 화살표',northAmericaTrade],['eu-trade-arrows','EU 교역 방향·품목 비중',euTrade],['trade-bubble','무역 좌표·인구 역산',tradeBubble],['trade-composition-triangle','수출·수입 삼각 구성',tradeTriangle],['bloc-trade-bars','블록별 역내·역외 교역',blocTrade],['sea-ice-anomaly','해빙 범위 편차',iceAnomaly],['ozone-area','오존 구멍 시계열',ozone],['ice-ozone-maps','해빙·오존 지도 구별',iceOzoneMaps],
   ['anticline-trap','배사 트랩 모식도',trap],['meander-banks','곡류·종단면 모식도',meander],['religion-symbols','종교 상징·국장',religionSymbols],['mineral-relative','광물 최대=100 상대값',mineralRelative],
   ['population-pyramid','성별·연령별 인구 피라미드',function(s){return pyramid('population-pyramid',s);}],['pyramid-cohort','두 시점 코호트 추적',function(s){return pyramid('pyramid-cohort',s);}],['religion-top-two','종교 1·2위와 기호',religionRanks],['religion-score','종교 학습지 평가 점수',religionScore],['resource-area','자원 생산 면적 그래프',function(s){return area('resource-area',s);}],['population-area','대륙별 국가 인구 면적',function(s){return area('population-area',s);}],['regional-radar','항목별 최대=100 방사형',regionalRadar],['fossil-denominators','세계 자원 몫·국가 구성',fossilDenominators],
-  ['oldmap-images','고지도 원그림',function(s){return photo('oldmap-images',s);}],['coast-images','해안 경관 원사진',function(s){return photo('coast-images',s);}],['religious-buildings','실제 종교 건축',function(s){return photo('religious-buildings',s);}],['traditional-houses','전통 가옥 사진',function(s){return photo('traditional-houses',s);}],['road-images','맨해튼·파리 도로망',function(s){return photo('road-images',s);}],['city-images','리우·멕시코시티·쿠스코',function(s){return photo('city-images',s);}],['irrigation-images','관개 시설 사진',function(s){return photo('irrigation-images',s);}],['night-lights','야간 빛·국가 위치',nightLights],['china-grain-map','중국 곡물 점지도',chinaGrains],['livestock-composition','국가 내부 가축 구성',livestockComposition],
+  ['oldmap-images','고지도 원그림',function(s){return photo('oldmap-images',s);}],['coast-images','해안 경관 원사진',function(s){return photo('coast-images',s);}],['religious-buildings','실제 종교 건축',function(s){return photo('religious-buildings',s);}],['traditional-houses','전통 가옥 사진',function(s){return photo('traditional-houses',s);}],['road-images','맨해튼·파리 도로망',function(s){return photo('road-images',s);}],['city-images','리우·멕시코시티·쿠스코',function(s){return photo('city-images',s);}],['religious-landmarks','종교 건축물·도시·국가',religiousLandmarks],['oldmap-regions','고지도 위 바다·하천 찾기',oldmapRegions],['irrigation-images','관개 시설 사진',function(s){return photo('irrigation-images',s);}],['night-lights','야간 빛·국가 위치',nightLights],['china-grain-map','중국 곡물 점지도',chinaGrains],['livestock-composition','국가 내부 가축 구성',livestockComposition],
   ['grain-size','입도 분포·분급',grainSize],['lake-types','수심·염분·호수',lakes],['solar-route','여행 경로·낮 길이',solarRoute],['vital-scatter','출생률·사망률 산점도',vitalScatter],['dependency-change','두 시점 부양비 변화',dependencyChange],
   ['grain-triangle','대륙의 세 곡물 구성',function(s){return agricultureTriangle('grain-triangle',s);}],['beverage-triangle','대륙의 기호 작물 구성',function(s){return agricultureTriangle('beverage-triangle',s);}],['livestock-denominators','가축의 두 단계 분모',livestockDenominators],['grain-export-scatter','곡물 생산·수출 비율',grainExport],['crop-trade-bubble','곡물 교역·생산량 원',cropTrade],
   ['fossil-triangle','대륙별 화석 연료 구성',function(s){return fossil('fossil-triangle',s);}],['fossil-remainder','화석 연료 나머지 복원',function(s){return fossil('fossil-remainder',s);}],['energy-per-capita','에너지 총량·1인당',function(s){return energyPC('energy-per-capita',s);}],['unequal-energy-axis','에너지의 서로 다른 축',function(s){return energyPC('unequal-energy-axis',s);}],['coal-production-consumption','석탄 생산 대비 소비',energyProduction],['renewables-denominators','발전량 분모의 범위',renewables],['australia-trade-change','호주의 상대국 비중 변화',australiaTrade],['environment-news','환경 기사·대응 수단',environmentNews],['treaty-tree','협약 도시 분류도',treatyTree],['industry-bubble','산업 좌표·1인당 GDP 원',industryBubble]
