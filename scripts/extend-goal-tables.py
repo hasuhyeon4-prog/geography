@@ -166,6 +166,9 @@ for i, (name, answer, wrong) in enumerate(periods):
         prompt=f'{name}의 제작 시기·선후를 바르게 설명한 것은?', options=[answer]+wrong, answer=0,
         explain=name+' — '+answer+'. 서로 겹치는 시대 구간을 경쟁 선택지로 쓰지 않는다.'))
 
+# Retain individually reviewed completion rows when reimporting private lecture tables.
+reviewed = {t['id']: t for t in original['tables'] if t.get('completionReviewed')}
+tables = [copy.deepcopy(reviewed.get(t['id'], t)) for t in tables]
 for t in tables:
     if not t['rows'] or any(len(r) != len(t['headers']) for r in t['rows']):
         raise ValueError(t['id']+' invalid table')

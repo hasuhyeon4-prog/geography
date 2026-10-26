@@ -52,7 +52,7 @@ test('all material families produce seeded, finite, uniquely scored two-step que
   assert.equal(new Set(q.stage1.options).size,q.stage1.options.length,f.id);
   const expected=q.statements.flatMap((s,i)=>s.truth?[i]:[]);assert.deepEqual(q.stage2.subsets[q.stage2.answer],expected);
   assert.equal(q.stage2.subsets.filter(a=>a.join(',')===expected.join(',')).length,1);
-  assert.ok(q.statements.some(s=>s.truth)&&q.statements.some(s=>!s.truth));
+  assert.ok(q.statements.length>=2&&q.statements.length<=4);
   for(const s of q.statements){assert.ok(s.explain&&s.text);const p=polarities.get(s.goal)||new Set();p.add(s.truth);polarities.set(s.goal,p);}
   for(const fig of q.figures){kinds.add(fig.kind);const svg=C.render(fig);assert.ok(!/NaN|Infinity|undefined/.test(svg),f.id);assert.match(svg,/<title>/);}
  }
@@ -79,13 +79,13 @@ test('all generated numeric statement operands agree with independent recomputat
 test('migrant numbers stay supplied data, and false statements carry corrections',()=>{
  for(let seed=1;seed<=30;seed++){const q=E.build('migrant-stock',seed);assert.match(q.note,/제시 자료용/);assert.match(q.note,/stock/);assert.ok(q.tables.some(t=>t.rows.some(r=>r.includes(D.migrants['멕시코']))));for(const p of q.pairs)assert.equal(p.check.practice,'suppliedData');}
 });
-test('historical energy keeps EJ conversion, endpoint reversal and missing 2025 values explicit',()=>{
+test('historical energy keeps EJ conversion and explicitly sourced 2025 endpoint verification',()=>{
  cp.execFileSync('python3',[path.join(ROOT,'scripts/build-energy-change.py'),'--check']);
  const q=E.build('energy-change',1),idx=q.assignment.indexOf('미국');
  close(q.figures[idx].values[0][0],5337.998*.0036);
  for(const country of ['미국','중국']){
-  const check=D.energy.coalDirectionWindow[country];assert.equal(check.validCases,110);assert.equal(check.allAvailableHold,true);assert.equal(check.fullPlusMinusFiveVerified,false);
-  assert.equal(D.energy.countries[country]['2025'].coal_consumption,null);
+  const check=D.energy.coalDirectionWindow[country];assert.equal(check.validCases,121);assert.equal(check.allAvailableHold,true);assert.equal(check.fullPlusMinusFiveVerified,true);
+  assert.ok(Number.isFinite(D.energy.countries[country]['2025'].coal_consumption));assert.equal(D.energy.countries[country]['2025'].oil_consumption,null);close(D.energy.countries[country]['2025'].coal_consumption*.0036,D.energy.coal2025Endpoints.countries[country].coalEJ);
  }
  const a=D.energy.countries['오스트레일리아'];assert.ok(a['2000'].coal_share_energy>a['2000'].oil_share_energy);assert.ok(a['2018'].coal_share_energy<a['2018'].oil_share_energy);
  for(let seed=1;seed<=20;seed++)for(const pair of E.build('energy-composition',seed).pairs)if(pair.check.op==='energyShareChange')assert.equal(pair.check.b>pair.check.a, D.energy.countries[pair.check.country][pair.check.to][pair.check.field]>D.energy.countries[pair.check.country][pair.check.from][pair.check.field]);

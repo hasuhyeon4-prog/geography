@@ -1,38 +1,38 @@
 {
  "generatedAt": "2026-10-26",
- "materialQuestions": 16640,
+ "materialQuestions": 16960,
  "materialGoals": {
   "G098-1": {
-   "true": 320,
-   "false": 320,
+   "true": 330,
+   "false": 310,
    "families": [
     "car-growth"
    ]
   },
   "G062-5": {
-   "true": 320,
-   "false": 320,
+   "true": 330,
+   "false": 310,
    "families": [
     "capital-share"
    ]
   },
   "G056-5": {
-   "true": 254,
-   "false": 265,
+   "true": 237,
+   "false": 263,
    "families": [
     "birth-death"
    ]
   },
   "G134-3": {
-   "true": 66,
-   "false": 55,
+   "true": 78,
+   "false": 62,
    "families": [
     "birth-death"
    ]
   },
   "G068-2": {
-   "true": 163,
-   "false": 157,
+   "true": 171,
+   "false": 149,
    "families": [
     "city-distance"
    ]
@@ -45,194 +45,194 @@
    ]
   },
   "G133-1": {
-   "true": 320,
-   "false": 320,
+   "true": 328,
+   "false": 312,
    "families": [
     "climate-restore"
    ]
   },
   "G137-1": {
-   "true": 242,
-   "false": 238,
+   "true": 245,
+   "false": 235,
    "families": [
     "religion-relative"
    ]
   },
   "G043-3": {
-   "true": 246,
-   "false": 234,
+   "true": 247,
+   "false": 233,
    "families": [
     "religion-relative",
     "religion-selected"
    ]
   },
   "G041-2": {
-   "true": 312,
-   "false": 328,
+   "true": 326,
+   "false": 314,
    "families": [
     "religion-selected",
     "religion-other"
    ]
   },
   "G075-1": {
-   "true": 320,
-   "false": 320,
+   "true": 315,
+   "false": 325,
    "families": [
     "crop-yield"
    ]
   },
   "G062-4": {
-   "true": 320,
-   "false": 320,
+   "true": 328,
+   "false": 312,
    "families": [
     "urban-rural-scatter"
    ]
   },
   "G086-1": {
-   "true": 320,
-   "false": 320,
+   "true": 317,
+   "false": 323,
    "families": [
     "energy-change"
    ]
   },
   "G086-2": {
-   "true": 320,
-   "false": 320,
+   "true": 302,
+   "false": 338,
    "families": [
     "energy-composition"
    ]
   },
   "G009-1": {
-   "true": 318,
-   "false": 322,
+   "true": 299,
+   "false": 341,
    "families": [
     "gis-filters",
     "gis-medical"
    ]
   },
   "G139-2": {
-   "true": 82,
-   "false": 78,
+   "true": 77,
+   "false": 83,
    "families": [
     "gis-medical"
    ]
   },
   "G009-2": {
-   "true": 320,
-   "false": 320,
+   "true": 315,
+   "false": 325,
    "families": [
     "gis-scoring"
    ]
   },
   "G009-4": {
-   "true": 320,
-   "false": 320,
+   "true": 315,
+   "false": 325,
    "families": [
     "gis-directions"
    ]
   },
   "G009-3": {
-   "true": 320,
-   "false": 320,
+   "true": 329,
+   "false": 311,
    "families": [
     "gis-weighted"
    ]
   },
   "G009-5": {
-   "true": 640,
-   "false": 640,
+   "true": 658,
+   "false": 622,
    "families": [
     "gis-top-two",
     "gis-tie-break"
    ]
   },
-  "G020-1": {
-   "true": 134,
-   "false": 121,
+  "G020-2": {
+   "true": 63,
+   "false": 65,
    "families": [
     "cumulative"
    ]
   },
   "G133-2": {
-   "true": 135,
-   "false": 119,
+   "true": 121,
+   "false": 127,
    "families": [
     "cumulative"
    ]
   },
-  "G020-2": {
-   "true": 51,
-   "false": 80,
+  "G020-1": {
+   "true": 142,
+   "false": 122,
    "families": [
     "cumulative"
    ]
   },
   "G133-3": {
-   "true": 156,
-   "false": 164,
+   "true": 165,
+   "false": 155,
    "families": [
     "self-deviation"
    ]
   },
   "G021-1": {
-   "true": 84,
-   "false": 76,
+   "true": 80,
+   "false": 80,
    "families": [
     "self-deviation"
    ]
   },
-  "G021-2": {
-   "true": 77,
-   "false": 83,
+  "G133-4": {
+   "true": 164,
+   "false": 156,
    "families": [
     "common-deviation"
    ]
   },
   "G024-1": {
-   "true": 78,
-   "false": 82,
+   "true": 83,
+   "false": 77,
    "families": [
     "common-deviation"
    ]
   },
-  "G133-4": {
-   "true": 165,
-   "false": 155,
+  "G021-2": {
+   "true": 81,
+   "false": 79,
    "families": [
     "common-deviation"
    ]
   },
   "G021-3": {
-   "true": 160,
-   "false": 160,
+   "true": 167,
+   "false": 153,
    "families": [
     "reference-deviation"
    ]
   },
   "G020-3": {
-   "true": 160,
-   "false": 160,
+   "true": 167,
+   "false": 153,
    "families": [
     "precip-deviation"
    ]
   },
   "G021-5": {
-   "true": 320,
-   "false": 320,
+   "true": 328,
+   "false": 312,
    "families": [
     "difference"
    ]
   },
-  "G002-1": {
-   "true": 77,
-   "false": 83,
+  "G002-2": {
+   "true": 164,
+   "false": 156,
    "families": [
     "daylight"
    ]
   },
   "G012-2": {
-   "true": 576,
-   "false": 544,
+   "true": 580,
+   "false": 540,
    "families": [
     "daylight",
     "solar-altitude",
@@ -241,16 +241,16 @@
     "solar-night"
    ]
   },
-  "G002-2": {
-   "true": 165,
-   "false": 155,
+  "G002-1": {
+   "true": 81,
+   "false": 79,
    "families": [
     "daylight"
    ]
   },
   "G022-1": {
-   "true": 248,
-   "false": 232,
+   "true": 226,
+   "false": 254,
    "families": [
     "solar-altitude",
     "solar-month",
@@ -258,154 +258,162 @@
    ]
   },
   "G022-2": {
-   "true": 133,
-   "false": 107,
+   "true": 132,
+   "false": 108,
    "families": [
     "solar-month",
     "solar-climate"
    ]
   },
   "G024-2": {
-   "true": 81,
-   "false": 79,
+   "true": 84,
+   "false": 76,
    "families": [
     "solar-night"
    ]
   },
+  "G056-3": {
+   "true": 40,
+   "false": 48,
+   "families": [
+    "age-triangle"
+   ]
+  },
   "G134-2": {
-   "true": 382,
-   "false": 407,
+   "true": 383,
+   "false": 434,
    "families": [
     "age-triangle",
     "dependency"
    ]
   },
   "G134-1": {
-   "true": 50,
-   "false": 59,
-   "families": [
-    "age-triangle"
-   ]
-  },
-  "G056-3": {
-   "true": 65,
-   "false": 55,
+   "true": 61,
+   "false": 56,
    "families": [
     "age-triangle"
    ]
   },
   "G056-2": {
-   "true": 143,
-   "false": 119,
+   "true": 131,
+   "false": 127,
    "families": [
     "age-triangle",
     "dependency"
    ]
   },
-  "G136-1": {
-   "true": 322,
-   "false": 331,
+  "G053-2": {
+   "true": 154,
+   "false": 149,
    "families": [
     "urban-weighted",
     "urban-change"
    ]
   },
-  "G053-2": {
-   "true": 136,
-   "false": 176,
+  "G136-1": {
+   "true": 334,
+   "false": 314,
    "families": [
     "urban-weighted",
     "urban-change"
    ]
   },
   "G136-2": {
-   "true": 182,
-   "false": 133,
+   "true": 175,
+   "false": 154,
    "families": [
     "urban-weighted",
     "urban-change"
    ]
   },
   "G063-1": {
-   "true": 240,
-   "false": 240,
+   "true": 245,
+   "false": 235,
    "families": [
     "urban-radar"
    ]
   },
   "G069-2": {
-   "true": 160,
-   "false": 160,
+   "true": 143,
+   "false": 177,
    "families": [
     "city-tier"
    ]
   },
   "G110-5": {
-   "true": 238,
-   "false": 242,
+   "true": 248,
+   "false": 232,
    "families": [
     "soil-temperature"
    ]
   },
   "G032-2": {
-   "true": 82,
-   "false": 78,
+   "true": 78,
+   "false": 82,
    "families": [
     "soil-temperature"
    ]
   },
   "G070-1": {
-   "true": 320,
-   "false": 320,
+   "true": 329,
+   "false": 311,
    "families": [
     "headquarters"
    ]
   },
   "G061-3": {
-   "true": 240,
-   "false": 240,
+   "true": 303,
+   "false": 337,
    "families": [
     "migrant-stock"
    ]
   },
   "G137-2": {
-   "true": 320,
-   "false": 320,
+   "true": 329,
+   "false": 311,
    "families": [
     "population-index"
    ]
   },
   "G051-5": {
-   "true": 320,
-   "false": 320,
+   "true": 303,
+   "false": 337,
    "families": [
     "ethnic-stacks"
    ]
   },
   "G127-2": {
-   "true": 320,
-   "false": 320,
+   "true": 303,
+   "false": 337,
    "families": [
     "industry-remainder"
    ]
   },
   "G097-4": {
-   "true": 320,
-   "false": 320,
+   "true": 303,
+   "false": 337,
    "families": [
     "industry-amount"
    ]
   },
   "G053-4": {
-   "true": 240,
-   "false": 240,
+   "true": 229,
+   "false": 251,
    "families": [
     "population-periods"
    ]
   },
   "G135-1": {
-   "true": 382,
-   "false": 392,
+   "true": 348,
+   "false": 406,
+   "families": [
+    "migration-scatter",
+    "migration-continents"
+   ]
+  },
+  "G057-2": {
+   "true": 156,
+   "false": 124,
    "families": [
     "migration-scatter",
     "migration-continents"
@@ -413,303 +421,289 @@
   },
   "G057-3": {
    "true": 126,
-   "false": 138,
-   "families": [
-    "migration-scatter",
-    "migration-continents"
-   ]
-  },
-  "G057-2": {
-   "true": 132,
-   "false": 110,
+   "false": 120,
    "families": [
     "migration-scatter",
     "migration-continents"
    ]
   },
   "G087-3": {
-   "true": 160,
-   "false": 160,
+   "true": 163,
+   "false": 157,
    "families": [
     "renewable-capacity-ranks"
    ]
   },
   "G075-2": {
-   "true": 320,
-   "false": 320,
+   "true": 303,
+   "false": 337,
    "families": [
     "food-stock-balance"
    ]
   },
   "G008-2": {
-   "true": 160,
-   "false": 160,
+   "true": 161,
+   "false": 159,
    "families": [
     "stat-map-types"
    ]
   },
   "G008-4": {
-   "true": 160,
-   "false": 160,
+   "true": 163,
+   "false": 157,
    "families": [
     "gdp-map-denominators"
    ]
   },
   "G102-6": {
-   "true": 160,
-   "false": 160,
+   "true": 163,
+   "false": 157,
    "families": [
     "facility-map"
    ]
   },
   "G112-5": {
-   "true": 160,
-   "false": 160,
+   "true": 161,
+   "false": 159,
    "families": [
     "rain-ph-maps"
    ]
   },
   "G131-5": {
-   "true": 160,
-   "false": 160,
+   "true": 158,
+   "false": 162,
    "families": [
     "andes-conditions"
    ]
   },
   "G123-5": {
-   "true": 160,
-   "false": 160,
+   "true": 163,
+   "false": 157,
    "families": [
     "asian-export-items"
    ]
   },
   "G130-4": {
-   "true": 86,
-   "false": 74,
+   "true": 85,
+   "false": 75,
    "families": [
     "north-america-trade"
    ]
   },
   "G104-1": {
-   "true": 154,
-   "false": 166,
+   "true": 164,
+   "false": 156,
    "families": [
     "north-america-trade"
    ]
   },
   "G104-2": {
-   "true": 160,
-   "false": 160,
+   "true": 169,
+   "false": 151,
    "families": [
     "eu-trade-arrows"
    ]
   },
-  "G103-2": {
-   "true": 158,
-   "false": 162,
+  "G103-1": {
+   "true": 83,
+   "false": 77,
    "families": [
     "trade-bubble"
    ]
   },
-  "G103-1": {
-   "true": 82,
-   "false": 78,
+  "G103-2": {
+   "true": 168,
+   "false": 152,
    "families": [
     "trade-bubble"
    ]
   },
   "G103-3": {
-   "true": 160,
-   "false": 160,
+   "true": 169,
+   "false": 151,
    "families": [
     "trade-composition-triangle"
    ]
   },
-  "G107-2": {
-   "true": 73,
-   "false": 87,
+  "G107-1": {
+   "true": 163,
+   "false": 157,
    "families": [
     "bloc-trade-bars"
    ]
   },
-  "G107-1": {
-   "true": 167,
-   "false": 153,
+  "G107-2": {
+   "true": 76,
+   "false": 84,
    "families": [
     "bloc-trade-bars"
    ]
   },
   "G110-7": {
-   "true": 160,
-   "false": 160,
+   "true": 163,
+   "false": 157,
    "families": [
     "sea-ice-anomaly"
    ]
   },
   "G111-3": {
-   "true": 240,
-   "false": 240,
+   "true": 251,
+   "false": 229,
    "families": [
     "ozone-area"
    ]
   },
   "G111-5": {
-   "true": 160,
-   "false": 160,
+   "true": 163,
+   "false": 157,
    "families": [
     "ice-ozone-maps"
    ]
   },
   "G081-5": {
-   "true": 160,
-   "false": 160,
+   "true": 167,
+   "false": 153,
    "families": [
     "anticline-trap"
    ]
   },
   "G037-4": {
-   "true": 160,
-   "false": 160,
+   "true": 163,
+   "false": 157,
    "families": [
     "meander-banks"
    ]
   },
   "G041-4": {
-   "true": 160,
-   "false": 160,
+   "true": 164,
+   "false": 156,
    "families": [
     "religion-symbols"
    ]
   },
-  "G092-1": {
-   "true": 81,
-   "false": 79,
-   "families": [
-    "mineral-relative"
-   ]
-  },
   "G092-2": {
-   "true": 79,
-   "false": 81,
+   "true": 83,
+   "false": 77,
    "families": [
     "mineral-relative"
    ]
   },
-  "G126-4": {
-   "true": 71,
-   "false": 51,
+  "G092-1": {
+   "true": 84,
+   "false": 76,
+   "families": [
+    "mineral-relative"
+   ]
+  },
+  "G058-1": {
+   "true": 63,
+   "false": 65,
    "families": [
     "population-pyramid"
    ]
   },
   "G057-4": {
-   "true": 198,
-   "false": 189,
+   "true": 193,
+   "false": 184,
    "families": [
     "population-pyramid"
    ]
   },
-  "G058-1": {
-   "true": 51,
-   "false": 80,
+  "G126-4": {
+   "true": 70,
+   "false": 65,
    "families": [
     "population-pyramid"
    ]
   },
   "G058-3": {
-   "true": 320,
-   "false": 320,
+   "true": 303,
+   "false": 337,
    "families": [
     "pyramid-cohort"
    ]
   },
   "G041-1": {
-   "true": 160,
-   "false": 160,
+   "true": 167,
+   "false": 153,
    "families": [
     "religion-top-two"
    ]
   },
   "G043-4": {
-   "true": 240,
-   "false": 240,
+   "true": 245,
+   "false": 235,
    "families": [
     "religion-score"
    ]
   },
   "G083-1": {
-   "true": 240,
-   "false": 240,
+   "true": 245,
+   "false": 235,
    "families": [
     "resource-area"
    ]
   },
   "G139-1": {
-   "true": 240,
-   "false": 240,
+   "true": 239,
+   "false": 241,
    "families": [
     "population-area"
    ]
   },
   "G127-1": {
-   "true": 160,
-   "false": 160,
+   "true": 167,
+   "false": 153,
    "families": [
     "regional-radar"
    ]
   },
   "G086-5": {
-   "true": 160,
-   "false": 160,
+   "true": 165,
+   "false": 155,
    "families": [
     "fossil-denominators"
    ]
   },
   "G006-2": {
-   "true": 88,
-   "false": 72,
+   "true": 246,
+   "false": 234,
    "families": [
-    "oldmap-images"
+    "oldmap-images",
+    "oldmap-regions"
    ]
   },
   "G006-1": {
-   "true": 72,
-   "false": 88,
+   "true": 81,
+   "false": 79,
    "families": [
     "oldmap-images"
    ]
   },
   "G036-3": {
-   "true": 160,
-   "false": 160,
+   "true": 143,
+   "false": 177,
    "families": [
     "coast-images"
    ]
   },
-  "G044-2": {
-   "true": 78,
-   "false": 82,
-   "families": [
-    "religious-buildings"
-   ]
-  },
   "G044-1": {
-   "true": 82,
-   "false": 78,
+   "true": 143,
+   "false": 177,
    "families": [
     "religious-buildings"
    ]
   },
   "G052-3": {
-   "true": 160,
-   "false": 160,
+   "true": 164,
+   "false": 156,
    "families": [
     "traditional-houses"
    ]
   },
   "G067-1": {
-   "true": 160,
-   "false": 160,
+   "true": 163,
+   "false": 157,
    "families": [
     "road-images"
    ]
@@ -721,199 +715,206 @@
     "city-images"
    ]
   },
+  "G044-2": {
+   "true": 164,
+   "false": 156,
+   "families": [
+    "religious-landmarks"
+   ]
+  },
   "G073-1": {
-   "true": 160,
-   "false": 160,
+   "true": 163,
+   "false": 157,
    "families": [
     "irrigation-images"
    ]
   },
   "G007-3": {
-   "true": 160,
-   "false": 160,
+   "true": 163,
+   "false": 157,
    "families": [
     "night-lights"
    ]
   },
   "G073-4": {
-   "true": 160,
-   "false": 160,
+   "true": 169,
+   "false": 151,
    "families": [
     "china-grain-map"
    ]
   },
   "G079-3": {
-   "true": 320,
-   "false": 320,
+   "true": 328,
+   "false": 312,
    "families": [
     "livestock-composition"
    ]
   },
   "G034-1": {
-   "true": 160,
-   "false": 160,
+   "true": 165,
+   "false": 155,
    "families": [
     "grain-size"
    ]
   },
   "G034-2": {
-   "true": 160,
-   "false": 160,
+   "true": 167,
+   "false": 153,
    "families": [
     "lake-types"
    ]
   },
   "G023-2": {
-   "true": 160,
-   "false": 160,
+   "true": 164,
+   "false": 156,
    "families": [
     "solar-route"
    ]
   },
   "G054-4": {
-   "true": 320,
-   "false": 320,
+   "true": 328,
+   "false": 312,
    "families": [
     "vital-scatter"
    ]
   },
   "G059-1": {
-   "true": 320,
-   "false": 320,
+   "true": 307,
+   "false": 333,
    "families": [
     "dependency-change"
    ]
   },
   "G076-1": {
-   "true": 320,
-   "false": 320,
+   "true": 328,
+   "false": 312,
    "families": [
     "grain-triangle"
    ]
   },
   "G080-6": {
-   "true": 320,
-   "false": 320,
+   "true": 328,
+   "false": 312,
    "families": [
     "beverage-triangle"
    ]
   },
   "G079-2": {
-   "true": 160,
-   "false": 160,
+   "true": 164,
+   "false": 156,
    "families": [
     "livestock-denominators"
    ]
   },
   "G138-1": {
-   "true": 320,
-   "false": 320,
+   "true": 328,
+   "false": 312,
    "families": [
     "grain-export-scatter"
    ]
   },
   "G076-2": {
-   "true": 240,
-   "false": 240,
+   "true": 245,
+   "false": 235,
    "families": [
     "crop-trade-bubble"
    ]
   },
   "G086-3": {
-   "true": 320,
-   "false": 320,
+   "true": 328,
+   "false": 312,
    "families": [
     "fossil-triangle"
    ]
   },
   "G086-4": {
-   "true": 320,
-   "false": 320,
+   "true": 303,
+   "false": 337,
    "families": [
     "fossil-remainder"
    ]
   },
   "G085-4": {
-   "true": 232,
-   "false": 248,
+   "true": 248,
+   "false": 232,
    "families": [
     "energy-per-capita",
     "unequal-energy-axis"
    ]
   },
   "G085-5": {
-   "true": 88,
-   "false": 72,
+   "true": 80,
+   "false": 80,
    "families": [
     "unequal-energy-axis"
    ]
   },
   "G083-2": {
-   "true": 242,
-   "false": 238,
+   "true": 245,
+   "false": 235,
    "families": [
     "coal-production-consumption"
    ]
   },
   "G083-4": {
-   "true": 78,
-   "false": 82,
+   "true": 83,
+   "false": 77,
    "families": [
     "coal-production-consumption"
    ]
   },
-  "G089-5": {
-   "true": 77,
-   "false": 83,
+  "G085-3": {
+   "true": 90,
+   "false": 70,
    "families": [
     "renewables-denominators"
    ]
   },
   "G085-6": {
-   "true": 78,
-   "false": 82,
+   "true": 83,
+   "false": 77,
    "families": [
     "renewables-denominators"
    ]
   },
   "G138-3": {
-   "true": 79,
-   "false": 81,
+   "true": 74,
+   "false": 86,
    "families": [
     "renewables-denominators"
    ]
   },
-  "G085-3": {
-   "true": 86,
-   "false": 74,
+  "G089-5": {
+   "true": 81,
+   "false": 79,
    "families": [
     "renewables-denominators"
    ]
   },
   "G104-3": {
-   "true": 160,
-   "false": 160,
+   "true": 165,
+   "false": 155,
    "families": [
     "australia-trade-change"
    ]
   },
   "G120-2": {
-   "true": 160,
-   "false": 160,
+   "true": 165,
+   "false": 155,
    "families": [
     "environment-news"
    ]
   },
   "G121-2": {
-   "true": 160,
-   "false": 160,
+   "true": 167,
+   "false": 153,
    "families": [
     "treaty-tree"
    ]
   },
   "G137-3": {
-   "true": 320,
-   "false": 320,
+   "true": 328,
+   "false": 312,
    "families": [
     "industry-bubble"
    ]
@@ -923,7 +924,7 @@
   "G098-1": {
    "family": "car-growth",
    "seed": 1,
-   "text": "브라질의 이 기간 생산 증가량은 3,146,386대이다.",
+   "text": "브라질의 이 기간 생산 증가량은 -256,122대이다.",
    "check": {
     "op": "subtract",
     "a": 3146386,
@@ -934,24 +935,24 @@
   "G062-5": {
    "family": "capital-share",
    "seed": 1,
-   "text": "페루의 수도 인구 비율은 약 35.7%이다.",
+   "text": "우루과이의 수도 인구 비율은 약 50.1%이다.",
    "check": {
     "op": "capitalShare",
-    "capital": 10580.2,
-    "urban": 29596.4,
-    "rural": 4980.3,
-    "result": 30.59921854890721
+    "capital": 1740,
+    "urban": 3310,
+    "rural": 160,
+    "result": 50.14409221902017
    }
   },
   "G056-5": {
    "family": "birth-death",
    "seed": 1,
-   "text": "일본의 출생률은 약 16‰이다.",
+   "text": "니제르의 출생률은 약 41.89‰이다.",
    "check": {
     "op": "add",
-    "a": -7,
-    "b": 13,
-    "result": 6
+    "a": 33.03,
+    "b": 8.86,
+    "result": 41.89
    }
   },
   "G134-3": {
@@ -967,18 +968,9 @@
   "G068-2": {
    "family": "city-distance",
    "seed": 1,
-   "text": "(가)~(나)의 거리는 1,366km이다.",
+   "text": "거리표만으로 도시의 세계 도시 계층을 확정할 수 없다.",
    "check": {
-    "op": "cityDistance",
-    "a": {
-     "lat": 41.8781,
-     "lon": -87.6298
-    },
-    "b": {
-     "lat": 40.7128,
-     "lon": -74.006
-    },
-    "result": 1144
+    "op": "distanceScope"
    }
   },
   "G130-1": {
@@ -992,23 +984,23 @@
   "G133-1": {
    "family": "climate-restore",
    "seed": 1,
-   "text": "(가)의 최난월 기온은 약 1.8℃이다.",
+   "text": "(다)의 최난월 기온은 약 5.4℃이다.",
    "check": {
     "op": "add",
-    "a": 26.8,
-    "b": 1.8,
-    "result": 28.6
+    "a": -24.4,
+    "b": 29.8,
+    "result": 5.400000000000002
    }
   },
   "G137-1": {
    "family": "religion-relative",
    "seed": 1,
-   "text": "(가)에서 크리스트교의 국가 전체 인구 비율은 100%이다.",
+   "text": "(다)에서 불교의 국가 전체 인구 비율은 약 69.6%이다.",
    "check": {
     "op": "relativeShare",
     "value": 100,
-    "total": 109.28999999999999,
-    "result": 91.49967975112088
+    "total": 143.678,
+    "result": 69.6000779520873
    }
   },
   "G043-3": {
@@ -1022,7 +1014,7 @@
   "G041-2": {
    "family": "religion-selected",
    "seed": 1,
-   "text": "미얀마는 제시 세 종교 중 크리스트교 비중이 가장 높으므로 국가 전체에서도 크리스트교가 최대이다.",
+   "text": "이 도표만으로 미얀마의 국가 전체 최대 종교를 정할 수 없다.",
    "check": {
     "op": "omittedReligion"
    }
@@ -1030,39 +1022,39 @@
   "G075-1": {
    "family": "crop-yield",
    "seed": 1,
-   "text": "프랑스의 복원한 값은 약 8.6 t/ha이다.",
+   "text": "인도의 복원한 값은 약 3.5 t/ha이다.",
    "check": {
     "op": "quotient",
-    "a": 35995.57,
-    "b": 4998.28,
-    "result": 7.201591347423514
+    "a": 110553.675,
+    "b": 31400.716,
+    "result": 3.5207373933766353
    }
   },
   "G062-4": {
    "family": "urban-rural-scatter",
    "seed": 1,
-   "text": "(가)의 도시화율은 두 시점 사이에 하락했다.",
+   "text": "(다)의 도시화율은 두 시점 사이에 상승했다.",
    "check": {
     "op": "urbanShareChange",
-    "u0": 416,
-    "r0": 241,
-    "u1": 559.6,
-    "r1": 189.9,
-    "result": 11.344996105978318
+    "u0": 83.3,
+    "r0": 282.2,
+    "u1": 611.2,
+    "r1": 769.7,
+    "result": 21.470291535516942
    }
   },
   "G086-1": {
    "family": "energy-change",
    "seed": 1,
-   "text": "(가)의 석탄 소비량은 1990~2020년에 증가했다.",
+   "text": "(가)의 재생에너지 소비량은 1990~2020년에 감소했다.",
    "check": {
     "op": "energyChange",
     "country": "미국",
-    "field": "coal_consumption",
+    "field": "renewables_consumption",
     "from": "1990",
     "to": "2020",
-    "a": 19.216792799999997,
-    "b": 9.2022516
+    "a": 3.6613404,
+    "b": 8.9195616
    }
   },
   "G086-2": {
@@ -1082,15 +1074,74 @@
   "G009-1": {
    "family": "gis-filters",
    "seed": 1,
-   "text": "40% 이상이라는 조건은 정확히 40%인 값을 제외한다.",
+   "text": "발문이 모두 만족이면 조건별 결과의 교집합을 구한다.",
    "check": {
-    "op": "inclusiveBoundary"
+    "op": "filter",
+    "conditions": [
+     {
+      "column": 1,
+      "operator": "<=",
+      "value": 60
+     },
+     {
+      "column": 2,
+      "operator": ">=",
+      "value": 40
+     },
+     {
+      "column": 3,
+      "operator": ">=",
+      "value": 6
+     }
+    ],
+    "logic": "AND",
+    "rows": [
+     [
+      "소말리아",
+      27,
+      47,
+      11,
+      447
+     ],
+     [
+      "케냐",
+      53,
+      38,
+      4,
+      2082
+     ],
+     [
+      "탄자니아",
+      43,
+      44,
+      5,
+      1136
+     ],
+     [
+      "모잠비크",
+      44,
+      44,
+      7,
+      492
+     ],
+     [
+      "남아프리카 공화국",
+      71,
+      29,
+      3,
+      7055
+     ]
+    ],
+    "result": [
+     "소말리아",
+     "모잠비크"
+    ]
    }
   },
   "G139-2": {
    "family": "gis-medical",
    "seed": 1,
-   "text": "지원 대상은 1인당 GDP 447달러인 소말리아이다.",
+   "text": "의료 보장 지수가 가장 높은 남아프리카 공화국이 지원 대상이다.",
    "check": {
     "op": "medicalWinner",
     "rows": [
@@ -1136,32 +1187,13 @@
   "G009-2": {
    "family": "gis-scoring",
    "seed": 1,
-   "text": "앙골라의 점수 합계는 5점이다.",
-   "check": {
-    "op": "weightedScore",
-    "scores": [
-     1,
-     1,
-     1
-    ],
-    "weights": [
-     1,
-     1,
-     1
-    ],
-    "result": 3
-   }
-  },
-  "G009-4": {
-   "family": "gis-directions",
-   "seed": 1,
-   "text": "앙골라의 점수 합계는 9점이다.",
+   "text": "이집트의 점수 합계는 7점이다.",
    "check": {
     "op": "weightedScore",
     "scores": [
      3,
-     1,
-     3
+     2,
+     2
     ],
     "weights": [
      1,
@@ -1169,6 +1201,25 @@
      1
     ],
     "result": 7
+   }
+  },
+  "G009-4": {
+   "family": "gis-directions",
+   "seed": 1,
+   "text": "이집트의 점수 합계는 5점이다.",
+   "check": {
+    "op": "weightedScore",
+    "scores": [
+     1,
+     2,
+     2
+    ],
+    "weights": [
+     1,
+     1,
+     1
+    ],
+    "result": 5
    }
   },
   "G009-3": {
@@ -1209,19 +1260,18 @@
     "result": 4
    }
   },
-  "G020-1": {
+  "G020-2": {
    "family": "cumulative",
    "seed": 1,
-   "text": "(가)의 연 강수량은 각 달 누적값을 모두 더한 값이다.",
+   "text": "6~8월 강수가 많은 지점은 그 구간 누적선의 증가량도 크다.",
    "check": {
-    "op": "annual",
-    "result": 723.5000000000001
+    "op": "slope"
    }
   },
   "G133-2": {
    "family": "cumulative",
    "seed": 1,
-   "text": "(가)의 12·1·2월 강수량 합은 242.9mm이다.",
+   "text": "(가)의 12·1·2월 강수량 합은 42.9mm이다.",
    "check": {
     "op": "season",
     "cumulative": [
@@ -1246,18 +1296,19 @@
     "result": 42.89999999999998
    }
   },
-  "G020-2": {
+  "G020-1": {
    "family": "cumulative",
-   "seed": 2,
-   "text": "누적선이 평탄할수록 그 기간의 월 강수량이 많다.",
+   "seed": 1,
+   "text": "(가)의 연 강수량은 723.5mm이다.",
    "check": {
-    "op": "slope"
+    "op": "annual",
+    "result": 723.5000000000001
    }
   },
   "G133-3": {
    "family": "self-deviation",
    "seed": 1,
-   "text": "서로 다른 지점의 1월 기온 차이는 각 지점의 편차 차이와 항상 같다.",
+   "text": "같은 지점의 1월−7월 기온 차이는 두 편차를 빼서 구할 수 있다.",
    "check": {
     "op": "selfDifference",
     "means": [
@@ -1278,15 +1329,56 @@
     "result": 25
    }
   },
-  "G021-2": {
+  "G133-4": {
    "family": "common-deviation",
    "seed": 1,
-   "text": "(가)의 2월 실제 값은 약 10.4℃이다.",
+   "text": "같은 달 제시 세 지역의 편차 합은 반올림 오차를 제외하면 0이다.",
    "check": {
-    "op": "restore",
-    "deviation": -15.399999999999999,
-    "base": 15.799999999999999,
-    "result": 0.4
+    "op": "zeroSum",
+    "deviations": [
+     [
+      -15.799999999999999,
+      -15.399999999999999,
+      -11.033333333333331,
+      -6.633333333333331,
+      -0.8666666666666671,
+      4.7666666666666675,
+      7.9,
+      6.466666666666665,
+      2.6999999999999993,
+      -4.066666666666666,
+      -10.166666666666666,
+      -14.933333333333332
+     ],
+     [
+      9.000000000000002,
+      9.200000000000001,
+      6.866666666666667,
+      4.466666666666667,
+      1.4333333333333318,
+      -1.2333333333333343,
+      -2.799999999999999,
+      -2.533333333333335,
+      -0.5,
+      2.9333333333333353,
+      6.233333333333334,
+      8.466666666666667
+     ],
+     [
+      6.799999999999999,
+      6.200000000000001,
+      4.166666666666668,
+      2.1666666666666696,
+      -0.5666666666666664,
+      -3.533333333333333,
+      -5.099999999999998,
+      -3.9333333333333336,
+      -2.1999999999999993,
+      1.1333333333333346,
+      3.9333333333333336,
+      6.466666666666667
+     ]
+    ]
    }
   },
   "G024-1": {
@@ -1299,69 +1391,66 @@
     "b": 24.6
    }
   },
-  "G133-4": {
+  "G021-2": {
    "family": "common-deviation",
    "seed": 1,
-   "text": "서로 다른 달의 편차를 바로 빼면 실제 기온 차이가 된다.",
+   "text": "(가)의 2월 실제 값은 약 0.4℃이다.",
    "check": {
-    "op": "commonDifference",
-    "bases": [
-     15.6,
-     15.799999999999999,
-     16.333333333333332,
-     15.433333333333332,
-     14.966666666666667,
-     15.333333333333334,
-     15.999999999999998,
-     16.233333333333334,
-     15.5,
-     14.666666666666666,
-     14.266666666666666,
-     14.433333333333332
-    ]
+    "op": "restore",
+    "deviation": -15.399999999999999,
+    "base": 15.799999999999999,
+    "result": 0.4
    }
   },
   "G021-3": {
    "family": "reference-deviation",
    "seed": 1,
-   "text": "(가)의 2월 실제 값은 약 35℃이다.",
+   "text": "같은 달 지점 간 편차의 순서는 실제 기온의 순서와 같다.",
    "check": {
-    "op": "restore",
-    "deviation": -2.3000000000000007,
-    "base": 27.3,
-    "result": 25
+    "op": "commonDifference",
+    "bases": [
+     26.8,
+     27.3,
+     27.8,
+     28.2,
+     28.6,
+     28.5,
+     28.2,
+     28.1,
+     28,
+     27.9,
+     27.2,
+     26.8
+    ]
    }
   },
   "G020-3": {
    "family": "precip-deviation",
    "seed": 1,
-   "text": "(가)의 2월 실제 값은 약 23.4mm이다.",
+   "text": "강수 편차가 음수인 달에도 비가 내릴 수 있다.",
    "check": {
-    "op": "restore",
-    "deviation": -46.89166666666668,
-    "base": 60.29166666666668,
-    "result": 13.4
+    "op": "negativeDeviation"
    }
   },
   "G021-5": {
    "family": "difference",
    "seed": 1,
-   "text": "(가)는 1월 기온이 7월보다 높다.",
+   "text": "(다)는 1월 기온이 7월보다 낮다.",
    "check": {
     "op": "difference",
-    "a": -3.5,
-    "b": 23.4,
-    "result": -26.9
+    "a": -0.2,
+    "b": 23.9,
+    "result": -24.099999999999998
    }
   },
-  "G002-1": {
+  "G002-2": {
    "family": "daylight",
    "seed": 1,
-   "text": "마닐라는 웰링턴보다 낮 길이의 연중 변화 폭이 크다.",
+   "text": "북위 80°에서 6월에 백야이면 남위 80°의 같은 시기에는 극야가 나타난다.",
    "check": {
-    "op": "dayRange",
-    "hi": -41.2865,
-    "lo": 14.5995
+    "op": "polar",
+    "north": 24,
+    "south": 0
    }
   },
   "G012-2": {
@@ -1372,18 +1461,20 @@
     "op": "declinationMeaning"
    }
   },
-  "G002-2": {
+  "G002-1": {
    "family": "daylight",
    "seed": 1,
-   "text": "웰링턴의 낮 길이는 7월이 1월보다 길다.",
+   "text": "웰링턴는 마닐라보다 낮 길이의 연중 변화 폭이 크다.",
    "check": {
-    "op": "hemisphere"
+    "op": "dayRange",
+    "hi": -41.2865,
+    "lo": 14.5995
    }
   },
   "G022-1": {
    "family": "solar-altitude",
    "seed": 1,
-   "text": "(가)의 7월 태양 고도는 약 46.8°이다.",
+   "text": "(가)의 7월 태양 고도는 약 31.8°이다.",
    "check": {
     "op": "solarAltitude",
     "lat": -36.84806,
@@ -1393,18 +1484,18 @@
   },
   "G022-2": {
    "family": "solar-month",
-   "seed": 2,
-   "text": "태양 자료로 정한 7월 강수량은 양곤가 다윈보다 많다.",
+   "seed": 5,
+   "text": "태양 자료로 정한 4월 강수량은 양곤가 다윈보다 많다.",
    "check": {
     "op": "compare",
-    "a": 624.5,
-    "b": 0.9
+    "a": 37.9,
+    "b": 105.1
    }
   },
   "G024-2": {
    "family": "solar-night",
    "seed": 1,
-   "text": "(가)의 1월 밤 길이는 약 12.4시간이다.",
+   "text": "(가)의 1월 밤 길이는 약 9.4시간이다.",
    "check": {
     "op": "night",
     "lat": -41.2865,
@@ -1412,89 +1503,92 @@
     "result": 9.361043453006964
    }
   },
-  "G134-2": {
-   "family": "age-triangle",
-   "seed": 1,
-   "text": "부양 대상이 전체 인구의 36.7%이면 총부양비도 36.7이다.",
-   "check": {
-    "op": "dependencyDenominator"
-   }
-  },
-  "G134-1": {
-   "family": "age-triangle",
-   "seed": 1,
-   "text": "이 확대 삼각 도표의 꼭짓점은 세 축 모두 100%를 뜻하지 않는다.",
-   "check": {
-    "op": "ternaryBounds",
-    "minimum": [
-     10,
-     40,
-     0
-    ]
-   }
-  },
   "G056-3": {
    "family": "age-triangle",
    "seed": 1,
-   "text": "중위 연령은 모든 사람의 나이를 더해 총인구로 나눈 평균 연령이다.",
+   "text": "중위 연령은 인구를 나이순으로 배열했을 때 가운데에 놓이는 연령이다.",
    "check": {
     "op": "medianAgeDefinition"
    }
   },
+  "G134-2": {
+   "family": "age-triangle",
+   "seed": 1,
+   "text": "(가)의 노령화 지수는 약 5.5이다.",
+   "check": {
+    "op": "aging",
+    "young": 93.25396825396825,
+    "old": 5.158730158730159,
+    "result": 5.531914893617022
+   }
+  },
+  "G134-1": {
+   "family": "age-triangle",
+   "seed": 2,
+   "text": "이 전체 삼각 도표의 꼭짓점은 해당 축 100%를 뜻한다.",
+   "check": {
+    "op": "ternaryBounds",
+    "minimum": [
+     0,
+     0,
+     0
+    ]
+   }
+  },
   "G056-2": {
    "family": "age-triangle",
-   "seed": 3,
-   "text": "(가)의 청장년층 비율은 약 68%이다.",
+   "seed": 4,
+   "text": "(가)의 청장년층 비율은 약 78%이다.",
    "check": {
     "op": "workforce",
     "D": 47.05882352941176,
     "result": 68
    }
   },
-  "G136-1": {
-   "family": "urban-weighted",
-   "seed": 1,
-   "text": "브라질의 도시 인구 증가율은 약 257.5%, 촌락 인구 증가율은 약 -18.8%이다.",
-   "check": {
-    "op": "urbanRuralGrowth",
-    "u0": 50724,
-    "r0": 44652,
-    "u1": 181350,
-    "r1": 27311,
-    "urban": 257.52306600425834,
-    "rural": -38.83588641046314
-   }
-  },
   "G053-2": {
    "family": "urban-weighted",
    "seed": 1,
-   "text": "파키스탄의 총인구 증가율은 약 290.6%이다.",
+   "text": "미국의 총인구 증가율은 약 63.4%이다.",
    "check": {
     "op": "weightedGrowth",
-    "u0": 14934,
-    "r0": 45232,
-    "u1": 88145,
-    "r1": 146857,
-    "result": 290.5893694112954
+    "u0": 152720,
+    "r0": 55076,
+    "u1": 271540,
+    "r1": 67896,
+    "result": 63.350593851662204
+   }
+  },
+  "G136-1": {
+   "family": "urban-weighted",
+   "seed": 1,
+   "text": "미국의 도시 인구 증가율은 약 77.8%, 촌락 인구 증가율은 약 23.3%이다.",
+   "check": {
+    "op": "urbanRuralGrowth",
+    "u0": 152720,
+    "r0": 55076,
+    "u1": 271540,
+    "r1": 67896,
+    "urban": 77.80251440544788,
+    "rural": 23.276926428934562
    }
   },
   "G136-2": {
    "family": "urban-weighted",
    "seed": 2,
-   "text": "미국의 전체 증가율은 도시·촌락 증가율을 종료 비중으로 가중한 값이다.",
+   "text": "브라질의 전체 증가율은 도시·촌락 증가율을 시작 비중으로 가중한 값이다.",
    "check": {
     "op": "weights",
-    "u0": 152720,
-    "r0": 55076,
-    "gu": 77.80251440544788,
-    "gr": 23.276926428934562,
-    "result": 63.350593851662204
+    "u0": 50724,
+    "r0": 44652,
+    "gu": 257.52306600425834,
+    "gr": -38.83588641046314,
+    "result": 118.77726052675726
    }
   },
   "G063-1": {
    "family": "urban-radar",
    "seed": 1,
-   "text": "한 국가의 세 축 값은 구성비이므로 합계가 반드시 1이다.",
+   "text": "한 국가의 세 축 값의 합은 1일 필요가 없다.",
    "check": {
     "op": "radarSum",
     "values": [
@@ -1548,107 +1642,115 @@
   "G070-1": {
    "family": "headquarters",
    "seed": 1,
-   "text": "A의 본사 매출 합계는 370십억 달러이다.",
+   "text": "B의 본사 매출 합계는 470십억 달러이다.",
    "check": {
     "op": "product",
-    "a": 40,
-    "b": 8,
-    "result": 320
+    "a": 30,
+    "b": 14,
+    "result": 420
    }
   },
   "G061-3": {
    "family": "migrant-stock",
    "seed": 1,
-   "text": "이 자료는 2020년 한 해 미국으로 새로 들어온 이민자 수이다.",
+   "text": "출신국별 인원만으로 권역별 이주 원인이 오직 공용어 하나라고 확정한다.",
    "check": {
-    "op": "stock",
+    "op": "migrantRegions",
     "practice": "suppliedData"
    }
   },
   "G137-2": {
    "family": "population-index",
    "seed": 1,
-   "text": "인도의 인구 증가율은 약 115.7%이다.",
+   "text": "일본의 인구 증가율은 약 97.2%이다.",
    "check": {
     "op": "indexGrowth",
-    "index": 115.65,
-    "result": 15.650000000000006
+    "index": 97.23,
+    "result": -2.769999999999996
    }
   },
   "G051-5": {
    "family": "ethnic-stacks",
    "seed": 1,
-   "text": "아르헨티나의 유럽계 인구수는 국가 총인구와 관계없이 유럽계 비중(%)의 숫자와 같다.",
+   "text": "브라질의 유럽계 인구수는 국가 총인구와 관계없이 유럽계 비중(%)의 숫자와 같다.",
    "check": {
     "op": "product",
-    "a": 4,
-    "b": 1,
-    "result": 4
+    "a": 20,
+    "b": 0.475,
+    "result": 9.5
    }
   },
   "G127-2": {
    "family": "industry-remainder",
    "seed": 1,
-   "text": "브라질의 GDP 중 1차 비중도 분모 확인 없이 반드시 6.89%이다.",
+   "text": "인도의 GDP 중 1차 비중도 분모 확인 없이 반드시 19.45%이다.",
    "check": {
     "op": "industryRemainder",
-    "industry": 25.35,
-    "services": 67.76,
-    "result": 6.89
+    "industry": 28.14,
+    "services": 52.41,
+    "result": 19.45
    }
   },
   "G097-4": {
    "family": "industry-amount",
    "seed": 1,
-   "text": "인도의 2차 산업 부가가치는 GDP를 2차 산업 비중으로 나눈 값이다.",
+   "text": "중국의 2차 산업 부가가치는 GDP를 2차 산업 비중으로 나눈 값이다.",
    "check": {
     "op": "product",
-    "a": 3167.3,
-    "b": 0.2647,
-    "result": 838.3843099999999,
+    "a": 18201.7,
+    "b": 0.3809,
+    "result": 6933.027530000001,
     "year": "2021"
    }
   },
   "G053-4": {
    "family": "population-periods",
    "seed": 1,
-   "text": "독일의 누적 총증가는 자연 증감을 무시하고 순이동 두 값만 더하면 된다.",
+   "text": "인도의 누적 총증가는 자연 증감을 무시하고 순이동 두 값만 더하면 된다.",
    "check": {
     "op": "sum",
     "values": [
-     -0.921,
-     1.679,
-     -0.784,
-     2.869
+     86.611,
+     -0.875,
+     78.119,
+     -2.394
     ],
-    "result": 2.843
+    "result": 161.461
    }
   },
   "G135-1": {
    "family": "migration-scatter",
    "seed": 1,
-   "text": "인도의 순이동률은 약 0.56809%이다.",
+   "text": "독일의 순이동률은 약 0.73187%이다.",
    "check": {
     "op": "subtract",
-    "a": 0.88541,
-    "b": 0.9535,
-    "result": -0.06808999999999998
+    "a": 0.33187,
+    "b": -0.4,
+    "result": 0.73187
+   }
+  },
+  "G057-2": {
+   "family": "migration-scatter",
+   "seed": 1,
+   "text": "점이 대각선 y=x 위쪽에 있으면 전체 증가율이 자연 증가율보다 커 순유입이다.",
+   "check": {
+    "op": "netMigrationDiagonal"
    }
   },
   "G057-3": {
    "family": "migration-scatter",
-   "seed": 1,
-   "text": "순유출률의 절댓값이 작으면 기준 인구에 관계없이 순유출 인원도 반드시 작다.",
+   "seed": 3,
+   "text": "순이동률의 절댓값만으로 순이동 인원 순위를 정하지 않고 같은 해 기준 인구를 곱해야 한다.",
    "check": {
     "op": "migrationDenominator",
     "rows": [
      {
-      "n": "독일",
-      "p": 83287273,
-      "natural": -0.4,
-      "net": 609553,
-      "social": 0.7318681210753533,
-      "total": 0.33186812107535324
+      "n": "멕시코",
+      "p": 129739759,
+      "natural": 0.9545,
+      "net": -101044,
+      "social": -0.07788206235222003,
+      "total": 0.87661793764778
      },
      {
       "n": "인도",
@@ -1659,22 +1761,14 @@
       "total": 0.8854101799576604
      },
      {
-      "n": "멕시코",
-      "p": 129739759,
-      "natural": 0.9545,
-      "net": -101044,
-      "social": -0.07788206235222003,
-      "total": 0.87661793764778
+      "n": "독일",
+      "p": 83287273,
+      "natural": -0.4,
+      "net": 609553,
+      "social": 0.7318681210753533,
+      "total": 0.33186812107535324
      }
     ]
-   }
-  },
-  "G057-2": {
-   "family": "migration-scatter",
-   "seed": 1,
-   "text": "점이 대각선 y=x 위쪽에 있으면 전체 증가율이 자연 증가율보다 커 순유입이다.",
-   "check": {
-    "op": "netMigrationDiagonal"
    }
   },
   "G087-3": {
@@ -1696,23 +1790,22 @@
   "G075-2": {
    "family": "food-stock-balance",
    "seed": 1,
-   "text": "인도의 공급 가능량은 재고 증가를 더하고 수입은 빼서 구한다.",
+   "text": "독일의 공급 가능량은 재고 증가를 더하고 수입은 빼서 구한다.",
    "check": {
     "op": "foodBalance",
-    "production": 374.634,
-    "imports": 1.007,
-    "exports": 31.231,
-    "stockIncrease": 1,
-    "result": 343.41
+    "production": 42.463,
+    "imports": 19.672,
+    "exports": 19.403,
+    "stockIncrease": 0.2,
+    "result": 42.532000000000004
    }
   },
   "G008-2": {
    "family": "stat-map-types",
    "seed": 1,
-   "text": "점 하나는 실제 주민 한 명의 집 위치이다.",
+   "text": "통계 지도는 범례의 단위·분모를 몰라도 모든 순위를 확정할 수 있다.",
    "check": {
-    "op": "statMapType",
-    "mode": 1
+    "op": "mapLegend"
    }
   },
   "G008-4": {
@@ -1734,39 +1827,26 @@
   "G112-5": {
    "family": "rain-ph-maps",
    "seed": 1,
-   "text": "강수량이 가장 많은 E가 pH도 가장 낮다고 판정할 수 있다.",
+   "text": "pH 4인 A는 pH 5인 B보다 수소 이온 농도가 작다.",
    "check": {
-    "op": "rainVsPH",
-    "rain": [
-     600,
-     1200,
-     900,
-     700,
-     1500,
-     1000
-    ],
-    "ph": [
-     4,
-     5,
-     4.5,
-     5.5,
-     4.2,
-     5.2
-    ]
+    "op": "pHScale",
+    "a": 4,
+    "b": 5,
+    "result": 10
    }
   },
   "G131-5": {
    "family": "andes-conditions",
    "seed": 1,
-   "text": "에콰도르와 페루는 모두 아르헨티나와 국경을 접한다.",
+   "text": "브라질의 수도가 남반구에 있으므로 국토 전체도 남반구에 있다.",
    "check": {
-    "op": "andesConditions"
+    "op": "pointVsCountry"
    }
   },
   "G123-5": {
    "family": "asian-export-items",
    "seed": 1,
-   "text": "이 그림의 오스트레일리아는 의류·자동차가 수출의 대부분을 차지한다.",
+   "text": "석탄·팜유·천연가스가 보이는 (다)는 인도네시아이다.",
    "check": {
     "op": "exportItems2018"
    }
@@ -1774,7 +1854,7 @@
   "G130-4": {
    "family": "north-america-trade",
    "seed": 1,
-   "text": "2017년 캐나다·멕시코 간 교역은 두 나라 각각의 대미 교역보다 크다.",
+   "text": "2017년 캐나다·멕시코 간 교역은 두 나라 각각의 대미 교역보다 작다.",
    "check": {
     "op": "northAmericanPairs",
     "year": 2017,
@@ -1795,52 +1875,44 @@
   "G104-1": {
    "family": "north-america-trade",
    "seed": 1,
-   "text": "2017년 미국의 대캐나다 무역 수지는 -379억 달러이다.",
+   "text": "2017년 미국·캐나다의 양방향 무역액은 6021억 달러이다.",
    "check": {
-    "op": "subtract",
+    "op": "add",
     "a": 2821,
     "b": 3200,
-    "result": -379
+    "result": 6021
    }
   },
   "G104-2": {
    "family": "eu-trade-arrows",
    "seed": 1,
-   "text": "EU→국가의 화살표는 해당 국가의 대EU 수출이다.",
+   "text": "EU→국가의 화살표는 EU의 수출이면서 해당 국가의 수입이다.",
    "check": {
     "op": "tradeArrowDirection"
-   }
-  },
-  "G103-2": {
-   "family": "trade-bubble",
-   "seed": 1,
-   "text": "2013년 A의 원이 더 크므로 총인구도 반드시 C보다 많다.",
-   "check": {
-    "op": "bubbleVsPopulation"
    }
   },
   "G103-1": {
    "family": "trade-bubble",
    "seed": 1,
-   "text": "2009년 B는 수입액이 수출액보다 커서 적자이다.",
+   "text": "2009년 B는 원이 작으므로 수입액이 수출액보다 작아 흑자이다.",
    "check": {
     "op": "tradeBalanceFromCenter"
+   }
+  },
+  "G103-2": {
+   "family": "trade-bubble",
+   "seed": 1,
+   "text": "2013년 A는 C보다 총무역액이 커도 총인구는 더 적을 수 있으며 이 자료에서는 그렇게 판정된다.",
+   "check": {
+    "op": "bubbleVsPopulation"
    }
   },
   "G103-3": {
    "family": "trade-composition-triangle",
    "seed": 1,
-   "text": "수출·수입에서 한 품목 비중이 같으면 양방향 품목 금액도 반드시 같다.",
+   "text": "수출과 수입은 각각 다른 총액을 100으로 만든 구성이다.",
    "check": {
     "op": "tradeTriangleDenominator"
-   }
-  },
-  "G107-2": {
-   "family": "bloc-trade-bars",
-   "seed": 1,
-   "text": "USMCA의 역내 GDP가 EU보다 크므로 공동 통화·통합 수준도 더 높다.",
-   "check": {
-    "op": "gdpVsIntegration"
    }
   },
   "G107-1": {
@@ -1849,6 +1921,14 @@
    "text": "역내 교역 비율은 역내÷(역내+역외)×100으로 구한다.",
    "check": {
     "op": "intraTradeDenominator"
+   }
+  },
+  "G107-2": {
+   "family": "bloc-trade-bars",
+   "seed": 1,
+   "text": "USMCA의 역내 GDP가 EU보다 크므로 공동 통화·통합 수준도 더 높다.",
+   "check": {
+    "op": "gdpVsIntegration"
    }
   },
   "G110-7": {
@@ -1864,52 +1944,58 @@
   "G111-3": {
    "family": "ozone-area",
    "seed": 1,
-   "text": "막대 하나는 언제나 해당 연도 1~12월 전체 평균이다.",
+   "text": "남반구 9~10월은 가을이므로 한국과 같은 계절이다.",
    "check": {
-    "op": "ozoneAveragingWindow"
+    "op": "southernOzoneSeason"
    }
   },
   "G111-5": {
    "family": "ice-ozone-maps",
    "seed": 1,
-   "text": "(나)의 밝은 영역은 남극 얼음이 더 두껍게 쌓인 곳이다.",
+   "text": "(가)의 점선은 오존 구멍의 최대 범위이다.",
    "check": {
-    "op": "ozoneMapLegend"
+    "op": "seaIceDottedExtent"
    }
   },
   "G081-5": {
    "family": "anticline-trap",
    "seed": 1,
-   "text": "일반적인 배사 트랩에서 물은 가스보다 위쪽에 분포한다.",
+   "text": "배사 모식도에서 아래쪽 물층은 석유·가스의 위치와 구별해야 한다.",
    "check": {
-    "op": "trapOrder",
-    "labels": [
-     "C",
-     "A",
-     "B"
-    ]
+    "op": "trapFluids"
    }
   },
   "G037-4": {
    "family": "meander-banks",
    "seed": 1,
-   "text": "종단면은 하천을 가로질러 양쪽 강둑 사이 폭만 나타낸다.",
+   "text": "A는 굽은 바깥쪽이므로 언제나 퇴적만 활발하다.",
    "check": {
-    "op": "riverProfile"
+    "op": "meander",
+    "rotation": 90,
+    "outer": "A",
+    "inner": "B"
    }
   },
   "G041-4": {
    "family": "religion-symbols",
    "seed": 1,
-   "text": "파키스탄 국장의 초승달·별은 불교의 법륜과 같은 상징이다.",
+   "text": "파키스탄 국장의 초승달·별은 이슬람교와 연결한다.",
    "check": {
     "op": "emblemReligion"
+   }
+  },
+  "G092-2": {
+   "family": "mineral-relative",
+   "seed": 1,
+   "text": "같은 광물 안에서는 막대 길이로 제시 국가의 실제 생산량 순서를 비교할 수 있다.",
+   "check": {
+    "op": "mineralCompareScope"
    }
   },
   "G092-1": {
    "family": "mineral-relative",
    "seed": 1,
-   "text": "은의 100과 철광석의 100은 실제 생산량과 단위가 서로 같다는 뜻이다.",
+   "text": "은의 100과 철광석의 100은 각각 다른 광물의 제시 국가 최댓값이다.",
    "check": {
     "op": "mineralNormalize",
     "raw": [
@@ -1953,95 +2039,62 @@
     ]
    }
   },
-  "G092-2": {
-   "family": "mineral-relative",
-   "seed": 1,
-   "text": "같은 광물 안에서는 막대 길이로 제시 국가의 실제 생산량 순서를 비교할 수 있다.",
-   "check": {
-    "op": "mineralCompareScope"
-   }
-  },
-  "G126-4": {
+  "G058-1": {
    "family": "population-pyramid",
    "seed": 1,
-   "text": "아랍 에미리트의 청장년 남성 집중은 출생 성비만으로 충분히 설명된다.",
+   "text": "막대의 가로축이 명수인지 비율인지, 비율이면 전체 100인지 성별 100인지 먼저 확인한다.",
    "check": {
-    "op": "laborMigrationPyramid"
+    "op": "pyramidDenominator",
+    "format": 1
    }
   },
   "G057-4": {
    "family": "population-pyramid",
    "seed": 1,
-   "text": "(가)의 30~39세 성비는 여성 100명당 남성 약 102.7명이다.",
+   "text": "(다)의 30~39세 성비는 여성 100명당 남성 약 102.8명이다.",
    "check": {
     "op": "sexRatio",
-    "male": 6632718,
-    "female": 6459356,
-    "result": 102.68388984908093
+    "male": 8172972,
+    "female": 7951051,
+    "result": 102.79109013387036
    }
   },
-  "G058-1": {
+  "G126-4": {
    "family": "population-pyramid",
-   "seed": 2,
-   "text": "성별 인구를 각각 100으로 표준화한 두 막대는 남녀 실제 인구도 같다는 뜻이다.",
+   "seed": 1,
+   "text": "아랍 에미리트의 성·연령 구조는 청장년 노동 이주의 집중과 연결해 해석할 수 있다.",
    "check": {
-    "op": "pyramidDenominator",
-    "format": 2
+    "op": "laborMigrationPyramid"
    }
   },
   "G058-3": {
    "family": "pyramid-cohort",
    "seed": 1,
-   "text": "튀르키예의 대응 코호트 인구 변화는 2010년 30~39세와 2020년 30~39세를 빼면 구할 수 있다.",
+   "text": "이집트의 대응 코호트 인구 변화는 2010년 30~39세와 2020년 30~39세를 빼면 구할 수 있다.",
    "check": {
     "op": "subtract",
-    "a": 11652338,
-    "b": 11577124,
-    "result": 75214
+    "a": 11970837,
+    "b": 12242332,
+    "result": -271495
    }
   },
   "G041-1": {
    "family": "religion-top-two",
    "seed": 1,
-   "text": "말레이시아에서는 불교 신자가 이슬람교 신자보다 많다.",
+   "text": "스리랑카는 불교·힌두교, 방글라데시는 이슬람교·힌두교 순이다.",
    "check": {
-    "op": "religionTopTwo",
-    "year": "2010",
-    "orders": [
-     [
-      "islam",
-      "buddhism"
-     ],
-     [
-      "hinduism",
-      "buddhism"
-     ],
-     [
-      "buddhism",
-      "hinduism"
-     ],
-     [
-      "hinduism",
-      "islam"
-     ],
-     [
-      "islam",
-      "hinduism"
-     ]
-    ],
-    "countries": [
-     "말레이시아",
-     "네팔",
-     "스리랑카",
-     "인도",
-     "방글라데시"
+    "op": "religionRankAssignment",
+    "keys": [
+     "hinduism",
+     "islam",
+     "buddhism"
     ]
    }
   },
   "G043-4": {
    "family": "religion-score",
    "seed": 1,
-   "text": "불교에 대한 진술 ① 민족 종교이다는 그대로 옳다.",
+   "text": "불교에 대한 틀린 진술 ①은 보편 종교이다로 고친다.",
    "check": {
     "op": "correctReligionClaim"
    }
@@ -2049,7 +2102,7 @@
   "G083-1": {
    "family": "resource-area",
    "seed": 1,
-   "text": "서로 다른 그림에서 조각의 면적이 같으면 실제 인구·생산량도 반드시 같다.",
+   "text": "서로 다른 그림의 실제량을 비교할 때는 각 그림 총량×조각 비중으로 계산한다.",
    "check": {
     "op": "areaVsAmount"
    }
@@ -2057,7 +2110,7 @@
   "G139-1": {
    "family": "population-area",
    "seed": 1,
-   "text": "그림에서 기타는 이름이 기타인 국가 한 곳의 값이다.",
+   "text": "그림에서 기타는 따로 제시하지 않은 나머지 국가들의 합이다.",
    "check": {
     "op": "areaRemainder",
     "groups": [
@@ -2111,43 +2164,9 @@
   "G127-1": {
    "family": "regional-radar",
    "seed": 1,
-   "text": "서로 다른 축에서 100이면 실제 값과 단위까지 서로 같다.",
+   "text": "같은 축 안에서는 상대값 순서와 실제 지표 순서가 같다.",
    "check": {
-    "op": "radarColumns",
-    "raw": [
-     [
-      2.74111369312152,
-      2149690,
-      1218.6
-     ],
-     [
-      18.2880136371241,
-      1001450,
-      395.9
-     ],
-     [
-      12.0248423569605,
-      2724902,
-      261.8
-     ]
-    ],
-    "normalized": [
-     [
-      14.988580758476386,
-      78.89054358652164,
-      100
-     ],
-     [
-      100,
-      36.75178043100266,
-      32.48810109962252
-     ],
-     [
-      65.7525885290814,
-      100,
-      21.483669784999183
-     ]
-    ]
+    "op": "radarOrder"
    }
   },
   "G086-5": {
@@ -2185,7 +2204,7 @@
   "G006-2": {
    "family": "oldmap-images",
    "seed": 1,
-   "text": "T-O 지도와 알 이드리시 지도는 모두 북쪽이 위이므로 대륙 배치도 오늘날 지도와 같다.",
+   "text": "T-O 지도는 동쪽, 알 이드리시 지도는 남쪽이 위에 표현된다.",
    "check": {
     "op": "historicalOrientation"
    }
@@ -2204,23 +2223,18 @@
   "G036-3": {
    "family": "coast-images",
    "seed": 1,
-   "text": "맹그로브·산호섬·석호·시스택은 모두 같은 파랑 침식 지형이다.",
+   "text": "이 그림만으로 해당 지역의 모든 주민·시설·지형이 같은 유형이라고 확정할 수 있다.",
    "check": {
-    "op": "coastProcess"
-   }
-  },
-  "G044-2": {
-   "family": "religious-buildings",
-   "seed": 1,
-   "text": "한 도시에 서로 다른 종교 건축이 있으면 그 도시의 모든 주민은 같은 종교이다.",
-   "check": {
-    "op": "singaporeBuildings"
+    "op": "figureIdentification",
+    "panel": "mangrove",
+    "answer": "맹그로브",
+    "sha256": "9fc7642095b5796a8a4b59ede1d2b7476ce9294817d844167466a7a1bf5014cf"
    }
   },
   "G044-1": {
    "family": "religious-buildings",
    "seed": 1,
-   "text": "이 그림의 식별 단서는 인물 조각이 밀집한 사원탑이다.",
+   "text": "이 그림만으로 해당 지역의 모든 주민·시설·지형이 같은 유형이라고 확정할 수 있다.",
    "check": {
     "op": "figureIdentification",
     "panel": "hindu-temple",
@@ -2231,7 +2245,7 @@
   "G052-3": {
    "family": "traditional-houses",
    "seed": 1,
-   "text": "이 그림만으로 해당 지역의 모든 주민·시설·지형이 같은 유형이라고 확정할 수 있다.",
+   "text": "이 그림의 식별 단서는 분해·조립하는 원형 골조와 펠트 덮개이다.",
    "check": {
     "op": "figureIdentification",
     "panel": "ger",
@@ -2242,42 +2256,57 @@
   "G067-1": {
    "family": "road-images",
    "seed": 1,
-   "text": "맨해튼이나 파리의 모든 도로는 예외 없이 사진과 같은 형태이다.",
+   "text": "이 그림만으로 해당 지역의 모든 주민·시설·지형이 같은 유형이라고 확정할 수 있다.",
    "check": {
-    "op": "roadScope"
+    "op": "figureIdentification",
+    "panel": "manhattan",
+    "answer": "맨해튼 격자형",
+    "sha256": "cc23d827b34432f468439b80c8760409eded1eed789087d0e38926cd074e37c1"
    }
   },
   "G067-2": {
    "family": "city-images",
    "seed": 1,
-   "text": "이 그림만으로 해당 지역의 모든 주민·시설·지형이 같은 유형이라고 확정할 수 있다.",
+   "text": "예수상이 보이는 리우데자네이루는 현재 브라질의 수도이다.",
    "check": {
-    "op": "figureIdentification",
-    "panel": "rio",
-    "answer": "리우데자네이루",
-    "sha256": "111aba3d7795955c493af8f124bcafc614ccf5f62125412f1220cf505f235261"
+    "op": "cityLandscapeVsCapital"
+   }
+  },
+  "G044-2": {
+   "family": "religious-landmarks",
+   "seed": 1,
+   "text": "히랄다 탑는 세비야 일대의 에스파냐 문화유산이다.",
+   "check": {
+    "op": "landmarkLocation",
+    "panel": "giralda",
+    "city": "세비야",
+    "country": "에스파냐",
+    "religion": "이슬람 건축의 첨탑에서 크리스트교 성당 종탑으로 전환"
    }
   },
   "G073-1": {
    "family": "irrigation-images",
    "seed": 1,
-   "text": "사진의 원형 농지는 카나트의 지하 터널이 지표에서 원형으로 보인 것이다.",
+   "text": "이 그림만으로 해당 지역의 모든 주민·시설·지형이 같은 유형이라고 확정할 수 있다.",
    "check": {
-    "op": "irrigationProcess"
+    "op": "figureIdentification",
+    "panel": "pivot-irrigation",
+    "answer": "중심축 회전식 관개",
+    "sha256": "2c208b542c1644b4c68a97f5a88183ed1f1b62d96b814e91105763ed53cc7b1f"
    }
   },
   "G007-3": {
    "family": "night-lights",
    "seed": 1,
-   "text": "야간 빛의 밝기 비율은 그 지역 총인구 비율과 항상 같다.",
+   "text": "(가)는 타이완, (나)는 스리랑카에 해당한다.",
    "check": {
-    "op": "nightLightMeaning"
+    "op": "nightLightCountries"
    }
   },
   "G073-4": {
    "family": "china-grain-map",
    "seed": 1,
-   "text": "점이 두 배 많은 지역은 단위 면적당 생산량도 반드시 두 배이다.",
+   "text": "같은 범례의 점이 두 배 많으면 표시된 생산량도 두 배이다.",
    "check": {
     "op": "grainDotLegend",
     "tonnesPerDot": 200000
@@ -2286,16 +2315,16 @@
   "G079-3": {
    "family": "livestock-composition",
    "seed": 1,
-   "text": "(가)의 세계 양 사육 점유율은 이 그래프만으로 약 7.2%라고 확정된다.",
+   "text": "(다)의 국가 내부 세 가축 중 양 비중은 약 27.5%이다.",
    "check": {
     "op": "composition",
     "values": [
-     238620910,
-     43124200,
-     21799960
+     73559570,
+     434222700,
+     192983700
     ],
     "part": 2,
-    "result": 7.181786875998348
+    "result": 27.538965683507723
    }
   },
   "G034-1": {
@@ -2327,15 +2356,15 @@
   "G034-2": {
    "family": "lake-types",
    "seed": 1,
-   "text": "이 자료에서 가장 깊은 호수는 플라야이다.",
+   "text": "플라야는 이 자료에서 염분이 가장 높다.",
    "check": {
-    "op": "lakeReading"
+    "op": "lakeSalinity"
    }
   },
   "G023-2": {
    "family": "solar-route",
    "seed": 1,
-   "text": "북반구의 두 도시 사이에서 1월에 북쪽으로 이동하면 낮 길이는 길어진다.",
+   "text": "북반구의 두 도시 사이에서 1월에 북쪽으로 이동하면 낮 길이는 짧아진다.",
    "check": {
     "op": "solarRoute",
     "month": 1,
@@ -2345,59 +2374,59 @@
   "G054-4": {
    "family": "vital-scatter",
    "seed": 1,
-   "text": "(가)의 자연 증가율은 약 14‰이다.",
+   "text": "(다)의 자연 증가율은 약 33.03‰이다.",
    "check": {
     "op": "subtract",
-    "a": 8.3,
-    "b": 12.3,
-    "result": -4
+    "a": 41.89,
+    "b": 8.86,
+    "result": 33.03
    }
   },
   "G059-1": {
    "family": "dependency-change",
    "seed": 1,
-   "text": "일본의 2023년 총부양비는 약 41.2이다.",
+   "text": "차드의 2015년 총부양비는 약 100.4이다.",
    "check": {
     "op": "dependency",
-    "young": 11.6,
-    "old": 29.6,
-    "result": 70.06802721088435
+    "young": 47.6,
+    "old": 2.5,
+    "result": 100.40080160320642
    }
   },
   "G076-1": {
    "family": "grain-triangle",
    "seed": 1,
-   "text": "(가)는 세계 밀 생산량의 약 96.3%를 차지한다.",
+   "text": "(다)에서 밀의 제시 세 작물 중 비중은 약 16.6%이다.",
    "check": {
     "op": "composition",
     "values": [
-     28420057.06,
-     507611.06,
-     598599.12
+     82727530,
+     9901510,
+     405115369
     ],
     "part": 0,
-    "result": 96.25347094839883
+    "result": 16.620484028380115
    }
   },
   "G080-6": {
    "family": "beverage-triangle",
    "seed": 1,
-   "text": "(가)는 세계 커피 생산량의 약 77.6%를 차지한다.",
+   "text": "(다)에서 커피의 제시 세 작물 중 비중은 약 21.5%이다.",
    "check": {
     "op": "composition",
     "values": [
-     4484597.13,
-     359857.43,
-     934475.23
+     1943557.14,
+     3739369.91,
+     3344066.2
     ],
     "part": 0,
-    "result": 77.60255433039273
+    "result": 21.5305039693034
    }
   },
   "G079-2": {
    "family": "livestock-denominators",
    "seed": 1,
-   "text": "세계 중 남아시아 비중은 약 60.49%이다.",
+   "text": "세계 중 남아시아 비중은 약 18.55%이다.",
    "check": {
     "op": "productShare",
     "a": 30.664,
@@ -2408,18 +2437,18 @@
   "G138-1": {
    "family": "grain-export-scatter",
    "seed": 1,
-   "text": "(가)의 생산량 대비 수출량은 약 139.5%이다.",
+   "text": "(다)의 생산량 대비 수출량은 약 22.1%이다.",
    "check": {
     "op": "quotientShare",
-    "a": 43.054,
-    "b": 60.068,
-    "result": 71.67543450755811
+    "a": 115.475,
+    "b": 522.181,
+    "result": 22.11397963541377
    }
   },
   "G076-2": {
    "family": "crop-trade-bubble",
    "seed": 1,
-   "text": "(나)는 순수입 지역이다.",
+   "text": "(나)는 순수출 지역이다.",
    "check": {
     "op": "netTrade",
     "exports": 3.75,
@@ -2430,29 +2459,29 @@
   "G086-3": {
    "family": "fossil-triangle",
    "seed": 1,
-   "text": "아시아의 전체 에너지 생산량 중 석유 비중은 이 표만으로 약 29.7%라고 확정할 수 있다.",
+   "text": "오세아니아의 세 화석 연료 중 석유 비중은 약 3.7%이다.",
    "check": {
     "op": "fossilRemainder",
-    "coal": 50.541,
-    "gas": 19.725,
-    "result": 29.734
+    "coal": 66.018,
+    "gas": 30.328,
+    "result": 3.654
    }
   },
   "G086-4": {
    "family": "fossil-remainder",
    "seed": 1,
-   "text": "인도의 전체 에너지 생산량 중 석유 비중은 이 표만으로 약 7.1%라고 확정할 수 있다.",
+   "text": "러시아의 전체 에너지 생산량 중 석유 비중은 이 표만으로 약 42.8%라고 확정할 수 있다.",
    "check": {
     "op": "fossilRemainder",
-    "coal": 87.065,
-    "gas": 5.883,
-    "result": 7.052000000000002
+    "coal": 17.355,
+    "gas": 39.843,
+    "result": 42.80199999999999
    }
   },
   "G085-4": {
    "family": "energy-per-capita",
    "seed": 1,
-   "text": "중국은 미국보다 총소비량이 많으므로 1인당 소비량도 더 많다.",
+   "text": "중국은 미국보다 총소비량이 많고, 미국은 중국보다 1인당 소비량이 많다.",
    "check": {
     "op": "energyPerCapita",
     "china": {
@@ -2498,7 +2527,7 @@
   "G085-5": {
    "family": "unequal-energy-axis",
    "seed": 1,
-   "text": "나라별 축 최대값이 다르면 막대 높이의 비율이 실제 소비량의 비율과 같지 않을 수 있다.",
+   "text": "나라별 축 최대값이 달라도 막대가 같은 높이면 실제 값도 반드시 같다.",
    "check": {
     "op": "unequalAxes"
    }
@@ -2506,12 +2535,12 @@
   "G083-2": {
    "family": "coal-production-consumption",
    "seed": 1,
-   "text": "(가)의 수입 의존도는 이 표만으로 약 12.8%라고 확정된다.",
+   "text": "(다)의 생산량 대비 소비량 비율은 약 69.5%이다.",
    "check": {
     "op": "quotientShare",
-    "a": 418.341,
-    "b": 3262.445,
-    "result": 12.822928815658194
+    "a": 2275.209,
+    "b": 3272.011,
+    "result": 69.53549361539432
    }
   },
   "G083-4": {
@@ -2524,12 +2553,12 @@
     "worldConsumption": 45319.086
    }
   },
-  "G089-5": {
+  "G085-3": {
    "family": "renewables-denominators",
    "seed": 1,
-   "text": "이 그래프의 수력 비중은 세계 총발전량을 분모로 계산했다.",
+   "text": "전력 생산 구성과 1차 에너지 소비 구성은 같은 비율이 아니다.",
    "check": {
-    "op": "selectedGeneration"
+    "op": "electricityVsPrimary"
    }
   },
   "G085-6": {
@@ -2545,17 +2574,17 @@
   "G138-3": {
    "family": "renewables-denominators",
    "seed": 1,
-   "text": "세계의 각 발전원을 각각 100으로 만든 그래프와 이 그래프의 비율은 그대로 곱해도 된다.",
+   "text": "세계의 각 발전원을 각각 100으로 만든 그래프는 이 그래프와 분모가 다르다.",
    "check": {
     "op": "generationDenominators"
    }
   },
-  "G085-3": {
+  "G089-5": {
    "family": "renewables-denominators",
    "seed": 1,
-   "text": "전력 생산 구성과 1차 에너지 소비 구성은 같은 비율이 아니다.",
+   "text": "이 그래프의 한 막대는 해당 국가의 선택 네 범주 발전량 합을 100으로 둔다.",
    "check": {
-    "op": "electricityVsPrimary"
+    "op": "selectedGeneration"
    }
   },
   "G104-3": {
@@ -2577,131 +2606,123 @@
   "G121-2": {
    "family": "treaty-tree",
    "seed": 1,
-   "text": "아시아의 이란에 있는 람사르는 유럽 경로인 (가)에 대응한다.",
+   "text": "분류도에서는 앞 질문에서 선택한 경로를 따라 다음 질문을 적용한다.",
    "check": {
-    "op": "treatyContinent"
+    "op": "treeTraversal"
    }
   },
   "G137-3": {
    "family": "industry-bubble",
    "seed": 1,
-   "text": "(가)의 원래 GDP 중 1차 비중은 이 좌표에서 무조건 100−2차−3차로 구한다.",
+   "text": "(다)의 세 산업 합 중 1차 비중은 약 19.4%이다.",
    "check": {
     "op": "industryRemainder",
-    "industry": 25.349,
-    "services": 67.758,
-    "result": 6.893000000000001
+    "industry": 28.139,
+    "services": 52.412,
+    "result": 19.449000000000005
    }
   }
  },
- "existingExamQuestions": 10000,
+ "existingExamQuestions": 17000,
  "existingExamGoals": {
   "G001-2": {
-   "true": 1399,
-   "false": 1608,
+   "true": 2209,
+   "false": 2337,
    "variants": {
     "일본": {
      "true": 0,
-     "false": 180
+     "false": 214
     },
     "중국": {
-     "true": 186,
-     "false": 36
+     "true": 409,
+     "false": 126
+    },
+    "사우디아라비아": {
+     "true": 134,
+     "false": 34
     },
     "영국": {
      "true": 0,
-     "false": 60
+     "false": 52
     },
     "인도": {
-     "true": 78,
-     "false": 19
+     "true": 135,
+     "false": 49
     },
     "보츠와나": {
-     "true": 88,
-     "false": 26
+     "true": 79,
+     "false": 24
     },
-    "사우디아라비아": {
-     "true": 107,
-     "false": 37
+    "나이지리아": {
+     "true": 0,
+     "false": 276
     },
     "튀르키예": {
      "true": 0,
-     "false": 87
-    },
-    "칠레": {
-     "true": 69,
-     "false": 30
-    },
-    "탄자니아": {
-     "true": 0,
-     "false": 62
+     "false": 83
     },
     "멕시코": {
-     "true": 86,
-     "false": 50
+     "true": 90,
+     "false": 47
+    },
+    "미국": {
+     "true": 177,
+     "false": 36
     },
     "타이": {
      "true": 0,
-     "false": 36
+     "false": 38
     },
     "아르헨티나": {
-     "true": 109,
-     "false": 34
-    },
-    "프랑스": {
-     "true": 0,
-     "false": 54
+     "true": 108,
+     "false": 32
     },
     "이집트": {
-     "true": 71,
+     "true": 67,
      "false": 30
     },
     "독일": {
      "true": 0,
-     "false": 31
+     "false": 67
     },
-    "나이지리아": {
+    "프랑스": {
      "true": 0,
-     "false": 167
+     "false": 76
+    },
+    "칠레": {
+     "true": 175,
+     "false": 28
     },
     "브라질": {
-     "true": 162,
-     "false": 70
+     "true": 376,
+     "false": 108
     },
     "콩고 민주 공화국": {
      "true": 0,
-     "false": 44
-    },
-    "카타르": {
-     "true": 0,
-     "false": 24
-    },
-    "미국": {
-     "true": 119,
-     "false": 32
-    },
-    "인도네시아": {
-     "true": 0,
-     "false": 71
+     "false": 42
     },
     "알제리": {
-     "true": 9,
+     "true": 7,
      "false": 2
-    },
-    "스웨덴": {
-     "true": 64,
-     "false": 1
     },
     "벨기에": {
      "true": 0,
-     "false": 27
+     "false": 25
+    },
+    "카타르": {
+     "true": 0,
+     "false": 22
     },
     "니제르": {
-     "true": 64,
+     "true": 59,
      "false": 26
     },
     "말리": {
      "true": 9,
+     "false": 0
+    },
+    "스웨덴": {
+     "true": 52,
      "false": 0
     },
     "폴란드": {
@@ -2710,15 +2731,19 @@
     },
     "베트남": {
      "true": 0,
-     "false": 19
+     "false": 17
+    },
+    "탄자니아": {
+     "true": 0,
+     "false": 58
     },
     "수단": {
      "true": 0,
      "false": 4
     },
-    "세네갈": {
+    "인도네시아": {
      "true": 0,
-     "false": 33
+     "false": 82
     },
     "말레이시아": {
      "true": 0,
@@ -2729,8 +2754,8 @@
      "false": 76
     },
     "러시아": {
-     "true": 43,
-     "false": 1
+     "true": 88,
+     "false": 50
     },
     "차드": {
      "true": 46,
@@ -2745,12 +2770,16 @@
      "false": 11
     },
     "아이슬란드": {
-     "true": 45,
-     "false": 0
+     "true": 82,
+     "false": 11
     },
     "에스파냐": {
      "true": 0,
      "false": 68
+    },
+    "세네갈": {
+     "true": 0,
+     "false": 30
     },
     "그리스": {
      "true": 0,
@@ -2761,98 +2790,126 @@
      "false": 14
     },
     "오스트레일리아": {
-     "true": 23,
-     "false": 14
+     "true": 40,
+     "false": 17
     },
     "케냐": {
      "true": 0,
-     "false": 24
+     "false": 102
+    },
+    "남아프리카 공화국": {
+     "true": 33,
+     "false": 2
+    },
+    "이란": {
+     "true": 0,
+     "false": 91
+    },
+    "뉴질랜드": {
+     "true": 0,
+     "false": 4
+    },
+    "노르웨이": {
+     "true": 22,
+     "false": 0
+    },
+    "덴마크": {
+     "true": 0,
+     "false": 56
+    },
+    "네팔": {
+     "true": 0,
+     "false": 23
+    },
+    "페루": {
+     "true": 0,
+     "false": 48
+    },
+    "볼리비아": {
+     "true": 0,
+     "false": 28
     }
    }
   },
   "G004-1": {
-   "true": 516,
-   "false": 547,
+   "true": 452,
+   "false": 480,
    "variants": {
     "인도": {
      "true": 0,
-     "false": 91
+     "false": 62
     },
     "일본": {
-     "true": 238,
+     "true": 255,
      "false": 0
     },
     "중국": {
-     "true": 38,
-     "false": 201
+     "true": 25,
+     "false": 225
     },
     "나이지리아": {
-     "true": 50,
-     "false": 66
+     "true": 34,
+     "false": 57
     },
     "보츠와나": {
-     "true": 27,
-     "false": 36
+     "true": 14,
+     "false": 19
     },
     "영국": {
      "true": 0,
-     "false": 22
-    },
-    "우크라이나": {
-     "true": 11,
-     "false": 0
+     "false": 13
     },
     "독일": {
-     "true": 14,
-     "false": 15
-    },
-    "멕시코": {
-     "true": 30,
-     "false": 27
+     "true": 5,
+     "false": 8
     },
     "칠레": {
-     "true": 2,
-     "false": 2
+     "true": 1,
+     "false": 0
     },
-    "아르헨티나": {
-     "true": 14,
-     "false": 16
+    "멕시코": {
+     "true": 20,
+     "false": 17
     },
     "알제리": {
+     "true": 4,
+     "false": 0
+    },
+    "우크라이나": {
      "true": 6,
      "false": 0
     },
+    "아르헨티나": {
+     "true": 10,
+     "false": 12
+    },
     "콩고 민주 공화국": {
-     "true": 7,
-     "false": 7
+     "true": 5,
+     "false": 6
     },
     "에티오피아": {
      "true": 16,
      "false": 0
     },
-    "베트남": {
-     "true": 2,
-     "false": 3
-    },
     "수단": {
      "true": 2,
      "false": 0
-    },
-    "브라질": {
-     "true": 22,
-     "false": 32
     },
     "폴란드": {
      "true": 1,
      "false": 0
     },
     "스웨덴": {
-     "true": 4,
+     "true": 1,
      "false": 0
     },
     "니제르": {
      "true": 1,
      "false": 0
+    },
+    "브라질": {
+     "true": 22,
+     "false": 31
     },
     "말리": {
      "true": 1,
@@ -2862,16 +2919,16 @@
      "true": 0,
      "false": 2
     },
+    "베트남": {
+     "true": 0,
+     "false": 3
+    },
     "우간다": {
      "true": 0,
      "false": 1
     },
-    "프랑스": {
-     "true": 0,
-     "false": 2
-    },
     "탄자니아": {
-     "true": 2,
+     "true": 1,
      "false": 0
     },
     "미국": {
@@ -2880,31 +2937,91 @@
     }
    }
   },
-  "G097-3": {
-   "true": 79,
-   "false": 80,
+  "G127-2": {
+   "true": 55,
+   "false": 50,
    "variants": {
-    "영국": {
-     "true": 39,
-     "false": 38
+    "sector-remainder-사우디아라비아": {
+     "true": 20,
+     "false": 9
     },
+    "sector-remainder-나이지리아": {
+     "true": 16,
+     "false": 21
+    },
+    "sector-remainder-중국": {
+     "true": 19,
+     "false": 20
+    }
+   }
+  },
+  "G097-3": {
+   "true": 57,
+   "false": 74,
+   "variants": {
     "탄자니아": {
-     "true": 40,
-     "false": 42
+     "true": 32,
+     "false": 33
+    },
+    "영국": {
+     "true": 25,
+     "false": 41
+    }
+   }
+  },
+  "G097-4": {
+   "true": 49,
+   "false": 31,
+   "variants": {
+    "general": {
+     "true": 49,
+     "false": 31
+    }
+   }
+  },
+  "G057-3": {
+   "true": 226,
+   "false": 213,
+   "variants": {
+    "general": {
+     "true": 226,
+     "false": 213
+    }
+   }
+  },
+  "G004-2": {
+   "true": 384,
+   "false": 268,
+   "variants": {
+    "튀르키예": {
+     "true": 2,
+     "false": 0
+    },
+    "나이지리아": {
+     "true": 5,
+     "false": 0
+    },
+    "카자흐스탄": {
+     "true": 37,
+     "false": 268
+    },
+    "사우디아라비아": {
+     "true": 340,
+     "false": 0
     }
    }
   },
   "G124-5": {
-   "true": 210,
-   "false": 212,
+   "true": 202,
+   "false": 206,
    "variants": {
-    "인도": {
-     "true": 24,
-     "false": 6
-    },
     "타이": {
      "true": 3,
      "false": 0
+    },
+    "인도": {
+     "true": 17,
+     "false": 6
     },
     "프랑스": {
      "true": 42,
@@ -2912,14 +3029,14 @@
     },
     "일본": {
      "true": 0,
-     "false": 33
+     "false": 28
     },
     "나이지리아": {
      "true": 0,
      "false": 2
     },
     "독일": {
-     "true": 3,
+     "true": 2,
      "false": 0
     },
     "벨기에": {
@@ -2933,10 +3050,6 @@
     "보츠와나": {
      "true": 69,
      "false": 0
-    },
-    "영국": {
-     "true": 0,
-     "false": 1
     },
     "차드": {
      "true": 0,
@@ -2997,28 +3110,6 @@
     "세네갈": {
      "true": 0,
      "false": 13
-    }
-   }
-  },
-  "G004-2": {
-   "true": 384,
-   "false": 268,
-   "variants": {
-    "튀르키예": {
-     "true": 2,
-     "false": 0
-    },
-    "나이지리아": {
-     "true": 5,
-     "false": 0
-    },
-    "카자흐스탄": {
-     "true": 37,
-     "false": 268
-    },
-    "사우디아라비아": {
-     "true": 340,
-     "false": 0
     }
    }
   },
@@ -3147,44 +3238,48 @@
    }
   },
   "G018-4": {
-   "true": 37,
-   "false": 52,
+   "true": 50,
+   "false": 58,
    "variants": {
-    "브리즈번": {
-     "true": 18,
-     "false": 22
-    },
     "푸저우": {
-     "true": 19,
-     "false": 30
+     "true": 26,
+     "false": 27
+    },
+    "브리즈번": {
+     "true": 24,
+     "false": 31
     }
    }
   },
   "G023-1": {
-   "true": 56,
-   "false": 62,
+   "true": 55,
+   "false": 63,
    "variants": {
-    "보고타": {
-     "true": 20,
-     "false": 29
-    },
     "아디스아바바": {
-     "true": 36,
-     "false": 33
+     "true": 29,
+     "false": 35
+    },
+    "보고타": {
+     "true": 26,
+     "false": 28
     }
    }
   },
   "G015-4": {
-   "true": 48,
-   "false": 46,
+   "true": 56,
+   "false": 65,
    "variants": {
-    "양곤": {
-     "true": 29,
-     "false": 27
-    },
     "브라질리아": {
-     "true": 19,
-     "false": 19
+     "true": 24,
+     "false": 22
+    },
+    "양곤": {
+     "true": 27,
+     "false": 40
+    },
+    "바마코": {
+     "true": 5,
+     "false": 3
     }
    }
   },
@@ -3217,67 +3312,216 @@
      "false": 219
     }
    }
+  },
+  "G085-4": {
+   "true": 21,
+   "false": 17,
+   "variants": {
+    "energy-pc": {
+     "true": 21,
+     "false": 17
+    }
+   }
+  },
+  "G085-3": {
+   "true": 662,
+   "false": 634,
+   "variants": {
+    "primary-vs-electricity": {
+     "true": 190,
+     "false": 202
+    },
+    "electricity-vs-primary": {
+     "true": 472,
+     "false": 432
+    }
+   }
+  },
+  "G083-2": {
+   "true": 483,
+   "false": 453,
+   "variants": {
+    "coal-production-denominator-브라질": {
+     "true": 75,
+     "false": 88
+    },
+    "coal-production-denominator-중국": {
+     "true": 60,
+     "false": 57
+    },
+    "coal-production-denominator-러시아": {
+     "true": 95,
+     "false": 69
+    },
+    "coal-production-denominator-남아프리카 공화국": {
+     "true": 67,
+     "false": 62
+    },
+    "coal-production-denominator-인도": {
+     "true": 87,
+     "false": 87
+    },
+    "coal-production-denominator-미국": {
+     "true": 99,
+     "false": 90
+    }
+   }
+  },
+  "G138-3": {
+   "true": 139,
+   "false": 119,
+   "variants": {
+    "hydro-two-denominators-중국": {
+     "true": 21,
+     "false": 27
+    },
+    "hydro-two-denominators-독일": {
+     "true": 36,
+     "false": 37
+    },
+    "hydro-two-denominators-뉴질랜드": {
+     "true": 29,
+     "false": 25
+    },
+    "hydro-two-denominators-케냐": {
+     "true": 32,
+     "false": 16
+    },
+    "hydro-two-denominators-브라질": {
+     "true": 21,
+     "false": 14
+    }
+   }
+  },
+  "G089-5": {
+   "true": 48,
+   "false": 71,
+   "variants": {
+    "renewable-four-denominator": {
+     "true": 48,
+     "false": 71
+    }
+   }
+  },
+  "G085-6": {
+   "true": 134,
+   "false": 173,
+   "variants": {
+    "general": {
+     "true": 134,
+     "false": 173
+    }
+   }
+  },
+  "G079-3": {
+   "true": 356,
+   "false": 340,
+   "variants": {
+    "lv-australia": {
+     "true": 96,
+     "false": 94
+    },
+    "lv-china": {
+     "true": 137,
+     "false": 147
+    },
+    "lv-brazil": {
+     "true": 123,
+     "false": 99
+    }
+   }
+  },
+  "G092-2": {
+   "true": 479,
+   "false": 521,
+   "variants": {
+    "mineral-denominator": {
+     "true": 479,
+     "false": 521
+    }
+   }
+  },
+  "G107-2": {
+   "true": 506,
+   "false": 494,
+   "variants": {
+    "bloc-integration": {
+     "true": 506,
+     "false": 494
+    }
+   }
+  },
+  "G123-5": {
+   "true": 102,
+   "false": 98,
+   "variants": {
+    "asian-export-items": {
+     "true": 102,
+     "false": 98
+    }
+   }
   }
  },
  "examCoverage": {
   "country-economy": {
    "questions": 1000,
    "entities": {
-    "일본": 566,
-    "중국": 569,
-    "인도": 173,
-    "영국": 648,
-    "탄자니아": 192,
-    "타이": 187,
-    "나이지리아": 151,
-    "사우디아라비아": 27,
-    "보츠와나": 118,
-    "프랑스": 21,
-    "우크라이나": 31,
-    "독일": 86,
-    "이집트": 34,
-    "아르헨티나": 32,
-    "멕시코": 102,
-    "튀르키예": 25,
-    "칠레": 18,
-    "콩고 민주 공화국": 13,
-    "알제리": 3,
-    "브라질": 4
+    "일본": 627,
+    "중국": 729,
+    "인도": 120,
+    "영국": 591,
+    "나이지리아": 184,
+    "사우디아라비아": 112,
+    "보츠와나": 60,
+    "탄자니아": 146,
+    "타이": 144,
+    "미국": 100,
+    "튀르키예": 15,
+    "독일": 44,
+    "우크라이나": 20,
+    "멕시코": 46,
+    "칠레": 7,
+    "아르헨티나": 18,
+    "알제리": 1,
+    "프랑스": 11,
+    "이집트": 16,
+    "콩고 민주 공화국": 6,
+    "브라질": 3
    }
   },
   "country-population": {
    "questions": 1000,
    "entities": {
-    "벨기에": 141,
-    "카타르": 141,
-    "니제르": 148,
-    "독일": 255,
-    "일본": 276,
-    "브라질": 150,
-    "스웨덴": 80,
-    "인도": 91,
-    "나이지리아": 376,
-    "미국": 86,
+    "인도": 229,
+    "독일": 370,
+    "멕시코": 302,
+    "일본": 196,
+    "브라질": 100,
+    "나이지리아": 320,
+    "미국": 70,
     "아르헨티나": 76,
-    "인도네시아": 31,
-    "멕시코": 129,
-    "튀르키예": 101,
-    "에티오피아": 100,
-    "프랑스": 189,
-    "알제리": 48,
-    "이집트": 52,
+    "튀르키예": 89,
+    "에티오피아": 97,
+    "프랑스": 163,
+    "알제리": 44,
+    "벨기에": 116,
+    "니제르": 122,
+    "카타르": 116,
+    "스웨덴": 47,
+    "이집트": 39,
     "수단": 37,
-    "타이": 36,
-    "영국": 112,
-    "베트남": 98,
-    "콩고 민주 공화국": 40,
-    "말리": 28,
+    "타이": 35,
+    "영국": 110,
+    "인도네시아": 26,
+    "베트남": 77,
+    "콩고 민주 공화국": 39,
+    "말리": 25,
     "보츠와나": 23,
-    "탄자니아": 59,
-    "말레이시아": 54,
-    "세네갈": 32,
-    "폴란드": 4,
-    "우간다": 7
+    "탄자니아": 56,
+    "말레이시아": 53,
+    "폴란드": 3,
+    "세네갈": 14,
+    "우간다": 6
    }
   },
   "country-urban-reverse": {
@@ -3358,40 +3602,41 @@
   "climate-graphs": {
    "questions": 1000,
    "entities": {
-    "더블린": 109,
-    "브라질리아": 91,
-    "브리즈번": 101,
-    "케이프타운": 102,
-    "덴버": 126,
-    "보고타": 95,
-    "블라디보스토크": 103,
-    "로마": 76,
-    "모스크바": 112,
-    "오클랜드": 103,
-    "발릭파판": 116,
-    "보스토크(남극)": 134,
-    "라바트": 78,
-    "딕슨": 94,
-    "싱가포르(창이)": 94,
-    "아디스아바바": 102,
-    "몬트리올": 102,
-    "메시나": 93,
-    "다르에스살람": 100,
-    "파리": 109,
+    "샌프란시스코": 88,
+    "싱가포르(창이)": 78,
+    "푸저우": 109,
+    "선양": 103,
+    "오클랜드": 124,
+    "딕슨": 74,
+    "창춘": 100,
+    "아디스아바바": 107,
+    "다윈": 103,
+    "보고타": 97,
+    "더블린": 106,
+    "브리즈번": 110,
+    "다르에스살람": 102,
+    "마르세유": 97,
+    "몬트리올": 114,
+    "모스크바": 119,
+    "케이프타운": 103,
+    "브라질리아": 104,
+    "블라디보스토크": 78,
+    "양곤": 124,
+    "라바트": 73,
     "이키토스": 107,
-    "배로(우트키아빅)": 112,
-    "런던": 113,
-    "다윈": 99,
-    "마르세유": 110,
-    "창춘": 96,
-    "크라이스트처치": 111,
-    "리마": 114,
-    "샌프란시스코": 81,
-    "양곤": 111,
-    "선양": 106,
-    "퍼스": 100,
-    "푸저우": 112,
-    "치타": 84
+    "크라이스트처치": 116,
+    "보스토크(남극)": 124,
+    "로마": 79,
+    "런던": 112,
+    "파리": 99,
+    "리마": 129,
+    "메시나": 77,
+    "배로(우트키아빅)": 104,
+    "발릭파판": 111,
+    "치타": 97,
+    "바마코": 9,
+    "퍼스": 113,
+    "덴버": 106
    }
   },
   "export-composition": {
@@ -3417,6 +3662,84 @@
     "미시간": 631,
     "워싱턴주": 602,
     "오하이오": 328
+   }
+  },
+  "continent-indicators": {
+   "questions": 1000,
+   "entities": {
+    "유럽": 752,
+    "아시아": 749,
+    "아프리카": 849,
+    "앵글로아메리카": 375,
+    "오세아니아": 205,
+    "라틴 아메리카": 480
+   }
+  },
+  "primary-energy": {
+   "questions": 1000,
+   "entities": {
+    "브라질": 426,
+    "미국": 446,
+    "중국": 431,
+    "이란": 449,
+    "남아프리카 공화국": 304,
+    "러시아": 468,
+    "인도": 476
+   }
+  },
+  "electricity-mix": {
+   "questions": 1000,
+   "entities": {
+    "중국": 598,
+    "프랑스": 521,
+    "네팔": 216,
+    "노르웨이": 209,
+    "덴마크": 654,
+    "브라질": 293,
+    "독일": 127,
+    "아이슬란드": 211,
+    "뉴질랜드": 84,
+    "케냐": 87
+   }
+  },
+  "livestock-identification": {
+   "questions": 1000,
+   "entities": {
+    "양": 1000,
+    "소": 1000,
+    "돼지": 1000
+   }
+  },
+  "country-minerals": {
+   "questions": 1000,
+   "entities": {
+    "볼리비아": 378,
+    "칠레": 1000,
+    "브라질": 1000,
+    "페루": 349,
+    "남아프리카 공화국": 273
+   }
+  },
+  "bloc-indicators": {
+   "questions": 1000,
+   "entities": {
+    "USMCA": 1000,
+    "EU": 1000,
+    "ASEAN": 1000,
+    "MERCOSUR": 1000
+   }
+  },
+  "export-items": {
+   "questions": 1000,
+   "entities": {
+    "칠레": 597,
+    "나이지리아": 800,
+    "케냐": 800,
+    "브라질": 608,
+    "오스트레일리아": 200,
+    "일본": 200,
+    "중국": 200,
+    "인도네시아": 200
    }
   }
  },
@@ -3495,19 +3818,34 @@
   {
    "themeId": "country-economy",
    "seed": 5,
-   "goal": "G097-3",
-   "variant": "영국",
+   "goal": "G001-2",
+   "variant": "사우디아라비아",
    "truth": true,
-   "text": "(가)는 2차 산업의 종사자 1인당 부가가치는 자국 전 산업 평균의 1.5배보다 적다.",
+   "text": "(다)는 북회귀선이 지난다.",
    "check": {
-    "op": "relativeProductivity",
-    "entity": "영국",
-    "subject": "영국",
-    "production": 17.67,
-    "employment": 15.92,
-    "benchmark": 1.5,
-    "moreClaim": false,
-    "year": "2023"
+    "line": "cancer",
+    "entity": "사우디아라비아",
+    "value": true
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 5,
+   "goal": "G127-2",
+   "variant": "sector-remainder-사우디아라비아",
+   "truth": true,
+   "text": "(다)는 총산업부가가치 중 1차 산업 비중은 약 2.59%이다.",
+   "check": {
+    "op": "sectorRemainder",
+    "variant": "sector-remainder-사우디아라비아",
+    "entity": "사우디아라비아",
+    "columns": [
+     "goal-sector2",
+     "goal-sector3"
+    ],
+    "second": 50.210925964986295,
+    "third": 47.19468466568235,
+    "result": 2.5943893693313527
    }
   },
   {
@@ -3527,47 +3865,96 @@
   },
   {
    "themeId": "country-economy",
-   "seed": 9,
-   "goal": "G004-1",
-   "variant": "보츠와나",
-   "truth": true,
-   "text": "(나)는 지도 대표점은 (가)의 지도 대표점보다 동쪽에 있다.",
-   "check": {
-    "op": "relativePosition",
-    "entity": "보츠와나",
-    "subject": "보츠와나",
-    "object": "나이지리아",
-    "axis": 0
-   }
-  },
-  {
-   "themeId": "country-economy",
-   "seed": 10,
-   "goal": "G004-1",
-   "variant": "보츠와나",
-   "truth": false,
-   "text": "(가)는 지도 대표점은 (나)의 지도 대표점보다 북쪽에 있다.",
-   "check": {
-    "op": "relativePosition",
-    "entity": "보츠와나",
-    "subject": "보츠와나",
-    "object": "나이지리아",
-    "axis": 1
-   }
-  },
-  {
-   "themeId": "country-economy",
-   "seed": 11,
+   "seed": 8,
    "goal": "G004-1",
    "variant": "중국",
    "truth": false,
-   "text": "(가)는 지도 대표점은 (나)의 지도 대표점보다 동쪽에 있다.",
+   "text": "(다)는 지도 대표점은 (가)의 지도 대표점보다 동쪽에 있다.",
    "check": {
     "op": "relativePosition",
     "entity": "중국",
     "subject": "중국",
     "object": "일본",
     "axis": 0
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 9,
+   "goal": "G097-3",
+   "variant": "탄자니아",
+   "truth": true,
+   "text": "(나)는 2차 산업의 종사자 1인당 부가가치는 자국 전 산업 평균의 1.5배보다 많다.",
+   "check": {
+    "op": "relativeProductivity",
+    "entity": "탄자니아",
+    "subject": "탄자니아",
+    "production": 28.03,
+    "employment": 8.04,
+    "benchmark": 1.5,
+    "moreClaim": true,
+    "year": "2023"
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 9,
+   "goal": "G097-3",
+   "variant": "영국",
+   "truth": false,
+   "text": "(가)는 2차 산업의 종사자 1인당 부가가치는 자국 전 산업 평균의 1.5배보다 많다.",
+   "check": {
+    "op": "relativeProductivity",
+    "entity": "영국",
+    "subject": "영국",
+    "production": 17.67,
+    "employment": 15.92,
+    "benchmark": 1.5,
+    "moreClaim": true,
+    "year": "2023"
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 10,
+   "goal": "G097-4",
+   "variant": "general",
+   "truth": false,
+   "text": "(나)는 (다)보다 2021년 2차 산업 부가가치가 많다.",
+   "check": {
+    "rate": "goal-industry2021",
+    "total": "goal-gdp2021",
+    "per": 100,
+    "subject": "일본",
+    "object": "미국"
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 10,
+   "goal": "G001-2",
+   "variant": "중국",
+   "truth": false,
+   "text": "(가)는 북극권선이 지난다.",
+   "check": {
+    "line": "arcticCircle",
+    "entity": "중국",
+    "value": true
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 10,
+   "goal": "G097-4",
+   "variant": "general",
+   "truth": true,
+   "text": "(가)는 (다)보다 2021년 2차 산업 부가가치가 많다.",
+   "check": {
+    "rate": "goal-industry2021",
+    "total": "goal-gdp2021",
+    "per": 100,
+    "subject": "중국",
+    "object": "미국"
    }
   },
   {
@@ -3581,6 +3968,26 @@
     "line": "cancer",
     "entity": "영국",
     "value": true
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 15,
+   "goal": "G127-2",
+   "variant": "sector-remainder-나이지리아",
+   "truth": false,
+   "text": "(나)는 1차 산업 비중은 2차와 3차 산업 비중을 더한 값이다.",
+   "check": {
+    "op": "sectorRemainder",
+    "variant": "sector-remainder-나이지리아",
+    "entity": "나이지리아",
+    "columns": [
+     "goal-sector2",
+     "goal-sector3"
+    ],
+    "second": 19.409496753246753,
+    "third": 52.465503246753244,
+    "result": 28.125
    }
   },
   {
@@ -3611,59 +4018,59 @@
   },
   {
    "themeId": "country-economy",
-   "seed": 25,
+   "seed": 24,
    "goal": "G004-1",
-   "variant": "영국",
+   "variant": "보츠와나",
    "truth": false,
-   "text": "(가)는 지도 대표점은 (다)의 지도 대표점보다 동쪽에 있다.",
+   "text": "(가)는 지도 대표점은 (다)의 지도 대표점보다 북쪽에 있다.",
    "check": {
     "op": "relativePosition",
-    "entity": "영국",
-    "subject": "영국",
-    "object": "독일",
-    "axis": 0
+    "entity": "보츠와나",
+    "subject": "보츠와나",
+    "object": "나이지리아",
+    "axis": 1
    }
   },
   {
    "themeId": "country-economy",
    "seed": 25,
-   "goal": "G004-1",
-   "variant": "우크라이나",
+   "goal": "G001-2",
+   "variant": "나이지리아",
+   "truth": false,
+   "text": "(나)는 북회귀선이 지난다.",
+   "check": {
+    "line": "cancer",
+    "entity": "나이지리아",
+    "value": true
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 25,
+   "goal": "G127-2",
+   "variant": "sector-remainder-나이지리아",
    "truth": true,
-   "text": "(나)는 지도 대표점은 (가)의 지도 대표점보다 동쪽에 있다.",
+   "text": "(나)는 총산업부가가치 중 1차 산업 비중은 약 28.1%이다.",
    "check": {
-    "op": "relativePosition",
-    "entity": "우크라이나",
-    "subject": "우크라이나",
-    "object": "영국",
-    "axis": 0
+    "op": "sectorRemainder",
+    "variant": "sector-remainder-나이지리아",
+    "entity": "나이지리아",
+    "columns": [
+     "goal-sector2",
+     "goal-sector3"
+    ],
+    "second": 19.409496753246753,
+    "third": 52.465503246753244,
+    "result": 28.125
    }
   },
   {
    "themeId": "country-economy",
-   "seed": 26,
-   "goal": "G097-3",
-   "variant": "탄자니아",
-   "truth": false,
-   "text": "(다)는 2차 산업의 종사자 1인당 부가가치는 자국 전 산업 평균의 1.5배보다 적다.",
-   "check": {
-    "op": "relativeProductivity",
-    "entity": "탄자니아",
-    "subject": "탄자니아",
-    "production": 28.03,
-    "employment": 8.04,
-    "benchmark": 1.5,
-    "moreClaim": false,
-    "year": "2023"
-   }
-  },
-  {
-   "themeId": "country-economy",
-   "seed": 28,
+   "seed": 32,
    "goal": "G097-3",
    "variant": "영국",
-   "truth": false,
-   "text": "(가)는 2차 산업의 종사자 1인당 부가가치는 자국 전 산업 평균의 1.5배보다 많다.",
+   "truth": true,
+   "text": "(가)는 2차 산업의 종사자 1인당 부가가치는 자국 전 산업 평균의 1.5배보다 적다.",
    "check": {
     "op": "relativeProductivity",
     "entity": "영국",
@@ -3671,84 +4078,8 @@
     "production": 17.67,
     "employment": 15.92,
     "benchmark": 1.5,
-    "moreClaim": true,
+    "moreClaim": false,
     "year": "2023"
-   }
-  },
-  {
-   "themeId": "country-economy",
-   "seed": 28,
-   "goal": "G097-3",
-   "variant": "탄자니아",
-   "truth": true,
-   "text": "(다)는 2차 산업의 종사자 1인당 부가가치는 자국 전 산업 평균의 1.5배보다 많다.",
-   "check": {
-    "op": "relativeProductivity",
-    "entity": "탄자니아",
-    "subject": "탄자니아",
-    "production": 28.03,
-    "employment": 8.04,
-    "benchmark": 1.5,
-    "moreClaim": true,
-    "year": "2023"
-   }
-  },
-  {
-   "themeId": "country-economy",
-   "seed": 30,
-   "goal": "G001-2",
-   "variant": "사우디아라비아",
-   "truth": false,
-   "text": "(다)는 남회귀선이 지난다.",
-   "check": {
-    "line": "capricorn",
-    "entity": "사우디아라비아",
-    "value": true
-   }
-  },
-  {
-   "themeId": "country-economy",
-   "seed": 32,
-   "goal": "G004-1",
-   "variant": "독일",
-   "truth": true,
-   "text": "(가)는 지도 대표점은 (나)의 지도 대표점보다 동쪽에 있다.",
-   "check": {
-    "op": "relativePosition",
-    "entity": "독일",
-    "subject": "독일",
-    "object": "영국",
-    "axis": 0
-   }
-  },
-  {
-   "themeId": "country-economy",
-   "seed": 34,
-   "goal": "G004-1",
-   "variant": "멕시코",
-   "truth": false,
-   "text": "(다)는 지도 대표점은 (나)의 지도 대표점보다 동쪽에 있다.",
-   "check": {
-    "op": "relativePosition",
-    "entity": "멕시코",
-    "subject": "멕시코",
-    "object": "아르헨티나",
-    "axis": 0
-   }
-  },
-  {
-   "themeId": "country-economy",
-   "seed": 34,
-   "goal": "G004-1",
-   "variant": "멕시코",
-   "truth": true,
-   "text": "(다)는 지도 대표점은 (나)의 지도 대표점보다 북쪽에 있다.",
-   "check": {
-    "op": "relativePosition",
-    "entity": "멕시코",
-    "subject": "멕시코",
-    "object": "아르헨티나",
-    "axis": 1
    }
   },
   {
@@ -3762,6 +4093,21 @@
     "line": "capricorn",
     "entity": "튀르키예",
     "value": true
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 36,
+   "goal": "G004-1",
+   "variant": "보츠와나",
+   "truth": true,
+   "text": "(나)는 지도 대표점은 (다)의 지도 대표점보다 동쪽에 있다.",
+   "check": {
+    "op": "relativePosition",
+    "entity": "보츠와나",
+    "subject": "보츠와나",
+    "object": "나이지리아",
+    "axis": 0
    }
   },
   {
@@ -3782,40 +4128,51 @@
   {
    "themeId": "country-economy",
    "seed": 45,
-   "goal": "G001-2",
-   "variant": "칠레",
+   "goal": "G127-2",
+   "variant": "sector-remainder-중국",
    "truth": false,
-   "text": "(나)는 북회귀선이 지난다.",
+   "text": "(나)는 1차 산업 비중은 2차와 3차 산업 비중을 더한 값이다.",
    "check": {
-    "line": "cancer",
-    "entity": "칠레",
-    "value": true
+    "op": "sectorRemainder",
+    "variant": "sector-remainder-중국",
+    "entity": "중국",
+    "columns": [
+     "goal-sector2",
+     "goal-sector3"
+    ],
+    "second": 36.77,
+    "third": 56.34,
+    "result": 6.8899999999999935
    }
   },
   {
    "themeId": "country-economy",
-   "seed": 49,
-   "goal": "G001-2",
-   "variant": "탄자니아",
+   "seed": 73,
+   "goal": "G004-1",
+   "variant": "영국",
    "truth": false,
-   "text": "(가)는 남회귀선이 지난다.",
+   "text": "(다)는 지도 대표점은 (가)의 지도 대표점보다 동쪽에 있다.",
    "check": {
-    "line": "capricorn",
-    "entity": "탄자니아",
-    "value": true
+    "op": "relativePosition",
+    "entity": "영국",
+    "subject": "영국",
+    "object": "독일",
+    "axis": 0
    }
   },
   {
    "themeId": "country-economy",
-   "seed": 55,
-   "goal": "G001-2",
-   "variant": "멕시코",
+   "seed": 79,
+   "goal": "G004-1",
+   "variant": "독일",
    "truth": true,
-   "text": "(가)는 북회귀선이 지난다.",
+   "text": "(가)는 지도 대표점은 (다)의 지도 대표점보다 동쪽에 있다.",
    "check": {
-    "line": "cancer",
-    "entity": "멕시코",
-    "value": true
+    "op": "relativePosition",
+    "entity": "독일",
+    "subject": "독일",
+    "object": "영국",
+    "axis": 0
    }
   },
   {
@@ -3835,6 +4192,24 @@
   },
   {
    "themeId": "country-economy",
+   "seed": 82,
+   "goal": "G097-3",
+   "variant": "탄자니아",
+   "truth": false,
+   "text": "(나)는 2차 산업의 종사자 1인당 부가가치는 자국 전 산업 평균의 1.5배보다 적다.",
+   "check": {
+    "op": "relativeProductivity",
+    "entity": "탄자니아",
+    "subject": "탄자니아",
+    "production": 28.03,
+    "employment": 8.04,
+    "benchmark": 1.5,
+    "moreClaim": false,
+    "year": "2023"
+   }
+  },
+  {
+   "themeId": "country-economy",
    "seed": 86,
    "goal": "G004-1",
    "variant": "칠레",
@@ -3850,57 +4225,75 @@
   },
   {
    "themeId": "country-economy",
-   "seed": 106,
+   "seed": 86,
    "goal": "G001-2",
-   "variant": "타이",
-   "truth": false,
-   "text": "(다)는 북회귀선이 지난다.",
+   "variant": "멕시코",
+   "truth": true,
+   "text": "(가)는 북회귀선이 지난다.",
    "check": {
     "line": "cancer",
-    "entity": "타이",
+    "entity": "멕시코",
     "value": true
    }
   },
   {
    "themeId": "country-economy",
-   "seed": 109,
+   "seed": 90,
+   "goal": "G001-2",
+   "variant": "미국",
+   "truth": true,
+   "text": "(가)는 북극권선이 지난다.",
+   "check": {
+    "line": "arcticCircle",
+    "entity": "미국",
+    "value": true
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 95,
+   "goal": "G127-2",
+   "variant": "sector-remainder-중국",
+   "truth": true,
+   "text": "(가)는 총산업부가가치 중 1차 산업 비중은 약 6.89%이다.",
+   "check": {
+    "op": "sectorRemainder",
+    "variant": "sector-remainder-중국",
+    "entity": "중국",
+    "columns": [
+     "goal-sector2",
+     "goal-sector3"
+    ],
+    "second": 36.77,
+    "third": 56.34,
+    "result": 6.8899999999999935
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 103,
    "goal": "G004-1",
-   "variant": "칠레",
-   "truth": false,
-   "text": "(다)는 지도 대표점은 (가)의 지도 대표점보다 북쪽에 있다.",
+   "variant": "멕시코",
+   "truth": true,
+   "text": "(나)는 지도 대표점은 (다)의 지도 대표점보다 북쪽에 있다.",
    "check": {
     "op": "relativePosition",
-    "entity": "칠레",
-    "subject": "칠레",
-    "object": "멕시코",
+    "entity": "멕시코",
+    "subject": "멕시코",
+    "object": "아르헨티나",
     "axis": 1
    }
   },
   {
    "themeId": "country-economy",
-   "seed": 125,
-   "goal": "G004-1",
-   "variant": "아르헨티나",
-   "truth": true,
-   "text": "(가)는 지도 대표점은 (나)의 지도 대표점보다 동쪽에 있다.",
-   "check": {
-    "op": "relativePosition",
-    "entity": "아르헨티나",
-    "subject": "아르헨티나",
-    "object": "멕시코",
-    "axis": 0
-   }
-  },
-  {
-   "themeId": "country-economy",
-   "seed": 125,
+   "seed": 119,
    "goal": "G001-2",
-   "variant": "아르헨티나",
+   "variant": "타이",
    "truth": false,
-   "text": "(가)는 북회귀선이 지난다.",
+   "text": "(나)는 남회귀선이 지난다.",
    "check": {
-    "line": "cancer",
-    "entity": "아르헨티나",
+    "line": "capricorn",
+    "entity": "타이",
     "value": true
    }
   },
@@ -3921,6 +4314,21 @@
   },
   {
    "themeId": "country-economy",
+   "seed": 131,
+   "goal": "G004-1",
+   "variant": "우크라이나",
+   "truth": true,
+   "text": "우크라이나는 지도 대표점은 독일의 지도 대표점보다 동쪽에 있다.",
+   "check": {
+    "op": "relativePosition",
+    "entity": "우크라이나",
+    "subject": "우크라이나",
+    "object": "독일",
+    "axis": 0
+   }
+  },
+  {
+   "themeId": "country-economy",
    "seed": 133,
    "goal": "G001-2",
    "variant": "아르헨티나",
@@ -3934,15 +4342,37 @@
   },
   {
    "themeId": "country-economy",
-   "seed": 138,
-   "goal": "G001-2",
-   "variant": "프랑스",
+   "seed": 133,
+   "goal": "G004-1",
+   "variant": "멕시코",
    "truth": false,
-   "text": "(가)는 남회귀선이 지난다.",
+   "text": "(가)는 지도 대표점은 (나)의 지도 대표점보다 동쪽에 있다.",
    "check": {
-    "line": "capricorn",
-    "entity": "프랑스",
-    "value": true
+    "op": "relativePosition",
+    "entity": "멕시코",
+    "subject": "멕시코",
+    "object": "아르헨티나",
+    "axis": 0
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 135,
+   "goal": "G127-2",
+   "variant": "sector-remainder-사우디아라비아",
+   "truth": false,
+   "text": "(다)는 1차 산업 비중은 2차와 3차 산업 비중을 더한 값이다.",
+   "check": {
+    "op": "sectorRemainder",
+    "variant": "sector-remainder-사우디아라비아",
+    "entity": "사우디아라비아",
+    "columns": [
+     "goal-sector2",
+     "goal-sector3"
+    ],
+    "second": 50.210925964986295,
+    "third": 47.19468466568235,
+    "result": 2.5943893693313527
    }
   },
   {
@@ -3960,6 +4390,21 @@
   },
   {
    "themeId": "country-economy",
+   "seed": 207,
+   "goal": "G004-1",
+   "variant": "아르헨티나",
+   "truth": true,
+   "text": "(나)는 지도 대표점은 (다)의 지도 대표점보다 동쪽에 있다.",
+   "check": {
+    "op": "relativePosition",
+    "entity": "아르헨티나",
+    "subject": "아르헨티나",
+    "object": "멕시코",
+    "axis": 0
+   }
+  },
+  {
+   "themeId": "country-economy",
    "seed": 209,
    "goal": "G001-2",
    "variant": "독일",
@@ -3973,55 +4418,27 @@
   },
   {
    "themeId": "country-economy",
-   "seed": 344,
+   "seed": 403,
    "goal": "G001-2",
-   "variant": "나이지리아",
+   "variant": "프랑스",
    "truth": false,
-   "text": "(나)는 북회귀선이 지난다.",
+   "text": "프랑스는 남회귀선이 지난다.",
    "check": {
-    "line": "cancer",
-    "entity": "나이지리아",
+    "line": "capricorn",
+    "entity": "프랑스",
     "value": true
    }
   },
   {
    "themeId": "country-economy",
-   "seed": 369,
-   "goal": "G004-1",
-   "variant": "아르헨티나",
-   "truth": false,
-   "text": "(가)는 지도 대표점은 (나)의 지도 대표점보다 북쪽에 있다.",
-   "check": {
-    "op": "relativePosition",
-    "entity": "아르헨티나",
-    "subject": "아르헨티나",
-    "object": "멕시코",
-    "axis": 1
-   }
-  },
-  {
-   "themeId": "country-economy",
-   "seed": 421,
+   "seed": 451,
    "goal": "G001-2",
-   "variant": "사우디아라비아",
-   "truth": true,
+   "variant": "칠레",
+   "truth": false,
    "text": "(가)는 북회귀선이 지난다.",
    "check": {
     "line": "cancer",
-    "entity": "사우디아라비아",
-    "value": true
-   }
-  },
-  {
-   "themeId": "country-economy",
-   "seed": 453,
-   "goal": "G001-2",
-   "variant": "멕시코",
-   "truth": false,
-   "text": "(다)는 남회귀선이 지난다.",
-   "check": {
-    "line": "capricorn",
-    "entity": "멕시코",
+    "entity": "칠레",
     "value": true
    }
   },
@@ -4040,49 +4457,6 @@
   },
   {
    "themeId": "country-economy",
-   "seed": 472,
-   "goal": "G004-1",
-   "variant": "콩고 민주 공화국",
-   "truth": true,
-   "text": "(가)는 지도 대표점은 (나)의 지도 대표점보다 동쪽에 있다.",
-   "check": {
-    "op": "relativePosition",
-    "entity": "콩고 민주 공화국",
-    "subject": "콩고 민주 공화국",
-    "object": "나이지리아",
-    "axis": 0
-   }
-  },
-  {
-   "themeId": "country-economy",
-   "seed": 550,
-   "goal": "G001-2",
-   "variant": "보츠와나",
-   "truth": false,
-   "text": "보츠와나는 북회귀선이 지난다.",
-   "check": {
-    "line": "cancer",
-    "entity": "보츠와나",
-    "value": true
-   }
-  },
-  {
-   "themeId": "country-economy",
-   "seed": 612,
-   "goal": "G004-1",
-   "variant": "콩고 민주 공화국",
-   "truth": false,
-   "text": "(다)는 지도 대표점은 (가)의 지도 대표점보다 북쪽에 있다.",
-   "check": {
-    "op": "relativePosition",
-    "entity": "콩고 민주 공화국",
-    "subject": "콩고 민주 공화국",
-    "object": "나이지리아",
-    "axis": 1
-   }
-  },
-  {
-   "themeId": "country-economy",
    "seed": 667,
    "goal": "G001-2",
    "variant": "콩고 민주 공화국",
@@ -4095,16 +4469,63 @@
    }
   },
   {
-   "themeId": "country-population",
-   "seed": 1,
+   "themeId": "country-economy",
+   "seed": 667,
+   "goal": "G004-1",
+   "variant": "콩고 민주 공화국",
+   "truth": true,
+   "text": "콩고 민주 공화국은 지도 대표점은 보츠와나의 지도 대표점보다 북쪽에 있다.",
+   "check": {
+    "op": "relativePosition",
+    "entity": "콩고 민주 공화국",
+    "subject": "콩고 민주 공화국",
+    "object": "보츠와나",
+    "axis": 1
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 813,
    "goal": "G001-2",
-   "variant": "카타르",
+   "variant": "아르헨티나",
    "truth": false,
-   "text": "카타르는 북회귀선이 지난다.",
+   "text": "(다)는 북회귀선이 지난다.",
    "check": {
     "line": "cancer",
-    "entity": "카타르",
+    "entity": "아르헨티나",
     "value": true
+   }
+  },
+  {
+   "themeId": "country-economy",
+   "seed": 858,
+   "goal": "G004-1",
+   "variant": "아르헨티나",
+   "truth": false,
+   "text": "(가)는 지도 대표점은 (나)의 지도 대표점보다 북쪽에 있다.",
+   "check": {
+    "op": "relativePosition",
+    "entity": "아르헨티나",
+    "subject": "아르헨티나",
+    "object": "멕시코",
+    "axis": 1
+   }
+  },
+  {
+   "themeId": "country-population",
+   "seed": 1,
+   "goal": "G057-3",
+   "variant": "general",
+   "truth": true,
+   "text": "(나)는 (다)보다 순이동 인원의 절댓값이 크다.",
+   "check": {
+    "op": "migrationTotal",
+    "rate": "goal-country-netrate",
+    "total": "pop",
+    "population": "pop",
+    "scale": 10000,
+    "subject": "독일",
+    "object": "멕시코"
    }
   },
   {
@@ -4122,41 +4543,19 @@
   },
   {
    "themeId": "country-population",
-   "seed": 4,
-   "goal": "G001-2",
-   "variant": "미국",
-   "truth": true,
-   "text": "미국은 북극권선이 지난다.",
-   "check": {
-    "line": "arcticCircle",
-    "entity": "미국",
-    "value": true
-   }
-  },
-  {
-   "themeId": "country-population",
    "seed": 6,
-   "goal": "G124-5",
-   "variant": "인도",
-   "truth": true,
-   "text": "인도는 인더스강 본류가 지나거나 국경을 이룬다.",
-   "check": {
-    "set": "riverMainstem",
-    "entity": "인도",
-    "value": "인더스강"
-   }
-  },
-  {
-   "themeId": "country-population",
-   "seed": 7,
-   "goal": "G001-2",
-   "variant": "인도네시아",
+   "goal": "G057-3",
+   "variant": "general",
    "truth": false,
-   "text": "인도네시아는 북회귀선이 지난다.",
+   "text": "(다)는 (가)보다 순이동 인원의 절댓값이 크다.",
    "check": {
-    "line": "cancer",
-    "entity": "인도네시아",
-    "value": true
+    "op": "migrationTotal",
+    "rate": "goal-country-netrate",
+    "total": "pop",
+    "population": "pop",
+    "scale": 10000,
+    "subject": "멕시코",
+    "object": "인도"
    }
   },
   {
@@ -4169,19 +4568,6 @@
    "check": {
     "line": "cancer",
     "entity": "알제리",
-    "value": true
-   }
-  },
-  {
-   "themeId": "country-population",
-   "seed": 12,
-   "goal": "G001-2",
-   "variant": "스웨덴",
-   "truth": true,
-   "text": "스웨덴은 북극권선이 지난다.",
-   "check": {
-    "line": "arcticCircle",
-    "entity": "스웨덴",
     "value": true
    }
   },
@@ -4215,21 +4601,6 @@
   },
   {
    "themeId": "country-population",
-   "seed": 23,
-   "goal": "G004-1",
-   "variant": "베트남",
-   "truth": true,
-   "text": "베트남은 지도 대표점은 인도의 지도 대표점보다 동쪽에 있다.",
-   "check": {
-    "op": "relativePosition",
-    "entity": "베트남",
-    "subject": "베트남",
-    "object": "인도",
-    "axis": 0
-   }
-  },
-  {
-   "themeId": "country-population",
    "seed": 25,
    "goal": "G004-1",
    "variant": "수단",
@@ -4241,6 +4612,19 @@
     "subject": "수단",
     "object": "나이지리아",
     "axis": 1
+   }
+  },
+  {
+   "themeId": "country-population",
+   "seed": 26,
+   "goal": "G001-2",
+   "variant": "카타르",
+   "truth": false,
+   "text": "(나)는 북회귀선이 지난다.",
+   "check": {
+    "line": "cancer",
+    "entity": "카타르",
+    "value": true
    }
   },
   {
@@ -4267,6 +4651,21 @@
     "set": "seas",
     "entity": "튀르키예",
     "value": "지중해"
+   }
+  },
+  {
+   "themeId": "country-population",
+   "seed": 48,
+   "goal": "G004-1",
+   "variant": "콩고 민주 공화국",
+   "truth": false,
+   "text": "(다)는 지도 대표점은 (가)의 지도 대표점보다 북쪽에 있다.",
+   "check": {
+    "op": "relativePosition",
+    "entity": "콩고 민주 공화국",
+    "subject": "콩고 민주 공화국",
+    "object": "나이지리아",
+    "axis": 1
    }
   },
   {
@@ -4310,21 +4709,6 @@
   },
   {
    "themeId": "country-population",
-   "seed": 72,
-   "goal": "G004-1",
-   "variant": "브라질",
-   "truth": false,
-   "text": "브라질은 지도 대표점은 멕시코의 지도 대표점보다 북쪽에 있다.",
-   "check": {
-    "op": "relativePosition",
-    "entity": "브라질",
-    "subject": "브라질",
-    "object": "멕시코",
-    "axis": 1
-   }
-  },
-  {
-   "themeId": "country-population",
    "seed": 73,
    "goal": "G004-1",
    "variant": "폴란드",
@@ -4349,6 +4733,32 @@
     "set": "seas",
     "entity": "나이지리아",
     "value": "기니만"
+   }
+  },
+  {
+   "themeId": "country-population",
+   "seed": 90,
+   "goal": "G124-5",
+   "variant": "인도",
+   "truth": true,
+   "text": "인도는 인더스강 본류가 지나거나 국경을 이룬다.",
+   "check": {
+    "set": "riverMainstem",
+    "entity": "인도",
+    "value": "인더스강"
+   }
+  },
+  {
+   "themeId": "country-population",
+   "seed": 107,
+   "goal": "G001-2",
+   "variant": "스웨덴",
+   "truth": true,
+   "text": "(가)는 북극권선이 지난다.",
+   "check": {
+    "line": "arcticCircle",
+    "entity": "스웨덴",
+    "value": true
    }
   },
   {
@@ -4406,6 +4816,21 @@
     "entity": "일본",
     "value": "갠지스강",
     "explicitNegative": true
+   }
+  },
+  {
+   "themeId": "country-population",
+   "seed": 155,
+   "goal": "G004-1",
+   "variant": "브라질",
+   "truth": false,
+   "text": "브라질은 지도 대표점은 멕시코의 지도 대표점보다 북쪽에 있다.",
+   "check": {
+    "op": "relativePosition",
+    "entity": "브라질",
+    "subject": "브라질",
+    "object": "멕시코",
+    "axis": 1
    }
   },
   {
@@ -4494,6 +4919,19 @@
   },
   {
    "themeId": "country-population",
+   "seed": 212,
+   "goal": "G001-2",
+   "variant": "탄자니아",
+   "truth": false,
+   "text": "(다)는 남회귀선이 지난다.",
+   "check": {
+    "line": "capricorn",
+    "entity": "탄자니아",
+    "value": true
+   }
+  },
+  {
+   "themeId": "country-population",
    "seed": 219,
    "goal": "G001-2",
    "variant": "수단",
@@ -4502,6 +4940,19 @@
    "check": {
     "line": "capricorn",
     "entity": "수단",
+    "value": true
+   }
+  },
+  {
+   "themeId": "country-population",
+   "seed": 228,
+   "goal": "G001-2",
+   "variant": "인도네시아",
+   "truth": false,
+   "text": "(나)는 남회귀선이 지난다.",
+   "check": {
+    "line": "capricorn",
+    "entity": "인도네시아",
     "value": true
    }
   },
@@ -4521,27 +4972,14 @@
   },
   {
    "themeId": "country-population",
-   "seed": 278,
+   "seed": 328,
    "goal": "G001-2",
-   "variant": "스웨덴",
+   "variant": "멕시코",
    "truth": false,
-   "text": "스웨덴은 북회귀선이 지난다.",
-   "check": {
-    "line": "cancer",
-    "entity": "스웨덴",
-    "value": true
-   }
-  },
-  {
-   "themeId": "country-population",
-   "seed": 306,
-   "goal": "G001-2",
-   "variant": "세네갈",
-   "truth": false,
-   "text": "세네갈은 남회귀선이 지난다.",
+   "text": "멕시코는 남회귀선이 지난다.",
    "check": {
     "line": "capricorn",
-    "entity": "세네갈",
+    "entity": "멕시코",
     "value": true
    }
   },
@@ -4571,21 +5009,6 @@
     "subject": "우간다",
     "object": "나이지리아",
     "axis": 1
-   }
-  },
-  {
-   "themeId": "country-population",
-   "seed": 355,
-   "goal": "G004-1",
-   "variant": "프랑스",
-   "truth": false,
-   "text": "프랑스는 지도 대표점은 독일의 지도 대표점보다 동쪽에 있다.",
-   "check": {
-    "op": "relativePosition",
-    "entity": "프랑스",
-    "subject": "프랑스",
-    "object": "독일",
-    "axis": 0
    }
   },
   {
@@ -4643,21 +5066,6 @@
   },
   {
    "themeId": "country-population",
-   "seed": 554,
-   "goal": "G004-1",
-   "variant": "탄자니아",
-   "truth": true,
-   "text": "탄자니아는 지도 대표점은 나이지리아의 지도 대표점보다 동쪽에 있다.",
-   "check": {
-    "op": "relativePosition",
-    "entity": "탄자니아",
-    "subject": "탄자니아",
-    "object": "나이지리아",
-    "axis": 0
-   }
-  },
-  {
-   "themeId": "country-population",
    "seed": 647,
    "goal": "G001-2",
    "variant": "에티오피아",
@@ -4697,16 +5105,17 @@
   },
   {
    "themeId": "country-population",
-   "seed": 795,
-   "goal": "G124-5",
-   "variant": "영국",
-   "truth": false,
-   "text": "영국은 라인강 본류가 지나거나 국경을 이룬다.",
+   "seed": 974,
+   "goal": "G004-1",
+   "variant": "탄자니아",
+   "truth": true,
+   "text": "(다)는 지도 대표점은 (나)의 지도 대표점보다 동쪽에 있다.",
    "check": {
-    "set": "riverMainstem",
-    "entity": "영국",
-    "value": "라인강",
-    "explicitNegative": true
+    "op": "relativePosition",
+    "entity": "탄자니아",
+    "subject": "탄자니아",
+    "object": "나이지리아",
+    "axis": 0
    }
   },
   {
@@ -5075,6 +5484,19 @@
   },
   {
    "themeId": "country-clues",
+   "seed": 19,
+   "goal": "G001-2",
+   "variant": "세네갈",
+   "truth": false,
+   "text": "(나)는 남회귀선이 지난다.",
+   "check": {
+    "line": "capricorn",
+    "entity": "세네갈",
+    "value": true
+   }
+  },
+  {
+   "themeId": "country-clues",
    "seed": 20,
    "goal": "G001-2",
    "variant": "그리스",
@@ -5232,6 +5654,19 @@
     "entity": "콩고 민주 공화국",
     "value": "잠베지강",
     "explicitNegative": true
+   }
+  },
+  {
+   "themeId": "country-clues",
+   "seed": 138,
+   "goal": "G001-2",
+   "variant": "보츠와나",
+   "truth": false,
+   "text": "(가)는 북회귀선이 지난다.",
+   "check": {
+    "line": "cancer",
+    "entity": "보츠와나",
+    "value": true
    }
   },
   {
@@ -5502,19 +5937,6 @@
     ],
     "from": 2015,
     "to": 2024
-   }
-  },
-  {
-   "themeId": "country-agriculture",
-   "seed": 9,
-   "goal": "G001-2",
-   "variant": "중국",
-   "truth": false,
-   "text": "(가)는 남회귀선이 지난다.",
-   "check": {
-    "line": "capricorn",
-    "entity": "중국",
-    "value": true
    }
   },
   {
@@ -5792,6 +6214,150 @@
    "themeId": "climate-graphs",
    "seed": 1,
    "goal": "G018-4",
+   "variant": "푸저우",
+   "truth": true,
+   "text": "(다)는 기후를 Cw로 판정할 때는 여름 강수뿐 아니라 겨울의 뚜렷한 강수 감소 여부를 함께 확인한다.",
+   "check": {
+    "claim": "winter-dry",
+    "entity": "푸저우",
+    "type": "cfa"
+   }
+  },
+  {
+   "themeId": "climate-graphs",
+   "seed": 2,
+   "goal": "G023-1",
+   "variant": "아디스아바바",
+   "truth": false,
+   "text": "(라)는 연중 온화한 저위도 고산이므로 티베트 등 세계의 모든 고산도 연중 온화하다.",
+   "check": {
+    "claim": "highland-scope",
+    "entity": "아디스아바바"
+   }
+  },
+  {
+   "themeId": "climate-graphs",
+   "seed": 5,
+   "goal": "G015-4",
+   "variant": "브라질리아",
+   "truth": true,
+   "text": "(라)는 1월이 상대적으로 비가 많은 시기이다.",
+   "check": {
+    "claim": "wet-season",
+    "entity": "브라질리아",
+    "summer": "1월",
+    "month": "1월"
+   }
+  },
+  {
+   "themeId": "climate-graphs",
+   "seed": 9,
+   "goal": "G015-4",
+   "variant": "양곤",
+   "truth": false,
+   "text": "(가)는 1월이 상대적으로 비가 많은 시기이다.",
+   "check": {
+    "claim": "wet-season",
+    "entity": "양곤",
+    "summer": "7월",
+    "month": "1월"
+   }
+  },
+  {
+   "themeId": "climate-graphs",
+   "seed": 12,
+   "goal": "G023-1",
+   "variant": "보고타",
+   "truth": false,
+   "text": "(나)는 연중 온화한 저위도 고산이므로 티베트 등 세계의 모든 고산도 연중 온화하다.",
+   "check": {
+    "claim": "highland-scope",
+    "entity": "보고타"
+   }
+  },
+  {
+   "themeId": "climate-graphs",
+   "seed": 18,
+   "goal": "G015-4",
+   "variant": "바마코",
+   "truth": true,
+   "text": "(가)는 7월이 상대적으로 비가 많은 시기이다.",
+   "check": {
+    "claim": "wet-season",
+    "entity": "바마코",
+    "summer": "7월",
+    "month": "7월"
+   }
+  },
+  {
+   "themeId": "climate-graphs",
+   "seed": 26,
+   "goal": "G023-1",
+   "variant": "아디스아바바",
+   "truth": true,
+   "text": "(나)는 같은 저위도 고산의 특성을 티베트 등 모든 고산으로 일반화해서는 안 된다.",
+   "check": {
+    "claim": "highland-scope",
+    "entity": "아디스아바바"
+   }
+  },
+  {
+   "themeId": "climate-graphs",
+   "seed": 30,
+   "goal": "G018-4",
+   "variant": "브리즈번",
+   "truth": true,
+   "text": "(가)는 기후를 Cw로 판정할 때는 여름 강수뿐 아니라 겨울의 뚜렷한 강수 감소 여부를 함께 확인한다.",
+   "check": {
+    "claim": "winter-dry",
+    "entity": "브리즈번",
+    "type": "cfa"
+   }
+  },
+  {
+   "themeId": "climate-graphs",
+   "seed": 32,
+   "goal": "G015-4",
+   "variant": "양곤",
+   "truth": true,
+   "text": "(다)는 7월이 상대적으로 비가 많은 시기이다.",
+   "check": {
+    "claim": "wet-season",
+    "entity": "양곤",
+    "summer": "7월",
+    "month": "7월"
+   }
+  },
+  {
+   "themeId": "climate-graphs",
+   "seed": 34,
+   "goal": "G023-1",
+   "variant": "보고타",
+   "truth": true,
+   "text": "(라)는 같은 저위도 고산의 특성을 티베트 등 모든 고산으로 일반화해서는 안 된다.",
+   "check": {
+    "claim": "highland-scope",
+    "entity": "보고타"
+   }
+  },
+  {
+   "themeId": "climate-graphs",
+   "seed": 63,
+   "goal": "G015-4",
+   "variant": "브라질리아",
+   "truth": false,
+   "text": "(가)는 7월이 상대적으로 비가 많은 시기이다.",
+   "check": {
+    "claim": "wet-season",
+    "entity": "브라질리아",
+    "summer": "1월",
+    "month": "7월"
+   }
+  },
+  {
+   "themeId": "climate-graphs",
+   "seed": 77,
+   "goal": "G018-4",
    "variant": "브리즈번",
    "truth": false,
    "text": "(다)는 7월 강수량이 많다는 이유만으로 반구와 겨울 강수에 관계없이 반드시 Cw로 판정한다.",
@@ -5803,114 +6369,11 @@
   },
   {
    "themeId": "climate-graphs",
-   "seed": 2,
-   "goal": "G023-1",
-   "variant": "보고타",
-   "truth": false,
-   "text": "(나)는 연중 온화한 저위도 고산이므로 티베트 등 세계의 모든 고산도 연중 온화하다.",
-   "check": {
-    "claim": "highland-scope",
-    "entity": "보고타"
-   }
-  },
-  {
-   "themeId": "climate-graphs",
-   "seed": 6,
-   "goal": "G023-1",
-   "variant": "아디스아바바",
-   "truth": false,
-   "text": "(나)는 연중 온화한 저위도 고산이므로 티베트 등 세계의 모든 고산도 연중 온화하다.",
-   "check": {
-    "claim": "highland-scope",
-    "entity": "아디스아바바"
-   }
-  },
-  {
-   "themeId": "climate-graphs",
-   "seed": 18,
-   "goal": "G015-4",
-   "variant": "양곤",
-   "truth": true,
-   "text": "(가)는 7월이 상대적으로 비가 많은 시기이다.",
-   "check": {
-    "claim": "wet-season",
-    "entity": "양곤",
-    "summer": "7월",
-    "month": "7월"
-   }
-  },
-  {
-   "themeId": "climate-graphs",
-   "seed": 24,
-   "goal": "G015-4",
-   "variant": "양곤",
-   "truth": false,
-   "text": "(나)는 1월이 상대적으로 비가 많은 시기이다.",
-   "check": {
-    "claim": "wet-season",
-    "entity": "양곤",
-    "summer": "7월",
-    "month": "1월"
-   }
-  },
-  {
-   "themeId": "climate-graphs",
-   "seed": 29,
-   "goal": "G015-4",
-   "variant": "브라질리아",
-   "truth": false,
-   "text": "(다)는 7월이 상대적으로 비가 많은 시기이다.",
-   "check": {
-    "claim": "wet-season",
-    "entity": "브라질리아",
-    "summer": "1월",
-    "month": "7월"
-   }
-  },
-  {
-   "themeId": "climate-graphs",
-   "seed": 33,
-   "goal": "G023-1",
-   "variant": "아디스아바바",
-   "truth": true,
-   "text": "(라)는 같은 저위도 고산의 특성을 티베트 등 모든 고산으로 일반화해서는 안 된다.",
-   "check": {
-    "claim": "highland-scope",
-    "entity": "아디스아바바"
-   }
-  },
-  {
-   "themeId": "climate-graphs",
-   "seed": 42,
-   "goal": "G023-1",
-   "variant": "보고타",
-   "truth": true,
-   "text": "(다)는 같은 저위도 고산의 특성을 티베트 등 모든 고산으로 일반화해서는 안 된다.",
-   "check": {
-    "claim": "highland-scope",
-    "entity": "보고타"
-   }
-  },
-  {
-   "themeId": "climate-graphs",
-   "seed": 66,
-   "goal": "G018-4",
-   "variant": "브리즈번",
-   "truth": true,
-   "text": "(나)는 기후를 Cw로 판정할 때는 여름 강수뿐 아니라 겨울의 뚜렷한 강수 감소 여부를 함께 확인한다.",
-   "check": {
-    "claim": "winter-dry",
-    "entity": "브리즈번",
-    "type": "cfa"
-   }
-  },
-  {
-   "themeId": "climate-graphs",
-   "seed": 85,
+   "seed": 81,
    "goal": "G018-4",
    "variant": "푸저우",
-   "truth": true,
-   "text": "(가)는 기후를 Cw로 판정할 때는 여름 강수뿐 아니라 겨울의 뚜렷한 강수 감소 여부를 함께 확인한다.",
+   "truth": false,
+   "text": "(라)는 7월 강수량이 많다는 이유만으로 반구와 겨울 강수에 관계없이 반드시 Cw로 판정한다.",
    "check": {
     "claim": "winter-dry",
     "entity": "푸저우",
@@ -5919,28 +6382,15 @@
   },
   {
    "themeId": "climate-graphs",
-   "seed": 94,
-   "goal": "G018-4",
-   "variant": "푸저우",
-   "truth": false,
-   "text": "(가)는 7월 강수량이 많다는 이유만으로 반구와 겨울 강수에 관계없이 반드시 Cw로 판정한다.",
-   "check": {
-    "claim": "winter-dry",
-    "entity": "푸저우",
-    "type": "cfa"
-   }
-  },
-  {
-   "themeId": "climate-graphs",
-   "seed": 99,
+   "seed": 589,
    "goal": "G015-4",
-   "variant": "브라질리아",
-   "truth": true,
-   "text": "(가)는 1월이 상대적으로 비가 많은 시기이다.",
+   "variant": "바마코",
+   "truth": false,
+   "text": "(라)는 1월이 상대적으로 비가 많은 시기이다.",
    "check": {
     "claim": "wet-season",
-    "entity": "브라질리아",
-    "summer": "1월",
+    "entity": "바마코",
+    "summer": "7월",
     "month": "1월"
    }
   },
@@ -5998,6 +6448,19 @@
   },
   {
    "themeId": "export-composition",
+   "seed": 6,
+   "goal": "G001-2",
+   "variant": "사우디아라비아",
+   "truth": false,
+   "text": "사우디아라비아는 남회귀선이 지난다.",
+   "check": {
+    "line": "capricorn",
+    "entity": "사우디아라비아",
+    "value": true
+   }
+  },
+  {
+   "themeId": "export-composition",
    "seed": 12,
    "goal": "G132-3",
    "variant": "general",
@@ -6038,14 +6501,804 @@
     "subject": "캘리포니아",
     "object": "텍사스"
    }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 1,
+   "goal": "G085-4",
+   "variant": "energy-pc",
+   "truth": false,
+   "text": "중국은 미국보다 1인당 1차 에너지 소비량이 많다.",
+   "check": {
+    "op": "energyPerCapita",
+    "ind": "energy-pc",
+    "subject": "중국",
+    "object": "미국"
+   }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 2,
+   "goal": "G085-3",
+   "variant": "primary-vs-electricity",
+   "truth": true,
+   "text": "브라질의 1차 에너지원 중 석유가 가장 크다는 것과 전력 생산에서 수력이 우세하다는 것은 함께 성립할 수 있다.",
+   "check": {
+    "op": "completionClause",
+    "variant": "primary-vs-electricity"
+   }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 3,
+   "goal": "G001-2",
+   "variant": "남아프리카 공화국",
+   "truth": true,
+   "text": "남아프리카 공화국은 남회귀선이 지난다.",
+   "check": {
+    "line": "capricorn",
+    "entity": "남아프리카 공화국",
+    "value": true
+   }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 3,
+   "goal": "G083-2",
+   "variant": "coal-production-denominator-브라질",
+   "truth": false,
+   "text": "브라질은 석탄 생산량 대비 소비량 528%는 석탄 수입 의존도와 같은 지표이다.",
+   "check": {
+    "op": "coalProductionRatio",
+    "variant": "coal-production-denominator-브라질",
+    "entity": "브라질",
+    "production": 30.168,
+    "consumption": 159.269,
+    "result": 527.9402015380537
+   }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 4,
+   "goal": "G083-2",
+   "variant": "coal-production-denominator-중국",
+   "truth": false,
+   "text": "중국은 석탄 생산량 대비 소비량 97.1%는 석탄 수입 의존도와 같은 지표이다.",
+   "check": {
+    "op": "coalProductionRatio",
+    "variant": "coal-production-denominator-중국",
+    "entity": "중국",
+    "production": 25933.818,
+    "consumption": 25181.209,
+    "result": 97.09796297637317
+   }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 5,
+   "goal": "G083-2",
+   "variant": "coal-production-denominator-러시아",
+   "truth": false,
+   "text": "(나)는 석탄 생산량 대비 소비량 41.5%는 석탄 수입 의존도와 같은 지표이다.",
+   "check": {
+    "op": "coalProductionRatio",
+    "variant": "coal-production-denominator-러시아",
+    "entity": "러시아",
+    "production": 2554.274,
+    "consumption": 1060.086,
+    "result": 41.50243865771644
+   }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 6,
+   "goal": "G083-2",
+   "variant": "coal-production-denominator-러시아",
+   "truth": true,
+   "text": "러시아는 석탄 생산량 대비 소비량은 약 41.5%이다.",
+   "check": {
+    "op": "coalProductionRatio",
+    "variant": "coal-production-denominator-러시아",
+    "entity": "러시아",
+    "production": 2554.274,
+    "consumption": 1060.086,
+    "result": 41.50243865771644
+   }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 7,
+   "goal": "G083-2",
+   "variant": "coal-production-denominator-남아프리카 공화국",
+   "truth": true,
+   "text": "남아프리카 공화국은 석탄 생산량 대비 소비량은 약 62.2%이다.",
+   "check": {
+    "op": "coalProductionRatio",
+    "variant": "coal-production-denominator-남아프리카 공화국",
+    "entity": "남아프리카 공화국",
+    "production": 1535.983,
+    "consumption": 955.848,
+    "result": 62.23037624765379
+   }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 9,
+   "goal": "G083-2",
+   "variant": "coal-production-denominator-인도",
+   "truth": false,
+   "text": "(나)는 석탄 생산량 대비 소비량 131%는 석탄 수입 의존도와 같은 지표이다.",
+   "check": {
+    "op": "coalProductionRatio",
+    "variant": "coal-production-denominator-인도",
+    "entity": "인도",
+    "production": 4674.382,
+    "consumption": 6137.224,
+    "result": 131.29487491608518
+   }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 9,
+   "goal": "G083-2",
+   "variant": "coal-production-denominator-중국",
+   "truth": true,
+   "text": "(가)는 석탄 생산량 대비 소비량은 약 97.1%이다.",
+   "check": {
+    "op": "coalProductionRatio",
+    "variant": "coal-production-denominator-중국",
+    "entity": "중국",
+    "production": 25933.818,
+    "consumption": 25181.209,
+    "result": 97.09796297637317
+   }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 10,
+   "goal": "G083-2",
+   "variant": "coal-production-denominator-브라질",
+   "truth": true,
+   "text": "(가)는 석탄 생산량 대비 소비량은 약 528%이다.",
+   "check": {
+    "op": "coalProductionRatio",
+    "variant": "coal-production-denominator-브라질",
+    "entity": "브라질",
+    "production": 30.168,
+    "consumption": 159.269,
+    "result": 527.9402015380537
+   }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 13,
+   "goal": "G083-2",
+   "variant": "coal-production-denominator-인도",
+   "truth": true,
+   "text": "(나)는 석탄 생산량 대비 소비량은 약 131%이다.",
+   "check": {
+    "op": "coalProductionRatio",
+    "variant": "coal-production-denominator-인도",
+    "entity": "인도",
+    "production": 4674.382,
+    "consumption": 6137.224,
+    "result": 131.29487491608518
+   }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 14,
+   "goal": "G085-3",
+   "variant": "primary-vs-electricity",
+   "truth": false,
+   "text": "브라질의 전력에서 수력이 우세하므로 1차 에너지원 중에도 반드시 수력이 가장 크다.",
+   "check": {
+    "op": "completionClause",
+    "variant": "primary-vs-electricity"
+   }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 18,
+   "goal": "G083-2",
+   "variant": "coal-production-denominator-남아프리카 공화국",
+   "truth": false,
+   "text": "(가)는 석탄 생산량 대비 소비량 62.2%는 석탄 수입 의존도와 같은 지표이다.",
+   "check": {
+    "op": "coalProductionRatio",
+    "variant": "coal-production-denominator-남아프리카 공화국",
+    "entity": "남아프리카 공화국",
+    "production": 1535.983,
+    "consumption": 955.848,
+    "result": 62.23037624765379
+   }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 19,
+   "goal": "G001-2",
+   "variant": "이란",
+   "truth": false,
+   "text": "이란은 북회귀선이 지난다.",
+   "check": {
+    "line": "cancer",
+    "entity": "이란",
+    "value": true
+   }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 22,
+   "goal": "G083-2",
+   "variant": "coal-production-denominator-미국",
+   "truth": false,
+   "text": "미국은 석탄 생산량 대비 소비량 69.5%는 석탄 수입 의존도와 같은 지표이다.",
+   "check": {
+    "op": "coalProductionRatio",
+    "variant": "coal-production-denominator-미국",
+    "entity": "미국",
+    "production": 3272.011,
+    "consumption": 2275.209,
+    "result": 69.53549361539432
+   }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 56,
+   "goal": "G085-4",
+   "variant": "energy-pc",
+   "truth": true,
+   "text": "(가)는 (다)보다 1인당 1차 에너지 소비량이 많다.",
+   "check": {
+    "op": "energyPerCapita",
+    "ind": "energy-pc",
+    "subject": "미국",
+    "object": "중국"
+   }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 65,
+   "goal": "G083-2",
+   "variant": "coal-production-denominator-미국",
+   "truth": true,
+   "text": "(가)는 석탄 생산량 대비 소비량은 약 69.5%이다.",
+   "check": {
+    "op": "coalProductionRatio",
+    "variant": "coal-production-denominator-미국",
+    "entity": "미국",
+    "production": 3272.011,
+    "consumption": 2275.209,
+    "result": 69.53549361539432
+   }
+  },
+  {
+   "themeId": "primary-energy",
+   "seed": 510,
+   "goal": "G001-2",
+   "variant": "남아프리카 공화국",
+   "truth": false,
+   "text": "남아프리카 공화국은 북회귀선이 지난다.",
+   "check": {
+    "line": "cancer",
+    "entity": "남아프리카 공화국",
+    "value": true
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 1,
+   "goal": "G085-3",
+   "variant": "electricity-vs-primary",
+   "truth": false,
+   "text": "네팔의 수력 발전 비중은 전체 1차 에너지 중 수력 비중과 항상 같다.",
+   "check": {
+    "op": "completionClause",
+    "variant": "electricity-vs-primary"
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 3,
+   "goal": "G085-3",
+   "variant": "electricity-vs-primary",
+   "truth": true,
+   "text": "네팔의 전력 생산에서 수력의 비중이 매우 높아도 전체 1차 에너지의 같은 비중이라는 뜻은 아니다.",
+   "check": {
+    "op": "completionClause",
+    "variant": "electricity-vs-primary"
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 5,
+   "goal": "G138-3",
+   "variant": "hydro-two-denominators-중국",
+   "truth": false,
+   "text": "(가)는 세계 수력 발전의 약 42.4%를 차지한다.",
+   "check": {
+    "op": "electricityDenominators",
+    "variant": "hydro-two-denominators-중국",
+    "category": "hydro",
+    "entity": "중국",
+    "within": 42.360290510051065,
+    "worldShare": 28.914344203334352,
+    "amount": 1226,
+    "world": 4240.11
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 5,
+   "goal": "G138-3",
+   "variant": "hydro-two-denominators-독일",
+   "truth": true,
+   "text": "(다)는 수력의 자국 네 발전원 중 비중은 약 7.67%이다.",
+   "check": {
+    "op": "electricityDenominators",
+    "variant": "hydro-two-denominators-독일",
+    "category": "hydro",
+    "entity": "독일",
+    "within": 7.670362211548877,
+    "worldShare": 0.5009304003905559,
+    "amount": 21.24,
+    "world": 4240.11
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 5,
+   "goal": "G089-5",
+   "variant": "renewable-four-denominator",
+   "truth": false,
+   "text": "이 표의 100%는 세계의 모든 발전량을 뜻한다.",
+   "check": {
+    "op": "completionClause",
+    "variant": "renewable-four-denominator"
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 8,
+   "goal": "G085-6",
+   "variant": "general",
+   "truth": false,
+   "text": "(다)는 (나)보다 수력 발전량이 많다.",
+   "check": {
+    "category": "hydro",
+    "subject": "프랑스",
+    "object": "노르웨이"
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 10,
+   "goal": "G138-3",
+   "variant": "hydro-two-denominators-중국",
+   "truth": true,
+   "text": "(다)는 수력의 자국 네 발전원 중 비중은 약 42.4%이다.",
+   "check": {
+    "op": "electricityDenominators",
+    "variant": "hydro-two-denominators-중국",
+    "category": "hydro",
+    "entity": "중국",
+    "within": 42.360290510051065,
+    "worldShare": 28.914344203334352,
+    "amount": 1226,
+    "world": 4240.11
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 10,
+   "goal": "G001-2",
+   "variant": "뉴질랜드",
+   "truth": false,
+   "text": "(나)는 북회귀선이 지난다.",
+   "check": {
+    "line": "cancer",
+    "entity": "뉴질랜드",
+    "value": true
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 10,
+   "goal": "G138-3",
+   "variant": "hydro-two-denominators-뉴질랜드",
+   "truth": false,
+   "text": "(나)는 세계 수력 발전의 약 85.2%를 차지한다.",
+   "check": {
+    "op": "electricityDenominators",
+    "variant": "hydro-two-denominators-뉴질랜드",
+    "category": "hydro",
+    "entity": "뉴질랜드",
+    "within": 85.21654184304786,
+    "worldShare": 0.6172009688427895,
+    "amount": 26.17,
+    "world": 4240.11
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 11,
+   "goal": "G085-6",
+   "variant": "general",
+   "truth": true,
+   "text": "(가)는 (나)보다 수력 발전량이 많다.",
+   "check": {
+    "category": "hydro",
+    "subject": "노르웨이",
+    "object": "프랑스"
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 11,
+   "goal": "G001-2",
+   "variant": "노르웨이",
+   "truth": true,
+   "text": "(가)는 북극권선이 지난다.",
+   "check": {
+    "line": "arcticCircle",
+    "entity": "노르웨이",
+    "value": true
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 19,
+   "goal": "G001-2",
+   "variant": "덴마크",
+   "truth": false,
+   "text": "덴마크는 북회귀선이 지난다.",
+   "check": {
+    "line": "cancer",
+    "entity": "덴마크",
+    "value": true
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 20,
+   "goal": "G138-3",
+   "variant": "hydro-two-denominators-케냐",
+   "truth": true,
+   "text": "(다)는 수력의 자국 네 발전원 중 비중은 약 48.9%이다.",
+   "check": {
+    "op": "electricityDenominators",
+    "variant": "hydro-two-denominators-케냐",
+    "category": "hydro",
+    "entity": "케냐",
+    "within": 48.9010989010989,
+    "worldShare": 0.06297006445587497,
+    "amount": 2.67,
+    "world": 4240.11
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 20,
+   "goal": "G138-3",
+   "variant": "hydro-two-denominators-뉴질랜드",
+   "truth": true,
+   "text": "(나)는 수력의 자국 네 발전원 중 비중은 약 85.2%이다.",
+   "check": {
+    "op": "electricityDenominators",
+    "variant": "hydro-two-denominators-뉴질랜드",
+    "category": "hydro",
+    "entity": "뉴질랜드",
+    "within": 85.21654184304786,
+    "worldShare": 0.6172009688427895,
+    "amount": 26.17,
+    "world": 4240.11
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 30,
+   "goal": "G089-5",
+   "variant": "renewable-four-denominator",
+   "truth": true,
+   "text": "이 표의 100%는 각 국가의 수력·풍력·태양광·바이오에너지 발전량 합이다.",
+   "check": {
+    "op": "completionClause",
+    "variant": "renewable-four-denominator"
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 30,
+   "goal": "G138-3",
+   "variant": "hydro-two-denominators-케냐",
+   "truth": false,
+   "text": "(나)는 세계 수력 발전의 약 48.9%를 차지한다.",
+   "check": {
+    "op": "electricityDenominators",
+    "variant": "hydro-two-denominators-케냐",
+    "category": "hydro",
+    "entity": "케냐",
+    "within": 48.9010989010989,
+    "worldShare": 0.06297006445587497,
+    "amount": 2.67,
+    "world": 4240.11
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 35,
+   "goal": "G138-3",
+   "variant": "hydro-two-denominators-독일",
+   "truth": false,
+   "text": "(나)는 세계 수력 발전의 약 7.67%를 차지한다.",
+   "check": {
+    "op": "electricityDenominators",
+    "variant": "hydro-two-denominators-독일",
+    "category": "hydro",
+    "entity": "독일",
+    "within": 7.670362211548877,
+    "worldShare": 0.5009304003905559,
+    "amount": 21.24,
+    "world": 4240.11
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 45,
+   "goal": "G138-3",
+   "variant": "hydro-two-denominators-브라질",
+   "truth": true,
+   "text": "(다)는 수력의 자국 네 발전원 중 비중은 약 67.6%이다.",
+   "check": {
+    "op": "electricityDenominators",
+    "variant": "hydro-two-denominators-브라질",
+    "category": "hydro",
+    "entity": "브라질",
+    "within": 67.59866072136975,
+    "worldShare": 10.046909160375558,
+    "amount": 426,
+    "world": 4240.11
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 47,
+   "goal": "G001-2",
+   "variant": "네팔",
+   "truth": false,
+   "text": "네팔은 북극권선이 지난다.",
+   "check": {
+    "line": "arcticCircle",
+    "entity": "네팔",
+    "value": true
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 112,
+   "goal": "G001-2",
+   "variant": "아이슬란드",
+   "truth": false,
+   "text": "(나)는 북회귀선이 지난다.",
+   "check": {
+    "line": "cancer",
+    "entity": "아이슬란드",
+    "value": true
+   }
+  },
+  {
+   "themeId": "electricity-mix",
+   "seed": 130,
+   "goal": "G138-3",
+   "variant": "hydro-two-denominators-브라질",
+   "truth": false,
+   "text": "(가)는 세계 수력 발전의 약 67.6%를 차지한다.",
+   "check": {
+    "op": "electricityDenominators",
+    "variant": "hydro-two-denominators-브라질",
+    "category": "hydro",
+    "entity": "브라질",
+    "within": 67.59866072136975,
+    "worldShare": 10.046909160375558,
+    "amount": 426,
+    "world": 4240.11
+   }
+  },
+  {
+   "themeId": "livestock-identification",
+   "seed": 1,
+   "goal": "G079-3",
+   "variant": "lv-australia",
+   "truth": true,
+   "text": "오스트레일리아의 사육 두수 자료의 지역 내부 세 가축 합에서 양의 구성비가 소보다 높다.",
+   "check": {
+    "op": "internalLivestock",
+    "ind": "lv-australia",
+    "subject": "양",
+    "object": "소",
+    "denominator": 10440.7615
+   }
+  },
+  {
+   "themeId": "livestock-identification",
+   "seed": 2,
+   "goal": "G079-3",
+   "variant": "lv-china",
+   "truth": false,
+   "text": "중국의 사육 두수 자료의 지역 내부 세 가축 합에서 양의 구성비가 돼지보다 높다.",
+   "check": {
+    "op": "internalLivestock",
+    "ind": "lv-china",
+    "subject": "양",
+    "object": "돼지",
+    "denominator": 70076.597
+   }
+  },
+  {
+   "themeId": "livestock-identification",
+   "seed": 4,
+   "goal": "G079-3",
+   "variant": "lv-china",
+   "truth": true,
+   "text": "중국의 사육 두수 자료의 지역 내부 세 가축 합에서 돼지의 구성비가 양보다 높다.",
+   "check": {
+    "op": "internalLivestock",
+    "ind": "lv-china",
+    "subject": "돼지",
+    "object": "양",
+    "denominator": 70076.597
+   }
+  },
+  {
+   "themeId": "livestock-identification",
+   "seed": 7,
+   "goal": "G079-3",
+   "variant": "lv-brazil",
+   "truth": true,
+   "text": "브라질의 사육 두수 자료의 지역 내부 세 가축 합에서 소의 구성비가 돼지보다 높다.",
+   "check": {
+    "op": "internalLivestock",
+    "ind": "lv-brazil",
+    "subject": "소",
+    "object": "돼지",
+    "denominator": 30354.507
+   }
+  },
+  {
+   "themeId": "livestock-identification",
+   "seed": 8,
+   "goal": "G079-3",
+   "variant": "lv-brazil",
+   "truth": false,
+   "text": "브라질의 사육 두수 자료의 지역 내부 세 가축 합에서 (다)의 구성비가 (나)보다 높다.",
+   "check": {
+    "op": "internalLivestock",
+    "ind": "lv-brazil",
+    "subject": "돼지",
+    "object": "소",
+    "denominator": 30354.506999999998
+   }
+  },
+  {
+   "themeId": "livestock-identification",
+   "seed": 21,
+   "goal": "G079-3",
+   "variant": "lv-australia",
+   "truth": false,
+   "text": "오스트레일리아의 사육 두수 자료의 지역 내부 세 가축 합에서 (나)의 구성비가 (다)보다 높다.",
+   "check": {
+    "op": "internalLivestock",
+    "ind": "lv-australia",
+    "subject": "소",
+    "object": "양",
+    "denominator": 10440.7615
+   }
+  },
+  {
+   "themeId": "country-minerals",
+   "seed": 1,
+   "goal": "G092-2",
+   "variant": "mineral-denominator",
+   "truth": true,
+   "text": "광물별 세계 총생산량이 다르므로 구리와 철광석의 비중만으로 생산 무게를 비교할 수 없다.",
+   "check": {
+    "op": "completionClause",
+    "variant": "mineral-denominator"
+   }
+  },
+  {
+   "themeId": "country-minerals",
+   "seed": 3,
+   "goal": "G092-2",
+   "variant": "mineral-denominator",
+   "truth": false,
+   "text": "같은 국가의 구리 비중이 철광석 비중보다 높으면 구리 생산 무게가 더 크다.",
+   "check": {
+    "op": "completionClause",
+    "variant": "mineral-denominator"
+   }
+  },
+  {
+   "themeId": "country-minerals",
+   "seed": 7,
+   "goal": "G001-2",
+   "variant": "페루",
+   "truth": false,
+   "text": "(다)는 남회귀선이 지난다.",
+   "check": {
+    "line": "capricorn",
+    "entity": "페루",
+    "value": true
+   }
+  },
+  {
+   "themeId": "country-minerals",
+   "seed": 53,
+   "goal": "G001-2",
+   "variant": "볼리비아",
+   "truth": false,
+   "text": "(가)는 남회귀선이 지난다.",
+   "check": {
+    "line": "capricorn",
+    "entity": "볼리비아",
+    "value": true
+   }
+  },
+  {
+   "themeId": "bloc-indicators",
+   "seed": 1,
+   "goal": "G107-2",
+   "variant": "bloc-integration",
+   "truth": true,
+   "text": "경제 통합 수준이 높은 블록이 GDP 총액도 반드시 가장 큰 것은 아니다.",
+   "check": {
+    "op": "completionClause",
+    "variant": "bloc-integration"
+   }
+  },
+  {
+   "themeId": "bloc-indicators",
+   "seed": 2,
+   "goal": "G107-2",
+   "variant": "bloc-integration",
+   "truth": false,
+   "text": "경제 통합 수준만 알면 GDP 총액의 순위를 확정할 수 있다.",
+   "check": {
+    "op": "completionClause",
+    "variant": "bloc-integration"
+   }
+  },
+  {
+   "themeId": "export-items",
+   "seed": 5,
+   "goal": "G123-5",
+   "variant": "asian-export-items",
+   "truth": false,
+   "text": "2018년 인도네시아의 석탄·팜유·가스 조합은 일본의 수출 품목 조합이다.",
+   "check": {
+    "op": "completionClause",
+    "variant": "asian-export-items"
+   }
+  },
+  {
+   "themeId": "export-items",
+   "seed": 10,
+   "goal": "G123-5",
+   "variant": "asian-export-items",
+   "truth": true,
+   "text": "중국의 기계류·의류, 일본의 기계류·자동차, 인도네시아의 석탄·팜유·가스, 오스트레일리아의 석탄·철광석을 구별한다.",
+   "check": {
+    "op": "completionClause",
+    "variant": "asian-export-items"
+   }
   }
  ],
  "aliases": {
   "G135-3": "G062-2"
  },
  "goalTableQuestions": {
-  "forward": 1292,
-  "reverse": 1254
+  "forward": 1320,
+  "reverse": 1282
  },
  "scope": "생성·계산 증거이다. OX 목표의 모든 의미상 조건 완료를 뜻하지 않는다."
 }

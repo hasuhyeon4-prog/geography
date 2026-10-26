@@ -7,7 +7,7 @@ for(const f of M.families)for(let seed=1;seed<=160;seed++){
  for(const s of q.statements){const key=s.goal,row=seen[key]||(seen[key]={true:0,false:0,families:[]});row[s.truth]++;if(!row.families.includes(f.id))row.families.push(f.id);if(!samples[key])samples[key]={family:f.id,seed,text:s.text,check:s.check};}
 }
 let oldBuilt=0;const oldSeen={},oldProofs=[],examCoverage={};
-for(const themeId of ['country-economy','country-population','country-urban-reverse','country-clues','country-physical-clues','country-agriculture','crop-identification','climate-graphs','export-composition','us-manufacturing'])for(let seed=1;seed<=1000;seed++){
+for(const themeId of ['country-economy','country-population','country-urban-reverse','country-clues','country-physical-clues','country-agriculture','crop-identification','climate-graphs','export-composition','us-manufacturing','continent-indicators','primary-energy','electricity-mix','livestock-identification','country-minerals','bloc-indicators','export-items'])for(let seed=1;seed<=1000;seed++){
  const q=E.build({themeId,seed});if(!q)continue;oldBuilt++;
  const coverage=examCoverage[themeId]||(examCoverage[themeId]={questions:0,entities:{}});coverage.questions++;q.entities.forEach(n=>coverage.entities[n]=(coverage.entities[n]||0)+1);
  for(const s of q.stage2.statements){const keys=[...new Set([s.goalId,...(s.goalIds||[]),...(['capricorn','arcticCircle','cancer'].includes(s.check?.line)?['G001-2']:[])].filter(Boolean))];

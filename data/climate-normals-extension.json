@@ -225,6 +225,374 @@
    "issues": [
     "INAMHI 1991–2020 Iñaquito 월평균 기온을 확보. WWIS 강수는 1981–2010이며 기간이 달라 결합하지 않는다."
    ]
+  },
+  {
+   "name": "바마코",
+   "mapPoint": [
+    -7.95,
+    12.53
+   ],
+   "region": "africa",
+   "lectureClimate": "aw",
+   "sourceBlockId": "강의 P02·P11 / G015-4·G020-2·G133-1",
+   "normalPeriod": [
+    1991,
+    2020
+   ],
+   "station": {
+    "id": "61291",
+    "idScheme": "WMO",
+    "name": "JMA WMO 61291",
+    "latitude": 12.53,
+    "longitude": -7.95,
+    "elevationM": 380.0,
+    "distanceFromMapPointKm": 0
+   },
+   "sourceFile": "data/completion-sources/bamako-jma.html",
+   "sourceId": "jma-61291",
+   "sourceUrl": "https://ds.data.jma.go.jp/tcc/tcc/products/climate/climatview/graph_mkhtml.php?n=61291&y=2025&m=10",
+   "sourceSHA256": "b7ba5210997e52f6d0b52467371fc698d8775df308fc97a4ce8db49f373649d3",
+   "temperatureC": [
+    25.0,
+    28.1,
+    30.9,
+    32.4,
+    31.4,
+    28.8,
+    26.4,
+    25.6,
+    26.1,
+    27.2,
+    26.8,
+    25.2
+   ],
+   "precipitationMm": [
+    0.4,
+    0.0,
+    5.4,
+    14.8,
+    72.3,
+    116.5,
+    239.3,
+    270.3,
+    176.1,
+    54.3,
+    1.9,
+    0.0
+   ],
+   "temperatureYears": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "precipitationYears": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "status": "complete",
+   "usage": {
+    "climateGraph": true,
+    "temperatureReading": true,
+    "precipitationReading": true
+   },
+   "issues": [
+    "JMA ClimatView Normal列。平年期間1991–2020、要素別有効年数は非公表。最高・最低気温からの合成なし。"
+   ]
+  },
+  {
+   "name": "뭄바이",
+   "mapPoint": [
+    72.82,
+    18.9
+   ],
+   "region": "asia",
+   "lectureClimate": "am",
+   "sourceBlockId": "강의 P02·P11 / G015-4·G020-2·G133-1",
+   "normalPeriod": [
+    1991,
+    2020
+   ],
+   "station": {
+    "id": "43057",
+    "idScheme": "WMO",
+    "name": "JMA WMO 43057",
+    "latitude": 18.9,
+    "longitude": 72.82,
+    "elevationM": 9.0,
+    "distanceFromMapPointKm": 0
+   },
+   "sourceFile": "data/completion-sources/mumbai-colaba-jma.html",
+   "sourceId": "jma-43057",
+   "sourceUrl": "https://ds.data.jma.go.jp/tcc/tcc/products/climate/climatview/graph_mkhtml.php?n=43057&y=2025&m=10",
+   "sourceSHA256": "97c5fffa436415e8f80b9db359bcb85a6dc35c55be3be7c4d6a1979b3e2df014",
+   "temperatureC": [
+    24.9,
+    25.5,
+    27.3,
+    29.2,
+    30.7,
+    29.3,
+    27.7,
+    27.5,
+    27.9,
+    29.1,
+    28.7,
+    26.7
+   ],
+   "precipitationMm": [
+    0.6,
+    1.0,
+    1.3,
+    0.8,
+    6.0,
+    516.5,
+    790.5,
+    483.3,
+    352.8,
+    86.3,
+    8.8,
+    2.8
+   ],
+   "temperatureYears": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "precipitationYears": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "status": "complete",
+   "usage": {
+    "climateGraph": true,
+    "temperatureReading": true,
+    "precipitationReading": true
+   },
+   "issues": [
+    "JMA ClimatView Normal列。平年期間1991–2020、要素別有効年数は非公表。最高・最低気温からの合成なし。"
+   ]
+  },
+  {
+   "name": "울란바토르",
+   "mapPoint": [
+    106.87,
+    47.92
+   ],
+   "region": "asia",
+   "lectureClimate": "bs",
+   "sourceBlockId": "강의 P02·P11 / G015-4·G020-2·G133-1",
+   "normalPeriod": [
+    1991,
+    2020
+   ],
+   "station": {
+    "id": "44292",
+    "idScheme": "WMO",
+    "name": "JMA WMO 44292",
+    "latitude": 47.92,
+    "longitude": 106.87,
+    "elevationM": 1729.0,
+    "distanceFromMapPointKm": 0
+   },
+   "sourceFile": "data/completion-sources/ulaanbaatar-jma.html",
+   "sourceId": "jma-44292",
+   "sourceUrl": "https://ds.data.jma.go.jp/tcc/tcc/products/climate/climatview/graph_mkhtml.php?n=44292&y=2025&m=10",
+   "sourceSHA256": "7e66d16d1baf94a00a10495bd0a7d9c568e03319838985eb0a03dc9b6d97c40d",
+   "temperatureC": [
+    -21.4,
+    -16.2,
+    -6.1,
+    3.1,
+    10.3,
+    16.3,
+    19.1,
+    16.8,
+    10.2,
+    1.1,
+    -10.4,
+    -19.0
+   ],
+   "precipitationMm": [
+    1.8,
+    2.8,
+    4.0,
+    9.1,
+    21.4,
+    44.9,
+    79.8,
+    66.2,
+    28.3,
+    9.6,
+    6.6,
+    3.2
+   ],
+   "temperatureYears": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "precipitationYears": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "status": "complete",
+   "usage": {
+    "climateGraph": true,
+    "temperatureReading": true,
+    "precipitationReading": true
+   },
+   "issues": [
+    "JMA ClimatView Normal列。平年期間1991–2020、要素別有効年数は非公表。最高・最低気温からの合成なし。"
+   ]
+  },
+  {
+   "name": "아비장",
+   "mapPoint": [
+    -3.93,
+    5.25
+   ],
+   "region": "africa",
+   "lectureClimate": "am",
+   "sourceBlockId": "강의 P02·P11 / G015-4·G020-2·G133-1",
+   "normalPeriod": [
+    1991,
+    2020
+   ],
+   "station": {
+    "id": "65578",
+    "idScheme": "WMO",
+    "name": "JMA WMO 65578",
+    "latitude": 5.25,
+    "longitude": -3.93,
+    "elevationM": 7.0,
+    "distanceFromMapPointKm": 0
+   },
+   "sourceFile": "data/completion-sources/abidjan-jma.html",
+   "sourceId": "jma-65578",
+   "sourceUrl": "https://ds.data.jma.go.jp/tcc/tcc/products/climate/climatview/graph_mkhtml.php?n=65578&y=2025&m=10",
+   "sourceSHA256": "f33cbdc40f8330a12f5f4f7ae8af2410cddcbb22dd4b96890281fb0d07bfec99",
+   "temperatureC": [
+    27.3,
+    28.1,
+    28.4,
+    28.4,
+    27.9,
+    26.5,
+    25.4,
+    24.6,
+    25.3,
+    26.6,
+    27.7,
+    27.7
+   ],
+   "precipitationMm": [
+    28.8,
+    36.8,
+    82.6,
+    159.4,
+    266.0,
+    411.5,
+    159.9,
+    45.0,
+    73.6,
+    216.6,
+    188.7,
+    81.2
+   ],
+   "temperatureYears": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "precipitationYears": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "status": "complete",
+   "usage": {
+    "climateGraph": true,
+    "temperatureReading": true,
+    "precipitationReading": true
+   },
+   "issues": [
+    "JMA ClimatView Normal列。平年期間1991–2020、要素別有効年数は非公表。最高・最低気温からの合成なし。"
+   ]
   }
  ],
  "reviewedHolds": [

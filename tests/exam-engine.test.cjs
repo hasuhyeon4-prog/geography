@@ -47,7 +47,7 @@ test('every whitelisted relation carries a basis and a verdict with its reason',
     assert.ok(list.length > 0);
     for (const x of list) {
       assert.ok(x.basis && x.basis.length > 5, JSON.stringify(x));
-      assert.ok(['active', 'belowMargin', 'reversed', 'conflict', 'excluded'].includes(x.status), JSON.stringify(x));
+      assert.ok(['active', 'supplied', 'belowMargin', 'reversed', 'conflict', 'excluded'].includes(x.status), JSON.stringify(x));
       if (x.status === 'active') assert.ok(x.years && x.n >= 1 && Number.isInteger(x.practice), JSON.stringify(x));
       else assert.ok(x.reason, JSON.stringify(x));
     }
@@ -87,9 +87,9 @@ test('themes reference existing 대상, indicators, and compositions', () => {
 });
 
 test('every ready theme builds full two-stage questions', () => {
-  for (const t of engine.themes) {
+  for (const template of engine.themes) {
     for (let seed = 1; seed <= SEEDS; seed++) {
-      const q = engine.build({themeId: t.id, seed});
+      const q = engine.build({themeId: template.id, seed});const t=q.theme;
       assert.ok(q, t.id + ' seed ' + seed);
       const n = q.stage1.options.length;
       // Two 대상 still get three to five options, never a coin flip.
@@ -104,7 +104,7 @@ test('every ready theme builds full two-stage questions', () => {
         // so there only the 대상 are marked (an extra pin could fit a row as well).
         const m = q.stage1.markers;
         if (q.format === 'implicit' || t.mapExtras === 0) assert.equal(m.length, q.entities.length, t.id + ' markers ' + m.length);
-        else assert.ok(m.length >= Math.min(4, t.pool.length) && m.length <= 5, t.id + ' markers ' + m.length);
+        else assert.ok(m.length >= Math.min(4, q.theme.pool.length) && m.length <= 5, t.id + ' markers ' + m.length);
         assert.deepEqual(m.map(x => x.letter), 'ABCDE'.slice(0, m.length).split(''), t.id);
         for (let i = 1; i < m.length; i++) assert.ok(m[i - 1].point[0] <= m[i].point[0], t.id + ' letters west to east');
         for (const e of q.entities) assert.ok(m.some(x => x.name === e), t.id + ' answer not on the map');
@@ -151,11 +151,12 @@ test('every ready theme builds full two-stage questions', () => {
 
 test('each statement is true exactly when the knowledge base says so', () => {
   const name = (q, label) => q.entities[q.labels.indexOf(label)];
-  for (const t of engine.themes) {
+  for (const template of engine.themes) {
     for (let seed = 1; seed <= SEEDS; seed++) {
-      const q = engine.build({themeId: t.id, seed});
+      const q = engine.build({themeId: template.id, seed});const t=q.theme;
       for (const s of q.stage2.statements) {
         const c = s.check;
+        if(s.completionWording){assert.equal(require('./helpers/completion-truth.cjs')(s,q,K),s.truth,s.text);continue;}
         assert.ok(c, s.text);
         if (s.kind === 'fact' && c.set) {
           assert.ok(!(t.reveals || []).includes(c.set), t.id + ' asks what the data shows: ' + s.text);
@@ -443,11 +444,11 @@ test('a statement\'s wording does not tell its truth, and the amount traps need 
     const q = engine.build({themeId: t.id, seed});
     if (!q) continue;
     for (const s of q.stage2.statements) {
-      const w = t.id + ' ' + s.kind + ' ' + strip(s.text);
+      const w = t.id + ' ' + s.kind + ' ' + (s.completionWording?('reviewed paired concept '+s.completionWording):strip(s.text));
       (rate[w] = rate[w] || [0, 0])[s.truth ? 0 : 1]++;
       const c = s.check;
-      if (s.kind === 'data' && (c.category || c.rate)) {
-        const tot = n => (c.category ? engine.total(t, n) : engine.value(n, c.total));
+      if (s.kind === 'data' && !s.completionWording && (c.category || c.rate)) {
+        const tot = n => (c.category ? engine.total(q.theme, n) : engine.value(n, c.total));
         amount[0]++; if ((tot(c.subject) > tot(c.object)) === s.truth) amount[1]++;
       }
     }
@@ -500,7 +501,7 @@ test('no one column identifies the 대상, and drawn columns identify only by vi
   for (const id of ['electricity-mix', 'religion-composition', 'export-composition', 'primary-energy']) for (let seed = 1; seed <= 15; seed++) {
     const q = engine.build({themeId: id, seed});
     assert.ok(q.display.graph && q.display.stack, id);
-    const cats = new Set(q.stage2.statements.filter(s => s.kind === 'data' && s.check.category).map(s => s.check.category));
+    const cats = new Set(q.stage2.statements.filter(s => (s.kind === 'data'||s.completionWording) && s.check.category).map(s => s.check.category));
     for (const c of q.display.columns) if (c.stack) assert.equal(c.exact, cats.has(c.id), id + ' ' + c.id);
   }
 });

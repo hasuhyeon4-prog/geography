@@ -1,0 +1,150 @@
+{
+ "policy": "회상 범위와 제시 자료의 분모·연도는 각 문항에 명시. 다른 판본의 값을 혼합하지 않음.",
+ "economy2021": {
+  "미국": {
+   "gdp": 23725.6,
+   "industry": 17.58
+  },
+  "중국": {
+   "gdp": 18201.7,
+   "industry": 38.09
+  },
+  "일본": {
+   "gdp": 5225.9,
+   "industry": 28.45
+  }
+ },
+ "sectorComposition2023": {
+  "중국": [
+   6.890000000000001,
+   36.77,
+   56.34
+  ],
+  "나이지리아": [
+   28.125,
+   19.409496753246753,
+   52.465503246753244
+  ],
+  "사우디아라비아": [
+   2.5943893693313647,
+   50.210925964986295,
+   47.19468466568235
+  ]
+ },
+ "coal2023": {
+  "중국": {
+   "coal_production": 25933.818,
+   "coal_consumption": 25181.209
+  },
+  "인도": {
+   "coal_production": 4674.382,
+   "coal_consumption": 6137.224
+  },
+  "미국": {
+   "coal_production": 3272.011,
+   "coal_consumption": 2275.209
+  },
+  "러시아": {
+   "coal_production": 2554.274,
+   "coal_consumption": 1060.086
+  },
+  "이란": {
+   "coal_production": null,
+   "coal_consumption": 18.063
+  },
+  "브라질": {
+   "coal_production": 30.168,
+   "coal_consumption": 159.269
+  },
+  "남아프리카 공화국": {
+   "coal_production": 1535.983,
+   "coal_consumption": 955.848
+  }
+ },
+ "renewables2023": {
+  "브라질": {
+   "hydro": 426.0,
+   "wind": 95.8,
+   "solar": 50.63,
+   "bioenergy": 57.76
+  },
+  "중국": {
+   "hydro": 1226.0,
+   "wind": 885.87,
+   "solar": 584.15,
+   "bioenergy": 198.2
+  },
+  "덴마크": {
+   "hydro": 0.02,
+   "wind": 19.39,
+   "solar": 3.66,
+   "bioenergy": 6.21
+  },
+  "독일": {
+   "hydro": 21.24,
+   "wind": 140.54,
+   "solar": 63.87,
+   "bioenergy": 51.26
+  },
+  "아이슬란드": {
+   "hydro": 14.1,
+   "wind": 0.01,
+   "solar": 0.0,
+   "bioenergy": 0.0
+  },
+  "케냐": {
+   "hydro": 2.67,
+   "wind": 2.01,
+   "solar": 0.58,
+   "bioenergy": 0.2
+  },
+  "뉴질랜드": {
+   "hydro": 26.17,
+   "wind": 3.51,
+   "solar": 0.37,
+   "bioenergy": 0.66
+  },
+  "세계": {
+   "hydro": 4240.11,
+   "wind": 2319.18,
+   "solar": 1664.14,
+   "bioenergy": 683.62
+  }
+ },
+ "renewablesSource": {
+  "archive": "data/extensions-source-snapshots-02.zip",
+  "member": "owid_energy.csv",
+  "sha256": "266f2e2baad7975351bc9bb4aa061d22b1da9fe4c47d51d2ac6071e01e171f76",
+  "year": 2023,
+  "unit": "TWh",
+  "fields": [
+   "hydro_electricity",
+   "wind_electricity",
+   "solar_electricity",
+   "biofuel_electricity"
+  ]
+ },
+ "migration2023": {
+  "인도": {
+   "population": 1438069596,
+   "birthPerThousand": 16.146,
+   "deathPerThousand": 6.611,
+   "naturalApprox": 13711993.597860001,
+   "netMigration": -979179
+  },
+  "멕시코": {
+   "population": 129739759,
+   "birthPerThousand": 15.706,
+   "deathPerThousand": 6.161,
+   "naturalApprox": 1238365.999655,
+   "netMigration": -101044
+  },
+  "독일": {
+   "population": 83287273,
+   "birthPerThousand": 8.3,
+   "deathPerThousand": 12.3,
+   "naturalApprox": -333149.092,
+   "netMigration": 609553
+  }
+ }
+}

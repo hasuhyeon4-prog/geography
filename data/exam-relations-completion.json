@@ -1,0 +1,263 @@
+{
+ "policy": "개별 검토한 고정 연도의 제시 자료. 역사적 회상 비교로 쓰지 않으며 자료에 열이 나타날 때만 식별 근거로 사용한다. 2021·2023년을 현재나 모든 연도로 확장하지 않는다.",
+ "relations": [
+  {
+   "indicator": "goal-gdp2021",
+   "pairs": [
+    [
+     "중국",
+     "일본"
+    ]
+   ],
+   "year": "2021",
+   "basis": "명시한 고정 연도의 제시 자료 · 현재나 다른 시점 순위로 확장하지 않음"
+  },
+  {
+   "indicator": "goal-gdp2021",
+   "pairs": [
+    [
+     "미국",
+     "중국"
+    ]
+   ],
+   "year": "2021",
+   "basis": "명시한 고정 연도의 제시 자료 · 현재나 다른 시점 순위로 확장하지 않음"
+  },
+  {
+   "indicator": "goal-gdp2021",
+   "pairs": [
+    [
+     "미국",
+     "일본"
+    ]
+   ],
+   "year": "2021",
+   "basis": "명시한 고정 연도의 제시 자료 · 현재나 다른 시점 순위로 확장하지 않음"
+  },
+  {
+   "indicator": "goal-industry2021",
+   "pairs": [
+    [
+     "중국",
+     "일본"
+    ]
+   ],
+   "year": "2021",
+   "basis": "명시한 고정 연도의 제시 자료 · 현재나 다른 시점 순위로 확장하지 않음"
+  },
+  {
+   "indicator": "goal-industry2021",
+   "pairs": [
+    [
+     "중국",
+     "미국"
+    ]
+   ],
+   "year": "2021",
+   "basis": "명시한 고정 연도의 제시 자료 · 현재나 다른 시점 순위로 확장하지 않음"
+  },
+  {
+   "indicator": "goal-industry2021",
+   "pairs": [
+    [
+     "일본",
+     "미국"
+    ]
+   ],
+   "year": "2021",
+   "basis": "명시한 고정 연도의 제시 자료 · 현재나 다른 시점 순위로 확장하지 않음"
+  },
+  {
+   "indicator": "goal-sector2",
+   "pairs": [
+    [
+     "사우디아라비아",
+     "나이지리아"
+    ]
+   ],
+   "year": "2023",
+   "basis": "명시한 고정 연도의 제시 자료 · 현재나 다른 시점 순위로 확장하지 않음"
+  },
+  {
+   "indicator": "goal-sector2",
+   "pairs": [
+    [
+     "중국",
+     "나이지리아"
+    ]
+   ],
+   "year": "2023",
+   "basis": "명시한 고정 연도의 제시 자료 · 현재나 다른 시점 순위로 확장하지 않음"
+  },
+  {
+   "indicator": "goal-sector2",
+   "pairs": [
+    [
+     "사우디아라비아",
+     "중국"
+    ]
+   ],
+   "year": "2023",
+   "basis": "명시한 고정 연도의 제시 자료 · 현재나 다른 시점 순위로 확장하지 않음"
+  },
+  {
+   "indicator": "goal-sector3",
+   "pairs": [
+    [
+     "나이지리아",
+     "사우디아라비아"
+    ]
+   ],
+   "year": "2023",
+   "basis": "명시한 고정 연도의 제시 자료 · 현재나 다른 시점 순위로 확장하지 않음"
+  },
+  {
+   "indicator": "goal-sector3",
+   "pairs": [
+    [
+     "중국",
+     "사우디아라비아"
+    ]
+   ],
+   "year": "2023",
+   "basis": "명시한 고정 연도의 제시 자료 · 현재나 다른 시점 순위로 확장하지 않음"
+  },
+  {
+   "indicator": "goal-country-netrate",
+   "pairs": [
+    [
+     "독일",
+     "인도"
+    ]
+   ],
+   "year": "2023",
+   "basis": "2023년 제시 자료의 순이동률"
+  },
+  {
+   "indicator": "goal-country-netrate",
+   "pairs": [
+    [
+     "독일",
+     "멕시코"
+    ]
+   ],
+   "year": "2023",
+   "basis": "2023년 제시 자료의 순이동률"
+  },
+  {
+   "indicator": "goal-cont-netrate",
+   "pairs": [
+    [
+     "유럽",
+     "아시아"
+    ]
+   ],
+   "year": "2023",
+   "basis": "2023년 제시 자료의 순이동률"
+  },
+  {
+   "indicator": "goal-cont-netrate",
+   "pairs": [
+    [
+     "유럽",
+     "아프리카"
+    ]
+   ],
+   "year": "2023",
+   "basis": "2023년 제시 자료의 순이동률"
+  }
+ ],
+ "orders": [
+  {
+   "composition": "electricity",
+   "entity": "중국",
+   "order": [
+    "coal"
+   ],
+   "year": "2023"
+  },
+  {
+   "composition": "primaryEnergy",
+   "entity": "미국",
+   "order": [
+    "oil"
+   ],
+   "year": "2023"
+  },
+  {
+   "composition": "renewableFour",
+   "entity": "브라질",
+   "order": [
+    "hydro",
+    "wind",
+    "bioenergy",
+    "solar"
+   ],
+   "year": "2023"
+  },
+  {
+   "composition": "renewableFour",
+   "entity": "중국",
+   "order": [
+    "hydro",
+    "wind",
+    "solar",
+    "bioenergy"
+   ],
+   "year": "2023"
+  },
+  {
+   "composition": "renewableFour",
+   "entity": "덴마크",
+   "order": [
+    "wind",
+    "bioenergy",
+    "solar",
+    "hydro"
+   ],
+   "year": "2023"
+  },
+  {
+   "composition": "renewableFour",
+   "entity": "독일",
+   "order": [
+    "wind",
+    "solar",
+    "bioenergy",
+    "hydro"
+   ],
+   "year": "2023"
+  },
+  {
+   "composition": "renewableFour",
+   "entity": "아이슬란드",
+   "order": [
+    "hydro",
+    "wind"
+   ],
+   "year": "2023"
+  },
+  {
+   "composition": "renewableFour",
+   "entity": "케냐",
+   "order": [
+    "hydro",
+    "wind",
+    "solar",
+    "bioenergy"
+   ],
+   "year": "2023"
+  },
+  {
+   "composition": "renewableFour",
+   "entity": "뉴질랜드",
+   "order": [
+    "hydro",
+    "wind",
+    "bioenergy",
+    "solar"
+   ],
+   "year": "2023"
+  }
+ ]
+}

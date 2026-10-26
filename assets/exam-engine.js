@@ -55,7 +55,7 @@
   var ready=themeApi.themes.filter(function(t){return t.status==='ready'});
   var byId={};ready.forEach(function(t){byId[t.id]=t});
   function active(x){return x.status==='active'}
-  var REL=(kb.relations||[]).filter(active),SIGNS=(kb.signs||[]).filter(active);
+  var REL=(kb.relations||[]).filter(function(x){return active(x)||x.status==='supplied';}),SIGNS=(kb.signs||[]).filter(active);
   // The longest verified order of each 대상 in each composition.
   var ORDERS={};
   (kb.orders||[]).filter(active).forEach(function(o){var c=ORDERS[o.composition]||(ORDERS[o.composition]={}),cur=c[o.entity];if(!cur||o.order.length>cur.order.length)c[o.entity]=o});
@@ -136,7 +136,7 @@
     relations:c.total&&c.total.indicator?REL.filter(function(x){return x.indicator===c.total.indicator&&has(x.hi)&&has(x.lo)}):[]};}
    if(theme.kind==='climate')return {sites:chosen.map(function(n){return {entity:n,type:cl(n).type,hemisphere:cl(n).hemisphere}})};
    if(theme.kind==='clues')return {clues:chosen.map(function(n){return {entity:n}})};
-   return {items:chosen.map(function(n){return {entity:n,top:theme.items[n][0][0]}})};
+   return {items:chosen.map(function(n){return {entity:n,top:theme.items[n].slice(0,2).map(function(x){return x[0];}).join('|')}})};
   }
   // A row clearly breaks an order when a category ranked below beats it by the margin.
   function orderBroken(c,order,v){
@@ -156,7 +156,7 @@
    if(theme.kind==='clues')return perm.every(function(n,i){return n===chosen[i]});
    if(theme.kind==='composition'){var c=composition(theme);return k.orders.every(function(o){return !orderBroken(c,o.order,comp(theme,row[o.entity]))})&&
     (k.relations||[]).every(function(x){return !clearlyAbove(x.indicator,total(theme,row[x.lo]),total(theme,row[x.hi]),spread(chosen.map(function(n){return total(theme,n)})))});}
-   return k.items.every(function(x){return theme.items[row[x.entity]][0][0]===x.top});
+   return k.items.every(function(x){return theme.items[row[x.entity]].slice(0,2).map(function(v){return v[0];}).join('|')===x.top});
   }
   // Identification holds when the true assignment is the only one left.
   function identifiable(theme,chosen,shown){
@@ -187,13 +187,20 @@
     return {columns:[{id:'clue',label:'강의의 설명',unit:''}],rows:chosen.map(function(n,i){return {label:LABELS[i],cells:[clueOf(shown[i]).shown]}}),source:Object.keys(srcs).join(' · ')};
    }
    if(theme.kind==='items'){
-    return {columns:[{id:'items',label:'수출 상위 품목(비중, %)',unit:''}],rows:chosen.map(function(n,i){return {label:LABELS[i],cells:[theme.items[n].map(function(x){return x[0]+' '+fmt(x[1])}).join(', ')]}}),source:theme.year+' · '+theme.source};
+    return {columns:[{id:'items',label:theme.itemShares===false?'수출 주요 품목(원자료의 순서)':'수출 상위 품목(비중, %)',unit:''}],rows:chosen.map(function(n,i){return {label:LABELS[i],cells:[theme.items[n].map(function(x){return x[0]+(theme.itemShares===false?'':' '+fmt(x[1]))}).join(', ')]}}),source:theme.year+' · '+theme.source};
    }
    var c=composition(theme),show=theme.show||c.categories.map(function(x){return x[0]});
    var cols=show.map(function(id){return {id:id,label:catLabel(theme,id),unit:'%'}});
    if(c.total)cols.push({id:c.total.indicator||'total',label:c.total.label,unit:c.total.unit});
-   return {columns:cols,rows:chosen.map(function(n,i){return {label:LABELS[i],cells:show.map(function(id){return pct(comp(theme,n)[id]||0)}).concat(c.total?[fmt(total(theme,n))]:[])}}),
+   var result={columns:cols,rows:chosen.map(function(n,i){return {label:LABELS[i],cells:show.map(function(id){return pct(comp(theme,n)[id]||0)}).concat(c.total?[fmt(total(theme,n))]:[])}}),
     source:c.year+' · '+c.source+' · '+c.unit+(c.total?' · '+(c.total.note||c.total.label+'도 '+c.total.year+'년 같은 출처'):'')};
+   if(theme.composition==='renewableFour'&&kb.completion)result.source+=' · 비교 기준: 같은 해 세계 수력 발전량 '+fmt(kb.completion.renewables2023['세계'].hydro)+'TWh';
+   if(theme.id==='primary-energy'&&kb.completion){
+    cols.push({id:'completion-energy-pc',label:'1인당 1차 에너지 소비량',unit:'kWh',supplied:true},{id:'completion-coal-production',label:'석탄 생산량',unit:'TWh',supplied:true},{id:'completion-coal-consumption',label:'석탄 소비량',unit:'TWh',supplied:true});
+    chosen.forEach(function(n,i){var x=kb.completion.coal2023[n]||{};result.rows[i].cells.push(fmt(value(n,'energy-pc')),x.coal_production==null?'자료 없음':fmt(x.coal_production),x.coal_consumption==null?'자료 없음':fmt(x.coal_consumption));});
+    result.source+=' · 석탄 생산·소비는 pinned EI/OWID 2023년, 자료 없음은 0이 아님';
+   }
+   return result;
   }
 
   // Graphs: a column that a <보기> computes with keeps its numbers; every other one is drawn as bars
@@ -209,9 +216,10 @@
   function graphs(theme,d,entities,statements){
    if(theme.kind!=='indicators'&&theme.kind!=='composition')return d;
    var c=theme.kind==='composition'&&composition(theme),tot=c&&c.total&&(c.total.indicator||'total'),exact={};
-   statements.forEach(function(s){var k=s.check||{};if(s.kind==='data')[k.category,k.category&&tot,k.rate,k.total,k.from,k.to,k.majority].forEach(function(id){if(id)exact[id]=1})});
+   statements.forEach(function(s){var k=s.check||{};(k.columns||[]).forEach(function(id){exact[id]=1;});if(s.kind==='data'||s.completionWording)[k.category,k.category&&tot,k.rate,k.total,k.from,k.to,k.majority].forEach(function(id){if(id)exact[id]=1})});
    d.graph=true;
    d.columns.forEach(function(col){
+    if(col.supplied)return;
     if(c&&col.id!==tot){col.stack=true;col.exact=!!exact[col.id];return}
     if(exact[col.id])return;
     var vals=entities.map(function(n){return c?total(theme,n):value(n,col.id)});
@@ -468,6 +476,48 @@
     return !!(f&&f.values.some(function(v){return given[n].indexOf(optionLabel(set,v))>=0}))};
    var L=function(n){return named?n:LABELS[chosen.indexOf(n)]},S=function(n){return L(n)+(named?topic(n):'는')},W=function(n){return L(n)+(named?(topic(n)==='은'?'과':'와'):'와')};
    function add(c){if(c.text&&!out.some(function(x){return x.text===c.text}))out.push(c)}
+   // Completion clauses are emitted inside their specified original exam themes.
+   // key and wording group both polarities, so reversed definitions cannot act as answer cues.
+   function clause(goal,variant,yes,no,why,check){
+    [true,false].forEach(function(t){add({kind:'concept',goalId:goal,key:'completion|'+variant,completionWording:variant,text:t?yes:no,truth:t,explain:why,check:Object.assign({op:'completionClause',variant:variant},check||{})});});
+   }
+   var complete=kb.completion;
+   if(complete){
+    if(theme.id==='continent-indicators'||theme.id==='country-population'){
+     var rateId=theme.id==='continent-indicators'?'goal-cont-netrate':'goal-country-netrate',popId=theme.id==='continent-indicators'?'cont-pop':'pop',scale=theme.id==='continent-indicators'?1e8:1e4;
+     if(shown.indexOf(rateId)>=0&&shown.indexOf(popId)>=0)pairs(chosen).forEach(function(p){var a=Math.abs(value(p[0],rateId)*value(p[0],popId)*scale/1000),b=Math.abs(value(p[1],rateId)*value(p[1],popId)*scale/1000);if(Math.max(a,b)/Math.max(Math.min(a,b),1)<1.2)return;[true,false].forEach(function(t){var hi=a>b?p[0]:p[1],lo=a>b?p[1]:p[0],sub=t?hi:lo,obj=t?lo:hi;add({kind:'data',goalId:'G057-3',key:'migration-total|'+p.join('|'),completionWording:'migration-total|'+p.join('|'),text:S(sub)+' '+L(obj)+'보다 순이동 인원의 절댓값이 크다.',truth:t,explain:'순이동 인원=총인구×순이동률÷1000. 부호로 순유입·순유출을 먼저 구분한다. '+p[0]+' 약 '+fmt(a,0)+'명, '+p[1]+' 약 '+fmt(b,0)+'명. 같은 비율이라도 기준 인구가 크면 인원이 많다.',check:{op:'migrationTotal',rate:rateId,total:popId,population:popId,scale:scale,subject:sub,object:obj}});});});
+    }
+    if(theme.id==='export-items'&&theme.year==='2018')clause('G123-5','asian-export-items','중국의 기계류·의류, 일본의 기계류·자동차, 인도네시아의 석탄·팜유·가스, 오스트레일리아의 석탄·철광석을 구별한다.','2018년 인도네시아의 석탄·팜유·가스 조합은 일본의 수출 품목 조합이다.','2018년 기출 제시 자료의 네 나라이다. 원료 생산·국내 산업별 고용과 수출 품목 구성을 구별한다.',{});
+    if(theme.id==='bloc-indicators')clause('G107-2','bloc-integration','경제 통합 수준이 높은 블록이 GDP 총액도 반드시 가장 큰 것은 아니다.','경제 통합 수준만 알면 GDP 총액의 순위를 확정할 수 있다.','EU의 통합 수준과 USMCA의 GDP 총액은 다른 지표이다. 제시 연도의 GDP는 별도로 비교한다.',{});
+    if(theme.id==='country-minerals')clause('G092-2','mineral-denominator','광물별 세계 총생산량이 다르므로 구리와 철광석의 비중만으로 생산 무게를 비교할 수 없다.','같은 국가의 구리 비중이 철광석 비중보다 높으면 구리 생산 무게가 더 크다.','각 열의 분모는 그 광물의 세계 생산량이다. 선택 지역 내 상위국을 세계 전체 상위국이라고 단정하지 않는다.',{});
+    if(theme.id==='livestock-identification'&&chosen.length===3){
+     ['lv-australia','lv-brazil','lv-china'].forEach(function(ind){
+      if(shown.indexOf(ind)<0)return;var den=chosen.reduce(function(s,n){return s+value(n,ind);},0),ns=chosen.slice().sort(function(a,b){return value(b,ind)-value(a,ind);});
+      if(!(den>0))return;var a=ns[0],b=ns[1];[true,false].forEach(function(t){var sub=t?a:b,obj=t?b:a;add({kind:'data',goalId:'G079-3',key:'internal-livestock|'+ind,completionWording:'internal-livestock|'+ind,text:meta(ind).label+' 자료의 지역 내부 세 가축 합에서 '+L(sub)+'의 구성비가 '+L(obj)+'보다 높다.',truth:t,explain:'세계 점유율이 아니다. 이 지역의 세 가축 합 '+fmt(den)+meta(ind).unit+'가 분모이며 '+a+' '+fmt(value(a,ind)/den*100)+'%, '+b+' '+fmt(value(b,ind)/den*100)+'%이다.',check:{op:'internalLivestock',ind:ind,subject:sub,object:obj,denominator:den}});});
+     });
+    }
+    if(theme.id==='primary-energy'){
+     chosen.forEach(function(n){var x=complete.coal2023[n];if(!x||!(x.coal_production>0)||x.coal_consumption==null)return;var v=x.coal_consumption/x.coal_production*100;
+      clause('G083-2','coal-production-denominator-'+n,S(n)+' 석탄 생산량 대비 소비량은 약 '+fmt(v)+'%이다.',S(n)+' 석탄 생산량 대비 소비량 '+fmt(v)+'%는 석탄 수입 의존도와 같은 지표이다.',n+' · 2023년 석탄 소비 '+fmt(x.coal_consumption)+'TWh ÷ 생산 '+fmt(x.coal_production)+'TWh ×100. 100% 초과는 소비>생산이다. 재고·수출입이 있어 수입 의존도와 같지 않다.',{op:'coalProductionRatio',entity:n,production:x.coal_production,consumption:x.coal_consumption,result:v});
+     });
+     clause('G085-3','primary-vs-electricity','브라질의 1차 에너지원 중 석유가 가장 크다는 것과 전력 생산에서 수력이 우세하다는 것은 함께 성립할 수 있다.','브라질의 전력에서 수력이 우세하므로 1차 에너지원 중에도 반드시 수력이 가장 크다.','에너지와 전력은 분모가 다르다. 네팔의 높은 수력 발전 비중도 전체 에너지의 수력 비중으로 바꾸지 않는다.',{});
+     if(has('중국')&&has('미국')){
+      [true,false].forEach(function(t){var sub=t?'미국':'중국',obj=t?'중국':'미국';add({kind:'concept',goalId:'G085-4',key:'energy-pc|china-us',completionWording:'energy-pc|china-us',text:S(sub)+' '+L(obj)+'보다 1인당 1차 에너지 소비량이 많다.',truth:t,explain:'같은 2023년 energy-pc: 미국 '+fmt(value('미국','energy-pc'))+'kWh > 중국 '+fmt(value('중국','energy-pc'))+'kWh. 총소비량은 중국>미국으로 순서가 다르다.',check:{op:'energyPerCapita',ind:'energy-pc',subject:sub,object:obj}});});
+     }
+    }
+    if(theme.id==='electricity-mix'){
+     clause('G085-3','electricity-vs-primary','네팔의 전력 생산에서 수력의 비중이 매우 높아도 전체 1차 에너지의 같은 비중이라는 뜻은 아니다.','네팔의 수력 발전 비중은 전체 1차 에너지 중 수력 비중과 항상 같다.','제시 전력 자료의 분모는 총발전량이다. 강의의 99.8%와 이 판본의 값을 섞지 않고 브라질의 석유 중심 1차 에너지와도 구별한다.',{});
+     if(theme.composition==='renewableFour'){
+      clause('G089-5','renewable-four-denominator','이 표의 100%는 각 국가의 수력·풍력·태양광·바이오에너지 발전량 합이다.','이 표의 100%는 세계의 모든 발전량을 뜻한다.','선택한 네 개별 재생 발전원 합만 분모이다. 원자력·화력·지열 등 제외된 발전원을 포함한 총발전량과 다르다.',{});
+      chosen.forEach(function(n){var vals=complete.renewables2023[n],world=complete.renewables2023['세계'];if(!vals)return;var within=comp(theme,n).hydro,global=vals.hydro/world.hydro*100;if(within<1||Math.abs(within-global)<1)return;
+       clause('G138-3','hydro-two-denominators-'+n,S(n)+' 수력의 자국 네 발전원 중 비중은 약 '+fmt(within)+'%이다.',S(n)+' 세계 수력 발전의 약 '+fmt(within)+'%를 차지한다.',n+' 수력 '+fmt(vals.hydro)+'TWh. 자국 네 발전원 합이 분모이면 '+fmt(within)+'%, 세계 수력 '+fmt(world.hydro)+'TWh가 분모이면 '+fmt(global)+'%이다.',{op:'electricityDenominators',category:'hydro',entity:n,within:within,worldShare:global,amount:vals.hydro,world:world.hydro});
+      });
+     }
+    }
+    if(theme.id==='country-economy'&&shown.indexOf('goal-sector2')>=0&&shown.indexOf('goal-sector3')>=0){
+     chosen.forEach(function(n){var a=100-value(n,'goal-sector2')-value(n,'goal-sector3');clause('G127-2','sector-remainder-'+n,S(n)+' 총산업부가가치 중 1차 산업 비중은 약 '+fmt(a)+'%이다.',S(n)+' 1차 산업 비중은 2차와 3차 산업 비중을 더한 값이다.','이번 표는 3개 산업 부가가치 합=100으로 정규화했다. 1차=100−2차−3차. 일반 WDI의 GDP 대비 산업 비중은 순생산물세 등으로 합이 100이 아닐 수 있어 같은 계산을 무조건 적용하지 않는다.',{op:'sectorRemainder',entity:n,columns:['goal-sector2','goal-sector3'],second:value(n,'goal-sector2'),third:value(n,'goal-sector3'),result:a});});
+    }
+   }
    chosen.forEach(function(n){
     var e=entity(n);
     if(theme.countryTaboo&&n==='인도'&&value(n,'agri-cattle')>0){
@@ -554,6 +604,7 @@
     if(no)add({kind:'sign',key:x.indicator+'|'+x.entity,text:S(x.entity)+' '+no+'.',truth:false,explain:why,check:{ind:x.indicator,entity:x.entity,positive:!x.positive}});
    });
    REL.forEach(function(x){
+    if(x.status==='supplied')return;
     if(!has(x.hi)||!has(x.lo)||visible(shown,x.indicator)||meta(x.indicator).entityType!==entity(x.hi).type||!inScope(theme,x.indicator)||(theme.noRecall||[]).indexOf(x.indicator)>=0)return;
     var m=meta(x.indicator),truth=r()<.5,s=truth?[x.hi,x.lo]:[x.lo,x.hi],neg=m.negMore&&value(x.hi,x.indicator)<0&&value(x.lo,x.indicator)<0;
     add({kind:'compare',goalId:theme.goalAgriculture&&(x.indicator==='agri-maize'&&x.hi==='중국'&&x.lo==='오스트레일리아'||x.indicator==='agri-riceExports'&&x.hi==='타이'&&x.lo==='미얀마')?'G074-6':null,key:x.indicator+'|'+[x.hi,x.lo].sort().join('|'),text:neg?S(s[1])+' '+L(s[0])+'보다 '+m.negMore+'.':S(s[0])+' '+L(s[1])+'보다 '+m.more+'.',truth:truth,
@@ -603,7 +654,7 @@
       var amtA=ca[cat]*ta/100,amtB=cb[cat]*tb/100,s0=trap(p,ca[cat],cb[cat],amtA,amtB,1.5);if(!s0||!keepTrap(theme,trapCase(ca[cat],cb[cat],amtA,amtB),r))return;
       var truth=r()<.5,s=truth?s0:[s0[1],s0[0]],amt=function(n){return n===p[0]?amtA:amtB};
       var noun=CN(cat)+' '+(cat==='unaffiliated'?'인구':theme.amountNoun||'인구');
-      add({kind:'data',goalIds:theme.composition==='exports'?(['G092-4'].concat(p.indexOf('사우디아라비아')>=0&&p.indexOf('나이지리아')>=0?['G132-3']:[])):[],key:'amount|'+cat+'|'+p[0]+'|'+p[1],check:{category:cat,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+noun+subjectParticle(noun)+' 많다.',truth:truth,
+      add({kind:'data',goalIds:theme.id==='electricity-mix'&&cat==='hydro'?['G085-6']:theme.composition==='exports'?(['G092-4'].concat(p.indexOf('사우디아라비아')>=0&&p.indexOf('나이지리아')>=0?['G132-3']:[])):[],key:'amount|'+cat+'|'+p[0]+'|'+p[1],check:{category:cat,subject:s[0],object:s[1]},text:S(s[0])+' '+L(s[1])+'보다 '+noun+subjectParticle(noun)+' 많다.',truth:truth,
        explain:(hidden.indexOf(cat)>=0?CN(cat)+'는 '+catLabel(theme,cat)+'. ':'')+'표의 비율 × '+c.total.label+': '+s0[0]+' 약 '+fmt(amt(s0[0]))+c.total.unit+', '+s0[1]+' 약 '+fmt(amt(s0[1]))+c.total.unit+' — 비율과 '+c.total.label+'의 순서가 서로 달라 곱해서 비교한다. 실제 '+(/수$/.test(theme.amountNoun||'')?'수는':'양은')+' '+s0[0]+subjectParticle(s0[0])+' 더 많다. (비율·'+c.total.label+' 모두 '+c.year+'년 '+c.source+')'+(theme.composition==='exports'?' · 묶인 품목은 묶음 전체의 금액만 계산하며 그 안의 개별 품목 금액은 확정하지 않는다.':'')});
      });
     }
@@ -695,6 +746,7 @@
   function reading(c){return c.kind==='data'||c.kind==='graph'||c.kind==='place'&&c.check.place==='hemisphere'}
   // The predicate of a statement whatever its subject: '…는 OPEC 회원국이다', '…는 남반구에 위치한다'.
   function wording(c){var k=c.check||{};
+   if(c.completionWording)return 'completion|'+c.completionWording;
    if(c.kind==='fact')return k.set?'f|'+k.set+'|'+k.value:k.line?'l|'+k.line:k.ns?'ns|'+k.ns:'f|'+c.key;
    if(c.kind==='both')return 'b|'+k.set+'|'+k.value;
    if(c.kind==='sign')return 's|'+k.ind+'|'+k.positive;
@@ -835,7 +887,7 @@
     var first=pick(avail,r),near=shuffle(avail.filter(function(n){return n!==first&&entity(n).region===entity(first).region}),r);
     return shuffle([first].concat(near,shuffle(avail.filter(function(n){return n!==first&&!has(near,n)}),r)).slice(0,k),r);
    }
-   var rels=theme.kind==='indicators'?REL.filter(function(x){return has(avail,x.hi)&&has(avail,x.lo)&&(!inds||visible(inds,x.indicator))&&inScope(theme,x.indicator)}):[];
+   var rels=theme.kind==='indicators'?REL.filter(function(x){return (x.status!=='supplied'||visible(inds||(theme.indicators||[]).concat(theme.always||[]),x.indicator))&&has(avail,x.hi)&&has(avail,x.lo)&&(!inds||visible(inds,x.indicator))&&inScope(theme,x.indicator)}):[];
    if(!rels.length||r()<.25)return shuffle(avail,r).slice(0,k);
    // Half the draws start from a 대상 picked uniformly, so countries with many relations
    // (중국·일본·인도) do not crowd out the rest; the other half from a relation, which keeps
@@ -920,11 +972,11 @@
   function inventory(){
    if(inv)return inv;var by={};
    function put(key,themeId,b){var x=by[key]||(by[key]={key:key,themes:[],build:b});if(x.themes.indexOf(themeId)<0)x.themes.push(themeId)}
-   ready.forEach(function(t){
+   ready.flatMap(function(t){return[t].concat((t.completionVariants||[]).map(function(v){return Object.assign({},t,v,{completionVariants:null});}));}).forEach(function(t){
     var has=function(n){return t.pool.indexOf(n)>=0};
     if(t.kind==='indicators')REL.forEach(function(x){if(x.status==='active'&&has(x.hi)&&has(x.lo)&&inScope(t,x.indicator)&&meta(x.indicator).entityType===entity(x.hi).type)put('rel|'+x.indicator+'|'+[x.hi,x.lo].sort().join('|'),t.id,{targetKey:x.indicator+'|'+[x.hi,x.lo].sort().join('|')})});
     t.pool.forEach(function(n){var e=entity(n);if(!e)return;
-     if(t.kind!=='indicators'&&(t.kind!=='composition'||orderOf(t,n))&&(t.kind!=='climate'||cl(n).type))put('ent|'+t.id+'|'+n,t.id,{focus:{entity:n}});
+     if(t.kind!=='indicators'&&(t.kind!=='composition'||orderOf(t,n))&&(t.kind!=='climate'||cl(n).type||cl(n).signal&&(t.allowSeasonalSites||[]).indexOf(n)>=0))put('ent|'+t.id+'|'+n,t.id,{focus:{entity:n}});
      Object.keys(e.facts||{}).forEach(function(set){var m=kb.factSets[set];if(m&&m.exclusive&&allowed(t,set)&&(t.reveals||[]).indexOf(set)<0&&e.facts[set].values.some(function(v){return predicate(set,v)}))put('fact|'+n+'|'+set,t.id,{focus:{entity:n,set:set}})});
     });
    });
@@ -933,7 +985,7 @@
   // The inventory keys a shown question covers.
   function seenIn(q){
    var out=[],t=q.theme,rel=function(ind,a,b){out.push('rel|'+ind+'|'+[a,b].sort().join('|'))};
-   (q.stage1.basis&&q.stage1.basis.relations||[]).forEach(function(x){rel(x.indicator,x.hi,x.lo)});
+   (q.stage1.basis&&q.stage1.basis.relations||[]).forEach(function(x){if(x.status!=='supplied')rel(x.indicator,x.hi,x.lo)});
    if(t.kind!=='indicators')q.entities.forEach(function(n){out.push('ent|'+t.id+'|'+n)});
    q.stage2.statements.forEach(function(s){var c=s.check||{};
     if(s.kind==='compare')rel(c.ind,c.subject,c.object);
@@ -975,21 +1027,21 @@
    // columns to hide, or 실전형 (implicit: no separate stage 1, as on the exam paper).
    // Review (opts.focus): a missed fact or 대상 comes back in a new question that holds it, and a
    // missed fact is asked again (focus.set).
-   var focus=opts.focus;if(focus)pool=pool.filter(function(t){return t.pool.indexOf(focus.entity)>=0});
+   var focus=opts.focus;if(focus)pool=pool.flatMap(function(t){return t.pool.indexOf(focus.entity)>=0?[t]:(t.completionVariants||[]).map(function(v){return Object.assign({},t,v,{completionVariants:null});}).filter(function(v){return v.pool.indexOf(focus.entity)>=0;});});
    var mode=opts.format||(target||focus?'rows':null),roll0=r();
    for(var attempt=0;attempt<600&&pool.length;attempt++){
-    var theme=pick(pool,r),avail=theme.pool.filter(function(n){return hasData(theme,n)});
+    var theme=pick(pool,r);if(!target&&!focus&&(!opts.format||opts.completion)&&theme.completionVariants&&(opts.seed!=null?opts.seed%5===0:roll0<.2)){var vi=opts.seed!=null?Math.floor(opts.seed/5)%theme.completionVariants.length:Math.floor(roll0/.2*theme.completionVariants.length),variant=Object.assign({},theme,theme.completionVariants[vi]);if(!opts.format||formatsFor(variant).indexOf(opts.format)>=0)theme=variant;}var avail=theme.pool.filter(function(n){return hasData(theme,n)});
     var k=theme.pick[0]+Math.floor((attempt<400?size:r())*(theme.pick[1]-theme.pick[0]+1));if(avail.length<k)continue;
     // Two 대상 only for targeted practice of a pair: their wrong options cannot share a place with the
     // answer, so 'pick the option sharing fewest' found it 56~64% of the time (audit 2026-10-23).
     if(k===2&&!target&&theme.pick[1]>2)k=3;
     // everyKnown themes draw the 대상 from those with verified knowledge; extras on the map may be any.
-    var own=function(n){return theme.kind==='composition'?!!orderOf(theme,n):theme.kind==='climate'?!!cl(n).type:true};
+    var own=function(n){return theme.kind==='composition'?!!orderOf(theme,n):theme.kind==='climate'?(!!cl(n).type||!!cl(n).signal&&(theme.allowSeasonalSites||[]).indexOf(n)>=0):true};
     // A theme without three columns to hide, or a 항목 식별 draw that keeps failing, falls back to 대상 식별.
     // The format is fixed for the first attempts; later ones re-roll, so when the recent questions
     // have used up one format (전력 대상 식별 has four), another format is tried instead of a repeat.
     // A joint theme (종교) splits the 항목 식별 share with 동시 식별, where rows and columns are both hidden.
-    var recipe=!target&&mode!=='columns'&&mode!=='joint'&&theme.tableRecipes&&attempt<300?recipeAt(theme.tableRecipes,roll0):null;
+    var recipe=!target&&!focus&&(!opts.format||opts.completion)&&mode!=='columns'&&mode!=='joint'&&theme.tableRecipes&&attempt<300?recipeAt(theme.tableRecipes,roll0):null;
     // A fixed pool whose supplied columns cannot identify its rows is impossible, not a redraw.
     if(recipe&&recipe.pool.length===k&&!identifiable(theme,recipe.pool,recipe.columns))recipe=null;
     var canHide=columnsFor(theme).length>=3&&!theme.periodTable&&!recipe,canJoint=canHide&&!!theme.joint&&theme.kind==='composition',roll=attempt<150?roll0:r();
@@ -1001,7 +1053,7 @@
     // A recipe is a lecture-backed exercise in computing a share with two denominators.
     // Keep the ordinary tables as well; targeted pair practice retains its existing draw path.
     if(recipe)known0=known0.filter(function(n){return recipe.pool.indexOf(n)>=0});
-    var chosen=draw(theme,known0,k,r,recipe&&recipe.columns),shown=[];
+    var chosen=draw(theme,known0,k,r,recipe&&recipe.columns),shown=[];if(target){chosen=shuffle([target.hi,target.lo].concat(chosen.filter(function(n){return n!==target.hi&&n!==target.lo;})).slice(0,k),r);}
     // theme.damp: a 대상 with many relations (중국) is kept in a draw only with this chance, so the
     // theme is not mostly about it (audit 2026-10-23: 중국 in 83% of 국가별 농목업 questions).
     if(theme.damp&&!target&&attempt<300&&chosen.some(function(n){return theme.damp[n]!=null&&r()>theme.damp[n]}))continue;
@@ -1017,6 +1069,7 @@
      // A source without a value for one 대상 (no coffee in France) is not shown as 0; the column is left out.
      var fit=shuffle(inds.filter(function(ind){return chosen.every(function(n){return value(n,ind)!=null})&&!sameCell(chosen,ind)}),r);
      if(chosen.lead&&fit.indexOf(chosen.lead)>0&&r()<.5)fit=[chosen.lead].concat(fit.filter(function(ind){return ind!==chosen.lead}));
+     if(target&&fit.indexOf(target.indicator)>=0)fit=[target.indicator].concat(fit.filter(function(ind){return ind!==target.indicator;}));
      shown=recipe?recipe.columns.slice():always.concat(apart(theme,fit).slice(0,theme.show));
     }
     // Skip a question the learner saw recently (opts.avoid), while other ones can still be made.
@@ -1030,17 +1083,17 @@
     // A 대상 with at most two comparisons in the theme (말레이시아) is identified by one column or not at
     // all, so half the tables holding one are exempt; without that it never appears.
     // A targeted practice ('이 비교 연습') is about its pair, so it is exempt too.
-    if(shown.length>=2&&!theme.oneColumn&&!target&&attempt<500&&!(chosen.some(function(n){return degree(theme,n)<=2})&&r()<.5)&&shown.some(function(ind){return identifiable(theme,chosen,[ind])}))continue;
+    if(shown.length>=2&&!theme.oneColumn&&!(recipe&&recipe.providedData)&&!target&&attempt<500&&!(chosen.some(function(n){return degree(theme,n)<=2})&&r()<.5)&&shown.some(function(ind){return identifiable(theme,chosen,[ind])}))continue;
     // A column shown on every question (총인구) is there for computing totals; if it alone
     // identified the 대상, the theme's own indicators would be decoration.
     // A two-period table (periodTable) is read through its two year columns, so they may identify.
-    if(theme.always&&theme.always.length&&!theme.periodTable&&identifiable(theme,chosen,theme.always))continue;
+    if(theme.always&&theme.always.length&&!theme.periodTable&&!target&&!(recipe&&recipe.providedData)&&identifiable(theme,chosen,theme.always))continue;
     if(theme.needsAlways&&identifiable(theme,chosen,shown.filter(function(i){return theme.always.indexOf(i)<0})))continue;
     // everyKnown: each 대상 is identified by its own verified knowledge, never by elimination.
     if(theme.everyKnown&&chosen.some(function(n){return theme.kind!=='indicators'?!own(n):!REL.some(function(x){return visible(shown,x.indicator)&&(x.hi===n||x.lo===n)&&chosen.indexOf(x.hi)>=0&&chosen.indexOf(x.lo)>=0})}))continue;
     var pair=theme.map?markerStage(theme,chosen,shown,avail,r,format==='implicit'):null;if(theme.map&&!pair)continue;
     var s2=chooseStatements(theme,candidates(theme,chosen,shown,r),r,!!target||!!focus,target);
-    if(s2&&focus&&focus.set&&attempt<500&&!s2.statements.some(function(s){var c=s.check||{};return c.set===focus.set&&[c.entity,c.a,c.b].indexOf(focus.entity)>=0}))continue;if(!s2)continue;
+    if(s2&&focus&&focus.set&&!s2.statements.some(function(s){var c=s.check||{};return c.set===focus.set&&[c.entity,c.a,c.b].indexOf(focus.entity)>=0}))continue;if(!s2)continue;
     // Fewer 대상 leave fewer pairs to compare; such a draw whose <보기> are mostly background is redrawn.
     if(k<theme.pick[1]&&attempt<400&&s2.statements.filter(function(s){return isFocus0(theme,s)}).length<2)continue;
     if(target){
