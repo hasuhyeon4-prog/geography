@@ -72,7 +72,7 @@
    prompt:'{range}는 {candidates} 중 하나이다. 표는 1970년과 2020년의 도시화율과 인구이다.'
   },
   {
-   id:'country-urban-reverse',status:'ready',title:'도시 인구·도시화율로 총인구 복원',lecture:'1권 P05 · P11',exams:['강의 G062-2·G135-3'],
+   id:'country-urban-reverse',status:'ready',title:'도시 인구·도시화율로 총인구 복원',lecture:'1권 P05 · P11',exams:['2015학년도 6월 20번의 총량·비율 연산 변형','2022학년도 수능 4번의 도시·촌락 관계'],
    kind:'indicators',entityType:'country',map:true,periodTable:true,domains:['period',null],positions:true,
    pool:['영국','말레이시아','탄자니아','미국','브라질','니제르','파키스탄','차드'],pick:[3,4],
    always:['wup-share@1970','wup-share@2020','wup-urban@2020'],indicators:[],show:0,
@@ -229,7 +229,7 @@
    prompt:'{range}는 {candidates} 중 하나이다. 표의 문장은 강의에서 각 나라를 설명한 것이다.'
   },
   {
-   id:'country-physical-clues',status:'ready',title:'해역·안데스 수도와 국가 위치',exams:['2024학년도 9월 7번'],lecture:'1권 P00 · 2권 P10·P11',
+   id:'country-physical-clues',status:'ready',title:'해역·안데스 수도와 국가 위치',exams:['2016학년도 9월 6번','2024학년도 수능 11번','2027학년도 6월 4번','2027학년도 6월 13번'],lecture:'1권 P00 · 2권 P10·P11',
    kind:'clues',entityType:'country',map:true,noBoth:true,
    pool:['콜롬비아','에콰도르','페루','볼리비아','사우디아라비아','카자흐스탄','라오스'],pick:[4,4],
    sets:[['콜롬비아','에콰도르','페루','볼리비아'],['사우디아라비아','카자흐스탄','볼리비아','페루'],['사우디아라비아','라오스','볼리비아','페루']],

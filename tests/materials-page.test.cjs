@@ -43,3 +43,9 @@ test('malformed saved data and unavailable storage do not prevent practice',()=>
  for(const bad of ['null','[]','not-json']){const p=fixture('cumulative',bad);assert.ok(p.nodes().some(n=>n.className==='choices'));}
  const html=fs.readFileSync(require.resolve('../materials.html'),'utf8');assert.match(html,/assets\/materials-exam\.js/);assert.match(html,/aria-live="polite"/);
 });
+test('the corpus revision archives the previous scoring separately and retains newly paused reviews',()=>{
+ const p=fixture('religion-selected',JSON.stringify({revision:2,family:'religion-selected',seed:5,stats:{'religion-selected':{right:7,wrong:2}},retiredStats:{'before-20261027':{first:{right:3}}},review:[{family:'religion-selected',seed:8},{family:'cumulative',seed:9}]}));
+ assert.equal(p.saved.revision,3);assert.equal(p.saved.retiredStats['before-20261027'].first.right,3);
+ assert.equal(p.saved.retiredStats['before-20261027-corpus']['religion-selected'].right,7);assert.equal(p.saved.pausedReview[0].family,'religion-selected');assert.equal(p.saved.review[0].family,'cumulative');
+ assert.deepEqual(p.saved.stats,{});assert.equal(p.saved.family,'all');
+});

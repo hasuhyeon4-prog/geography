@@ -9,12 +9,12 @@ try{saved=JSON.parse(localStorage.getItem('wg_materials_v1')||'{}');}catch(e){}
 if(!saved||typeof saved!=='object'||Array.isArray(saved))saved={};
 var stats=saved.stats&&typeof saved.stats==='object'&&!Array.isArray(saved.stats)?saved.stats:{};
 var retiredStats=saved.retiredStats&&typeof saved.retiredStats==='object'&&!Array.isArray(saved.retiredStats)?saved.retiredStats:{};
-if(saved.revision!==2){retiredStats['before-20261027']=stats;stats={};}
+if(saved.revision!==3){retiredStats[saved.revision===2?'before-20261027-corpus':'before-20261027']=stats;stats={};}
 var review=Array.isArray(saved.review)?saved.review.filter(function(x){return x&&Number.isSafeInteger(x.seed)&&families.some(function(f){return f.id===x.family;});}):[];
 var pausedReview=Array.isArray(saved.pausedReview)?saved.pausedReview.filter(function(x){return x&&Number.isSafeInteger(x.seed)&&engine.paused[x.family];}):[];
 if(Array.isArray(saved.review))saved.review.forEach(function(x){if(x&&engine.paused[x.family]&&!pausedReview.some(function(y){return y.family===x.family&&y.seed===x.seed;}))pausedReview.push(x);});
 var state={family:families.some(function(f){return f.id===saved.family;})?saved.family:'all',order:['weak','random','review'].includes(saved.order)?saved.order:'weak',seed:Number.isSafeInteger(saved.seed)?saved.seed:1,q:null,x:null,answer:null,right:0,total:0,error:null};
-function save(){try{localStorage.setItem('wg_materials_v1',JSON.stringify({revision:2,family:state.family,order:state.order,seed:state.seed,stats:stats,retiredStats:retiredStats,review:review,pausedReview:pausedReview}));}catch(e){}}
+function save(){try{localStorage.setItem('wg_materials_v1',JSON.stringify({revision:3,family:state.family,order:state.order,seed:state.seed,stats:stats,retiredStats:retiredStats,review:review,pausedReview:pausedReview}));}catch(e){}}
 function el(tag,props,kids){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k]);});(kids||[]).forEach(function(c){if(c!=null)e.appendChild(typeof c==='string'?document.createTextNode(c):c);});return e;}
 function pool(){return families.filter(function(f){return state.family==='all'||state.family===f.id;});}
 function chooseFamily(){var p=pool(),weights=p.map(function(f){var s=stats[f.id]||{right:0,wrong:0};return state.order==='weak'?1+(s.wrong+1)/(s.right+1):1;}),v=Math.random()*weights.reduce(function(a,b){return a+b;},0);for(var i=0;i<p.length;i++){v-=weights[i];if(v<=0)return p[i].id;}return p[p.length-1].id;}
@@ -42,21 +42,24 @@ function render(){
  var main=$('main');main.textContent='';$('score').textContent=state.right+' / '+state.total+' · 다시 풀기 '+review.length;
  if(!state.q){main.append(el('section',{className:'card empty'},[el('p',{text:state.error||'이 범위에 다시 풀 문항이 없어요.'}),el('a',{href:'exam.html',text:'기출형으로 돌아가기'})]));return;}
  var q=state.q,x=state.x,done=state.answer!==null,card=el('section',{className:'card'},[el('h2',{text:x.stage.question}),x.condition?el('p',{className:'note',text:x.condition}):null]);
+ var figureHost=x.figureLayout==='photos'?el('div',{className:'photo-grid'}):card;
  x.figures.forEach(function(f){var frame=el('div',{className:'figure'});frame.innerHTML=C.render(f);
+  if(x.figureLayout==='photos')frame.append(el('p',{className:'photo-label',text:f.name}));
   frame.querySelectorAll('[data-material-option]').forEach(function(marker){
    // Old source markers point into raw stage-one choices; map by label into the
    // final displayed choices, which may have been shuffled/reduced.
    var raw=Number(marker.getAttribute('data-material-option')),label=q.stage1.options[raw],i=x.stage.options.indexOf(label);
    if(i<0)return;marker.addEventListener('click',function(){answer(i);});marker.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();answer(i);}});
-  });card.append(frame);
+  });figureHost.append(frame);
  });
+ if(figureHost!==card)card.append(figureHost);
  x.tables.forEach(function(t){card.append(drawTable(t));});
  if(q.credit)card.append(el('p',{className:'source'},[document.createTextNode(q.credit.author+' · '),el('a',{href:q.credit.licenseUrl,text:q.credit.license,target:'_blank',rel:'noopener noreferrer'}),document.createTextNode(' · '),el('a',{href:q.credit.url,text:'사진 원출처',target:'_blank',rel:'noopener noreferrer'})]));
  if(x.stage.statements)card.append(el('ul',{className:'statements'},x.stage.statements.map(function(s){return el('li',{},[el('span',{text:s.mark+'. '+s.text}),done?el('div',{className:'correction',text:(s.truth?'O · ':'X · ')+s.explain}):null]);})));
  card.append(el('div',{className:'choices'},x.stage.options.map(function(text,i){return el('button',{type:'button',className:!done?'':i===x.stage.answer?'correct':i===state.answer?'wrong':'',disabled:done?'disabled':null,onclick:function(){answer(i);},text:(i+1)+'. '+text});})));
  if(done){
   card.append(el('div',{className:'feedback',role:'status',text:(state.answer===x.stage.answer?'정답.':'정답은 '+(x.stage.answer+1)+'번이에요.')+(x.stage.explain?' '+x.stage.explain:'')}));
-  if(x.identification)card.append(el('p',{className:'correction',text:'대상 대응: '+x.identification.map(function(n,i){return ['(가)','(나)','(다)','(라)'][i]+' '+n;}).join(' · ')}));
+  if(x.identification)card.append(el('p',{className:'correction',text:'대상 대응: '+x.identification.map(function(n,i){return (x.identificationLabels||['(가)','(나)','(다)','(라)'])[i]+' '+n;}).join(' · ')}));
   var detail=el('details',{},[el('summary',{text:'자료 해설·출처'})]);
   if(x.note)detail.append(el('p',{text:x.note}));
   x.referenceTables.forEach(function(t){detail.append(drawTable(t));});

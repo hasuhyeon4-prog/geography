@@ -171,7 +171,7 @@ function render(f){
   f.edges.forEach(function(e){var a=pos[e[0]],b=pos[e[1]];body+=line(a[0],a[1]+20,b[0],b[1]-24,'#597785',2)+txt((a[0]+b[0])/2,(a[1]+b[1])/2-7,e[2],null,14);});
   f.nodes.forEach(function(n,i){var p=pos[i],w=i===0||i===2?180:90;body+='<rect x="'+(p[0]-w/2)+'" y="'+(p[1]-22)+'" width="'+w+'" height="44" rx="10" fill="#edf5f7" stroke="#597785"/>'+txt(p[0],p[1]+5,n,null,14);});
  }else if(f.kind==='image'||f.kind==='image-regions'){
-  if(!/^assets\/goal-figures\/[a-z0-9-]+\.webp$/.test(f.src))throw Error('Unsafe local figure path');
+  if(!/^assets\/goal-figures\/[a-z0-9-]+\.(?:webp|png)$/.test(f.src))throw Error('Unsafe local figure path');
   body='<image href="'+esc(f.src)+'" x="12" y="35" width="676" height="380" preserveAspectRatio="xMidYMid meet"/>'+txt(350,23,f.name||'제시 그림',null,14);
   if(f.kind==='image-regions'){var scale=Math.min(676/f.width,380/f.height),w=f.width*scale,h=f.height*scale,ox=12+(676-w)/2,oy=35+(380-h)/2;f.regions.forEach(function(m){var x=ox+m.x*w,y=oy+m.y*h;body+='<g role="button" tabindex="0" data-material-option="'+m.option+'" aria-label="'+esc(m.letter)+' 영역 선택" style="cursor:pointer">'+dot(x,y,16,'#096b83')+txt(x,y+5,m.letter,null,16)+'<circle cx="'+num(x)+'" cy="'+num(y)+'" r="24" fill="transparent"/></g>';});}
  }else if(['line','bars','scatter'].includes(f.kind))body=cartesian(f);
