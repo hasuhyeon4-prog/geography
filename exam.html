@@ -61,15 +61,16 @@ td.text{white-space:normal;text-align:left;line-height:1.55;word-break:keep-all;
 <p style="max-width:720px;margin:8px auto;padding:0 14px;font-size:13px"><a href="materials.html" style="color:#086b70;font-weight:700">누적·편차 그래프, 삼각 도표, 자료 계산 연습 →</a></p>
 <main id="main" aria-live="polite"></main>
 <div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 항목마다 적은 기간(대개 2015~2025년)의 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
-<script src="assets/entity-kb.js?v=20261026-complete1"></script>
-<script src="assets/exam-themes.js?v=20261026-complete1"></script>
-<script src="assets/exam-engine.js?v=20261026-complete1"></script>
+<script src="assets/entity-kb.js?v=20261027-exam2"></script>
+<script src="assets/exam-themes.js?v=20261027-exam2"></script>
+<script src="assets/exam-engine.js?v=20261027-exam2"></script>
 <script>
 (function(){
 'use strict';
 var $=function(id){return document.getElementById(id)};
 if(!window.WGEntityKB||!window.WGExamThemes||!window.WGExamEngine){$('main').textContent='문항 자료를 불러오지 못했어요. 새로고침해 주세요.';return}
 var engine=WGExamEngine.create(WGEntityKB,WGExamThemes);
+function buildQuestion(opts){return engine.build(Object.assign({},opts,{integrated:true}));}
 function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_exam_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
 var store=readStore();if(!store.stats||typeof store.stats!=='object')store.stats={};if(!Array.isArray(store.recent))store.recent=[];
 var FORMATS=[['all','전체 형식'],['rows','대상 식별'],['columns','항목 식별 (A~C)'],['joint','동시 식별'],['implicit','실전형 (지도)']];
@@ -128,7 +129,7 @@ function weighted(){
  });
  for(var k=0;k<3&&pairs.length;k++){
   var x=Math.random()*sum,p=pairs[pairs.length-1];for(var i=0;i<pairs.length;i++){x-=pairs[i].w;if(x<=0){p=pairs[i];break}}
-  var q=engine.build({themeId:p.t,format:p.f,completion:true,avoid:store.recent});if(q)return q;
+  var q=buildQuestion({themeId:p.t,format:p.f,completion:true,avoid:store.recent});if(q)return q;
  }
  return null;
 }
@@ -142,7 +143,7 @@ function unseen(){
  if(!open.length)return null;
  var x=open[Math.floor(Math.random()*open.length)],homes=x.themes.filter(function(id){return scope.indexOf(id)>=0&&can(id)});
  store.tried[x.key]=(store.tried[x.key]||0)+1;
- var q=engine.build(Object.assign({themeId:x.build.targetKey&&state.theme==='all'&&state.format==='all'?null:homes[Math.floor(Math.random()*homes.length)],format:state.format==='all'?null:state.format,avoid:store.recent},x.build));
+ var q=buildQuestion(Object.assign({themeId:x.build.targetKey&&state.theme==='all'&&state.format==='all'?null:homes[Math.floor(Math.random()*homes.length)],format:state.format==='all'?null:state.format,avoid:store.recent},x.build));
  if(q&&engine.seenIn(q).indexOf(x.key)>=0)state.fresh=true;
  return q;
 }
@@ -156,7 +157,7 @@ function next(){
   // The earliest due item; one whose question can no longer be made (data changed) is dropped.
   state.q=null;var due=dueItems();
   for(var j=0;j<due.length&&!state.q;j++){
-   for(var k=0;k<3&&!state.q;k++)state.q=engine.build(Object.assign({avoid:store.recent},due[j].build));
+   for(var k=0;k<3&&!state.q;k++)state.q=buildQuestion(Object.assign({avoid:store.recent},due[j].build));
    if(state.q)state.reviewItem=due[j];else delete store.review[due[j].key];
   }
   shown();return;
@@ -168,14 +169,14 @@ function next(){
   if(!state.q)state.q=weighted();
  }
  // A draw that finds no question (rare, with a format chosen) is retried with new seeds.
- for(var tries=0;tries<3&&!state.q;tries++){state.q=engine.build({themeId:state.targetKey||state.theme==='all'?null:state.theme,format:state.targetKey||state.format==='all'?null:state.format,targetKey:state.targetKey,avoid:store.recent});if(state.q)break}
+ for(var tries=0;tries<3&&!state.q;tries++){state.q=buildQuestion({themeId:state.targetKey||state.theme==='all'?null:state.theme,format:state.targetKey||state.format==='all'?null:state.format,targetKey:state.targetKey,avoid:store.recent});if(state.q)break}
  shown();
 }
 function shown(){
  var q=state.q;
  if(q&&q.signature)store.recent=store.recent.filter(function(x){return x!==q.signature}).concat([q.signature]).slice(-RECENT);
  if(q&&!q.readingOnly)engine.seenIn(q).forEach(function(k){store.seen[k]=1});
- save();state.a1=q&&(q.readingOnly||q.stage1.implicit)?-1:null;state.a2=null;render();window.scrollTo({top:0});
+ save();state.a1=q&&(q.readingOnly||['columns','joint'].indexOf(q.format)<0)?-1:null;state.a2=null;render();window.scrollTo({top:0});
 }
 // Climate graphs: precipitation bars (right scale, mm) and temperature line (left scale, ℃),
 // every graph on the same scale.
@@ -328,6 +329,24 @@ function assignment(q,opt,revealed){
  if(q.format==='joint')return opt.slice(0,q.stage1.rows).map(function(n,i){return q.labels[i]+' '+n}).join(' · ')+'  /  '+opt.slice(q.stage1.rows).map(function(id,j){return q.stage1.labels[j]+' '+q.stage1.names[id]}).join(' · ');
  return opt.map(function(n,i){var l=mapMode(q)&&letterOf(q,n);return q.labels[i]+' '+(l?l+(revealed?' '+n:''):n)}).join(' · ');
 }
+function examCondition(t){
+ var notes={
+  'continent-indicators':'라틴 아메리카는 카리브를 포함하며, 앵글로아메리카는 UN의 Northern America이다.',
+  'continent-fertility-change':'합계 출산율은 UN WPP 2024 추정치이며 러시아는 유럽에 포함한다.',
+  'country-urban-change':'UN WUP 2025 추정치이며 국가별 도시 정의를 따른다.',
+  'country-urban-reverse':'UN WUP 2025 추정치이며 국가별 도시 정의를 따른다.',
+  'continent-urban-change':'라틴 아메리카는 카리브를 포함하며, 앵글로아메리카는 UN의 Northern America이다.',
+  'exports-composition':'SITC 상품 수출 분류이다. 광석·금속에 다이아몬드는 포함하지 않는다.',
+  'export-items':'제시된 연도의 상품 수출 품목이다. 나이지리아의 선박에는 해체용 선박이 포함된다.',
+  'climate-sites':'1991~2020년 관측소 평년값이다.',
+  'us-manufacturing':'각 주의 제조업 총출하액 대비 업종별 출하액 비율이다.',
+  'crop-identification':'쌀 생산량은 벼 기준이며 수출량은 가공품을 환산해 포함한다.',
+  'livestock-identification':'소는 물소를 제외한다.'
+ };
+ if(t.id==='country-economy'&&t.note&&t.note.indexOf('총산업부가가치=100')>=0)return '총산업부가가치=100. 세 산업 비중의 합이 100이 되도록 재환산하였다.';
+ if(t.id==='electricity-mix'&&t.composition==='renewableFour')return '수력·풍력·태양광·바이오에너지의 자국 합=100%이다.';
+ return notes[t.id]||'';
+}
 function render(){
  var main=$('main'),q=state.q;main.replaceChildren();
  $('score').textContent=state.session.n1||state.session.n2?('식별 '+state.session.s1+'/'+state.session.n1+' · 판단 '+state.session.s2+'/'+state.session.n2):'';
@@ -344,16 +363,16 @@ function render(){
  if(state.reviewItem)card.append(el('p',{className:'small',text:'복습 ('+(state.reviewItem.box+1)+'/'+STEPS.length+'단계)'+(state.a2!==null?': '+state.reviewItem.label:'')+' · 남은 복습 '+n+'개'}));
  if(state.fresh)card.append(el('p',{className:'small muted',text:'아직 풀지 않은 비교·사실이 들어 있는 문항이에요.'}));
  // 실전형 asks the <보기> straight away, as on the exam paper; the identification is shown afterwards.
- var implicit=!!q.stage1.implicit&&!q.readingOnly,revealed=implicit?state.a2!==null:state.a1!==null;
+ var implicit=['columns','joint'].indexOf(q.format)<0&&!q.readingOnly,revealed=state.a2!==null;
  var kind=q.readingOnly?'':q.format==='columns'?'항목 식별 · ':q.format==='joint'?'동시 식별 · ':implicit?'실전형 · ':'대상 식별 · ';
  card.append.apply(card,[el('div',{className:'meta',text:kind+t.title+' · '+t.lecture+(t.exams&&t.exams.length?' · 기출 유형: '+t.exams.join(', '):'')}),el('p',{className:'prompt',text:graphWords(q,(mapMode(q)&&q.mapPrompt)||q.prompt||t.prompt)}),mapMode(q)?drawMap(q,revealed):null,table(q,revealed)].filter(Boolean));
- if(t.note)card.append(el('p',{className:'small muted',text:graphWords(q,t.note)}));
+ var condition=examCondition(t);if(condition)card.append(el('p',{className:'small muted',text:graphWords(q,condition)}));
  // Stage 1: identification.
  if(!q.readingOnly&&!implicit)card.append(el('h2',{},[el('span',{className:'step',text:'1차 식별'}),q.stage1.question]));
  var c1=el('div',{className:'choices'});
  q.stage1.options.forEach(function(opt,i){
-  var b=el('button',{type:'button','data-i':String(i)},['①②③④⑤'[i]+' '+assignment(q,opt,state.a1!==null)]);
-  if(state.a1!==null){b.disabled=true;if(i===q.stage1.answer)b.className='right';else if(i===state.a1)b.className='chosenWrong'}
+  var b=el('button',{type:'button','data-i':String(i)},['①②③④⑤'[i]+' '+assignment(q,opt,state.a2!==null)]);
+  if(state.a2!==null){b.disabled=true;if(i===q.stage1.answer)b.className='right';else if(i===state.a1)b.className='chosenWrong'}else if(i===state.a1){b.setAttribute('aria-pressed','true');b.className='selected';b.onclick=function(){answer1(i)}}
   else b.onclick=function(){answer1(i)};
   c1.append(b);
  });
@@ -361,9 +380,9 @@ function render(){
  var cueList=function(){return el('ul',{className:'cues'},q.stage1.cues.map(function(c){return el('li',{text:c.label+' '+c.name+(c.letter&&mapMode(q)?' ('+c.letter+')':'')+' — '+c.cue})}))};
  if(state.a1!==null){
   var ok1=state.a1===q.stage1.answer;
-  if(!q.readingOnly&&!implicit)card.append(el('div',{className:'result '+(ok1?'good':'bad'),role:'status'},[el('b',{text:ok1?'식별 정답':'식별 오답'}),cueList()]));
+  if(state.a2!==null&&!q.readingOnly&&!implicit)card.append(el('div',{className:'result '+(ok1?'good':'bad'),role:'status'},[el('b',{text:ok1?'식별 정답':'식별 오답'}),cueList()]));
   // Stage 2: judgments about the identified 대상.
-  card.append(el('h2',{},[el('span',{className:'step',text:'후속 판단'}),q.stage2.question]));
+  card.append(el('h2',{},[el('span',{className:'step',text:implicit?'문항':'판단'}),q.stage2.question]));
   var bogi=el('div',{className:'bogi'});
   q.stage2.statements.forEach(function(s){
    var line=el('p',{},[el('span',{className:'mark',text:s.mark+'.'}),s.text]);
@@ -384,6 +403,7 @@ function render(){
   var ok2=state.a2===q.stage2.answer;
   if(implicit)card.append(el('div',{className:'result good',role:'status'},[el('b',{text:'식별 근거'}),cueList()]));
   card.append(el('div',{className:'result '+(ok2?'good':'bad'),role:'status',text:ok2?'후속 판단 정답':'후속 판단 오답 — 각 보기 아래의 근거를 확인하세요.'}));
+  if(t.note)card.append(el('details',{},[el('summary',{text:'자료 설명'}),el('p',{className:'small muted',text:graphWords(q,t.note)})]));
   var nb=el('button',{type:'button',className:'primary big',text:'다음 문항',onclick:next});card.append(nb);
  }
  main.append(card);
@@ -409,8 +429,8 @@ function weakPanel(){
  // Kept open across questions once opened.
  d.addEventListener('toggle',function(){state.weakOpen=d.open});return d;
 }
-function answer1(i){if(state.a1!==null||i<0||i>=state.q.stage1.options.length)return;state.a1=i;var ok=i===state.q.stage1.answer;state.session.n1++;if(ok)state.session.s1++;if(!ok)missed1(state.q,i).forEach(remember);record(state.q.theme.id,'s1',ok);render()}
-function answer2(i){if(state.a1===null||state.a2!==null||i<0||i>=state.q.stage2.options.length)return;state.a2=i;var ok=i===state.q.stage2.answer;state.session.n2++;if(ok)state.session.s2++;
+function answer1(i){if(state.a2!==null||i<0||i>=state.q.stage1.options.length)return;state.a1=i;render()}
+function answer2(i){if(state.a1===null||state.a2!==null||i<0||i>=state.q.stage2.options.length)return;state.a2=i;if(state.a1>=0){var firstOK=state.a1===state.q.stage1.answer;state.session.n1++;if(firstOK)state.session.s1++;else missed1(state.q,state.a1).forEach(remember);record(state.q.theme.id,'s1',firstOK);}var ok=i===state.q.stage2.answer;state.session.n2++;if(ok)state.session.s2++;
  if(!ok)missed2(state.q,i).forEach(remember);
  // A review question is passed when both stages are right (or stage 1 was not asked).
  var whole=ok&&(state.a1<0||state.a1===state.q.stage1.answer);grade(whole);

@@ -744,6 +744,7 @@
    return c.kind==='colid'||c.kind==='concept'||c.kind==='category'||c.kind==='climateClaim'||c.kind==='compare'||c.kind==='sign'||c.kind==='data'||c.kind==='graph'||c.kind==='climate'||!!(c.check&&c.check.set&&focusSets.indexOf(c.check.set)>=0)}
   // Read straight from the table or graph, with no identification needed.
   function reading(c){return c.kind==='data'||c.kind==='graph'||c.kind==='place'&&c.check.place==='hemisphere'}
+  function simpleReading(c){var k=c.check||{};return c.kind==='graph'||c.kind==='place'&&k.place==='hemisphere'||k.op==='relativePosition'||c.kind==='data'&&(k.majority||k.up!=null);}
   // The predicate of a statement whatever its subject: '…는 OPEC 회원국이다', '…는 남반구에 위치한다'.
   function wording(c){var k=c.check||{};
    if(c.completionWording)return 'completion|'+c.completionWording;
@@ -776,7 +777,7 @@
    cands.forEach(function(c){var g=wording(c);if(!groups[g]){groups[g]={kind:c.kind,focus:isFocus(c),flip:!!FLIP[c.kind]||c.kind==='data'&&c.check.subject!=null||c.kind==='place'&&c.check.subject!=null||c.kind==='category'&&c.check.subject!=null,T:[],F:[]};list0.push(groups[g])}groups[g][c.truth?'T':'F'].push(c)});
    // Table readings: at most two, one true and one false, or they settle the answer by themselves.
    var picked=[],used={},kinds={},both=0,need={T:2,F:2},readTruth=null;
-   var free=function(c){return !(c.keys||[c.key]).some(function(k){return used[k]})&&!(c.kind==='both'&&both)&&!(reading(c)&&kinds.reading>=2)};
+   var free=function(c){return !(c.keys||[c.key]).some(function(k){return used[k]})&&!(c.kind==='both'&&both)&&!(reading(c)&&kinds.reading>=2)&&!(theme.examIntegrated&&simpleReading(c)&&kinds.simple>=1)};
    function take(pool,limit,last){
     var list=shuffle(pool,r),got=0;
     while(got<limit&&(need.T||need.F)&&list.length){
@@ -785,7 +786,7 @@
      if(!last&&!g.flip&&!(g.T.some(free)&&g.F.some(free)))continue;
      if(!can.length)continue;
      var t=can.length===2?(r()<need.T/(need.T+need.F)?'T':'F'):can[0],c=pick(g[t].filter(free),r);
-     picked.push(c);(c.keys||[c.key]).forEach(function(k){used[k]=1});kinds[c.kind]=(kinds[c.kind]||0)+1;if(c.kind==='both')both++;if(reading(c)){readTruth=t;kinds.reading=(kinds.reading||0)+1}need[t]--;got++;
+     picked.push(c);if(simpleReading(c))kinds.simple=(kinds.simple||0)+1;(c.keys||[c.key]).forEach(function(k){used[k]=1});kinds[c.kind]=(kinds[c.kind]||0)+1;if(c.kind==='both')both++;if(reading(c)){readTruth=t;kinds.reading=(kinds.reading||0)+1}need[t]--;got++;
     }
     return got;
    }
@@ -793,7 +794,7 @@
    // One one-sided wording may fill the last place, so 대상 sets with few two-sided ones (니제르·카타르·
    // 벨기에) still appear; a targeted practice ('이 비교 연습') may use more to reach its pair.
    if(priority){var priorityGroups=list0.filter(function(g){return g.T.concat(g.F).some(function(c){var k=c.check||{};return k.ind===priority.indicator&&[k.subject,k.object].indexOf(priority.hi)>=0&&[k.subject,k.object].indexOf(priority.lo)>=0;});});take(priorityGroups,1);}
-   take(focus,3);take(rest,4);take(focus,4);take(list0,loose?4:1,true);
+   if(theme.examIntegrated)take(focus.filter(function(g){return !simpleReading(g.T[0]||g.F[0]);}),3);take(focus,3);take(rest,4);take(focus,4);take(list0,loose?4:1,true);
    var t=2-need.T,f=2-need.F;
    if(t<2||f<2)return null;
    // <보기> read straight from the table (kind 'data') need no identification; their places may
@@ -864,7 +865,7 @@
     if(!best||score>best.score)best={names:names,extra:sets[si],wrong:wrong,viaMap:viaMap,score:score};
     if(best.score>=24)break;
    }
-   if(!best||best.wrong.length<(k===2?2:4))return null;
+   if(!best||best.wrong.length<(k===2?(strict?1:2):4))return null;
    // Up to two wrong options use a marked country outside the answer, so the map matters.
    var useMap=shuffle(best.viaMap,r).slice(0,2),key=function(a){return a.join('|')};
    var rest=shuffle(best.wrong.filter(function(a){return useMap.map(key).indexOf(key(a))<0}),r);
@@ -1030,7 +1031,7 @@
    var focus=opts.focus;if(focus)pool=pool.flatMap(function(t){return t.pool.indexOf(focus.entity)>=0?[t]:(t.completionVariants||[]).map(function(v){return Object.assign({},t,v,{completionVariants:null});}).filter(function(v){return v.pool.indexOf(focus.entity)>=0;});});
    var mode=opts.format||(target||focus?'rows':null),roll0=r();
    for(var attempt=0;attempt<600&&pool.length;attempt++){
-    var theme=pick(pool,r);if(!target&&!focus&&(!opts.format||opts.completion)&&theme.completionVariants&&(opts.seed!=null?opts.seed%5===0:roll0<.2)){var vi=opts.seed!=null?Math.floor(opts.seed/5)%theme.completionVariants.length:Math.floor(roll0/.2*theme.completionVariants.length),variant=Object.assign({},theme,theme.completionVariants[vi]);if(!opts.format||formatsFor(variant).indexOf(opts.format)>=0)theme=variant;}var avail=theme.pool.filter(function(n){return hasData(theme,n)});
+    var theme=pick(pool,r);if(opts.integrated)theme=Object.assign({},theme,{examIntegrated:true});if(!target&&!focus&&(!opts.format||opts.completion)&&theme.completionVariants&&(opts.seed!=null?opts.seed%5===0:roll0<.2)){var vi=opts.seed!=null?Math.floor(opts.seed/5)%theme.completionVariants.length:Math.floor(roll0/.2*theme.completionVariants.length),variant=Object.assign({},theme,theme.completionVariants[vi]);if(!opts.format||formatsFor(variant).indexOf(opts.format)>=0)theme=variant;}var avail=theme.pool.filter(function(n){return hasData(theme,n)});
     var k=theme.pick[0]+Math.floor((attempt<400?size:r())*(theme.pick[1]-theme.pick[0]+1));if(avail.length<k)continue;
     // Two 대상 only for targeted practice of a pair: their wrong options cannot share a place with the
     // answer, so 'pick the option sharing fewest' found it 56~64% of the time (audit 2026-10-23).
@@ -1091,7 +1092,7 @@
     if(theme.needsAlways&&identifiable(theme,chosen,shown.filter(function(i){return theme.always.indexOf(i)<0})))continue;
     // everyKnown: each 대상 is identified by its own verified knowledge, never by elimination.
     if(theme.everyKnown&&chosen.some(function(n){return theme.kind!=='indicators'?!own(n):!REL.some(function(x){return visible(shown,x.indicator)&&(x.hi===n||x.lo===n)&&chosen.indexOf(x.hi)>=0&&chosen.indexOf(x.lo)>=0})}))continue;
-    var pair=theme.map?markerStage(theme,chosen,shown,avail,r,format==='implicit'):null;if(theme.map&&!pair)continue;
+    var pair=theme.map?markerStage(theme,chosen,shown,avail,r,format==='implicit'||!!opts.integrated):null;if(theme.map&&!pair)continue;
     var s2=chooseStatements(theme,candidates(theme,chosen,shown,r),r,!!target||!!focus,target);
     if(s2&&focus&&focus.set&&!s2.statements.some(function(s){var c=s.check||{};return c.set===focus.set&&[c.entity,c.a,c.b].indexOf(focus.entity)>=0}))continue;if(!s2)continue;
     // Fewer 대상 leave fewer pairs to compare; such a draw whose <보기> are mostly background is redrawn.

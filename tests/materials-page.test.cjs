@@ -12,25 +12,34 @@ function fixture(family,prior){
  vm.runInContext(fs.readFileSync(require.resolve('../assets/materials-page.js'),'utf8'),context);
  return{get saved(){return JSON.parse(saved);},nodes:()=>walk(roots),find:(fn)=>walk(roots).find(fn),document,context};
 }
-test('all families really render and complete two answer steps without double grading',()=>{
- for(const f of M.create(D).families){
-  const p=fixture(f.id),q=M.create(D).build(f.id,1);
-  const groups=()=>p.nodes().filter(n=>n.className==='choices');
-  assert.equal(groups().length,1,f.id+' must hide second-step answer until identification');
-  const oldFirst=groups()[0].children[q.stage1.answer];oldFirst.onclick();oldFirst.onclick();
-  assert.equal(groups().length,2,f.id);const second=groups()[1].children[q.stage2.answer];second.onclick();second.onclick();
+test('practice is answered once; answer keys, notes and lookup tables stay absent until submission',()=>{
+ const E=M.create(D);
+ for(const f of E.families.filter(f=>!E.paused[f.id])){
+  const p=fixture(f.id),x=E.exam(E.build(f.id,1));
+  const group=()=>p.nodes().filter(n=>n.className==='choices');
+  assert.equal(group().length,1,f.id);
+  assert.ok(!p.nodes().some(n=>n.tagName==='DETAILS'),f.id+' source notes must not appear before submission');
+  assert.ok(!p.document.getElementById('nextQuestion'));
+  const old=group()[0].children[x.stage.answer];old.onclick();old.onclick();
   assert.equal(p.saved.stats[f.id].right,1,f.id+' duplicate click');assert.equal(p.saved.review.length,0);
-  assert.ok(p.document.getElementById('nextQuestion'));p.document.getElementById('nextQuestion').onclick();assert.equal(groups().length,1);assert.equal(p.saved.seed,3);
+  assert.ok(p.nodes().some(n=>n.tagName==='DETAILS'),f.id+' feedback retains the source');
+  p.document.getElementById('nextQuestion').onclick();assert.equal(group().length,1);assert.equal(p.saved.seed,3);
  }
 });
-test('wrong attempts survive reload in the same family and leave review only after both steps are right',()=>{
- const family='gis-filters',p=fixture(family),q=M.create(D).build(family,1);
- let groups=p.nodes().filter(n=>n.className==='choices');groups[0].children[(q.stage1.answer+1)%q.stage1.options.length].onclick();groups=p.nodes().filter(n=>n.className==='choices');groups[1].children[q.stage2.answer].onclick();
+test('a wrong final answer persists and is removed only on a correct review answer',()=>{
+ const family='gis-filters',p=fixture(family),x=M.create(D).exam(M.create(D).build(family,1));
+ let group=p.nodes().find(n=>n.className==='choices');group.children[(x.stage.answer+1)%x.stage.options.length].onclick();
  assert.equal(p.saved.review[0].family,family);assert.equal(p.saved.review[0].seed,1);assert.equal(p.saved.stats[family].wrong,1);
- const record={...p.saved,order:'review'},again=fixture(family,JSON.stringify(record));groups=again.nodes().filter(n=>n.className==='choices');groups[0].children[q.stage1.answer].onclick();groups=again.nodes().filter(n=>n.className==='choices');groups[1].children[q.stage2.answer].onclick();assert.equal(again.saved.review.length,0);
+ const again=fixture(family,JSON.stringify({...p.saved,order:'review'}));group=again.nodes().find(n=>n.className==='choices');group.children[x.stage.answer].onclick();assert.equal(again.saved.review.length,0);
  again.document.getElementById('nextQuestion').onclick();assert.match(again.document.getElementById('main').textContent,/다시 풀 문항이 없/);
+});
+test('old results and paused review items are retained without counting them as new exam results',()=>{
+ const p=fixture('gis-tie-break',JSON.stringify({family:'gis-tie-break',stats:{'gis-tie-break':{right:8,wrong:2}},review:[{family:'gis-tie-break',seed:9}]}));
+ assert.equal(p.saved.family,'all');assert.equal(p.saved.retiredStats['before-20261027']['gis-tie-break'].right,8);
+ assert.equal(p.saved.pausedReview[0].seed,9);assert.equal(p.saved.review.length,0);
+ assert.ok(!p.nodes().some(n=>n.tagName==='OPTION'&&n.attributes.value==='gis-tie-break'));
 });
 test('malformed saved data and unavailable storage do not prevent practice',()=>{
  for(const bad of ['null','[]','not-json']){const p=fixture('cumulative',bad);assert.ok(p.nodes().some(n=>n.className==='choices'));}
- const html=fs.readFileSync(require.resolve('../materials.html'),'utf8');assert.match(html,/assets\/materials-page\.js/);assert.match(html,/aria-live="polite"/);assert.match(fs.readFileSync(require.resolve('../exam.html'),'utf8'),/href="materials.html"/);
+ const html=fs.readFileSync(require.resolve('../materials.html'),'utf8');assert.match(html,/assets\/materials-exam\.js/);assert.match(html,/aria-live="polite"/);
 });

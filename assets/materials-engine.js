@@ -484,7 +484,9 @@ function create(data){
  var moreData=typeof module==='object'&&module.exports?require('./materials-remaining-data.js'):globalThis.WGRemainingData;
  if(more&&moreData)families=families.concat(more.create(data,moreData,{shuffle:shuffle,seedState:seedState,base:base,pair:pair,finish:finish,table:table,round:round,fmt:fmt,math:{sum:sum,age:age,declination:declination,daylight:daylight}}));
  function build(id,seed){var f=families.find(function(x){return x[0]===id;});if(!f)throw Error('Unknown material '+id);var q=f[2](seed==null?1:seed);q.mode=q.id;q.id=id;return q;}
- return{families:families.map(function(f){return{id:f[0],title:f[1]};}),build:build};
+ var examModule=typeof module==='object'&&module.exports?require('./materials-exam.js'):globalThis.WGMaterialExam;
+ var exam=examModule&&examModule.create(data,{distance:distance});
+ return{families:families.map(function(f){return{id:f[0],title:f[1]};}),build:build,exam:exam&&exam.prepare,paused:exam&&exam.paused||{}};
 }
 return{create:create,math:{sum:sum,mean:mean,cumulative:cumulative,season:season,age:age,workforce:workforce,growth:growth,declination:declination,daylight:daylight,noonAltitude:noonAltitude,solar:solar,normalize:normalize,ternary:ternary,distance:distance,zeroCrossing:zeroCrossing,bandScore:bandScore,filterRows:filterRows},rng:rng};
 });

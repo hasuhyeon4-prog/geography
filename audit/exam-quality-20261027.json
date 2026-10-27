@@ -1,0 +1,668 @@
+{
+  "revision": "20261027-exam2",
+  "baselineCommit": "64830614bacb100206b325e1294ac7f71e28742c",
+  "scope": {
+    "reviewedExamQuestions": 26,
+    "sample": [
+      {
+        "exam": "2026 수능",
+        "questions": [
+          4,
+          10,
+          12,
+          13,
+          15,
+          16,
+          19,
+          20
+        ]
+      },
+      {
+        "exam": "2025 수능",
+        "questions": [
+          2,
+          5,
+          6,
+          8,
+          9,
+          13
+        ]
+      },
+      {
+        "exam": "2024 9평",
+        "questions": [
+          4,
+          7,
+          9,
+          10,
+          12,
+          13,
+          19
+        ]
+      },
+      {
+        "exam": "2026 6평",
+        "questions": [
+          12,
+          8,
+          19,
+          5
+        ]
+      },
+      {
+        "exam": "2022 6평",
+        "questions": [
+          18
+        ]
+      }
+    ],
+    "reviewMethod": "문제지 발문·선지 대조 및 2026 6평 고오답률 4개 원문 그림 시각 대조. 전체 820문항의 새 전수 검토가 아님.",
+    "evidence": "docs/EXAM-QUALITY-20261027.md",
+    "originalMaterialFamilies": 106,
+    "activeMaterialFamilies": 102,
+    "integratedMaterialsAtSeed1": 57,
+    "directMaterialsAtSeed1": 45
+  },
+  "changes": [
+    "정답 대응표와 풀이 요령을 최종 제출 뒤 공개",
+    "익명 대상 식별과 자료·지역 지식을 최종 판단으로 연결",
+    "좌표·단일 값 판독은 기출형에서 최대 하나",
+    "태양 고도는 1월/7월 계절 관계로 통합; 적위 역산 제외",
+    "임의 가상 재고 및 GIS 상위 네 국가 동점 확장 보류",
+    "이전 자료형 정답률 보관, 기존 오답은 새 문항으로 복습"
+  ],
+  "validation": {
+    "focused": {
+      "command": "node --test tests/exam-integrated.test.cjs tests/materials-exam.test.cjs tests/materials-page.test.cjs tests/materials.test.cjs tests/materials-continuation.test.cjs tests/materials-remaining.test.cjs",
+      "passed": 37,
+      "failed": 0,
+      "skipped": 0
+    },
+    "activeMaterialFamilySeeds": 32,
+    "materialGenerationsChecked": 3264,
+    "integratedThemeSeeds": 20,
+    "integratedGenerationsChecked": 440,
+    "checks": [
+      "determinism and finite SVG",
+      "unique choices and independent truth masks",
+      "independent operand arithmetic and KB fact agreement",
+      "essential anonymous population inputs retained",
+      "solar scope excludes four-month/declination calculations",
+      "six-city assignment unique among all 24 permutations",
+      "single submission and no premature answer reveal",
+      "wrong-answer replay and historical/paused record retention"
+    ],
+    "browserChecks": {
+      "materialExamples": [
+        "lake-types",
+        "solar-month",
+        "cumulative",
+        "city-distance",
+        "capital-share",
+        "population-pyramid",
+        "religion-top-two",
+        "grain-export-scatter",
+        "gis-top-two",
+        "oldmap-regions"
+      ],
+      "exam": [
+        "direct final judgment with only actual map targets",
+        "columns: selecting first answer reveals no grading/cues/names before final submission"
+      ]
+    },
+    "allRepositoryTestsClaimed": false,
+    "finalOptionAndPersistenceRerun": {
+      "command": "node --test tests/materials-exam.test.cjs tests/materials-page.test.cjs",
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0
+    },
+    "finalWordingRerun": {
+      "command": "node --test --test-name-pattern='rebuilt comparisons|practice is answered once' tests/materials-exam.test.cjs tests/materials-page.test.cjs",
+      "passed": 2,
+      "failed": 0
+    },
+    "broaderLegacyRun": "Incomplete: unchanged KB rebuild / broad legacy suite was stopped; no full-suite pass claim."
+  },
+  "limitations": [
+    "기출 표본을 기준으로 출제 구조를 수정한 것으로 전 세계 사실·통계의 새 전수 검수는 아님",
+    "실측 오답률을 새로 수집한 난도 보증은 아님",
+    "OX·강의표 전체의 출제 범위를 새로 전수 검토한 것은 아님"
+  ],
+  "materialFamilies": [
+    {
+      "id": "car-growth",
+      "title": "자동차 생산 증가량·증가율",
+      "status": "integrated"
+    },
+    {
+      "id": "capital-share",
+      "title": "수도 인구의 국가 내 비율",
+      "status": "integrated"
+    },
+    {
+      "id": "birth-death",
+      "title": "출생률 복원·‰와 %",
+      "status": "integrated"
+    },
+    {
+      "id": "city-distance",
+      "title": "도시 간 거리 행렬",
+      "status": "integrated"
+    },
+    {
+      "id": "climate-restore",
+      "title": "최한월·연교차로 최난월 복원",
+      "status": "direct"
+    },
+    {
+      "id": "religion-relative",
+      "title": "최대 종교=100 상대값",
+      "status": "integrated"
+    },
+    {
+      "id": "religion-selected",
+      "title": "선택 종교 구성 삼각 도표",
+      "status": "integrated"
+    },
+    {
+      "id": "religion-other",
+      "title": "종교 범례의 기타 묶음",
+      "status": "integrated"
+    },
+    {
+      "id": "crop-yield",
+      "title": "수확 면적·단수·생산량",
+      "status": "integrated"
+    },
+    {
+      "id": "urban-rural-scatter",
+      "title": "도시·촌락 인구 좌표",
+      "status": "integrated"
+    },
+    {
+      "id": "energy-change",
+      "title": "미국·중국 에너지 두 시점",
+      "status": "direct"
+    },
+    {
+      "id": "energy-composition",
+      "title": "에너지 구성의 두 시점",
+      "status": "integrated"
+    },
+    {
+      "id": "gis-filters",
+      "title": "GIS 조건 필터",
+      "status": "direct"
+    },
+    {
+      "id": "gis-medical",
+      "title": "GIS 의료 지원·지도 대응",
+      "status": "direct"
+    },
+    {
+      "id": "gis-scoring",
+      "title": "GIS 구간 배점",
+      "status": "direct"
+    },
+    {
+      "id": "gis-directions",
+      "title": "GIS 점수 방향 바꾸기",
+      "status": "direct"
+    },
+    {
+      "id": "gis-weighted",
+      "title": "GIS 가중치",
+      "status": "direct"
+    },
+    {
+      "id": "gis-top-two",
+      "title": "GIS 상위 두 국가·동점",
+      "status": "direct"
+    },
+    {
+      "id": "gis-tie-break",
+      "title": "GIS 동점·2차 기준",
+      "status": "paused",
+      "reason": "상위 네 국가·추가 동점 기준으로 바꾼 확장의 기출 근거 미확인"
+    },
+    {
+      "id": "cumulative",
+      "title": "누적 강수량",
+      "status": "integrated"
+    },
+    {
+      "id": "self-deviation",
+      "title": "자기 연평균 기온 편차",
+      "status": "integrated"
+    },
+    {
+      "id": "common-deviation",
+      "title": "지역 평균 기준 기온 편차",
+      "status": "integrated"
+    },
+    {
+      "id": "reference-deviation",
+      "title": "기준 도시와의 기온 차이",
+      "status": "integrated"
+    },
+    {
+      "id": "precip-deviation",
+      "title": "강수량 편차",
+      "status": "integrated"
+    },
+    {
+      "id": "difference",
+      "title": "기온·강수 차이 산점도",
+      "status": "integrated"
+    },
+    {
+      "id": "daylight",
+      "title": "월별 낮 길이",
+      "status": "integrated"
+    },
+    {
+      "id": "solar-altitude",
+      "title": "월별 정오 태양 고도",
+      "status": "paused",
+      "reason": "solar-month의 계절 판단으로 통합"
+    },
+    {
+      "id": "solar-month",
+      "title": "태양 고도로 달 찾기",
+      "status": "integrated"
+    },
+    {
+      "id": "solar-climate",
+      "title": "태양 고도와 기후 자료",
+      "status": "paused",
+      "reason": "solar-month의 계절 판단으로 통합"
+    },
+    {
+      "id": "solar-night",
+      "title": "위도·밤 길이 차이",
+      "status": "integrated"
+    },
+    {
+      "id": "age-triangle",
+      "title": "연령 구조 삼각 도표",
+      "status": "integrated"
+    },
+    {
+      "id": "dependency",
+      "title": "부양비 계산과 역산",
+      "status": "integrated"
+    },
+    {
+      "id": "urban-weighted",
+      "title": "도시·촌락 증가율 결합",
+      "status": "integrated"
+    },
+    {
+      "id": "urban-change",
+      "title": "두 시점 도시화율 산점도",
+      "status": "integrated"
+    },
+    {
+      "id": "urban-radar",
+      "title": "도시 지표 방사형 그래프",
+      "status": "integrated"
+    },
+    {
+      "id": "city-tier",
+      "title": "세계 도시의 세 축 모식도",
+      "status": "direct"
+    },
+    {
+      "id": "soil-temperature",
+      "title": "지중 온도·활동층",
+      "status": "integrated"
+    },
+    {
+      "id": "headquarters",
+      "title": "본사 수·매출·집중도",
+      "status": "integrated"
+    },
+    {
+      "id": "migrant-stock",
+      "title": "미국 이민자 제시 자료",
+      "status": "integrated"
+    },
+    {
+      "id": "population-index",
+      "title": "기준 연도 100 지수",
+      "status": "integrated"
+    },
+    {
+      "id": "ethnic-stacks",
+      "title": "집단별 누적 인구와 비중",
+      "status": "integrated"
+    },
+    {
+      "id": "industry-remainder",
+      "title": "세 산업 합=100에서 나머지 복원",
+      "status": "integrated"
+    },
+    {
+      "id": "industry-amount",
+      "title": "GDP×2차 산업 비중",
+      "status": "integrated"
+    },
+    {
+      "id": "population-periods",
+      "title": "기간별 자연 증감·순이동 누계",
+      "status": "integrated"
+    },
+    {
+      "id": "migration-scatter",
+      "title": "자연·전체 증가율 산점도",
+      "status": "integrated"
+    },
+    {
+      "id": "migration-continents",
+      "title": "대륙 순이동률과 총인원",
+      "status": "integrated"
+    },
+    {
+      "id": "renewable-capacity-ranks",
+      "title": "설비 용량·발전량 순위",
+      "status": "integrated"
+    },
+    {
+      "id": "food-stock-balance",
+      "title": "곡물 수급과 가상 재고 변화",
+      "status": "paused",
+      "reason": "가상 재고 변화까지 계산시키는 확장의 기출 근거 미확인"
+    },
+    {
+      "id": "stat-map-types",
+      "title": "여섯 통계 지도 유형",
+      "status": "direct"
+    },
+    {
+      "id": "gdp-map-denominators",
+      "title": "GDP 총량·1인당 지도",
+      "status": "integrated"
+    },
+    {
+      "id": "facility-map",
+      "title": "기업 시설 분포 모식도",
+      "status": "direct"
+    },
+    {
+      "id": "rain-ph-maps",
+      "title": "강수량·pH 지도",
+      "status": "direct"
+    },
+    {
+      "id": "andes-conditions",
+      "title": "남미 조건과 지도 대응",
+      "status": "direct"
+    },
+    {
+      "id": "asian-export-items",
+      "title": "아시아·오세아니아 수출 품목",
+      "status": "direct"
+    },
+    {
+      "id": "north-america-trade",
+      "title": "북미 교역 화살표",
+      "status": "direct"
+    },
+    {
+      "id": "eu-trade-arrows",
+      "title": "EU 교역 방향·품목 비중",
+      "status": "integrated"
+    },
+    {
+      "id": "trade-bubble",
+      "title": "무역 좌표·인구 역산",
+      "status": "integrated"
+    },
+    {
+      "id": "trade-composition-triangle",
+      "title": "수출·수입 삼각 구성",
+      "status": "integrated"
+    },
+    {
+      "id": "bloc-trade-bars",
+      "title": "블록별 역내·역외 교역",
+      "status": "integrated"
+    },
+    {
+      "id": "sea-ice-anomaly",
+      "title": "해빙 범위 편차",
+      "status": "integrated"
+    },
+    {
+      "id": "ozone-area",
+      "title": "오존 구멍 시계열",
+      "status": "integrated"
+    },
+    {
+      "id": "ice-ozone-maps",
+      "title": "해빙·오존 지도 구별",
+      "status": "integrated"
+    },
+    {
+      "id": "anticline-trap",
+      "title": "배사 트랩 모식도",
+      "status": "direct"
+    },
+    {
+      "id": "meander-banks",
+      "title": "곡류·종단면 모식도",
+      "status": "direct"
+    },
+    {
+      "id": "religion-symbols",
+      "title": "종교 상징·국장",
+      "status": "direct"
+    },
+    {
+      "id": "mineral-relative",
+      "title": "광물 최대=100 상대값",
+      "status": "direct"
+    },
+    {
+      "id": "population-pyramid",
+      "title": "성별·연령별 인구 피라미드",
+      "status": "integrated"
+    },
+    {
+      "id": "pyramid-cohort",
+      "title": "두 시점 코호트 추적",
+      "status": "direct"
+    },
+    {
+      "id": "religion-top-two",
+      "title": "종교 1·2위와 기호",
+      "status": "integrated"
+    },
+    {
+      "id": "religion-score",
+      "title": "종교 학습지 평가 점수",
+      "status": "direct"
+    },
+    {
+      "id": "resource-area",
+      "title": "자원 생산 면적 그래프",
+      "status": "direct"
+    },
+    {
+      "id": "population-area",
+      "title": "대륙별 국가 인구 면적",
+      "status": "direct"
+    },
+    {
+      "id": "regional-radar",
+      "title": "항목별 최대=100 방사형",
+      "status": "direct"
+    },
+    {
+      "id": "fossil-denominators",
+      "title": "세계 자원 몫·국가 구성",
+      "status": "integrated"
+    },
+    {
+      "id": "oldmap-images",
+      "title": "고지도 원그림",
+      "status": "direct"
+    },
+    {
+      "id": "coast-images",
+      "title": "해안 경관 원사진",
+      "status": "direct"
+    },
+    {
+      "id": "religious-buildings",
+      "title": "실제 종교 건축",
+      "status": "direct"
+    },
+    {
+      "id": "traditional-houses",
+      "title": "전통 가옥 사진",
+      "status": "direct"
+    },
+    {
+      "id": "road-images",
+      "title": "맨해튼·파리 도로망",
+      "status": "direct"
+    },
+    {
+      "id": "city-images",
+      "title": "리우·멕시코시티·쿠스코",
+      "status": "direct"
+    },
+    {
+      "id": "religious-landmarks",
+      "title": "종교 건축물·도시·국가",
+      "status": "direct"
+    },
+    {
+      "id": "oldmap-regions",
+      "title": "고지도 위 바다·하천 찾기",
+      "status": "direct"
+    },
+    {
+      "id": "irrigation-images",
+      "title": "관개 시설 사진",
+      "status": "direct"
+    },
+    {
+      "id": "night-lights",
+      "title": "야간 빛·국가 위치",
+      "status": "direct"
+    },
+    {
+      "id": "china-grain-map",
+      "title": "중국 곡물 점지도",
+      "status": "direct"
+    },
+    {
+      "id": "livestock-composition",
+      "title": "국가 내부 가축 구성",
+      "status": "direct"
+    },
+    {
+      "id": "grain-size",
+      "title": "입도 분포·분급",
+      "status": "direct"
+    },
+    {
+      "id": "lake-types",
+      "title": "수심·염분·호수",
+      "status": "direct"
+    },
+    {
+      "id": "solar-route",
+      "title": "여행 경로·낮 길이",
+      "status": "direct"
+    },
+    {
+      "id": "vital-scatter",
+      "title": "출생률·사망률 산점도",
+      "status": "integrated"
+    },
+    {
+      "id": "dependency-change",
+      "title": "두 시점 부양비 변화",
+      "status": "integrated"
+    },
+    {
+      "id": "grain-triangle",
+      "title": "대륙의 세 곡물 구성",
+      "status": "direct"
+    },
+    {
+      "id": "beverage-triangle",
+      "title": "대륙의 기호 작물 구성",
+      "status": "direct"
+    },
+    {
+      "id": "livestock-denominators",
+      "title": "가축의 두 단계 분모",
+      "status": "direct"
+    },
+    {
+      "id": "grain-export-scatter",
+      "title": "곡물 생산·수출 비율",
+      "status": "integrated"
+    },
+    {
+      "id": "crop-trade-bubble",
+      "title": "곡물 교역·생산량 원",
+      "status": "direct"
+    },
+    {
+      "id": "fossil-triangle",
+      "title": "대륙별 화석 연료 구성",
+      "status": "integrated"
+    },
+    {
+      "id": "fossil-remainder",
+      "title": "화석 연료 나머지 복원",
+      "status": "integrated"
+    },
+    {
+      "id": "energy-per-capita",
+      "title": "에너지 총량·1인당",
+      "status": "integrated"
+    },
+    {
+      "id": "unequal-energy-axis",
+      "title": "에너지의 서로 다른 축",
+      "status": "integrated"
+    },
+    {
+      "id": "coal-production-consumption",
+      "title": "석탄 생산 대비 소비",
+      "status": "integrated"
+    },
+    {
+      "id": "renewables-denominators",
+      "title": "발전량 분모의 범위",
+      "status": "integrated"
+    },
+    {
+      "id": "australia-trade-change",
+      "title": "호주의 상대국 비중 변화",
+      "status": "integrated"
+    },
+    {
+      "id": "environment-news",
+      "title": "환경 기사·대응 수단",
+      "status": "direct"
+    },
+    {
+      "id": "treaty-tree",
+      "title": "협약 도시 분류도",
+      "status": "direct"
+    },
+    {
+      "id": "industry-bubble",
+      "title": "산업 좌표·1인당 GDP 원",
+      "status": "integrated"
+    }
+  ]
+}
