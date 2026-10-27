@@ -286,7 +286,7 @@ function create(data,math,extra){
    pairs=[pair(bo+'는 바다와 접하지 않는 내륙국이다.',bo+'는 태평양과 접한 국가이다.','볼리비아는 내륙국이다.',{op:'mineralRegionalKnowledge',name:'볼리비아'}),
     pair(br+'는 포르투갈어를 공용어로 사용한다.',br+'는 에스파냐어를 공용어로 사용한다.','브라질의 포르투갈 식민 역사를 연결한다.',{op:'geographicFact',name:'브라질',set:'latinLanguage',value:'portuguese'}),
     pair(ch+'는 '+br+'와 국경을 접하지 않는다.',ch+'는 '+br+'와 국경을 접한다.','칠레와 브라질은 접경하지 않는다.',{op:'mineralRegionalKnowledge',name:'칠레'}),
-    pair(bo+'는 '+br+' 및 '+ch+'와 모두 국경을 접한다.',br+'는 '+bo+' 및 '+ch+'와 모두 국경을 접한다.','볼리비아는 브라질·칠레 모두와 접경한다.',{op:'mineralRegionalKnowledge',name:'볼리비아'})];
+    pair(bo+'는 '+br+' 및 '+ch+'와 모두 국경을 접한다.',br+'는 '+bo+' 및 '+ch+'와 모두 국경을 접한다.','볼리비아는 브라질·칠레 모두와 접경한다. 브라질은 볼리비아와 접경하지만 칠레와는 접경하지 않는다.',{op:'mineralRegionalKnowledge',name:'볼리비아'})];
    direct=false;
   }
   if(q.id==='grain-export-scatter'||q.id==='crop-trade-bubble'||q.id==='coal-production-consumption')x.condition=CONDITIONS[q.id]||'그래프의 각 점은 한 지역을 나타낸다.';
