@@ -1,0 +1,18 @@
+/* Shared header and page menu for every practice page. */
+.site-header{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:6px;min-height:50px;margin:0;padding:4px 8px;padding-top:calc(4px + env(safe-area-inset-top));background:#fff;border-bottom:1px solid #dce4e6;box-sizing:border-box}
+.site-nav{display:flex;gap:2px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin:0}
+.site-nav::-webkit-scrollbar{display:none}
+.site-nav a{flex:none;font:700 13px/1 system-ui,-apple-system,"Noto Sans KR",sans-serif;color:#60727b;text-decoration:none;padding:11px 9px;border-radius:9px;white-space:nowrap}
+.site-nav a:hover{background:#e6f2f0;color:#086b70}
+.site-nav a[aria-current=page]{background:#142d39;color:#fff}
+.site-nav a:focus-visible{outline:2px solid #086b70;outline-offset:1px}
+.site-header .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.site-tools{display:flex;gap:4px;flex:none}
+@media(min-width:900px){.site-nav a{font-size:14px;padding:11px 12px}}
+/* Shared settings bar under the menu: topic and order side by side. */
+.site-controls{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:8px 10px;align-items:center;max-width:none;margin:0;padding:8px 10px;background:#fafcfc;border-bottom:1px solid #dce4e6;box-sizing:border-box}
+.site-controls label{display:flex;align-items:center;gap:6px;width:auto;min-width:0;font-size:12px;color:#60727b;white-space:nowrap}
+.site-controls select{flex:1;min-width:0;height:38px;border:1px solid #cfdcdf;border-radius:10px;background:#fff;color:#142d39;font-size:14px;padding:0 8px}
+.site-controls > :not(label){grid-column:1/-1;justify-self:start}
+@media(min-width:760px){.site-controls{grid-template-columns:340px 260px auto;justify-content:center}.site-controls > :not(label){grid-column:auto}}
+.site-hint{color:#60727b;font-size:12px;text-align:center;margin:6px 0 24px}@media(hover:none){.site-hint{display:none}}

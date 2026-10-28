@@ -59,7 +59,7 @@ function render(){
  if(x.stage.statements)card.append(el('ul',{className:'statements'},x.stage.statements.map(function(s){return el('li',{},[el('span',{text:s.mark+'. '+s.text}),done?el('div',{className:'correction',text:(s.truth?'O · ':'X · ')+s.explain}):null]);})));
  card.append(el('div',{className:'choices'},x.stage.options.map(function(text,i){return el('button',{type:'button',className:!done?'':i===x.stage.answer?'correct':i===state.answer?'wrong':'',disabled:done?'disabled':null,onclick:function(){answer(i);},text:(i+1)+'. '+text});})));
  if(done){
-  card.append(el('div',{className:'feedback',role:'status',text:(state.answer===x.stage.answer?'정답.':'정답은 '+(x.stage.answer+1)+'번이에요.')+(x.stage.explain?' '+x.stage.explain:'')}));
+  var ok=state.answer===x.stage.answer;card.append(el('div',{className:'feedback '+(ok?'good':'bad'),role:'status',text:(ok?'정답':'오답 — 정답은 '+(x.stage.answer+1)+'번')+(x.stage.explain?' · '+x.stage.explain:'')}));
   if(x.identification)card.append(el('p',{className:'correction',text:'대상 대응: '+x.identification.map(function(n,i){return (x.identificationLabels||['(가)','(나)','(다)','(라)'])[i]+' '+n;}).join(' · ')}));
   var detail=el('details',{},[el('summary',{text:'자료 해설·출처'})]);
   if(x.note)detail.append(el('p',{text:x.note}));
@@ -73,5 +73,11 @@ families.forEach(function(f){$('family').append(el('option',{value:f.id,text:f.t
 $('family').value=state.family;$('order').value=state.order;
 $('family').onchange=function(){state.family=this.value;next();};$('order').onchange=function(){state.order=this.value;next();};
 if(typeof window.addEventListener==='function'){var lastWidth=window.innerWidth;window.addEventListener('resize',function(){if(Math.abs(window.innerWidth-lastWidth)>40){lastWidth=window.innerWidth;render();}});}
+// Keyboard: 1~5 choose an option, Enter goes to the next question (as on the other pages).
+if(typeof document.addEventListener==='function')document.addEventListener('keydown',function(e){
+ if(e.altKey||e.ctrlKey||e.metaKey||/^(INPUT|SELECT|TEXTAREA)$/.test((e.target&&e.target.tagName)||''))return;
+ if(/^[1-5]$/.test(e.key)){var group=document.querySelector('#main .choices'),b=group&&group.children[+e.key-1];if(b&&!b.disabled){e.preventDefault();b.click();}}
+ else if(e.key==='Enter'){var n=$('nextQuestion');if(n&&document.activeElement!==n){e.preventDefault();n.click();}}
+});
 next();
 })();
