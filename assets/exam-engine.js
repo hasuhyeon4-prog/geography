@@ -498,7 +498,9 @@
     }
     if(theme.id==='primary-energy'){
      chosen.forEach(function(n){var x=complete.coal2023[n];if(!x||!(x.coal_production>0)||x.coal_consumption==null)return;var v=x.coal_consumption/x.coal_production*100;
-      clause('G083-2','coal-production-denominator-'+n,S(n)+' 석탄 생산량 대비 소비량은 약 '+fmt(v)+'%이다.',S(n)+' 석탄 생산량 대비 소비량 '+fmt(v)+'%는 석탄 수입 의존도와 같은 지표이다.',n+' · 2023년 석탄 소비 '+fmt(x.coal_consumption)+'TWh ÷ 생산 '+fmt(x.coal_production)+'TWh ×100. 100% 초과는 소비>생산이다. 재고·수출입이 있어 수입 의존도와 같지 않다.',{op:'coalProductionRatio',entity:n,production:x.coal_production,consumption:x.coal_consumption,result:v});
+      // Exam statements judge more/less, not the ratio to one decimal place (2026-10-28).
+      if(Math.abs(v-100)<10)return;
+      clause('G083-2','coal-production-denominator-'+n,S(n)+' 석탄 소비량이 생산량보다 '+(v>100?'많다.':'적다.'),S(n)+' 석탄 소비량이 생산량보다 '+(v>100?'적다.':'많다.'),n+' · 2023년 석탄 소비 '+fmt(x.coal_consumption)+'TWh ÷ 생산 '+fmt(x.coal_production)+'TWh ×100. 100% 초과는 소비>생산이다. 재고·수출입이 있어 수입 의존도와 같지 않다.',{op:'coalProductionRatio',entity:n,production:x.coal_production,consumption:x.coal_consumption,result:v});
      });
      clause('G085-3','primary-vs-electricity','브라질의 1차 에너지원 중 석유가 가장 크다는 것과 전력 생산에서 수력이 우세하다는 것은 함께 성립할 수 있다.','브라질의 전력에서 수력이 우세하므로 1차 에너지원 중에도 반드시 수력이 가장 크다.','에너지와 전력은 분모가 다르다. 네팔의 높은 수력 발전 비중도 전체 에너지의 수력 비중으로 바꾸지 않는다.',{});
      if(has('중국')&&has('미국')){
@@ -509,13 +511,14 @@
      clause('G085-3','electricity-vs-primary','네팔의 전력 생산에서 수력의 비중이 매우 높아도 전체 1차 에너지의 같은 비중이라는 뜻은 아니다.','네팔의 수력 발전 비중은 전체 1차 에너지 중 수력 비중과 항상 같다.','제시 전력 자료의 분모는 총발전량이다. 강의의 99.8%와 이 판본의 값을 섞지 않고 브라질의 석유 중심 1차 에너지와도 구별한다.',{});
      if(theme.composition==='renewableFour'){
       clause('G089-5','renewable-four-denominator','이 표의 100%는 각 국가의 수력·풍력·태양광·바이오에너지 발전량 합이다.','이 표의 100%는 세계의 모든 발전량을 뜻한다.','선택한 네 개별 재생 발전원 합만 분모이다. 원자력·화력·지열 등 제외된 발전원을 포함한 총발전량과 다르다.',{});
-      chosen.forEach(function(n){var vals=complete.renewables2023[n],world=complete.renewables2023['세계'];if(!vals)return;var within=comp(theme,n).hydro,global=vals.hydro/world.hydro*100;if(within<1||Math.abs(within-global)<1)return;
-       clause('G138-3','hydro-two-denominators-'+n,S(n)+' 수력의 자국 네 발전원 중 비중은 약 '+fmt(within)+'%이다.',S(n)+' 세계 수력 발전의 약 '+fmt(within)+'%를 차지한다.',n+' 수력 '+fmt(vals.hydro)+'TWh. 자국 네 발전원 합이 분모이면 '+fmt(within)+'%, 세계 수력 '+fmt(world.hydro)+'TWh가 분모이면 '+fmt(global)+'%이다.',{op:'electricityDenominators',category:'hydro',entity:n,within:within,worldShare:global,amount:vals.hydro,world:world.hydro});
+      chosen.forEach(function(n){var vals=complete.renewables2023[n],world=complete.renewables2023['세계'];if(!vals)return;var within=comp(theme,n).hydro,global=vals.hydro/world.hydro*100;if(within<1||Math.abs(within-global)<Math.max(within,global)*.1)return;
+       var hi=within>global;
+       clause('G138-3','hydro-two-denominators-'+n,S(n)+' 자국 네 발전원 발전량 중 수력 비중이 세계 수력 발전량 중 차지하는 비중보다 '+(hi?'높다.':'낮다.'),S(n)+' 자국 네 발전원 발전량 중 수력 비중이 세계 수력 발전량 중 차지하는 비중보다 '+(hi?'낮다.':'높다.'),n+' 수력 '+fmt(vals.hydro)+'TWh. 자국 네 발전원 합이 분모이면 '+fmt(within)+'%, 세계 수력 '+fmt(world.hydro)+'TWh가 분모이면 '+fmt(global)+'%이다.',{op:'electricityDenominators',category:'hydro',entity:n,within:within,worldShare:global,amount:vals.hydro,world:world.hydro});
       });
      }
     }
     if(theme.id==='country-economy'&&shown.indexOf('goal-sector2')>=0&&shown.indexOf('goal-sector3')>=0){
-     chosen.forEach(function(n){var a=100-value(n,'goal-sector2')-value(n,'goal-sector3');clause('G127-2','sector-remainder-'+n,S(n)+' 총산업부가가치 중 1차 산업 비중은 약 '+fmt(a)+'%이다.',S(n)+' 1차 산업 비중은 2차와 3차 산업 비중을 더한 값이다.','이번 표는 3개 산업 부가가치 합=100으로 정규화했다. 1차=100−2차−3차. 일반 WDI의 GDP 대비 산업 비중은 순생산물세 등으로 합이 100이 아닐 수 있어 같은 계산을 무조건 적용하지 않는다.',{op:'sectorRemainder',entity:n,columns:['goal-sector2','goal-sector3'],second:value(n,'goal-sector2'),third:value(n,'goal-sector3'),result:a});});
+     chosen.forEach(function(n){var a=100-value(n,'goal-sector2')-value(n,'goal-sector3'),b=value(n,'goal-sector2');if(Math.abs(a-b)<Math.max(a,b)*.1)return;clause('G127-2','sector-remainder-'+n,S(n)+' 총산업부가가치 중 1차 산업 비중이 2차 산업 비중보다 '+(a>b?'높다.':'낮다.'),S(n)+' 총산업부가가치 중 1차 산업 비중이 2차 산업 비중보다 '+(a>b?'낮다.':'높다.'),'이번 표는 3개 산업 부가가치 합=100으로 정규화했다. 1차=100−2차−3차. 일반 WDI의 GDP 대비 산업 비중은 순생산물세 등으로 합이 100이 아닐 수 있어 같은 계산을 무조건 적용하지 않는다.',{op:'sectorRemainder',entity:n,columns:['goal-sector2','goal-sector3'],second:value(n,'goal-sector2'),third:value(n,'goal-sector3'),result:a});});
     }
    }
    chosen.forEach(function(n){

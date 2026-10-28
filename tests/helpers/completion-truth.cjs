@@ -9,13 +9,13 @@ module.exports=function(s,q,K){const c=s.check,v=s.completionWording;
   assert.ok(yes[v],'unreviewed definition '+v);return s.text===yes[v];
  }
  if(c.op==='coalProductionRatio'){
-  const a=energy.countries[c.entity].series;close(c.result,a.coal_consumption['2023']/a.coal_production['2023']*100);return !s.text.includes('수입 의존도');
+  const a=energy.countries[c.entity].series;close(c.result,a.coal_consumption['2023']/a.coal_production['2023']*100);return s.text.endsWith('많다.')===(c.result>100);
  }
  if(c.op==='energyPerCapita')return energy.countries[c.subject].series.energy_per_capita['2023']>energy.countries[c.object].series.energy_per_capita['2023'];
  if(c.op==='electricityDenominators'){
-  const x=D.renewables2023[c.entity],within=x.hydro/Object.values(x).reduce((a,b)=>a+b,0)*100,world=x.hydro/D.renewables2023['세계'].hydro*100;close(c.within,within);close(c.worldShare,world);assert.ok(Math.abs(within-world)>1);return s.text.includes('자국 네 발전원');
+  const x=D.renewables2023[c.entity],within=x.hydro/Object.values(x).reduce((a,b)=>a+b,0)*100,world=x.hydro/D.renewables2023['세계'].hydro*100;close(c.within,within);close(c.worldShare,world);assert.ok(Math.abs(within-world)>=Math.max(within,world)*.1);return s.text.endsWith('높다.')===(within>world);
  }
- if(c.op==='sectorRemainder'){close(c.result,100-c.second-c.third);close(c.result,D.sectorComposition2023[c.entity][0]);assert.ok(q.shown.includes('goal-sector2')&&q.shown.includes('goal-sector3'));return !s.text.includes('더한 값');}
+ if(c.op==='sectorRemainder'){close(c.result,100-c.second-c.third);close(c.result,D.sectorComposition2023[c.entity][0]);assert.ok(q.shown.includes('goal-sector2')&&q.shown.includes('goal-sector3'));return s.text.endsWith('높다.')===(c.result>c.second);}
  if(c.op==='migrationTotal'){const f=n=>D.migration2023[n]?.netMigration??groups.groups[n].series.netmig['2023'];assert.ok(q.shown.includes(c.rate)&&q.shown.includes(c.population));return Math.abs(f(c.subject))>Math.abs(f(c.object));}
  if(c.op==='internalLivestock'){close(c.denominator,q.entities.reduce((sum,n)=>sum+K.entities[n].values[c.ind],0));return K.entities[c.subject].values[c.ind]>K.entities[c.object].values[c.ind];}
  throw Error('unreviewed completion op '+c.op);
