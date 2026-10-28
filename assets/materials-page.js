@@ -14,6 +14,7 @@ var review=Array.isArray(saved.review)?saved.review.filter(function(x){return x&
 var state={family:families.some(function(f){return f.id===saved.family;})?saved.family:'all',order:['weak','random','review'].includes(saved.order)?saved.order:'weak',seed:Number.isSafeInteger(saved.seed)?saved.seed:1,q:null,x:null,answer:null,right:0,total:0,error:null};
 function save(){try{localStorage.setItem('wg_materials_v1',JSON.stringify({revision:3,family:state.family,order:state.order,seed:state.seed,stats:stats,retiredStats:retiredStats,review:review}));}catch(e){}}
 function el(tag,props,kids){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k]);});(kids||[]).forEach(function(c){if(c!=null)e.appendChild(typeof c==='string'?document.createTextNode(c):c);});return e;}
+function progressEl(o){var p=[];if(o.len)p.push(o.pos+' / '+o.len);p.push('정답 '+o.right+'/'+o.answered);if(o.extra)p.push(o.extra);if(o.review)p.push('다시 풀기 '+o.review);return el('span',{className:'site-progress',role:'status',text:p.join(' · ')});}
 function pool(){return families.filter(function(f){return state.family==='all'||state.family===f.id;});}
 function chooseFamily(){var p=pool(),weights=p.map(function(f){var s=stats[f.id]||{right:0,wrong:0};return state.order==='weak'?1+(s.wrong+1)/(s.right+1):1;}),v=Math.random()*weights.reduce(function(a,b){return a+b;},0);for(var i=0;i<p.length;i++){v-=weights[i];if(v<=0)return p[i].id;}return p[p.length-1].id;}
 function next(){
@@ -40,9 +41,9 @@ function drawTable(t){return el('div',{className:'scroll'},[el('table',{},[el('c
 // cropping the 700-unit drawing behind a horizontal scroll.
 function textScale(photo){var w=Math.max(200,($('main').clientWidth||700)-60);return photo?1:Math.max(1,11/(14*w/700));}
 function render(){
- var main=$('main');main.textContent='';$('score').textContent=state.right+' / '+state.total+' · 다시 풀기 '+review.length;
+ var main=$('main');main.textContent='';
  if(!state.q){main.append(el('section',{className:'card empty'},[el('p',{text:state.error||'이 범위에 다시 풀 문항이 없어요.'}),el('a',{href:'exam.html',text:'기출형으로 돌아가기'})]));return;}
- var q=state.q,x=state.x,done=state.answer!==null,card=el('section',{className:'card'},[el('h2',{text:x.stage.question}),x.condition?el('p',{className:'note',text:x.condition}):null]);
+ var q=state.q,x=state.x,done=state.answer!==null,card=el('section',{className:'card'},[el('div',{className:'site-progress-row'},[progressEl({right:state.right,answered:state.total,review:review.length})]),el('h2',{text:x.stage.question}),x.condition?el('p',{className:'note',text:x.condition}):null]);
  var figureHost=x.figureLayout==='photos'?el('div',{className:'photo-grid'}):card;
  x.figures.forEach(function(f){var frame=el('div',{className:'figure'});frame.innerHTML=C.render(f,{textScale:textScale(x.figureLayout==='photos')});
   if(x.figureLayout==='photos')frame.append(el('p',{className:'photo-label',text:f.name}));

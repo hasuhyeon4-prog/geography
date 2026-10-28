@@ -35,7 +35,7 @@ main{max-width:720px;margin:0 auto;padding:12px 12px calc(28px + env(safe-area-i
 .small{font-size:12px;line-height:1.5}.muted{color:var(--muted)}
 @media(max-width:360px){.navLink{padding:8px 6px;font-size:11px}.nav a{padding:8px 4px;font-size:11px}.rows li{grid-template-columns:20px 7.6em minmax(30px,1fr) 6.6em;gap:6px;font-size:13px}}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=20261028-ui3"></head>
+<link rel="stylesheet" href="assets/site.css?v=20261028-ui4"></head>
 <body>
 <header class="site-header"><h1 class="sr-only">순위표</h1><nav class="site-nav" aria-label="연습 종류"><a href="index.html">위치</a><a href="classify.html">분류 지도</a><a href="rankings.html" aria-current="page">순위표</a><a href="facts.html">OX</a><a href="concepts.html">강의 표</a><a href="exam.html">기출형</a><a href="materials.html">자료형</a></nav></header>
 <div class="scope site-controls"><label for="groupSelect">주제<select id="groupSelect"></select></label><label for="modeSelect">방식<select id="modeSelect"><option value="study">순위표 보기</option><option value="quiz">순위 문제</option></select></label></div>
@@ -57,6 +57,7 @@ var store=readStore();if(!store.miss||typeof store.miss!=='object')store.miss={}
 var state={group:R.groups.some(function(g){return g.id===store.group})?store.group:'all',mode:store.mode==='quiz'?'quiz':'study',explicit:false,queue:[],index:0,q:null,answer:null,picked:[],right:0,wrong:[]};
 function save(){try{localStorage.setItem('wg_rankings_v1',JSON.stringify({group:state.group,mode:state.mode,miss:store.miss}))}catch(e){}}
 function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(c){if(c!=null&&c!==false)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
+function progressEl(o){var p=[];if(o.len)p.push(o.pos+' / '+o.len);p.push('정답 '+o.right+'/'+o.answered);if(o.extra)p.push(o.extra);if(o.review)p.push('다시 풀기 '+o.review);return el('span',{className:'site-progress',role:'status',text:p.join(' · ')});}
 function pool(){return R.rankings.filter(function(r){return state.group==='all'||r.group===state.group})}
 function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
 function pick(a){return a[Math.floor(Math.random()*a.length)]}
@@ -157,7 +158,7 @@ function renderQuiz(){
   main.append(card);return;
  }
  var q=state.queue[state.index],card=el('section',{className:'card'});
- card.append(el('div',{className:'progress'},[el('span',{text:R.groups.find(function(g){return g.id===q.r.group}).name}),el('span',{text:(state.index+1)+' / '+state.queue.length+' · 정답 '+state.right})]),el('p',{className:'q',text:q.text}));
+ card.append(el('div',{className:'progress'},[el('span',{text:R.groups.find(function(g){return g.id===q.r.group}).name}),progressEl({pos:state.index+1,len:state.queue.length,right:state.right,answered:state.index+(state.answer!=null?1:0)})]),el('p',{className:'q',text:q.text}));
  if(q.reading)card.append(el('p',{className:'small muted',text:q.r.year+(q.r.scope?' · '+q.r.scope:'')+' · '+q.r.unit}),tableOf(q.r,q.r.items.map(function(i){return i.name})));
  var grid=el('div',{className:'choices'});
  q.options.forEach(function(name){
@@ -190,4 +191,4 @@ $('policySelect').onchange=function(){state.explicit=this.value==='dated';render
 render();
 })();
 </script>
-<script src="assets/site.js?v=20261028-ui3"></script></body></html>
+<script src="assets/site.js?v=20261028-ui4"></script></body></html>

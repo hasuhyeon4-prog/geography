@@ -16,3 +16,6 @@
 .site-controls > :not(label){grid-column:1/-1;justify-self:start}
 @media(min-width:760px){.site-controls{grid-template-columns:340px 260px auto;justify-content:center}.site-controls > :not(label){grid-column:auto}}
 .site-hint{color:#60727b;font-size:12px;text-align:center;margin:6px 0 24px}@media(hover:none){.site-hint{display:none}}
+/* Shared progress chip, top right of each question card. */
+.site-progress{display:inline-block;flex:none;margin-left:auto;padding:3px 10px;border-radius:999px;background:#eef4f5;color:#3d5560;font:600 12px/1.4 system-ui,-apple-system,"Noto Sans KR",sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap}
+.site-progress-row{display:flex;align-items:center;gap:8px;font-size:12px;color:#60727b;margin:0 0 8px}

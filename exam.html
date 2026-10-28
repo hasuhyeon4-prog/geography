@@ -54,10 +54,10 @@ td.text{white-space:normal;text-align:left;line-height:1.55;word-break:keep-all;
 @media(max-width:560px){.scope{flex-wrap:wrap;row-gap:6px}.scope label:not(.toggle){flex:1 1 100%}}
 @media(max-width:360px){.navLink{padding:8px 6px;font-size:11px}.nav a{padding:8px 4px;font-size:11px}.choices.combo button{font-size:12px}}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=20261028-ui3"></head>
+<link rel="stylesheet" href="assets/site.css?v=20261028-ui4"></head>
 <body>
 <header class="site-header"><h1 class="sr-only">기출형 연습</h1><nav class="site-nav" aria-label="연습 종류"><a href="index.html">위치</a><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html">OX</a><a href="concepts.html">강의 표</a><a href="exam.html" aria-current="page">기출형</a><a href="materials.html">자료형</a></nav></header>
-<div class="scope site-controls"><label for="themeSelect">주제<select id="themeSelect"></select></label><label for="formatSelect">형식<select id="formatSelect"></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><button type="button" id="reviewBtn" class="reviewBtn"></button><span class="score" id="score"></span></div>
+<div class="scope site-controls"><label for="themeSelect">주제<select id="themeSelect"></select></label><label for="formatSelect">형식<select id="formatSelect"></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><button type="button" id="reviewBtn" class="reviewBtn"></button></div>
 
 <main id="main" aria-live="polite"></main><p class="site-hint">키보드: 1~5로 고르고 Enter로 다음</p>
 <div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 항목마다 적은 기간(대개 2015~2025년)의 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
@@ -79,6 +79,7 @@ function save(){try{localStorage.setItem('wg_exam_v1',JSON.stringify({theme:stat
 // The last questions shown are not repeated while others can be made (kept across visits).
 var RECENT=40;
 function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(c){if(c!=null&&c!==false)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
+function progressEl(o){var p=[];if(o.len)p.push(o.pos+' / '+o.len);p.push('정답 '+o.right+'/'+o.answered);if(o.extra)p.push(o.extra);if(o.review)p.push('다시 풀기 '+o.review);return el('span',{className:'site-progress',role:'status',text:p.join(' · ')});}
 // Spaced review (2026-10-23): what a wrong answer missed (the comparisons behind a misplaced row, each
 // <보기> judged wrongly) comes back in a new question after 10 minutes, then 1, 3, 7 and 21 days
 // while it is answered right; after the fifth it leaves the list. A miss sends it back to the start.
@@ -349,7 +350,6 @@ function examCondition(t){
 }
 function render(){
  var main=$('main'),q=state.q;main.replaceChildren();
- $('score').textContent=state.session.n1||state.session.n2?('식별 '+state.session.s1+'/'+state.session.n1+' · 판단 '+state.session.s2+'/'+state.session.n2):'';
  var n=dueItems().length,all=Object.keys(store.review).length,rb=$('reviewBtn');
  rb.textContent=state.reviewing?'복습 끝내기':'복습 '+n;rb.className='reviewBtn'+(state.reviewing?' on':n?' due':'');rb.title='틀린 비교·사실을 간격을 두고 다시 풉니다 (전체 '+all+'개)';
  if(!q&&state.reviewing){
@@ -357,7 +357,7 @@ function render(){
   main.append(el('section',{className:'card'},[el('p',{text:all?'지금 복습할 항목이 없어요. 남은 '+all+'개는 '+new Date(later).toLocaleString('ko-KR',{month:'long',day:'numeric',hour:'numeric',minute:'2-digit'})+'부터 다시 나옵니다.':'복습할 항목이 없어요. 틀린 비교와 사실이 여기에 모입니다.'}),
    el('button',{type:'button',onclick:function(){state.reviewing=false;next()},text:'일반 문제로'})]));return}
  if(!q){main.append(el('section',{className:'card'},[el('p',{text:'이 주제·형식으로 문항을 만들지 못했어요. 다른 주제나 형식을 골라 주세요.'})]));return}
- var t=q.theme,card=el('section',{className:'card'});
+ var t=q.theme,card=el('section',{className:'card'});card.append(el('div',{className:'site-progress-row'},[progressEl({right:state.session.s2,answered:state.session.n2,extra:state.session.n1?'식별 '+state.session.s1+'/'+state.session.n1:'',review:dueItems().length})]));
  if(state.targetKey)card.append(el('p',{className:'small',text:'선택한 비교를 집중 연습하고 있어요. 주제를 바꾸면 전체 연습으로 돌아갑니다.'}));
  // What a review is about is named only after answering; before, the name would give it away.
  if(state.reviewItem)card.append(el('p',{className:'small',text:'복습 ('+(state.reviewItem.box+1)+'/'+STEPS.length+'단계)'+(state.a2!==null?': '+state.reviewItem.label:'')+' · 남은 복습 '+n+'개'}));
@@ -509,4 +509,4 @@ document.addEventListener('keydown',function(e){
 next();
 })();
 </script>
-<script src="assets/site.js?v=20261028-ui3"></script></body></html>
+<script src="assets/site.js?v=20261028-ui4"></script></body></html>

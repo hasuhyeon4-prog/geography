@@ -27,7 +27,7 @@ tr.hit td{background:#fff8db}td.name{font-weight:700;white-space:nowrap;min-widt
 .small{font-size:12px;line-height:1.5}.muted{color:var(--muted)}h2{font-size:17px;margin:0 0 6px}
 .hint{font-size:12px;color:var(--muted);text-align:center}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=20261028-ui3"></head>
+<link rel="stylesheet" href="assets/site.css?v=20261028-ui4"></head>
 <body>
 <header class="site-header"><h1 class="sr-only">강의 표</h1><nav class="site-nav" aria-label="연습 종류"><a href="index.html">위치</a><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html">OX</a><a href="concepts.html" aria-current="page">강의 표</a><a href="exam.html">기출형</a><a href="materials.html">자료형</a></nav></header>
 <div class="scope site-controls"><label for="domainSelect">주제<select id="domainSelect"></select></label><label for="modeSelect">방식<select id="modeSelect"><option value="which">설명 → 대상</option><option value="what">대상 → 설명</option><option value="study">표 보기</option></select></label></div>
@@ -43,6 +43,7 @@ if(!T){$('main').textContent='강의 표를 불러오지 못했어요. 새로고
 var goalTables=window.WGGoalTables&&window.WGGoalTableData?WGGoalTables.create(WGGoalTableData):null;
 if(goalTables){goalTables.tables.forEach(function(t){t.exams=(T.goalExams||{})[t.id]||t.exams});T={domains:T.domains.concat(goalTables.domains),tables:T.tables.concat(goalTables.tables)}}
 function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(c){if(c!=null&&c!==false)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
+function progressEl(o){var p=[];if(o.len)p.push(o.pos+' / '+o.len);p.push('정답 '+o.right+'/'+o.answered);if(o.extra)p.push(o.extra);if(o.review)p.push('다시 풀기 '+o.review);return el('span',{className:'site-progress',role:'status',text:p.join(' · ')});}
 function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_concepts_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
 var store=readStore();if(!store.history||typeof store.history!=='object')store.history={};
 var domainName={};T.domains.forEach(function(d){domainName[d.id]=d.name});
@@ -113,7 +114,7 @@ function renderQuiz(main){
  var q=state.q;
  if(!q){main.append(el('section',{className:'card'},[el('p',{text:'이 영역에는 문항이 없어요.'})]));return}
  var t=q.it.t,i=q.it.row,name=t.rows[i],card=el('section',{className:'card'});
- card.append(el('div',{className:'meta',text:title(t)+(state.total?' · 이번 '+state.right+'/'+state.total:'')}));
+ card.append(el('div',{className:'meta site-progress-row'},[el('span',{text:title(t)}),progressEl({right:state.right,answered:state.total})]));
  if(q.custom){card.append(el('p',{className:'q',text:q.custom.prompt}));if(q.custom.description)card.append(el('p',{text:q.custom.description}))}
  else if(state.mode==='which'){
   card.append(el('p',{className:'q',text:'강의 표에서 다음 설명에 해당하는 것은?'}));
@@ -156,5 +157,5 @@ document.addEventListener('keydown',function(e){
 state.mode==='study'?render():next();
 })();
 </script>
-<script src="assets/site.js?v=20261028-ui3"></script></body>
+<script src="assets/site.js?v=20261028-ui4"></script></body>
 </html>

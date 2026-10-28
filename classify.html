@@ -57,7 +57,7 @@ h2{font-size:19px;line-height:1.35;margin:2px 0 8px;word-break:keep-all}
 }
 @media(max-width:360px){.scope{gap:6px;padding:5px 8px}.scope label{font-size:11px;gap:4px}#card{padding-left:9px;padding-right:9px}.options{grid-template-columns:1fr 1fr}}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=20261028-ui3"></head>
+<link rel="stylesheet" href="assets/site.css?v=20261028-ui4"></head>
 <body>
 <div id="bootNotice" role="status">지도를 준비하고 있어요.</div>
 <div id="app">
@@ -194,6 +194,7 @@ function renderNote(){
 function renderMap(){renderCountries();renderOverlay();renderNote()}
 
 function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]===null||props[k]===undefined)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(ch){if(ch)e.appendChild(ch)});return e}
+function progressEl(o){var p=[];if(o.len)p.push(o.pos+' / '+o.len);p.push('정답 '+o.right+'/'+o.answered);if(o.extra)p.push(o.extra);if(o.review)p.push('다시 풀기 '+o.review);return el('span',{className:'site-progress',role:'status',text:p.join(' · ')});}
 function swatch(id){var s=el('span',{className:'swatch'});var col=color(id);if(col)s.style.background=col;return s}
 function nameButtons(list,className){return el('div',{className:'nameList '+className},list.map(function(n){return el('button',{type:'button',text:label(n),onclick:function(){state.focus=n;focusCountry(n);renderPanel();renderMap()}})}))}
 function countryInfo(name){
@@ -269,7 +270,7 @@ function renderPanel(){
    return;
   }
   var q=state.queue[state.index],answer=C.entry(s,q).values,toggle=el('input',{type:'checkbox'});toggle.checked=state.showNames;toggle.onchange=function(){state.showNames=this.checked;save();renderPanel();renderOverlay()};
-  panel.append(el('div',{className:'meta'},[el('span',{text:s.title+' · '+(state.index+1)+' / '+state.queue.length+' · 정답 '+state.right}),el('label',{},[toggle,document.createTextNode(isPoints()?'이름 보기':'나라 이름 보기')])]));
+  panel.append(el('div',{className:'meta'},[el('span',{text:s.title}),progressEl({pos:state.index+1,len:state.queue.length,right:state.right,answered:state.index+(state.answer?1:0)}),el('label',{},[toggle,document.createTextNode(isPoints()?'이름 보기':'나라 이름 보기')])]));
   if(s.hierarchy){renderReligionQuestion(panel,q);return}
   panel.append(el('h2',{text:(state.answer||state.showNames?label(q)+' — ':'')+s.assignQuestion}));
   var grid=el('div',{className:'options'});
@@ -403,4 +404,4 @@ $('setSelect').value=state.setId;$('regionSelect').value=state.region;
 setMode(state.mode);lastSize=mapSize();$('bootNotice').hidden=true;
 })();
 </script>
-<script src="assets/site.js?v=20261028-ui3"></script></body></html>
+<script src="assets/site.js?v=20261028-ui4"></script></body></html>
