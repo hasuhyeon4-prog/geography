@@ -42,7 +42,7 @@ const assert=(ok,message)=>{if(!ok)throw Error(message);};
     assert(!overflow,id+' page overflows at '+viewport.width);
     const outside=await page.locator('svg').evaluateAll(svgs=>svgs.flatMap(svg=>[...svg.querySelectorAll('text')].flatMap(t=>{const b=t.getBBox();return b.x<-.5||b.x+b.width>700.5||b.y<-.5||b.y+b.height>440.5?[{text:t.textContent,x:b.x,y:b.y,width:b.width,height:b.height}]:[];})));
     if(outside.length)clipped.push({family:id,labels:outside});
-    if((viewport.width===810&&['stat-map-types','china-grain-map','trade-bubble','population-pyramid','industry-bubble','road-images','age-triangle','oldmap-regions','religious-landmarks','climate-restore','cumulative'].includes(id))||(viewport.width===390&&['north-america-trade','population-pyramid'].includes(id))){
+    if((viewport.width===810&&['stat-map-types','china-grain-map','trade-bubble','population-pyramid','industry-bubble','road-images','age-triangle','oldmap-regions','climate-restore','cumulative'].includes(id))||(viewport.width===390&&['north-america-trade','population-pyramid'].includes(id))){
      const name=viewport.width+'-'+id+'.png';await page.screenshot({path:path.join(OUT,name),fullPage:true});result.screenshots.push(name);
     }
     if(id==='oldmap-regions')await page.locator('[data-material-option="'+q.stage1.answer+'"]').click();else await page.locator('.choices').first().locator('button').nth(q.stage1.answer).click();

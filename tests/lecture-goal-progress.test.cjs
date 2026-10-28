@@ -11,6 +11,6 @@ test('goal status never closes a group with an unverified child',()=>{
  for(const g of goals.filter(g=>g.venue==='OX'))if(g.status==='검증'||g.status==='보류'){assert.ok(v.verifiedGoals.includes(g.id));assert.ok(v.reviews?.[g.id]?.criteria&&v.reviews[g.id].evidence.length,g.id+' needs individual content review');}else assert.equal(g.status,'구현');
 
  // Goals reachable only through paused families are held, and their groups stay open.
- for(const g of goals.filter(g=>g.status==='검증')){const p=progress.items.find(x=>x.id===g.id);assert.ok(p.evidence.some(e=>!e.family||!M.paused[e.family]),g.id);}
+ for(const g of goals.filter(g=>g.status==='검증')){const p=progress.items.find(x=>x.id===g.id);assert.ok(p.evidence.some(e=>e.venue!=='자료형·계산(보류)'),g.id);}
  for(const g of goals.filter(g=>g.status==='보류'))assert.notEqual(progress.groups.find(x=>x.id===g.group).status,'완료',g.id);
 });

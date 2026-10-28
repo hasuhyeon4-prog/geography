@@ -414,10 +414,10 @@
   "G139"
  ],
  "content": {
-  "newOX": 1053,
+  "newOX": 1515,
   "representedOXGoals": 309,
   "rebuiltTables": 147,
-  "materialFamilies": 106
+  "materialFamilies": 95
  },
  "verification": [
   "tests/goal-completion.test.cjs",
@@ -2071,7 +2071,11 @@
       "goalox-G003-4-01-o",
       "goalox-G003-4-01-x",
       "goalox-G003-4-02-o",
-      "goalox-G003-4-02-x"
+      "goalox-G003-4-02-x",
+      "goalox-G003-4-03-o",
+      "goalox-G003-4-03-x",
+      "goalox-G003-4-04-o",
+      "goalox-G003-4-04-x"
      ]
     }
    ],
@@ -2288,7 +2292,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G004-4-01-o",
-      "goalox-G004-4-01-x"
+      "goalox-G004-4-01-x",
+      "goalox-G004-4-02-o",
+      "goalox-G004-4-02-x"
      ]
     }
    ],
@@ -2344,7 +2350,11 @@
       "goalox-G005-3-01-o",
       "goalox-G005-3-01-x",
       "goalox-G005-3-02-o",
-      "goalox-G005-3-02-x"
+      "goalox-G005-3-02-x",
+      "goalox-G005-3-03-o",
+      "goalox-G005-3-03-x",
+      "goalox-G005-3-04-o",
+      "goalox-G005-3-04-x"
      ]
     }
    ],
@@ -2363,7 +2373,9 @@
       "goalox-G005-4-01-o",
       "goalox-G005-4-01-x",
       "goalox-G005-4-02-o",
-      "goalox-G005-4-02-x"
+      "goalox-G005-4-02-x",
+      "goalox-G005-4-03-o",
+      "goalox-G005-4-03-x"
      ]
     }
    ],
@@ -2471,7 +2483,11 @@
       "goalox-G007-4-01-o",
       "goalox-G007-4-01-x",
       "goalox-G007-4-02-o",
-      "goalox-G007-4-02-x"
+      "goalox-G007-4-02-x",
+      "goalox-G007-4-03-o",
+      "goalox-G007-4-03-x",
+      "goalox-G007-4-04-o",
+      "goalox-G007-4-04-x"
      ]
     }
    ],
@@ -2717,7 +2733,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G012-1-01-o",
-      "goalox-G012-1-01-x"
+      "goalox-G012-1-01-x",
+      "goalox-G012-1-02-o",
+      "goalox-G012-1-02-x"
      ]
     }
    ],
@@ -2774,7 +2792,9 @@
       "goalox-G013-1-01-o",
       "goalox-G013-1-01-x",
       "goalox-G013-1-02-o",
-      "goalox-G013-1-02-x"
+      "goalox-G013-1-02-x",
+      "goalox-G013-1-03-o",
+      "goalox-G013-1-03-x"
      ]
     }
    ],
@@ -2892,7 +2912,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G015-1-01-o",
-      "goalox-G015-1-01-x"
+      "goalox-G015-1-01-x",
+      "goalox-G015-1-02-o",
+      "goalox-G015-1-02-x"
      ]
     }
    ],
@@ -3056,7 +3078,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G016-6-01-o",
-      "goalox-G016-6-01-x"
+      "goalox-G016-6-01-x",
+      "goalox-G016-6-02-o",
+      "goalox-G016-6-02-x"
      ]
     }
    ],
@@ -3287,7 +3311,13 @@
       "goalox-G019-3-01-o",
       "goalox-G019-3-01-x",
       "goalox-G019-3-02-o",
-      "goalox-G019-3-02-x"
+      "goalox-G019-3-02-x",
+      "goalox-G019-3-03-o",
+      "goalox-G019-3-03-x",
+      "goalox-G019-3-04-o",
+      "goalox-G019-3-04-x",
+      "goalox-G019-3-05-o",
+      "goalox-G019-3-05-x"
      ]
     }
    ],
@@ -3407,7 +3437,19 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G021-4-01-o",
-      "goalox-G021-4-01-x"
+      "goalox-G021-4-01-x",
+      "goalox-G021-4-02-o",
+      "goalox-G021-4-02-x",
+      "goalox-G021-4-03-o",
+      "goalox-G021-4-03-x",
+      "goalox-G021-4-04-o",
+      "goalox-G021-4-04-x",
+      "goalox-G021-4-05-o",
+      "goalox-G021-4-05-x",
+      "goalox-G021-4-06-o",
+      "goalox-G021-4-06-x",
+      "goalox-G021-4-07-o",
+      "goalox-G021-4-07-x"
      ]
     }
    ],
@@ -3450,10 +3492,10 @@
     {
      "venue": "자료형·계산(보류)",
      "family": "solar-climate",
-     "file": "assets/materials-exam.js"
+     "deleted": "2026-10-28"
     }
    ],
-   "remaining": "유일한 연습 경로가 보류됨: solar-climate — solar-month의 계절 판단으로 통합"
+   "remaining": "유일한 연습 경로였던 보류 자료형을 삭제함: solar-climate — solar-month의 계절 판단으로 통합"
   },
   {
    "id": "G023-1",
@@ -3508,7 +3550,15 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G023-3-01-o",
-      "goalox-G023-3-01-x"
+      "goalox-G023-3-01-x",
+      "goalox-G023-3-02-o",
+      "goalox-G023-3-02-x",
+      "goalox-G023-3-03-o",
+      "goalox-G023-3-03-x",
+      "goalox-G023-3-04-o",
+      "goalox-G023-3-04-x",
+      "goalox-G023-3-05-o",
+      "goalox-G023-3-05-x"
      ]
     }
    ],
@@ -3583,7 +3633,11 @@
       "goalox-G025-3-01-o",
       "goalox-G025-3-01-x",
       "goalox-G025-3-02-o",
-      "goalox-G025-3-02-x"
+      "goalox-G025-3-02-x",
+      "goalox-G025-3-03-o",
+      "goalox-G025-3-03-x",
+      "goalox-G025-3-04-o",
+      "goalox-G025-3-04-x"
      ]
     }
    ],
@@ -3619,7 +3673,9 @@
       "goalox-G025-5-01-o",
       "goalox-G025-5-01-x",
       "goalox-G025-5-02-o",
-      "goalox-G025-5-02-x"
+      "goalox-G025-5-02-x",
+      "goalox-G025-5-03-o",
+      "goalox-G025-5-03-x"
      ]
     }
    ],
@@ -3693,7 +3749,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G026-4-01-o",
-      "goalox-G026-4-01-x"
+      "goalox-G026-4-01-x",
+      "goalox-G026-4-02-o",
+      "goalox-G026-4-02-x"
      ]
     }
    ],
@@ -3746,7 +3804,13 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G027-2-01-o",
-      "goalox-G027-2-01-x"
+      "goalox-G027-2-01-x",
+      "goalox-G027-2-02-o",
+      "goalox-G027-2-02-x",
+      "goalox-G027-2-03-o",
+      "goalox-G027-2-03-x",
+      "goalox-G027-2-04-o",
+      "goalox-G027-2-04-x"
      ]
     }
    ],
@@ -3836,7 +3900,19 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G028-2-01-o",
-      "goalox-G028-2-01-x"
+      "goalox-G028-2-01-x",
+      "goalox-G028-2-02-o",
+      "goalox-G028-2-02-x",
+      "goalox-G028-2-03-o",
+      "goalox-G028-2-03-x",
+      "goalox-G028-2-04-o",
+      "goalox-G028-2-04-x",
+      "goalox-G028-2-05-o",
+      "goalox-G028-2-05-x",
+      "goalox-G028-2-06-o",
+      "goalox-G028-2-06-x",
+      "goalox-G028-2-07-o",
+      "goalox-G028-2-07-x"
      ]
     }
    ],
@@ -3881,7 +3957,11 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G028-5-01-o",
-      "goalox-G028-5-01-x"
+      "goalox-G028-5-01-x",
+      "goalox-G028-5-02-o",
+      "goalox-G028-5-02-x",
+      "goalox-G028-5-03-o",
+      "goalox-G028-5-03-x"
      ]
     }
    ],
@@ -3938,7 +4018,9 @@
       "goalox-G029-3-01-o",
       "goalox-G029-3-01-x",
       "goalox-G029-3-02-o",
-      "goalox-G029-3-02-x"
+      "goalox-G029-3-02-x",
+      "goalox-G029-3-03-o",
+      "goalox-G029-3-03-x"
      ]
     }
    ],
@@ -4058,7 +4140,11 @@
       "goalox-G030-7-01-o",
       "goalox-G030-7-01-x",
       "goalox-G030-7-02-o",
-      "goalox-G030-7-02-x"
+      "goalox-G030-7-02-x",
+      "goalox-G030-7-03-o",
+      "goalox-G030-7-03-x",
+      "goalox-G030-7-04-o",
+      "goalox-G030-7-04-x"
      ]
     }
    ],
@@ -4108,7 +4194,9 @@
       "goalox-G031-3-01-o",
       "goalox-G031-3-01-x",
       "goalox-G031-3-02-o",
-      "goalox-G031-3-02-x"
+      "goalox-G031-3-02-x",
+      "goalox-G031-3-03-o",
+      "goalox-G031-3-03-x"
      ]
     }
    ],
@@ -4176,7 +4264,9 @@
       "goalox-G032-4-02-o",
       "goalox-G032-4-02-x",
       "goalox-G032-4-03-o",
-      "goalox-G032-4-03-x"
+      "goalox-G032-4-03-x",
+      "goalox-G032-4-04-o",
+      "goalox-G032-4-04-x"
      ]
     }
    ],
@@ -4227,7 +4317,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G033-3-01-o",
-      "goalox-G033-3-01-x"
+      "goalox-G033-3-01-x",
+      "goalox-G033-3-02-o",
+      "goalox-G033-3-02-x"
      ]
     }
    ],
@@ -4274,7 +4366,9 @@
       "goalox-G034-3-01-o",
       "goalox-G034-3-01-x",
       "goalox-G034-3-02-o",
-      "goalox-G034-3-02-x"
+      "goalox-G034-3-02-x",
+      "goalox-G034-3-03-o",
+      "goalox-G034-3-03-x"
      ]
     }
    ],
@@ -4291,7 +4385,11 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G034-4-01-o",
-      "goalox-G034-4-01-x"
+      "goalox-G034-4-01-x",
+      "goalox-G034-4-02-o",
+      "goalox-G034-4-02-x",
+      "goalox-G034-4-03-o",
+      "goalox-G034-4-03-x"
      ]
     }
    ],
@@ -4372,7 +4470,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G036-1-01-o",
-      "goalox-G036-1-01-x"
+      "goalox-G036-1-01-x",
+      "goalox-G036-1-02-o",
+      "goalox-G036-1-02-x"
      ]
     }
    ],
@@ -4389,7 +4489,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G036-2-01-o",
-      "goalox-G036-2-01-x"
+      "goalox-G036-2-01-x",
+      "goalox-G036-2-02-o",
+      "goalox-G036-2-02-x"
      ]
     }
    ],
@@ -4485,10 +4587,10 @@
     {
      "venue": "자료형·계산(보류)",
      "family": "meander-banks",
-     "file": "assets/materials-exam.js"
+     "deleted": "2026-10-28"
     }
    ],
-   "remaining": "유일한 연습 경로가 보류됨: meander-banks — 곡류의 침식 사면 한 점을 고르는 독립 유형의 근거 미확인. 기출의 하천 위치·수계·국제 하천 판단과 구별"
+   "remaining": "유일한 연습 경로였던 보류 자료형을 삭제함: meander-banks — 곡류의 침식 사면 한 점을 고르는 독립 유형의 근거 미확인. 기출의 하천 위치·수계·국제 하천 판단과 구별"
   },
   {
    "id": "G038-1",
@@ -4539,7 +4641,11 @@
       "goalox-G038-3-01-o",
       "goalox-G038-3-01-x",
       "goalox-G038-3-02-o",
-      "goalox-G038-3-02-x"
+      "goalox-G038-3-02-x",
+      "goalox-G038-3-03-o",
+      "goalox-G038-3-03-x",
+      "goalox-G038-3-04-o",
+      "goalox-G038-3-04-x"
      ]
     }
    ],
@@ -4572,7 +4678,11 @@
       "goalox-G038-4-08-o",
       "goalox-G038-4-08-x",
       "goalox-G038-4-09-o",
-      "goalox-G038-4-09-x"
+      "goalox-G038-4-09-x",
+      "goalox-G038-4-10-o",
+      "goalox-G038-4-10-x",
+      "goalox-G038-4-11-o",
+      "goalox-G038-4-11-x"
      ]
     }
    ],
@@ -4589,7 +4699,11 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G039-1-01-o",
-      "goalox-G039-1-01-x"
+      "goalox-G039-1-01-x",
+      "goalox-G039-1-02-o",
+      "goalox-G039-1-02-x",
+      "goalox-G039-1-03-o",
+      "goalox-G039-1-03-x"
      ]
     }
    ],
@@ -4658,7 +4772,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G039-5-01-o",
-      "goalox-G039-5-01-x"
+      "goalox-G039-5-01-x",
+      "goalox-G039-5-02-o",
+      "goalox-G039-5-02-x"
      ]
     }
    ],
@@ -4694,7 +4810,9 @@
       "goalox-G040-2-01-o",
       "goalox-G040-2-01-x",
       "goalox-G040-2-02-o",
-      "goalox-G040-2-02-x"
+      "goalox-G040-2-02-x",
+      "goalox-G040-2-03-o",
+      "goalox-G040-2-03-x"
      ]
     }
    ],
@@ -4730,7 +4848,9 @@
       "goalox-G040-4-01-o",
       "goalox-G040-4-01-x",
       "goalox-G040-4-02-o",
-      "goalox-G040-4-02-x"
+      "goalox-G040-4-02-x",
+      "goalox-G040-4-03-o",
+      "goalox-G040-4-03-x"
      ]
     }
    ],
@@ -4759,15 +4879,15 @@
     {
      "venue": "자료형·계산(보류)",
      "family": "religion-selected",
-     "file": "assets/materials-exam.js"
+     "deleted": "2026-10-28"
     },
     {
      "venue": "자료형·계산(보류)",
      "family": "religion-other",
-     "file": "assets/materials-exam.js"
+     "deleted": "2026-10-28"
     }
    ],
-   "remaining": "유일한 연습 경로가 보류됨: religion-selected — 최대 종교를 제외한 소수 종교 세부 순위 대신 religion-relative의 기호 식별·종교 특성으로 통합; religion-other — 기타 범례 일반론만 반복하는 독립 문항 보류. 종교별 분모는 기호 식별 문항의 조건으로 유지"
+   "remaining": "유일한 연습 경로였던 보류 자료형을 삭제함: religion-selected — 최대 종교를 제외한 소수 종교 세부 순위 대신 religion-relative의 기호 식별·종교 특성으로 통합; religion-other — 기타 범례 일반론만 반복하는 독립 문항 보류. 종교별 분모는 기호 식별 문항의 조건으로 유지"
   },
   {
    "id": "G041-3",
@@ -4870,7 +4990,11 @@
       "goalox-G042-4-01-o",
       "goalox-G042-4-01-x",
       "goalox-G042-4-02-o",
-      "goalox-G042-4-02-x"
+      "goalox-G042-4-02-x",
+      "goalox-G042-4-03-o",
+      "goalox-G042-4-03-x",
+      "goalox-G042-4-04-o",
+      "goalox-G042-4-04-x"
      ]
     }
    ],
@@ -4889,7 +5013,21 @@
       "goalox-G042-5-01-o",
       "goalox-G042-5-01-x",
       "goalox-G042-5-02-o",
-      "goalox-G042-5-02-x"
+      "goalox-G042-5-02-x",
+      "goalox-G042-5-03-o",
+      "goalox-G042-5-03-x",
+      "goalox-G042-5-04-o",
+      "goalox-G042-5-04-x",
+      "goalox-G042-5-05-o",
+      "goalox-G042-5-05-x",
+      "goalox-G042-5-06-o",
+      "goalox-G042-5-06-x",
+      "goalox-G042-5-07-o",
+      "goalox-G042-5-07-x",
+      "goalox-G042-5-08-o",
+      "goalox-G042-5-08-x",
+      "goalox-G042-5-09-o",
+      "goalox-G042-5-09-x"
      ]
     }
    ],
@@ -4920,7 +5058,11 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G043-2-01-o",
-      "goalox-G043-2-01-x"
+      "goalox-G043-2-01-x",
+      "goalox-G043-2-02-o",
+      "goalox-G043-2-02-x",
+      "goalox-G043-2-03-o",
+      "goalox-G043-2-03-x"
      ]
     }
    ],
@@ -4977,10 +5119,10 @@
     {
      "venue": "자료형·계산(보류)",
      "family": "religious-landmarks",
-     "file": "assets/materials-exam.js"
+     "deleted": "2026-10-28"
     }
    ],
-   "remaining": "유일한 연습 경로가 보류됨: religious-landmarks — 기출의 문화 전파·융합·국가 종교 판단을 건축물·도시 세부 명칭 암기로 바꾼 독립 유형 보류. 건축·종교 판단은 religious-buildings에 유지"
+   "remaining": "유일한 연습 경로였던 보류 자료형을 삭제함: religious-landmarks — 기출의 문화 전파·융합·국가 종교 판단을 건축물·도시 세부 명칭 암기로 바꾼 독립 유형 보류. 건축·종교 판단은 religious-buildings에 유지"
   },
   {
    "id": "G044-3",
@@ -4993,7 +5135,23 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G044-3-01-o",
-      "goalox-G044-3-01-x"
+      "goalox-G044-3-01-x",
+      "goalox-G044-3-02-o",
+      "goalox-G044-3-02-x",
+      "goalox-G044-3-03-o",
+      "goalox-G044-3-03-x",
+      "goalox-G044-3-04-o",
+      "goalox-G044-3-04-x",
+      "goalox-G044-3-05-o",
+      "goalox-G044-3-05-x",
+      "goalox-G044-3-06-o",
+      "goalox-G044-3-06-x",
+      "goalox-G044-3-07-o",
+      "goalox-G044-3-07-x",
+      "goalox-G044-3-08-o",
+      "goalox-G044-3-08-x",
+      "goalox-G044-3-09-o",
+      "goalox-G044-3-09-x"
      ]
     }
    ],
@@ -5096,7 +5254,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G046-2-01-o",
-      "goalox-G046-2-01-x"
+      "goalox-G046-2-01-x",
+      "goalox-G046-2-02-o",
+      "goalox-G046-2-02-x"
      ]
     }
    ],
@@ -5146,7 +5306,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G047-1-01-o",
-      "goalox-G047-1-01-x"
+      "goalox-G047-1-01-x",
+      "goalox-G047-1-02-o",
+      "goalox-G047-1-02-x"
      ]
     }
    ],
@@ -5265,7 +5427,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G048-4-01-o",
-      "goalox-G048-4-01-x"
+      "goalox-G048-4-01-x",
+      "goalox-G048-4-02-o",
+      "goalox-G048-4-02-x"
      ]
     }
    ],
@@ -5331,7 +5495,11 @@
       "goalox-G049-3-01-o",
       "goalox-G049-3-01-x",
       "goalox-G049-3-02-o",
-      "goalox-G049-3-02-x"
+      "goalox-G049-3-02-x",
+      "goalox-G049-3-03-o",
+      "goalox-G049-3-03-x",
+      "goalox-G049-3-04-o",
+      "goalox-G049-3-04-x"
      ]
     }
    ],
@@ -5350,7 +5518,9 @@
       "goalox-G049-4-01-o",
       "goalox-G049-4-01-x",
       "goalox-G049-4-02-o",
-      "goalox-G049-4-02-x"
+      "goalox-G049-4-02-x",
+      "goalox-G049-4-03-o",
+      "goalox-G049-4-03-x"
      ]
     }
    ],
@@ -5383,7 +5553,17 @@
       "goalox-G050-2-01-o",
       "goalox-G050-2-01-x",
       "goalox-G050-2-02-o",
-      "goalox-G050-2-02-x"
+      "goalox-G050-2-02-x",
+      "goalox-G050-2-03-o",
+      "goalox-G050-2-03-x",
+      "goalox-G050-2-04-o",
+      "goalox-G050-2-04-x",
+      "goalox-G050-2-05-o",
+      "goalox-G050-2-05-x",
+      "goalox-G050-2-06-o",
+      "goalox-G050-2-06-x",
+      "goalox-G050-2-07-o",
+      "goalox-G050-2-07-x"
      ]
     }
    ],
@@ -5433,7 +5613,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G051-1-01-o",
-      "goalox-G051-1-01-x"
+      "goalox-G051-1-01-x",
+      "goalox-G051-1-02-o",
+      "goalox-G051-1-02-x"
      ]
     }
    ],
@@ -5526,7 +5708,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G051-6-01-o",
-      "goalox-G051-6-01-x"
+      "goalox-G051-6-01-x",
+      "goalox-G051-6-02-o",
+      "goalox-G051-6-02-x"
      ]
     }
    ],
@@ -5545,7 +5729,9 @@
       "goalox-G051-7-01-o",
       "goalox-G051-7-01-x",
       "goalox-G051-7-02-o",
-      "goalox-G051-7-02-x"
+      "goalox-G051-7-02-x",
+      "goalox-G051-7-03-o",
+      "goalox-G051-7-03-x"
      ]
     }
    ],
@@ -5581,7 +5767,15 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G052-2-01-o",
-      "goalox-G052-2-01-x"
+      "goalox-G052-2-01-x",
+      "goalox-G052-2-02-o",
+      "goalox-G052-2-02-x",
+      "goalox-G052-2-03-o",
+      "goalox-G052-2-03-x",
+      "goalox-G052-2-04-o",
+      "goalox-G052-2-04-x",
+      "goalox-G052-2-05-o",
+      "goalox-G052-2-05-x"
      ]
     }
    ],
@@ -5628,7 +5822,15 @@
       "goalox-G052-5-01-o",
       "goalox-G052-5-01-x",
       "goalox-G052-5-02-o",
-      "goalox-G052-5-02-x"
+      "goalox-G052-5-02-x",
+      "goalox-G052-5-03-o",
+      "goalox-G052-5-03-x",
+      "goalox-G052-5-04-o",
+      "goalox-G052-5-04-x",
+      "goalox-G052-5-05-o",
+      "goalox-G052-5-05-x",
+      "goalox-G052-5-06-o",
+      "goalox-G052-5-06-x"
      ]
     }
    ],
@@ -5697,7 +5899,15 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G053-3-01-o",
-      "goalox-G053-3-01-x"
+      "goalox-G053-3-01-x",
+      "goalox-G053-3-02-o",
+      "goalox-G053-3-02-x",
+      "goalox-G053-3-03-o",
+      "goalox-G053-3-03-x",
+      "goalox-G053-3-04-o",
+      "goalox-G053-3-04-x",
+      "goalox-G053-3-05-o",
+      "goalox-G053-3-05-x"
      ]
     }
    ],
@@ -5761,7 +5971,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G054-3-01-o",
-      "goalox-G054-3-01-x"
+      "goalox-G054-3-01-x",
+      "goalox-G054-3-02-o",
+      "goalox-G054-3-02-x"
      ]
     }
    ],
@@ -5908,7 +6120,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G056-4-01-o",
-      "goalox-G056-4-01-x"
+      "goalox-G056-4-01-x",
+      "goalox-G056-4-02-o",
+      "goalox-G056-4-02-x"
      ]
     }
    ],
@@ -6073,10 +6287,10 @@
     {
      "venue": "자료형·계산(보류)",
      "family": "pyramid-cohort",
-     "file": "assets/materials-exam.js"
+     "deleted": "2026-10-28"
     }
    ],
-   "remaining": "유일한 연습 경로가 보류됨: pyramid-cohort — 두 시점의 동일 출생 집단 인원 증가량을 최대로 만드는 계산 확장의 근거 미확인. 기출의 성·연령 구조·노동 이주 판단은 population-pyramid에 유지"
+   "remaining": "유일한 연습 경로였던 보류 자료형을 삭제함: pyramid-cohort — 두 시점의 동일 출생 집단 인원 증가량을 최대로 만드는 계산 확장의 근거 미확인. 기출의 성·연령 구조·노동 이주 판단은 population-pyramid에 유지"
   },
   {
    "id": "G058-4",
@@ -6136,7 +6350,15 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G059-3-01-o",
-      "goalox-G059-3-01-x"
+      "goalox-G059-3-01-x",
+      "goalox-G059-3-02-o",
+      "goalox-G059-3-02-x",
+      "goalox-G059-3-03-o",
+      "goalox-G059-3-03-x",
+      "goalox-G059-3-04-o",
+      "goalox-G059-3-04-x",
+      "goalox-G059-3-05-o",
+      "goalox-G059-3-05-x"
      ]
     }
    ],
@@ -6400,7 +6622,11 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G062-6-01-o",
-      "goalox-G062-6-01-x"
+      "goalox-G062-6-01-x",
+      "goalox-G062-6-02-o",
+      "goalox-G062-6-02-x",
+      "goalox-G062-6-03-o",
+      "goalox-G062-6-03-x"
      ]
     }
    ],
@@ -6477,7 +6703,15 @@
       "goalox-G064-4-02-o",
       "goalox-G064-4-02-x",
       "goalox-G064-4-03-o",
-      "goalox-G064-4-03-x"
+      "goalox-G064-4-03-x",
+      "goalox-G064-4-04-o",
+      "goalox-G064-4-04-x",
+      "goalox-G064-4-05-o",
+      "goalox-G064-4-05-x",
+      "goalox-G064-4-06-o",
+      "goalox-G064-4-06-x",
+      "goalox-G064-4-07-o",
+      "goalox-G064-4-07-x"
      ]
     }
    ],
@@ -6496,7 +6730,11 @@
       "goalox-G064-5-01-o",
       "goalox-G064-5-01-x",
       "goalox-G064-5-02-o",
-      "goalox-G064-5-02-x"
+      "goalox-G064-5-02-x",
+      "goalox-G064-5-03-o",
+      "goalox-G064-5-03-x",
+      "goalox-G064-5-04-o",
+      "goalox-G064-5-04-x"
      ]
     }
    ],
@@ -6530,7 +6768,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G065-2-01-o",
-      "goalox-G065-2-01-x"
+      "goalox-G065-2-01-x",
+      "goalox-G065-2-02-o",
+      "goalox-G065-2-02-x"
      ]
     }
    ],
@@ -6575,7 +6815,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G066-2-01-o",
-      "goalox-G066-2-01-x"
+      "goalox-G066-2-01-x",
+      "goalox-G066-2-02-o",
+      "goalox-G066-2-02-x"
      ]
     }
    ],
@@ -6592,7 +6834,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G066-3-01-o",
-      "goalox-G066-3-01-x"
+      "goalox-G066-3-01-x",
+      "goalox-G066-3-02-o",
+      "goalox-G066-3-02-x"
      ]
     }
    ],
@@ -6658,7 +6902,11 @@
       "goalox-G067-4-01-o",
       "goalox-G067-4-01-x",
       "goalox-G067-4-02-o",
-      "goalox-G067-4-02-x"
+      "goalox-G067-4-02-x",
+      "goalox-G067-4-03-o",
+      "goalox-G067-4-03-x",
+      "goalox-G067-4-04-o",
+      "goalox-G067-4-04-x"
      ]
     }
    ],
@@ -6723,7 +6971,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G068-4-01-o",
-      "goalox-G068-4-01-x"
+      "goalox-G068-4-01-x",
+      "goalox-G068-4-02-o",
+      "goalox-G068-4-02-x"
      ]
     }
    ],
@@ -6893,7 +7143,13 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G071-5-01-o",
-      "goalox-G071-5-01-x"
+      "goalox-G071-5-01-x",
+      "goalox-G071-5-02-o",
+      "goalox-G071-5-02-x",
+      "goalox-G071-5-03-o",
+      "goalox-G071-5-03-x",
+      "goalox-G071-5-04-o",
+      "goalox-G071-5-04-x"
      ]
     }
    ],
@@ -6940,7 +7196,15 @@
       "goalox-G072-3-01-o",
       "goalox-G072-3-01-x",
       "goalox-G072-3-02-o",
-      "goalox-G072-3-02-x"
+      "goalox-G072-3-02-x",
+      "goalox-G072-3-03-o",
+      "goalox-G072-3-03-x",
+      "goalox-G072-3-04-o",
+      "goalox-G072-3-04-x",
+      "goalox-G072-3-05-o",
+      "goalox-G072-3-05-x",
+      "goalox-G072-3-06-o",
+      "goalox-G072-3-06-x"
      ]
     }
    ],
@@ -7018,7 +7282,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G073-2-01-o",
-      "goalox-G073-2-01-x"
+      "goalox-G073-2-01-x",
+      "goalox-G073-2-02-o",
+      "goalox-G073-2-02-x"
      ]
     }
    ],
@@ -7166,7 +7432,11 @@
       "goalox-G074-4-01-o",
       "goalox-G074-4-01-x",
       "goalox-G074-4-02-o",
-      "goalox-G074-4-02-x"
+      "goalox-G074-4-02-x",
+      "goalox-G074-4-03-o",
+      "goalox-G074-4-03-x",
+      "goalox-G074-4-04-o",
+      "goalox-G074-4-04-x"
      ]
     }
    ],
@@ -7183,7 +7453,11 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G074-5-01-o",
-      "goalox-G074-5-01-x"
+      "goalox-G074-5-01-x",
+      "goalox-G074-5-02-o",
+      "goalox-G074-5-02-x",
+      "goalox-G074-5-03-o",
+      "goalox-G074-5-03-x"
      ]
     }
    ],
@@ -7244,10 +7518,10 @@
     {
      "venue": "자료형·계산(보류)",
      "family": "food-stock-balance",
-     "file": "assets/materials-exam.js"
+     "deleted": "2026-10-28"
     }
    ],
-   "remaining": "유일한 연습 경로가 보류됨: food-stock-balance — 가상 재고 변화까지 계산시키는 확장의 기출 근거 미확인"
+   "remaining": "유일한 연습 경로였던 보류 자료형을 삭제함: food-stock-balance — 가상 재고 변화까지 계산시키는 확장의 기출 근거 미확인"
   },
   {
    "id": "G075-3",
@@ -7364,7 +7638,9 @@
       "goalox-G076-4-01-o",
       "goalox-G076-4-01-x",
       "goalox-G076-4-02-o",
-      "goalox-G076-4-02-x"
+      "goalox-G076-4-02-x",
+      "goalox-G076-4-03-o",
+      "goalox-G076-4-03-x"
      ]
     }
    ],
@@ -7497,7 +7773,15 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G078-3-01-o",
-      "goalox-G078-3-01-x"
+      "goalox-G078-3-01-x",
+      "goalox-G078-3-02-o",
+      "goalox-G078-3-02-x",
+      "goalox-G078-3-03-o",
+      "goalox-G078-3-03-x",
+      "goalox-G078-3-04-o",
+      "goalox-G078-3-04-x",
+      "goalox-G078-3-05-o",
+      "goalox-G078-3-05-x"
      ]
     }
    ],
@@ -7610,7 +7894,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G079-6-01-o",
-      "goalox-G079-6-01-x"
+      "goalox-G079-6-01-x",
+      "goalox-G079-6-02-o",
+      "goalox-G079-6-02-x"
      ]
     }
    ],
@@ -7662,7 +7948,11 @@
       "goalox-G080-3-01-o",
       "goalox-G080-3-01-x",
       "goalox-G080-3-02-o",
-      "goalox-G080-3-02-x"
+      "goalox-G080-3-02-x",
+      "goalox-G080-3-03-o",
+      "goalox-G080-3-03-x",
+      "goalox-G080-3-04-o",
+      "goalox-G080-3-04-x"
      ]
     }
    ],
@@ -7679,7 +7969,11 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G080-4-01-o",
-      "goalox-G080-4-01-x"
+      "goalox-G080-4-01-x",
+      "goalox-G080-4-02-o",
+      "goalox-G080-4-02-x",
+      "goalox-G080-4-03-o",
+      "goalox-G080-4-03-x"
      ]
     }
    ],
@@ -7700,7 +7994,11 @@
       "goalox-G080-5-02-o",
       "goalox-G080-5-02-x",
       "goalox-G080-5-03-o",
-      "goalox-G080-5-03-x"
+      "goalox-G080-5-03-x",
+      "goalox-G080-5-04-o",
+      "goalox-G080-5-04-x",
+      "goalox-G080-5-05-o",
+      "goalox-G080-5-05-x"
      ]
     }
    ],
@@ -7764,7 +8062,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G081-3-01-o",
-      "goalox-G081-3-01-x"
+      "goalox-G081-3-01-x",
+      "goalox-G081-3-02-o",
+      "goalox-G081-3-02-x"
      ]
     }
    ],
@@ -7785,7 +8085,9 @@
       "goalox-G081-4-02-o",
       "goalox-G081-4-02-x",
       "goalox-G081-4-03-o",
-      "goalox-G081-4-03-x"
+      "goalox-G081-4-03-x",
+      "goalox-G081-4-04-o",
+      "goalox-G081-4-04-x"
      ]
     }
    ],
@@ -7835,7 +8137,15 @@
       "goalox-G082-1-01-o",
       "goalox-G082-1-01-x",
       "goalox-G082-1-02-o",
-      "goalox-G082-1-02-x"
+      "goalox-G082-1-02-x",
+      "goalox-G082-1-03-o",
+      "goalox-G082-1-03-x",
+      "goalox-G082-1-04-o",
+      "goalox-G082-1-04-x",
+      "goalox-G082-1-05-o",
+      "goalox-G082-1-05-x",
+      "goalox-G082-1-06-o",
+      "goalox-G082-1-06-x"
      ]
     }
    ],
@@ -7890,7 +8200,13 @@
       "goalox-G082-4-01-o",
       "goalox-G082-4-01-x",
       "goalox-G082-4-02-o",
-      "goalox-G082-4-02-x"
+      "goalox-G082-4-02-x",
+      "goalox-G082-4-03-o",
+      "goalox-G082-4-03-x",
+      "goalox-G082-4-04-o",
+      "goalox-G082-4-04-x",
+      "goalox-G082-4-05-o",
+      "goalox-G082-4-05-x"
      ]
     }
    ],
@@ -7944,7 +8260,11 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G082-7-01-o",
-      "goalox-G082-7-01-x"
+      "goalox-G082-7-01-x",
+      "goalox-G082-7-02-o",
+      "goalox-G082-7-02-x",
+      "goalox-G082-7-03-o",
+      "goalox-G082-7-03-x"
      ]
     }
    ],
@@ -8401,10 +8721,10 @@
     {
      "venue": "자료형·계산(보류)",
      "family": "renewable-capacity-ranks",
-     "file": "assets/materials-exam.js"
+     "deleted": "2026-10-28"
     }
    ],
-   "remaining": "유일한 연습 경로가 보류됨: renewable-capacity-ranks — 기출의 발전원 식별·입지 판단과 다른 국가 순위 대조·MW/GWh 단위 계산 확장 보류"
+   "remaining": "유일한 연습 경로였던 보류 자료형을 삭제함: renewable-capacity-ranks — 기출의 발전원 식별·입지 판단과 다른 국가 순위 대조·MW/GWh 단위 계산 확장 보류"
   },
   {
    "id": "G088-1",
@@ -8419,7 +8739,9 @@
       "goalox-G088-1-01-o",
       "goalox-G088-1-01-x",
       "goalox-G088-1-02-o",
-      "goalox-G088-1-02-x"
+      "goalox-G088-1-02-x",
+      "goalox-G088-1-03-o",
+      "goalox-G088-1-03-x"
      ]
     }
    ],
@@ -8502,7 +8824,11 @@
       "goalox-G088-6-01-o",
       "goalox-G088-6-01-x",
       "goalox-G088-6-02-o",
-      "goalox-G088-6-02-x"
+      "goalox-G088-6-02-x",
+      "goalox-G088-6-03-o",
+      "goalox-G088-6-03-x",
+      "goalox-G088-6-04-o",
+      "goalox-G088-6-04-x"
      ]
     }
    ],
@@ -8536,7 +8862,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G089-2-01-o",
-      "goalox-G089-2-01-x"
+      "goalox-G089-2-01-x",
+      "goalox-G089-2-02-o",
+      "goalox-G089-2-02-x"
      ]
     }
    ],
@@ -8636,7 +8964,9 @@
       "goalox-G090-1-01-o",
       "goalox-G090-1-01-x",
       "goalox-G090-1-02-o",
-      "goalox-G090-1-02-x"
+      "goalox-G090-1-02-x",
+      "goalox-G090-1-03-o",
+      "goalox-G090-1-03-x"
      ]
     }
    ],
@@ -8732,7 +9062,9 @@
       "goalox-G090-6-01-o",
       "goalox-G090-6-01-x",
       "goalox-G090-6-02-o",
-      "goalox-G090-6-02-x"
+      "goalox-G090-6-02-x",
+      "goalox-G090-6-03-o",
+      "goalox-G090-6-03-x"
      ]
     }
    ],
@@ -8802,7 +9134,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G091-3-01-o",
-      "goalox-G091-3-01-x"
+      "goalox-G091-3-01-x",
+      "goalox-G091-3-02-o",
+      "goalox-G091-3-02-x"
      ]
     }
    ],
@@ -8902,7 +9236,9 @@
       "goalox-G092-5-01-o",
       "goalox-G092-5-01-x",
       "goalox-G092-5-02-o",
-      "goalox-G092-5-02-x"
+      "goalox-G092-5-02-x",
+      "goalox-G092-5-03-o",
+      "goalox-G092-5-03-x"
      ]
     }
    ],
@@ -9074,7 +9410,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G095-3-01-o",
-      "goalox-G095-3-01-x"
+      "goalox-G095-3-01-x",
+      "goalox-G095-3-02-o",
+      "goalox-G095-3-02-x"
      ]
     }
    ],
@@ -9254,7 +9592,11 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G098-2-01-o",
-      "goalox-G098-2-01-x"
+      "goalox-G098-2-01-x",
+      "goalox-G098-2-02-o",
+      "goalox-G098-2-02-x",
+      "goalox-G098-2-03-o",
+      "goalox-G098-2-03-x"
      ]
     }
    ],
@@ -9271,7 +9613,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G098-3-01-o",
-      "goalox-G098-3-01-x"
+      "goalox-G098-3-01-x",
+      "goalox-G098-3-02-o",
+      "goalox-G098-3-02-x"
      ]
     }
    ],
@@ -9334,7 +9678,9 @@
       "goalox-G099-4-02-o",
       "goalox-G099-4-02-x",
       "goalox-G099-4-03-o",
-      "goalox-G099-4-03-x"
+      "goalox-G099-4-03-x",
+      "goalox-G099-4-04-o",
+      "goalox-G099-4-04-x"
      ]
     }
    ],
@@ -9444,7 +9790,13 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G100-5-01-o",
-      "goalox-G100-5-01-x"
+      "goalox-G100-5-01-x",
+      "goalox-G100-5-02-o",
+      "goalox-G100-5-02-x",
+      "goalox-G100-5-03-o",
+      "goalox-G100-5-03-x",
+      "goalox-G100-5-04-o",
+      "goalox-G100-5-04-x"
      ]
     }
    ],
@@ -9482,7 +9834,9 @@
       "goalox-G101-2-01-o",
       "goalox-G101-2-01-x",
       "goalox-G101-2-02-o",
-      "goalox-G101-2-02-x"
+      "goalox-G101-2-02-x",
+      "goalox-G101-2-03-o",
+      "goalox-G101-2-03-x"
      ]
     }
    ],
@@ -9501,7 +9855,9 @@
       "goalox-G101-3-01-o",
       "goalox-G101-3-01-x",
       "goalox-G101-3-02-o",
-      "goalox-G101-3-02-x"
+      "goalox-G101-3-02-x",
+      "goalox-G101-3-03-o",
+      "goalox-G101-3-03-x"
      ]
     }
    ],
@@ -9520,7 +9876,9 @@
       "goalox-G102-1-01-o",
       "goalox-G102-1-01-x",
       "goalox-G102-1-02-o",
-      "goalox-G102-1-02-x"
+      "goalox-G102-1-02-x",
+      "goalox-G102-1-03-o",
+      "goalox-G102-1-03-x"
      ]
     }
    ],
@@ -9556,7 +9914,9 @@
       "goalox-G102-3-01-o",
       "goalox-G102-3-01-x",
       "goalox-G102-3-02-o",
-      "goalox-G102-3-02-x"
+      "goalox-G102-3-02-x",
+      "goalox-G102-3-03-o",
+      "goalox-G102-3-03-x"
      ]
     }
    ],
@@ -9800,7 +10160,17 @@
       "goalox-G106-2-01-o",
       "goalox-G106-2-01-x",
       "goalox-G106-2-02-o",
-      "goalox-G106-2-02-x"
+      "goalox-G106-2-02-x",
+      "goalox-G106-2-03-o",
+      "goalox-G106-2-03-x",
+      "goalox-G106-2-04-o",
+      "goalox-G106-2-04-x",
+      "goalox-G106-2-05-o",
+      "goalox-G106-2-05-x",
+      "goalox-G106-2-06-o",
+      "goalox-G106-2-06-x",
+      "goalox-G106-2-07-o",
+      "goalox-G106-2-07-x"
      ]
     }
    ],
@@ -9914,7 +10284,9 @@
       "goalox-G107-4-01-o",
       "goalox-G107-4-01-x",
       "goalox-G107-4-02-o",
-      "goalox-G107-4-02-x"
+      "goalox-G107-4-02-x",
+      "goalox-G107-4-03-o",
+      "goalox-G107-4-03-x"
      ]
     }
    ],
@@ -9983,7 +10355,9 @@
       "goalox-G108-4-01-o",
       "goalox-G108-4-01-x",
       "goalox-G108-4-02-o",
-      "goalox-G108-4-02-x"
+      "goalox-G108-4-02-x",
+      "goalox-G108-4-03-o",
+      "goalox-G108-4-03-x"
      ]
     }
    ],
@@ -10186,7 +10560,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G111-1-01-o",
-      "goalox-G111-1-01-x"
+      "goalox-G111-1-01-x",
+      "goalox-G111-1-02-o",
+      "goalox-G111-1-02-x"
      ]
     }
    ],
@@ -10207,7 +10583,11 @@
       "goalox-G111-2-02-o",
       "goalox-G111-2-02-x",
       "goalox-G111-2-03-o",
-      "goalox-G111-2-03-x"
+      "goalox-G111-2-03-x",
+      "goalox-G111-2-04-o",
+      "goalox-G111-2-04-x",
+      "goalox-G111-2-05-o",
+      "goalox-G111-2-05-x"
      ]
     }
    ],
@@ -10269,7 +10649,11 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G112-1-01-o",
-      "goalox-G112-1-01-x"
+      "goalox-G112-1-01-x",
+      "goalox-G112-1-02-o",
+      "goalox-G112-1-02-x",
+      "goalox-G112-1-03-o",
+      "goalox-G112-1-03-x"
      ]
     }
    ],
@@ -10288,7 +10672,9 @@
       "goalox-G112-2-01-o",
       "goalox-G112-2-01-x",
       "goalox-G112-2-02-o",
-      "goalox-G112-2-02-x"
+      "goalox-G112-2-02-x",
+      "goalox-G112-2-03-o",
+      "goalox-G112-2-03-x"
      ]
     }
    ],
@@ -10341,10 +10727,10 @@
     {
      "venue": "자료형·계산(보류)",
      "family": "rain-ph-maps",
-     "file": "assets/materials-exam.js"
+     "deleted": "2026-10-28"
     }
    ],
-   "remaining": "유일한 연습 경로가 보류됨: rain-ph-maps — 가상 격자 최솟값만 고르는 문항과 수소 이온 농도 로그 계산 확장 보류. 산성비 원인·영향은 OX·환경 문항에 유지"
+   "remaining": "유일한 연습 경로였던 보류 자료형을 삭제함: rain-ph-maps — 가상 격자 최솟값만 고르는 문항과 수소 이온 농도 로그 계산 확장 보류. 산성비 원인·영향은 OX·환경 문항에 유지"
   },
   {
    "id": "G113-1",
@@ -10380,7 +10766,9 @@
       "goalox-G113-2-02-o",
       "goalox-G113-2-02-x",
       "goalox-G113-2-03-o",
-      "goalox-G113-2-03-x"
+      "goalox-G113-2-03-x",
+      "goalox-G113-2-04-o",
+      "goalox-G113-2-04-x"
      ]
     }
    ],
@@ -10420,7 +10808,9 @@
       "goalox-G113-4-02-o",
       "goalox-G113-4-02-x",
       "goalox-G113-4-03-o",
-      "goalox-G113-4-03-x"
+      "goalox-G113-4-03-x",
+      "goalox-G113-4-04-o",
+      "goalox-G113-4-04-x"
      ]
     }
    ],
@@ -10570,7 +10960,13 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G116-1-01-o",
-      "goalox-G116-1-01-x"
+      "goalox-G116-1-01-x",
+      "goalox-G116-1-02-o",
+      "goalox-G116-1-02-x",
+      "goalox-G116-1-03-o",
+      "goalox-G116-1-03-x",
+      "goalox-G116-1-04-o",
+      "goalox-G116-1-04-x"
      ]
     }
    ],
@@ -10656,7 +11052,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G117-3-01-o",
-      "goalox-G117-3-01-x"
+      "goalox-G117-3-01-x",
+      "goalox-G117-3-02-o",
+      "goalox-G117-3-02-x"
      ]
     }
    ],
@@ -10687,7 +11085,9 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G118-2-01-o",
-      "goalox-G118-2-01-x"
+      "goalox-G118-2-01-x",
+      "goalox-G118-2-02-o",
+      "goalox-G118-2-02-x"
      ]
     }
    ],
@@ -10723,7 +11123,11 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G118-4-01-o",
-      "goalox-G118-4-01-x"
+      "goalox-G118-4-01-x",
+      "goalox-G118-4-02-o",
+      "goalox-G118-4-02-x",
+      "goalox-G118-4-03-o",
+      "goalox-G118-4-03-x"
      ]
     }
    ],
@@ -10815,7 +11219,9 @@
       "goalox-G120-3-01-o",
       "goalox-G120-3-01-x",
       "goalox-G120-3-02-o",
-      "goalox-G120-3-02-x"
+      "goalox-G120-3-02-x",
+      "goalox-G120-3-03-o",
+      "goalox-G120-3-03-x"
      ]
     }
    ],
@@ -10916,7 +11322,9 @@
       "goalox-G123-1-02-o",
       "goalox-G123-1-02-x",
       "goalox-G123-1-03-o",
-      "goalox-G123-1-03-x"
+      "goalox-G123-1-03-x",
+      "goalox-G123-1-04-o",
+      "goalox-G123-1-04-x"
      ]
     }
    ],
@@ -10949,7 +11357,13 @@
       "goalox-G123-3-01-o",
       "goalox-G123-3-01-x",
       "goalox-G123-3-02-o",
-      "goalox-G123-3-02-x"
+      "goalox-G123-3-02-x",
+      "goalox-G123-3-03-o",
+      "goalox-G123-3-03-x",
+      "goalox-G123-3-04-o",
+      "goalox-G123-3-04-x",
+      "goalox-G123-3-05-o",
+      "goalox-G123-3-05-x"
      ]
     }
    ],
@@ -11236,7 +11650,11 @@
       "goalox-G125-2-03-o",
       "goalox-G125-2-03-x",
       "goalox-G125-2-04-o",
-      "goalox-G125-2-04-x"
+      "goalox-G125-2-04-x",
+      "goalox-G125-2-05-o",
+      "goalox-G125-2-05-x",
+      "goalox-G125-2-06-o",
+      "goalox-G125-2-06-x"
      ]
     }
    ],
@@ -11257,7 +11675,11 @@
       "goalox-G125-3-02-o",
       "goalox-G125-3-02-x",
       "goalox-G125-3-03-o",
-      "goalox-G125-3-03-x"
+      "goalox-G125-3-03-x",
+      "goalox-G125-3-04-o",
+      "goalox-G125-3-04-x",
+      "goalox-G125-3-05-o",
+      "goalox-G125-3-05-x"
      ]
     }
    ],
@@ -11276,7 +11698,11 @@
       "goalox-G125-4-01-o",
       "goalox-G125-4-01-x",
       "goalox-G125-4-02-o",
-      "goalox-G125-4-02-x"
+      "goalox-G125-4-02-x",
+      "goalox-G125-4-03-o",
+      "goalox-G125-4-03-x",
+      "goalox-G125-4-04-o",
+      "goalox-G125-4-04-x"
      ]
     }
    ],
@@ -11325,7 +11751,11 @@
       "goalox-G126-3-02-o",
       "goalox-G126-3-02-x",
       "goalox-G126-3-03-o",
-      "goalox-G126-3-03-x"
+      "goalox-G126-3-03-x",
+      "goalox-G126-3-04-o",
+      "goalox-G126-3-04-x",
+      "goalox-G126-3-05-o",
+      "goalox-G126-3-05-x"
      ]
     }
    ],
@@ -11362,7 +11792,11 @@
       "goalox-G126-5-03-o",
       "goalox-G126-5-03-x",
       "goalox-G126-5-04-o",
-      "goalox-G126-5-04-x"
+      "goalox-G126-5-04-x",
+      "goalox-G126-5-05-o",
+      "goalox-G126-5-05-x",
+      "goalox-G126-5-06-o",
+      "goalox-G126-5-06-x"
      ]
     }
    ],
@@ -11381,7 +11815,9 @@
       "goalox-G126-6-01-o",
       "goalox-G126-6-01-x",
       "goalox-G126-6-02-o",
-      "goalox-G126-6-02-x"
+      "goalox-G126-6-02-x",
+      "goalox-G126-6-03-o",
+      "goalox-G126-6-03-x"
      ]
     }
    ],
@@ -11479,7 +11915,13 @@
       "goalox-G128-2-03-o",
       "goalox-G128-2-03-x",
       "goalox-G128-2-04-o",
-      "goalox-G128-2-04-x"
+      "goalox-G128-2-04-x",
+      "goalox-G128-2-05-o",
+      "goalox-G128-2-05-x",
+      "goalox-G128-2-06-o",
+      "goalox-G128-2-06-x",
+      "goalox-G128-2-07-o",
+      "goalox-G128-2-07-x"
      ]
     }
    ],
@@ -11498,7 +11940,9 @@
       "goalox-G128-3-01-o",
       "goalox-G128-3-01-x",
       "goalox-G128-3-02-o",
-      "goalox-G128-3-02-x"
+      "goalox-G128-3-02-x",
+      "goalox-G128-3-03-o",
+      "goalox-G128-3-03-x"
      ]
     }
    ],
@@ -11698,7 +12142,9 @@
       "goalox-G130-3-02-o",
       "goalox-G130-3-02-x",
       "goalox-G130-3-03-o",
-      "goalox-G130-3-03-x"
+      "goalox-G130-3-03-x",
+      "goalox-G130-3-04-o",
+      "goalox-G130-3-04-x"
      ]
     }
    ],
@@ -11729,7 +12175,11 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G130-5-01-o",
-      "goalox-G130-5-01-x"
+      "goalox-G130-5-01-x",
+      "goalox-G130-5-02-o",
+      "goalox-G130-5-02-x",
+      "goalox-G130-5-03-o",
+      "goalox-G130-5-03-x"
      ]
     }
    ],
@@ -11748,7 +12198,9 @@
       "goalox-G131-1-01-o",
       "goalox-G131-1-01-x",
       "goalox-G131-1-02-o",
-      "goalox-G131-1-02-x"
+      "goalox-G131-1-02-x",
+      "goalox-G131-1-03-o",
+      "goalox-G131-1-03-x"
      ]
     }
    ],
@@ -12067,7 +12519,13 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G135-2-01-o",
-      "goalox-G135-2-01-x"
+      "goalox-G135-2-01-x",
+      "goalox-G135-2-02-o",
+      "goalox-G135-2-02-x",
+      "goalox-G135-2-03-o",
+      "goalox-G135-2-03-x",
+      "goalox-G135-2-04-o",
+      "goalox-G135-2-04-x"
      ]
     }
    ],
@@ -12192,7 +12650,11 @@
      "file": "assets/lecture-goal-facts.js",
      "items": [
       "goalox-G138-2-01-o",
-      "goalox-G138-2-01-x"
+      "goalox-G138-2-01-x",
+      "goalox-G138-2-02-o",
+      "goalox-G138-2-02-x",
+      "goalox-G138-2-03-o",
+      "goalox-G138-2-03-x"
      ]
     }
    ],

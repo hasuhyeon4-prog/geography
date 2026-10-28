@@ -192,16 +192,6 @@ function create(data,D,H){
   q.pairs.push(pair('G137-3','원의 크기는 각 국가의 1인당 GDP를 나타낸다.','원의 크기는 각 국가의 총GDP를 나타낸다.','총GDP=1인당 GDP×인구이다. 원의 범례를 먼저 확인한다.',{op:'gdpBubbleDenominator'}));
   return finish(q,r);
  }
- function religiousLandmarks(seed){
-  var ids=['giralda','koutoubia','sultan-ahmed','hagia-sophia','angkor-wat','borobudur','prambanan','hindu-temple','church','buddhist-temple','mosque'],r=seedState(seed),p=D.panels.find(function(x){return x.id===ids[(seed-1)%ids.length];}),q=start('religious-landmarks','건축물·도시·국가 대응',seed,p.attribution||'강의 L1-rId130 · 싱가포르의 네 종교 건축');
-  q.credit=p.license?{author:p.author,license:p.license,licenseUrl:p.licenseUrl,url:p.sourceUrl}:null;var singapore={'hindu-temple':['스리 마리암만 사원','힌두교','인물 조각이 밀집한 고푸람'],church:['세인트앤드루스 성당','크리스트교','십자가와 고딕식 첨탑'],'buddhist-temple':['불아사(불아룡화원)','불교','동아시아식 여러 층 지붕과 불교 사원'],mosque:['술탄 모스크','이슬람교','황금색 돔과 미나레트']},x=singapore[p.id],name=x?x[0]:p.answer,city=x?'싱가포르':p.city,country=x?'싱가포르':p.country,religion=x?x[1]:p.religion,clue=x?x[2]:p.clue;
-  q.note='건축물의 기원과 이후 종교적 기능 변화를 구별한다. 복합 유산은 한 시점의 단일 종교로 고정하지 않는다.';q.figures.push({kind:'image',src:p.path,name:'제시 건축 사진'});
-  var correct=name+' · '+city+' · '+country,options=[correct,'히랄다 탑 · 마라케시 · 모로코','보로부두르 · 시엠레아프 · 캄보디아','프람바난 · 이스탄불 · 튀르키예','쿠투비아 모스크 · 세비야 · 에스파냐'];
-  q.stage1={question:'건축물·도시(인근)·국가의 연결로 옳은 것은?',options:options,answer:0,explain:correct+'. 단서: '+clue+'. 종교·기능: '+religion+'.'};
-  q.pairs.push(pair('G044-2',name+'는 '+city+' 일대의 '+country+' 문화유산이다.',name+'는 위 선택지에서 건축 이름을 바꾸어도 모두 같은 국가의 유산이다.',q.stage1.explain,{op:'landmarkLocation',panel:p.id,city:city,country:country,religion:religion}));
-  q.pairs.push(pair('G044-2',name+'의 종교·기능은 '+religion+'와 연결한다.','모든 종교 건축물은 건립 이후 종교·용도가 한 번도 변하지 않았다.','히랄다·아야소피아·앙코르와트는 특히 기원과 이후 기능을 구별한다. '+q.stage1.explain,{op:'landmarkHistory',panel:p.id}));
-  return finish(q,r);
- }
  function oldmapRegions(seed){
   var r=seedState(seed),to=seed%2===1,p=D.panels.find(function(x){return x.id===(to?'to-map':'idrisi');}),targets=to?[['지중해',.49,.70],['나일강',.72,.53],['아시아',.50,.35]]:[['인도양',.23,.42],['대륙 내부',.50,.27],['대륙 내부',.73,.72]],target=targets[to?Math.floor((seed-1)/2)%3:0],pointLetters=shuffle(['A','B','C'],r),q=start('oldmap-regions','고지도 위 영역 선택',seed,'강의 L1-rId122 · 공개한 원그림의 상대 위치');
   q.note=(to?'동쪽':'남쪽')+'이 위인 지도이다. 현대 북쪽 위 지도와 방향을 먼저 구별한다. 그림의 문자 원을 누르거나 아래 선택지를 고른다.';
@@ -258,27 +248,17 @@ function create(data,D,H){
   q.pairs.push(pair('G079-3','국가별 총사육 두수가 다르면 같은 비중도 실제 두수가 다를 수 있다.','서로 다른 국가의 양 비중이 같으면 양 사육 두수도 반드시 같다.','비율×각 국가의 총두수로 실제량을 구한다.',{op:'stockDenominator'}));return finish(q,r);
  }
  function pyramid(mode,seed){
-  var r=seedState(seed),names=shuffle(['아랍 에미리트','이집트','튀르키예'],r),q=start(mode,mode==='pyramid-cohort'?'두 시점 인구 코호트':'성별·연령별 인구와 분모',seed,'World Bank WDI · UN WPP 성·연령별 추계 · 2010·2020년'),db=D.pyramids,format=seed%3;
-  if(mode==='pyramid-cohort'){
-   q.note='2010년 30~39세 집단은 10년 뒤 40~49세에 해당한다. 두 시점 집단 수 차이에는 사망·국제 이동 등이 반영된다. 그 사이 출생한 사람은 이 코호트에 들어오지 않는다.';
-   var values=names.map(function(n){var a=db.countries[n]['2010'],b=db.countries[n]['2020'];return[A.sum(a.male.slice(6,8))+A.sum(a.female.slice(6,8)),A.sum(b.male.slice(8,10))+A.sum(b.female.slice(8,10))];});
-   q.tables.push(table(['국가','2010년 30~39세(명)','2020년 40~49세(명)'],values.map(function(v,i){return[names[i]].concat(v);}),'같은 출생 시기의 코호트를 대응'));
-   names.forEach(function(n){['2010','2020'].forEach(function(year){var x=db.countries[n][year];q.figures.push({kind:'pyramid',name:n+' '+year+'년',ages:db.ages,male:x.male.map(function(v){return v/1e6;}),female:x.female.map(function(v){return v/1e6;}),xLabel:'실제 인구(백만 명)'});});});
-   winner(q,names,values.map(function(v){return v[1]-v[0];}),'대응 코호트의 인구 증가량이 가장 큰 국가는?','연령을 10년 이동시켜 대응한 다음 같은 단위의 인구를 뺀다.');
-   values.forEach(function(v,i){q.pairs.push(pair('G058-3',names[i]+'의 대응 코호트 인구 변화는 '+fmt(v[1]-v[0],0)+'명이다.',names[i]+'의 대응 코호트 인구 변화는 2010년 30~39세와 2020년 30~39세를 빼면 구할 수 있다.','같은 연령 칸이 아니라 같은 출생 시기 집단을 비교한다.',{op:'subtract',a:v[1],b:v[0],result:v[1]-v[0]}));});
-   q.pairs.push(pair('G058-3','이 코호트 인구가 늘었다면 국제 이동 등 연령 집단에 영향을 준 요인을 함께 검토한다.','이 코호트 인구가 늘었다면 2010~2020년에 태어난 아기가 곧바로 40~49세로 들어온 것이다.','새 출생은 10년 뒤에도 0~9세에 해당한다.',{op:'cohortBirths'}));
-  }else{
-   q.assignment=names;q.note=format===0?'가로축은 각 성별 인구=100으로 계산한 비율이다. 남녀 각각의 합은 100이지만 남녀 총인구가 같다는 뜻은 아니다.':format===1?'가로축은 국가 전체 인구=100으로 계산한 성·연령 집단의 비율이다. 남녀 막대의 합이 전체 인구를 이룬다.':'가로축은 각 성·연령 집단의 실제 인구(백만 명)이다. 원자료의 성별 총인구에 성별 내 연령 비율을 곱해 복원했다.';
-   q.tables.push(table(['후보 국가','2020 남성 총인구(명)','2020 여성 총인구(명)'],names.map(function(n){var x=db.countries[n]['2020'];return[n,x.maleTotal,x.femaleTotal];}),'분모와 함께 읽는 성별 총량'));
-   names.forEach(function(n,i){var x=db.countries[n]['2020'],total=x.maleTotal+x.femaleTotal,den=format===0?[x.maleTotal,x.femaleTotal]:format===1?[total,total]:[1e8,1e8],m=x.male.map(function(v){return v/den[0]*100;}),f=x.female.map(function(v){return v/den[1]*100;});
-    q.figures.push({kind:'pyramid',name:L[i],ages:db.ages,male:m,female:f,xLabel:format===0?'각 성별 인구=100 (%)':format===1?'국가 전체 인구=100 (%)':'인구(백만 명)'});
-    var men=A.sum(x.male.slice(6,8)),women=A.sum(x.female.slice(6,8)),sexRatio=men/women*100;
-    q.pairs.push(pair('G057-4',L[i]+'의 30~39세 성비는 여성 100명당 남성 약 '+fmt(sexRatio)+'명이다.',L[i]+'의 30~39세 성비는 남성 100명당 여성 수를 뜻한다.','성비=해당 연령 남성÷해당 연령 여성×100. 각 성별 100인 막대는 성별 총량을 곱해 명수로 복원해야 한다.',{op:'sexRatio',male:men,female:women,result:sexRatio}));
-   });
-   q.identifyExplain='청장년 남성의 집중, 유소년 구성, 성별 총량을 함께 대응한다. 각 성별 100으로 만든 그림에서는 좌우 폭만으로 남녀 총량을 비교하지 않는다.';
-   q.pairs.push(pair('G058-1','막대의 가로축이 명수인지 비율인지, 비율이면 전체 100인지 성별 100인지 먼저 확인한다.','성별 인구를 각각 100으로 표준화한 두 막대는 남녀 실제 인구도 같다는 뜻이다.','표준화한 비율은 총인구의 차이를 지울 수 있다.',{op:'pyramidDenominator',format:format}));
-   q.pairs.push(pair('G126-4','아랍 에미리트의 성·연령 구조는 청장년 노동 이주의 집중과 연결해 해석할 수 있다.','아랍 에미리트의 청장년 남성 집중은 출생 성비만으로 충분히 설명된다.','특정 성·연령에 집중된 노동 이동과 출생 성비를 구별한다.',{op:'laborMigrationPyramid'}));
-  }
+  var r=seedState(seed),names=shuffle(['아랍 에미리트','이집트','튀르키예'],r),q=start(mode,'성별·연령별 인구와 분모',seed,'World Bank WDI · UN WPP 성·연령별 추계 · 2010·2020년'),db=D.pyramids,format=seed%3;
+  q.assignment=names;q.note=format===0?'가로축은 각 성별 인구=100으로 계산한 비율이다. 남녀 각각의 합은 100이지만 남녀 총인구가 같다는 뜻은 아니다.':format===1?'가로축은 국가 전체 인구=100으로 계산한 성·연령 집단의 비율이다. 남녀 막대의 합이 전체 인구를 이룬다.':'가로축은 각 성·연령 집단의 실제 인구(백만 명)이다. 원자료의 성별 총인구에 성별 내 연령 비율을 곱해 복원했다.';
+  q.tables.push(table(['후보 국가','2020 남성 총인구(명)','2020 여성 총인구(명)'],names.map(function(n){var x=db.countries[n]['2020'];return[n,x.maleTotal,x.femaleTotal];}),'분모와 함께 읽는 성별 총량'));
+  names.forEach(function(n,i){var x=db.countries[n]['2020'],total=x.maleTotal+x.femaleTotal,den=format===0?[x.maleTotal,x.femaleTotal]:format===1?[total,total]:[1e8,1e8],m=x.male.map(function(v){return v/den[0]*100;}),f=x.female.map(function(v){return v/den[1]*100;});
+   q.figures.push({kind:'pyramid',name:L[i],ages:db.ages,male:m,female:f,xLabel:format===0?'각 성별 인구=100 (%)':format===1?'국가 전체 인구=100 (%)':'인구(백만 명)'});
+   var men=A.sum(x.male.slice(6,8)),women=A.sum(x.female.slice(6,8)),sexRatio=men/women*100;
+   q.pairs.push(pair('G057-4',L[i]+'의 30~39세 성비는 여성 100명당 남성 약 '+fmt(sexRatio)+'명이다.',L[i]+'의 30~39세 성비는 남성 100명당 여성 수를 뜻한다.','성비=해당 연령 남성÷해당 연령 여성×100. 각 성별 100인 막대는 성별 총량을 곱해 명수로 복원해야 한다.',{op:'sexRatio',male:men,female:women,result:sexRatio}));
+  });
+  q.identifyExplain='청장년 남성의 집중, 유소년 구성, 성별 총량을 함께 대응한다. 각 성별 100으로 만든 그림에서는 좌우 폭만으로 남녀 총량을 비교하지 않는다.';
+  q.pairs.push(pair('G058-1','막대의 가로축이 명수인지 비율인지, 비율이면 전체 100인지 성별 100인지 먼저 확인한다.','성별 인구를 각각 100으로 표준화한 두 막대는 남녀 실제 인구도 같다는 뜻이다.','표준화한 비율은 총인구의 차이를 지울 수 있다.',{op:'pyramidDenominator',format:format}));
+  q.pairs.push(pair('G126-4','아랍 에미리트의 성·연령 구조는 청장년 노동 이주의 집중과 연결해 해석할 수 있다.','아랍 에미리트의 청장년 남성 집중은 출생 성비만으로 충분히 설명된다.','특정 성·연령에 집중된 노동 이동과 출생 성비를 구별한다.',{op:'laborMigrationPyramid'}));
   return finish(q,r);
  }
  function religionRanks(seed){
@@ -334,12 +314,6 @@ function create(data,D,H){
   var r=seedState(seed),marks=shuffle(['A','B','C'],r),q=start('anticline-trap','배사 구조의 가스·석유·물',seed,'강의 G081-5 · 앱이 그린 모식도');q.figures.push({kind:'anticline',labels:marks});q.assignment=marks;q.identify='천연가스·석유·물의 위치 기호를 순서대로 고른 것은?';q.note='불투수층 아래의 배사 트랩을 단순화했다. 실제 지층 깊이·매장량·압력을 나타내는 수치 자료는 아니다.';
   q.pairs.push(pair('G081-5','일반적인 배사 트랩에서 가스는 석유 위쪽, 물은 석유 아래쪽에 분포한다.','일반적인 배사 트랩에서 물은 가스보다 위쪽에 분포한다.','유체의 밀도 차이와 불투수층에 의한 집적을 구별한다.',{op:'trapOrder',labels:marks}));
   q.pairs.push(pair('G081-5','배사 모식도에서 아래쪽 물층은 석유·가스의 위치와 구별해야 한다.','모식도에서 색칠된 세 층은 모두 석유만 들어 있는 같은 층이다.','모식도의 위치·범례를 통해 서로 다른 유체를 대응한다.',{op:'trapFluids'}));return finish(q,r);
- }
- function meander(seed){
-  var r=seedState(seed),marks=shuffle(['A','B'],r),q=start('meander-banks','곡류의 바깥쪽·안쪽 판정',seed,'강의 G037-4 · 앱의 곡류·종단면 모식도');q.figures.push({kind:'meander',rotation:(seed%4)*90,outer:marks[0],inner:marks[1]});q.note='물 흐름 화살표와 굽은 방향을 본다. 그림을 회전해도 바깥쪽·안쪽의 침식·퇴적 관계는 유지된다.';
-  q.stage1={question:'곡류의 바깥쪽으로 침식이 상대적으로 활발한 지점은?',options:['A','B'],answer:['A','B'].indexOf(marks[0]),explain:'굽은 바깥쪽은 유속이 상대적으로 빠르고 침식이 활발하다. 화면의 위·아래로 판정하지 않는다.'};
-  q.pairs.push(pair('G037-4',marks[1]+'는 굽은 안쪽으로 상대적으로 퇴적이 활발하다.',marks[0]+'는 굽은 바깥쪽이므로 언제나 퇴적만 활발하다.','바깥쪽 침식·안쪽 퇴적의 관계이다.',{op:'meander',rotation:(seed%4)*90,outer:marks[0],inner:marks[1]}));
-  q.pairs.push(pair('G037-4','종단면은 하천 흐름 방향을 따라 높이 변화를 나타낸다.','종단면은 하천을 가로질러 양쪽 강둑 사이 폭만 나타낸다.','흐름 방향의 종단면과 흐름에 직각인 횡단면을 구별한다.',{op:'riverProfile'}));return finish(q,r);
  }
  function religionSymbols(seed){
   var r=seedState(seed),symbols=['wheel','crescent','cross'],labels={'wheel':'불교','crescent':'이슬람교','cross':'크리스트교'},s=symbols[seed%3],q=start('religion-symbols','종교 상징과 국장 설명',seed,'강의 G041-4 · 기본 상징 모식도');q.figures.push({kind:'symbol',symbol:s});var opts=shuffle(['불교','이슬람교','크리스트교'],r);q.stage1={question:'제시된 상징을 강의의 종교와 대응한 것은?',options:opts,answer:opts.indexOf(labels[s]),explain:'수레바퀴(법륜)=불교, 초승달과 별=이슬람교, 십자가=크리스트교이다.'};
@@ -424,19 +398,12 @@ function create(data,D,H){
   q.pairs.push(pair('G008-4','총 GDP를 나타낸 원의 면적이 두 배이면 표시된 총액도 두 배이다.','총 GDP를 나타낸 원의 반지름이 두 배이면 표시된 총액도 두 배이다.','원 면적은 반지름의 제곱에 비례한다.',{op:'areaVsRadius'}));return finish(q,r);
  }
  function schematicMap(mode,seed){
-  var r=seedState(seed),q=start(mode,mode==='facility-map'?'기업 시설의 분포와 기능':'강수량과 산성도 지도',seed,'앱이 만든 가상 지역의 모식 자료');
-  if(mode==='facility-map'){
-   q.figures.push({kind:'facility-map'});q.note='실제 기업의 위치·시설 수가 아닌 모식도이다. 기업 국적·본사 위치와 모든 시설의 입지는 서로 다를 수 있다.';
-   q.stage1={question:'대도시 전문 인력·대학 주변의 △와 여러 해외 시장의 □에 해당하는 기능은?',options:['△ 연구소 · □ 생산 공장','△ 생산 공장 · □ 연구소','△ 적환지 · □ 대학'],answer:0,explain:'범례와 분포를 함께 본다. 연구소는 지식·전문 인력, 공장은 시장·물류·생산 조건을 고려한다.'};
-   q.pairs.push(pair('G102-6','본사가 있는 나라와 생산 공장이 있는 나라는 다를 수 있다.','본사가 한 나라에 있으면 모든 연구소·공장도 반드시 그 나라에 있다.','다국적 기업의 시설 기능별 국제 분업이다.',{op:'facilityFunction'}));
-   q.pairs.push(pair('G102-6','연구소·조립 공장 등 기능에 따라 중요한 입지 조건이 다르다.','연구소와 모든 생산 공장은 기능과 관계없이 가장 싼 인건비만을 추구한다.','시설 기능과 입지 조건을 대응한다.',{op:'facilityLocation'}));
-  }else{
-   var rain=[600,1200,900,700,1500,1000],ph=[4,5,4.5,5.5,4.2,5.2];q.note='가상 관측값이다. 강수량의 단위는 mm이고 pH는 수소 이온 농도의 로그 척도다. 관측 기간은 같다고 가정하며 실제 오염 지도를 뜻하지 않는다.';
-   q.figures.push({kind:'grid-map',name:'강수량(mm)',values:rain},{kind:'grid-map',name:'pH',values:ph});
-   q.stage1={question:'산성도가 가장 높은(수소 이온 농도가 가장 큰) 지역은?',options:['A','B','C','D','E','F'],answer:0,explain:'pH가 가장 작은 A(4.0)를 고른다. 강수량 최대 지역 E와 다르다.'};
-   q.pairs.push(pair('G112-5','E의 강수량이 가장 많아도 이 자료에서 가장 산성인 지역은 A이다.','강수량이 가장 많은 E가 pH도 가장 낮다고 판정할 수 있다.','각 지도에서 표시하는 지표·범례를 따로 읽는다.',{op:'rainVsPH',rain:rain,ph:ph}));
-   q.pairs.push(pair('G112-5','pH 4인 A의 수소 이온 농도는 pH 5인 B의 10배이다.','pH 4인 A는 pH 5인 B보다 수소 이온 농도가 작다.','pH가 1 낮아지면 수소 이온 농도는 10배이다.',{op:'pHScale',a:4,b:5,result:10}));
-  }return finish(q,r);
+  var r=seedState(seed),q=start(mode,'기업 시설의 분포와 기능',seed,'앱이 만든 가상 지역의 모식 자료');
+  q.figures.push({kind:'facility-map'});q.note='실제 기업의 위치·시설 수가 아닌 모식도이다. 기업 국적·본사 위치와 모든 시설의 입지는 서로 다를 수 있다.';
+  q.stage1={question:'대도시 전문 인력·대학 주변의 △와 여러 해외 시장의 □에 해당하는 기능은?',options:['△ 연구소 · □ 생산 공장','△ 생산 공장 · □ 연구소','△ 적환지 · □ 대학'],answer:0,explain:'범례와 분포를 함께 본다. 연구소는 지식·전문 인력, 공장은 시장·물류·생산 조건을 고려한다.'};
+  q.pairs.push(pair('G102-6','본사가 있는 나라와 생산 공장이 있는 나라는 다를 수 있다.','본사가 한 나라에 있으면 모든 연구소·공장도 반드시 그 나라에 있다.','다국적 기업의 시설 기능별 국제 분업이다.',{op:'facilityFunction'}));
+  q.pairs.push(pair('G102-6','연구소·조립 공장 등 기능에 따라 중요한 입지 조건이 다르다.','연구소와 모든 생산 공장은 기능과 관계없이 가장 싼 인건비만을 추구한다.','시설 기능과 입지 조건을 대응한다.',{op:'facilityLocation'}));
+  return finish(q,r);
  }
  function andesConditions(seed){
   var r=seedState(seed),names=shuffle(['에콰도르','페루','볼리비아','브라질'],r),raw={'에콰도르':[true,true,false,false],'페루':[true,false,false,true],'볼리비아':[false,true,true,true],'브라질':[false,false,true,false]},q=start('andes-conditions','남미의 국가·도시 범위 조건',seed,'강의 G131-5 · 국가별 조건과 Natural Earth 지도');
@@ -472,31 +439,14 @@ function create(data,D,H){
    q.pairs.push(pair('G057-3','순이동률의 절댓값만으로 순이동 인원 순위를 정하지 않고 같은 해 기준 인구를 곱해야 한다.','순유출률의 절댓값이 작으면 기준 인구에 관계없이 순유출 인원도 반드시 작다.','순이동 인원≈기준 인구×순이동률/100. 인구 규모와 비율을 함께 읽는다.',{op:'migrationDenominator',rows:rows}));
   }return finish(q,r);
  }
- function capacityRanks(seed){
-  var r=seedState(seed),db=D.capacity.countries,names=Object.keys(db),q=start('renewable-capacity-ranks','설비 용량·발전량 순위 대조',seed,'IRENA Renewable Energy Statistics 2025 · 2023년');
-  var cap=names.slice().sort(function(a,b){return db[b].capacityMW-db[a].capacityMW;}),gen=names.slice().sort(function(a,b){return db[b].generationGWh-db[a].generationGWh;});q.note=D.capacity.scope;
-  q.tables.push(table(['순위','설비 용량 국가','MW','발전량 국가','GWh'],cap.map(function(n,i){return[i+1,n,db[n].capacityMW,gen[i],db[gen[i]].generationGWh];}),'두 열은 각각 독립적인 순위'));
-  q.stage1={question:'독일과 캐나다의 순위가 두 지표에서 어떻게 달라지는가?',options:['설비 용량 독일>캐나다, 발전량 독일<캐나다','두 지표 모두 독일>캐나다','두 지표 모두 독일<캐나다'],answer:0,explain:'2023년 독일 159,886MW·270,110GWh, 캐나다 107,672MW·418,837GWh이다.'};
-  q.pairs.push(pair('G087-3','설비 용량 순위와 연간 발전량 순위는 다를 수 있다.','설비 용량이 큰 국가는 모든 해에 반드시 발전량도 더 많다.','가동 시간·이용률·발전원 구성이 달라질 수 있다.',{op:'capacityVsGeneration',germany:db['독일'],canada:db['캐나다']}));
-  q.pairs.push(pair('G087-3','MW와 GWh는 서로 다른 물리량이므로 수치를 바로 빼서 발전 효율을 구할 수 없다.','설비 용량 MW에서 발전량 GWh를 빼면 그대로 발전 효율(%)이다.','전력(용량)과 에너지(발전량), 시간 범위를 구별한다.',{op:'powerVsEnergy'}));return finish(q,r);
- }
- function foodBalance(seed){
-  var r=seedState(seed),names=shuffle(['프랑스','독일','인도'],r),q=start('food-stock-balance','생산·교역·재고 수급 계산',seed,'FAOSTAT FBS 2023년 제시 생산·교역 + 명시한 가상 재고 변화');
-  var rows=names.map(function(n,i){var x=data.agriculture[n];return[round(x['fbs-production:곡물 전체']/1e6,3),round(x['fbs-imports:곡물 전체']/1e6,3),round(x['fbs-exports:곡물 전체']/1e6,3),[1,-.5,.2][i]];});
-  q.note='곡물 전체의 생산·수입·수출은 FAOSTAT FBS(백만 t), 재고 변화는 계산을 위한 가정이다. 재고 증가를 양수·감소를 음수로 정의했다. 원 FAOSTAT Stock Variation의 부호를 그대로 복사한 자료가 아니다.';
-  q.tables.push(table(['국가','생산','수입','수출','가정: 재고 증가(+)·감소(−)'],rows.map(function(x,i){return[names[i]].concat(x);}),'단위: 백만 t · 재고 변화는 가상 입력'));
-  winner(q,names,rows.map(function(x){return x[0]+x[1]-x[2]-x[3];}),'정의한 공급 가능량(생산+수입−수출−재고 증가)이 가장 큰 국가는?','식용 소비뿐 아니라 사료·가공 등 국내 용도 전체를 포함하는 수급 계산이다.');
-  rows.forEach(function(x,i){q.pairs.push(pair('G075-2',names[i]+'의 공급 가능량은 약 '+fmt(x[0]+x[1]-x[2]-x[3],3)+'백만 t이다.',names[i]+'의 공급 가능량은 재고 증가를 더하고 수입은 빼서 구한다.','생산+수입−수출−재고 증가. 재고 감소가 음수이면 이를 빼므로 공급이 늘어난다.',{op:'foodBalance',production:x[0],imports:x[1],exports:x[2],stockIncrease:x[3],result:x[0]+x[1]-x[2]-x[3]}));});
-  q.pairs.push(pair('G075-2','수입·재고·재수출이 있으면 수출÷생산을 그해 생산된 물량 중 수출 몫으로 단정할 수 없다.','수출÷생산은 재수출·재고 반출이 있어도 언제나 그해 생산물의 수출 몫이다.','물량의 원천과 귀속 연도를 구별한다.',{op:'reexportsAndStocks'}));return finish(q,r);
- }
  return [
   ['ethnic-stacks','집단별 누적 인구와 비중',ethnicStacks],['industry-remainder','세 산업 합=100에서 나머지 복원',industryRemainder],['industry-amount','GDP×2차 산업 비중',industryAmount],
-  ['population-periods','기간별 자연 증감·순이동 누계',function(s){return demographic('population-periods',s);}],['migration-scatter','자연·전체 증가율 산점도',function(s){return demographic('migration-scatter',s);}],['migration-continents','대륙 순이동률과 총인원',function(s){return demographic('migration-continents',s);}],['renewable-capacity-ranks','설비 용량·발전량 순위',capacityRanks],['food-stock-balance','곡물 수급과 가상 재고 변화',foodBalance],
-  ['stat-map-types','여섯 통계 지도 유형',mapTypes],['gdp-map-denominators','GDP 총량·1인당 지도',gdpMaps],['facility-map','기업 시설 분포 모식도',function(s){return schematicMap('facility-map',s);}],['rain-ph-maps','강수량·pH 지도',function(s){return schematicMap('rain-ph-maps',s);}],['andes-conditions','남미 조건과 지도 대응',andesConditions],['asian-export-items','아시아·오세아니아 수출 품목',asianExports],
+  ['population-periods','기간별 자연 증감·순이동 누계',function(s){return demographic('population-periods',s);}],['migration-scatter','자연·전체 증가율 산점도',function(s){return demographic('migration-scatter',s);}],['migration-continents','대륙 순이동률과 총인원',function(s){return demographic('migration-continents',s);}],
+  ['stat-map-types','여섯 통계 지도 유형',mapTypes],['gdp-map-denominators','GDP 총량·1인당 지도',gdpMaps],['facility-map','기업 시설 분포 모식도',function(s){return schematicMap('facility-map',s);}],['andes-conditions','남미 조건과 지도 대응',andesConditions],['asian-export-items','아시아·오세아니아 수출 품목',asianExports],
   ['north-america-trade','북미 교역 화살표',northAmericaTrade],['eu-trade-arrows','EU 교역 방향·품목 비중',euTrade],['trade-bubble','무역 좌표·인구 역산',tradeBubble],['trade-composition-triangle','수출·수입 삼각 구성',tradeTriangle],['bloc-trade-bars','블록별 역내·역외 교역',blocTrade],['sea-ice-anomaly','해빙 범위 편차',iceAnomaly],['ozone-area','오존 구멍 시계열',ozone],['ice-ozone-maps','해빙·오존 지도 구별',iceOzoneMaps],
-  ['anticline-trap','배사 트랩 모식도',trap],['meander-banks','곡류·종단면 모식도',meander],['religion-symbols','종교 상징·국장',religionSymbols],['mineral-relative','광물 최대=100 상대값',mineralRelative],
-  ['population-pyramid','성별·연령별 인구 피라미드',function(s){return pyramid('population-pyramid',s);}],['pyramid-cohort','두 시점 코호트 추적',function(s){return pyramid('pyramid-cohort',s);}],['religion-top-two','종교 1·2위와 기호',religionRanks],['religion-score','종교 학습지 평가 점수',religionScore],['resource-area','자원 생산 면적 그래프',function(s){return area('resource-area',s);}],['population-area','대륙별 국가 인구 면적',function(s){return area('population-area',s);}],['regional-radar','항목별 최대=100 방사형',regionalRadar],['fossil-denominators','세계 자원 몫·국가 구성',fossilDenominators],
-  ['oldmap-images','고지도 원그림',function(s){return photo('oldmap-images',s);}],['coast-images','해안 경관 원사진',function(s){return photo('coast-images',s);}],['religious-buildings','실제 종교 건축',function(s){return photo('religious-buildings',s);}],['traditional-houses','전통 가옥 사진',function(s){return photo('traditional-houses',s);}],['road-images','맨해튼·파리 도로망',function(s){return photo('road-images',s);}],['city-images','리우·멕시코시티·쿠스코',function(s){return photo('city-images',s);}],['religious-landmarks','종교 건축물·도시·국가',religiousLandmarks],['oldmap-regions','고지도 위 바다·하천 찾기',oldmapRegions],['irrigation-images','관개 시설 사진',function(s){return photo('irrigation-images',s);}],['night-lights','야간 빛·국가 위치',nightLights],['china-grain-map','중국 곡물 점지도',chinaGrains],['livestock-composition','국가 내부 가축 구성',livestockComposition],
+  ['anticline-trap','배사 트랩 모식도',trap],['religion-symbols','종교 상징·국장',religionSymbols],['mineral-relative','광물 최대=100 상대값',mineralRelative],
+  ['population-pyramid','성별·연령별 인구 피라미드',function(s){return pyramid('population-pyramid',s);}],['religion-top-two','종교 1·2위와 기호',religionRanks],['religion-score','종교 학습지 평가 점수',religionScore],['resource-area','자원 생산 면적 그래프',function(s){return area('resource-area',s);}],['population-area','대륙별 국가 인구 면적',function(s){return area('population-area',s);}],['regional-radar','항목별 최대=100 방사형',regionalRadar],['fossil-denominators','세계 자원 몫·국가 구성',fossilDenominators],
+  ['oldmap-images','고지도 원그림',function(s){return photo('oldmap-images',s);}],['coast-images','해안 경관 원사진',function(s){return photo('coast-images',s);}],['religious-buildings','실제 종교 건축',function(s){return photo('religious-buildings',s);}],['traditional-houses','전통 가옥 사진',function(s){return photo('traditional-houses',s);}],['road-images','맨해튼·파리 도로망',function(s){return photo('road-images',s);}],['city-images','리우·멕시코시티·쿠스코',function(s){return photo('city-images',s);}],['oldmap-regions','고지도 위 바다·하천 찾기',oldmapRegions],['irrigation-images','관개 시설 사진',function(s){return photo('irrigation-images',s);}],['night-lights','야간 빛·국가 위치',nightLights],['china-grain-map','중국 곡물 점지도',chinaGrains],['livestock-composition','국가 내부 가축 구성',livestockComposition],
   ['grain-size','입도 분포·분급',grainSize],['lake-types','수심·염분·호수',lakes],['solar-route','여행 경로·낮 길이',solarRoute],['vital-scatter','출생률·사망률 산점도',vitalScatter],['dependency-change','두 시점 부양비 변화',dependencyChange],
   ['grain-triangle','대륙의 세 곡물 구성',function(s){return agricultureTriangle('grain-triangle',s);}],['beverage-triangle','대륙의 기호 작물 구성',function(s){return agricultureTriangle('beverage-triangle',s);}],['livestock-denominators','가축의 두 단계 분모',livestockDenominators],['grain-export-scatter','곡물 생산·수출 비율',grainExport],['crop-trade-bubble','곡물 교역·생산량 원',cropTrade],
   ['fossil-triangle','대륙별 화석 연료 구성',function(s){return fossil('fossil-triangle',s);}],['fossil-remainder','화석 연료 나머지 복원',function(s){return fossil('fossil-remainder',s);}],['energy-per-capita','에너지 총량·1인당',function(s){return energyPC('energy-per-capita',s);}],['unequal-energy-axis','에너지의 서로 다른 축',function(s){return energyPC('unequal-energy-axis',s);}],['coal-production-consumption','석탄 생산 대비 소비',energyProduction],['renewables-denominators','발전량 분모의 범위',renewables],['australia-trade-change','호주의 상대국 비중 변화',australiaTrade],['environment-news','환경 기사·대응 수단',environmentNews],['treaty-tree','협약 도시 분류도',treatyTree],['industry-bubble','산업 좌표·1인당 GDP 원',industryBubble]

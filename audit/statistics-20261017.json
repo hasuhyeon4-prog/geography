@@ -4181,39 +4181,6 @@
     ],
     "scope": ""
    }
-  },
-  "tea-prod": {
-   "checkedAt": "2026-10-17",
-   "status": "historical",
-   "warning": "기존 기준표의 해당 연도 자료입니다. 최근 동일 정의의 전체 원자료 대조를 마치지 않아 기본 문제에서 제외합니다.",
-   "sourceUrls": [
-    "강의 2권 P06"
-   ],
-   "unstablePairs": [],
-   "quizDisabled": true,
-   "base": {
-    "group": "farm",
-    "id": "tea-prod",
-    "title": "차 생산 상위국",
-    "unit": "순위",
-    "year": "2022",
-    "source": "FAO 차 정부간 그룹 보고서",
-    "phrase": "차 생산이 많은",
-    "low": "차 생산이 적은",
-    "digits": 0,
-    "note": "중국이 세계 생산의 절반 가까이, 인도 약 20%. 케냐는 아프리카 안에서 비중이 크다.",
-    "items": [
-     {
-      "name": "중국",
-      "value": 2
-     },
-     {
-      "name": "인도",
-      "value": 1
-     }
-    ],
-    "scope": ""
-   }
   }
  }
 }

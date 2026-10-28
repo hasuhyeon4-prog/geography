@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('fs'),path=require('path'),cp=require('child_process');
 const ROOT=path.resolve(__dirname,'..'),D=require('../assets/materials-data.js'),M=require('../assets/materials-engine.js'),E=M.create(D),C=require('../assets/materials-charts.js');
-const ids=['car-growth','capital-share','birth-death','city-distance','climate-restore','religion-relative','religion-selected','religion-other','crop-yield','urban-rural-scatter'];
+const ids=['car-growth','capital-share','birth-death','city-distance','climate-restore','religion-relative','crop-yield','urban-rural-scatter'];
 const close=(a,b,t=1e-7)=>assert.ok(Math.abs(a-b)<t,`${a} != ${b}`);
 function permutations(a){return a.length<2?[a]:a.flatMap((x,i)=>permutations(a.filter((_,j)=>i!==j)).map(p=>[x,...p]));}
 
@@ -78,13 +78,9 @@ test('distance matching is unique among all six assignments, symmetric and not a
 
 test('relative and subset religion denominators remain distinct from country totals and counts',()=>{
  for(let seed=1;seed<=80;seed++){
-  let q=E.build('religion-relative',seed);
+  const q=E.build('religion-relative',seed);
   for(const row of q.tables[0].rows)assert.equal(Math.max(...row.slice(1)),100);
   assert.ok(q.figures.every(f=>f.kind==='bars'));
-  q=E.build('religion-selected',seed);for(const p of q.figures[0].points)close(p.values.reduce((a,b)=>a+b,0),100);
-  assert.match(q.note,/불교.*제외/);
-  q=E.build('religion-other',seed);for(const row of q.figures[0].values)close(row.reduce((a,b)=>a+b,0),100);
-  assert.match(q.note,/불교.*무종교/);assert.ok(q.pairs.some(p=>p.check.op==='otherNotSingle'));
  }
 });
 

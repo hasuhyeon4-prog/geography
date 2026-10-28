@@ -21,7 +21,7 @@ AGRI = json.loads((ROOT / 'data/agriculture.json').read_text(encoding='utf-8'))
 # year, so comparing the series compares the shares. '{}' takes the item name (a crop).
 FAO = {
     'maize-prod': 'qcl-production:옥수수', 'wheat-prod': 'qcl-production:밀', 'rice-prod': 'qcl-production:쌀',
-    'coffee-prod': 'qcl-production:커피', 'cocoa-prod': 'qcl-production:카카오', 'tea-prod': 'qcl-production:차(생엽)',
+    'coffee-prod': 'qcl-production:커피', 'cocoa-prod': 'qcl-production:카카오',
     'cattle-count': 'qcl-stocks:소', 'pig-count': 'qcl-stocks:돼지', 'sheep-count': 'qcl-stocks:양',
     'wheat-export': 'tcl-exports:밀', 'maize-export': 'tcl-exports:옥수수',
     'maize-cont': 'qcl-production:옥수수', 'wheat-cont': 'qcl-production:밀', 'rice-cont': 'qcl-production:쌀',

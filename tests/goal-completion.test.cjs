@@ -46,10 +46,8 @@ test('all 242 energy window pairs and the explicitly sourced 2025 endpoint conve
  for(const [n,up]of [['미국',false],['중국',true]]){let count=0;for(let a=1985;a<=1995;a++)for(let b=2015;b<=2025;b++){assert.equal(d.countries[n][b].coal_consumption>d.countries[n][a].coal_consumption,up);count++;}assert.equal(count,121);assert.ok(d.coalDirectionWindow[n].fullPlusMinusFiveVerified);assert.equal(d.countries[n]['2025'].oil_consumption,null);}
  const roundedLower=61.65*1e8*.5135*29.3076/1e9;for(let a=1985;a<=1995;a++)assert.ok(roundedLower>D.energy.countries['중국'][a].coal_consumption*.0036);
 });
-test('photos cover two examples per religion, every named landmark and both omitted city scenes',()=>{
+test('photos cover two examples per religion and both omitted city scenes',()=>{
  const ids=new Set(),categories={};for(let seed=1;seed<=8;seed++){const q=M.build('religious-buildings',seed);const a=q.stage1.options[q.stage1.answer];categories[a]=(categories[a]||0)+1;assert.match(q.stage1.explain,/단서/);}for(const n of ['힌두교','크리스트교','불교','이슬람교'])assert.ok(categories[n]>=2,n);
- for(let seed=1;seed<=11;seed++){const q=M.build('religious-landmarks',seed);ids.add(q.pairs[0].check.panel);assert.match(q.stage1.explain,/종교·기능/);assert.equal(new Set(q.stage1.options).size,5);}
- for(const id of ['giralda','koutoubia','sultan-ahmed','hagia-sophia','angkor-wat','borobudur','prambanan','hindu-temple','church','buddhist-temple','mosque'])assert.ok(ids.has(id),id);
  const city=new Set(Array.from({length:5},(_,i)=>M.build('city-images',i+1).stage1.options[M.build('city-images',i+1).stage1.answer]));assert.ok(city.has('타워브리지')&&city.has('시드니 오페라하우스'));
  for(const p of R.panels.filter(p=>p.license)){assert.ok(p.author&&p.sourceUrl&&p.licenseUrl);assert.equal(crypto.createHash('sha256').update(fs.readFileSync(ROOT+'/'+p.path)).digest('hex'),p.sha256);}
 });

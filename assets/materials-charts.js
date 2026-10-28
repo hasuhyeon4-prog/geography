@@ -167,7 +167,6 @@ function render(f,opts){
 function draw(f){
  var title=(f.xLabel||f.labels?.join(' · ')||'자료')+' / '+(f.yLabel||f.kind),body;
  if(f.kind==='stat-map')body=statMap(f);
- else if(f.kind==='grid-map')body=gridMap(f);
  else if(f.kind==='value-map')body=valueMap(f);
  else if(f.kind==='facility-map')body=facilityMap();
  else if(f.kind==='symbol'){
@@ -177,8 +176,6 @@ function draw(f){
   else throw Error('Unknown symbol');
  }else if(f.kind==='anticline'){
   body='<defs><clipPath id="reservoir"><path d="M100 300 Q350 -60 600 300 L600 360 L100 360Z"/></clipPath></defs><rect x="50" y="35" width="600" height="350" fill="#f3eee4"/><g clip-path="url(#reservoir)"><rect x="90" y="80" width="520" height="100" fill="#ead78f"/><rect x="90" y="180" width="520" height="60" fill="#a59170"/><rect x="90" y="240" width="520" height="130" fill="#b6dce7"/></g><path d="M100 285 Q350 -75 600 285" fill="none" stroke="#6c655c" stroke-width="20"/>'+txt(350,151,f.labels[0],null,20)+txt(350,217,f.labels[1],null,20)+txt(350,300,f.labels[2],null,20)+txt(350,414,'배사 트랩 모식도 · 위쪽=얕음',null,14);
- }else if(f.kind==='meander'){
-  body='<g transform="rotate('+num(f.rotation)+' 250 220)"><path d="M250 80 A140 140 0 0 1 250 360 L250 300 A80 80 0 0 0 250 140Z" fill="#c9e5ef" stroke="#597785" stroke-width="2"/>'+dot(395,220,5,'#b14622')+'<g transform="rotate('+num(-f.rotation)+' 422 220)">'+txt(422,225,f.outer,null,18)+'</g>'+dot(325,220,5,'#096b83')+'<g transform="rotate('+num(-f.rotation)+' 303 220)">'+txt(303,225,f.inner,null,18)+'</g>'+line(360,200,360,240,'#304652',3)+'<polygon points="353,230 360,245 367,230" fill="#304652"/></g>'+txt(550,75,'하천 종단면 모식도',null,14)+line(465,185,665,185,'#597785')+line(465,90,465,185,'#597785')+'<polyline points="470,95 500,125 550,150 600,165 660,177" fill="none" stroke="#096b83" stroke-width="3"/>'+txt(475,210,'상류',null,14)+txt(650,210,'하류',null,14)+txt(350,420,'굽은 바깥쪽·안쪽을 기준으로 판정',null,14);
  }else if(f.kind==='pyramid'){
   var cx=350,left=70,right=650,top=60,bottom=355,N=f.ages.length,step=(bottom-top)/N,max=Math.max.apply(null,f.male.concat(f.female)),bound=nice(max,0).max,scale=265/bound;body=txt(350,22,f.name||'인구 피라미드',null,16)+txt(200,43,'남성',null,14)+txt(500,43,'여성',null,14);
   f.ages.forEach(function(age,i){var y=bottom-(i+1)*step,h=step*.8;body+='<rect x="'+num(cx-f.male[i]*scale)+'" y="'+num(y)+'" width="'+num(f.male[i]*scale)+'" height="'+num(h)+'" fill="#096b83"/><rect x="350" y="'+num(y)+'" width="'+num(f.female[i]*scale)+'" height="'+num(h)+'" fill="#b14622"/>'+(TEXT>1&&i%2?'':txt(left-5,y+h/2+4,age.replace('세 이상','+').replace('세',''),'end',12));});

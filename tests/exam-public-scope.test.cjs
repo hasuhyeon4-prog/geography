@@ -20,7 +20,6 @@ test('relative religion identifies anonymous religions from countries before jud
   for(let i=0;i<t.rows.length;i++){assert.equal(t.rows[i][0],q.assignment[i]);for(let j=0;j<4;j++)near(t.rows[i][j+1],q.tables[0].rows[i][q.tables[0].headers.indexOf(x.identification[j])]);}
   assert.ok(x.stage.statements.every(s=>s.check.op==='religionTrait'));assert.equal(x.figures.length,0);
  }
- assert.ok(E.paused['religion-selected']&&E.paused['religion-other']);
 });
 test('new numeric comparisons recompute from the actual supplied operands and same-year data',()=>{
  for(const id of ['migrant-stock','renewables-denominators','gdp-map-denominators'])for(let seed=1;seed<=24;seed++){
@@ -42,9 +41,10 @@ test('partner symbols conceal the answers; export/import labels and denominators
  }
  for(const id of ['andes-conditions'])assert.equal(E.exam(E.build(id,1)).tables.length,0);
 });
-test('unsupported extensions remain out of the live pool while necessary source knowledge stays elsewhere',()=>{
- for(const id of ['food-stock-balance','gis-tie-break','solar-altitude','solar-climate','religion-selected','religion-other','renewable-capacity-ranks','rain-ph-maps','religious-landmarks','pyramid-cohort','meander-banks'])assert.ok(E.paused[id],id);
- for(const id of ['religious-buildings','religion-relative','population-pyramid','regional-radar','solar-month','mineral-relative'])assert.ok(!E.paused[id],id);
+test('unsupported extensions are deleted while necessary source knowledge stays elsewhere',()=>{
+ const ids=new Set(E.families.map(f=>f.id));
+ for(const id of ['food-stock-balance','gis-tie-break','solar-altitude','solar-climate','religion-selected','religion-other','renewable-capacity-ranks','rain-ph-maps','religious-landmarks','pyramid-cohort','meander-banks'])assert.ok(!ids.has(id),id);
+ for(const id of ['religious-buildings','religion-relative','population-pyramid','regional-radar','solar-month','mineral-relative'])assert.ok(ids.has(id),id);
 });
 test('mineral relative values keep the original supplied regional case instead of new production-rank recall',()=>{
  const source=require('../data/given-source-figures.json').figures.find(f=>f.id==='lecture2-rId190');

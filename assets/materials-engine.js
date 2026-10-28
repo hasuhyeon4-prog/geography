@@ -108,15 +108,7 @@ function create(data){
    if(source.thresholds)q.tables.push(table(['항목','경계 1','경계 2','점수 방향'],source.thresholds.map(function(v,i){return[source.headers[i+1],v[0],v[1],directions[i]===1?'작은 구간부터 1·2·3점':'작은 구간부터 3·2·1점'];}),'경계 1 미만 / 경계 1 이상~경계 2 미만 / 경계 2 이상'));
    if(mode==='weighted')q.tables.push(table(['항목','가중치'],[['종사자 수 점수',1],['1인당 GDP 점수',1],['단수 점수',2]],'가중치는 해당 점수에 곱한 뒤 합산'));
    if(mode==='score-directions')q.note='강의의 원표 수치를 이용하되 평가 목적과 점수 방향을 바꾼 모식 연습이다. 이 조건을 원래 기출의 조건으로 외우지 않는다.';
-   if(mode==='tie-break'){
-    var ordered=rows.map(function(a,i){return{name:a[0],score:totals[i],second:a[2]};}).sort(function(a,b){return b.score-a.score||b.second-a.second;});
-    var mapNames=rows.map(function(a){return a[0];});mapNames.forEach(function(n,i){labels[n]='ABCDE'[i];});
-    q.figures.push({kind:'map',bounds:[8,-36,54,32],regions:mapNames.map(function(n){return{...data.maps[n],letter:labels[n]};})});
-    var correct=ordered.slice(0,4).map(function(x){return labels[x.name];}).sort().join(' · '),choices=mapNames.map(function(_,skip){return mapNames.filter(function(_,i){return i!==skip;}).map(function(n){return labels[n];}).sort().join(' · ');});
-    q.note='원표의 배점을 적용한 상위 네 국가를 고른다. 합계 동점이면 전송 속도가 큰 국가를 먼저 고른다. 원래 기출의 선정 개수를 바꾼 조건 연습이다.';
-    q.stage1={question:'합계와 2차 기준을 적용한 상위 네 국가의 지도 문자는?',options:choices,answer:choices.indexOf(correct),explain:'이집트 7점·남아프리카 공화국 6점·케냐 5점 다음, 앙골라와 마다가스카르는 3점 동점이다. 전송 속도 0.3과 0.1을 비교해 앙골라를 포함한다.'};
-    q.pairs.push(pair('G009-5','앙골라와 마다가스카르는 합계가 같아 전송 속도라는 2차 기준을 적용한다.','앙골라와 마다가스카르는 합계 동점이므로 2차 기준을 무시하고 둘 중 하나를 임의로 고른다.','발문의 기준 순서대로 합계 다음 2차 기준을 적용한다.',{op:'tieBreak'}));
-   }else if(mode==='top-two'){
+   if(mode==='top-two'){
     var mapOrder=['타이','라오스','캄보디아','필리핀','베트남'];mapOrder.forEach(function(n,i){labels[n]='ABCDE'[i];});
     q.figures.push({kind:'map',bounds:[90,-2,130,27],regions:Object.entries(data.maps).filter(function(e){return mapOrder.includes(e[0])||['미얀마','말레이시아','싱가포르'].includes(e[0]);}).map(function(e){return{...e[1],letter:labels[e[0]]||''};})});
     q.stage1={question:'합계가 높은 상위 두 국가에 대응하는 지도 문자를 모두 묶은 것은?',options:['A · B','B · C','C · D','D · E','A · E'],answer:1,explain:'라오스와 캄보디아는 각각 7점으로 공동 1위이고 두 국가를 모두 선정한다. 지도의 B·C이다.'};
@@ -124,7 +116,7 @@ function create(data){
    }else{
     q.stage1={question:'배점·가중치를 적용한 합계가 가장 높은 국가는?',options:rows.map(function(a){return a[0];}),answer:totals.indexOf(Math.max.apply(null,totals)),explain:rows.map(function(row,i){return row[0]+' '+totals[i]+'점';}).join(' · ')};
    }
-   var goal=mode==='weighted'?'G009-3':mode==='score-directions'?'G009-4':mode==='top-two'||mode==='tie-break'?'G009-5':'G009-2';
+   var goal=mode==='weighted'?'G009-3':mode==='score-directions'?'G009-4':mode==='top-two'?'G009-5':'G009-2';
    rows.forEach(function(row,i){q.pairs.push(pair(goal,row[0]+'의 점수 합계는 '+totals[i]+'점이다.',row[0]+'의 점수 합계는 '+(totals[i]+2)+'점이다.','항목별 점수 '+scores[i].join('·')+'에 가중치 '+weights.join('·')+'를 각각 곱한 뒤 더한다.',{op:'weightedScore',scores:scores[i],weights:weights,result:totals[i]}));});
    if(mode==='weighted')q.pairs.push(pair('G009-3','단수 점수의 가중치 2는 그 항목 점수에 2를 곱한다는 뜻이다.','가중치 2는 모든 항목을 더한 뒤 합계에 2점만 더한다는 뜻이다.','가중치는 해당 항목에 적용한다.',{op:'weightMeaning'}));
   }
@@ -174,21 +166,13 @@ function create(data){
   return finish(q,r);
  }
  function solarQ(mode,seed){
-  var r=seedState(seed),names=mode==='solar-climate'?['양곤','다윈','퍼스']:mode==='solar-altitude'?['홍콩','카슈가르','오클랜드']:['마닐라','도쿄','웰링턴'];
+  var r=seedState(seed),names=['마닐라','도쿄','웰링턴'];
   var points=shuffle(names.map(function(n){var x=data.cities[n]||site(n);return{name:n,lat:x.lat};}),r);
   var q=base(mode,'태양 고도·낮 길이',seed,'지점 위도 · 태양 적위 근사식');q.assignment=points.map(function(x){return x.name;});
   q.note='매월 15일 부근의 태양 중심·평탄한 지평선 기준 근삿값이다. 대기 굴절·지형·시차는 포함하지 않는다. 계절·위도 관계를 비교한다.';
   q.tables.push(table(['후보 지점','위도'],names.map(function(n){var c=data.cities[n]||site(n);return[n,fmt(c.lat,2)+'°'];}),'지점 대응 기준'));
   var decl=declination(DAY[seed%12]),m=seed%12;
-  if(mode==='solar-altitude'||mode==='solar-climate'){
-   q.title='정오 태양 고도';q.figures.push({kind:'line',x:DAY.map(function(_,i){return i+1;}),series:points.map(function(p,i){return{name:L[i],values:DAY.map(function(d){return noonAltitude(p.lat,declination(d));})};}),xLabel:'월',yLabel:'정오 태양 고도(°)'});
-   q.pairs.push(pair('G012-2',(m+1)+'월 '+L[0]+'의 정오 태양 고도는 약 '+fmt(noonAltitude(points[0].lat,decl))+'°이다.',(m+1)+'월 '+L[0]+'의 정오 태양 고도는 약 '+fmt(noonAltitude(points[0].lat,decl)+10)+'°이다.','정오 태양 고도 = 90° − |지점 위도 − 태양 적위|.',{op:'solarAltitude',lat:points[0].lat,decl:decl,result:noonAltitude(points[0].lat,decl)}));
-   var month=seed%2?7:1;q.pairs.push(pair('G022-1',L[0]+'의 '+month+'월 태양 고도는 약 '+fmt(noonAltitude(points[0].lat,declination(DAY[month-1])))+'°이다.',L[0]+'의 '+month+'월 태양 고도는 약 '+fmt(noonAltitude(points[0].lat,declination(DAY[month-1]))+15)+'°이다.','월별 직사 위도가 달라진다. 절대 위도만으로 모든 달의 태양 고도를 비교하지 않는다.',{op:'solarAltitude',lat:points[0].lat,decl:declination(DAY[month-1]),result:noonAltitude(points[0].lat,declination(DAY[month-1]))}));
-   if(mode==='solar-climate'){
-    q.tables.push(table(['자료 지점','제시 월','기온(℃)','강수(mm)'],points.map(function(p,i){var s=site(p.name);return[L[i],m+1,s.t[m],s.p[m]];}),'태양 자료와 같은 지점의 월평년값'));
-    var a=site(points[0].name).p[m],b=site(points[1].name).p[m];q.pairs.push(pair('G022-2',(m+1)+'월 강수량은 '+L[0]+'가 '+L[1]+'보다 '+(a>b?'많다.':'적다.'),(m+1)+'월 강수량은 '+L[0]+'가 '+L[1]+'보다 '+(a>b?'적다.':'많다.'),'태양 자료로 지점을 대응한 다음 같은 월의 강수를 읽는다. 태양 고도만으로 강수량을 계산하지 않는다.',{op:'compare',a:a,b:b}));
-   }
-  }else if(mode==='solar-night'){
+  if(mode==='solar-night'){
    q.title='위도와 밤 길이 차이';q.figures.push({kind:'bars',labels:L,values:points.map(function(p){var a=solar(p.lat);return a[6]-a[0];}),yLabel:'1월−7월 밤 길이(시간)'});
    var nights=solar(points[0].lat);q.pairs.push(pair('G024-2',L[0]+'의 1월 밤 길이는 약 '+fmt(24-nights[0])+'시간이다.',L[0]+'의 1월 밤 길이는 약 '+fmt(24-nights[0]+3)+'시간이다.','밤 길이 = 24시간 − 낮 길이. 차이의 부호로 반구를 판단한다.',{op:'night',lat:points[0].lat,month:1,result:24-nights[0]}));
   }else{
@@ -382,26 +366,18 @@ function create(data){
   q.pairs.push(pair('G133-1','최난월 0~10℃ 미만인 자료는 제시한 기준에서 배로(우트키아빅)에 대응한다.','기온 연교차가 가장 큰 자료가 반드시 툰드라 기후이다.','툰드라 판정은 연교차가 아니라 최난월 0~10℃ 미만이라는 온도 기준을 쓴다.',{op:'warmestThreshold'}));
   return finish(q,r);
  }
- function religionQ(mode,seed){
-  var r=seedState(seed),relative=mode==='religion-relative',names=shuffle(relative?['방글라데시','스리랑카','필리핀']:['미얀마','방글라데시','스리랑카'],r),keys=relative?['christianity','islam','hinduism','buddhism','judaism','unaffiliated','other']:['christianity','islam','hinduism'],labels=relative?['크리스트교','이슬람교','힌두교','불교','유대교','무종교','기타 종교']:['크리스트교','이슬람교','힌두교'];
-  var q=base(mode,relative?'최대 종교=100 상대값':'선택 종교 합=100 삼각 도표',seed,'Pew 2025 발표 · 2020년 국가별 종교 구성');q.assignment=names;
-  q.note=relative?'국가마다 가장 큰 종교 집단=100이다. 전체 인구=100%가 아니다. 무종교·기타 종교까지 포함한 모든 범주의 상대값을 제시한다. 반올림 오차가 있다.':'따로 표시한 세 종교만의 신자 합=100%이다. 불교·기타 종교·무종교는 제외된다. 국가 전체 인구=100%가 아니다.';
-  var rows=names.map(function(n){var s=data.religions[n].values,v=keys.map(function(k){return s[k];}),den=relative?Math.max.apply(null,v):sum(v);return v.map(function(x){return x/den*100;});});
-  q.tables.push(table(['자료'].concat(labels),rows.map(function(v,i){return[L[i]].concat(v.map(function(x){return round(x,3);}));}),relative?'국가별 최댓값=100 · 상대값':'선택 세 종교 신자 합=100%'));
-  q.tables.push(table(['후보 국가','대응 기준'],names.slice().sort().map(function(n){return[n,n==='방글라데시'?'제시 종교 중 이슬람교 우세':n==='스리랑카'?(relative?'불교 우세':'제시 세 종교 중 힌두교>이슬람교>크리스트교'):n==='필리핀'?'크리스트교 우세':'제시 세 종교 중 크리스트교>이슬람교>힌두교'];}),'범례의 범위를 확인한 뒤 대응'));
-  if(!relative)q.figures.push({kind:'ternary',labels:labels,points:rows.map(function(v,i){return{name:L[i],values:v};})});
-  if(relative){
+ function religionQ(seed){
+  var r=seedState(seed),names=shuffle(['방글라데시','스리랑카','필리핀'],r),keys=['christianity','islam','hinduism','buddhism','judaism','unaffiliated','other'],labels=['크리스트교','이슬람교','힌두교','불교','유대교','무종교','기타 종교'];
+  var q=base('religion-relative','최대 종교=100 상대값',seed,'Pew 2025 발표 · 2020년 국가별 종교 구성');q.assignment=names;
+  q.note='국가마다 가장 큰 종교 집단=100이다. 전체 인구=100%가 아니다. 무종교·기타 종교까지 포함한 모든 범주의 상대값을 제시한다. 반올림 오차가 있다.';
+  var rows=names.map(function(n){var s=data.religions[n].values,v=keys.map(function(k){return s[k];}),den=Math.max.apply(null,v);return v.map(function(x){return x/den*100;});});
+  q.tables.push(table(['자료'].concat(labels),rows.map(function(v,i){return[L[i]].concat(v.map(function(x){return round(x,3);}));}),'국가별 최댓값=100 · 상대값'));
+  q.tables.push(table(['후보 국가','대응 기준'],names.slice().sort().map(function(n){return[n,n==='방글라데시'?'제시 종교 중 이슬람교 우세':n==='스리랑카'?'불교 우세':'크리스트교 우세'];}),'범례의 범위를 확인한 뒤 대응'));
    rows.forEach(function(v,i){q.figures.push({kind:'bars',labels:labels,values:v.map(function(x){return round(x,3);}),yLabel:L[i]+' · 최대=100 상대값'});});
    rows.forEach(function(v,i){var shown=v.map(function(x){return round(x,3);}),j=v.indexOf(100),share=shown[j]/sum(shown)*100;
     q.pairs.push(pair('G137-1',L[i]+'에서 '+labels[j]+'의 국가 전체 인구 비율은 약 '+fmt(share)+'%이다.',L[i]+'에서 '+labels[j]+'의 국가 전체 인구 비율은 100%이다.','모든 범주의 상대값이 있으므로 해당 상대값÷상대값 합×100으로 구성비를 복원한다. 최대값 100을 인구 100%로 읽지 않는다.',{op:'relativeShare',value:shown[j],total:sum(shown),result:share}));
    });
    q.pairs.push(pair('G043-3','국가별 최대값=100이라는 상대값만으로 국가 간 실제 신자 수를 비교할 수 없다.','서로 다른 국가에서 상대값 100인 두 종교는 실제 신자 수가 같다.','각 국가의 기준 집단 실제 신자 수가 다를 수 있다. 구성비를 복원해도 인구 총량이 없으면 신자 수는 정할 수 없다.',{op:'relativeDenominator'}));
-  }else{
-   var values=rows[0],j=values.indexOf(Math.max.apply(null,values));
-   q.pairs.push(pair('G043-3',L[0]+'에서 '+labels[j]+'는 제시한 세 종교 신자 합 중 약 '+fmt(values[j])+'%이다.',L[0]+'에서 '+labels[j]+'는 국가 전체 인구 중 약 '+fmt(values[j])+'%이다.','이 삼각 도표의 분모는 국가 전체 인구가 아니라 선택한 세 종교의 신자 합이다.',{op:'selectedReligions',country:names[0],keys:keys,result:values[j]}));
-   q.pairs.push(pair('G041-2','이 도표만으로 미얀마의 국가 전체 최대 종교를 정할 수 없다.','미얀마는 제시 세 종교 중 크리스트교 비중이 가장 높으므로 국가 전체에서도 크리스트교가 최대이다.','불교를 범례에서 제외했다. 표시 집단끼리의 순위를 국가 전체 순위로 확장하지 않는다.',{op:'omittedReligion'}));
-   q.pairs.push(pair('G043-3','세 축의 비율 합은 제시 세 종교 신자 합을 기준으로 100%이다.','세 축의 합이 100%이므로 국가 내에 다른 종교나 무종교 인구는 없다.','선택 범주를 다시 100으로 만든 구성비이다. 제외 범주의 인구가 0이라는 뜻은 아니다.',{op:'subsetComposition'}));
-  }
   return finish(q,r);
  }
  function cropYieldQ(seed){
@@ -418,18 +394,6 @@ function create(data){
   // Stated about these three rows, with the same assertive form either way.
   var topYield=rows.reduce(function(a,b){return b.y>a.y?b:a;}),topProduction=rows.reduce(function(a,b){return b.p>a.p?b:a;}),sameTop=topYield===topProduction;
   q.pairs.push(pair('G075-1',sameTop?'세 나라 중 밀 단수가 가장 높은 국가가 밀 생산량도 가장 많다.':'세 나라 중 밀 단수가 가장 높은 국가와 밀 생산량이 가장 많은 국가는 다르다.',sameTop?'세 나라 중 밀 단수가 가장 높은 국가와 밀 생산량이 가장 많은 국가는 다르다.':'세 나라 중 밀 단수가 가장 높은 국가가 밀 생산량도 가장 많다.','단수가 가장 높은 국가는 '+topYield.name+'('+fmt(topYield.y)+' t/ha), 생산량이 가장 많은 국가는 '+topProduction.name+'('+fmt(topProduction.p)+'천 t)이다. 생산량=수확 면적×단수이다.',{op:'yieldVsTotal',topYield:topYield.name,topProduction:topProduction.name}));
-  return finish(q,r);
- }
- function religionOtherQ(seed){
-  var r=seedState(seed),names=shuffle(['미얀마','스리랑카','방글라데시'],r),q=base('religion-other','종교 범례의 기타 묶음',seed,'Pew 2025 발표 · 2020년 구성 · 선택 범례로 재구성');q.assignment=names;
-  q.note='크리스트교·이슬람교·힌두교만 따로 표시하고, 불교·유대교·무종교·기타 종교를 모두 나머지 묶음으로 표시했다. 묶음 이름인 기타는 하나의 종교가 아니다.';
-  var vals=names.map(function(n){var v=data.religions[n].values;return[v.christianity,v.islam,v.hinduism,round(100-v.christianity-v.islam-v.hinduism,3)];});
-  q.figures.push({kind:'stacked',labels:L,categories:['크리스트교','이슬람교','힌두교','기타 묶음'],values:vals,xLabel:'국가 전체 인구=100%'});
-  q.tables.push(table(['자료','크리스트교','이슬람교','힌두교','기타 묶음'],vals.map(function(v,i){return[L[i]].concat(v);}),'국가 전체 인구 대비 % · 반올림 잔차는 기타에 포함'));
-  q.tables.push(table(['후보 국가','표시된 세 종교 중 큰 순서'],[['미얀마','크리스트교>이슬람교>힌두교'],['스리랑카','힌두교>이슬람교>크리스트교'],['방글라데시','이슬람교>힌두교>크리스트교']],'범례에 따로 표시된 집단끼리만 비교한 대응 기준'));
-  q.pairs.push(pair('G041-2','미얀마에서 따로 표시한 세 종교 중에는 크리스트교 비율이 가장 높다.','미얀마에서 크리스트교는 기타 묶음 안의 모든 개별 종교보다 비율이 높다.','나머지 묶음에는 불교 등이 들어 있다. 따로 표시한 세 종교 순위와 전체 종교 순위는 다르다.',{op:'religionOtherScope'}));
-  q.pairs.push(pair('G041-2','기타 묶음이 가장 커도 그 안의 어느 하나가 국가 최대 종교인지는 이 그래프만으로 확정할 수 없다.','기타 묶음이 가장 크면 기타라는 한 종교가 국가 최대 종교이다.','묶음 합과 묶음 안의 개별 집단 값을 구분한다. 기타에 여러 집단을 더했으므로 한 종교로 취급하지 않는다.',{op:'otherNotSingle'}));
-  q.pairs.push(pair('G041-2','범례 구성이 달라지면 같은 국가도 기타 묶음의 비율이 달라질 수 있다.','같은 국가에서 기타 묶음의 비율은 범례 구성과 관계없이 항상 같다.','따로 표시하지 않은 항목을 합친 잔여 범주이므로 어떤 항목을 따로 표시하는지 확인한다.',{op:'otherDependsOnLegend'}));
   return finish(q,r);
  }
  function urbanScatterQ(seed){
@@ -450,9 +414,7 @@ function create(data){
   ['birth-death','출생률 복원·‰와 %',birthDeathQ],
   ['city-distance','도시 간 거리 행렬',cityDistanceQ],
   ['climate-restore','최한월·연교차로 최난월 복원',climateRestoreQ],
-  ['religion-relative','최대 종교=100 상대값',function(s){return religionQ('religion-relative',s);}],
-  ['religion-selected','선택 종교 구성 삼각 도표',function(s){return religionQ('religion-selected',s);}],
-  ['religion-other','종교 범례의 기타 묶음',religionOtherQ],
+  ['religion-relative','최대 종교=100 상대값',religionQ],
   ['crop-yield','수확 면적·단수·생산량',cropYieldQ],
   ['urban-rural-scatter','도시·촌락 인구 좌표',urbanScatterQ],
   ['energy-change','미국·중국 에너지 두 시점',function(s){return energyQ('energy-change',s);}],
@@ -463,7 +425,6 @@ function create(data){
   ['gis-directions','GIS 점수 방향 바꾸기',function(s){return gisQ('score-directions',s);}],
   ['gis-weighted','GIS 가중치',function(s){return gisQ('weighted',s);}],
   ['gis-top-two','GIS 상위 두 국가·동점',function(s){return gisQ('top-two',s);}],
-  ['gis-tie-break','GIS 동점·2차 기준',function(s){return gisQ('tie-break',s);}],
   ['cumulative','누적 강수량',function(s){return climate('cumulative',s);}],
   ['self-deviation','자기 연평균 기온 편차',function(s){return climate('self-deviation',s);}],
   ['common-deviation','지역 평균 기준 기온 편차',function(s){return climate('common-deviation',s);}],
@@ -471,9 +432,7 @@ function create(data){
   ['precip-deviation','강수량 편차',function(s){return climate('precip-deviation',s);}],
   ['difference','기온·강수 차이 산점도',function(s){return climate('difference',s);}],
   ['daylight','월별 낮 길이',function(s){return solarQ('daylight',s);}],
-  ['solar-altitude','월별 정오 태양 고도',function(s){return solarQ('solar-altitude',s);}],
   ['solar-month','태양 고도로 달 찾기',solarMonthQ],
-  ['solar-climate','태양 고도와 기후 자료',function(s){return solarQ('solar-climate',s);}],
   ['solar-night','위도·밤 길이 차이',function(s){return solarQ('solar-night',s);}],
   ['age-triangle','연령 구조 삼각 도표',function(s){return ages('age-triangle',s);}],
   ['dependency','부양비 계산과 역산',function(s){return ages('dependency',s);}],
@@ -489,7 +448,7 @@ function create(data){
  function build(id,seed){var f=families.find(function(x){return x[0]===id;});if(!f)throw Error('Unknown material '+id);var q=f[2](seed==null?1:seed);q.mode=q.id;q.id=id;return q;}
  var examModule=typeof module==='object'&&module.exports?require('./materials-exam.js'):globalThis.WGMaterialExam;
  var exam=examModule&&examModule.create(data,{distance:distance},moreData);
- return{families:families.map(function(f){return{id:f[0],title:f[1]};}),build:build,exam:exam&&exam.prepare,paused:exam&&exam.paused||{}};
+ return{families:families.map(function(f){return{id:f[0],title:f[1]};}),build:build,exam:exam&&exam.prepare};
 }
 return{create:create,math:{sum:sum,mean:mean,cumulative:cumulative,season:season,age:age,workforce:workforce,growth:growth,declination:declination,daylight:daylight,noonAltitude:noonAltitude,solar:solar,normalize:normalize,ternary:ternary,distance:distance,zeroCrossing:zeroCrossing,bandScore:bandScore,filterRows:filterRows},rng:rng};
 });

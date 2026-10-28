@@ -14,7 +14,7 @@ function fixture(family,prior){
 }
 test('practice is answered once; answer keys, notes and lookup tables stay absent until submission',()=>{
  const E=M.create(D);
- for(const f of E.families.filter(f=>!E.paused[f.id])){
+ for(const f of E.families){
   const p=fixture(f.id),x=E.exam(E.build(f.id,1));
   const group=()=>p.nodes().filter(n=>n.className==='choices');
   assert.equal(group().length,1,f.id);
@@ -33,19 +33,19 @@ test('a wrong final answer persists and is removed only on a correct review answ
  const again=fixture(family,JSON.stringify({...p.saved,order:'review'}));group=again.nodes().find(n=>n.className==='choices');group.children[x.stage.answer].onclick();assert.equal(again.saved.review.length,0);
  again.document.getElementById('nextQuestion').onclick();assert.match(again.document.getElementById('main').textContent,/다시 풀 문항이 없/);
 });
-test('old results and paused review items are retained without counting them as new exam results',()=>{
+test('old results and review items of deleted families are retained as old results only',()=>{
  const p=fixture('gis-tie-break',JSON.stringify({family:'gis-tie-break',stats:{'gis-tie-break':{right:8,wrong:2}},review:[{family:'gis-tie-break',seed:9}]}));
  assert.equal(p.saved.family,'all');assert.equal(p.saved.retiredStats['before-20261027']['gis-tie-break'].right,8);
- assert.equal(p.saved.pausedReview[0].seed,9);assert.equal(p.saved.review.length,0);
+ assert.equal(p.saved.review.length,0);assert.ok(!('pausedReview' in p.saved));
  assert.ok(!p.nodes().some(n=>n.tagName==='OPTION'&&n.attributes.value==='gis-tie-break'));
 });
 test('malformed saved data and unavailable storage do not prevent practice',()=>{
  for(const bad of ['null','[]','not-json']){const p=fixture('cumulative',bad);assert.ok(p.nodes().some(n=>n.className==='choices'));}
  const html=fs.readFileSync(require.resolve('../materials.html'),'utf8');assert.match(html,/assets\/materials-exam\.js/);assert.match(html,/aria-live="polite"/);
 });
-test('the corpus revision archives the previous scoring separately and retains newly paused reviews',()=>{
+test('the corpus revision archives the previous scoring separately and drops reviews of deleted families',()=>{
  const p=fixture('religion-selected',JSON.stringify({revision:2,family:'religion-selected',seed:5,stats:{'religion-selected':{right:7,wrong:2}},retiredStats:{'before-20261027':{first:{right:3}}},review:[{family:'religion-selected',seed:8},{family:'cumulative',seed:9}]}));
  assert.equal(p.saved.revision,3);assert.equal(p.saved.retiredStats['before-20261027'].first.right,3);
- assert.equal(p.saved.retiredStats['before-20261027-corpus']['religion-selected'].right,7);assert.equal(p.saved.pausedReview[0].family,'religion-selected');assert.equal(p.saved.review[0].family,'cumulative');
+ assert.equal(p.saved.retiredStats['before-20261027-corpus']['religion-selected'].right,7);assert.deepEqual(p.saved.review.map(x=>x.family),['cumulative']);
  assert.deepEqual(p.saved.stats,{});assert.equal(p.saved.family,'all');
 });

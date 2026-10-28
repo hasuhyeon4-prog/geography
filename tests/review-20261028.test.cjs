@@ -4,7 +4,7 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const ROOT=path.resolve(__dirname,'..'),M=require('../assets/materials-engine'),D=require('../assets/materials-data'),C=require('../assets/materials-charts'),E=M.create(D);
 const ABS=/반드시|항상|모두|만으로|오직|예외 없이|관계없이|완전히|[가-힣]만 |[가-힣]만이|에만|만을/,HEDGE=/수 있다|단정|않는다|않다|구별|아니|살펴|연결/;
-const active=E.families.filter(f=>!E.paused[f.id]);
+const active=E.families;
 
 test('OX truth cannot be guessed from absolute or hedged wording',()=>{
  const pairs=['data/lecture-goal-ox.tsv','data/goal-completion-ox.tsv','data/lecture-coverage-ox.tsv'].flatMap(f=>fs.readFileSync(path.join(ROOT,f),'utf8').split(/\r?\n/)).filter(l=>l&&!l.startsWith('#')).map(l=>l.split('|'));

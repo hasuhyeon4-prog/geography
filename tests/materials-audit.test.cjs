@@ -22,7 +22,7 @@ test('answer positions vary in every material family, including fixed source exa
 });
 
 test('truth patterns vary independently of statement position and seed parity',()=>{
- for(const id of ['population-index','food-stock-balance']){
+ for(const id of ['population-index']){
   const patterns=new Set(),byParity=[new Set(),new Set()];
   for(let seed=1;seed<=200;seed++){
    const q=E.build(id,seed),pattern=q.statements.map(s=>+s.truth).join('');

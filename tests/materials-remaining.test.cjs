@@ -20,7 +20,6 @@ test('all population pyramid formats use the appropriate sex or whole-population
  for(let seed=1;seed<=30;seed++){
   const q=E.build('population-pyramid',seed),format=seed%3;
   q.figures.forEach((f,i)=>{const x=D.pyramids.countries[q.assignment[i]]['2020'];let den=format===0?[x.maleTotal,x.femaleTotal]:format===1?[x.maleTotal+x.femaleTotal,x.maleTotal+x.femaleTotal]:[1e6,1e6];f.male.forEach((v,j)=>close(v,x.male[j]/den[0]*(format===2?1:100)));f.female.forEach((v,j)=>close(v,x.female[j]/den[1]*(format===2?1:100)));if(format===0){close(sum(f.male),100,.001);close(sum(f.female),100,.001);}if(format===1)close(sum(f.male)+sum(f.female),100,.001);});
-  const cohort=E.build('pyramid-cohort',seed);for(const row of cohort.tables[0].rows){const db=D.pyramids.countries[row[0]];assert.equal(row[1],sum(db['2010'].male.slice(6,8))+sum(db['2010'].female.slice(6,8)));assert.equal(row[2],sum(db['2020'].male.slice(8,10))+sum(db['2020'].female.slice(8,10)));}
  }
 });
 
@@ -34,15 +33,14 @@ test('new numerical claims calculate from their displayed operands independently
   if(c.op==='subtract')result=c.a-c.b;
   if(c.op==='product')result=c.a*c.b;
   if(c.op==='quotient')result=c.a/c.b;
-  if(c.op==='foodBalance')result=c.production+c.imports-c.exports-c.stockIncrease;
   if(result!==undefined)close(result,c.result);
  }
- for(const op of ['sexRatio','foodBalance','capacityVsGeneration','rainVsPH','statMapType'])assert.ok(seen.has(op),op);
+ for(const op of ['sexRatio','statMapType'])assert.ok(seen.has(op),op);
 });
 
 test('capacity rankings are independently sorted for the same six countries and year',()=>{
- const db=D.capacity.countries,rankings=require('../assets/rankings.js');
- assert.equal(D.capacity.year,2023);assert.ok(db['독일'].capacityMW>db['캐나다'].capacityMW);assert.ok(db['독일'].generationGWh<db['캐나다'].generationGWh);
+ const C=require('../data/renewable-capacity-comparison.json'),db=C.countries,rankings=require('../assets/rankings.js');
+ assert.equal(C.year,2023);assert.ok(db['독일'].capacityMW>db['캐나다'].capacityMW);assert.ok(db['독일'].generationGWh<db['캐나다'].generationGWh);
  for(const [id,field]of [['renewable-capacity-six','capacityMW'],['renewable-generation-six','generationGWh']]){
   const t=rankings.rankings.find(x=>x.id===id);assert.equal(t.year,'2023');assert.match(t.scope,/제시 6개국/);assert.deepEqual(t.items.map(x=>x.name),Object.keys(db).sort((a,b)=>db[b][field]-db[a][field]));
  }
@@ -72,5 +70,5 @@ test('all six statistical map types are drawable and four-country assignments ha
 test('new browser scripts load in the actual HTML order and include the full family bank',()=>{
  const html=fs.readFileSync(R+'/materials.html','utf8'),context={};context.globalThis=context;vm.createContext(context);
  for(const [,f]of html.matchAll(/<script src="([^"?]+)[^"]*"><\/script>/g)){if(f.endsWith('materials-page.js'))continue;vm.runInContext(fs.readFileSync(R+'/'+f,'utf8'),context,{filename:f});}
- const web=context.WGMaterials.create(context.WGMaterialsData);assert.equal(web.families.length,E.families.length);for(const id of ['population-pyramid','stat-map-types','renewable-capacity-ranks','food-stock-balance'])assert.deepEqual(JSON.parse(JSON.stringify(web.build(id,7))),E.build(id,7));
+ const web=context.WGMaterials.create(context.WGMaterialsData);assert.equal(web.families.length,E.families.length);for(const id of ['population-pyramid','stat-map-types','facility-map','andes-conditions'])assert.deepEqual(JSON.parse(JSON.stringify(web.build(id,7))),E.build(id,7));
 });

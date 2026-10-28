@@ -40,7 +40,7 @@ function choose(pairs,r){
 // These tables were answer keys disguised as givens. Indices are explicit: a
 // numerical input/legend is never removed by a broad caption/keyword heuristic.
 var HIDE={
- 'city-distance':[0],'climate-restore':[1],'religion-relative':[1],'religion-selected':[1],'religion-other':[1],
+ 'city-distance':[0],'climate-restore':[1],'religion-relative':[1],
  'cumulative':[0],'self-deviation':[0],'common-deviation':[0],'reference-deviation':[0],'precip-deviation':[0],'difference':[0],
  'age-triangle':[0],'urban-radar':[0],'urban-rural-scatter':[0],'grain-size':[0],'lake-types':[0],
  'mineral-relative':[0],'regional-radar':[0],'livestock-composition':[0],'grain-triangle':[0],'beverage-triangle':[0],
@@ -48,19 +48,9 @@ var HIDE={
  'renewables-denominators':[0],'vital-scatter':[0],'australia-trade-change':[0],'industry-bubble':[0,1],'unequal-energy-axis':[0],'andes-conditions':[0]
 };
 var DIRECT=new Set(['gis-filters','gis-medical','gis-scoring','gis-directions','gis-weighted','gis-top-two',
- 'stat-map-types','facility-map','rain-ph-maps','andes-conditions','oldmap-images','coast-images','religious-buildings',
- 'traditional-houses','road-images','city-images','religious-landmarks','oldmap-regions','irrigation-images',
- 'night-lights','china-grain-map','religion-score','religion-symbols','treaty-tree','city-tier','anticline-trap','meander-banks']);
-// No confirmed question-level basis for the *added* inventory/tie-break task.
-// Keep their source data/history, exclude these inventions from the practice pool.
-var PAUSED={'food-stock-balance':'가상 재고 변화까지 계산시키는 확장의 기출 근거 미확인','gis-tie-break':'상위 네 국가·추가 동점 기준으로 바꾼 확장의 기출 근거 미확인','solar-altitude':'solar-month의 계절 판단으로 통합','solar-climate':'solar-month의 계절 판단으로 통합',
- 'religion-selected':'최대 종교를 제외한 소수 종교 세부 순위 대신 religion-relative의 기호 식별·종교 특성으로 통합',
- 'religion-other':'기타 범례 일반론만 반복하는 독립 문항 보류. 종교별 분모는 기호 식별 문항의 조건으로 유지',
- 'renewable-capacity-ranks':'기출의 발전원 식별·입지 판단과 다른 국가 순위 대조·MW/GWh 단위 계산 확장 보류',
- 'rain-ph-maps':'가상 격자 최솟값만 고르는 문항과 수소 이온 농도 로그 계산 확장 보류. 산성비 원인·영향은 OX·환경 문항에 유지',
- 'religious-landmarks':'기출의 문화 전파·융합·국가 종교 판단을 건축물·도시 세부 명칭 암기로 바꾼 독립 유형 보류. 건축·종교 판단은 religious-buildings에 유지',
- 'pyramid-cohort':'두 시점의 동일 출생 집단 인원 증가량을 최대로 만드는 계산 확장의 근거 미확인. 기출의 성·연령 구조·노동 이주 판단은 population-pyramid에 유지',
- 'meander-banks':'곡류의 침식 사면 한 점을 고르는 독립 유형의 근거 미확인. 기출의 하천 위치·수계·국제 하천 판단과 구별'};
+ 'stat-map-types','facility-map','andes-conditions','oldmap-images','coast-images','religious-buildings',
+ 'traditional-houses','road-images','city-images','oldmap-regions','irrigation-images',
+ 'night-lights','china-grain-map','religion-score','religion-symbols','treaty-tree','city-tier','anticline-trap']);
 var CONDITIONS={
  'car-growth':'제시한 기간의 국내 자동차 생산량이다.',
  'capital-share':'2018년 인구 자료이며 단위는 천 명이다. 수도의 범위는 제시 자료를 따른다.',
@@ -68,8 +58,6 @@ var CONDITIONS={
  'city-distance':'표는 도시 사이의 대권 거리(km)이다.',
  'climate-restore':'표는 지도에 표시한 세 지점의 최한월 평균 기온과 기온의 연교차이다.',
  'religion-relative':'각 국가에서 신자가 가장 많은 종교 집단의 값을 100으로 한 상대값이다. 모든 종교·무종교 범주를 표시하였다.',
- 'religion-selected':'크리스트교·이슬람교·힌두교 신자 수의 합을 100으로 한 구성비이다.',
- 'religion-other':'국가 전체 인구 대비 종교별 비율이다. 기타에는 따로 표시하지 않은 범주를 합하였다.',
  'cumulative':'그래프는 월별 누적 강수량이다. 0월은 전년 말이다.',
  'self-deviation':'편차 = 각 월평균 기온 − 해당 지점의 연평균 기온.',
  'common-deviation':'편차 = 각 지점의 월평균 기온 − 제시한 세 지점의 같은 달 평균 기온.',
@@ -96,7 +84,6 @@ var CONDITIONS={
  'population-periods':'자연 증감은 근삿값이다. 단위는 백만 명이다.',
  'migration-scatter':'같은 해의 인구를 분모로 전체 증가율을 자연 증가율과 순이동률의 합으로 구성한 자료이다.',
  'migration-continents':'같은 해의 인구를 분모로 전체 증가율을 자연 증가율과 순이동률의 합으로 구성한 자료이다.',
- 'pyramid-cohort':'2010년과 2020년의 성·연령별 인구 자료이다.',
  'resource-area':'각 그림 전체의 면적을 100으로 한 생산량 구성비이다.',
  'population-area':'각 그림 전체의 면적을 100으로 한 인구 구성비이다.',
  'energy-change':'1990년과 2020년 에너지원별 소비량(EJ)이다.',
@@ -352,7 +339,7 @@ function create(data,math,extra){
   if(assignment&&assignment.every(function(n){return typeof n==='string';})&&!['climate-restore','resource-area'].includes(q.id))x.condition+=(x.condition?' ':'')+L.slice(0,assignment.length).join('·')+'는 각각 '+assignment.slice().sort().join(', ')+' 중 하나이다.';
   if(CLIMATE.includes(q.id))pairs=climatePairs(q);
   else pairs=numerical(q).concat(q.pairs.filter(function(p){return !WEAK.has(p.check.op)&&!Number.isFinite(p.check.result);}));
-  if(['solar-month','solar-altitude','solar-climate'].includes(q.id)){var s=solar(q);Object.assign(x,s);pairs=s.pairs;}
+  if(q.id==='solar-month'){var s=solar(q);Object.assign(x,s);pairs=s.pairs;}
   if(q.id==='city-distance'){var c=city(q);Object.assign(x,c);x.referenceTables=[];pairs=c.pairs;}
   var photo=photos(q,r);if(photo){Object.assign(x,photo);pairs=photo.pairs;direct=false;}
   if(q.id==='solar-night'){
@@ -375,12 +362,6 @@ function create(data,math,extra){
   if(q.id==='grain-size'){x.stage=clone(q.stage1);x.stage.explain='선상지·바하다는 사구보다 평균 입경이 크고 입경 분포가 넓다. 평균 입경과 분급을 함께 비교한다.';direct=true;}
   if(q.id==='climate-restore'){
    x.stage=clone(q.stage1);direct=true;
-  }
-  if(q.id==='religion-selected'||q.id==='religion-other'){
-   // Minor-religion ordering was not established knowledge: no lookup quiz on
-   // Myanmar's minority shares. Ask the encoded denominator, not that ordering.
-   x.condition=CONDITIONS[q.id];
-   pairs=q.pairs.filter(function(p){return ['selectedReligions','omittedReligion','subsetComposition','otherNotSingle','otherDependsOnLegend'].includes(p.check.op);});
   }
   if(q.id==='religion-relative'){
    // 2016-09-02: country majorities identify religious symbols, then origin,
@@ -553,7 +534,7 @@ function create(data,math,extra){
   // Country recognition has a purpose only if it is still needed at the final
   // judgment. Insert a sourced regional fact instead of a third cyclic ratio.
   var facts=geographic({assignment:x.identification||q.assignment});
-  if(!direct&&!x.stage&&facts.length&&pairs.length>=2&&!['religion-selected','religion-other','religion-relative'].includes(q.id)){
+  if(!direct&&!x.stage&&facts.length&&pairs.length>=2&&q.id!=='religion-relative'){
    var numbers=pairs.filter(function(p){return p&&p.check.op==='examComparison';});
    if(numbers.length>2)pairs=pairs.filter(function(p){return numbers.indexOf(p)<0;}).concat(shuffle(numbers,r).slice(0,2));
    var fact=shuffle(facts,r)[0];pairs=shuffle(pairs.filter(Boolean),r).slice(0,3).concat([fact]);
@@ -586,7 +567,7 @@ function create(data,math,extra){
   (x.stage.statements||[]).forEach(function(st){st.text=particles(st.text,names);st.explain=particles(st.explain,names);});
   return x;
  }
- return{prepare:prepare,paused:PAUSED};
+ return{prepare:prepare};
 }
 return{create:create};
 });

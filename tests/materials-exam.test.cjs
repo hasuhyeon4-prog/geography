@@ -4,7 +4,7 @@ const M=require('../assets/materials-engine'),D=require('../assets/materials-dat
 const close=(a,b)=>assert.ok(Math.abs(a-b)<Math.max(1,Math.abs(a),Math.abs(b))*1e-9,`${a} != ${b}`);
 function numeric(c){switch(c.op){case'add':return c.a+c.b;case'product':return c.a*c.b;case'quotient':return c.a/c.b;case'growth':return(c.b-c.a)/c.a*100;case'capitalShare':return c.capital/(c.urban+c.rural)*100;case'workforce':return 10000/(100+c.D);case'youngDependency':return c.total-c.old;case'aging':return c.old/c.young*100;case'indexAmount':return c.base*c.index/100;case'dependency':return(c.young+c.old)/(100-c.young-c.old)*100;case'quotientShare':return c.a/c.b*100;case'industryRemainder':return 100-c.industry-c.services;case'fossilRemainder':return 100-c.coal-c.gas;case'sum':return c.values.reduce((a,b)=>a+b,0);case'weightedGrowth':return((c.u1+c.r1)/(c.u0+c.r0)-1)*100;}return undefined;}
 test('every active family renders a finite, deterministic, single-submission question',()=>{
- for(const f of E.families.filter(f=>!E.paused[f.id]))for(let seed=1;seed<=32;seed++){
+ for(const f of E.families)for(let seed=1;seed<=32;seed++){
   const raw=E.build(f.id,seed),x=E.exam(raw);assert.deepEqual(x,E.exam(raw),f.id);
   assert.ok(x.stage.options.length>=2&&x.stage.options.length<=5,f.id);assert.equal(new Set(x.stage.options).size,x.stage.options.length,f.id);assert.ok(x.stage.options[x.stage.answer]);
   for(const fig of x.figures)assert.doesNotMatch(C.render(fig),/NaN|Infinity|undefined/,f.id);
@@ -17,7 +17,7 @@ test('every active family renders a finite, deterministic, single-submission que
 });
 test('rebuilt comparisons agree with independent arithmetic and retained geography facts',()=>{
  let checked=0;
- for(const f of E.families.filter(f=>!E.paused[f.id]))for(let seed=1;seed<=12;seed++){
+ for(const f of E.families)for(let seed=1;seed<=12;seed++){
   const x=E.exam(E.build(f.id,seed));for(const s of x.stage.statements||[]){const c=s.check;
    if(c.op==='geographicFact'){assert.ok(K.entities[c.name].facts[c.set].values.includes(c.value));checked++;}
    if(c.op!=='examComparison')continue;

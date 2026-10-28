@@ -7,9 +7,10 @@ const implemented=new Map();
 function add(id,evidence){if(!goals.some(g=>g.id===id))throw Error('Unknown goal '+id);if(!implemented.has(id))implemented.set(id,[]);implemented.get(id).push(evidence);}
 for(const [id,items]of Object.entries(F.bindings))add(id,{venue:'OX',file:'assets/lecture-goal-facts.js',items});
 for(const t of T.tables)for(const id of t.goalIds)add(id,{venue:'강의 표',table:t.id,file:'data/lecture-goal-table-overrides.json'});
-// A paused family is not a practice route: its goals are held, not verified.
-const paused=new Map();
-for(const f of M.families)for(const id of M.build(f.id,1).goalIds){if(M.paused[f.id]){if(!paused.has(id))paused.set(id,[]);paused.get(id).push({family:f.id,reason:M.paused[f.id]});}else add(id,{venue:'자료형·계산',family:f.id,file:'assets/materials-engine.js'});}
+// These goals' only practice route was a materials family that was paused on
+// 2026-10-27 and deleted on 2026-10-28; they stay held, never verified.
+const paused=new Map(Object.entries({"G022-2": [{"family": "solar-climate", "reason": "solar-month의 계절 판단으로 통합"}], "G037-4": [{"family": "meander-banks", "reason": "곡류의 침식 사면 한 점을 고르는 독립 유형의 근거 미확인. 기출의 하천 위치·수계·국제 하천 판단과 구별"}], "G041-2": [{"family": "religion-selected", "reason": "최대 종교를 제외한 소수 종교 세부 순위 대신 religion-relative의 기호 식별·종교 특성으로 통합"}, {"family": "religion-other", "reason": "기타 범례 일반론만 반복하는 독립 문항 보류. 종교별 분모는 기호 식별 문항의 조건으로 유지"}], "G044-2": [{"family": "religious-landmarks", "reason": "기출의 문화 전파·융합·국가 종교 판단을 건축물·도시 세부 명칭 암기로 바꾼 독립 유형 보류. 건축·종교 판단은 religious-buildings에 유지"}], "G058-3": [{"family": "pyramid-cohort", "reason": "두 시점의 동일 출생 집단 인원 증가량을 최대로 만드는 계산 확장의 근거 미확인. 기출의 성·연령 구조·노동 이주 판단은 population-pyramid에 유지"}], "G075-2": [{"family": "food-stock-balance", "reason": "가상 재고 변화까지 계산시키는 확장의 기출 근거 미확인"}], "G087-3": [{"family": "renewable-capacity-ranks", "reason": "기출의 발전원 식별·입지 판단과 다른 국가 순위 대조·MW/GWh 단위 계산 확장 보류"}], "G112-5": [{"family": "rain-ph-maps", "reason": "가상 격자 최솟값만 고르는 문항과 수소 이온 농도 로그 계산 확장 보류. 산성비 원인·영향은 OX·환경 문항에 유지"}]}));
+for(const f of M.families)for(const id of M.build(f.id,1).goalIds)add(id,{venue:'자료형·계산',family:f.id,file:'assets/materials-engine.js'});
 for(const id of ['G001-2','G004-1','G062-2','G097-3','G135-3'])add(id,{venue:'기출형 <보기>',file:'assets/exam-engine.js',check:id==='G001-2'?'line':id==='G004-1'?'relativePosition':id==='G097-3'?'relativeProductivity':'inverseUrban'});
 const runtime=JSON.parse(fs.readFileSync(root+'/audit/lecture-goals/runtime-evidence.json','utf8'));
 for(const [id,counts] of Object.entries(runtime.existingExamGoals))if(counts.true&&counts.false)add(id,{venue:'기출형 <보기>',file:'assets/exam-engine.js',runtime:'audit/lecture-goals/runtime-evidence.json',counts});
@@ -27,7 +28,7 @@ const verification=JSON.parse(fs.readFileSync(root+'/data/goal-verification.json
 for(const id of verified)if(held[id])throw Error('A partial goal cannot be verified: '+id);
 const items=goals.map(g=>({id:g.id,group:g.group,venue:g.venue,status:implemented.has(g.id)?verified.has(g.id)?'검증':'구현':paused.has(g.id)?'보류':'미구현',evidence:implemented.get(g.id)||[],remaining:held[g.id]||(g.venue==='OX'?'대표 정오 쌍을 연결함. 복합 목표의 모든 사례·조건 충족은 아직 별도 검수 전.':implemented.has(g.id)?'연습 연결과 생성 검사는 통과. 복합 완료 기준의 별도 검토가 남음.':'자료와 화면 연결을 아직 구현하지 않음.')}));
 for(const x of items)if(x.status==='검증')x.remaining='완료 기준의 계산·출제·범위 검사를 통과함.';
-for(const x of items)if(x.status==='보류'){x.evidence=paused.get(x.id).map(p=>({venue:'자료형·계산(보류)',family:p.family,file:'assets/materials-exam.js'}));x.remaining='유일한 연습 경로가 보류됨: '+paused.get(x.id).map(p=>p.family+' — '+p.reason).join('; ');}
+for(const x of items)if(x.status==='보류'){x.evidence=paused.get(x.id).map(p=>({venue:'자료형·계산(보류)',family:p.family,deleted:'2026-10-28'}));x.remaining='유일한 연습 경로였던 보류 자료형을 삭제함: '+paused.get(x.id).map(p=>p.family+' — '+p.reason).join('; ');}
 if(process.argv.includes('--write-status')){
  for(const x of items){const g=goals.find(g=>g.id===x.id);g.status=x.status;}
  fs.writeFileSync(file,JSON.stringify(goals,null,1)+'\n');

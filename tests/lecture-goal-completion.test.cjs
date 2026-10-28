@@ -64,10 +64,3 @@ test('population stacks calculate actual segment amounts and never silently conv
   assert.ok(!/NaN|Infinity|undefined/.test(chart.render(f)));
  }
 });
-
-test('cohort exercises show both dated pyramids and trace the same birth cohort',()=>{
- const db=require('../data/population-pyramids.json');for(let seed=1;seed<=12;seed++){
-  const q=M.build('pyramid-cohort',seed);assert.equal(q.figures.length,6);
-  for(const row of q.tables[0].rows){const n=row[0];for(const y of ['2010','2020'])assert.ok(q.figures.some(f=>f.name===n+' '+y+'년'));const a=db.countries[n]['2010'],b=db.countries[n]['2020'];close(row[1],sum(a.male.slice(6,8))+sum(a.female.slice(6,8)));close(row[2],sum(b.male.slice(8,10))+sum(b.female.slice(8,10)));}
- }
-});
