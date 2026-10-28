@@ -21,10 +21,32 @@ function particles(text,names){
  return text;
 }
 function sig(v){var m=Math.abs(v);return(m>=1000?Math.round(v):m>=10?Math.round(v*10)/10:m>=1?Math.round(v*100)/100:Math.round(v*1000)/1000).toLocaleString('ko-KR');}
+var EXACT=/약 -?[\d,]*\.\d|약 -?[\d,]+(?:\.\d+)?\s*%/;
+// A table value is shown to three significant figures, as exam tables are;
+// a year and a value of three figures or fewer are shown as they are.
+function shown(v){
+ if(typeof v!=='number'||!Number.isFinite(v)||v===0)return v;
+ if(Number.isInteger(v)&&v>=1800&&v<=2100)return v;
+ var e=Math.floor(Math.log10(Math.abs(v)))-2,k=Math.pow(10,e);
+ return e>=0?Math.round(v/k)*k:+(Math.round(v/k)*k).toFixed(-e);
+}
+// Exam wording: a rate or ratio is 높다/낮다, an amount or count is 많다/적다,
+// a signed or other quantity is 크다/작다.
+function words(noun){
+ var n=noun.replace(/[이가]$/,'');
+ if(/순|편차|차이|규모|폭/.test(n))return['크다.','작다.'];
+ if(/면적$/.test(n))return['넓다.','좁다.'];
+ if(/[율률]$|비율|비중|지수|부양비|단수|밀도|성비|GDP$/.test(n))return['높다.','낮다.'];
+ if(/인구|량|수$|액|인원|명|합계|부가가치|증가$/.test(n))return['많다.','적다.'];
+ return['크다.','작다.'];
+}
 function comparison(subject,object,noun,a,b,why,check){
- if(!Number.isFinite(a)||!Number.isFinite(b)||Math.abs(a-b)<1e-8)return null;
+ // Exam statements are decided by estimation: values closer than 10% are not compared.
+ if(!Number.isFinite(a)||!Number.isFinite(b)||Math.abs(a-b)<Math.max(Math.abs(a),Math.abs(b))*.1)return null;
+ noun=noun.replace(/^(.+) 계산값[이가]$/,function(_,base){return base+(batchim(base)?'이':'가');});
  // The correction shows both computed values, not only the method.
- return pair(topic(subject)+object+'보다 '+noun+' '+(a>b?'크다.':'작다.'),topic(subject)+object+'보다 '+noun+' '+(a>b?'작다.':'크다.'),why+' 계산값: '+subject+' 약 '+sig(a)+', '+object+' 약 '+sig(b)+'.',Object.assign({op:'examComparison',a:a,b:b},check));
+ var w=words(noun);
+ return pair(topic(subject)+object+'보다 '+noun+' '+(a>b?w[0]:w[1]),topic(subject)+object+'보다 '+noun+' '+(a>b?w[1]:w[0]),why+' 계산값: '+subject+' 약 '+sig(a)+', '+object+' 약 '+sig(b)+'.',Object.assign({op:'examComparison',a:a,b:b},check));
 }
 function choose(pairs,r){
  var ps=shuffle(pairs.filter(Boolean),r).slice(0,4);
@@ -191,7 +213,7 @@ function create(data,math,extra){
    var key=c.op+'|'+m[2];(groups[key]||(groups[key]=[])).push({subject:m[1],noun:m[2],result:c.result,check:c});
   });
   Object.keys(groups).forEach(function(k){var a=groups[k];if(a.length<2)return;
-   for(var i=0;i<Math.min(a.length,3);i++){var x=a[i],y=a[(i+1)%a.length];if(Math.abs(x.result-y.result)<Math.max(Math.abs(x.result),Math.abs(y.result))*.03)continue;
+   for(var i=0;i<Math.min(a.length,3);i++){var x=a[i],y=a[(i+1)%a.length];if(Math.abs(x.result-y.result)<Math.max(Math.abs(x.result),Math.abs(y.result))*.1)continue;
     var p=comparison(x.subject,y.subject,subject(x.noun),x.result,y.result,'각 대상의 같은 지표를 같은 분모로 계산한 뒤 비교한다.',{operands:[x.check,y.check],quantity:x.noun});if(p)out.push(p);
    }
   });return out;
@@ -542,9 +564,20 @@ function create(data,math,extra){
   // A direct recognition/calculation task stands on its own; never append a
   // compulsory, unrelated 'all residents are identical' second question.
   pairs=pairs.filter(function(p,i,a){return p&&a.findIndex(function(v){return v&&v.yes===p.yes&&v.no===p.no;})===i;});
+  // Exam statements compare and judge; they do not ask for a computed value
+  // to one decimal place or an exact percentage (2026-10-28).
+  pairs=pairs.map(function(p){
+   if(!p||p.check.op!=='urbanRuralGrowth')return p;
+   var c=p.check,n=p.yes.split('의 ')[0],why='도시 '+sig(c.u0)+'→'+sig(c.u1)+', 촌락 '+sig(c.r0)+'→'+sig(c.r1)+'(천 명).';
+   if(c.rural<-3)return pair(topic(n)+'촌락 인구가 감소했다.',topic(n)+'촌락 인구가 증가했다.',why,{op:'ruralSign',r0:c.r0,r1:c.r1});
+   if(c.rural>3&&c.urban>c.rural*1.1)return pair(topic(n)+'도시 인구 증가율이 촌락 인구 증가율보다 높다.',topic(n)+'촌락 인구 증가율이 도시 인구 증가율보다 높다.',why,{op:'urbanFaster',urban:c.urban,rural:c.rural});
+   return null;
+  });
+  if(!direct)pairs=pairs.filter(function(p){return !EXACT.test(p.yes)&&!EXACT.test(p.no);});
   pairs=pairs.map(withValues);
+  if(!direct)x.tables.forEach(function(t){t.rows=t.rows.map(function(row){return row.map(shown);});});
   if(!x.stage){
-   if(direct||pairs.filter(Boolean).length<2)x.stage=clone(q.stage1);
+   if(direct||pairs.filter(Boolean).length<3)x.stage=clone(q.stage1);
    else{x.stage=choose(pairs,r);x.judgment=true;}
   }
   if(!x.judgment){

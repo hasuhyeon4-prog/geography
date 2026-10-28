@@ -26,7 +26,7 @@ test('rebuilt comparisons agree with independent arithmetic and retained geograp
    if(c.quantity==='netMigrationPeople'){close(c.a,o[0][1]*(o[0][3]-o[0][2])/100);close(c.b,o[1][1]*(o[1][3]-o[1][2])/100);checked++;}
    if(c.quantity==='exportProductionRatio'){close(c.a,o[0].y/o[0].x);close(c.b,o[1].y/o[1].x);checked++;}
    if(c.quantity==='sexRatio'){close(c.a,o[0].male/o[0].female*100);close(c.b,o[1].male/o[1].female*100);checked++;}
-   assert.equal(s.truth,s.text.endsWith('크다.')===(c.a>c.b),f.id+' '+s.text);
+   assert.equal(s.truth,/(크다|많다|높다|넓다)\.$/.test(s.text)===(c.a>c.b),f.id+' '+s.text);
   }
  }
  assert.ok(checked>500);
@@ -49,7 +49,8 @@ test('named lookup keys disappear while necessary anonymous population quantitie
 });
 test('six-city matrix has two named anchors and a unique complete assignment',()=>{
  function permutations(a){return a.length?a.flatMap((x,i)=>permutations(a.filter((_,j)=>i!==j)).map(p=>[x,...p])):[[]];}
- const km=(a,b)=>Math.round(M.math.distance(D.cities[a],D.cities[b]));
+ // Tables show three significant figures, as exam tables do.
+ const km=(a,b)=>{const v=Math.round(M.math.distance(D.cities[a],D.cities[b])),k=Math.pow(10,Math.max(0,Math.floor(Math.log10(v))-2));return Math.round(v/k)*k;};
  for(let seed=1;seed<=12;seed++){
   const x=E.exam(E.build('city-distance',seed)),t=x.tables[0],unknown=['로스앤젤레스','샌프란시스코','시카고','휴스턴'];
   assert.equal(t.rows.length,6);assert.equal(t.rows[0][0],'뉴욕');assert.equal(t.rows[1][0],'보스턴');

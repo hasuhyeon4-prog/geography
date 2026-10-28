@@ -17,7 +17,7 @@ test('photo judgments use several anonymous panels and their own properties, nev
 test('relative religion identifies anonymous religions from countries before judging religion knowledge',()=>{
  for(let seed=1;seed<=40;seed++){
   const q=E.build('religion-relative',seed),x=E.exam(q),t=x.tables[0];assert.deepEqual(t.headers,['국가','A','B','C','D']);assert.deepEqual(x.identificationLabels,['A','B','C','D']);
-  for(let i=0;i<t.rows.length;i++){assert.equal(t.rows[i][0],q.assignment[i]);for(let j=0;j<4;j++)near(t.rows[i][j+1],q.tables[0].rows[i][q.tables[0].headers.indexOf(x.identification[j])]);}
+  for(let i=0;i<t.rows.length;i++){assert.equal(t.rows[i][0],q.assignment[i]);for(let j=0;j<4;j++){const v=q.tables[0].rows[i][q.tables[0].headers.indexOf(x.identification[j])];assert.ok(Math.abs(t.rows[i][j+1]-v)<=Math.abs(v)*.005,t.rows[i][j+1]+' ~ '+v);}}
   assert.ok(x.stage.statements.every(s=>s.check.op==='religionTrait'));assert.equal(x.figures.length,0);
  }
 });
@@ -28,7 +28,7 @@ test('new numeric comparisons recompute from the actual supplied operands and sa
    if(c.quantity==='migrantNaturalPeople'){for(let i=0;i<2;i++){const o=c.operands[i];near(i?c.b:c.a,o.population*(o.birthPerThousand-o.deathPerThousand)/1000);}}
    if(/^renewable/.test(c.quantity)){for(let i=0;i<2;i++){const j=c.indices[i];near(i?c.b:c.a,c.totals[j]*c.shares[j][c.column]/100);}}
    if(c.quantity==='gdpPopulation'){near(c.a,c.operands[0][1]/c.operands[0][2]);near(c.b,c.operands[1][1]/c.operands[1][2]);}
-   assert.equal(s.truth,s.text.endsWith('크다.')===(c.a>c.b));
+   assert.equal(s.truth,/(크다|많다|높다|넓다)\.$/.test(s.text)===(c.a>c.b));
   }
  }
 });
