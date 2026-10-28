@@ -62,3 +62,13 @@ test('lecture-coverage pairs bind to OX goals and lecture blocks, with balanced 
  for(const p of pairs)assert.ok(src.has('강의 '+p[3]+' · '+p[0])||F.bindings[p[0]],p[3]);
  for(const re of [ABS,HEDGE]){const o=pairs.filter(p=>re.test(p[1])).length,x=pairs.filter(p=>re.test(p[2])).length;assert.ok(Math.abs(o-x)<=pairs.length*.05,re+' O '+o+' X '+x);}
 });
+
+test('강의 표 asks no coin flips and no table twice',()=>{
+ const T=require('../assets/concept-tables.js'),D=require('../assets/goal-tables-data.js'),G=require('../assets/goal-tables.js').create(D);
+ const all=[...G.inventory('which','all'),...G.inventory('what','all')];
+ for(const q of all){assert.ok(q.custom.options.length>=3,q.key);assert.equal(new Set(q.custom.options).size,q.custom.options.length,q.key);}
+ const norm=s=>String(s).replace(/\s/g,''),goal=D.tables.map(g=>new Set(g.rows.flatMap(r=>r.slice(1).filter(Boolean).map(c=>norm(r[0])+'|'+norm(c)))));
+ for(const t of T.tables){const cells=t.rows.flatMap((r,k)=>t.columns.filter(c=>c.cells[k]).map(c=>norm(r)+'|'+norm(c.cells[k])));assert.ok(!goal.some(g=>cells.every(c=>g.has(c))),t.id+' repeats a goal table');}
+ const asked=new Set(all.flatMap(q=>q.t.goalIds||[]));for(const t of D.tables)for(const id of t.goalIds)assert.ok(asked.has(id),id+' lost its 강의 표 questions');
+ assert.ok(Object.keys(T.goalExams).length>=20);
+});

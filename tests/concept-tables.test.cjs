@@ -35,7 +35,9 @@ test('every table keeps its lecture cells, and an askable column separates all i
   // A table is practised only with three or more rows of one kind and a column that separates them.
   for (const t of T.tables) if (!t.studyOnly) assert.ok(t.rows.length >= 3 && t.columns.some(c => c.askable), t.id);
   for (const t of T.tables) if (t.rows.length < 3) assert.ok(t.studyOnly, t.id + ' has two rows');
-  assert.ok(T.tables.filter(t => !t.studyOnly).length >= 40, 'tables left to practise');
+  // Tables rebuilt for lecture goals replace their copies here (2026-10-28), so both count.
+  const G = require('../assets/goal-tables-data.js');
+  assert.ok(T.tables.filter(t => !t.studyOnly).length + G.tables.length >= 150, 'tables left to practise');
 });
 
 test('no row name, part or stem is left in what a question shows', () => {

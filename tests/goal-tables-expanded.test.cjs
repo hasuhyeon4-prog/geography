@@ -9,7 +9,7 @@ test('every lecture-table goal and every eligible column is reached by a real qu
  for(const g of goals.filter(x=>x.venue==='강의 표'))assert.ok(all.some(q=>q.t.goalIds.includes(g.id)),g.id);
  for(const t of G.tables)for(let j=0;j<t.columns.length;j++){
   if(t.skipQuizColumns.includes(t.columns[j].label))continue;
-  assert.ok(all.some(q=>q.t.id===t.id&&q.col===j),t.id+' '+t.columns[j].label);
+  assert.ok(all.some(q=>q.t.id===t.id&&(q.col===j||q.cols&&q.cols.includes(j))),t.id+' '+t.columns[j].label);
  }
  for(const q of all){assert.ok(q.custom.options.length>=2&&q.custom.options.length<=5,q.key);assert.equal(new Set(q.custom.options).size,q.custom.options.length);assert.ok(q.custom.options[q.custom.answer]);assert.ok(q.t.source.length);assert.ok(q.t.exams);}
  assert.equal(new Set(all.map(q=>q.key)).size,all.length,'stable question keys cannot collide');
