@@ -57,7 +57,7 @@ h2{font-size:19px;line-height:1.35;margin:2px 0 8px;word-break:keep-all}
 }
 @media(max-width:360px){.scope{gap:6px;padding:5px 8px}.scope label{font-size:11px;gap:4px}#card{padding-left:9px;padding-right:9px}.options{grid-template-columns:1fr 1fr}}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=20261028-ui4"></head>
+<link rel="stylesheet" href="assets/site.css?v=20261028-ui6"><script src="assets/site.js?v=20261028-ui6"></script></head>
 <body>
 <div id="bootNotice" role="status">지도를 준비하고 있어요.</div>
 <div id="app">
@@ -140,7 +140,9 @@ function wasMissed(name,h){
  var p=C.religionProfile(name),big=store.history.religion&&store.history.religion[name],small=p.group&&store.history[p.group.id]&&store.history[p.group.id][name];
  return !!(big&&big.last===false||p.detailRequired&&small&&small.last===false);
 }
+function savedHere(){var pool=C.assignPool(set(),'all');return (window.WGSaved?WGSaved.list('classify'):[]).map(function(k){return k.data}).filter(function(d){return d&&d.set===state.setId&&pool.indexOf(d.name)>=0}).map(function(d){return d.name})}
 function buildQueue(only){
+ if(!only)state.savedRun=false;
  var h=history(),pool=only||C.assignPool(set(),state.region);
  // Last-missed countries come first, then unseen ones, then the rest.
  var missed=shuffle(pool.filter(function(n){return wasMissed(n,h)})),fresh=shuffle(pool.filter(function(n){return !h[n]&&!wasMissed(n,h)})),rest=shuffle(pool.filter(function(n){return h[n]&&!wasMissed(n,h)}));
@@ -270,7 +272,9 @@ function renderPanel(){
    return;
   }
   var q=state.queue[state.index],answer=C.entry(s,q).values,toggle=el('input',{type:'checkbox'});toggle.checked=state.showNames;toggle.onchange=function(){state.showNames=this.checked;save();renderPanel();renderOverlay()};
-  panel.append(el('div',{className:'meta'},[el('span',{text:s.title}),progressEl({pos:state.index+1,len:state.queue.length,right:state.right,answered:state.index+(state.answer?1:0)}),el('label',{},[toggle,document.createTextNode(isPoints()?'이름 보기':'나라 이름 보기')])]));
+  panel.append(el('div',{className:'meta'},[el('span',{text:s.title}),progressEl({pos:state.index+1,len:state.queue.length,right:state.right,answered:state.index+(state.answer?1:0)}),window.WGSaved?WGSaved.button('classify',state.setId+'|'+q,{set:state.setId,name:q},function(){renderPanel()}):null,el('label',{},[toggle,document.createTextNode(isPoints()?'이름 보기':'나라 이름 보기')])]));
+  // Saved countries of this classification can be practised on their own.
+  var keptHere=savedHere();if(keptHere.length&&!state.savedRun)panel.append(el('button',{type:'button',className:'site-save',style:'margin:0 0 6px',text:'★ 저장한 '+keptHere.length+'개만 풀기',onclick:function(){state.savedRun=true;buildQueue(keptHere);renderAll();focusQuestion()}}));
   if(s.hierarchy){renderReligionQuestion(panel,q);return}
   panel.append(el('h2',{text:(state.answer||state.showNames?label(q)+' — ':'')+s.assignQuestion}));
   var grid=el('div',{className:'options'});
@@ -404,4 +408,4 @@ $('setSelect').value=state.setId;$('regionSelect').value=state.region;
 setMode(state.mode);lastSize=mapSize();$('bootNotice').hidden=true;
 })();
 </script>
-<script src="assets/site.js?v=20261028-ui4"></script></body></html>
+</body></html>

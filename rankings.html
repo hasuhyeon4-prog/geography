@@ -35,10 +35,10 @@ main{max-width:720px;margin:0 auto;padding:12px 12px calc(28px + env(safe-area-i
 .small{font-size:12px;line-height:1.5}.muted{color:var(--muted)}
 @media(max-width:360px){.navLink{padding:8px 6px;font-size:11px}.nav a{padding:8px 4px;font-size:11px}.rows li{grid-template-columns:20px 7.6em minmax(30px,1fr) 6.6em;gap:6px;font-size:13px}}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=20261028-ui4"></head>
+<link rel="stylesheet" href="assets/site.css?v=20261028-ui6"><script src="assets/site.js?v=20261028-ui6"></script></head>
 <body>
 <header class="site-header"><h1 class="sr-only">순위표</h1><nav class="site-nav" aria-label="연습 종류"><a href="index.html">위치</a><a href="classify.html">분류 지도</a><a href="rankings.html" aria-current="page">순위표</a><a href="facts.html">OX</a><a href="concepts.html">강의 표</a><a href="exam.html">기출형</a><a href="materials.html">자료형</a></nav></header>
-<div class="scope site-controls"><label for="groupSelect">주제<select id="groupSelect"></select></label><label for="modeSelect">방식<select id="modeSelect"><option value="study">순위표 보기</option><option value="quiz">순위 문제</option></select></label></div>
+<div class="scope site-controls"><label for="groupSelect">주제<select id="groupSelect"></select></label><label for="modeSelect">방식<select id="modeSelect"><option value="study">순위표 보기</option><option value="quiz">순위 문제</option><option value="saved">저장한 문제</option></select></label></div>
 <div class="scope"><label for="policySelect">연습<select id="policySelect"><option value="basic">기출 핵심 회상</option><option value="dated">표를 보고 자료 읽기</option></select></label><span class="small muted">세계·대륙 범위와 생산·수출 지표를 구별하세요.</span></div>
 <main id="main" aria-live="polite"></main>
 <script src="assets/rankings.js?v=20261028-trim2"></script>
@@ -54,7 +54,7 @@ function ranked(r){return r.unit==='순위'}
 function fmt(r,x){return ranked(r)?'':x.toLocaleString('ko-KR',{maximumFractionDigits:r.digits})+' '+r.unit}
 function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_rankings_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
 var store=readStore();if(!store.miss||typeof store.miss!=='object')store.miss={};
-var state={group:R.groups.some(function(g){return g.id===store.group})?store.group:'all',mode:store.mode==='quiz'?'quiz':'study',explicit:false,queue:[],index:0,q:null,answer:null,picked:[],right:0,wrong:[]};
+var state={group:R.groups.some(function(g){return g.id===store.group})?store.group:'all',mode:['quiz','saved'].indexOf(store.mode)>=0?store.mode:'study',explicit:false,queue:[],index:0,q:null,answer:null,picked:[],right:0,wrong:[]};
 function save(){try{localStorage.setItem('wg_rankings_v1',JSON.stringify({group:state.group,mode:state.mode,miss:store.miss}))}catch(e){}}
 function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(c){if(c!=null&&c!==false)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
 function progressEl(o){var p=[];if(o.len)p.push(o.pos+' / '+o.len);p.push('정답 '+o.right+'/'+o.answered);if(o.extra)p.push(o.extra);if(o.review)p.push('다시 풀기 '+o.review);return el('span',{className:'site-progress',role:'status',text:p.join(' · ')});}
@@ -117,7 +117,14 @@ function orderQ(r){
  return {type:'order',r:r,text:head(r)+' — 큰 순서대로 누르세요.',options:shuffle(subset.map(function(x){return x.name})),answer:subset.map(function(x){return x.name})};
 }
 function makeQuestion(r){var gens=shuffle([pairQ,pairQ,extremeQ,orderQ]);for(var i=0;i<gens.length;i++){var q=gens[i](r);if(q){q.reading=true;q.text='아래 표에서 '+q.text;return q}}return null}
+// A saved question is kept as it was shown, with its ranking attached again.
+function savedKey(q){return q.id||q.r.id+'|'+q.text}
+function savedData(q){var d={};Object.keys(q).forEach(function(k){if(k!=='r')d[k]=q[k]});d.rid=q.r.id;return d}
 function startQuiz(only){
+ if(state.mode==='saved'){
+  state.queue=(window.WGSaved?WGSaved.list('rankings'):[]).map(function(k){return k.data}).filter(function(d){return d&&byId[d.rid]}).map(function(d){return Object.assign({},d,{r:byId[d.rid]})});
+  state.index=0;state.answer=null;state.picked=[];state.right=0;state.wrong=[];renderQuiz();return;
+ }
  if(!state.explicit){
   var ids=(only||pool()).map(function(r){return r.id}),available=E.questions.filter(function(q){return ids.includes(q.rid)});
   available=available.map(function(q){return {q:q,weight:Math.random()*(1+Math.min(3,store.miss[q.id]||0))}}).sort(function(a,b){return b.weight-a.weight});
@@ -149,6 +156,7 @@ function tableOf(r,highlight){
 }
 function renderQuiz(){
  var main=$('main');main.replaceChildren();
+ if(!state.queue.length&&state.mode==='saved'){main.append(el('section',{className:'card'},[el('h2',{text:'저장한 문제가 없어요'}),el('p',{className:'small muted',text:'문제 위의 ☆ 저장을 누르면 여기에 모입니다.'})]));return}
  if(!state.queue.length){main.append(el('section',{className:'card'},[el('h2',{text:'이 범위는 참고표로 볼 수 있어요'}),el('p',{className:'small muted',text:'‘순위표 보기’로 확인하거나 ‘표를 보고 자료 읽기’로 연습하세요.'})]));return}
  if(state.index>=state.queue.length){
   var seen={},wrong=state.wrong.filter(function(r){return seen[r.id]?false:(seen[r.id]=true)});
@@ -158,7 +166,7 @@ function renderQuiz(){
   main.append(card);return;
  }
  var q=state.queue[state.index],card=el('section',{className:'card'});
- card.append(el('div',{className:'progress'},[el('span',{text:R.groups.find(function(g){return g.id===q.r.group}).name}),progressEl({pos:state.index+1,len:state.queue.length,right:state.right,answered:state.index+(state.answer!=null?1:0)})]),el('p',{className:'q',text:q.text}));
+ card.append(el('div',{className:'progress'},[el('span',{text:R.groups.find(function(g){return g.id===q.r.group}).name}),el('span',{className:'site-progress-row',style:'margin:0'},[progressEl({pos:state.index+1,len:state.queue.length,right:state.right,answered:state.index+(state.answer!=null?1:0)}),window.WGSaved?WGSaved.button('rankings',savedKey(q),savedData(q)):null])]),el('p',{className:'q',text:q.text}));
  if(q.reading)card.append(el('p',{className:'small muted',text:q.r.year+(q.r.scope?' · '+q.r.scope:'')+' · '+q.r.unit}),tableOf(q.r,q.r.items.map(function(i){return i.name})));
  var grid=el('div',{className:'choices'});
  q.options.forEach(function(name){
@@ -191,4 +199,4 @@ $('policySelect').onchange=function(){state.explicit=this.value==='dated';render
 render();
 })();
 </script>
-<script src="assets/site.js?v=20261028-ui4"></script></body></html>
+</body></html>

@@ -19,3 +19,7 @@
 /* Shared progress chip, top right of each question card. */
 .site-progress{display:inline-block;flex:none;margin-left:auto;padding:3px 10px;border-radius:999px;background:#eef4f5;color:#3d5560;font:600 12px/1.4 system-ui,-apple-system,"Noto Sans KR",sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap}
 .site-progress-row{display:flex;align-items:center;gap:8px;font-size:12px;color:#60727b;margin:0 0 8px}
+/* ☆ 저장: keep a question to practise again. */
+.site-save{flex:none;min-height:0;height:auto;padding:3px 9px;text-align:center;border:1px solid #cfdcdf;border-radius:999px;background:#fff;color:#60727b;font:600 12px/1.4 system-ui,-apple-system,"Noto Sans KR",sans-serif;cursor:pointer;white-space:nowrap}
+.site-save[aria-pressed=true]{border-color:#e0a100;background:#fff8e1;color:#8a5a00}
+.site-save:focus-visible{outline:2px solid #086b70;outline-offset:1px}

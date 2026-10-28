@@ -27,10 +27,10 @@ tr.hit td{background:#fff8db}td.name{font-weight:700;white-space:nowrap;min-widt
 .small{font-size:12px;line-height:1.5}.muted{color:var(--muted)}h2{font-size:17px;margin:0 0 6px}
 .hint{font-size:12px;color:var(--muted);text-align:center}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=20261028-ui4"></head>
+<link rel="stylesheet" href="assets/site.css?v=20261028-ui6"><script src="assets/site.js?v=20261028-ui6"></script></head>
 <body>
 <header class="site-header"><h1 class="sr-only">강의 표</h1><nav class="site-nav" aria-label="연습 종류"><a href="index.html">위치</a><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html">OX</a><a href="concepts.html" aria-current="page">강의 표</a><a href="exam.html">기출형</a><a href="materials.html">자료형</a></nav></header>
-<div class="scope site-controls"><label for="domainSelect">주제<select id="domainSelect"></select></label><label for="modeSelect">방식<select id="modeSelect"><option value="which">설명 → 대상</option><option value="what">대상 → 설명</option><option value="study">표 보기</option></select></label></div>
+<div class="scope site-controls"><label for="domainSelect">주제<select id="domainSelect"></select></label><label for="modeSelect">방식<select id="modeSelect"><option value="which">설명 → 대상</option><option value="what">대상 → 설명</option><option value="study">표 보기</option><option value="saved">저장한 문제</option></select></label></div>
 <main id="main" aria-live="polite"></main>
 <script src="assets/concept-tables.js?v=20261028-dedupe1"></script>
 <script src="assets/goal-tables-data.js?v=20261028-dedupe1"></script>
@@ -47,7 +47,7 @@ function progressEl(o){var p=[];if(o.len)p.push(o.pos+' / '+o.len);p.push('정�
 function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_concepts_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
 var store=readStore();if(!store.history||typeof store.history!=='object')store.history={};
 var domainName={};T.domains.forEach(function(d){domainName[d.id]=d.name});
-var state={domain:domainName[store.domain]?store.domain:'all',mode:['which','what','study'].includes(store.mode)?store.mode:'which',q:null,answer:null,right:0,total:0};
+var state={domain:domainName[store.domain]?store.domain:'all',mode:['which','what','study','saved'].includes(store.mode)?store.mode:'which',q:null,answer:null,right:0,total:0};
 function save(){try{localStorage.setItem('wg_concepts_v1',JSON.stringify({domain:state.domain,mode:state.mode,history:store.history}))}catch(e){}}
 function tables(){return T.tables.filter(function(t){return state.domain==='all'||t.domain===state.domain})}
 function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),x=a[i];a[i]=a[j];a[j]=x}return a}
@@ -61,16 +61,20 @@ function tableEl(t,hit){
 function examsEl(t){return t.exams.length?el('p',{className:'small muted',text:'관련 기출 '+t.exams.length+'문항: '+t.exams.slice(0,4).join(', ')+(t.exams.length>4?' 외':'')}):null}
 // The questions this mode can ask, each with how often it was missed.
 function items(){
+ if(state.mode==='saved'){var kept=window.WGSaved?WGSaved.list('concepts').map(function(k){return k.key}):[];return itemsFor('which').concat(itemsFor('what')).filter(function(it){return kept.indexOf(it.key)>=0})}
+ return itemsFor(state.mode);
+}
+function itemsFor(mode){
  var out=[];
  tables().forEach(function(t){
   // A table of two rows, or of rows that are not the same kind of thing, is for reading only.
   if(t.studyOnly||t.goalTable)return;
   t.rows.forEach(function(r,i){
-   if(state.mode==='which'){if(t.columns.some(function(c){return c.askable&&c.cells[i]}))out.push({t:t,row:i,key:'which|'+t.id+'|'+r})}
+   if(mode==='which'){if(t.columns.some(function(c){return c.askable&&c.cells[i]}))out.push({t:t,row:i,key:'which|'+t.id+'|'+r})}
    else t.columns.forEach(function(c,j){if(c.askable)out.push({t:t,row:i,col:j,key:'what|'+t.id+'|'+r+'|'+c.label})});
   });
  });
- if(goalTables)out=out.concat(goalTables.inventory(state.mode,state.domain));
+ if(goalTables)out=out.concat(goalTables.inventory(mode,state.domain));
  return out;
 }
 // Missed and unseen questions come first; otherwise at random.
@@ -110,19 +114,21 @@ function renderStudy(main){
  main.append(el('p',{className:'small muted',text:'강의 표 '+list.length+'개. 각 표는 강의가 대상끼리 비교한 그대로입니다. 연습에서는 같은 표 안에서만 고릅니다.'}));
  list.forEach(function(t){main.append(el('section',{className:'card'},[el('div',{className:'meta',text:title(t)}),el('h2',{text:t.rows.join(' · ')}),tableEl(t,-1),examsEl(t),noteOf(t)]))});
 }
+// A saved question keeps the direction it was asked in, whatever 방식 is chosen now.
+function qmode(q){return /^(goal-)?which\|/.test(q.it.key)?'which':/^(goal-)?what\|/.test(q.it.key)?'what':state.mode}
 function renderQuiz(main){
  var q=state.q;
- if(!q){main.append(el('section',{className:'card'},[el('p',{text:'이 영역에는 문항이 없어요.'})]));return}
+ if(!q){main.append(el('section',{className:'card'},[el('p',{text:state.mode==='saved'?'저장한 문제가 없어요. 문제 위의 ☆ 저장을 누르면 여기에 모입니다.':'이 영역에는 문항이 없어요.'})]));return}
  var t=q.it.t,i=q.it.row,name=t.rows[i],card=el('section',{className:'card'});
- card.append(el('div',{className:'meta site-progress-row'},[el('span',{text:title(t)}),progressEl({right:state.right,answered:state.total})]));
+ card.append(el('div',{className:'meta site-progress-row'},[el('span',{text:title(t)}),progressEl({right:state.right,answered:state.total}),window.WGSaved?WGSaved.button('concepts',q.it.key):null]));
  if(q.custom){card.append(el('p',{className:'q',text:q.custom.prompt}));if(q.custom.description)card.append(el('p',{text:q.custom.description}))}
- else if(state.mode==='which'){
+ else if(qmode(q)==='which'){
   card.append(el('p',{className:'q',text:'강의 표에서 다음 설명에 해당하는 것은?'}));
   // Only columns whose cells differ row by row describe the row; the rest stay in the table view.
   card.append(el('ul',{className:'desc'},t.columns.filter(function(c){return c.askable&&c.cells[i]}).map(function(c){return el('li',{},[el('b',{text:c.label}),mask(c.cells[i],t,i)])})));
  }else{var label=t.columns[q.it.col].label;card.append(el('p',{className:'q',text:name+'의 「'+label+'」'+particle(label)+'?'}))}
  var box=el('div',{className:'choices'});
- var optText=function(o){return q.custom?q.custom.options[o]:state.mode==='which'?t.rows[o]:mask(t.columns[q.it.col].cells[o],t,-1)};
+ var optText=function(o){return q.custom?q.custom.options[o]:qmode(q)==='which'?t.rows[o]:mask(t.columns[q.it.col].cells[o],t,-1)};
  q.options.forEach(function(o,k){
   var b=el('button',{type:'button',text:(k+1)+'. '+optText(o),onclick:function(){choose(o)}});
   if(state.answer!==null){b.disabled=true;if(o===q.answer)b.className='right';else if(o===state.answer)b.className='wrong'}
@@ -131,7 +137,7 @@ function renderQuiz(main){
  card.append(box);
  if(state.answer!==null){
   var ok=state.answer===q.answer;
-  card.append(el('div',{className:'result '+(ok?'good':'bad'),role:'status'},[el('b',{text:ok?'정답':'오답 — 정답: '+(q.custom?q.custom.options[q.answer]:state.mode==='which'?t.rows[q.answer]:t.columns[q.it.col].cells[q.answer])})]));
+  card.append(el('div',{className:'result '+(ok?'good':'bad'),role:'status'},[el('b',{text:ok?'정답':'오답 — 정답: '+(q.custom?q.custom.options[q.answer]:qmode(q)==='which'?t.rows[q.answer]:t.columns[q.it.col].cells[q.answer])})]));
   if(q.custom)card.append(el('p',{className:'small',text:q.custom.explain}),el('p',{className:'small muted',text:'강의 근거 '+t.source.join(' · ')}));
   card.append(tableEl(t,i));var ex=examsEl(t);if(ex)card.append(ex);
   card.append(el('button',{type:'button',className:'primary big',text:'다음 문항',onclick:next}));
@@ -157,5 +163,5 @@ document.addEventListener('keydown',function(e){
 state.mode==='study'?render():next();
 })();
 </script>
-<script src="assets/site.js?v=20261028-ui4"></script></body>
+</body>
 </html>

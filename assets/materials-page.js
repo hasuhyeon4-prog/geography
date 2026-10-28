@@ -11,7 +11,7 @@ var stats=saved.stats&&typeof saved.stats==='object'&&!Array.isArray(saved.stats
 var retiredStats=saved.retiredStats&&typeof saved.retiredStats==='object'&&!Array.isArray(saved.retiredStats)?saved.retiredStats:{};
 if(saved.revision!==3){retiredStats[saved.revision===2?'before-20261027-corpus':'before-20261027']=stats;stats={};}
 var review=Array.isArray(saved.review)?saved.review.filter(function(x){return x&&Number.isSafeInteger(x.seed)&&families.some(function(f){return f.id===x.family;});}):[];
-var state={family:families.some(function(f){return f.id===saved.family;})?saved.family:'all',order:['weak','random','review'].includes(saved.order)?saved.order:'weak',seed:Number.isSafeInteger(saved.seed)?saved.seed:1,q:null,x:null,answer:null,right:0,total:0,error:null};
+var state={family:families.some(function(f){return f.id===saved.family;})?saved.family:'all',order:['weak','random','review','saved'].includes(saved.order)?saved.order:'weak',seed:Number.isSafeInteger(saved.seed)?saved.seed:1,q:null,x:null,answer:null,right:0,total:0,error:null};
 function save(){try{localStorage.setItem('wg_materials_v1',JSON.stringify({revision:3,family:state.family,order:state.order,seed:state.seed,stats:stats,retiredStats:retiredStats,review:review}));}catch(e){}}
 function el(tag,props,kids){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k]);});(kids||[]).forEach(function(c){if(c!=null)e.appendChild(typeof c==='string'?document.createTextNode(c):c);});return e;}
 function progressEl(o){var p=[];if(o.len)p.push(o.pos+' / '+o.len);p.push('정답 '+o.right+'/'+o.answered);if(o.extra)p.push(o.extra);if(o.review)p.push('다시 풀기 '+o.review);return el('span',{className:'site-progress',role:'status',text:p.join(' · ')});}
@@ -23,6 +23,11 @@ function next(){
  if(state.order==='review'){
   if(!pending.length){state.q=null;render();return;}
   var x=pending[0];id=x.family;seed=x.seed;
+ }else if(state.order==='saved'){
+  // Saved questions in the order they were kept, round and round.
+  var kept=(window.WGSaved?WGSaved.list('materials'):[]).map(function(k){return k.data;}).filter(function(d){return d&&families.some(function(f){return f.id===d.family;})&&(state.family==='all'||d.family===state.family);});
+  if(!kept.length){state.q=null;state.error='저장한 문제가 없어요. 문제 위의 ☆ 저장을 누르면 여기에 모입니다.';render();return;}
+  var k=kept[(state.savedAt||0)%kept.length];state.savedAt=(state.savedAt||0)+1;id=k.family;seed=k.seed;
  }else{id=chooseFamily();seed=state.seed++;}
  try{state.q=engine.build(id,seed);state.x=engine.exam(state.q);}catch(e){state.q=null;state.error='이 주제의 자료를 표시하지 못했어요. 다른 주제를 선택하거나 새로고침해 주세요.';}
  save();render();
@@ -43,7 +48,7 @@ function textScale(photo){var w=Math.max(200,($('main').clientWidth||700)-60);re
 function render(){
  var main=$('main');main.textContent='';
  if(!state.q){main.append(el('section',{className:'card empty'},[el('p',{text:state.error||'이 범위에 다시 풀 문항이 없어요.'}),el('a',{href:'exam.html',text:'기출형으로 돌아가기'})]));return;}
- var q=state.q,x=state.x,done=state.answer!==null,card=el('section',{className:'card'},[el('div',{className:'site-progress-row'},[progressEl({right:state.right,answered:state.total,review:review.length})]),el('h2',{text:x.stage.question}),x.condition?el('p',{className:'note',text:x.condition}):null]);
+ var q=state.q,x=state.x,done=state.answer!==null,card=el('section',{className:'card'},[el('div',{className:'site-progress-row'},[progressEl({right:state.right,answered:state.total,review:review.length}),window.WGSaved?WGSaved.button('materials',q.id+'|'+q.seed,{family:q.id,seed:q.seed}):null]),el('h2',{text:x.stage.question}),x.condition?el('p',{className:'note',text:x.condition}):null]);
  var figureHost=x.figureLayout==='photos'?el('div',{className:'photo-grid'}):card;
  x.figures.forEach(function(f){var frame=el('div',{className:'figure'});frame.innerHTML=C.render(f,{textScale:textScale(x.figureLayout==='photos')});
   if(x.figureLayout==='photos')frame.append(el('p',{className:'photo-label',text:f.name}));

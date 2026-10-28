@@ -54,10 +54,10 @@ td.text{white-space:normal;text-align:left;line-height:1.55;word-break:keep-all;
 @media(max-width:560px){.scope{flex-wrap:wrap;row-gap:6px}.scope label:not(.toggle){flex:1 1 100%}}
 @media(max-width:360px){.navLink{padding:8px 6px;font-size:11px}.nav a{padding:8px 4px;font-size:11px}.choices.combo button{font-size:12px}}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=20261028-ui4"></head>
+<link rel="stylesheet" href="assets/site.css?v=20261028-ui6"><script src="assets/site.js?v=20261028-ui6"></script></head>
 <body>
 <header class="site-header"><h1 class="sr-only">기출형 연습</h1><nav class="site-nav" aria-label="연습 종류"><a href="index.html">위치</a><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html">OX</a><a href="concepts.html">강의 표</a><a href="exam.html" aria-current="page">기출형</a><a href="materials.html">자료형</a></nav></header>
-<div class="scope site-controls"><label for="themeSelect">주제<select id="themeSelect"></select></label><label for="formatSelect">형식<select id="formatSelect"></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><button type="button" id="reviewBtn" class="reviewBtn"></button></div>
+<div class="scope site-controls"><label for="themeSelect">주제<select id="themeSelect"></select></label><label for="formatSelect">형식<select id="formatSelect"></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><button type="button" id="reviewBtn" class="reviewBtn"></button><button type="button" id="savedBtn" class="reviewBtn"></button></div>
 
 <main id="main" aria-live="polite"></main><p class="site-hint">키보드: 1~5로 고르고 Enter로 다음</p>
 <div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 항목마다 적은 기간(대개 2015~2025년)의 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
@@ -70,7 +70,8 @@ td.text{white-space:normal;text-align:left;line-height:1.55;word-break:keep-all;
 var $=function(id){return document.getElementById(id)};
 if(!window.WGEntityKB||!window.WGExamThemes||!window.WGExamEngine){$('main').textContent='문항 자료를 불러오지 못했어요. 새로고침해 주세요.';return}
 var engine=WGExamEngine.create(WGEntityKB,WGExamThemes);
-function buildQuestion(opts){return engine.build(Object.assign({},opts,{integrated:true}));}
+// Every question gets a seed so a saved one can be built again exactly (☆ 저장).
+function buildQuestion(opts){var o=Object.assign({},opts,{integrated:true});if(o.seed==null)o.seed=1+Math.floor(Math.random()*1e9);var q=engine.build(o);if(q){q.rebuild=JSON.parse(JSON.stringify(o));q.rebuild.themeId=q.theme.id;}return q;}
 function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_exam_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
 var store=readStore();if(!store.stats||typeof store.stats!=='object')store.stats={};if(!Array.isArray(store.recent))store.recent=[];
 var FORMATS=[['all','전체 형식'],['rows','대상 식별'],['columns','항목 식별 (A~C)'],['joint','동시 식별'],['implicit','실전형 (지도)']];
@@ -154,6 +155,13 @@ function grade(ok){var x=state.reviewItem&&store.review[state.reviewItem.key];if
 function record(themeId,stage,ok){var s=store.stats[themeId]||(store.stats[themeId]={s1:[0,0],s2:[0,0]});s[stage][1]++;if(ok)s[stage][0]++;save()}
 function next(){
  state.reviewItem=null;
+ if(state.savedMode){
+  // Saved questions in the order they were kept, round and round.
+  var kept=window.WGSaved?WGSaved.list('exam').filter(function(k){return k.data&&k.data.themeId}):[];
+  state.q=null;
+  for(var j=0;j<kept.length&&!state.q;j++){var k=kept[((state.savedAt||0)+j)%kept.length];state.q=buildQuestion(k.data);}
+  state.savedAt=(state.savedAt||0)+1;shown();return;
+ }
  if(state.reviewing){
   // The earliest due item; one whose question can no longer be made (data changed) is dropped.
   state.q=null;var due=dueItems();
@@ -351,13 +359,15 @@ function examCondition(t){
 function render(){
  var main=$('main'),q=state.q;main.replaceChildren();
  var n=dueItems().length,all=Object.keys(store.review).length,rb=$('reviewBtn');
+ var sb=$('savedBtn'),ns=window.WGSaved?WGSaved.count('exam'):0;sb.textContent=state.savedMode?'저장 끝내기':'저장 '+ns;sb.className='reviewBtn'+(state.savedMode?' on':'');sb.title='☆ 저장한 문제만 풉니다';
  rb.textContent=state.reviewing?'복습 끝내기':'복습 '+n;rb.className='reviewBtn'+(state.reviewing?' on':n?' due':'');rb.title='틀린 비교·사실을 간격을 두고 다시 풉니다 (전체 '+all+'개)';
+ if(!q&&state.savedMode){main.append(el('section',{className:'card'},[el('p',{text:'저장한 문제가 없어요. 문제 위의 ☆ 저장을 누르면 여기에 모입니다.'})]));return}
  if(!q&&state.reviewing){
   var later=Object.keys(store.review).map(function(k){return store.review[k].due}).sort(function(a,b){return a-b})[0];
   main.append(el('section',{className:'card'},[el('p',{text:all?'지금 복습할 항목이 없어요. 남은 '+all+'개는 '+new Date(later).toLocaleString('ko-KR',{month:'long',day:'numeric',hour:'numeric',minute:'2-digit'})+'부터 다시 나옵니다.':'복습할 항목이 없어요. 틀린 비교와 사실이 여기에 모입니다.'}),
    el('button',{type:'button',onclick:function(){state.reviewing=false;next()},text:'일반 문제로'})]));return}
  if(!q){main.append(el('section',{className:'card'},[el('p',{text:'이 주제·형식으로 문항을 만들지 못했어요. 다른 주제나 형식을 골라 주세요.'})]));return}
- var t=q.theme,card=el('section',{className:'card'});card.append(el('div',{className:'site-progress-row'},[progressEl({right:state.session.s2,answered:state.session.n2,extra:state.session.n1?'식별 '+state.session.s1+'/'+state.session.n1:'',review:dueItems().length})]));
+ var t=q.theme,card=el('section',{className:'card'});card.append(el('div',{className:'site-progress-row'},[progressEl({right:state.session.s2,answered:state.session.n2,extra:state.session.n1?'식별 '+state.session.s1+'/'+state.session.n1:'',review:dueItems().length}),window.WGSaved&&q.rebuild?WGSaved.button('exam',q.rebuild.themeId+'|'+q.rebuild.seed,q.rebuild,function(){var sb=$('savedBtn');if(sb&&!state.savedMode)sb.textContent='저장 '+WGSaved.count('exam');}):null]));
  if(state.targetKey)card.append(el('p',{className:'small',text:'선택한 비교를 집중 연습하고 있어요. 주제를 바꾸면 전체 연습으로 돌아갑니다.'}));
  // What a review is about is named only after answering; before, the name would give it away.
  if(state.reviewItem)card.append(el('p',{className:'small',text:'복습 ('+(state.reviewItem.box+1)+'/'+STEPS.length+'단계)'+(state.a2!==null?': '+state.reviewItem.label:'')+' · 남은 복습 '+n+'개'}));
@@ -499,7 +509,8 @@ $('formatSelect').onchange=function(){state.format=this.value;state.targetKey=nu
 $('nameMode').checked=state.nameMode;
 $('nameMode').onchange=function(){state.nameMode=this.checked;save();render()};
 $('themeSelect').onchange=function(){state.theme=this.value;state.targetKey=null;state.reviewing=false;formats();save();next()};
-$('reviewBtn').onclick=function(){state.reviewing=!state.reviewing;state.targetKey=null;next()};
+$('reviewBtn').onclick=function(){state.reviewing=!state.reviewing;state.savedMode=false;state.targetKey=null;next()};
+$('savedBtn').onclick=function(){state.savedMode=!state.savedMode;state.reviewing=false;state.targetKey=null;state.savedAt=0;next()};
 document.addEventListener('keydown',function(e){
  if(e.target.tagName==='SELECT'||e.altKey||e.ctrlKey||e.metaKey||!state.q)return;
  var n=parseInt(e.key,10);
@@ -509,4 +520,4 @@ document.addEventListener('keydown',function(e){
 next();
 })();
 </script>
-<script src="assets/site.js?v=20261028-ui4"></script></body></html>
+</body></html>

@@ -13,7 +13,7 @@ test('the real page asks the integrated engine and postpones all identification 
  const html=fs.readFileSync(require.resolve('../exam.html'),'utf8');
  const scripts=[...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].map(m=>m[1]).filter(s=>s.trim());
  for(const s of scripts)new vm.Script(s);
- assert.match(html,/engine\.build\(Object\.assign\(\{\},opts,\{integrated:true\}\)\)/);
+ assert.match(html,/var o=Object\.assign\(\{\},opts,\{integrated:true\}\);[^\n]{0,120}engine\.build\(o\)/);
  assert.match(html,/revealed=state\.a2!==null/);
  const answer1=html.slice(html.indexOf('function answer1('),html.indexOf('function answer2('));
  assert.doesNotMatch(answer1,/record\(|remember|session\.n1/);

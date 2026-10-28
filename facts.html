@@ -34,10 +34,10 @@ h2{font-size:21px;margin:2px 0 10px}
 .hint{margin-top:12px;font-size:12px;color:var(--muted);text-align:center}
 @media(min-width:700px){.scope{grid-template-columns:320px 220px;justify-content:center}.claim{font-size:22px}}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=20261028-ui4"></head>
+<link rel="stylesheet" href="assets/site.css?v=20261028-ui6"><script src="assets/site.js?v=20261028-ui6"></script></head>
 <body>
 <header class="site-header"><h1 class="sr-only">통계 OX</h1><nav class="site-nav" aria-label="연습 종류"><a href="index.html">위치</a><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html" aria-current="page">OX</a><a href="concepts.html">강의 표</a><a href="exam.html">기출형</a><a href="materials.html">자료형</a></nav></header>
-<div class="scope site-controls"><label for="topicSelect">주제<select id="topicSelect"></select></label><label for="orderSelect">순서<select id="orderSelect"><option value="weak">틀린 것 먼저</option><option value="random">무작위</option><option value="wrongOnly">최근 틀린 것만</option></select></label></div>
+<div class="scope site-controls"><label for="topicSelect">주제<select id="topicSelect"></select></label><label for="orderSelect">순서<select id="orderSelect"><option value="weak">틀린 것 먼저</option><option value="random">무작위</option><option value="wrongOnly">최근 틀린 것만</option><option value="saved">저장한 문제</option></select></label></div>
 <main><section class="card" id="card" aria-live="polite"></section><p class="hint">키보드: O·X(또는 1·2)로 답하고 Enter로 다음</p></main>
 <script src="assets/fact-statements.js?v=20261022-1"></script>
 <script src="assets/lecture-goal-facts.js?v=20261028-coverage2"></script>
@@ -51,7 +51,7 @@ function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_facts_v1')||'
 var store=readStore();if(!store.history||typeof store.history!=='object')store.history={};
 if(!store.retiredHistory||typeof store.retiredHistory!=='object')store.retiredHistory={};
 F.items.forEach(function(it){var h=store.history[it.id];if(h&&it.revision&&h.revision!==it.revision){store.retiredHistory[it.id+'@'+(h.revision||1)]=h;delete store.history[it.id]}});
-var state={topic:F.topics.some(function(t){return t.id===store.topic})?store.topic:'all',order:['weak','random','wrongOnly'].includes(store.order)?store.order:'weak',queue:[],index:0,answer:null,right:0,wrong:[]};
+var state={topic:F.topics.some(function(t){return t.id===store.topic})?store.topic:'all',order:['weak','random','wrongOnly','saved'].includes(store.order)?store.order:'weak',queue:[],index:0,answer:null,right:0,wrong:[]};
 function save(){try{localStorage.setItem('wg_facts_v1',JSON.stringify({topic:state.topic,order:state.order,history:store.history,retiredHistory:store.retiredHistory}))}catch(e){}}
 function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
 function pool(){return F.items.filter(function(it){return state.topic==='all'||it.topic===state.topic})}
@@ -60,6 +60,7 @@ function build(only){
  if(only)state.queue=shuffle(list.slice());
  else if(state.order==='random')state.queue=shuffle(list);
  else if(state.order==='wrongOnly')state.queue=shuffle(list.filter(function(id){return h[id]&&h[id].last===false}));
+ else if(state.order==='saved'){var kept=window.WGSaved?WGSaved.list('facts').map(function(x){return x.key}):[];state.queue=shuffle(kept.filter(function(id){return byId[id]}));}
  // Last-missed first, then unseen, then the rest.
  else state.queue=shuffle(list.filter(function(id){return h[id]&&h[id].last===false})).concat(shuffle(list.filter(function(id){return !h[id]})),shuffle(list.filter(function(id){return h[id]&&h[id].last!==false})));
  state.index=0;state.answer=null;state.right=0;state.wrong=[];render();
@@ -69,7 +70,7 @@ function progressEl(o){var p=[];if(o.len)p.push(o.pos+' / '+o.len);p.push('정�
 function topicName(id){var t=F.topics.find(function(x){return x.id===id});return t?t.name:''}
 function render(){
  var card=$('card');card.replaceChildren();
- if(!state.queue.length){card.append(el('h2',{text:state.order==='wrongOnly'?'최근 틀린 문항이 없어요':'문항이 없어요'}),el('p',{className:'small muted',text:state.order==='wrongOnly'?'다른 출제 방식으로 풀어 보세요.':'주제를 바꿔 주세요.'}));return}
+ if(!state.queue.length){card.append(el('h2',{text:state.order==='wrongOnly'?'최근 틀린 문항이 없어요':state.order==='saved'?'저장한 문제가 없어요':'문항이 없어요'}),el('p',{className:'small muted',text:state.order==='wrongOnly'?'다른 출제 방식으로 풀어 보세요.':state.order==='saved'?'문제 오른쪽 위의 ☆ 저장을 누르면 여기에 모입니다.':'주제를 바꿔 주세요.'}));return}
  if(state.index>=state.queue.length){
   var total=state.queue.length;
   card.append(el('h2',{text:total+'문항 중 '+state.right+'개 맞혔어요'}));
@@ -82,7 +83,7 @@ function render(){
   return;
  }
  var it=byId[state.queue[state.index]];
- card.append(el('div',{className:'meta'},[el('span',{text:topicName(it.topic)}),progressEl({pos:state.index+1,len:state.queue.length,right:state.right,answered:state.index+(state.answer!==null?1:0)})]));
+ card.append(el('div',{className:'meta'},[el('span',{text:topicName(it.topic)}),el('span',{className:'site-progress-row',style:'margin:0'},[progressEl({pos:state.index+1,len:state.queue.length,right:state.right,answered:state.index+(state.answer!==null?1:0)}),window.WGSaved?WGSaved.button('facts',it.id):null])]));
  var bar=el('div',{className:'bar'},[el('span',{})]);bar.firstChild.style.width=(state.index/state.queue.length*100)+'%';card.append(bar);
  if(it.data){var table=el('table',{className:'given'},[el('caption',{text:it.data.caption}),el('thead',{},[el('tr',{},it.data.headers.map(function(h){return el('th',{scope:'col',text:h})}))]),el('tbody',{},it.data.rows.map(function(row){return el('tr',{},row.map(function(v){return el('td',{text:v})}))}))]);card.append(el('p',{className:'small muted',text:'자료를 보고 판단하세요. 수치와 옛 순위를 외울 필요는 없어요.'}),table)}
  card.append(el('p',{className:'claim',text:it.claim}));
@@ -122,4 +123,4 @@ document.addEventListener('keydown',function(e){
 build();
 })();
 </script>
-<script src="assets/site.js?v=20261028-ui4"></script></body></html>
+</body></html>
