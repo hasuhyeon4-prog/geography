@@ -72,3 +72,17 @@ test('강의 표 asks no coin flips and no table twice',()=>{
  const asked=new Set(all.flatMap(q=>q.t.goalIds||[]));for(const t of D.tables)for(const id of t.goalIds)assert.ok(asked.has(id),id+' lost its 강의 표 questions');
  assert.ok(Object.keys(T.goalExams).length>=20);
 });
+
+test('data questions hide the countries as (가)(나)(다) and draw the data as graphs',()=>{
+ const ids=['car-growth','capital-share','birth-death','crop-yield','dependency','urban-weighted','population-index','industry-remainder','industry-amount','population-periods','migration-scatter','migration-continents','dependency-change','fossil-remainder'];
+ for(const id of ids)for(let seed=1;seed<=12;seed++){
+  const x=E.exam(E.build(id,seed));if(!x.judgment)continue;
+  assert.ok(x.identificationLabels&&/^\(가\)/.test(x.identificationLabels[0]),id);
+  for(const n of x.identification)assert.match(x.condition,new RegExp(n),id);
+  const shown=JSON.stringify([x.figures,x.tables,x.stage.statements.map(s=>s.text)]);
+  for(const n of x.identification)assert.ok(!shown.includes(n),id+' shows '+n);
+  // capital-share keeps the exam's table: its four countries differ a hundredfold.
+  if(id!=='capital-share')assert.ok(x.figures.length>0,id+' has no graph');
+ }
+ for(const id of ['car-growth','birth-death','dependency','urban-weighted','industry-amount'])assert.equal(E.exam(E.build(id,3)).tables.length,0,id);
+});

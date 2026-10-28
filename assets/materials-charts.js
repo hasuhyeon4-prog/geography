@@ -18,13 +18,13 @@ function txt(x,y,s,anchor,size,color){
 function line(x1,y1,x2,y2,color,width,d){return'<line x1="'+num(x1)+'" y1="'+num(y1)+'" x2="'+num(x2)+'" y2="'+num(y2)+'" stroke="'+(color||'#bfd0d8')+'" stroke-width="'+(width||1)+'"'+(d?' stroke-dasharray="'+d+'"':'')+'/>';}
 function dot(x,y,r,color){return'<circle cx="'+num(x)+'" cy="'+num(y)+'" r="'+num(r)+'" fill="white" stroke="'+color+'" stroke-width="2"/>';}
 function nice(max,min){var span=max-min;if(!span)span=Math.max(Math.abs(max)*.1,1);var raw=span/5,p=10**Math.floor(Math.log10(raw)),a=raw/p,step=(a<=1?1:a<=2?2:a<=5?5:10)*p;return{min:Math.floor(min/step)*step,max:Math.ceil((max===min?max+span:max)/step)*step,step:step};}
-function label(v){return String(Math.round(v*1000)/1000);}
+function label(v){var x=Math.round(v*1000)/1000;return Math.abs(x)>=10000?x.toLocaleString('en-US'):String(x);}
 function wrap(s,size){var a=[...String(s)],out=[];while(a.length)out.push(a.splice(0,size).join(''));return out;}
-function legend(series){
+function legend(series,boxes){
  // Phone labels are wider: long legends take two rows and the drawing grows.
  var per=TEXT>1&&series.some(function(s){return [...String(s.name)].length>4;})?2:4,gap=per===2?300:150;
  if(series.length>per)EXTRA=34;
- return series.map(function(s,i){var c=i%per,y=415+Math.floor(i/per)*34;return line(85+c*gap,y,110+c*gap,y,colors[i%4],2,dash[i%4])+txt(118+c*gap,y+5,s.name,'start',13);}).join('');
+ return series.map(function(s,i){var c=i%per,y=415+Math.floor(i/per)*34;return(boxes?'<rect x="'+(88+c*gap)+'" y="'+(y-7)+'" width="18" height="14" fill="'+colors[i%4]+'"/>':line(85+c*gap,y,110+c*gap,y,colors[i%4],2,dash[i%4]))+txt(118+c*gap,y+5,s.name,'start',13);}).join('');
 }
 function cartesian(f){
  var out='',left=90,right=650,top=34,bottom=345,values=[],xs=[];
@@ -55,7 +55,7 @@ function cartesian(f){
   f.points.forEach(function(p,i){out+=txt(X(p.x)+10,Y(p.y)-10,p.name,'start',14,colors[i%4]);});
  }else if(f.kind==='bars'){
   var bw=(right-left)/(f.labels.length*1.7),bx=function(i){return left+(i+.5)*(right-left)/f.labels.length;};
-  f.values.forEach(function(v,i){var inside=v>0&&Y(v)<top+22;out+='<rect x="'+num(bx(i)-bw/2)+'" y="'+num(Y(Math.max(v,0)))+'" width="'+num(bw)+'" height="'+num(Math.abs(Y(v)-Y(0)))+'" fill="'+colors[i%4]+'"/>'+txt(bx(i),Y(v)+(inside?20:-8),label(v),'middle',12,inside?'white':null)+txt(bx(i),bottom+24,f.labels[i],'middle',13);});
+  f.values.forEach(function(v,i){var inside=v>0&&Y(v)<top+22;out+='<rect x="'+num(bx(i)-bw/2)+'" y="'+num(Y(Math.max(v,0)))+'" width="'+num(bw)+'" height="'+num(Math.abs(Y(v)-Y(0)))+'" fill="'+colors[i%4]+'"/>'+(f.noValues?'':txt(bx(i),Y(v)+(inside?20:-8),label(v),'middle',12,inside?'white':null))+txt(bx(i),bottom+24,f.labels[i],'middle',13);});
  }else{
   f.x.forEach(function(x){out+=txt(X(x),bottom+22,x,'middle',12);});
   f.series.forEach(function(s,i){out+='<polyline points="'+s.values.map(function(y,j){return num(X(f.x[j]))+','+num(Y(y));}).join(' ')+'" fill="none" stroke="'+colors[i%4]+'" stroke-width="2.3"'+(dash[i%4]?' stroke-dasharray="'+dash[i%4]+'"':'')+'/>';s.values.forEach(function(y,j){out+=dot(X(f.x[j]),Y(y),2.5,colors[i%4]);});});
@@ -121,7 +121,8 @@ function energyBars(f){
   f.values.forEach(function(row,i){row.forEach(function(v,j){var h=Math.abs(barY(v)-barY(0)),x=left+i*group+(j+.4)*bw;out+='<rect x="'+num(x)+'" y="'+num(Math.min(barY(v),barY(0)))+'" width="'+num(bw*.82)+'" height="'+num(h)+'" fill="'+colors[j%4]+'"/>';});out+=txt(left+(i+.5)*group,bottom+27,f.labels[i],null,14);});
   out+=txt(left,44+(TEXT-1)*18,f.yLabel,'start',14);
  }
- return out+legend(f.categories.map(function(name){return{name:name};}));
+ // Bars are told apart by colour, so the legend shows colour boxes.
+ return out+legend(f.categories.map(function(name){return{name:name};}),true);
 }
 function map(f){
  var b=f.bounds,left=70,right=640,top=28,bottom=396,spanX=b[2]-b[0],spanY=b[3]-b[1],scale=Math.min((right-left)/spanX,(bottom-top)/spanY),cx=(left+right)/2,cy=(top+bottom)/2;

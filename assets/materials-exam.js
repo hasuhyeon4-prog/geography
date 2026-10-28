@@ -21,6 +21,55 @@ function particles(text,names){
  return text;
 }
 function sig(v){var m=Math.abs(v);return(m>=1000?Math.round(v):m>=10?Math.round(v*10)/10:m>=1?Math.round(v*100)/100:Math.round(v*1000)/1000).toLocaleString('ko-KR');}
+// Exam data questions hide the countries as (가)·(나)·(다) and give the data
+// as graphs; the candidates are listed in the condition (2026-10-28).
+var ANON=new Set(['car-growth','capital-share','birth-death','crop-yield','dependency','urban-weighted','population-index',
+ 'industry-remainder','industry-amount','population-periods','migration-scatter','migration-continents','dependency-change','fossil-remainder']);
+function unitOf(h){var m=String(h).match(/\(([^()]*)\)\s*$/);return m?m[1]:'';}
+function relabel(text,map,keys){
+ if(typeof text!=='string')return text;
+ keys.forEach(function(n){var esc=n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  text=text.replace(new RegExp(esc+'(은|는|이|가|을|를|과|와)?(?=보다|의|에|도|[^가-힣]|$)','g'),function(_,p){return map[n]+(p?PARTICLE[p][1]:'');});});
+ return text;
+}
+function anonymize(x,r){
+ var t=x.tables.find(function(t){return t.rows.length>=2&&t.rows.length<=4&&t.rows.every(function(row){return typeof row[0]==='string'&&row[0].length>1;})&&x.stage.statements.some(function(st){return t.rows.some(function(row){return st.text.indexOf(row[0])>=0;});});});
+ if(!t)return;
+ var names=t.rows.map(function(row){return row[0];}),order=shuffle(names.map(function(_,i){return i;}),r),labs=L.slice(0,names.length),map={};
+ order.forEach(function(i,k){map[names[i]]=labs[k];});
+ var keys=names.slice().sort(function(a,b){return b.length-a.length;}),rows=order.map(function(i){return t.rows[i];});
+ // One figure per country already draws the whole table.
+ var repeat=names.every(function(n){return x.figures.some(function(f){return f.name===n;});});
+ // Text columns such as capitals would name the country; only numbers stay.
+ var cols=t.headers.map(function(_,j){return j;}).filter(function(j){return j>0&&rows.every(function(row){return typeof row[j]==='number';});});
+ var bare=function(h){return String(h).replace(/\s*\([^()]*\)\s*$/,'');},shownAxes=x.figures.flatMap(function(f){return[f.xLabel,f.yLabel];}).filter(Boolean).map(bare);
+ cols=cols.filter(function(j){return shownAxes.indexOf(bare(t.headers[j]))<0;});
+ if(repeat)cols=[];
+ var groups={};cols.forEach(function(j){var u=unitOf(t.headers[j]);(groups[u]||(groups[u]=[])).push(j);});
+ var charts=[],kept=[];
+ Object.keys(groups).forEach(function(u){
+  var js=groups[u],vals=rows.map(function(row){return js.map(function(j){return row[j];});}),flat=vals.flat().map(Math.abs).filter(function(v){return v>0;}),max=Math.max.apply(null,flat);
+  // A count under a twentieth of the axis cannot be read, so it stays in a
+  // table; a share in % or ‰ is drawn on its common axis even when small.
+  if(!flat.length||!/[%‰]/.test(u)&&Math.min.apply(null,flat)<max/20){kept=kept.concat(js);return;}
+  // Large counts are drawn in 만 or 억 so the axis reads like an exam graph.
+  var scale=1,unit=u;if(/^(명|대|t|달러)$/.test(u)&&max>=1e8){scale=1e8;unit='억 '+u;}else if(/^(명|대|t|달러)$/.test(u)&&max>=1e5){scale=1e4;unit='만 '+u;}
+  if(scale>1)vals=vals.map(function(v){return v.map(function(y){return y/scale;});});
+  var label=function(j){return String(t.headers[j]).replace(/\s*\([^()]*\)\s*$/,'');};
+  if(js.length===1)charts.push({kind:'bars',labels:labs,values:vals.map(function(v){return v[0];}),yLabel:label(js[0])+(unit?'('+unit+')':''),noValues:true});
+  else charts.push({kind:'grouped-bars',labels:labs,categories:js.map(label),values:vals,maximum:Math.max.apply(null,vals.flat()),yLabel:unit||t.caption||''});
+ });
+ var at=x.tables.indexOf(t);x.tables.splice(at,1);
+ if(kept.length&&!repeat)x.tables.splice(at,0,{headers:[t.headers[0]].concat(kept.map(function(j){return t.headers[j];})),rows:rows.map(function(row,k){return[labs[k]].concat(kept.map(function(j){return row[j];}));}),caption:t.caption});
+ x.figures=charts.concat(x.figures);
+ var deep=function(v){return typeof v==='string'?relabel(v,map,keys):Array.isArray(v)?v.map(deep):v&&typeof v==='object'?Object.fromEntries(Object.entries(v).map(function(e){return[e[0],e[0]==='polygons'?e[1]:deep(e[1])];})):v;};
+ x.figures=x.figures.map(deep);x.tables=x.tables.map(deep);
+ x.figures.sort(function(a,b){var i=labs.indexOf(a.name),j=labs.indexOf(b.name);return i<0||j<0?0:i-j;});
+ x.stage.statements.forEach(function(st){st.text=relabel(st.text,map,keys);});
+ x.condition=relabel(x.condition,map,keys);x.note=relabel(x.note,map,keys);
+ x.condition+=(x.condition?' ':'')+labs.join('·')+'는 각각 '+names.slice().sort().join(', ')+' 중 하나이다.';
+ x.identification=labs.map(function(l){return keys.find(function(n){return map[n]===l;});});x.identificationLabels=labs;
+}
 var EXACT=/약 -?[\d,]*\.\d|약 -?[\d,]+(?:\.\d+)?\s*%/;
 // A table value is shown to three significant figures, as exam tables are;
 // a year and a value of three figures or fewer are shown as they are.
@@ -564,6 +613,8 @@ function create(data,math,extra){
   // A direct recognition/calculation task stands on its own; never append a
   // compulsory, unrelated 'all residents are identical' second question.
   pairs=pairs.filter(function(p,i,a){return p&&a.findIndex(function(v){return v&&v.yes===p.yes&&v.no===p.no;})===i;});
+  // "A는 B보다 많다" and "B는 A보다 적다" are one judgment, not two.
+  var seenPair={};pairs=pairs.filter(function(p){var m=p.check.op==='examComparison'&&p.yes.match(/^(.+?)[은는] (.+?)보다 (.+) \S+\.$/);if(!m)return true;var k=[m[1],m[2]].sort().join('|')+'|'+m[3];if(seenPair[k])return false;return seenPair[k]=true;});
   // Exam statements compare and judge; they do not ask for a computed value
   // to one decimal place or an exact percentage (2026-10-28).
   pairs=pairs.map(function(p){
@@ -593,6 +644,7 @@ function create(data,math,extra){
   }
   // Reorder stand-alone supplied choices as well (including custom tasks).
   if(q.id==='environment-news'){var order=shuffle(x.stage.options.map(function(_,i){return i;}),r),old=x.stage.answer;x.stage.options=order.map(function(i){return x.stage.options[i];});x.stage.answer=order.indexOf(old);}
+  if(ANON.has(q.id)&&x.judgment)anonymize(x,r);
   if(!Object.prototype.hasOwnProperty.call(x,'identification'))x.identification=q.stationNames||q.assignment||null;
   var names=NAMES.concat(x.identification||[],q.assignment||[]).filter(function(n){return typeof n==='string';}).sort(function(a,b){return b.length-a.length;});
   ['condition','note'].forEach(function(k){x[k]=particles(x[k],names);});
