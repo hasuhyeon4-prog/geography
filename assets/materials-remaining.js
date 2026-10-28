@@ -55,7 +55,7 @@ function create(data,D,H){
   winner(q,names,rows.map(function(x){return x.b.total-x.a.total;}),'총부양비의 증가 폭이 가장 큰 국가는?','두 시점 각각 (유소년+노년)÷청장년×100을 계산한다.');
   rows.forEach(function(x){q.pairs.push(pair('G059-1',x.name+'의 2015년 총부양비는 약 '+fmt(x.b.total)+'이다.',x.name+'의 2015년 총부양비는 약 '+fmt(x.b.y+x.b.o)+'이다.','총부양비의 분모는 전체 인구가 아니라 청장년층이다.',{op:'dependency',young:x.b.y,old:x.b.o,result:x.b.total}));});
   q.pairs.push(pair('G059-1','차드는 노년층 비율이 낮아졌지만 유소년층 증가로 총부양비는 높아졌다.','차드는 노년층 비율이 낮아졌으므로 총부양비도 낮아졌다.','차드: 43.6÷56.4×100≈77.3 → 50.1÷49.9×100≈100.4. 두 연령층을 합한 뒤 분모를 복원한다.',{op:'dependencyCounterexample',country:'차드',before:[39.5,4.1],after:[47.6,2.5]}));
-  q.pairs.push(pair('G059-1','청장년층 비율이 높아져도 노년 부양비가 높아질 수 있다.','청장년층 비율이 높아지면 노년 부양비는 반드시 낮아진다.','튀르키예의 두 시점에서 노년층 증가와 청장년층 변화를 함께 계산한다.',{op:'dependencyChange',turkiye:rows.find(function(x){return x.name==='튀르키예';})}));
+  q.pairs.push(pair('G059-1','튀르키예는 1955년보다 2015년에 청장년층 비율과 노년 부양비가 함께 높다.','튀르키예는 1955년보다 2015년에 청장년층 비율은 높고 노년 부양비는 낮다.','튀르키예의 두 시점에서 노년층 증가와 청장년층 변화를 함께 계산한다.',{op:'dependencyChange',turkiye:rows.find(function(x){return x.name==='튀르키예';})}));
   return finish(q,r);
  }
  function agricultureTriangle(mode,seed){
@@ -96,7 +96,7 @@ function create(data,D,H){
   if(!country){reference(q,labels,['석탄(TWh)','석유(TWh)','가스(TWh)'],raw);q.figures.push({kind:'ternary',labels:['석탄','석유','천연가스'],points:shares.map(function(v,i){return{name:L[i],values:v};})});}
   else{q.tables.push(table(['국가','석탄(%)','가스(%)'],shares.map(function(x,i){return[names[i],round(x[0],3),round(x[2],3)];}),'세 화석 연료 생산량 합=100% · 석유 비중은 숨김'));winner(q,names,shares.map(function(x){return x[1];}),'세 화석 연료 중 석유 생산 비중이 가장 큰 국가는?','100−석탄 비중−가스 비중으로 석유를 복원한다.');}
   shares.forEach(function(x,i){var goal=country?'G086-4':'G086-3',oil=country?100-round(x[0],3)-round(x[2],3):x[1];q.pairs.push(pair(goal,labels[i]+'의 세 화석 연료 중 석유 비중은 약 '+fmt(oil)+'%이다.',labels[i]+'의 전체 에너지 생산량 중 석유 비중은 이 표만으로 약 '+fmt(oil)+'%라고 확정할 수 있다.','선택한 세 화석 연료 합과 모든 에너지 합은 다르다.',{op:'fossilRemainder',coal:round(x[0],3),gas:round(x[2],3),result:100-round(x[0],3)-round(x[2],3)}));});
-  q.pairs.push(pair(country?'G086-4':'G086-3','구성비가 높아도 총생산량이 반드시 많은 것은 아니다.','석탄 구성비가 가장 높은 지역이 석탄 총생산량도 반드시 가장 많다.','실제 생산량 비교에는 해당 구성의 총량도 필요하다.',{op:'fossilComposition'}));
+  q.pairs.push(pair(country?'G086-4':'G086-3','각 점의 좌표는 '+(country?'그 국가':'그 지역')+'의 세 화석 연료 생산량 합에 대한 비중이다.','각 점의 좌표는 세계 전체 생산량에 대한 '+(country?'그 국가':'그 지역')+'의 비중이다.','구성비의 분모는 '+(country?'국가':'지역')+' 내부의 세 연료 합이다. 실제 생산량 비교에는 그 합계도 필요하다.',{op:'fossilComposition'}));
   return finish(q,r);
  }
  function energyPC(mode,seed){
@@ -115,7 +115,7 @@ function create(data,D,H){
   var wp=D.regions.World.coal_production,wc=D.regions.World.coal_consumption;
   q.figures.push({kind:'scatter',zero:true,xLabel:'세계 석탄 생산 중 비중(%)',yLabel:'세계 석탄 소비 중 비중(%)',points:rows.map(function(x,i){return{name:L[i],x:x[0]/wp*100,y:x[1]/wc*100,size:1};})});
   rows.forEach(function(x,i){q.pairs.push(pair('G083-2',L[i]+'의 생산량 대비 소비량 비율은 약 '+fmt(x[1]/x[0]*100)+'%이다.',L[i]+'의 수입 의존도는 이 표만으로 약 '+fmt(x[1]/x[0]*100)+'%라고 확정된다.','소비÷생산 비율이다. 국내 생산·소비의 차이를 물리적 수입 비율로 바꾸지 않는다.',{op:'quotientShare',a:x[1],b:x[0],result:x[1]/x[0]*100}));});
-  q.pairs.push(pair('G083-4','두 좌표의 분모는 각각 세계 석탄 생산량과 세계 석탄 소비량이다.','두 좌표는 모두 해당 국가의 석탄 생산량을 100으로 만든 값이다.','세계의 같은 자원 안에서도 생산과 소비의 전체값은 구분한다.',{op:'worldProductionVsConsumption',worldProduction:wp,worldConsumption:wc}));
+  q.pairs.push(pair('G083-4','두 좌표의 분모는 각각 세계 석탄 생산량과 세계 석탄 소비량이다.','두 좌표의 분모는 각각 해당 국가의 석탄 생산량과 석탄 소비량이다.','세계의 같은 자원 안에서도 생산과 소비의 전체값은 구분한다.',{op:'worldProductionVsConsumption',worldProduction:wp,worldConsumption:wc}));
   return finish(q,r);
  }
  function renewables(seed){
@@ -164,7 +164,7 @@ function create(data,D,H){
   q.figures.push({kind:'stacked',maximum:20,labels:db.categories,categories:names,values:values,xLabel:'집단별 인구(천만 명) · 색 하나는 국가 하나'});
   winner(q,names,counts.map(function(row){return row[1];}),'제시 계산값에서 유럽계 인구수가 가장 많은 국가는?','국가 총인구×그 국가 안의 유럽계 비중÷100. 누적 막대 전체 길이가 아니라 국가별 색 구간의 길이를 비교한다.');
   names.forEach(function(n,i){q.pairs.push(pair('G051-5',n+'의 유럽계 인구 계산값은 약 '+fmt(counts[i][1],2)+'천만 명이다.',n+'의 유럽계 인구수는 국가 총인구와 관계없이 유럽계 비중(%)의 숫자와 같다.','같은 국가의 총인구에 비중을 곱한다. 서로 다른 국가의 비중 순위와 인구수 순위를 구별한다.',{op:'product',a:totals[i],b:shares[i][1]/100,result:counts[i][1]}));});
-  q.pairs.push(pair('G051-5','아르헨티나의 유럽계 비중은 브라질보다 높아도, 유럽계 인구수는 브라질이 더 많다.','유럽계 비중이 가장 높은 아르헨티나는 유럽계 인구수도 세 나라 중 반드시 가장 많다.','비중의 분모인 국가 총인구가 다르다. 막대의 최종 길이는 세 국가를 합한 집단별 인구수이다.',{op:'ethnicShareVsCount'}));return finish(q,r);
+  q.pairs.push(pair('G051-5','아르헨티나는 브라질보다 유럽계 비중은 높고, 유럽계 인구수는 적다.','아르헨티나는 브라질보다 유럽계 비중도 높고, 유럽계 인구수도 많다.','비중의 분모인 국가 총인구가 다르다. 막대의 최종 길이는 세 국가를 합한 집단별 인구수이다.',{op:'ethnicShareVsCount'}));return finish(q,r);
  }
  function industryAmount(seed){
   var r=seedState(seed),names=shuffle(['미국','중국','인도'],r),year='2021',rows=names.map(function(n){var x=data.countries[n];return[round(x.series.gdp[year],1),round(x.economySeries.industry[year],2)];}),amounts=rows.map(function(x){return x[0]*x[1]/100;}),q=start('industry-amount','같은 해 GDP와 2차 산업 생산액',seed,'세계은행 WDI · 2021년 같은 해 GDP·산업 부가가치 비중');
@@ -172,7 +172,7 @@ function create(data,D,H){
   q.tables.push(table(['국가','2021 GDP(십억 달러)','2021 2차 산업/GDP(%)'],names.map(function(n,i){return[n].concat(rows[i]);}),'표시값으로 계산 · 같은 연도·같은 분모'));
   winner(q,names,amounts,'제시한 GDP와 산업 비중으로 계산한 2차 산업 부가가치가 가장 많은 국가는?','GDP×산업 비중÷100으로 비교한다.');
   names.forEach(function(n,i){q.pairs.push(pair('G097-4',n+'의 2차 산업 부가가치는 약 '+fmt(amounts[i],1)+'십억 달러이다.',n+'의 2차 산업 부가가치는 GDP를 2차 산업 비중으로 나눈 값이다.','표시된 같은 해 GDP×산업 비중÷100을 계산한다.',{op:'product',a:rows[i][0],b:rows[i][1]/100,result:amounts[i],year:year}));});
-  var us=names.indexOf('미국'),cn=names.indexOf('중국');q.pairs.push(pair('G097-4','미국의 총GDP가 중국보다 커도 2차 산업 부가가치는 중국이 더 크다.','총GDP가 큰 미국은 2차 산업 비중과 관계없이 2차 산업 부가가치도 중국보다 반드시 크다.','총량과 비중을 곱한 값의 순서는 총량만의 순서와 다를 수 있다.',{op:'industryAmountComparison',usa:amounts[us],china:amounts[cn],year:year}));return finish(q,r);
+  var us=names.indexOf('미국'),cn=names.indexOf('중국');q.pairs.push(pair('G097-4','미국은 중국보다 총GDP는 크고, 2차 산업 부가가치는 작다.','미국은 중국보다 총GDP도 크고, 2차 산업 부가가치도 크다.','미국 약 '+fmt(amounts[us],1)+'십억 달러, 중국 약 '+fmt(amounts[cn],1)+'십억 달러. GDP×2차 산업 비중÷100으로 비교한다.',{op:'industryAmountComparison',usa:amounts[us],china:amounts[cn],year:year}));return finish(q,r);
  }
  function industryRemainder(seed){
   var r=seedState(seed),names=shuffle(['일본','인도','브라질'],r),raw=names.map(function(n){var x=D.countries[n].economy;return[x.agriculture,x.industry,x.services];}),ratios=raw.map(comp),v=ratios.map(function(x){var industry=round(x[1],2),services=round(x[2],2);return[round(100-industry-services,2),industry,services];}),q=start('industry-remainder','같은 분모에서 산업 비중 복원',seed,'WDI 2023 · 세 산업 부가가치 합으로 명시적 재환산');
@@ -180,7 +180,7 @@ function create(data,D,H){
   q.tables.push(table(['국가','2차 / 세 산업 합(%)','3차 / 세 산업 합(%)'],names.map(function(n,i){return[n,v[i][1],v[i][2]];}),'세 산업 합=100 · 표시된 소수 둘째 자리 기준'));
   winner(q,names,v.map(function(x){return x[0];}),'제시한 세 산업 합 중 1차 산업 비중이 가장 높은 국가는?','1차=100−2차−3차. 같은 분모와 합=100이라는 조건을 먼저 확인한다.');
   v.forEach(function(x,i){q.pairs.push(pair('G127-2',names[i]+'의 세 산업 합 중 1차 비중은 '+fmt(x[0],2)+'%이다.',names[i]+'의 GDP 중 1차 비중도 분모 확인 없이 반드시 '+fmt(x[0],2)+'%이다.','표의 재환산된 비중에서 남는 값을 복원한다. 원래 GDP 비중과 섞지 않는다.',{op:'industryRemainder',industry:x[1],services:x[2],result:x[0]}));});
-  q.pairs.push(pair('G127-2','2차 산업 비중에는 제조업뿐 아니라 광업·건설업 등이 포함된다.','2차 산업 비중이 높은 국가는 반드시 제조업 비중도 같은 값이다.','광업 중심 국가와 제조업 중심 국가를 구별한다.',{op:'industryIncludesMining'}));return finish(q,r);
+  q.pairs.push(pair('G127-2','2차 산업에는 제조업과 함께 광업·건설업 등이 포함된다.','2차 산업과 제조업은 같은 범위의 산업 분류이다.','광업 중심 국가와 제조업 중심 국가를 구별한다.',{op:'industryIncludesMining'}));return finish(q,r);
  }
  function industryBubble(seed){
   var r=seedState(seed),names=shuffle(['일본','인도','브라질'],r),raw=names.map(function(n){var e=D.countries[n].economy;return[e.agriculture,e.industry,e.services];}),v=raw.map(comp),q=start('industry-bubble','산업 구성 좌표와 1인당 GDP 원',seed,'WDI 2023 · 세 산업 부가가치 합으로 명시적 재환산');
@@ -189,7 +189,7 @@ function create(data,D,H){
   q.tables.push(table(['국가','1인당 GDP(천 달러)'],names.map(function(n,i){return[n,gdps[i]];}),'원 크기 대응 기준'));
   q.figures.push({kind:'scatter',zero:true,xLabel:'3차 / 세 산업 합(%)',yLabel:'2차 / 세 산업 합(%)',sizeLabel:'원 면적: 1인당 GDP',points:v.map(function(x,i){return{name:L[i],x:round(x[2],3),y:round(x[1],3),size:gdps[i]/Math.max.apply(null,gdps)*100};})});
   v.forEach(function(x,i){var rest=100-round(x[1],3)-round(x[2],3);q.pairs.push(pair('G137-3',L[i]+'의 세 산업 합 중 1차 비중은 약 '+fmt(rest)+'%이다.',L[i]+'의 원래 GDP 중 1차 비중은 이 좌표에서 무조건 100−2차−3차로 구한다.','100−두 비중은 같은 합계가 100이라고 명시된 구성에서만 적용한다.',{op:'industryRemainder',industry:round(x[1],3),services:round(x[2],3),result:rest}));});
-  q.pairs.push(pair('G137-3','원이 큰 국가는 1인당 GDP가 높지만 총GDP가 반드시 큰 것은 아니다.','원이 큰 국가는 총인구와 관계없이 총GDP도 반드시 크다.','총GDP=1인당 GDP×인구이다. 원의 범례를 먼저 확인한다.',{op:'gdpBubbleDenominator'}));
+  q.pairs.push(pair('G137-3','원의 크기는 각 국가의 1인당 GDP를 나타낸다.','원의 크기는 각 국가의 총GDP를 나타낸다.','총GDP=1인당 GDP×인구이다. 원의 범례를 먼저 확인한다.',{op:'gdpBubbleDenominator'}));
   return finish(q,r);
  }
  function religiousLandmarks(seed){

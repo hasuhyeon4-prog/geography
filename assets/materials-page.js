@@ -38,12 +38,15 @@ function answer(i){
  save();render();var b=$('nextQuestion');if(b)b.focus({preventScroll:true});
 }
 function drawTable(t){return el('div',{className:'scroll'},[el('table',{},[el('caption',{text:t.caption||''}),el('thead',{},[el('tr',{},t.headers.map(function(h){return el('th',{scope:'col',text:String(h)});}))]),el('tbody',{},t.rows.map(function(row){return el('tr',{},row.map(function(v){return el('td',{text:typeof v==='number'?v.toLocaleString('ko-KR',{maximumFractionDigits:5}):String(v)});}));}))])]);}
+// Charts fit the card width; on a phone the labels are enlarged instead of
+// cropping the 700-unit drawing behind a horizontal scroll.
+function textScale(photo){var w=Math.max(200,($('main').clientWidth||700)-60);return photo?1:Math.max(1,11/(14*w/700));}
 function render(){
  var main=$('main');main.textContent='';$('score').textContent=state.right+' / '+state.total+' · 다시 풀기 '+review.length;
  if(!state.q){main.append(el('section',{className:'card empty'},[el('p',{text:state.error||'이 범위에 다시 풀 문항이 없어요.'}),el('a',{href:'exam.html',text:'기출형으로 돌아가기'})]));return;}
  var q=state.q,x=state.x,done=state.answer!==null,card=el('section',{className:'card'},[el('h2',{text:x.stage.question}),x.condition?el('p',{className:'note',text:x.condition}):null]);
  var figureHost=x.figureLayout==='photos'?el('div',{className:'photo-grid'}):card;
- x.figures.forEach(function(f){var frame=el('div',{className:'figure'});frame.innerHTML=C.render(f);
+ x.figures.forEach(function(f){var frame=el('div',{className:'figure'});frame.innerHTML=C.render(f,{textScale:textScale(x.figureLayout==='photos')});
   if(x.figureLayout==='photos')frame.append(el('p',{className:'photo-label',text:f.name}));
   frame.querySelectorAll('[data-material-option]').forEach(function(marker){
    // Old source markers point into raw stage-one choices; map by label into the
@@ -71,5 +74,6 @@ function render(){
 families.forEach(function(f){$('family').append(el('option',{value:f.id,text:f.title}));});
 $('family').value=state.family;$('order').value=state.order;
 $('family').onchange=function(){state.family=this.value;next();};$('order').onchange=function(){state.order=this.value;next();};
+if(typeof window.addEventListener==='function'){var lastWidth=window.innerWidth;window.addEventListener('resize',function(){if(Math.abs(window.innerWidth-lastWidth)>40){lastWidth=window.innerWidth;render();}});}
 next();
 })();

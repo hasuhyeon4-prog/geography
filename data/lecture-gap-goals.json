@@ -837,7 +837,7 @@
   "data": "계산 + 앱 관측소 자료",
   "scope": "",
   "group": "G022",
-  "status": "검증"
+  "status": "보류"
  },
  {
   "id": "G023-1",
@@ -1447,7 +1447,7 @@
   "data": "앱이 모식도를 그림",
   "scope": "",
   "group": "G037",
-  "status": "검증"
+  "status": "보류"
  },
  {
   "id": "G038-1",
@@ -1597,7 +1597,7 @@
   "data": "앱 Pew 자료",
   "scope": "",
   "group": "G041",
-  "status": "검증"
+  "status": "보류"
  },
  {
   "id": "G041-3",
@@ -1727,7 +1727,7 @@
   "data": "공개 사진",
   "scope": "",
   "group": "G044",
-  "status": "검증"
+  "status": "보류"
  },
  {
   "id": "G044-3",
@@ -2357,7 +2357,7 @@
   "data": "UN WPP 자료",
   "scope": "",
   "group": "G058",
-  "status": "검증"
+  "status": "보류"
  },
  {
   "id": "G058-4",
@@ -3047,7 +3047,7 @@
   "data": "앱 FAOSTAT FBS 자료",
   "scope": "",
   "group": "G075",
-  "status": "검증"
+  "status": "보류"
  },
  {
   "id": "G075-3",
@@ -3667,7 +3667,7 @@
   "data": "자료 필요: IRENA 국가별 설비 용량",
   "scope": "",
   "group": "G087",
-  "status": "검증"
+  "status": "보류"
  },
  {
   "id": "G088-1",
@@ -4757,7 +4757,7 @@
   "data": "자료 필요: 산성 강수 관측망(NADP·EMEP) 또는 모식 자료",
   "scope": "",
   "group": "G112",
-  "status": "검증"
+  "status": "보류"
  },
  {
   "id": "G113-1",

@@ -17,7 +17,9 @@ test('partial completion remains open and verified goals retain explicit individ
    assert.equal(g.status,'구현',g.id);assert.ok(!verification.verifiedGoals.includes(g.id));
    assert.equal(p.items.find(x=>x.id===g.id).remaining,gaps[g.id]);
   }else{
-   assert.equal(g.status,'검증',g.id);assert.equal(v.criteriaSHA256,fingerprint(g));assert.equal(v.criteria,g.done);
+   // A reviewed goal whose only route was paused is held, never shown as verified.
+   const item=p.items.find(x=>x.id===g.id);if(g.status==='보류')assert.ok(item.evidence.length&&item.evidence.every(e=>e.venue==='자료형·계산(보류)'),g.id);else assert.equal(g.status,'검증',g.id);
+   assert.equal(v.criteriaSHA256,fingerprint(g));assert.equal(v.criteria,g.done);
    for(const file of v.evidence)assert.ok(fs.existsSync(path.join(ROOT,file)),g.id+' '+file);
   }
  }
@@ -32,6 +34,6 @@ test('removing verification evidence reopens a previously verified goal when reb
  const rebuilt=JSON.parse(writes.get(path.join(ROOT,'data/lecture-gap-goals.json')));
  assert.equal(rebuilt.find(g=>g.id===id).status,'구현');
  const progress=JSON.parse(writes.get(path.join(ROOT,'audit/lecture-goals/progress.json')));
- assert.equal(progress.statusCounts.검증,verification.verifiedGoals.length-1);
+ assert.equal(progress.statusCounts.검증,verification.verifiedGoals.length-1-progress.statusCounts.보류);
  assert.equal(progress.groups.find(g=>g.id==='G001').status,'진행 중');
 });

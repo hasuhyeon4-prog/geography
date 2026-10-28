@@ -159,9 +159,9 @@ function create(data){
    if(!isSelf)q.tables.push(table(['월'].concat(Array.from({length:12},function(_,i){return i+1;})),[['공통 기준(℃)'].concat(bases[0].map(function(x){return round(x,3);}))],'복원 기준: '+(mode==='reference-deviation'?'싱가포르 월평균 기온':'제시 세 지역의 같은 달 기온 평균')));
    var m=seed%12,actual=fields[0][m],goal=isRain?'G020-3':isSelf?'G021-1':mode==='reference-deviation'?'G021-3':'G021-2';
    q.pairs.push(pair(goal,L[0]+'의 '+(m+1)+'월 실제 값은 약 '+fmt(actual)+(isRain?'mm':'℃')+'이다.',L[0]+'의 '+(m+1)+'월 실제 값은 약 '+fmt(actual+10)+(isRain?'mm':'℃')+'이다.','실제 값 = 편차 + 그 편차를 계산한 기준값. 그래프의 기준을 먼저 확인한다.',{op:'restore',deviation:deviations[0][m],base:bases[0][m],result:actual}));
-   if(isRain)q.pairs.push(pair('G020-3','강수 편차가 음수인 달에도 비가 내릴 수 있다.','강수 편차가 음수인 달의 강수량은 반드시 0이다.','음의 편차는 기준보다 강수량이 적다는 뜻이다.',{op:'negativeDeviation'}));
+   if(isRain)q.pairs.push(pair('G020-3','강수 편차가 음수인 달은 강수량이 그 지점의 월평균보다 적은 달이다.','강수 편차가 음수인 달은 강수량이 0인 달이다.','음의 편차는 기준보다 강수량이 적다는 뜻이다.',{op:'negativeDeviation'}));
    else if(isSelf){
-    q.pairs.push(pair('G133-3','같은 지점의 1월−7월 기온 차이는 두 편차를 빼서 구할 수 있다.','서로 다른 지점의 1월 기온 차이는 각 지점의 편차 차이와 항상 같다.','같은 지점의 기준은 상쇄된다. 서로 다른 지점은 연평균 기준값이 다를 수 있다.',{op:'selfDifference',means:fields.map(mean)}));
+    q.pairs.push(pair('G133-3','같은 지점의 1월−7월 기온 차이는 그 지점의 1월 편차와 7월 편차의 차이와 같다.','서로 다른 두 지점의 1월 기온 차이는 두 지점의 1월 편차 차이와 같다.','같은 지점의 기준은 상쇄된다. 서로 다른 지점은 연평균 기준값이 다를 수 있다.',{op:'selfDifference',means:fields.map(mean)}));
     q.pairs.push(pair('G133-3','지역별 연평균을 알면 지역 간 실제 기온도 복원해 비교할 수 있다.','지역별 연평균을 알아도 편차에서 실제 기온을 복원할 수 없다.','각 편차에 각 지역의 연평균을 더한다.',{op:'restoreEach'}));
    }else{
     q.pairs.push(pair(mode==='reference-deviation'?'G021-3':'G133-4','같은 달 지점 간 편차의 순서는 실제 기온의 순서와 같다.','서로 다른 달의 편차를 바로 빼면 실제 기온 차이가 된다.','한 달 안에서는 공통 기준이 상쇄된다. 서로 다른 달의 기준은 다를 수 있다.',{op:'commonDifference',bases:bases[0]}));
@@ -286,9 +286,9 @@ function create(data){
   q.tables.push(table(['깊이(m)','1985년(℃)','2001년(℃)'],depth.map(function(d,i){return[d,old[i],recent[i]];}),'계산용 모식 수치'));
   q.stage1={question:'이 9월 자료에서 0℃ 교점이 더 깊은 시기는?',options:['1985년','2001년'],answer:1,explain:'온도가 양수에서 음수로 바뀌는 깊이가 2001년에 더 깊다.'};
   q.pairs.push(pair('G032-2','두 점 사이를 직선으로 읽으면 2001년 0℃ 깊이는 약 '+fmt(z1)+'m이다.','두 점 사이를 직선으로 읽으면 2001년 0℃ 깊이는 약 '+fmt(z1+1)+'m이다.','0℃를 사이에 둔 두 깊이 사이에서 교점을 보간한다.',{op:'zeroCrossing',depth:depth,temp:recent,result:z1}));
-  q.pairs.push(pair('G110-5','깊이 2m는 1985년 9월에 0℃ 아래, 2001년 9월에 0℃ 위이다.','깊이 2m는 두 시기 모두 0℃ 아래이다.','같은 깊이의 두 곡선 온도를 비교한다.',{op:'soil2m',old:old[2],recent:recent[2]}));
-  q.pairs.push(pair('G110-5','0℃ 아래인 더 깊은 지층까지 모두 녹았다고 할 수 없다.','2001년에 2m가 0℃ 위이므로 5m까지 모두 녹았다고 할 수 있다.','융해 여부는 각 깊이의 온도와 관측 범위를 구분한다.',{op:'frozenDepth'}));
-  q.pairs.push(pair('G110-5','9월 관측만으로 그 깊이가 연중 0℃ 위라고 확정할 수 없다.','9월에 0℃ 위인 깊이는 연중 0℃ 위이다.','한 달의 관측과 연중 상태는 다르다.',{op:'singleMonth'}));
+  q.pairs.push(pair('G110-5','깊이 2m는 1985년 9월에 0℃ 아래, 2001년 9월에 0℃ 위이다.','깊이 2m는 1985년 9월에 0℃ 위, 2001년 9월에 0℃ 아래이다.','같은 깊이의 두 곡선 온도를 비교한다.',{op:'soil2m',old:old[2],recent:recent[2]}));
+  q.pairs.push(pair('G110-5','2001년 9월 깊이 '+depth[3]+'m의 지중 온도는 0℃ '+(recent[3]<0?'아래':'위')+'이다.','2001년 9월 깊이 '+depth[3]+'m의 지중 온도는 0℃ '+(recent[3]<0?'위':'아래')+'이다.','2001년 곡선은 '+depth[3]+'m에서 '+recent[3]+'℃이다. 2m가 녹은 것과 더 깊은 층의 상태를 따로 읽는다.',{op:'frozenDepth',depth:depth[3],temp:recent[3]}));
+  q.pairs.push(pair('G110-5','이 자료는 9월 한 달의 지중 온도를 나타낸다.','이 자료는 연평균 지중 온도를 나타낸다.','한 달의 관측과 연중 상태는 다르다.',{op:'singleMonth'}));
   return finish(q,r);
  }
  function corporateQ(seed){
@@ -330,7 +330,7 @@ function create(data){
    q.pairs.push(pair('G098-1',n+'의 이 기간 생산 증가량은 '+fmt(b-a,0)+'대이다.',n+'의 이 기간 생산 증가량은 '+fmt(b,0)+'대이다.','증가량은 나중 값에서 처음 값을 뺀다. 음수는 생산 감소를 뜻한다.',{op:'subtract',a:b,b:a,result:b-a}));
    q.pairs.push(pair('G098-1',n+'의 이 기간 생산 증가율은 약 '+fmt(growth(a,b))+'%이다.',n+'의 이 기간 생산 증가율은 약 '+fmt(growth(a,b)+100)+'%이다.','나중÷처음×100은 지수이며 증가율은 거기서 100을 뺀다.',{op:'growth',a:a,b:b,result:growth(a,b)}));
   });
-  q.pairs.push(pair('G098-1','2014년 멕시코의 생산량은 독일보다 적지만, 2010~2014년 증가율은 더 높다.','2014년 멕시코의 생산량이 독일보다 적으므로 2010~2014년 증가율도 반드시 더 낮다.','총량의 순서로 증가율을 정하지 않는다. 두 나라를 각각 2010년 생산량으로 나눈다.',{op:'growthVsLevel',mexico:d.countries['멕시코'],germany:d.countries['독일']}));
+  q.pairs.push(pair('G098-1','멕시코는 독일보다 2014년 생산량이 적고, 2010~2014년 증가율은 높다.','멕시코는 독일보다 2014년 생산량이 적고, 2010~2014년 증가율도 낮다.','총량의 순서로 증가율을 정하지 않는다. 두 나라를 각각 2010년 생산량으로 나눈다.',{op:'growthVsLevel',mexico:d.countries['멕시코'],germany:d.countries['독일']}));
   return finish(q,r);
  }
  function capitalShareQ(seed){
@@ -343,7 +343,7 @@ function create(data){
   rows.forEach(function(x){var v=x.c/(x.u+x.r)*100;
    q.pairs.push(pair('G062-5',x.name+'의 수도 인구 비율은 약 '+fmt(v)+'%이다.',x.name+'의 수도 인구 비율은 약 '+fmt(x.c/x.u*100)+'%이다.','분모는 국가 총인구인 도시+촌락이다. 수도÷도시는 도시 인구 중 수도 인구 비율로 다른 지표이다.',{op:'capitalShare',capital:x.c,urban:x.u,rural:x.r,result:v}));
   });
-  q.pairs.push(pair('G062-5','국가 총인구는 도시 인구와 촌락 인구를 더해 구한다.','국가 총인구는 도시 인구·촌락 인구·수도 인구를 모두 더해 구한다.','수도 인구를 다시 더하면 총인구 일부를 중복 계산한다.',{op:'capitalDenominator'}));
+  q.pairs.push(pair('G062-5','국가 총인구는 도시 인구와 촌락 인구를 더한 값이다.','국가 총인구는 도시 인구, 촌락 인구, 수도 인구를 더한 값이다.','수도 인구를 다시 더하면 총인구 일부를 중복 계산한다.',{op:'capitalDenominator'}));
   return finish(q,r);
  }
  function birthDeathQ(seed){
@@ -354,7 +354,7 @@ function create(data){
   var births=rows.map(function(x){return x.nir+x.death;});q.stage1={question:'복원한 출생률이 가장 높은 국가는?',options:names,answer:births.indexOf(Math.max.apply(null,births)),explain:'출생률=자연 증가율+사망률. 자연 감소 국가도 부호를 그대로 넣는다.'};
   rows.forEach(function(x){q.pairs.push(pair('G056-5',x.name+'의 출생률은 약 '+fmt(x.nir+x.death,2)+'‰이다.',x.name+'의 출생률은 약 '+fmt(x.nir+x.death+10,2)+'‰이다.','자연 증가율=출생률−사망률이므로 출생률은 두 제시값의 합이다.',{op:'add',a:x.nir,b:x.death,result:x.nir+x.death}));});
   q.pairs.push(pair('G134-3','10‰는 1%와 같다.','10‰는 10%와 같다.','‰는 1,000분율, %는 100분율이다. 같은 수치의 ‰를 %로 바꾸려면 10으로 나눈다.',{op:'perMille',perMille:10,percent:1}));
-  q.pairs.push(pair('G056-5','사망률만으로 의료 수준의 높고 낮음을 확정할 수 없다.','사망률이 높은 국가의 의료 수준은 반드시 더 낮다.','조사망률은 연령 구성의 영향을 받는다. 고령 인구가 많은 국가의 높은 사망률을 의료 수준만으로 설명하지 않는다.',{op:'ageStructureConfound'}));
+  q.pairs.push(pair('G056-5','일본의 사망률이 니제르보다 높은 것은 노년층 인구 비중이 높은 것과 관련 있다.','일본의 사망률이 니제르보다 높은 것은 의료 수준이 니제르보다 낮은 것과 관련 있다.','조사망률은 연령 구성의 영향을 받는다. 고령 인구가 많은 국가의 높은 사망률을 의료 수준만으로 설명하지 않는다.',{op:'ageStructureConfound'}));
   return finish(q,r);
  }
  function cityDistanceQ(seed){
@@ -411,10 +411,13 @@ function create(data){
   q.tables.push(table(['국가'].concat(mode===0?['수확 면적(천 ha)','단수(t/ha)']:mode===1?['생산량(천 t)','수확 면적(천 ha)']:['생산량(천 t)','단수(t/ha)']).concat(['인구(만 명)']),rows.map(function(x){return[x.name].concat(mode===0?[x.a,x.y]:mode===1?[x.p,x.a]:[x.p,x.y]).concat([data.countries[x.name].series.pop['2023']]);}),'세 생산 지표 중 두 값만 제시 · 인구: 같은 해 WDI'));
   var vals=rows.map(function(x){return mode===0?x.a*x.y:mode===1?x.p/x.a:x.p/x.y;});
   q.stage1={question:'복원한 '+(mode===0?'생산량':mode===1?'단수':'수확 면적')+'이 가장 큰 국가는?',options:names,answer:vals.indexOf(Math.max.apply(null,vals)),explain:'생산량=면적×단수, 단수=생산량÷면적, 면적=생산량÷단수. 같은 단위 배율끼리 계산한다.'};
-  rows.forEach(function(x,i){var v=vals[i],unit=mode===0?'천 t':mode===1?'t/ha':'천 ha';q.pairs.push(pair('G075-1',x.name+'의 복원한 값은 약 '+fmt(v)+' '+unit+'이다.',x.name+'의 복원한 값은 약 '+fmt(v*1.2)+' '+unit+'이다.','이번 표에서 숨긴 값을 나머지 두 지표로 복원한다.',{op:mode===0?'product':'quotient',a:mode===0?x.a:x.p,b:mode===1?x.a:x.y,result:v}));});
+  var hidden=mode===0?'밀 생산량은':mode===1?'밀 단수는':'밀 수확 면적은';
+  rows.forEach(function(x,i){var v=vals[i],unit=mode===0?'천 t':mode===1?'t/ha':'천 ha';q.pairs.push(pair('G075-1',x.name+'의 '+hidden+' 약 '+fmt(v)+' '+unit+'이다.',x.name+'의 '+hidden+' 약 '+fmt(v*1.2)+' '+unit+'이다.','이번 표에서 숨긴 값을 나머지 두 지표로 복원한다.',{op:mode===0?'product':'quotient',a:mode===0?x.a:x.p,b:mode===1?x.a:x.y,result:v}));});
   var x=rows[seed%3],production=mode===0?x.a*x.y:x.p,population=data.countries[x.name].series.pop['2023'],perPerson=production*100/population;
   q.pairs.push(pair('G075-1',x.name+'의 1인당 밀 생산량은 약 '+fmt(perPerson)+'kg이다.',x.name+'의 1인당 밀 생산량은 약 '+fmt(perPerson*10)+'kg이다.','생산량(천 t)×1,000,000kg을 인구(만 명)×10,000명으로 나눈다. 총생산량과 1인당 생산량을 구별한다.',{op:'cropPerPerson',productionThousandTonnes:production,populationTenThousands:population,result:perPerson}));
-  q.pairs.push(pair('G075-1','단수가 높다는 이유만으로 총생산량도 더 많다고 확정할 수 없다.','단수가 가장 높은 국가는 수확 면적과 관계없이 생산량도 반드시 가장 많다.','단수는 단위 면적당 생산량이다. 총생산량에는 수확 면적도 필요하다.',{op:'yieldVsTotal'}));
+  // Stated about these three rows, with the same assertive form either way.
+  var topYield=rows.reduce(function(a,b){return b.y>a.y?b:a;}),topProduction=rows.reduce(function(a,b){return b.p>a.p?b:a;}),sameTop=topYield===topProduction;
+  q.pairs.push(pair('G075-1',sameTop?'세 나라 중 밀 단수가 가장 높은 국가가 밀 생산량도 가장 많다.':'세 나라 중 밀 단수가 가장 높은 국가와 밀 생산량이 가장 많은 국가는 다르다.',sameTop?'세 나라 중 밀 단수가 가장 높은 국가와 밀 생산량이 가장 많은 국가는 다르다.':'세 나라 중 밀 단수가 가장 높은 국가가 밀 생산량도 가장 많다.','단수가 가장 높은 국가는 '+topYield.name+'('+fmt(topYield.y)+' t/ha), 생산량이 가장 많은 국가는 '+topProduction.name+'('+fmt(topProduction.p)+'천 t)이다. 생산량=수확 면적×단수이다.',{op:'yieldVsTotal',topYield:topYield.name,topProduction:topProduction.name}));
   return finish(q,r);
  }
  function religionOtherQ(seed){

@@ -4,13 +4,28 @@
 var colors=['#096b83','#b14622','#7b479a','#427545'],dash=['','8 4','3 3','10 3 2 3'];
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'})[c];});}
 function num(v){if(!Number.isFinite(v))throw Error('Non-finite chart coordinate');return Math.round(v*1000)/1000;}
-function txt(x,y,s,anchor,size,color){return'<text x="'+num(x)+'" y="'+num(y)+'" text-anchor="'+(anchor||'middle')+'" font-size="'+Math.max(size||13,14)+'" fill="'+(color||'#304652')+'">'+esc(s)+'</text>';}
+// Narrow screens shrink the 700-unit viewBox; TEXT keeps labels readable there.
+var TEXT=1,EXTRA=0;
+function txt(x,y,s,anchor,size,color){
+ var fs=Math.max(size||13,14)*TEXT;
+ if(TEXT>1){
+  // Enlarged labels are pulled back inside the 700×440 drawing.
+  var w=[...String(s)].reduce(function(a,c){return a+(/[\u1100-\u11ff\u3000-\u9fff\uac00-\ud7af]/.test(c)?1:.62);},0)*fs,a=anchor||'middle',lo=a==='start'?x:a==='end'?x-w:x-w/2;
+  if(lo<2)x+=2-lo;else if(lo+w>698)x-=lo+w-698;
+  y=Math.min(Math.max(y,fs*.92+2),438+EXTRA-fs*.22);
+ }
+ return'<text x="'+num(x)+'" y="'+num(y)+'" text-anchor="'+(anchor||'middle')+'" font-size="'+num(fs)+'" fill="'+(color||'#304652')+'">'+esc(s)+'</text>';}
 function line(x1,y1,x2,y2,color,width,d){return'<line x1="'+num(x1)+'" y1="'+num(y1)+'" x2="'+num(x2)+'" y2="'+num(y2)+'" stroke="'+(color||'#bfd0d8')+'" stroke-width="'+(width||1)+'"'+(d?' stroke-dasharray="'+d+'"':'')+'/>';}
 function dot(x,y,r,color){return'<circle cx="'+num(x)+'" cy="'+num(y)+'" r="'+num(r)+'" fill="white" stroke="'+color+'" stroke-width="2"/>';}
 function nice(max,min){var span=max-min;if(!span)span=Math.max(Math.abs(max)*.1,1);var raw=span/5,p=10**Math.floor(Math.log10(raw)),a=raw/p,step=(a<=1?1:a<=2?2:a<=5?5:10)*p;return{min:Math.floor(min/step)*step,max:Math.ceil((max===min?max+span:max)/step)*step,step:step};}
 function label(v){return String(Math.round(v*1000)/1000);}
 function wrap(s,size){var a=[...String(s)],out=[];while(a.length)out.push(a.splice(0,size).join(''));return out;}
-function legend(series){return series.map(function(s,i){return line(85+i*150,415,110+i*150,415,colors[i%4],2,dash[i%4])+txt(118+i*150,420,s.name,'start',13);}).join('');}
+function legend(series){
+ // Phone labels are wider: long legends take two rows and the drawing grows.
+ var per=TEXT>1&&series.some(function(s){return [...String(s.name)].length>4;})?2:4,gap=per===2?300:150;
+ if(series.length>per)EXTRA=34;
+ return series.map(function(s,i){var c=i%per,y=415+Math.floor(i/per)*34;return line(85+c*gap,y,110+c*gap,y,colors[i%4],2,dash[i%4])+txt(118+c*gap,y+5,s.name,'start',13);}).join('');
+}
 function cartesian(f){
  var out='',left=90,right=650,top=34,bottom=345,values=[],xs=[];
  if(f.kind==='line'){xs=f.x;values=f.series.flatMap(function(s){return s.values;});}
@@ -63,7 +78,9 @@ function triangle(f){
  for(var i=0;i<3;i++){
   for(var k=1;k<=4;k++){var a=mins.slice(),b=mins.slice();a[i]+=rest*k/5;b[i]+=rest*k/5;a[(i+1)%3]+=rest*(1-k/5);b[(i+2)%3]+=rest*(1-k/5);var u=xy(a),v=xy(b);out+=line(u[0],u[1],v[0],v[1],'#d7e2e7');out+=txt(u[0]+(i===0?-8:8),u[1]-5,label(mins[i]+rest*k/5),'middle',11);}
   var v=mins.slice();v[i]+=rest;
-  var tx=P[i][0],ty=P[i][1]+(i===2?-22:25);out+=txt(tx,ty,f.labels[i],null,14)+txt(tx,ty+17,v.join(' / ')+'%',null,11);
+  var tx=P[i][0],ty=P[i][1]+(i===2?-22:25)*TEXT;out+=txt(tx,ty,f.labels[i],null,14);
+  // Phone: the vertex coordinates repeat the tick labels and would collide.
+  if(TEXT===1)out+=txt(tx,ty+17,v.join(' / ')+'%',null,11);
  }
  out+=txt(350,405,'좌표 순서: '+f.labels.join(' / '),null,13);
  f.points.forEach(function(p,i){var xy0=xy(p.values),flip=xy0[0]>350;out+=dot(xy0[0],xy0[1],5,colors[i%4])+txt(xy0[0]+(flip?-11:11),xy0[1]-10,p.name,flip?'end':'start',14,colors[i%4]);});return out;
@@ -81,7 +98,7 @@ function axes3(f){
  var O=[280,325],V=[[280,0],[140,-140],[0,-245]],out='';
  function xy(a){return[O[0]+a.reduce(function(s,v,i){return s+v*V[i][0];},0)*.62,O[1]+a.reduce(function(s,v,i){return s+v*V[i][1];},0)*.62];}
  for(var mask=0;mask<8;mask++)for(var axis=0;axis<3;axis++)if(!(mask&(1<<axis))){var a=[0,1,2].map(function(i){return(mask>>i)&1;}),b=a.slice();b[axis]=1;var u=xy(a),v=xy(b);out+=line(u[0],u[1],v[0],v[1],'#c8d7de',1,'4 4');}
- f.labels.forEach(function(s,i){var e=[O[0]+V[i][0],O[1]+V[i][1]];out+=line(O[0],O[1],e[0],e[1],'#5b7583',2);wrap(s,12).forEach(function(t,j){out+=txt(e[0]+(i===0?0:10),e[1]-12+j*17,t,i===2?'end':'middle',13);});out+=txt(e[0],e[1]+30,'상대적으로 큼',null,12);});
+ f.labels.forEach(function(s,i){var e=[O[0]+V[i][0],O[1]+V[i][1]];out+=line(O[0],O[1],e[0],e[1],'#5b7583',2);var rows=wrap(s,TEXT>1?7:12);rows.forEach(function(t,j){out+=txt(e[0]+(i===0?0:10),e[1]-12-(rows.length-1-j)*17*TEXT*(i===1?1:0)+(i===1?0:j*17*TEXT),t,i===2?'end':'middle',13);});out+=txt(e[0],e[1]+30*TEXT,'상대적으로 큼',null,12);});
  out+=txt(O[0]-10,O[1]+25,'상대적으로 작음',null,12);
  f.points.forEach(function(p,i){var a=xy(p.values);out+=dot(a[0],a[1],6,colors[i%4])+txt(a[0]+10,a[1]-10,p.name,'start',15);});
  return out+txt(350,410,'계층 평균의 상대 위치 · 수치 축이 아닌 모식도',null,13);
@@ -90,11 +107,11 @@ function energyBars(f){
  var out=txt(350,23,f.name||'',null,16),left=90,right=650,top=58,bottom=330;
  if(f.kind==='stacked'){
   // Keep long category labels inside the SVG, including "원주민 및 기타".
-  left=Math.max(left,Math.min(200,12+Math.max.apply(null,f.labels.map(function(s){return [...String(s)].length;}))*14));
+  left=Math.max(left,Math.min(200*TEXT,12+Math.max.apply(null,f.labels.map(function(s){return [...String(s)].length;}))*14*TEXT));
   var limit=f.maximum||100,step=limit/5;
   for(var v=0;v<=limit+step/10;v+=step)out+=line(left+v/limit*(right-left),top,left+v/limit*(right-left),bottom,'#e0e8ec')+txt(left+v/limit*(right-left),bottom+24,label(v));
   var band=(bottom-top)/f.values.length,bh=Math.min(45,band*.55);
-  f.values.forEach(function(row,i){var x=left,y=top+(i+.25)*band;out+=txt(left-12,y+bh/2+5,f.labels[i],'end',14);row.forEach(function(v,j){var width=v/limit*(right-left);out+='<rect x="'+num(x)+'" y="'+num(y)+'" width="'+num(width)+'" height="'+num(bh)+'" fill="'+colors[j%4]+'"/>';if(width>38)out+=txt(x+width/2,y+bh/2+5,label(v),null,14,'white');x+=width;});});
+  f.values.forEach(function(row,i){var x=left,y=top+(i+.25)*band;out+=txt(left-12,y+bh/2+5,f.labels[i],'end',14);row.forEach(function(v,j){var width=v/limit*(right-left);out+='<rect x="'+num(x)+'" y="'+num(y)+'" width="'+num(width)+'" height="'+num(bh)+'" fill="'+colors[j%4]+'"/>';if(width>38*TEXT)out+=txt(x+width/2,y+bh/2+5,label(v),null,14,'white');x+=width;});});
   out+=txt(350,391,f.xLabel||'%',null,14);
  }else{
   var axis=nice(f.maximum,Math.min(0,...f.values.flat())),max=axis.max;
@@ -102,7 +119,7 @@ function energyBars(f){
   for(var value=axis.min;value<=max+axis.step/10;value+=axis.step){var y=barY(value);out+=line(left,y,right,y,value===0?'#597785':'#e0e8ec')+txt(left-12,y+4,label(value),'end',14);}
   var group=(right-left)/f.labels.length,bw=group/(f.categories.length+1.5);
   f.values.forEach(function(row,i){row.forEach(function(v,j){var h=Math.abs(barY(v)-barY(0)),x=left+i*group+(j+.4)*bw;out+='<rect x="'+num(x)+'" y="'+num(Math.min(barY(v),barY(0)))+'" width="'+num(bw*.82)+'" height="'+num(h)+'" fill="'+colors[j%4]+'"/>';});out+=txt(left+(i+.5)*group,bottom+27,f.labels[i],null,14);});
-  out+=txt(left,44,f.yLabel,'start',14);
+  out+=txt(left,44+(TEXT-1)*18,f.yLabel,'start',14);
  }
  return out+legend(f.categories.map(function(name){return{name:name};}));
 }
@@ -143,7 +160,11 @@ function facilityMap(){
  out+=txt(120,135,'★',null,28)+txt(210,135,'△',null,28)+txt(475,135,'△',null,28)+txt(570,135,'□',null,28)+txt(515,325,'□',null,28);
  out+=line(260,150,425,150,'#7d9ba8',2,'6 5')+line(250,170,450,290,'#7d9ba8',2,'6 5');return out+txt(350,410,'★ 본사 · △ 전문 인력·대학 주변 · □ 해외 시장·물류 거점',null,13);
 }
-function render(f){
+function render(f,opts){
+ TEXT=opts&&opts.textScale>1?Math.min(opts.textScale,1.8):1;EXTRA=0;
+ try{return draw(f);}finally{TEXT=1;EXTRA=0;}
+}
+function draw(f){
  var title=(f.xLabel||f.labels?.join(' · ')||'자료')+' / '+(f.yLabel||f.kind),body;
  if(f.kind==='stat-map')body=statMap(f);
  else if(f.kind==='grid-map')body=gridMap(f);
@@ -160,7 +181,7 @@ function render(f){
   body='<g transform="rotate('+num(f.rotation)+' 250 220)"><path d="M250 80 A140 140 0 0 1 250 360 L250 300 A80 80 0 0 0 250 140Z" fill="#c9e5ef" stroke="#597785" stroke-width="2"/>'+dot(395,220,5,'#b14622')+'<g transform="rotate('+num(-f.rotation)+' 422 220)">'+txt(422,225,f.outer,null,18)+'</g>'+dot(325,220,5,'#096b83')+'<g transform="rotate('+num(-f.rotation)+' 303 220)">'+txt(303,225,f.inner,null,18)+'</g>'+line(360,200,360,240,'#304652',3)+'<polygon points="353,230 360,245 367,230" fill="#304652"/></g>'+txt(550,75,'하천 종단면 모식도',null,14)+line(465,185,665,185,'#597785')+line(465,90,465,185,'#597785')+'<polyline points="470,95 500,125 550,150 600,165 660,177" fill="none" stroke="#096b83" stroke-width="3"/>'+txt(475,210,'상류',null,14)+txt(650,210,'하류',null,14)+txt(350,420,'굽은 바깥쪽·안쪽을 기준으로 판정',null,14);
  }else if(f.kind==='pyramid'){
   var cx=350,left=70,right=650,top=60,bottom=355,N=f.ages.length,step=(bottom-top)/N,max=Math.max.apply(null,f.male.concat(f.female)),bound=nice(max,0).max,scale=265/bound;body=txt(350,22,f.name||'인구 피라미드',null,16)+txt(200,43,'남성',null,14)+txt(500,43,'여성',null,14);
-  f.ages.forEach(function(age,i){var y=bottom-(i+1)*step,h=step*.8;body+='<rect x="'+num(cx-f.male[i]*scale)+'" y="'+num(y)+'" width="'+num(f.male[i]*scale)+'" height="'+num(h)+'" fill="#096b83"/><rect x="350" y="'+num(y)+'" width="'+num(f.female[i]*scale)+'" height="'+num(h)+'" fill="#b14622"/>'+txt(left-5,y+h/2+4,age.replace('세 이상','+').replace('세',''),'end',12);});
+  f.ages.forEach(function(age,i){var y=bottom-(i+1)*step,h=step*.8;body+='<rect x="'+num(cx-f.male[i]*scale)+'" y="'+num(y)+'" width="'+num(f.male[i]*scale)+'" height="'+num(h)+'" fill="#096b83"/><rect x="350" y="'+num(y)+'" width="'+num(f.female[i]*scale)+'" height="'+num(h)+'" fill="#b14622"/>'+(TEXT>1&&i%2?'':txt(left-5,y+h/2+4,age.replace('세 이상','+').replace('세',''),'end',12));});
   for(var k=0;k<=4;k++){var x=bound*k/4;body+=line(cx-x*scale,top,cx-x*scale,bottom,'#c9d8de',.6)+line(cx+x*scale,top,cx+x*scale,bottom,'#c9d8de',.6)+txt(cx-x*scale,bottom+24,label(x))+ (k?txt(cx+x*scale,bottom+24,label(x)):'');}
   body+=txt(350,418,f.xLabel,null,14);
  }else if(f.kind==='area'){
@@ -176,7 +197,7 @@ function render(f){
   if(f.kind==='image-regions'){var scale=Math.min(676/f.width,380/f.height),w=f.width*scale,h=f.height*scale,ox=12+(676-w)/2,oy=35+(380-h)/2;f.regions.forEach(function(m){var x=ox+m.x*w,y=oy+m.y*h;body+='<g role="button" tabindex="0" data-material-option="'+m.option+'" aria-label="'+esc(m.letter)+' 영역 선택" style="cursor:pointer">'+dot(x,y,16,'#096b83')+txt(x,y+5,m.letter,null,16)+'<circle cx="'+num(x)+'" cy="'+num(y)+'" r="24" fill="transparent"/></g>';});}
  }else if(['line','bars','scatter'].includes(f.kind))body=cartesian(f);
   else if(f.kind==='radar')body=radar(f);else if(f.kind==='ternary')body=triangle(f);else if(f.kind==='profile')body=profile(f);else if(f.kind==='three-axis')body=axes3(f);else if(f.kind==='map')body=map(f);else if(f.kind==='stacked'||f.kind==='grouped-bars')body=energyBars(f);else throw Error('Unknown chart '+f.kind);
- return'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 440" font-family="Noto Sans KR, sans-serif" role="img" aria-label="'+esc(title)+'"><title>'+esc(title)+'</title><rect width="700" height="440" fill="#fff"/>'+body+'</svg>';
+ var H=440+EXTRA;return'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 '+H+'" font-family="Noto Sans KR, sans-serif" role="img" aria-label="'+esc(title)+'"><title>'+esc(title)+'</title><rect width="700" height="'+H+'" fill="#fff"/>'+body+'</svg>';
 }
 return{render:render,nice:nice};
 });

@@ -7,11 +7,24 @@ var L=['(가)','(나)','(다)','(라)'],MARKS=['ㄱ','ㄴ','ㄷ','ㄹ'];
 function rng(seed){var a=seed>>>0;return function(){a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 function shuffle(a,r){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(r()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function clone(x){return JSON.parse(JSON.stringify(x));}
+function label(v){return String(Math.round(v*10)/10);}
 function pair(yes,no,explain,check){return{yes:yes,no:no,explain:explain,check:check||{op:'knowledge'}};}
 function topic(t){var letters=t.match(/[가-힣]/g),code=letters&&letters[letters.length-1].charCodeAt(0)-44032;return t+(code!=null&&code%28?'은 ':'는 ');}
+function batchim(t){var letters=String(t).match(/[가-힣]/g),code=letters&&letters[letters.length-1].charCodeAt(0)-44032;return code!=null&&code%28>0;}
+function subject(t){return t+(batchim(t)?'이':'가');}
+// Particles fixed after known names, e.g. "다윈는" → "다윈은", "웰링턴는" → "웰링턴은".
+var PARTICLE={'은':['은','는'],'는':['은','는'],'이':['이','가'],'가':['이','가'],'을':['을','를'],'를':['을','를'],'과':['과','와'],'와':['과','와']};
+function particles(text,names){
+ if(typeof text!=='string')return text;
+ names.forEach(function(n){if(!n||n.length<2)return;var esc=n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  text=text.replace(new RegExp('(^|[\\s(·,])('+esc+')(은|는|이|가|을|를|과|와)(?=[\\s.,])','g'),function(_,pre,name,p){return pre+name+PARTICLE[p][batchim(name)?0:1];});});
+ return text;
+}
+function sig(v){var m=Math.abs(v);return(m>=1000?Math.round(v):m>=10?Math.round(v*10)/10:m>=1?Math.round(v*100)/100:Math.round(v*1000)/1000).toLocaleString('ko-KR');}
 function comparison(subject,object,noun,a,b,why,check){
  if(!Number.isFinite(a)||!Number.isFinite(b)||Math.abs(a-b)<1e-8)return null;
- return pair(topic(subject)+object+'보다 '+noun+' '+(a>b?'크다.':'작다.'),topic(subject)+object+'보다 '+noun+' '+(a>b?'작다.':'크다.'),why,Object.assign({op:'examComparison',a:a,b:b},check));
+ // The correction shows both computed values, not only the method.
+ return pair(topic(subject)+object+'보다 '+noun+' '+(a>b?'크다.':'작다.'),topic(subject)+object+'보다 '+noun+' '+(a>b?'작다.':'크다.'),why+' 계산값: '+subject+' 약 '+sig(a)+', '+object+' 약 '+sig(b)+'.',Object.assign({op:'examComparison',a:a,b:b},check));
 }
 function choose(pairs,r){
  var ps=shuffle(pairs.filter(Boolean),r).slice(0,4);
@@ -32,7 +45,7 @@ var HIDE={
  'age-triangle':[0],'urban-radar':[0],'urban-rural-scatter':[0],'grain-size':[0],'lake-types':[0],
  'mineral-relative':[0],'regional-radar':[0],'livestock-composition':[0],'grain-triangle':[0],'beverage-triangle':[0],
  'grain-export-scatter':[0],'crop-trade-bubble':[0],'fossil-triangle':[0],'coal-production-consumption':[0],
- 'renewables-denominators':[0],'australia-trade-change':[0],'industry-bubble':[0,1],'unequal-energy-axis':[0],'andes-conditions':[0]
+ 'renewables-denominators':[0],'vital-scatter':[0],'australia-trade-change':[0],'industry-bubble':[0,1],'unequal-energy-axis':[0],'andes-conditions':[0]
 };
 var DIRECT=new Set(['gis-filters','gis-medical','gis-scoring','gis-directions','gis-weighted','gis-top-two',
  'stat-map-types','facility-map','rain-ph-maps','andes-conditions','oldmap-images','coast-images','religious-buildings',
@@ -88,7 +101,35 @@ var CONDITIONS={
  'population-area':'각 그림 전체의 면적을 100으로 한 인구 구성비이다.',
  'energy-change':'1990년과 2020년 에너지원별 소비량(EJ)이다.',
  'energy-composition':'2000년과 2018년 1차 에너지 소비 구성(%)이다.',
+ 'crop-trade-bubble':'옥수수의 수출량·수입량(가로·세로)과 생산량(원 면적)이다.',
  'environment-news':'다음은 환경 관련 기사의 일부를 재구성한 것이다.'
+};
+// Why each candidate fits, joined in the order of the displayed labels.
+var REASON={
+ 'andes-conditions':{'브라질':'국토가 가장 넓고 대서양에 접한다','페루':'태평양에 접한 안데스 국가로 에콰도르와 볼리비아 사이에 있다','에콰도르':'적도가 지나는 태평양 연안 국가이다','볼리비아':'바다와 접하지 않는 안데스의 내륙국이다'},
+ 'north-america-trade':{'미국':'두 나라 모두와의 교역액이 가장 큰 중심 국가이다','멕시코':'1990년보다 2017년에 미국과의 교역이 크게 늘었다(NAFTA 이후)','캐나다':'1990년 미국과의 교역액이 가장 컸다'},
+ 'eu-trade-arrows':{'사우디아라비아':'EU로의 수출 1위 품목이 광물성 연료이고 그 비중이 80%를 넘는다','이집트':'EU와의 교역액이 가장 작고 광물성 연료를 수출한다','튀르키예':'EU와의 교역액이 가장 크고 기계류·운송 장비를 수출한다'},
+ 'trade-composition-triangle':{'사우디아라비아':'수출의 대부분이 원재료·연료(석유)이다','오스트레일리아':'원재료·연료 수출 비중이 높고 식료품 수출도 있다','중국':'수출의 대부분이 공업 제품이다'},
+ 'religion-score':{'힌두교':'인도 아대륙에서 기원한 민족 종교라 두 진술이 모두 옳아 2점이다','불교':'인도 아대륙에서 기원했지만 보편 종교라 1점이다','이슬람교':'서남아시아에서 기원한 보편 종교라 0점이다'},
+ 'resource-area':{'석탄':'중국의 비중이 절반에 이른다','석유':'오스트레일리아의 비중이 거의 없다','천연가스':'미국의 비중이 가장 크고 오스트레일리아도 일부를 차지한다'},
+ 'regional-radar':{'사우디아라비아':'GDP가 가장 크고 농업 종사자 비율은 가장 낮다','이집트':'농업 종사자 비율이 가장 높다','카자흐스탄':'면적이 가장 넓다'},
+ 'livestock-composition':{'브라질':'소의 비중이 가장 높다','오스트레일리아':'양의 비중이 가장 높다','중국':'돼지의 비중이 가장 높다'},
+ 'grain-triangle':{'오세아니아':'세 곡물 중 밀이 거의 전부이다','유럽':'밀 비중이 높고 옥수수가 일부이다','앵글로아메리카':'옥수수 비중이 가장 높다'},
+ 'beverage-triangle':{'남아메리카':'커피 비중이 가장 높다','아시아':'차 비중이 가장 높다','아프리카':'카카오 비중이 다른 두 대륙보다 높다'},
+ 'crop-trade-bubble':{'미국':'생산량(원)이 가장 크고 수출량도 가장 많다','아르헨티나':'생산량에 비해 수출량이 많다','프랑스':'생산량과 수출량이 가장 작다'},
+ 'treaty-tree':{'파리':'유럽(프랑스)에 있다','람사르':'아시아(이란)에 있다','몬트리올':'유럽·아시아가 아닌 북아메리카(캐나다)에 있다'}
+};
+// Station knowledge, true for the 1991–2020 normals used here; one is drawn per item.
+var CLIMATE_FACTS={
+ '퍼스':[['7월보다 1월에 낮 길이가 길다.','1월보다 7월에 낮 길이가 길다.','퍼스는 남반구에 있어 1월이 여름이다.','southernSummer'],['겨울철에 편서풍의 영향으로 강수가 많다.','겨울철에 아열대 고압대의 영향으로 건조하다.','퍼스의 지중해성 기후는 겨울에 편서풍·전선의 영향으로 비가 온다.','cs'],['대륙의 서안에 위치한다.','대륙의 동안에 위치한다.','퍼스는 오스트레일리아 남서부 해안 도시이다.','position']],
+ '다윈':[['남반구에 위치한다.','북반구에 위치한다.','다윈은 오스트레일리아 북부(약 12°S)에 있다.','hemisphere'],['적도 수렴대가 남하하는 1월 무렵이 우기이다.','적도 수렴대가 북상하는 7월 무렵이 우기이다.','남반구 열대인 다윈은 1월 무렵 우기, 7월 무렵 건기이다.','aw'],['건기와 우기가 뚜렷한 사바나 기후가 나타난다.','연중 강수가 고른 열대 우림 기후가 나타난다.','다윈은 사바나 기후(Aw)이다.','aw']],
+ '양곤':[['남서 계절풍이 부는 여름에 강수가 집중된다.','북동 계절풍이 부는 겨울에 강수가 집중된다.','양곤은 여름 계절풍의 영향을 받는 열대 몬순 기후이다.','am'],['북반구에 위치한다.','남반구에 위치한다.','양곤은 미얀마 남부(약 17°N)에 있다.','hemisphere']],
+ '뭄바이':[['남서 계절풍이 부는 6~9월에 강수가 집중된다.','북동 계절풍이 부는 12~2월에 강수가 집중된다.','뭄바이는 여름 계절풍의 영향을 받는다.','aw'],['북반구에 위치한다.','남반구에 위치한다.','뭄바이는 인도 서부(약 19°N)에 있다.','hemisphere']],
+ '푸저우':[['여름 계절풍의 영향으로 여름에 강수가 많다.','겨울 계절풍의 영향으로 겨울에 강수가 많다.','푸저우는 동아시아 계절풍 지역의 온난 습윤 기후이다.','cfa'],['대륙의 동안에 위치한다.','대륙의 서안에 위치한다.','푸저우는 중국 남동부 해안 도시이다.','position']],
+ '로차':[['7월보다 1월에 낮 길이가 길다.','1월보다 7월에 낮 길이가 길다.','로차는 남반구에 있어 1월이 여름이다.','southernSummer'],['대서양 연안에 위치한다.','태평양 연안에 위치한다.','로차는 우루과이 동부 대서양 연안에 있다.','position']],
+ '덴버':[['로키산맥 동쪽에 위치한다.','로키산맥 서쪽에 위치한다.','덴버는 로키산맥 동쪽 기슭의 고원 도시이다.','position']],
+ '창춘':[['여름 계절풍의 영향으로 여름에 강수가 집중된다.','겨울 계절풍의 영향으로 겨울에 강수가 집중된다.','창춘은 냉대 겨울 건조 기후(Dw)이다.','dw']],
+ '디트로이트':[['오대호 연안에 위치한다.','멕시코만 연안에 위치한다.','디트로이트는 이리호·휴런호 사이의 도시이다.','position'],['연중 강수가 비교적 고른 냉대 습윤 기후가 나타난다.','겨울이 건조한 냉대 겨울 건조 기후가 나타난다.','디트로이트는 냉대 습윤 기후(Df)이다.','df']]
 };
 var CLIMATE=['cumulative','self-deviation','common-deviation','reference-deviation','precip-deviation','difference'];
 // Retain scope/denominator traps; discard tautologies and statements that merely
@@ -98,7 +139,18 @@ var WEAK=new Set(['figureIdentification','distanceSymmetry','distanceCompare','c
  'inclusiveBoundary','medicalWinner','filter','weightedScore','topTwo','tieBreak','weightMeaning','energyChange',
  'energyShareChange','radarColumns','radarOrder','normalize','sorting','grainMean','lakeReading','lakeSalinity',
  'correctReligionClaim','religionScores','exportItems2018','grainDotLegend','nightLightMeaning','nightLightCountries']);
+// Corrections for computed statements end with the values the reader should get.
+function withValues(p){
+ if(!p||/계산값/.test(p.explain))return p;var c=p.check||{},v=null;
+ if(c.op==='urbanRuralGrowth')v='도시 약 '+sig(c.urban)+'%, 촌락 약 '+sig(c.rural)+'%';
+ else if(c.op==='growthVsLevel'){var g=function(x){return(x['2014'].total/x['2010'].total-1)*100;};v='멕시코 약 '+sig(g(c.mexico))+'%, 독일 약 '+sig(g(c.germany))+'%';}
+ else if(c.op==='cumulativeSeason')v='6·7·8월 약 '+sig(c.summer)+'mm, 12·1·2월 약 '+sig(c.winter)+'mm';
+ else if(c.op==='dependencyChange'&&c.turkiye)v='청장년층 '+sig(c.turkiye.a.w)+' → '+sig(c.turkiye.b.w)+'%, 노년 부양비 '+sig(c.turkiye.a.old)+' → '+sig(c.turkiye.b.old);
+ else if(Number.isFinite(c.result))v='약 '+sig(c.result);
+ if(!v)return p;var q=Object.assign({},p);q.explain=p.explain+' 계산값: '+v+'.';return q;
+}
 function create(data,math,extra){
+ var NAMES=[].concat(Object.keys(data.countries||{}),Object.keys(data.cities||{}),Object.keys((data.climate||{}).sites||{}),Object.keys((extra&&extra.countries)||{}),['웰링턴','마닐라','도쿄','오클랜드','홍콩','카슈가르','다윈','양곤','퍼스','로차','덴버','창춘','디트로이트','뭄바이']);
  var geography={
   '프랑스':['유럽 연합(EU) 회원국이다.','동남아시아 국가 연합(ASEAN) 회원국이다.','bloc','eu'],
   '독일':['유럽 연합(EU) 회원국이다.','동남아시아 국가 연합(ASEAN) 회원국이다.','bloc','eu'],
@@ -116,11 +168,14 @@ function create(data,math,extra){
  function geographic(q){return(q.assignment||[]).map(function(n,i){var f=geography[n];return f?pair(L[i]+'는 '+f[0],L[i]+'는 '+f[1],n+': '+f[0],{op:'geographicFact',name:n,set:f[2],value:f[3]}):null;}).filter(Boolean);}
  function climatePairs(q){
   var names=q.assignment,ps=[],sites=data.climate.sites;
-  names.forEach(function(n,i){var s=sites[n],p=s.p,t=s.t,summer=s.lat>0?[5,6,7]:[11,0,1],winter=s.lat>0?[11,0,1]:[5,6,7],wet=summer.reduce(function(a,m){return a+p[m];},0)>winter.reduce(function(a,m){return a+p[m];},0),label=L[i];
-   if(['다윈','양곤','뭄바이'].includes(n))ps.push(pair(label+'는 여름철에 강수가 집중된다.',label+'는 겨울철에 강수가 집중된다.',n+'는 여름 우기·겨울 건기의 계절성을 보인다.',{op:'climateSeason',name:n,lat:s.lat,summer:summer,winter:winter,summerRain:summer.reduce(function(a,m){return a+p[m];},0),winterRain:winter.reduce(function(a,m){return a+p[m];},0)}));
-   if(n==='퍼스')ps.push(pair(label+'는 여름철에 아열대 고압대의 영향을 많이 받는다.',label+'는 겨울철에 아열대 고압대의 영향을 많이 받는다.','퍼스의 지중해성 기후는 여름 건조·겨울 강수이다.',{op:'climateKnowledge',name:n,concept:'cs'}));
-   if(n==='창춘')ps.push(pair(label+'는 겨울철에 대륙성 기단의 영향으로 한랭 건조하다.',label+'는 겨울철에 해양성 기단의 영향으로 고온 다습하다.','창춘은 겨울철 대륙성 기단의 영향을 받는 냉대 겨울 건조 기후이다.',{op:'climateKnowledge',name:n,concept:'dw'}));
-   if(n==='덴버')ps.push(pair(label+'는 대륙 내부의 스텝 기후 지역이다.',label+'는 연중 습윤한 서안 해양성 기후 지역이다.','덴버는 미국 내륙의 스텝 기후 지역이다.',{op:'climateKnowledge',name:n,concept:'bs'}));
+  names.forEach(function(n,i){var s=sites[n],own=[],p=s.p,t=s.t,summer=s.lat>0?[5,6,7]:[11,0,1],winter=s.lat>0?[11,0,1]:[5,6,7],wet=summer.reduce(function(a,m){return a+p[m];},0)>winter.reduce(function(a,m){return a+p[m];},0),label=L[i];
+   if(['다윈','양곤','뭄바이'].includes(n))own.push(pair(label+'는 여름철에 강수가 집중된다.',label+'는 겨울철에 강수가 집중된다.',n+'는 여름 우기·겨울 건기의 계절성을 보인다.',{op:'climateSeason',name:n,lat:s.lat,summer:summer,winter:winter,summerRain:summer.reduce(function(a,m){return a+p[m];},0),winterRain:winter.reduce(function(a,m){return a+p[m];},0)}));
+   if(n==='퍼스')own.push(pair(label+'는 여름철에 아열대 고압대의 영향을 많이 받는다.',label+'는 겨울철에 아열대 고압대의 영향을 많이 받는다.','퍼스의 지중해성 기후는 여름 건조·겨울 강수이다.',{op:'climateKnowledge',name:n,concept:'cs'}));
+   if(n==='창춘')own.push(pair(label+'는 겨울철에 대륙성 기단의 영향으로 한랭 건조하다.',label+'는 겨울철에 해양성 기단의 영향으로 고온 다습하다.','창춘은 겨울철 대륙성 기단의 영향을 받는 냉대 겨울 건조 기후이다.',{op:'climateKnowledge',name:n,concept:'dw'}));
+   if(n==='덴버')own.push(pair(label+'는 대륙 내부의 스텝 기후 지역이다.',label+'는 연중 습윤한 서안 해양성 기후 지역이다.','덴버는 미국 내륙의 스텝 기후 지역이다.',{op:'climateKnowledge',name:n,concept:'bs'}));
+   (CLIMATE_FACTS[n]||[]).forEach(function(f){own.push(pair(label+'는 '+f[0],label+'는 '+f[1],f[2],{op:'climateKnowledge',name:n,concept:f[3]}));});
+   // One station statement per question, varied by seed, so the same line does not recur.
+   if(own.length)ps.push(own[Math.floor(rng(q.seed*7+i)()*own.length)]);
   });
   // These are observations of the supplied stations, used only where the graph
   // actually encodes the required difference/range; never promoted to recall facts.
@@ -139,7 +194,7 @@ function create(data,math,extra){
   ps=ps.concat(shuffle(old,rng(q.seed+23)).slice(0,1));
   // Monthly seasonality supports hemisphere from *temperature*, but tropical
   // temperature peaks need not be July/January: compare the two named months.
-  names.forEach(function(n,i){if(n==='퍼스'||n==='로차')ps.push(pair(L[i]+'는 7월보다 1월에 낮 길이가 길다.',L[i]+'는 1월보다 7월에 낮 길이가 길다.',n+'는 남반구에 있어 1월이 여름이다.',{op:'climateKnowledge',name:n,concept:'southernSummer'}));});
+
   return ps;
  }
  function numerical(q){
@@ -150,7 +205,7 @@ function create(data,math,extra){
   });
   Object.keys(groups).forEach(function(k){var a=groups[k];if(a.length<2)return;
    for(var i=0;i<Math.min(a.length,3);i++){var x=a[i],y=a[(i+1)%a.length];if(Math.abs(x.result-y.result)<Math.max(Math.abs(x.result),Math.abs(y.result))*.03)continue;
-    var p=comparison(x.subject,y.subject,x.noun+'이',x.result,y.result,'각 대상의 같은 지표를 같은 분모로 계산한 뒤 비교한다.',{operands:[x.check,y.check],quantity:x.noun});if(p)out.push(p);
+    var p=comparison(x.subject,y.subject,subject(x.noun),x.result,y.result,'각 대상의 같은 지표를 같은 분모로 계산한 뒤 비교한다.',{operands:[x.check,y.check],quantity:x.noun});if(p)out.push(p);
    }
   });return out;
  }
@@ -196,7 +251,7 @@ function create(data,math,extra){
   'traditional-houses':{
    ger:[['분해·조립과 이동에 편리해 유목 생활에 적합하다.','지하 수로로 물을 운반하는 데 적합하다.'],['건조 초원의 목축 생활과 관련 있다.','고온 다습한 열대의 정착 벼농사와 관련 있다.']],
    gassho:[['급한 지붕 경사는 쌓인 눈을 내려보내는 데 유리하다.','급한 지붕 경사는 적은 강수의 저장을 주목적으로 한다.'],['겨울철 강설에 적응한 가옥이다.','이동식 유목 생활에 적응한 가옥이다.']],
-   stilt:[['높인 바닥은 통풍과 습기 회피에 유리하다.','높인 바닥은 겨울철 눈을 지붕에서 내려보내기 위한 구조이다.'],['사진의 가옥은 고온 다습한 환경에 적응한 것이다.','사진의 가옥은 건조 초원에서 분해·이동하기 위한 것이다.']]
+   stilt:[['높인 바닥은 통풍과 습기 회피에 유리하다.','높인 바닥은 겨울철 눈을 지붕에서 내려보내기 위한 구조이다.'],['고온 다습한 환경에 적응한 가옥이다.','건조 초원에서 분해·이동하기 위한 가옥이다.']]
   },
   'religious-buildings':{
    'hindu-temple':[['관련 종교는 남부 아시아에서 기원한 민족 종교이다.','관련 종교는 서남아시아에서 기원한 보편 종교이다.'],['관련 종교에서는 소를 신성시한다.','관련 종교에서는 메카 순례를 의무로 여긴다.']],
@@ -225,17 +280,83 @@ function create(data,math,extra){
   var f=spec[ids[0]][1];ps.push(pair(sentence(L[0],f[0]),sentence(L[0],f[1]),panels[0].answer+': '+f[0],{op:'photoKnowledge',panel:ids[0],trait:1}));
   return{pairs:ps,figureLayout:'photos',figures:panels.map(function(p,i){return{kind:'image',src:p.path,name:L[i]};}),tables:[],condition:'다음은 서로 다른 대상의 사진 또는 지도이다.',identification:panels.map(function(p){return p.answer;}),note:ps.map(function(p){return p.explain;}).join(' ')};
  }
+
+ function relabel(text,from,to){return String(text).split(from).join(to);}
+ function binary(q,x,r){
+  var swap=r()<.5,P=[];
+  if(q.id==='energy-change'){
+   var names=q.assignment.slice(),figs=x.figures,tabs=x.tables;
+   if(swap){names.reverse();figs.reverse();tabs.reverse();}
+   figs.forEach(function(f,i){f.name=L[i];});tabs.forEach(function(t,i){t.caption=L[i]+' · EJ';});
+   var coal=function(i,y){return figs[i].values[y][0];},oil=function(i,y){return figs[i].values[y][1];},ren=function(i,y){return figs[i].values[y][3];};
+   [0,1].forEach(function(i){var down=coal(i,1)<coal(i,0);P.push(pair(L[i]+'는 1990년보다 2020년에 석탄 소비량이 '+(down?'적다.':'많다.'),L[i]+'는 1990년보다 2020년에 석탄 소비량이 '+(down?'많다.':'적다.'),names[i]+'의 석탄 소비량은 '+sig(coal(i,0))+' → '+sig(coal(i,1))+' EJ이다.',{op:'energyDirection',name:names[i]}));});
+   var k=Math.floor(r()*2),more=coal(k,1)>oil(k,1);
+   P.push(pair(L[k]+'는 2020년에 석탄 소비량이 석유 소비량보다 '+(more?'많다.':'적다.'),L[k]+'는 2020년에 석탄 소비량이 석유 소비량보다 '+(more?'적다.':'많다.'),names[k]+'의 2020년 석탄 '+sig(coal(k,1))+' EJ, 석유 '+sig(oil(k,1))+' EJ이다.',{op:'energyMix',name:names[k]}));
+   P.push(comparison(L[0],L[1],'2020년 재생에너지 소비량이',ren(0,1),ren(1,1),'같은 해 같은 단위(EJ)의 막대를 비교한다.',{op:'examComparison',quantity:'renewables2020'}));
+   var us=names.indexOf('미국'),cn=names.indexOf('중국');
+   P.push(pair(L[us]+'는 USMCA 회원국이다.',L[cn]+'는 USMCA 회원국이다.','USMCA는 미국·멕시코·캐나다의 무역 협정이다.',{op:'regionalKnowledge',name:'미국'}));
+   x.identification=names;return P;
+  }
+  if(q.id==='population-area'){
+   var names=q.assignment.slice(),figs=x.figures,tabs=x.tables;if(swap){names.reverse();figs.reverse();tabs.reverse();}
+   figs.forEach(function(f,i){f.name=L[i];});tabs.forEach(function(t,i){t.rows[0][0]=L[i];});
+   var as=names.indexOf('아시아'),eu=names.indexOf('유럽'),total=function(i){return tabs[i].rows[0][1];},get=function(i,n){return figs[i].entries.find(function(e){return e.name===n;}).value;};
+   var two=(get(as,'중국')+get(as,'인도'))/total(as)*100,de=get(eu,'독일')/total(eu)*100,jp=get(as,'일본'),dg=get(eu,'독일');
+   P.push(pair(L[as]+'에서 중국과 인도 인구의 합은 대륙 인구의 절반보다 '+(two>50?'많다.':'적다.'),L[as]+'에서 중국과 인도 인구의 합은 대륙 인구의 절반보다 '+(two>50?'적다.':'많다.'),'중국·인도 합은 대륙 인구의 약 '+sig(two)+'%이다.',{op:'areaShare',value:two}));
+   P.push(pair(L[eu]+'에서 독일 인구는 대륙 인구의 10%보다 '+(de>10?'많다.':'적다.'),L[eu]+'에서 독일 인구는 대륙 인구의 10%보다 '+(de>10?'적다.':'많다.'),'독일은 대륙 인구의 약 '+sig(de)+'%이다.',{op:'areaShare',value:de}));
+   P.push(pair(L[as]+'의 일본 인구는 '+L[eu]+'의 독일 인구보다 '+(jp>dg?'많다.':'적다.'),L[as]+'의 일본 인구는 '+L[eu]+'의 독일 인구보다 '+(jp>dg?'적다.':'많다.'),'비중이 작아도 분모(대륙 인구)가 크면 인구수는 클 수 있다. 일본 약 '+sig(jp)+'만 명, 독일 약 '+sig(dg)+'만 명.',{op:'areaAmount',a:jp,b:dg}));
+   P.push(pair(L[eu]+'는 '+L[as]+'보다 65세 이상 인구 비율이 높다.',L[as]+'는 '+L[eu]+'보다 65세 이상 인구 비율이 높다.','유럽은 아시아보다 고령화가 진행되었다.',{op:'continentKnowledge'}));
+   x.identification=names;return P;
+  }
+  if(q.id==='fossil-denominators'){
+   var names=q.assignment.slice(),tabs=x.tables;if(swap){names.reverse();tabs.forEach(function(t){t.rows.reverse();});}
+   tabs.forEach(function(t){t.rows.forEach(function(row,i){row[0]=L[i];});});
+   var cn=names.indexOf('중국'),us=names.indexOf('미국'),fuels=['석탄','석유','가스'],j=Math.floor(r()*3),k=Math.floor(r()*2),w=tabs[0].rows[k][1+j],d=tabs[1].rows[k][1+j];
+   P.push(pair(L[k]+'는 세계 '+fuels[j]+' 소비 중 비중보다 국가 내 '+fuels[j]+' 비중이 '+(d>w?'높다.':'낮다.'),L[k]+'는 세계 '+fuels[j]+' 소비 중 비중보다 국가 내 '+fuels[j]+' 비중이 '+(d>w?'낮다.':'높다.'),'세계 소비 중 '+sig(w)+'%, 국가 내 '+sig(d)+'%. 두 표의 분모가 다르다.',{op:'fossilTwoDenominators'}));
+   var jj=(j+1)%3;P.push(comparison(L[0],L[1],'국가 내 '+fuels[jj]+' 비중이',tabs[1].rows[0][1+jj],tabs[1].rows[1][1+jj],'국가 총1차 에너지 소비량=100인 오른쪽 표를 읽는다.',{op:'examComparison',quantity:'nationalShare'}));
+   P.push(pair(L[cn]+'는 세계 최대의 석탄 소비국이다.',L[us]+'는 세계 최대의 석탄 소비국이다.','중국은 세계 석탄 소비의 절반 이상을 차지한다.',{op:'regionalKnowledge',name:'중국'}));
+   P.push(pair(L[us]+'는 USMCA 회원국이다.',L[cn]+'는 USMCA 회원국이다.','USMCA는 미국·멕시코·캐나다의 무역 협정이다.',{op:'regionalKnowledge',name:'미국'}));
+   x.identification=names;return P;
+  }
+  if(q.id==='night-lights'){
+   P=[pair('(가)에서는 불교 신자 비율이 가장 높다.','(가)에서는 이슬람교 신자 비율이 가장 높다.','(가)는 스리랑카로, 불교 신자가 가장 많다.',{op:'regionalKnowledge',name:'스리랑카'}),
+    pair('(나)에는 북회귀선이 지난다.','(나)에는 적도가 지난다.','(나)는 타이완으로, 북회귀선(약 23.4°N)이 섬 중부를 지난다.',{op:'regionalKnowledge',name:'타이완'}),
+    pair('(나)의 인구는 서부 평야에 집중되어 있다.','(나)의 인구는 동부 산지에 집중되어 있다.','타이완은 동부에 산지가 있고 서부 평야에 도시가 이어진다. 인구 밀도와 야간 빛 그림이 같은 분포를 보인다.',{op:'figureReading'}),
+    pair('(가)는 남부 아시아에 위치한다.','(가)는 동아시아에 위치한다.','스리랑카는 인도 남쪽의 남부 아시아 섬나라이다.',{op:'regionalKnowledge',name:'스리랑카'})];
+   x.identification=q.assignment;return P;
+  }
+  if(q.id==='grain-size'){
+   var names=q.assignment.slice(),series=x.figures[0].series;if(swap){names.reverse();var t=series[0].values;series[0].values=series[1].values;series[1].values=t;}
+   var fan=names.indexOf('선상지·바하다'),dune=names.indexOf('사구');
+   P=[pair(L[dune]+'는 '+L[fan]+'보다 입자 크기가 고르다.',L[fan]+'는 '+L[dune]+'보다 입자 크기가 고르다.','사구는 바람이 운반한 모래로 이루어져 분급이 좋다. 그래프에서 한두 구간에 몰린 곡선이다.',{op:'sorting'}),
+    pair(L[fan]+'는 '+L[dune]+'보다 평균 입경이 크다.',L[dune]+'는 '+L[fan]+'보다 평균 입경이 크다.','선상지·바하다는 큰 자갈부터 모래까지 섞여 오른쪽(큰 입경) 구간 비율이 높다.',{op:'grainMean'}),
+    pair(L[dune]+'는 바람의 퇴적 작용으로 형성된다.',L[dune]+'는 하천의 퇴적 작용으로 형성된다.','사구는 바람의 퇴적 지형이다.',{op:'landformProcess'}),
+    pair(L[fan]+'는 하천이 산지에서 평지로 나오는 곳에 형성된다.',L[fan]+'는 하천이 바다로 들어가는 하구에 형성된다.','선상지는 골짜기 입구, 삼각주는 하구에 형성된다.',{op:'landformProcess'})];
+   x.identification=names;return P;
+  }
+  if(q.id==='irrigation-images'){
+   var pivot=/pivot/.test(x.figures[0].src);
+   P=pivot?[pair('제시 시설은 지하수를 끌어 올려 회전하는 관개 팔로 물을 뿌린다.','제시 시설은 산록의 지하수를 지하 수로로 끌어온다.','중심축 회전식 관개이다. 지하 수로는 카나트이다.',{op:'irrigationProcess'}),
+     pair('제시 시설을 이용하는 농지는 원형으로 나타난다.','제시 시설을 이용하는 농지는 계단 모양으로 나타난다.','관개 팔이 중심축을 돌며 원형 농지를 만든다.',{op:'irrigationProcess'}),
+     pair('제시 시설은 대규모 기계화 농업에 이용된다.','제시 시설은 물을 지하로 운반해 증발을 줄이는 전통 시설이다.','미국 그레이트플레인스 등에서 대규모로 이용된다.',{op:'irrigationProcess'})]
+    :[pair('제시 시설은 산록의 지하수를 지하 수로로 끌어온다.','제시 시설은 지하수를 끌어 올려 회전하는 관개 팔로 물을 뿌린다.','카나트(카레즈·포가라)이다.',{op:'irrigationProcess'}),
+     pair('제시 시설은 물을 지하로 운반해 증발 손실을 줄인다.','제시 시설은 물을 공중에 뿌려 넓은 원형 농지에 공급한다.','건조 지역에서 증발을 줄이기 위해 지하 수로를 이용한다.',{op:'irrigationProcess'}),
+     pair('제시 시설의 수직 갱은 수로를 파고 관리하는 데 쓰인다.','제시 시설의 수직 갱은 빗물을 모아 두는 저수지이다.','일정한 간격의 수직 갱으로 지하 수로를 굴착·관리한다.',{op:'irrigationProcess'})];
+   x.identification=null;return P;
+  }
+  return null;
+ }
  function prepare(q){
   var r=rng(q.seed+719),x={title:q.title,condition:CONDITIONS[q.id]||'',figures:clone(q.figures),tables:clone(q.tables.filter(function(_,i){return !(HIDE[q.id]||[]).includes(i);})),referenceTables:clone(q.tables.filter(function(_,i){return (HIDE[q.id]||[]).includes(i);})),note:q.note,source:q.source,revision:3};
   var pairs=[],direct=DIRECT.has(q.id),assignment=q.assignment;
-  if(assignment&&assignment.every(function(n){return typeof n==='string';})&&!['climate-restore','resource-area','population-area'].includes(q.id))x.condition+=(x.condition?' ':'')+L.slice(0,assignment.length).join('·')+'는 각각 '+assignment.slice().sort().join(', ')+' 중 하나이다.';
+  if(assignment&&assignment.every(function(n){return typeof n==='string';})&&!['climate-restore','resource-area'].includes(q.id))x.condition+=(x.condition?' ':'')+L.slice(0,assignment.length).join('·')+'는 각각 '+assignment.slice().sort().join(', ')+' 중 하나이다.';
   if(CLIMATE.includes(q.id))pairs=climatePairs(q);
   else pairs=numerical(q).concat(q.pairs.filter(function(p){return !WEAK.has(p.check.op)&&!Number.isFinite(p.check.result);}));
   if(['solar-month','solar-altitude','solar-climate'].includes(q.id)){var s=solar(q);Object.assign(x,s);pairs=s.pairs;}
   if(q.id==='city-distance'){var c=city(q);Object.assign(x,c);x.referenceTables=[];pairs=c.pairs;}
   var photo=photos(q,r);if(photo){Object.assign(x,photo);pairs=photo.pairs;direct=false;}
   if(q.id==='solar-night'){
-   pairs=[pair('1월과 7월의 밤 길이 차이가 가장 작은 지점은 마닐라이다.','1월과 7월의 밤 길이 차이가 가장 작은 지점은 도쿄이다.','적도에 가까울수록 낮·밤 길이의 연중 변화 폭이 작다.',{op:'nightSeason'}),pair('웰링턴은 7월보다 1월에 낮 길이가 길다.','웰링턴은 1월보다 7월에 낮 길이가 길다.','남반구의 계절은 북반구와 반대이다.',{op:'nightSeason'})];x.condition='마닐라·도쿄는 북반구, 웰링턴은 남반구에 위치한다. 그래프는 1월 밤 길이−7월 밤 길이이다.';
+   pairs=[pair('1월과 7월의 밤 길이 차이가 가장 작은 지점은 마닐라이다.','1월과 7월의 밤 길이 차이가 가장 작은 지점은 도쿄이다.','적도에 가까울수록 낮·밤 길이의 연중 변화 폭이 작다.',{op:'nightSeason'}),pair('웰링턴은 7월보다 1월에 낮 길이가 길다.','웰링턴은 1월보다 7월에 낮 길이가 길다.','남반구의 계절은 북반구와 반대이다.',{op:'nightSeason'}),pair('그래프에서 값이 음수인 지점은 남반구에 있다.','그래프에서 값이 음수인 지점은 북반구에 있다.','1월 밤이 7월 밤보다 짧으면(음수) 1월이 여름인 남반구이다.',{op:'nightSeason'})];x.condition='마닐라·도쿄는 북반구, 웰링턴은 남반구에 위치한다. 그래프는 1월 밤 길이−7월 밤 길이이다.';
   }
   if(q.id==='solar-route'){
    var month=q.seed%2?1:7,ns=q.tables[0].rows.map(function(row){return row[0];});
@@ -289,14 +410,14 @@ function create(data,math,extra){
     pair(bo+'는 '+br+' 및 '+ch+'와 모두 국경을 접한다.',br+'는 '+bo+' 및 '+ch+'와 모두 국경을 접한다.','볼리비아는 브라질·칠레 모두와 접경한다. 브라질은 볼리비아와 접경하지만 칠레와는 접경하지 않는다.',{op:'mineralRegionalKnowledge',name:'볼리비아'})];
    direct=false;
   }
-  if(q.id==='grain-export-scatter'||q.id==='crop-trade-bubble'||q.id==='coal-production-consumption')x.condition=CONDITIONS[q.id]||'그래프의 각 점은 한 지역을 나타낸다.';
+  if(q.id==='grain-export-scatter'||q.id==='crop-trade-bubble'||q.id==='coal-production-consumption')if(!CONDITIONS[q.id])x.condition='그래프의 각 점은 한 지역을 나타낸다.'+(x.condition?' '+x.condition:'');
   if(q.id==='grain-export-scatter'){
    var f=q.figures[0],pts=f.points;
    pairs=pts.map(function(a,i){var b=pts[(i+1)%pts.length];return comparison(a.name,b.name,'생산량 대비 수출량 비율이',a.y/a.x,b.y/b.x,'수출량÷생산량을 두 지역에서 각각 비교한다.',{operands:[a,b],quantity:'exportProductionRatio'});});
   }
   if(q.id==='vital-scatter'){
    var v=q.figures[0].points;
-   pairs=v.map(function(a,i){var b=v[(i+1)%v.length];return comparison(a.name,b.name,'자연 증가율이',a.x-a.y,b.x-b.y,'출생률−사망률을 각각 비교한다.',{operands:[a,b],quantity:'naturalIncrease'});});x.condition='가로축은 출생률, 세로축은 사망률이다. 단위는 ‰이다.';
+   pairs=v.map(function(a,i){var b=v[(i+1)%v.length];return comparison(a.name,b.name,'자연 증가율이',a.x-a.y,b.x-b.y,'출생률−사망률을 각각 비교한다.',{operands:[a,b],quantity:'naturalIncrease'});});x.condition='가로축은 출생률, 세로축은 사망률이다. 단위는 ‰이다. (가)·(나)·(다)는 각각 '+q.assignment.slice().sort().join(', ')+' 중 하나이다.';
   }
   if(q.id==='migration-scatter'||q.id==='migration-continents'){
    var rows=q.tables[0].rows;
@@ -327,7 +448,13 @@ function create(data,math,extra){
    function urban(g){return g.b.y/(g.b.x+g.b.y)-g.a.y/(g.a.x+g.a.y);}
    pairs=[comparison(L[0],L[1],'총인구 증가율이',grow(groups[0]),grow(groups[1]),'도시 인구와 촌락 인구를 합해 두 시점의 총인구를 구한다.',{quantity:'scatterTotalGrowth',operands:groups.slice(0,2)}),
     comparison(L[1],L[2],'도시화율 상승 폭이',urban(groups[1]),urban(groups[2]),'각 시점의 도시 인구÷총인구를 구해 두 비율의 차이를 비교한다.',{quantity:'scatterUrbanChange',operands:groups.slice(1,3)}),
-    pair('촌락 인구가 증가한 지역에서도 도시화율이 상승할 수 있다.','도시화율이 상승한 지역은 촌락 인구가 반드시 감소했다.','두 인구의 증가율이 다르면 도시·촌락 인구가 함께 늘면서 도시화율이 상승할 수 있다.',{op:'urbanPopulationVsRate'})];
+    ruralWithUrbanRise()];
+   // Stated about one plotted region: rural growth and urbanization can coexist.
+   function ruralWithUrbanRise(){
+    var rise=groups.map(function(g,k){return k;}).filter(function(k){return urban(groups[k])>0;}),grew=rise.filter(function(k){return groups[k].b.x>groups[k].a.x;}),pool=grew.length?grew:rise;if(!pool.length)return null;var i=pool[q.seed%pool.length];var g=groups[i],up=g.b.x>g.a.x,y0=g.a.name.split(' ').pop(),y1=g.b.name.split(' ').pop();
+    var both=L[i]+'는 '+y0+'년보다 '+y1+'년에 도시화율이 높고 촌락 인구가 많다.',fewer=L[i]+'는 '+y0+'년보다 '+y1+'년에 도시화율이 높고 촌락 인구가 적다.';
+    return pair(up?both:fewer,up?fewer:both,'촌락 인구 '+label(g.a.x)+' → '+label(g.b.x)+'백만 명, 도시화율 '+label(g.a.y/(g.a.x+g.a.y)*100)+' → '+label(g.b.y/(g.b.x+g.b.y)*100)+'%. 도시 인구가 더 빨리 늘면 촌락 인구가 늘어도 도시화율은 높아진다.',{op:'urbanPopulationVsRate',index:i});
+   }
   }
   if(q.id==='urban-change'||q.id==='population-pyramid'){
    // Necessary quantities stay supplied under anonymous row labels. Removing
@@ -337,7 +464,7 @@ function create(data,math,extra){
   if(q.id==='population-pyramid'){
    var sex=q.pairs.filter(function(p){return p.check.op==='sexRatio';});
    pairs=sex.map(function(p,i){var a=p.check,b=sex[(i+1)%sex.length].check;return comparison(L[i],L[(i+1)%sex.length],'30~39세 성비가',a.male/a.female*100,b.male/b.female*100,'같은 연령 집단의 남성 인구를 여성 인구로 나눠 비교한다.',{quantity:'sexRatio',operands:[a,b]});});
-   var u=q.assignment.indexOf('아랍 에미리트');pairs.push(pair(L[u]+'의 청장년층 남성 집중은 노동 이주의 영향과 관련 있다.',L[u]+'의 청장년층 남성 집중은 출생 성비만으로 설명된다.','산유국으로 유입된 외국인 노동자의 성·연령 구성을 연결한다.',{op:'laborMigrationPyramid',name:'아랍 에미리트'}));
+   var u=q.assignment.indexOf('아랍 에미리트');pairs.push(pair(L[u]+'의 청장년층 남성 집중은 노동 이주의 영향과 관련 있다.',L[u]+'의 청장년층 남성 집중은 높은 출생 성비와 관련 있다.','산유국으로 유입된 외국인 노동자의 성·연령 구성을 연결한다.',{op:'laborMigrationPyramid',name:'아랍 에미리트'}));
   }
   if(q.id==='energy-composition'){
    x.stage=clone(q.stage1);direct=true; // retain country inference, discard free denominator slogans
@@ -403,7 +530,7 @@ function create(data,math,extra){
   if(['sea-ice-anomaly','ozone-area','ice-ozone-maps'].includes(q.id)){
    var ice=q.id==='sea-ice-anomaly',ozone=q.id==='ozone-area';
    pairs=ice?[
-    pair('자료의 장기 변화는 대기 중 온실가스 증가와 관련 있다.','자료의 장기 변화는 성층권 오존량 증가만으로 설명된다.','북극 해빙 감소를 지구 온난화와 연결한다.',{op:'environmentCause',issue:'warming'}),
+    pair('자료의 장기 변화는 대기 중 온실가스 증가와 관련 있다.','자료의 장기 변화는 성층권 오존량 증가와 관련 있다.','북극 해빙 감소를 지구 온난화와 연결한다.',{op:'environmentCause',issue:'warming'}),
     pair('기후 변화 대응을 위한 국제 합의에는 파리 협정이 있다.','기후 변화 대응을 위한 국제 합의에는 람사르 협약이 있다.','파리는 기후 변화, 람사르는 습지 보전이다.',{op:'environmentTreaty',issue:'warming'}),q.pairs.find(function(p){return p.check.op==='trendVsFluctuation';})
    ]:ozone?[
     pair('오존층 감소는 지표에 도달하는 자외선 증가를 일으킬 수 있다.','오존층 감소는 지표에 도달하는 자외선 감소를 일으킬 수 있다.','성층권 오존은 자외선을 흡수한다.',{op:'environmentCause',issue:'ozone'}),
@@ -420,6 +547,9 @@ function create(data,math,extra){
    pairs=q.assignment.map(function(n,i){return pair(L[i]+'는 '+traits[n][0],L[i]+'는 '+traits[n][1],'국가별 종교 순위로 기호를 복원한 뒤 기원지와 전파 성격을 대응한다. '+n+': '+traits[n][0],{op:'religionOrigin',religion:n});});
    x.condition='무종교를 제외한 국가별 종교 순위이다. (가)·(나)·(다)는 각각 불교, 이슬람교, 힌두교 중 하나이다.';
   }
+  // Two-candidate recognitions were coin flips: keep the identification but
+  // finish with <보기> judgments, and do not pin a country to (가).
+  var two=binary(q,x,r);if(two){pairs=two;direct=false;delete x.stage;}
   // Country recognition has a purpose only if it is still needed at the final
   // judgment. Insert a sourced regional fact instead of a third cyclic ratio.
   var facts=geographic({assignment:x.identification||q.assignment});
@@ -431,6 +561,7 @@ function create(data,math,extra){
   // A direct recognition/calculation task stands on its own; never append a
   // compulsory, unrelated 'all residents are identical' second question.
   pairs=pairs.filter(function(p,i,a){return p&&a.findIndex(function(v){return v&&v.yes===p.yes&&v.no===p.no;})===i;});
+  pairs=pairs.map(withValues);
   if(!x.stage){
    if(direct||pairs.filter(Boolean).length<2)x.stage=clone(q.stage1);
    else{x.stage=choose(pairs,r);x.judgment=true;}
@@ -439,11 +570,20 @@ function create(data,math,extra){
    // Six permutation choices were a generator accident, not extra difficulty.
    var keep=shuffle(x.stage.options.map(function(_,i){return i;}).filter(function(i){return i!==x.stage.answer;}),r).slice(0,4);keep=shuffle([x.stage.answer].concat(keep),r);
    var oldAnswer=x.stage.answer;x.stage.options=keep.map(function(i){return x.stage.options[i];});x.stage.answer=keep.indexOf(oldAnswer);
-   x.stage.explain=x.stage.explain==='제시한 기준표의 값과 그래프의 값을 대응한다.'?'자료의 분포·계절성·구성으로 대상을 식별한다. '+q.assignment.join(' · '):x.stage.explain;
+   if(x.stage.explain==='제시한 기준표의 값과 그래프의 값을 대응한다.'){
+    var why=REASON[q.id],labs=x.identificationLabels||L;
+    x.stage.explain=q.id==='anticline-trap'?'배사 구조에서는 밀도가 작은 순서로 위에서부터 천연가스, 석유, 물이 모인다. 천연가스 '+q.assignment[0]+' · 석유 '+q.assignment[1]+' · 물 '+q.assignment[2]+'.'
+     :why&&q.assignment.every(function(n){return why[n];})?q.assignment.map(function(n,i){return labs[i]+' '+n+': '+why[n]+'.';}).join(' ')
+     :'정답 대응: '+q.assignment.join(' · ')+'.';
+   }
   }
   // Reorder stand-alone supplied choices as well (including custom tasks).
   if(q.id==='environment-news'){var order=shuffle(x.stage.options.map(function(_,i){return i;}),r),old=x.stage.answer;x.stage.options=order.map(function(i){return x.stage.options[i];});x.stage.answer=order.indexOf(old);}
   if(!Object.prototype.hasOwnProperty.call(x,'identification'))x.identification=q.stationNames||q.assignment||null;
+  var names=NAMES.concat(x.identification||[],q.assignment||[]).filter(function(n){return typeof n==='string';}).sort(function(a,b){return b.length-a.length;});
+  ['condition','note'].forEach(function(k){x[k]=particles(x[k],names);});
+  x.stage.explain=particles(x.stage.explain,names);
+  (x.stage.statements||[]).forEach(function(st){st.text=particles(st.text,names);st.explain=particles(st.explain,names);});
   return x;
  }
  return{prepare:prepare,paused:PAUSED};
