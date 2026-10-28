@@ -19,8 +19,8 @@ const australia={};for(const direction of ['Exports','Imports']){
  australia[direction]={};for(const n of ['United Kingdom','China','Japan'])australia[direction][n]={historical:dfat.historical.datasets[direction].economies[n].sharePct['1950-51'],later:dfat.calendar.datasets[direction][n].sharePct['2020']};
 }
 const minerals=read('data/mineral-production-shares.json'),extraMinerals=read('data/mineral-production-round2.json');
-const shapes=require('../assets/country-boundaries.js'),K=require('../assets/entity-kb.js'),maps={};
-for(const n of ['독일','프랑스','영국','페루','볼리비아','에콰도르','칠레','콜롬비아','아르헨티나','브라질','우루과이','파라과이','사우디아라비아','카자흐스탄','라오스','미국','캐나다','멕시코','이집트','튀르키예','이란'])if(shapes.byName[n]&&K.entities[n])maps[n]={polygons:shapes.byName[n].polygons,label:K.entities[n].label};
+const simplify=require('./simplify-polygons.cjs'),shapes=require('../assets/country-boundaries.js'),K=require('../assets/entity-kb.js'),maps={};
+for(const n of ['독일','프랑스','영국','페루','볼리비아','에콰도르','칠레','콜롬비아','아르헨티나','브라질','우루과이','파라과이','사우디아라비아','카자흐스탄','라오스','미국','캐나다','멕시코','이집트','튀르키예','이란'])if(shapes.byName[n]&&K.entities[n])maps[n]={polygons:simplify.country(shapes.byName[n].polygons),label:K.entities[n].label};
 const panels=read('data/goal-figure-panels.json'),demography=read('data/remaining-demographic-balances.json'),capacity=read('data/renewable-capacity-comparison.json'),groupSeries=read('data/group-series.json');
 const pyramids=read('data/population-pyramids.json');
 const radar={},radarRaw=read('data/regional-radar-source.json');

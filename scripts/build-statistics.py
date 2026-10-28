@@ -334,7 +334,7 @@ write('data/exam-relations-energy.json',{'schemaVersion':2,'check':{'window':['2
 # Additions to the station-based 1991-2020 normals; existing 41 records are not
 # overwritten. Incomplete mean temperature remains null, even with Tmax/Tmin.
 import importlib.util
-spec=importlib.util.spec_from_file_location('climate_source_parser',ROOT/'scripts/climate-source-parser.py')
+spec=importlib.util.spec_from_file_location('climate_source_parser',ROOT/'scripts/build-climate-data.py')
 parser=importlib.util.module_from_spec(spec);spec.loader.exec_module(parser)
 base_climate=json.loads((SRC/'climate-normals.json').read_text())
 extra_sites=[]
