@@ -7,7 +7,7 @@ const ABS=/반드시|항상|모두|만으로|오직|예외 없이|관계없이|�
 const active=E.families.filter(f=>!E.paused[f.id]);
 
 test('OX truth cannot be guessed from absolute or hedged wording',()=>{
- const pairs=['data/lecture-goal-ox.tsv','data/goal-completion-ox.tsv'].flatMap(f=>fs.readFileSync(path.join(ROOT,f),'utf8').split(/\r?\n/)).filter(l=>l&&!l.startsWith('#')).map(l=>l.split('|'));
+ const pairs=['data/lecture-goal-ox.tsv','data/goal-completion-ox.tsv','data/lecture-coverage-ox.tsv'].flatMap(f=>fs.readFileSync(path.join(ROOT,f),'utf8').split(/\r?\n/)).filter(l=>l&&!l.startsWith('#')).map(l=>l.split('|'));
  assert.ok(pairs.length>500);
  const guess=s=>ABS.test(s)&&!HEDGE.test(s)?false:true;
  const right=pairs.reduce((n,[,yes,no])=>n+(guess(yes)===true)+(guess(no)===false),0);
@@ -51,4 +51,14 @@ test('a goal reachable only through a paused family is held, never verified',()=
  const held=goals.filter(g=>g.status==='보류').map(g=>g.id).sort();
  assert.deepEqual(held,['G022-2','G037-4','G041-2','G044-2','G058-3','G075-2','G087-3','G112-5']);
  for(const id of held)assert.notEqual(progress.groups.find(g=>g.id===id.split('-')[0]).status,'완료',id);
+});
+
+test('lecture-coverage pairs bind to OX goals and lecture blocks, with balanced cues of their own',()=>{
+ const goals=new Map(JSON.parse(fs.readFileSync(path.join(ROOT,'data/lecture-gap-goals.json'),'utf8')).map(g=>[g.id,g]));
+ const pairs=fs.readFileSync(path.join(ROOT,'data/lecture-coverage-ox.tsv'),'utf8').split(/\r?\n/).filter(l=>l&&!l.startsWith('#')).map(l=>l.split('|'));
+ assert.ok(pairs.length>=200);
+ for(const p of pairs){assert.equal(p.length,4,p.join('|'));assert.equal(goals.get(p[0])?.venue,'OX',p[0]);assert.match(p[3],/^L[12]-B\d{4}$/);assert.notEqual(p[1],p[2]);}
+ const F=require('../assets/lecture-goal-facts.js'),src=new Set(F.items.map(q=>q.source));
+ for(const p of pairs)assert.ok(src.has('강의 '+p[3]+' · '+p[0])||F.bindings[p[0]],p[3]);
+ for(const re of [ABS,HEDGE]){const o=pairs.filter(p=>re.test(p[1])).length,x=pairs.filter(p=>re.test(p[2])).length;assert.ok(Math.abs(o-x)<=pairs.length*.05,re+' O '+o+' X '+x);}
 });

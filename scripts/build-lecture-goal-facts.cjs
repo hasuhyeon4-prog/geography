@@ -7,9 +7,10 @@ const old=require('../assets/fact-statements.js'),existing=new Map(old.items.map
 const section=g=>{const n=+g.slice(1);return n<=4?0:n<=10?1:n<=24?2:n<=38?3:n<=52?4:n<=70?5:n<=80?6:n<=93?7:n<=108?8:n<=122?9:n<=132?10:11;};
 const names=['위치·방위','지도·지리 정보','기후','지형','문화·종교','인구·도시','농목업','에너지·자원','공업·무역','환경','지역지리','자료 해석'];
 const topics=names.map((name,i)=>({id:'goal-p'+String(i).padStart(2,'0'),name:name+' · 강의 보완'})),items=[],bindings={},counts={};
-for(const line of ['data/lecture-goal-ox.tsv','data/goal-completion-ox.tsv'].map(p=>fs.readFileSync(path.join(root,p),'utf8')).join('\n').split(/\r?\n/)){
+// lecture-coverage-ox.tsv is read last so earlier ids stay stable; its 4th field names the lecture block.
+for(const line of ['data/lecture-goal-ox.tsv','data/goal-completion-ox.tsv','data/lecture-coverage-ox.tsv'].map(p=>fs.readFileSync(path.join(root,p),'utf8')).join('\n').split(/\r?\n/)){
  if(!line||line.startsWith('#'))continue;
- const a=line.split('|');if(a.length!==3)throw Error('Expected goal|true|false: '+line);
+ const a=line.split('|');if(a.length!==3&&!(a.length===4&&/^L[12]-B\d{4}$/.test(a[3])))throw Error('Expected goal|true|false[|block]: '+line);
  const [id,yes,no]=a,g=byid[id];if(!g)throw Error('Unknown OX goal '+id);
  if(yes===no||yes.length<8||no.length<8)throw Error('Bad curated pair '+id);
  const n=counts[id]=(counts[id]||0)+1;
@@ -17,7 +18,7 @@ for(const line of ['data/lecture-goal-ox.tsv','data/goal-completion-ox.tsv'].map
   const claim=truth?yes:no,key=truth+'|'+claim.replace(/\s/g,''),prior=existing.get(key),qid=prior||'goalox-'+id+'-'+String(n).padStart(2,'0')+'-'+(truth?'o':'x');
   (bindings[id]||(bindings[id]=[])).push(qid);
   if(prior)continue;
-  const source=(id==='G007-1'?'강의 L1-B0209':g.data)+' · '+g.id;
+  const source=(a[3]?'강의 '+a[3]:id==='G007-1'?'강의 L1-B0209':g.data)+' · '+g.id;
   items.push({id:qid,goalId:id,topic:topics[section(g.group)].id,claim,answer:truth,explain:'바른 관계: '+yes,source,period:'개념',practice:'recall',revision:1,auditStatus:'goal-curated',contentSHA256:crypto.createHash('sha256').update(claim+'|'+truth+'|'+yes).digest('hex')});
   existing.set(key,qid);
  }
