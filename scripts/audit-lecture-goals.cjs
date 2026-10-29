@@ -7,9 +7,9 @@ const implemented=new Map();
 function add(id,evidence){if(!goals.some(g=>g.id===id))throw Error('Unknown goal '+id);if(!implemented.has(id))implemented.set(id,[]);implemented.get(id).push(evidence);}
 for(const [id,items]of Object.entries(F.bindings))add(id,{venue:'OX',file:'assets/lecture-goal-facts.js',items});
 for(const t of T.tables)for(const id of t.goalIds)add(id,{venue:'강의 표',table:t.id,file:'data/lecture-goal-table-overrides.json'});
-// These goals' only practice route was a materials family that was paused on
-// 2026-10-27 and deleted on 2026-10-28; they stay held, never verified.
-const paused=new Map(Object.entries({"G022-2": [{"family": "solar-climate", "reason": "solar-month의 계절 판단으로 통합"}], "G037-4": [{"family": "meander-banks", "reason": "곡류의 침식 사면 한 점을 고르는 독립 유형의 근거 미확인. 기출의 하천 위치·수계·국제 하천 판단과 구별"}], "G041-2": [{"family": "religion-selected", "reason": "최대 종교를 제외한 소수 종교 세부 순위 대신 religion-relative의 기호 식별·종교 특성으로 통합"}, {"family": "religion-other", "reason": "기타 범례 일반론만 반복하는 독립 문항 보류. 종교별 분모는 기호 식별 문항의 조건으로 유지"}], "G044-2": [{"family": "religious-landmarks", "reason": "기출의 문화 전파·융합·국가 종교 판단을 건축물·도시 세부 명칭 암기로 바꾼 독립 유형 보류. 건축·종교 판단은 religious-buildings에 유지"}], "G058-3": [{"family": "pyramid-cohort", "reason": "두 시점의 동일 출생 집단 인원 증가량을 최대로 만드는 계산 확장의 근거 미확인. 기출의 성·연령 구조·노동 이주 판단은 population-pyramid에 유지"}], "G075-2": [{"family": "food-stock-balance", "reason": "가상 재고 변화까지 계산시키는 확장의 기출 근거 미확인"}], "G087-3": [{"family": "renewable-capacity-ranks", "reason": "기출의 발전원 식별·입지 판단과 다른 국가 순위 대조·MW/GWh 단위 계산 확장 보류"}], "G112-5": [{"family": "rain-ph-maps", "reason": "가상 격자 최솟값만 고르는 문항과 수소 이온 농도 로그 계산 확장 보류. 산성비 원인·영향은 OX·환경 문항에 유지"}]}));
+// Goals with no practice route are held, never verified. The eight held on 2026-10-28,
+// after their materials families were deleted, are covered by data/held-goal-ox.tsv.
+const paused=new Map();
 for(const f of M.families)for(const id of M.build(f.id,1).goalIds)add(id,{venue:'자료형·계산',family:f.id,file:'assets/materials-engine.js'});
 for(const id of ['G001-2','G004-1','G062-2','G097-3','G135-3'])add(id,{venue:'기출형 <보기>',file:'assets/exam-engine.js',check:id==='G001-2'?'line':id==='G004-1'?'relativePosition':id==='G097-3'?'relativeProductivity':'inverseUrban'});
 const runtime=JSON.parse(fs.readFileSync(root+'/audit/lecture-goals/runtime-evidence.json','utf8'));

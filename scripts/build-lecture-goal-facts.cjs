@@ -8,7 +8,9 @@ const section=g=>{const n=+g.slice(1);return n<=4?0:n<=10?1:n<=24?2:n<=38?3:n<=5
 const names=['위치·방위','지도·지리 정보','기후','지형','문화·종교','인구·도시','농목업','에너지·자원','공업·무역','환경','지역지리','자료 해석'];
 const topics=names.map((name,i)=>({id:'goal-p'+String(i).padStart(2,'0'),name:name+' · 강의 보완'})),items=[],bindings={},counts={};
 // lecture-coverage-ox.tsv is read last so earlier ids stay stable; its 4th field names the lecture block.
-for(const line of ['data/lecture-goal-ox.tsv','data/goal-completion-ox.tsv','data/lecture-coverage-ox.tsv'].map(p=>fs.readFileSync(path.join(root,p),'utf8')).join('\n').split(/\r?\n/)){
+// held-goal-ox.tsv (2026-10-29) covers goals whose only route was a deleted materials family.
+const HELD=new Set(fs.readFileSync(path.join(root,'data/held-goal-ox.tsv'),'utf8').split(/\r?\n/).filter(l=>l&&!l.startsWith('#')));
+for(const line of ['data/lecture-goal-ox.tsv','data/goal-completion-ox.tsv','data/lecture-coverage-ox.tsv','data/held-goal-ox.tsv'].map(p=>fs.readFileSync(path.join(root,p),'utf8')).join('\n').split(/\r?\n/)){
  if(!line||line.startsWith('#'))continue;
  const a=line.split('|');if(a.length!==3&&!(a.length===4&&/^L[12]-B\d{4}$/.test(a[3])))throw Error('Expected goal|true|false[|block]: '+line);
  const [id,yes,no]=a,g=byid[id];if(!g)throw Error('Unknown OX goal '+id);
@@ -18,7 +20,7 @@ for(const line of ['data/lecture-goal-ox.tsv','data/goal-completion-ox.tsv','dat
   const claim=truth?yes:no,key=truth+'|'+claim.replace(/\s/g,''),prior=existing.get(key),qid=prior||'goalox-'+id+'-'+String(n).padStart(2,'0')+'-'+(truth?'o':'x');
   (bindings[id]||(bindings[id]=[])).push(qid);
   if(prior)continue;
-  const source=(a[3]?'강의 '+a[3]:id==='G007-1'?'강의 L1-B0209':g.data)+' · '+g.id;
+  const source=(a[3]?'강의 '+a[3]:HELD.has(line)?'강의 목표 보완':id==='G007-1'?'강의 L1-B0209':g.data)+' · '+g.id;
   items.push({id:qid,goalId:id,topic:topics[section(g.group)].id,claim,answer:truth,explain:'바른 관계: '+yes,source,period:'개념',practice:'recall',revision:1,auditStatus:'goal-curated',contentSHA256:crypto.createHash('sha256').update(claim+'|'+truth+'|'+yes).digest('hex')});
   existing.set(key,qid);
  }

@@ -7,7 +7,7 @@ const ABS=/반드시|항상|모두|만으로|오직|예외 없이|관계없이|�
 const active=E.families;
 
 test('OX truth cannot be guessed from absolute or hedged wording',()=>{
- const pairs=['data/lecture-goal-ox.tsv','data/goal-completion-ox.tsv','data/lecture-coverage-ox.tsv'].flatMap(f=>fs.readFileSync(path.join(ROOT,f),'utf8').split(/\r?\n/)).filter(l=>l&&!l.startsWith('#')).map(l=>l.split('|'));
+ const pairs=['data/lecture-goal-ox.tsv','data/goal-completion-ox.tsv','data/lecture-coverage-ox.tsv','data/held-goal-ox.tsv'].flatMap(f=>fs.readFileSync(path.join(ROOT,f),'utf8').split(/\r?\n/)).filter(l=>l&&!l.startsWith('#')).map(l=>l.split('|'));
  assert.ok(pairs.length>500);
  const guess=s=>ABS.test(s)&&!HEDGE.test(s)?false:true;
  const right=pairs.reduce((n,[,yes,no])=>n+(guess(yes)===true)+(guess(no)===false),0);
@@ -46,11 +46,14 @@ test('phone charts scale text instead of forcing a 640px drawing',()=>{
  for(const m of big.matchAll(/<text x="([\d.-]+)" y="([\d.-]+)"/g)){assert.ok(+m[1]>=0&&+m[1]<=700);assert.ok(+m[2]>=0&&+m[2]<=480);}
 });
 
-test('a goal reachable only through a paused family is held, never verified',()=>{
- const goals=require('../data/lecture-gap-goals.json'),progress=require('../audit/lecture-goals/progress.json');
- const held=goals.filter(g=>g.status==='보류').map(g=>g.id).sort();
- assert.deepEqual(held,['G022-2','G037-4','G041-2','G044-2','G058-3','G075-2','G087-3','G112-5']);
- for(const id of held)assert.notEqual(progress.groups.find(g=>g.id===id.split('-')[0]).status,'완료',id);
+test('the eight goals once held are practised by OX pairs and no goal is held',()=>{
+ const goals=require('../data/lecture-gap-goals.json'),F=require('../assets/lecture-goal-facts.js');
+ assert.deepEqual(goals.filter(g=>g.status==='보류').map(g=>g.id),[]);
+ for(const id of ['G022-2','G037-4','G041-2','G044-2','G058-3','G075-2','G087-3','G112-5']){
+  const items=(F.bindings[id]||[]).map(q=>F.items.find(x=>x.id===q)).filter(Boolean);
+  assert.ok(items.some(q=>q.answer)&&items.some(q=>!q.answer),id);
+  assert.ok(items.every(q=>q.source==='강의 목표 보완 · '+id),id);
+ }
 });
 
 test('lecture-coverage pairs bind to OX goals and lecture blocks, with balanced cues of their own',()=>{

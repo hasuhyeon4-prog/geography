@@ -277,8 +277,8 @@
  "statusCounts": {
   "미구현": 0,
   "구현": 0,
-  "검증": 565,
-  "보류": 8
+  "검증": 573,
+  "보류": 0
  },
  "completeGroups": [
   "G001",
@@ -302,6 +302,7 @@
   "G019",
   "G020",
   "G021",
+  "G022",
   "G023",
   "G024",
   "G025",
@@ -316,11 +317,14 @@
   "G034",
   "G035",
   "G036",
+  "G037",
   "G038",
   "G039",
   "G040",
+  "G041",
   "G042",
   "G043",
+  "G044",
   "G045",
   "G046",
   "G047",
@@ -334,6 +338,7 @@
   "G055",
   "G056",
   "G057",
+  "G058",
   "G059",
   "G060",
   "G061",
@@ -350,6 +355,7 @@
   "G072",
   "G073",
   "G074",
+  "G075",
   "G076",
   "G077",
   "G078",
@@ -361,6 +367,7 @@
   "G084",
   "G085",
   "G086",
+  "G087",
   "G088",
   "G089",
   "G090",
@@ -385,6 +392,7 @@
   "G109",
   "G110",
   "G111",
+  "G112",
   "G113",
   "G114",
   "G115",
@@ -414,8 +422,8 @@
   "G139"
  ],
  "content": {
-  "newOX": 1515,
-  "representedOXGoals": 309,
+  "newOX": 1581,
+  "representedOXGoals": 317,
   "rebuiltTables": 147,
   "materialFamilies": 95
  },
@@ -630,9 +638,9 @@
    "total": 2,
    "미구현": 0,
    "구현": 0,
-   "검증": 1,
-   "보류": 1,
-   "status": "보류 포함"
+   "검증": 2,
+   "보류": 0,
+   "status": "완료"
   },
   {
    "id": "G023",
@@ -765,9 +773,9 @@
    "total": 4,
    "미구현": 0,
    "구현": 0,
-   "검증": 3,
-   "보류": 1,
-   "status": "보류 포함"
+   "검증": 4,
+   "보류": 0,
+   "status": "완료"
   },
   {
    "id": "G038",
@@ -801,9 +809,9 @@
    "total": 4,
    "미구현": 0,
    "구현": 0,
-   "검증": 3,
-   "보류": 1,
-   "status": "보류 포함"
+   "검증": 4,
+   "보류": 0,
+   "status": "완료"
   },
   {
    "id": "G042",
@@ -828,9 +836,9 @@
    "total": 4,
    "미구현": 0,
    "구현": 0,
-   "검증": 3,
-   "보류": 1,
-   "status": "보류 포함"
+   "검증": 4,
+   "보류": 0,
+   "status": "완료"
   },
   {
    "id": "G045",
@@ -954,9 +962,9 @@
    "total": 4,
    "미구현": 0,
    "구현": 0,
-   "검증": 3,
-   "보류": 1,
-   "status": "보류 포함"
+   "검증": 4,
+   "보류": 0,
+   "status": "완료"
   },
   {
    "id": "G059",
@@ -1107,9 +1115,9 @@
    "total": 5,
    "미구현": 0,
    "구현": 0,
-   "검증": 4,
-   "보류": 1,
-   "status": "보류 포함"
+   "검증": 5,
+   "보류": 0,
+   "status": "완료"
   },
   {
    "id": "G076",
@@ -1215,9 +1223,9 @@
    "total": 3,
    "미구현": 0,
    "구현": 0,
-   "검증": 2,
-   "보류": 1,
-   "status": "보류 포함"
+   "검증": 3,
+   "보류": 0,
+   "status": "완료"
   },
   {
    "id": "G088",
@@ -1440,9 +1448,9 @@
    "total": 5,
    "미구현": 0,
    "구현": 0,
-   "검증": 4,
-   "보류": 1,
-   "status": "보류 포함"
+   "검증": 5,
+   "보류": 0,
+   "status": "완료"
   },
   {
    "id": "G113",
@@ -3487,15 +3495,24 @@
    "id": "G022-2",
    "group": "G022",
    "venue": "새 자료형: 태양 고도·낮 길이",
-   "status": "보류",
+   "status": "검증",
    "evidence": [
     {
-     "venue": "자료형·계산(보류)",
-     "family": "solar-climate",
-     "deleted": "2026-10-28"
+     "venue": "OX",
+     "file": "assets/lecture-goal-facts.js",
+     "items": [
+      "goalox-G022-2-01-o",
+      "goalox-G022-2-01-x",
+      "goalox-G022-2-02-o",
+      "goalox-G022-2-02-x",
+      "goalox-G022-2-03-o",
+      "goalox-G022-2-03-x",
+      "goalox-G022-2-04-o",
+      "goalox-G022-2-04-x"
+     ]
     }
    ],
-   "remaining": "유일한 연습 경로였던 보류 자료형을 삭제함: solar-climate — solar-month의 계절 판단으로 통합"
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G023-1",
@@ -4582,15 +4599,24 @@
    "id": "G037-4",
    "group": "G037",
    "venue": "그림",
-   "status": "보류",
+   "status": "검증",
    "evidence": [
     {
-     "venue": "자료형·계산(보류)",
-     "family": "meander-banks",
-     "deleted": "2026-10-28"
+     "venue": "OX",
+     "file": "assets/lecture-goal-facts.js",
+     "items": [
+      "goalox-G037-4-01-o",
+      "goalox-G037-4-01-x",
+      "goalox-G037-4-02-o",
+      "goalox-G037-4-02-x",
+      "goalox-G037-4-03-o",
+      "goalox-G037-4-03-x",
+      "goalox-G037-4-04-o",
+      "goalox-G037-4-04-x"
+     ]
     }
    ],
-   "remaining": "유일한 연습 경로였던 보류 자료형을 삭제함: meander-banks — 곡류의 침식 사면 한 점을 고르는 독립 유형의 근거 미확인. 기출의 하천 위치·수계·국제 하천 판단과 구별"
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G038-1",
@@ -4874,20 +4900,24 @@
    "id": "G041-2",
    "group": "G041",
    "venue": "자료 계산",
-   "status": "보류",
+   "status": "검증",
    "evidence": [
     {
-     "venue": "자료형·계산(보류)",
-     "family": "religion-selected",
-     "deleted": "2026-10-28"
-    },
-    {
-     "venue": "자료형·계산(보류)",
-     "family": "religion-other",
-     "deleted": "2026-10-28"
+     "venue": "OX",
+     "file": "assets/lecture-goal-facts.js",
+     "items": [
+      "goalox-G041-2-01-o",
+      "goalox-G041-2-01-x",
+      "goalox-G041-2-02-o",
+      "goalox-G041-2-02-x",
+      "goalox-G041-2-03-o",
+      "goalox-G041-2-03-x",
+      "goalox-G041-2-04-o",
+      "goalox-G041-2-04-x"
+     ]
     }
    ],
-   "remaining": "유일한 연습 경로였던 보류 자료형을 삭제함: religion-selected — 최대 종교를 제외한 소수 종교 세부 순위 대신 religion-relative의 기호 식별·종교 특성으로 통합; religion-other — 기타 범례 일반론만 반복하는 독립 문항 보류. 종교별 분모는 기호 식별 문항의 조건으로 유지"
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G041-3",
@@ -5114,15 +5144,30 @@
    "id": "G044-2",
    "group": "G044",
    "venue": "그림",
-   "status": "보류",
+   "status": "검증",
    "evidence": [
     {
-     "venue": "자료형·계산(보류)",
-     "family": "religious-landmarks",
-     "deleted": "2026-10-28"
+     "venue": "OX",
+     "file": "assets/lecture-goal-facts.js",
+     "items": [
+      "goalox-G044-2-01-o",
+      "goalox-G044-2-01-x",
+      "goalox-G044-2-02-o",
+      "goalox-G044-2-02-x",
+      "goalox-G044-2-03-o",
+      "goalox-G044-2-03-x",
+      "goalox-G044-2-04-o",
+      "goalox-G044-2-04-x",
+      "goalox-G044-2-05-o",
+      "goalox-G044-2-05-x",
+      "goalox-G044-2-06-o",
+      "goalox-G044-2-06-x",
+      "goalox-G044-2-07-o",
+      "goalox-G044-2-07-x"
+     ]
     }
    ],
-   "remaining": "유일한 연습 경로였던 보류 자료형을 삭제함: religious-landmarks — 기출의 문화 전파·융합·국가 종교 판단을 건축물·도시 세부 명칭 암기로 바꾼 독립 유형 보류. 건축·종교 판단은 religious-buildings에 유지"
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G044-3",
@@ -6282,15 +6327,22 @@
    "id": "G058-3",
    "group": "G058",
    "venue": "새 자료형: 인구 피라미드",
-   "status": "보류",
+   "status": "검증",
    "evidence": [
     {
-     "venue": "자료형·계산(보류)",
-     "family": "pyramid-cohort",
-     "deleted": "2026-10-28"
+     "venue": "OX",
+     "file": "assets/lecture-goal-facts.js",
+     "items": [
+      "goalox-G058-3-01-o",
+      "goalox-G058-3-01-x",
+      "goalox-G058-3-02-o",
+      "goalox-G058-3-02-x",
+      "goalox-G058-3-03-o",
+      "goalox-G058-3-03-x"
+     ]
     }
    ],
-   "remaining": "유일한 연습 경로였던 보류 자료형을 삭제함: pyramid-cohort — 두 시점의 동일 출생 집단 인원 증가량을 최대로 만드는 계산 확장의 근거 미확인. 기출의 성·연령 구조·노동 이주 판단은 population-pyramid에 유지"
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G058-4",
@@ -7513,15 +7565,22 @@
    "id": "G075-2",
    "group": "G075",
    "venue": "자료 계산",
-   "status": "보류",
+   "status": "검증",
    "evidence": [
     {
-     "venue": "자료형·계산(보류)",
-     "family": "food-stock-balance",
-     "deleted": "2026-10-28"
+     "venue": "OX",
+     "file": "assets/lecture-goal-facts.js",
+     "items": [
+      "goalox-G075-2-01-o",
+      "goalox-G075-2-01-x",
+      "goalox-G075-2-02-o",
+      "goalox-G075-2-02-x",
+      "goalox-G075-2-03-o",
+      "goalox-G075-2-03-x"
+     ]
     }
    ],
-   "remaining": "유일한 연습 경로였던 보류 자료형을 삭제함: food-stock-balance — 가상 재고 변화까지 계산시키는 확장의 기출 근거 미확인"
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G075-3",
@@ -8716,15 +8775,24 @@
    "id": "G087-3",
    "group": "G087",
    "venue": "순위표",
-   "status": "보류",
+   "status": "검증",
    "evidence": [
     {
-     "venue": "자료형·계산(보류)",
-     "family": "renewable-capacity-ranks",
-     "deleted": "2026-10-28"
+     "venue": "OX",
+     "file": "assets/lecture-goal-facts.js",
+     "items": [
+      "goalox-G087-3-01-o",
+      "goalox-G087-3-01-x",
+      "goalox-G087-3-02-o",
+      "goalox-G087-3-02-x",
+      "goalox-G087-3-03-o",
+      "goalox-G087-3-03-x",
+      "goalox-G087-3-04-o",
+      "goalox-G087-3-04-x"
+     ]
     }
    ],
-   "remaining": "유일한 연습 경로였던 보류 자료형을 삭제함: renewable-capacity-ranks — 기출의 발전원 식별·입지 판단과 다른 국가 순위 대조·MW/GWh 단위 계산 확장 보류"
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G088-1",
@@ -10722,15 +10790,24 @@
    "id": "G112-5",
    "group": "G112",
    "venue": "자료 계산",
-   "status": "보류",
+   "status": "검증",
    "evidence": [
     {
-     "venue": "자료형·계산(보류)",
-     "family": "rain-ph-maps",
-     "deleted": "2026-10-28"
+     "venue": "OX",
+     "file": "assets/lecture-goal-facts.js",
+     "items": [
+      "goalox-G112-5-01-o",
+      "goalox-G112-5-01-x",
+      "goalox-G112-5-02-o",
+      "goalox-G112-5-02-x",
+      "goalox-G112-5-03-o",
+      "goalox-G112-5-03-x",
+      "goalox-G112-5-04-o",
+      "goalox-G112-5-04-x"
+     ]
     }
    ],
-   "remaining": "유일한 연습 경로였던 보류 자료형을 삭제함: rain-ph-maps — 가상 격자 최솟값만 고르는 문항과 수소 이온 농도 로그 계산 확장 보류. 산성비 원인·영향은 OX·환경 문항에 유지"
+   "remaining": "완료 기준의 계산·출제·범위 검사를 통과함."
   },
   {
    "id": "G113-1",
