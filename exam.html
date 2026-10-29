@@ -144,6 +144,20 @@ function weighted(){
  }
  return null;
 }
+// What has not been asked yet in this range (a key tried three times without being built is let go).
+function openItems(){
+ var scope=scopeThemes().map(function(t){return t.id}),can=function(id){return state.format==='all'||engine.formatsFor(engine.themes.filter(function(t){return t.id===id})[0]).indexOf(state.format)>=0};
+ return INVENTORY.filter(function(x){return !store.seen[x.key]&&(store.tried[x.key]||0)<3&&x.themes.some(function(id){return scope.indexOf(id)>=0&&can(id)})});
+}
+function unseen(){
+ var open=openItems();if(!open.length)return null;
+ var scope=scopeThemes().map(function(t){return t.id}),can=function(id){return state.format==='all'||engine.formatsFor(engine.themes.filter(function(t){return t.id===id})[0]).indexOf(state.format)>=0};
+ var x=open[Math.floor(Math.random()*open.length)],homes=x.themes.filter(function(id){return scope.indexOf(id)>=0&&can(id)});
+ var q=buildQuestion(Object.assign({themeId:x.build.targetKey&&state.theme==='all'&&state.format==='all'?null:homes[Math.floor(Math.random()*homes.length)],format:state.format==='all'?null:state.format,avoid:store.recent},x.build));
+ // Only a build that leaves the key out counts as a try, so reloading never uses one up.
+ if(q&&engine.seenIn(q).indexOf(x.key)>=0)state.fresh=true;else store.tried[x.key]=(store.tried[x.key]||0)+1;
+ return q;
+}
 function dueItems(){var now=Date.now();return Object.keys(store.review).map(function(k){return store.review[k]}).filter(function(x){return x.due<=now}).sort(function(a,b){return a.due-b.due})}
 // A review item ends when answered right; after a wrong answer it stays in 복습.
 function grade(ok){var x=state.reviewItem&&store.review[state.reviewItem.key];if(!x)return;if(ok)delete store.review[x.key];else x.due=Date.now()}
@@ -168,8 +182,9 @@ function next(){
  }
  state.q=null;state.fresh=false;
  if(!state.targetKey){
-  // Misses are not mixed in here; they are practised apart with 복습.
-  state.q=roundQuestion();
+  // Questions with comparisons or facts not yet asked (미출제) come first, until none is left;
+  // then the rounds go on. Misses are not mixed in here; they are practised apart with 복습.
+  state.q=unseen()||roundQuestion();
  }
  // A draw that finds no question (rare, with a format chosen) is retried with new seeds.
  for(var tries=0;tries<3&&!state.q;tries++){state.q=buildQuestion({themeId:state.targetKey||state.theme==='all'?null:state.theme,format:state.targetKey||state.format==='all'?null:state.format,targetKey:state.targetKey,avoid:store.recent});if(state.q)break}
@@ -178,7 +193,6 @@ function next(){
 function shown(){
  var q=state.q;
  if(q&&q.signature)store.recent=store.recent.filter(function(x){return x!==q.signature}).concat([q.signature]).slice(-RECENT);
- if(q&&!q.readingOnly)engine.seenIn(q).forEach(function(k){store.seen[k]=1});
  save();state.a1=q&&(q.readingOnly||['columns','joint'].indexOf(q.format)<0)?-1:null;state.a2=null;render();window.scrollTo({top:0});
 }
 // Climate graphs: precipitation bars (right scale, mm) and temperature line (left scale, ℃),
@@ -361,7 +375,7 @@ function render(){
   main.append(el('section',{className:'card'},[el('p',{text:all?'지금 복습할 항목이 없어요. 남은 '+all+'개는 '+new Date(later).toLocaleString('ko-KR',{month:'long',day:'numeric',hour:'numeric',minute:'2-digit'})+'부터 다시 나옵니다.':'복습할 항목이 없어요. 틀린 비교와 사실이 여기에 모입니다.'}),
    el('button',{type:'button',onclick:function(){state.reviewing=false;next()},text:'일반 문제로'})]));return}
  if(!q){main.append(el('section',{className:'card'},[el('p',{text:'이 주제·형식으로 문항을 만들지 못했어요. 다른 주제나 형식을 골라 주세요.'})]));return}
- var t=q.theme,card=el('section',{className:'card'});card.append(el('div',{className:'site-progress-row'},[progressEl({right:state.session.s2,answered:state.session.n2,extra:state.session.n1?'식별 '+state.session.s1+'/'+state.session.n1:'',review:dueItems().length}),window.WGSaved&&q.rebuild?WGSaved.button('exam',q.rebuild.themeId+'|'+q.rebuild.seed,q.rebuild,function(){var sb=$('savedBtn');if(sb&&!state.savedMode)sb.textContent='저장 '+WGSaved.count('exam');}):null]));
+ var t=q.theme,card=el('section',{className:'card'}),openLeft=openItems().length;card.append(el('div',{className:'site-progress-row'},[progressEl({right:state.session.s2,answered:state.session.n2,extra:[state.session.n1?'식별 '+state.session.s1+'/'+state.session.n1:'',openLeft?'미출제 '+openLeft+'개':''].filter(Boolean).join(' · '),review:dueItems().length}),window.WGSaved&&q.rebuild?WGSaved.button('exam',q.rebuild.themeId+'|'+q.rebuild.seed,q.rebuild,function(){var sb=$('savedBtn');if(sb&&!state.savedMode)sb.textContent='저장 '+WGSaved.count('exam');}):null]));
  if(state.targetKey)card.append(el('p',{className:'small',text:'선택한 비교를 집중 연습하고 있어요. 주제를 바꾸면 전체 연습으로 돌아갑니다.'}));
  // What a review is about is named only after answering; before, the name would give it away.
  if(state.reviewItem)card.append(el('p',{className:'small',text:'틀렸던 문제 다시 풀기'+(state.a2!==null?': '+state.reviewItem.label:'')+' · 남은 복습 '+n+'개'}));
@@ -434,7 +448,9 @@ function weakPanel(){
  d.addEventListener('toggle',function(){state.weakOpen=d.open});return d;
 }
 function answer1(i){if(state.a2!==null||i<0||i>=state.q.stage1.options.length)return;state.a1=i;render()}
-function answer2(i){if(state.a1===null||state.a2!==null||i<0||i>=state.q.stage2.options.length)return;state.a2=i;if(state.a1>=0){var firstOK=state.a1===state.q.stage1.answer;state.session.n1++;if(firstOK)state.session.s1++;else missed1(state.q,state.a1).forEach(remember);record(state.q.theme.id,'s1',firstOK);}var ok=i===state.q.stage2.answer;state.session.n2++;store.count=(store.count||0)+1;if(state.q.round&&!state.reviewItem&&typeof WGOrder!=='undefined')WGOrder.done('exam',state.q.round.scope,state.q.round.pair);if(ok)state.session.s2++;
+function answer2(i){if(state.a1===null||state.a2!==null||i<0||i>=state.q.stage2.options.length)return;state.a2=i;if(state.a1>=0){var firstOK=state.a1===state.q.stage1.answer;state.session.n1++;if(firstOK)state.session.s1++;else missed1(state.q,state.a1).forEach(remember);record(state.q.theme.id,'s1',firstOK);}var ok=i===state.q.stage2.answer;state.session.n2++;store.count=(store.count||0)+1;
+ // A comparison or fact counts as asked (no longer 미출제) only once the question is answered.
+ if(!state.q.readingOnly)engine.seenIn(state.q).forEach(function(k){store.seen[k]=1});if(state.q.round&&!state.reviewItem&&typeof WGOrder!=='undefined')WGOrder.done('exam',state.q.round.scope,state.q.round.pair);if(ok)state.session.s2++;
  if(!ok)missed2(state.q,i).forEach(remember);
  // A review question is passed when both stages are right (or stage 1 was not asked).
  var whole=ok&&(state.a1<0||state.a1===state.q.stage1.answer);grade(whole);
