@@ -46,6 +46,7 @@ test('malformed saved data and unavailable storage do not prevent practice',()=>
 test('the corpus revision archives the previous scoring separately and drops reviews of deleted families',()=>{
  const p=fixture('religion-selected',JSON.stringify({revision:2,family:'religion-selected',seed:5,stats:{'religion-selected':{right:7,wrong:2}},retiredStats:{'before-20261027':{first:{right:3}}},review:[{family:'religion-selected',seed:8},{family:'cumulative',seed:9}]}));
  assert.equal(p.saved.revision,3);assert.equal(p.saved.retiredStats['before-20261027'].first.right,3);
- assert.equal(p.saved.retiredStats['before-20261027-corpus']['religion-selected'].right,7);assert.deepEqual(p.saved.review.map(x=>x.family),['cumulative']);
+ assert.equal(p.saved.retiredStats['before-20261027-corpus']['religion-selected'].right,7);// The kept 'cumulative' miss is asked again first, which ends it (one retry, 2026-10-29).
+ assert.deepEqual(p.saved.review,[]);
  assert.deepEqual(p.saved.stats,{});assert.equal(p.saved.family,'all');
 });

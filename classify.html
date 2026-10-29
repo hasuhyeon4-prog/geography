@@ -57,7 +57,7 @@ h2{font-size:19px;line-height:1.35;margin:2px 0 8px;word-break:keep-all}
 }
 @media(max-width:360px){.scope{gap:6px;padding:5px 8px}.scope label{font-size:11px;gap:4px}#card{padding-left:9px;padding-right:9px}.options{grid-template-columns:1fr 1fr}}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=20261028-ui6"><script src="assets/site.js?v=20261028-ui6"></script></head>
+<link rel="stylesheet" href="assets/site.css?v=20261029-order1"><script src="assets/site.js?v=20261029-order1"></script></head>
 <body>
 <div id="bootNotice" role="status">지도를 준비하고 있어요.</div>
 <div id="app">
@@ -144,9 +144,9 @@ function savedHere(){var pool=C.assignPool(set(),'all');return (window.WGSaved?W
 function buildQueue(only){
  if(!only)state.savedRun=false;
  var h=history(),pool=only||C.assignPool(set(),state.region);
- // Last-missed countries come first, then unseen ones, then the rest.
- var missed=shuffle(pool.filter(function(n){return wasMissed(n,h)})),fresh=shuffle(pool.filter(function(n){return !h[n]&&!wasMissed(n,h)})),rest=shuffle(pool.filter(function(n){return h[n]&&!wasMissed(n,h)}));
- state.queue=only?shuffle(pool.slice()):missed.concat(fresh,rest);state.index=0;state.answer=null;state.religionChoice=null;state.draft=new Set();state.right=0;state.wrongNames=[];
+ // One round asks every country of the classification once, in random order, and carries on
+ // across visits; a country missed five questions ago comes back once (nextQuestion).
+ state.queue=only?shuffle(pool.slice()):(typeof WGOrder!=='undefined'&&WGOrder)?WGOrder.left('classify',state.setId+':'+state.region,pool):shuffle(pool.slice());state.retry={};state.index=0;state.answer=null;state.religionChoice=null;state.draft=new Set();state.right=0;state.wrongNames=[];
 }
 function resetPaint(){var opts=C.paintOptions(set());if(!opts.some(function(o){return o.id===state.target}))state.target=opts[0].id;state.picked=new Set();state.graded=null}
 function answerColor(name){var v=C.entry(set(),name).values;return color(v[0])||'#868e96'}
@@ -335,11 +335,12 @@ function answerWith(id){
  var q=state.queue[state.index];if(!q||state.answer)return;
  state.answer=id;var ok=C.isCorrect(set(),q,id),h=history(),row=h[q]||(h[q]={right:0,wrong:0});
  row[ok?'right':'wrong']++;row.last=ok;if(ok)state.right++;else state.wrongNames.push(q);
+ if((typeof WGOrder!=='undefined'&&WGOrder)&&!(state.retry||{})[state.index]){if(!state.savedRun)WGOrder.done('classify',state.setId+':'+state.region,q);if(!ok)WGOrder.miss('classify',state.setId+'|'+q);}
  renderAll();
  // Bring the verdict and the next button into view on short phone cards.
  var panel=$('panel');panel.scrollTop=panel.scrollHeight;
 }
-function nextQuestion(){state.index++;state.answer=null;state.religionChoice=null;state.draft=new Set();renderAll();$('panel').scrollTop=0;if(state.index<state.queue.length)focusQuestion();else fitRegion()}
+function nextQuestion(){var pool=C.assignPool(set(),state.region),r=(typeof WGOrder!=='undefined'&&WGOrder)&&WGOrder.takeRetry('classify',function(k){var i=k.indexOf('|');return k.slice(0,i)===state.setId&&pool.indexOf(k.slice(i+1))>=0});if(r){state.queue.splice(state.index+1,0,r.id.slice(r.id.indexOf('|')+1));(state.retry||(state.retry={}))[state.index+1]=true;}state.index++;state.answer=null;state.religionChoice=null;state.draft=new Set();renderAll();$('panel').scrollTop=0;if(state.index<state.queue.length)focusQuestion();else fitRegion()}
 function gradeNow(){state.graded=C.gradePaint(set(),state.target,Array.from(state.picked),names,state.region);state.focus=null;renderAll()}
 
 function regionBox(){

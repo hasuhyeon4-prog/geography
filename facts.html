@@ -34,10 +34,10 @@ h2{font-size:21px;margin:2px 0 10px}
 .hint{margin-top:12px;font-size:12px;color:var(--muted);text-align:center}
 @media(min-width:700px){.scope{grid-template-columns:320px 220px;justify-content:center}.claim{font-size:22px}}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=20261028-ui6"><script src="assets/site.js?v=20261028-ui6"></script></head>
+<link rel="stylesheet" href="assets/site.css?v=20261029-order1"><script src="assets/site.js?v=20261029-order1"></script></head>
 <body>
 <header class="site-header"><h1 class="sr-only">통계 OX</h1><nav class="site-nav" aria-label="연습 종류"><a href="index.html">위치</a><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html" aria-current="page">OX</a><a href="concepts.html">강의 표</a><a href="exam.html">기출형</a><a href="materials.html">자료형</a></nav></header>
-<div class="scope site-controls"><label for="topicSelect">주제<select id="topicSelect"></select></label><label for="orderSelect">순서<select id="orderSelect"><option value="weak">틀린 것 먼저</option><option value="random">무작위</option><option value="wrongOnly">최근 틀린 것만</option><option value="saved">저장한 문제</option></select></label></div>
+<div class="scope site-controls"><label for="topicSelect">주제<select id="topicSelect"></select></label><label for="orderSelect">순서<select id="orderSelect"><option value="cycle">한 바퀴 (무작위)</option><option value="wrongOnly">최근 틀린 것만</option><option value="saved">저장한 문제</option></select></label></div>
 <main><section class="card" id="card" aria-live="polite"></section><p class="hint">키보드: O·X(또는 1·2)로 답하고 Enter로 다음</p></main>
 <script src="assets/fact-statements.js?v=20261022-1"></script>
 <script src="assets/lecture-goal-facts.js?v=20261028-coverage2"></script>
@@ -51,19 +51,20 @@ function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_facts_v1')||'
 var store=readStore();if(!store.history||typeof store.history!=='object')store.history={};
 if(!store.retiredHistory||typeof store.retiredHistory!=='object')store.retiredHistory={};
 F.items.forEach(function(it){var h=store.history[it.id];if(h&&it.revision&&h.revision!==it.revision){store.retiredHistory[it.id+'@'+(h.revision||1)]=h;delete store.history[it.id]}});
-var state={topic:F.topics.some(function(t){return t.id===store.topic})?store.topic:'all',order:['weak','random','wrongOnly','saved'].includes(store.order)?store.order:'weak',queue:[],index:0,answer:null,right:0,wrong:[]};
+var state={topic:F.topics.some(function(t){return t.id===store.topic})?store.topic:'all',order:['cycle','wrongOnly','saved'].includes(store.order)?store.order:'cycle',queue:[],index:0,answer:null,right:0,wrong:[]};
 function save(){try{localStorage.setItem('wg_facts_v1',JSON.stringify({topic:state.topic,order:state.order,history:store.history,retiredHistory:store.retiredHistory}))}catch(e){}}
 function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
 function pool(){return F.items.filter(function(it){return state.topic==='all'||it.topic===state.topic})}
 function build(only){
  var h=store.history,list=only||pool().map(function(it){return it.id});
  if(only)state.queue=shuffle(list.slice());
- else if(state.order==='random')state.queue=shuffle(list);
+ // One round goes through every statement of the topic once; it carries on across visits.
+ else if(state.order==='cycle'&&(typeof WGOrder!=='undefined'&&WGOrder))state.queue=WGOrder.left('facts','topic:'+state.topic,list);
  else if(state.order==='wrongOnly')state.queue=shuffle(list.filter(function(id){return h[id]&&h[id].last===false}));
  else if(state.order==='saved'){var kept=window.WGSaved?WGSaved.list('facts').map(function(x){return x.key}):[];state.queue=shuffle(kept.filter(function(id){return byId[id]}));}
  // Last-missed first, then unseen, then the rest.
  else state.queue=shuffle(list.filter(function(id){return h[id]&&h[id].last===false})).concat(shuffle(list.filter(function(id){return !h[id]})),shuffle(list.filter(function(id){return h[id]&&h[id].last!==false})));
- state.index=0;state.answer=null;state.right=0;state.wrong=[];render();
+ state.index=0;state.answer=null;state.right=0;state.wrong=[];state.retry={};render();
 }
 function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(c){if(c)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
 function progressEl(o){var p=[];if(o.len)p.push(o.pos+' / '+o.len);p.push('정답 '+o.right+'/'+o.answered);if(o.extra)p.push(o.extra);if(o.review)p.push('다시 풀기 '+o.review);return el('span',{className:'site-progress',role:'status',text:p.join(' · ')});}
@@ -79,7 +80,7 @@ function render(){
    state.wrong.forEach(function(id){var it=byId[id];ul.append(el('li',{},[el('b',{text:(it.answer?'O':'X')+' '}),it.claim,el('span',{className:'source muted',text:it.explain+' · '+it.source})]))});
    card.append(el('p',{className:'small muted',text:'틀린 문항과 정답'}),ul);
   }
-  card.append(el('div',{className:'actions'},[state.wrong.length?el('button',{type:'button',className:'primary big',text:'틀린 '+state.wrong.length+'개 다시',onclick:function(){build(state.wrong.slice())}}):null,el('button',{type:'button',className:state.wrong.length?'big':'primary big',text:'처음부터',onclick:function(){build()}})]));
+  card.append(el('div',{className:'actions'},[state.wrong.length?el('button',{type:'button',className:'primary big',text:'틀린 '+state.wrong.length+'개 다시',onclick:function(){build(state.wrong.slice())}}):null,el('button',{type:'button',className:state.wrong.length?'big':'primary big',text:state.order==='cycle'?'다음 바퀴':'처음부터',onclick:function(){build()}})]));
   return;
  }
  var it=byId[state.queue[state.index]];
@@ -106,10 +107,12 @@ function answer(value){
  var id=state.queue[state.index];if(!id||state.answer!==null)return;
  state.answer=value;var ok=value===byId[id].answer,row=store.history[id]||(store.history[id]={right:0,wrong:0});
  row[ok?'right':'wrong']++;row.last=ok;if(ok)state.right++;else state.wrong.push(id);
+ if((typeof WGOrder!=='undefined'&&WGOrder)){if(state.order==='cycle'&&!(state.retry||{})[state.index])WGOrder.done('facts','topic:'+state.topic,id);if(!ok&&!(state.retry||{})[state.index])WGOrder.miss('facts',id);}
  row.revision=byId[id].revision||1;
  save();render();
 }
-function nextItem(){state.index++;state.answer=null;render();window.scrollTo({top:0})}
+// A statement missed five questions ago comes back once, right after this one.
+function nextItem(){var r=(typeof WGOrder!=='undefined'&&WGOrder)&&WGOrder.takeRetry('facts',function(id){return !!byId[id]});if(r){state.queue.splice(state.index+1,0,r.id);(state.retry||(state.retry={}))[state.index+1]=true;}state.index++;state.answer=null;render();window.scrollTo({top:0})}
 var all=el('option',{value:'all',text:'전체 ('+F.items.length+')'});$('topicSelect').append(all);
 F.topics.forEach(function(t){$('topicSelect').append(el('option',{value:t.id,text:t.name+' ('+F.items.filter(function(i){return i.topic===t.id}).length+')'}))});
 $('topicSelect').value=state.topic;$('orderSelect').value=state.order;

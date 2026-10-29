@@ -27,7 +27,7 @@ tr.hit td{background:#fff8db}td.name{font-weight:700;white-space:nowrap;min-widt
 .small{font-size:12px;line-height:1.5}.muted{color:var(--muted)}h2{font-size:17px;margin:0 0 6px}
 .hint{font-size:12px;color:var(--muted);text-align:center}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=20261028-ui6"><script src="assets/site.js?v=20261028-ui6"></script></head>
+<link rel="stylesheet" href="assets/site.css?v=20261029-order1"><script src="assets/site.js?v=20261029-order1"></script></head>
 <body>
 <header class="site-header"><h1 class="sr-only">강의 표</h1><nav class="site-nav" aria-label="연습 종류"><a href="index.html">위치</a><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html">OX</a><a href="concepts.html" aria-current="page">강의 표</a><a href="exam.html">기출형</a><a href="materials.html">자료형</a></nav></header>
 <div class="scope site-controls"><label for="domainSelect">주제<select id="domainSelect"></select></label><label for="modeSelect">방식<select id="modeSelect"><option value="which">설명 → 대상</option><option value="what">대상 → 설명</option><option value="study">표 보기</option><option value="saved">저장한 문제</option></select></label></div>
@@ -81,6 +81,14 @@ function itemsFor(mode){
 function weight(it){var h=store.history[it.key];return !h?2:h.wrong>h.right?3+h.wrong-h.right:h.last===false?2.5:1}
 function draw(){
  var list=items();if(!list.length)return null;
+ // Each round asks every question of this topic and direction once, in random order;
+ // a question missed five questions ago comes back once first.
+ if((typeof WGOrder!=='undefined'&&WGOrder)){
+  var byKey={};list.forEach(function(x){byKey[x.key]=x});
+  var r=WGOrder.takeRetry('concepts',function(k){return !!byKey[k]});state.isRetry=!!r;
+  if(r)return byKey[r.id];
+  return byKey[WGOrder.next('concepts',state.mode+':'+state.domain,list.map(function(x){return x.key}))];
+ }
  var total=list.reduce(function(s,x){return s+weight(x)},0),pick=Math.random()*total;
  for(var i=0;i<list.length;i++){pick-=weight(list[i]);if(pick<=0)return list[i]}
  return list[list.length-1];
@@ -106,7 +114,9 @@ state.q=it.custom?{it:it,options:shuffle(it.custom.options.map(function(_,i){ret
 }
 function choose(opt){
  if(state.answer!==null||!state.q)return;state.answer=opt;var ok=opt===state.q.answer;state.total++;if(ok)state.right++;
- var h=store.history[state.q.it.key]||(store.history[state.q.it.key]={right:0,wrong:0});h[ok?'right':'wrong']++;h.last=ok;save();render();
+ var h=store.history[state.q.it.key]||(store.history[state.q.it.key]={right:0,wrong:0});h[ok?'right':'wrong']++;h.last=ok;
+ if(!ok&&!state.isRetry&&(typeof WGOrder!=='undefined'&&WGOrder))WGOrder.miss('concepts',state.q.it.key);
+ save();render();
 }
 function renderStudy(main){
  var list=tables();

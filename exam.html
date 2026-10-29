@@ -54,7 +54,7 @@ td.text{white-space:normal;text-align:left;line-height:1.55;word-break:keep-all;
 @media(max-width:560px){.scope{flex-wrap:wrap;row-gap:6px}.scope label:not(.toggle){flex:1 1 100%}}
 @media(max-width:360px){.navLink{padding:8px 6px;font-size:11px}.nav a{padding:8px 4px;font-size:11px}.choices.combo button{font-size:12px}}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=20261028-ui6"><script src="assets/site.js?v=20261028-ui6"></script></head>
+<link rel="stylesheet" href="assets/site.css?v=20261029-order1"><script src="assets/site.js?v=20261029-order1"></script></head>
 <body>
 <header class="site-header"><h1 class="sr-only">기출형 연습</h1><nav class="site-nav" aria-label="연습 종류"><a href="index.html">위치</a><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html">OX</a><a href="concepts.html">강의 표</a><a href="exam.html" aria-current="page">기출형</a><a href="materials.html">자료형</a></nav></header>
 <div class="scope site-controls"><label for="themeSelect">주제<select id="themeSelect"></select></label><label for="formatSelect">형식<select id="formatSelect"></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><button type="button" id="reviewBtn" class="reviewBtn"></button><button type="button" id="savedBtn" class="reviewBtn"></button></div>
@@ -81,12 +81,12 @@ function save(){try{localStorage.setItem('wg_exam_v1',JSON.stringify({theme:stat
 var RECENT=40;
 function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(c){if(c!=null&&c!==false)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
 function progressEl(o){var p=[];if(o.len)p.push(o.pos+' / '+o.len);p.push('정답 '+o.right+'/'+o.answered);if(o.extra)p.push(o.extra);if(o.review)p.push('다시 풀기 '+o.review);return el('span',{className:'site-progress',role:'status',text:p.join(' · ')});}
-// Spaced review (2026-10-23): what a wrong answer missed (the comparisons behind a misplaced row, each
-// <보기> judged wrongly) comes back in a new question after 10 minutes, then 1, 3, 7 and 21 days
-// while it is answered right; after the fifth it leaves the list. A miss sends it back to the start.
-var STEPS=[6e5,864e5,2592e5,6048e5,18144e5];
+// Review: what a wrong answer missed (the comparisons behind a misplaced row, each <보기> judged
+// wrongly) comes back in a new question.
 if(!store.review||typeof store.review!=='object'||Array.isArray(store.review))store.review={};
-function remember(item){var old=store.review[item.key];item.box=0;item.due=Date.now()+STEPS[0];item.misses=(old&&old.misses||0)+1;store.review[item.key]=item}
+// 2026-10-29: a missed comparison or fact is asked again once, five questions later (or
+// at once from 복습); answering it then ends it, right or wrong.
+function remember(item){var old=store.review[item.key];if(state.reviewItem&&state.reviewItem.key===item.key)return;item.box=0;item.due=Date.now();item.after=(store.count||0)+5;item.misses=(old&&old.misses||0)+1;store.review[item.key]=item}
 function relItem(ind,a,b){var x=engine.relation(ind,a,b);if(!x||['active','belowMargin'].indexOf(x.status)<0)return null;var m=WGEntityKB.indicators[ind];
  return {key:'rel|'+ind+'|'+[a,b].sort().join('|'),build:{targetKey:ind+'|'+[a,b].sort().join('|')},label:(m?m.label:ind)+': '+x.hi+' > '+x.lo}}
 function statementItems(q,st){
@@ -122,6 +122,14 @@ var INVENTORY=engine.inventory(),PRIOR={rows:.45,implicit:.2,columns:.35};
 function results(key){return store.types[key]||[]}
 function accuracy(key){var r=results(key),c=r.filter(Boolean).length;return (c+1)/(r.length+2)}
 function scopeThemes(){return state.theme==='all'?engine.themes:engine.themes.filter(function(t){return t.id===state.theme})}
+// One round asks every topic and format pair once, in random order, and carries on
+// across visits; within a pair the questions shown recently are avoided.
+function roundQuestion(){
+ var pairs=[];scopeThemes().forEach(function(t){engine.formatsFor(t).filter(function(f){return state.format==='all'||f===state.format}).forEach(function(f){pairs.push(t.id+'|'+f)})});
+ if(!pairs.length||!(typeof WGOrder!=='undefined'&&WGOrder))return weighted();
+ for(var k=0;k<pairs.length;k++){var p=WGOrder.next('exam',state.theme+':'+state.format,pairs).split('|'),q=buildQuestion({themeId:p[0],format:p[1],completion:true,avoid:store.recent});if(q)return q}
+ return null;
+}
 function weighted(){
  var pairs=[],sum=0;
  scopeThemes().forEach(function(t){
@@ -135,23 +143,8 @@ function weighted(){
  }
  return null;
 }
-function unseen(){
- var scope=scopeThemes().map(function(t){return t.id});
- var open=INVENTORY.filter(function(x){return !store.seen[x.key]&&(store.tried[x.key]||0)<3&&x.themes.some(function(id){return scope.indexOf(id)>=0})});
- if(!open.length)return null;
- // With a format chosen, only topics that make it (실전형 needs a map).
- var can=function(id){return state.format==='all'||engine.formatsFor(engine.themes.filter(function(t){return t.id===id})[0]).indexOf(state.format)>=0};
- open=open.filter(function(x){return x.themes.some(function(id){return scope.indexOf(id)>=0&&can(id)})});
- if(!open.length)return null;
- var x=open[Math.floor(Math.random()*open.length)],homes=x.themes.filter(function(id){return scope.indexOf(id)>=0&&can(id)});
- store.tried[x.key]=(store.tried[x.key]||0)+1;
- var q=buildQuestion(Object.assign({themeId:x.build.targetKey&&state.theme==='all'&&state.format==='all'?null:homes[Math.floor(Math.random()*homes.length)],format:state.format==='all'?null:state.format,avoid:store.recent},x.build));
- if(q&&engine.seenIn(q).indexOf(x.key)>=0)state.fresh=true;
- return q;
-}
 function dueItems(){var now=Date.now();return Object.keys(store.review).map(function(k){return store.review[k]}).filter(function(x){return x.due<=now}).sort(function(a,b){return a.due-b.due})}
-function grade(ok){var x=state.reviewItem&&store.review[state.reviewItem.key];if(!x)return;
- if(ok){x.box++;if(x.box>=STEPS.length)delete store.review[x.key];else x.due=Date.now()+STEPS[x.box]}else{x.box=0;x.due=Date.now()+STEPS[0]}}
+function grade(ok){if(state.reviewItem)delete store.review[state.reviewItem.key]}
 function record(themeId,stage,ok){var s=store.stats[themeId]||(store.stats[themeId]={s1:[0,0],s2:[0,0]});s[stage][1]++;if(ok)s[stage][0]++;save()}
 function next(){
  state.reviewItem=null;
@@ -174,8 +167,10 @@ function next(){
  state.q=null;state.fresh=false;
  if(!state.targetKey){
   store.count=(store.count||0)+1;
-  if(store.count%2===0&&['all','rows','implicit'].indexOf(state.format)>=0)state.q=unseen();
-  if(!state.q)state.q=weighted();
+  // A miss from five questions ago comes back once before the round goes on.
+  var again=Object.keys(store.review).map(function(k){return store.review[k]}).filter(function(x){return x.after!=null&&x.after<=store.count}).sort(function(a,b){return a.after-b.after});
+  for(var j=0;j<again.length&&!state.q;j++){state.q=buildQuestion(Object.assign({avoid:store.recent},again[j].build));if(state.q)state.reviewItem=again[j];else delete store.review[again[j].key];}
+  if(!state.q)state.q=roundQuestion();
  }
  // A draw that finds no question (rare, with a format chosen) is retried with new seeds.
  for(var tries=0;tries<3&&!state.q;tries++){state.q=buildQuestion({themeId:state.targetKey||state.theme==='all'?null:state.theme,format:state.targetKey||state.format==='all'?null:state.format,targetKey:state.targetKey,avoid:store.recent});if(state.q)break}
@@ -370,7 +365,7 @@ function render(){
  var t=q.theme,card=el('section',{className:'card'});card.append(el('div',{className:'site-progress-row'},[progressEl({right:state.session.s2,answered:state.session.n2,extra:state.session.n1?'식별 '+state.session.s1+'/'+state.session.n1:'',review:dueItems().length}),window.WGSaved&&q.rebuild?WGSaved.button('exam',q.rebuild.themeId+'|'+q.rebuild.seed,q.rebuild,function(){var sb=$('savedBtn');if(sb&&!state.savedMode)sb.textContent='저장 '+WGSaved.count('exam');}):null]));
  if(state.targetKey)card.append(el('p',{className:'small',text:'선택한 비교를 집중 연습하고 있어요. 주제를 바꾸면 전체 연습으로 돌아갑니다.'}));
  // What a review is about is named only after answering; before, the name would give it away.
- if(state.reviewItem)card.append(el('p',{className:'small',text:'복습 ('+(state.reviewItem.box+1)+'/'+STEPS.length+'단계)'+(state.a2!==null?': '+state.reviewItem.label:'')+' · 남은 복습 '+n+'개'}));
+ if(state.reviewItem)card.append(el('p',{className:'small',text:'틀렸던 문제 다시 풀기'+(state.a2!==null?': '+state.reviewItem.label:'')+' · 남은 복습 '+n+'개'}));
  if(state.fresh)card.append(el('p',{className:'small muted',text:'아직 풀지 않은 비교·사실이 들어 있는 문항이에요.'}));
  // 실전형 asks the <보기> straight away, as on the exam paper; the identification is shown afterwards.
  var implicit=['columns','joint'].indexOf(q.format)<0&&!q.readingOnly,revealed=state.a2!==null;
