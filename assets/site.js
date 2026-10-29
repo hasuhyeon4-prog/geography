@@ -19,9 +19,10 @@
   }
  };
  g.WGSaved=S;
- // Question order shared by every page (2026-10-29): a deck goes through every question of
- // a scope once, in random order, before any repeats, and is kept across visits. A missed
- // question comes back once, after GAP other questions; serving it again ends it.
+ // Question order shared by every page: a deck goes through every question of a scope once,
+ // in random order, before any repeats, and is kept across visits. A question counts as asked
+ // only when it is answered, so reloading never skips one (2026-10-29). A missed question comes
+ // back after GAP other answers and stays on the list until it is answered right.
  var OKEY='wg_order_v1',GAP=5;
  function oread(){try{var v=JSON.parse(localStorage.getItem(OKEY)||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{};}catch(e){return {};}}
  function owrite(v){try{localStorage.setItem(OKEY,JSON.stringify(v));}catch(e){}}
@@ -33,16 +34,19 @@
   left:function(name,scope,ids){var v=oread(),p=page(v,name),d=p.decks[scope],k=sig(ids);
    if(!d||d.sig!==k||!d.left.length){var last=d&&d.last;d={sig:k,left:shuffle(ids.slice()),last:last};if(d.left.length>1&&d.left[0]===last)d.left.push(d.left.shift());p.decks[scope]=d;owrite(v);}
    return d.left.slice();},
-  // Marks one question of the round as asked.
+  // The next question of the round, still unanswered.
+  peek:function(name,scope,ids){return O.left(name,scope,ids)[0]||null;},
+  // Called when a question of the round is answered.
   done:function(name,scope,id){var v=oread(),p=page(v,name),d=p.decks[scope];p.count++;if(d){var i=d.left.indexOf(id);if(i>=0)d.left.splice(i,1);d.last=id;}owrite(v);},
-  next:function(name,scope,ids){var l=O.left(name,scope,ids);if(!l.length)return null;O.done(name,scope,l[0]);return l[0];},
   count:function(name){return page(oread(),name).count;},
-  // A miss is asked again once; a question that was itself a retry is not queued again.
-  miss:function(name,id,data){var v=oread(),p=page(v,name);if(p.retry.some(function(x){return x.id===id;}))return;p.retry.push({id:id,data:data===undefined?null:data,at:p.count+GAP});owrite(v);},
-  // The first retry that is due and usable here; it leaves the list as it is served.
-  takeRetry:function(name,usable){var v=oread(),p=page(v,name);for(var i=0;i<p.retry.length;i++){var x=p.retry[i];if(x.at<=p.count&&(!usable||usable(x.id,x.data))){p.retry.splice(i,1);p.count++;owrite(v);return x;}}return null;},
-  retries:function(name){return page(oread(),name).retry.slice();},
-  dropRetry:function(name,id){var v=oread(),p=page(v,name);p.retry=p.retry.filter(function(x){return x.id!==id;});owrite(v);}
+  // A miss (again) is asked after GAP more answers.
+  miss:function(name,id,data){var v=oread(),p=page(v,name),x=p.retry.filter(function(r){return r.id===id;})[0];if(x)x.at=p.count+GAP;else p.retry.push({id:id,data:data===undefined?null:data,at:p.count+GAP});owrite(v);},
+  // The first missed question that is due and usable here; it stays listed until answered.
+  dueRetry:function(name,usable){var p=page(oread(),name);for(var i=0;i<p.retry.length;i++){var x=p.retry[i];if(x.at<=p.count&&(!usable||usable(x.id,x.data)))return x;}return null;},
+  // Answering a missed question: right ends it, wrong brings it back again later.
+  resolve:function(name,id,ok){var v=oread(),p=page(v,name);p.count++;p.retry=p.retry.filter(function(x){if(x.id!==id)return true;if(ok)return false;x.at=p.count+GAP;return true;});owrite(v);},
+  isRetry:function(name,id){return page(oread(),name).retry.some(function(x){return x.id===id;});},
+  retries:function(name){return page(oread(),name).retry.slice();}
  };
  g.WGOrder=O;
  if(typeof document==='undefined')return;

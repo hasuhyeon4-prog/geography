@@ -23,7 +23,8 @@ test('practice is answered once; answer keys, notes and lookup tables stay absen
   const old=group()[0].children[x.stage.answer];old.onclick();old.onclick();
   assert.equal(p.saved.stats[f.id].right,1,f.id+' duplicate click');assert.equal(p.saved.review.length,0);
   assert.ok(p.nodes().some(n=>n.tagName==='DETAILS'),f.id+' feedback retains the source');
-  p.document.getElementById('nextQuestion').onclick();assert.equal(group().length,1);assert.equal(p.saved.seed,3);
+  // A seed is used up only by an answer (2026-10-29): one answered question, seed 1 → 2.
+  p.document.getElementById('nextQuestion').onclick();assert.equal(group().length,1);assert.equal(p.saved.seed,2);
  }
 });
 test('a wrong final answer persists and is removed only on a correct review answer',()=>{
@@ -46,7 +47,7 @@ test('malformed saved data and unavailable storage do not prevent practice',()=>
 test('the corpus revision archives the previous scoring separately and drops reviews of deleted families',()=>{
  const p=fixture('religion-selected',JSON.stringify({revision:2,family:'religion-selected',seed:5,stats:{'religion-selected':{right:7,wrong:2}},retiredStats:{'before-20261027':{first:{right:3}}},review:[{family:'religion-selected',seed:8},{family:'cumulative',seed:9}]}));
  assert.equal(p.saved.revision,3);assert.equal(p.saved.retiredStats['before-20261027'].first.right,3);
- assert.equal(p.saved.retiredStats['before-20261027-corpus']['religion-selected'].right,7);// The kept 'cumulative' miss is asked again first, which ends it (one retry, 2026-10-29).
- assert.deepEqual(p.saved.review,[]);
+ assert.equal(p.saved.retiredStats['before-20261027-corpus']['religion-selected'].right,7);// The kept 'cumulative' miss is shown again first and stays listed until answered right.
+ assert.deepEqual(p.saved.review.map(x=>x.family),['cumulative']);
  assert.deepEqual(p.saved.stats,{});assert.equal(p.saved.family,'all');
 });
