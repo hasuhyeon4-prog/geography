@@ -34,7 +34,7 @@ h2{font-size:21px;margin:2px 0 10px}
 .hint{margin-top:12px;font-size:12px;color:var(--muted);text-align:center}
 @media(min-width:700px){.scope{grid-template-columns:320px 220px;justify-content:center}.claim{font-size:22px}}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=20261029-keep1"><script src="assets/site.js?v=20261029-keep1"></script></head>
+<link rel="stylesheet" href="assets/site.css?v=20261029-apart1"><script src="assets/site.js?v=20261029-apart1"></script></head>
 <body>
 <header class="site-header"><h1 class="sr-only">통계 OX</h1><nav class="site-nav" aria-label="연습 종류"><a href="index.html">위치</a><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html" aria-current="page">OX</a><a href="concepts.html">강의 표</a><a href="exam.html">기출형</a><a href="materials.html">자료형</a></nav></header>
 <div class="scope site-controls"><label for="topicSelect">주제<select id="topicSelect"></select></label><label for="orderSelect">순서<select id="orderSelect"><option value="cycle">한 바퀴 (무작위)</option><option value="wrongOnly">최근 틀린 것만</option><option value="saved">저장한 문제</option><option value="mastered">완전히 익힘 목록</option></select></label></div>
@@ -114,15 +114,14 @@ function answer(value){
  var id=state.queue[state.index];if(!id||state.answer!==null)return;
  state.answer=value;var ok=value===byId[id].answer,row=store.history[id]||(store.history[id]={right:0,wrong:0});
  row[ok?'right':'wrong']++;row.last=ok;if(ok)state.right++;else state.wrong.push(id);
- // Answering is what counts: the round moves on, and a miss stays listed until answered right.
- if((typeof WGOrder!=='undefined'&&WGOrder)){if(state.order==='cycle')WGOrder.done('facts','topic:'+state.topic,id);if(WGOrder.isRetry('facts',id))WGOrder.resolve('facts',id,ok);else if(!ok)WGOrder.miss('facts',id);}
+ // Answering is what moves the round on. Misses are practised apart, in 최근 틀린 것만.
+ if((typeof WGOrder!=='undefined'&&WGOrder)&&state.order==='cycle')WGOrder.done('facts','topic:'+state.topic,id);
  row.revision=byId[id].revision||1;
  save();render();
 }
-// A statement missed five answers ago comes back right after this one.
 // 완전히 익힘 · 제외, as on the 위치 page; pressing it again brings the statement back.
 function masteredButton(id){var on=!!store.mastered[id],b=el('button',{type:'button',className:'site-save','aria-pressed':on?'true':'false',title:on?'다시 연습에 넣기':'이후 연습에서 빼기',text:on?'✓ 익힘 해제':'완전히 익힘 · 제외'});b.onclick=function(){if(store.mastered[id])delete store.mastered[id];else store.mastered[id]=1;save();render()};return b}
-function nextItem(){var r=(typeof WGOrder!=='undefined'&&WGOrder)&&WGOrder.dueRetry('facts',function(id){return !!byId[id]&&!store.mastered[id]&&state.queue.indexOf(id,state.index+1)<0});if(r)state.queue.splice(state.index+1,0,r.id);state.index++;state.answer=null;render();window.scrollTo({top:0})}
+function nextItem(){state.index++;state.answer=null;render();window.scrollTo({top:0})}
 var all=el('option',{value:'all',text:'전체 ('+F.items.length+')'});$('topicSelect').append(all);
 var tableCount=F.items.filter(function(i){return i.topic.indexOf('table-')===0}).length;if(tableCount)$('topicSelect').append(el('option',{value:'table-all',text:'강의 표 전체 ('+tableCount+')'}));
 F.topics.forEach(function(t){$('topicSelect').append(el('option',{value:t.id,text:t.name+' ('+F.items.filter(function(i){return i.topic===t.id}).length+')'}))});

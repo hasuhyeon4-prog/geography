@@ -57,7 +57,7 @@ h2{font-size:19px;line-height:1.35;margin:2px 0 8px;word-break:keep-all}
 }
 @media(max-width:360px){.scope{gap:6px;padding:5px 8px}.scope label{font-size:11px;gap:4px}#card{padding-left:9px;padding-right:9px}.options{grid-template-columns:1fr 1fr}}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=20261029-keep1"><script src="assets/site.js?v=20261029-keep1"></script></head>
+<link rel="stylesheet" href="assets/site.css?v=20261029-apart1"><script src="assets/site.js?v=20261029-apart1"></script></head>
 <body>
 <div id="bootNotice" role="status">지도를 준비하고 있어요.</div>
 <div id="app">
@@ -335,13 +335,13 @@ function answerWith(id){
  var q=state.queue[state.index];if(!q||state.answer)return;
  state.answer=id;var ok=C.isCorrect(set(),q,id),h=history(),row=h[q]||(h[q]={right:0,wrong:0});
  row[ok?'right':'wrong']++;row.last=ok;if(ok)state.right++;else state.wrongNames.push(q);
- // Answering is what counts; a missed country stays listed until answered right.
- if((typeof WGOrder!=='undefined'&&WGOrder)){var rk=state.setId+'|'+q;if(!state.savedRun)WGOrder.done('classify',state.setId+':'+state.region,q);if(WGOrder.isRetry('classify',rk))WGOrder.resolve('classify',rk,ok);else if(!ok)WGOrder.miss('classify',rk);}
+ // Answering is what moves the round on; misses are practised apart (틀린 N개 다시).
+ if((typeof WGOrder!=='undefined'&&WGOrder)&&!state.savedRun)WGOrder.done('classify',state.setId+':'+state.region,q);
  renderAll();
  // Bring the verdict and the next button into view on short phone cards.
  var panel=$('panel');panel.scrollTop=panel.scrollHeight;
 }
-function nextQuestion(){var pool=C.assignPool(set(),state.region),r=(typeof WGOrder!=='undefined'&&WGOrder)&&WGOrder.dueRetry('classify',function(k){var i=k.indexOf('|'),n=k.slice(i+1);return k.slice(0,i)===state.setId&&pool.indexOf(n)>=0&&state.queue.indexOf(n,state.index+1)<0});if(r)state.queue.splice(state.index+1,0,r.id.slice(r.id.indexOf('|')+1));state.index++;state.answer=null;state.religionChoice=null;state.draft=new Set();renderAll();$('panel').scrollTop=0;if(state.index<state.queue.length)focusQuestion();else fitRegion()}
+function nextQuestion(){state.index++;state.answer=null;state.religionChoice=null;state.draft=new Set();renderAll();$('panel').scrollTop=0;if(state.index<state.queue.length)focusQuestion();else fitRegion()}
 function gradeNow(){state.graded=C.gradePaint(set(),state.target,Array.from(state.picked),names,state.region);state.focus=null;renderAll()}
 
 function regionBox(){

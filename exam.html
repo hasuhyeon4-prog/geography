@@ -54,7 +54,7 @@ td.text{white-space:normal;text-align:left;line-height:1.55;word-break:keep-all;
 @media(max-width:560px){.scope{flex-wrap:wrap;row-gap:6px}.scope label:not(.toggle){flex:1 1 100%}}
 @media(max-width:360px){.navLink{padding:8px 6px;font-size:11px}.nav a{padding:8px 4px;font-size:11px}.choices.combo button{font-size:12px}}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=20261029-keep1"><script src="assets/site.js?v=20261029-keep1"></script></head>
+<link rel="stylesheet" href="assets/site.css?v=20261029-apart1"><script src="assets/site.js?v=20261029-apart1"></script></head>
 <body>
 <header class="site-header"><h1 class="sr-only">기출형 연습</h1><nav class="site-nav" aria-label="연습 종류"><a href="index.html">위치</a><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html">OX</a><a href="concepts.html">강의 표</a><a href="exam.html" aria-current="page">기출형</a><a href="materials.html">자료형</a></nav></header>
 <div class="scope site-controls"><label for="themeSelect">주제<select id="themeSelect"></select></label><label for="formatSelect">형식<select id="formatSelect"></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><button type="button" id="reviewBtn" class="reviewBtn"></button><button type="button" id="savedBtn" class="reviewBtn"></button></div>
@@ -84,9 +84,8 @@ function progressEl(o){var p=[];if(o.len)p.push(o.pos+' / '+o.len);p.push('정�
 // Review: what a wrong answer missed (the comparisons behind a misplaced row, each <보기> judged
 // wrongly) comes back in a new question.
 if(!store.review||typeof store.review!=='object'||Array.isArray(store.review))store.review={};
-// 2026-10-29: a missed comparison or fact comes back five answers later (or at once from
-// 복습) and stays on the list until it is answered right (grade).
-function remember(item){var old=store.review[item.key];if(state.reviewItem&&state.reviewItem.key===item.key)return;item.box=0;item.due=Date.now();item.after=(store.count||0)+5;item.misses=(old&&old.misses||0)+1;store.review[item.key]=item}
+// 2026-10-29: a missed comparison or fact waits in 복습 until it is answered right (grade).
+function remember(item){var old=store.review[item.key];if(state.reviewItem&&state.reviewItem.key===item.key)return;item.box=0;item.due=Date.now();item.misses=(old&&old.misses||0)+1;store.review[item.key]=item}
 function relItem(ind,a,b){var x=engine.relation(ind,a,b);if(!x||['active','belowMargin'].indexOf(x.status)<0)return null;var m=WGEntityKB.indicators[ind];
  return {key:'rel|'+ind+'|'+[a,b].sort().join('|'),build:{targetKey:ind+'|'+[a,b].sort().join('|')},label:(m?m.label:ind)+': '+x.hi+' > '+x.lo}}
 function statementItems(q,st){
@@ -146,8 +145,8 @@ function weighted(){
  return null;
 }
 function dueItems(){var now=Date.now();return Object.keys(store.review).map(function(k){return store.review[k]}).filter(function(x){return x.due<=now}).sort(function(a,b){return a.due-b.due})}
-// A review item ends when answered right; a wrong answer brings it back five answers later.
-function grade(ok){var x=state.reviewItem&&store.review[state.reviewItem.key];if(!x)return;if(ok)delete store.review[x.key];else{x.after=(store.count||0)+5;x.due=Date.now()}}
+// A review item ends when answered right; after a wrong answer it stays in 복습.
+function grade(ok){var x=state.reviewItem&&store.review[state.reviewItem.key];if(!x)return;if(ok)delete store.review[x.key];else x.due=Date.now()}
 function record(themeId,stage,ok){var s=store.stats[themeId]||(store.stats[themeId]={s1:[0,0],s2:[0,0]});s[stage][1]++;if(ok)s[stage][0]++;save()}
 function next(){
  state.reviewItem=null;
@@ -169,10 +168,8 @@ function next(){
  }
  state.q=null;state.fresh=false;
  if(!state.targetKey){
-  // A miss from five questions ago comes back once before the round goes on.
-  var again=Object.keys(store.review).map(function(k){return store.review[k]}).filter(function(x){return x.after!=null&&x.after<=store.count}).sort(function(a,b){return a.after-b.after});
-  for(var j=0;j<again.length&&!state.q;j++){state.q=buildQuestion(Object.assign({avoid:store.recent},again[j].build));if(state.q)state.reviewItem=again[j];else delete store.review[again[j].key];}
-  if(!state.q)state.q=roundQuestion();
+  // Misses are not mixed in here; they are practised apart with 복습.
+  state.q=roundQuestion();
  }
  // A draw that finds no question (rare, with a format chosen) is retried with new seeds.
  for(var tries=0;tries<3&&!state.q;tries++){state.q=buildQuestion({themeId:state.targetKey||state.theme==='all'?null:state.theme,format:state.targetKey||state.format==='all'?null:state.format,targetKey:state.targetKey,avoid:store.recent});if(state.q)break}

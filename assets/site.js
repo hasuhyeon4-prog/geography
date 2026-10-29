@@ -21,12 +21,12 @@
  g.WGSaved=S;
  // Question order shared by every page: a deck goes through every question of a scope once,
  // in random order, before any repeats, and is kept across visits. A question counts as asked
- // only when it is answered, so reloading never skips one (2026-10-29). A missed question comes
- // back after GAP other answers and stays on the list until it is answered right.
- var OKEY='wg_order_v1',GAP=5;
+ // only when it is answered, so reloading never skips one (2026-10-29). Misses are not mixed
+ // into a round; each page practises them apart.
+ var OKEY='wg_order_v1';
  function oread(){try{var v=JSON.parse(localStorage.getItem(OKEY)||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{};}catch(e){return {};}}
  function owrite(v){try{localStorage.setItem(OKEY,JSON.stringify(v));}catch(e){}}
- function page(v,name){var p=v[name]||(v[name]={});if(!p.decks)p.decks={};if(!Array.isArray(p.retry))p.retry=[];if(!(p.count>=0))p.count=0;return p;}
+ function page(v,name){var p=v[name]||(v[name]={});if(!p.decks)p.decks={};delete p.retry;delete p.count;return p;}
  function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
  function sig(ids){var h=0,s=ids.slice().sort().join('\u0001');for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return ids.length+':'+h;}
  var O={
@@ -37,16 +37,7 @@
   // The next question of the round, still unanswered.
   peek:function(name,scope,ids){return O.left(name,scope,ids)[0]||null;},
   // Called when a question of the round is answered.
-  done:function(name,scope,id){var v=oread(),p=page(v,name),d=p.decks[scope];p.count++;if(d){var i=d.left.indexOf(id);if(i>=0)d.left.splice(i,1);d.last=id;}owrite(v);},
-  count:function(name){return page(oread(),name).count;},
-  // A miss (again) is asked after GAP more answers.
-  miss:function(name,id,data){var v=oread(),p=page(v,name),x=p.retry.filter(function(r){return r.id===id;})[0];if(x)x.at=p.count+GAP;else p.retry.push({id:id,data:data===undefined?null:data,at:p.count+GAP});owrite(v);},
-  // The first missed question that is due and usable here; it stays listed until answered.
-  dueRetry:function(name,usable){var p=page(oread(),name);for(var i=0;i<p.retry.length;i++){var x=p.retry[i];if(x.at<=p.count&&(!usable||usable(x.id,x.data)))return x;}return null;},
-  // Answering a missed question: right ends it, wrong brings it back again later.
-  resolve:function(name,id,ok){var v=oread(),p=page(v,name);p.count++;p.retry=p.retry.filter(function(x){if(x.id!==id)return true;if(ok)return false;x.at=p.count+GAP;return true;});owrite(v);},
-  isRetry:function(name,id){return page(oread(),name).retry.some(function(x){return x.id===id;});},
-  retries:function(name){return page(oread(),name).retry.slice();}
+  done:function(name,scope,id){var v=oread(),p=page(v,name),d=p.decks[scope];if(d){var i=d.left.indexOf(id);if(i>=0)d.left.splice(i,1);d.last=id;}owrite(v);}
  };
  g.WGOrder=O;
  if(typeof document==='undefined')return;

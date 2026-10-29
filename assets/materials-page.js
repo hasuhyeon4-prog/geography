@@ -17,7 +17,6 @@ function el(tag,props,kids){var e=document.createElement(tag);Object.keys(props|
 function progressEl(o){var p=[];if(o.len)p.push(o.pos+' / '+o.len);p.push('정답 '+o.right+'/'+o.answered);if(o.extra)p.push(o.extra);if(o.review)p.push('다시 풀기 '+o.review);return el('span',{className:'site-progress',role:'status',text:p.join(' · ')});}
 function pool(){return families.filter(function(f){return state.family==='all'||state.family===f.id;});}
 // One round asks every topic once, in random order, and carries on across visits.
-function served(){return (typeof WGOrder!=='undefined'&&WGOrder)?WGOrder.count('materials'):state.total;}
 function chooseFamily(){var p=pool();if((typeof WGOrder!=='undefined'&&WGOrder))return WGOrder.peek('materials','family:'+state.family,p.map(function(f){return f.id;}));return p[Math.floor(Math.random()*p.length)].id;}
 function next(){
  state.answer=null;state.error=null;state.x=null;
@@ -31,10 +30,8 @@ function next(){
   if(!kept.length){state.q=null;state.error='저장한 문제가 없어요. 문제 위의 ☆ 저장을 누르면 여기에 모입니다.';render();return;}
   var k=kept[(state.savedAt||0)%kept.length];state.savedAt=(state.savedAt||0)+1;id=k.family;seed=k.seed;state.fromReview=false;
  }else{
-  // A question missed five answers ago comes back; it stays listed until answered right.
-  var due=pending.filter(function(x){return !(x.at>served());})[0];
-  if(due){id=due.family;seed=due.seed;state.fromReview=true;}
-  else{id=chooseFamily();seed=state.seed;state.fromReview=false;}
+  // Misses are not mixed in here; they are practised apart in 틀린 문항 다시.
+  id=chooseFamily();seed=state.seed;state.fromReview=false;
  }
  try{state.q=engine.build(id,seed);state.x=engine.exam(state.q);}catch(e){state.q=null;state.error='이 주제의 자료를 표시하지 못했어요. 다른 주제를 선택하거나 새로고침해 주세요.';}
  save();render();
@@ -44,12 +41,12 @@ function answer(i){
  state.answer=i;var q=state.q,ok=i===state.x.stage.answer;
  state.total++;if(ok)state.right++;
  var h=stats[q.id]||(stats[q.id]={right:0,wrong:0});h[ok?'right':'wrong']++;
- // Only an answer counts: the round moves on, a new question gets a new seed, and a missed
- // question stays on the list (at the back) until it is answered right.
+ // Only an answer counts: the round moves on and a new question gets a new seed. A missed
+ // question goes to 틀린 문항 다시 and stays there (at the back) until it is answered right.
  var key=q.id+'|'+q.seed,old=review.filter(function(x){return x.family+'|'+x.seed===key;})[0];
  if(!state.fromReview&&state.order==='cycle'){if((typeof WGOrder!=='undefined'&&WGOrder))WGOrder.done('materials','family:'+state.family,q.id);state.seed++;}
  if(old)review.splice(review.indexOf(old),1);
- if(!ok)review.push({family:q.id,seed:q.seed,at:served()+5});
+ if(!ok)review.push({family:q.id,seed:q.seed});
  save();render();var b=$('nextQuestion');if(b)b.focus({preventScroll:true});
 }
 function drawTable(t){return el('div',{className:'scroll'},[el('table',{},[el('caption',{text:t.caption||''}),el('thead',{},[el('tr',{},t.headers.map(function(h){return el('th',{scope:'col',text:String(h)});}))]),el('tbody',{},t.rows.map(function(row){return el('tr',{},row.map(function(v){return el('td',{text:typeof v==='number'?v.toLocaleString('ko-KR',{maximumFractionDigits:5}):String(v)});}));}))])]);}
