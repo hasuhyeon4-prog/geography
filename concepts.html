@@ -26,11 +26,12 @@ tr.hit td{background:#fff8db}td.name{font-weight:700;white-space:nowrap;min-widt
 .big{width:100%;min-height:52px;font-size:16px;border-radius:13px;margin-top:6px}
 .small{font-size:12px;line-height:1.5}.muted{color:var(--muted)}h2{font-size:17px;margin:0 0 6px}
 .hint{font-size:12px;color:var(--muted);text-align:center}
+.oxLink{display:inline-block;margin:0 0 12px;font-weight:700;color:var(--accent);text-decoration:none}.oxLink:hover{text-decoration:underline}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=20261029-order1"><script src="assets/site.js?v=20261029-order1"></script></head>
+<link rel="stylesheet" href="assets/site.css?v=20261029-ox1"><script src="assets/site.js?v=20261029-ox1"></script></head>
 <body>
 <header class="site-header"><h1 class="sr-only">강의 표</h1><nav class="site-nav" aria-label="연습 종류"><a href="index.html">위치</a><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html">OX</a><a href="concepts.html" aria-current="page">강의 표</a><a href="exam.html">기출형</a><a href="materials.html">자료형</a></nav></header>
-<div class="scope site-controls"><label for="domainSelect">주제<select id="domainSelect"></select></label><label for="modeSelect">방식<select id="modeSelect"><option value="which">설명 → 대상</option><option value="what">대상 → 설명</option><option value="study">표 보기</option><option value="saved">저장한 문제</option></select></label></div>
+<div class="scope site-controls"><label for="domainSelect">주제<select id="domainSelect"></select></label></div>
 <main id="main" aria-live="polite"></main>
 <script src="assets/concept-tables.js?v=20261028-dedupe1"></script>
 <script src="assets/goal-tables-data.js?v=20261028-dedupe1"></script>
@@ -43,12 +44,11 @@ if(!T){$('main').textContent='강의 표를 불러오지 못했어요. 새로고
 var goalTables=window.WGGoalTables&&window.WGGoalTableData?WGGoalTables.create(WGGoalTableData):null;
 if(goalTables){goalTables.tables.forEach(function(t){t.exams=(T.goalExams||{})[t.id]||t.exams});T={domains:T.domains.concat(goalTables.domains),tables:T.tables.concat(goalTables.tables)}}
 function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(c){if(c!=null&&c!==false)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
-function progressEl(o){var p=[];if(o.len)p.push(o.pos+' / '+o.len);p.push('정답 '+o.right+'/'+o.answered);if(o.extra)p.push(o.extra);if(o.review)p.push('다시 풀기 '+o.review);return el('span',{className:'site-progress',role:'status',text:p.join(' · ')});}
 function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_concepts_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
 var store=readStore();if(!store.history||typeof store.history!=='object')store.history={};
 var domainName={};T.domains.forEach(function(d){domainName[d.id]=d.name});
-var state={domain:domainName[store.domain]?store.domain:'all',mode:['which','what','study','saved'].includes(store.mode)?store.mode:'which',q:null,answer:null,right:0,total:0};
-function save(){try{localStorage.setItem('wg_concepts_v1',JSON.stringify({domain:state.domain,mode:state.mode,history:store.history}))}catch(e){}}
+var state={domain:domainName[store.domain]?store.domain:'all',q:null};
+function save(){try{localStorage.setItem('wg_concepts_v1',JSON.stringify({domain:state.domain,history:store.history}))}catch(e){}}
 function tables(){return T.tables.filter(function(t){return state.domain==='all'||t.domain===state.domain})}
 function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),x=a[i];a[i]=a[j];a[j]=x}return a}
 function title(t){return domainName[t.domain]+' · 강의 '+t.lecture}
@@ -59,42 +59,6 @@ function tableEl(t,hit){
  return el('div',{className:'wrap'},[el('table',{},[el('thead',{},[head]),el('tbody',{},body)])]);
 }
 function examsEl(t){return t.exams.length?el('p',{className:'small muted',text:'관련 기출 '+t.exams.length+'문항: '+t.exams.slice(0,4).join(', ')+(t.exams.length>4?' 외':'')}):null}
-// The questions this mode can ask, each with how often it was missed.
-function items(){
- if(state.mode==='saved'){var kept=window.WGSaved?WGSaved.list('concepts').map(function(k){return k.key}):[];return itemsFor('which').concat(itemsFor('what')).filter(function(it){return kept.indexOf(it.key)>=0})}
- return itemsFor(state.mode);
-}
-function itemsFor(mode){
- var out=[];
- tables().forEach(function(t){
-  // A table of two rows, or of rows that are not the same kind of thing, is for reading only.
-  if(t.studyOnly||t.goalTable)return;
-  t.rows.forEach(function(r,i){
-   if(mode==='which'){if(t.columns.some(function(c){return c.askable&&c.cells[i]}))out.push({t:t,row:i,key:'which|'+t.id+'|'+r})}
-   else t.columns.forEach(function(c,j){if(c.askable)out.push({t:t,row:i,col:j,key:'what|'+t.id+'|'+r+'|'+c.label})});
-  });
- });
- if(goalTables)out=out.concat(goalTables.inventory(mode,state.domain));
- return out;
-}
-// Missed and unseen questions come first; otherwise at random.
-function weight(it){var h=store.history[it.key];return !h?2:h.wrong>h.right?3+h.wrong-h.right:h.last===false?2.5:1}
-function draw(){
- var list=items();if(!list.length)return null;
- // Each round asks every question of this topic and direction once, in random order;
- // a question missed five questions ago comes back once first.
- if((typeof WGOrder!=='undefined'&&WGOrder)){
-  var byKey={};list.forEach(function(x){byKey[x.key]=x});
-  var r=WGOrder.takeRetry('concepts',function(k){return !!byKey[k]});state.isRetry=!!r;
-  if(r)return byKey[r.id];
-  return byKey[WGOrder.next('concepts',state.mode+':'+state.domain,list.map(function(x){return x.key}))];
- }
- var total=list.reduce(function(s,x){return s+weight(x)},0),pick=Math.random()*total;
- for(var i=0;i<list.length;i++){pick-=weight(list[i]);if(pick<=0)return list[i]}
- return list[list.length-1];
-}
-// Up to five options from the same table, always including the answer (as row numbers).
-function options(n,answer){var others=shuffle(Array.from({length:n},function(_,i){return i}).filter(function(x){return x!==answer})).slice(0,4);return shuffle(others.concat([answer]))}
 // A row's name or a part of it inside a cell would give the answer away (t.tokens, built with
 // the tables): the row asked about becomes ○○ and any other row △△. With own=-1 every row is ○○.
 function mask(text,t,own){
@@ -104,73 +68,23 @@ function mask(text,t,own){
  list.forEach(function(x){parts=parts.map(function(p){return typeof p!=='string'?p:p.split(x[0]).reduce(function(acc,seg,k){if(k)acc.push({m:x[1]});acc.push(seg);return acc},[])}).reduce(function(a,b){return a.concat(b)},[])});
  return parts.map(function(p){return typeof p==='string'?p:p.m}).join('');
 }
-function particle(w){var c=w.charCodeAt(w.length-1);return c>=0xAC00&&c<=0xD7A3&&(c-0xAC00)%28?'은':'는'}
-function next(){
- var it=draw();state.answer=null;
- if(!it){state.q=null;render();return}
- var t=it.t;
-state.q=it.custom?{it:it,options:shuffle(it.custom.options.map(function(_,i){return i})),answer:it.custom.answer,custom:it.custom}:{it:it,options:options(t.rows.length,it.row),answer:it.row};
- render();window.scrollTo({top:0});
-}
-function choose(opt){
- if(state.answer!==null||!state.q)return;state.answer=opt;var ok=opt===state.q.answer;state.total++;if(ok)state.right++;
- var h=store.history[state.q.it.key]||(store.history[state.q.it.key]={right:0,wrong:0});h[ok?'right':'wrong']++;h.last=ok;
- if(!ok&&!state.isRetry&&(typeof WGOrder!=='undefined'&&WGOrder))WGOrder.miss('concepts',state.q.it.key);
- save();render();
-}
 function renderStudy(main){
  var list=tables();
  var noteOf=function(t){return t.studyOnly?el('p',{className:'small muted',text:'표 보기 전용: '+t.studyOnly}):null};
- main.append(el('p',{className:'small muted',text:'강의 표 '+list.length+'개. 각 표는 강의가 대상끼리 비교한 그대로입니다. 연습에서는 같은 표 안에서만 고릅니다.'}));
+ // The tables are practised as O/X statements on the OX page (2026-10-29).
+ var d=T.domains.find(function(x){return x.id===state.domain}),topic=d?'table-'+String(d.section).toLowerCase():'table-all';
+ main.append(el('p',{className:'small muted',text:'강의 표 '+list.length+'개. 각 표는 강의가 대상끼리 비교한 그대로입니다. 표의 각 칸은 OX 페이지에서 O/X 문장으로 연습합니다.'}),el('a',{className:'oxLink',href:'facts.html?topic='+topic,text:(d?d.name+' 강의 표':'강의 표 전체')+'를 OX로 풀기 →'}));
  list.forEach(function(t){main.append(el('section',{className:'card'},[el('div',{className:'meta',text:title(t)}),el('h2',{text:t.rows.join(' · ')}),tableEl(t,-1),examsEl(t),noteOf(t)]))});
-}
-// A saved question keeps the direction it was asked in, whatever 방식 is chosen now.
-function qmode(q){return /^(goal-)?which\|/.test(q.it.key)?'which':/^(goal-)?what\|/.test(q.it.key)?'what':state.mode}
-function renderQuiz(main){
- var q=state.q;
- if(!q){main.append(el('section',{className:'card'},[el('p',{text:state.mode==='saved'?'저장한 문제가 없어요. 문제 위의 ☆ 저장을 누르면 여기에 모입니다.':'이 영역에는 문항이 없어요.'})]));return}
- var t=q.it.t,i=q.it.row,name=t.rows[i],card=el('section',{className:'card'});
- card.append(el('div',{className:'meta site-progress-row'},[el('span',{text:title(t)}),progressEl({right:state.right,answered:state.total}),window.WGSaved?WGSaved.button('concepts',q.it.key):null]));
- if(q.custom){card.append(el('p',{className:'q',text:q.custom.prompt}));if(q.custom.description)card.append(el('p',{text:q.custom.description}))}
- else if(qmode(q)==='which'){
-  card.append(el('p',{className:'q',text:'강의 표에서 다음 설명에 해당하는 것은?'}));
-  // Only columns whose cells differ row by row describe the row; the rest stay in the table view.
-  card.append(el('ul',{className:'desc'},t.columns.filter(function(c){return c.askable&&c.cells[i]}).map(function(c){return el('li',{},[el('b',{text:c.label}),mask(c.cells[i],t,i)])})));
- }else{var label=t.columns[q.it.col].label;card.append(el('p',{className:'q',text:name+'의 「'+label+'」'+particle(label)+'?'}))}
- var box=el('div',{className:'choices'});
- var optText=function(o){return q.custom?q.custom.options[o]:qmode(q)==='which'?t.rows[o]:mask(t.columns[q.it.col].cells[o],t,-1)};
- q.options.forEach(function(o,k){
-  var b=el('button',{type:'button',text:(k+1)+'. '+optText(o),onclick:function(){choose(o)}});
-  if(state.answer!==null){b.disabled=true;if(o===q.answer)b.className='right';else if(o===state.answer)b.className='wrong'}
-  box.append(b);
- });
- card.append(box);
- if(state.answer!==null){
-  var ok=state.answer===q.answer;
-  card.append(el('div',{className:'result '+(ok?'good':'bad'),role:'status'},[el('b',{text:ok?'정답':'오답 — 정답: '+(q.custom?q.custom.options[q.answer]:qmode(q)==='which'?t.rows[q.answer]:t.columns[q.it.col].cells[q.answer])})]));
-  if(q.custom)card.append(el('p',{className:'small',text:q.custom.explain}),el('p',{className:'small muted',text:'강의 근거 '+t.source.join(' · ')}));
-  card.append(tableEl(t,i));var ex=examsEl(t);if(ex)card.append(ex);
-  card.append(el('button',{type:'button',className:'primary big',text:'다음 문항',onclick:next}));
- }
- main.append(card);
- main.append(el('p',{className:'hint',text:'키보드: 1~5로 고르고 Enter로 다음'}));
 }
 function render(){
  var main=$('main');main.replaceChildren();
- if(state.mode==='study')renderStudy(main);else renderQuiz(main);
+ renderStudy(main);
 }
 $('domainSelect').append(el('option',{value:'all',text:'전체 ('+T.tables.length+'개 표)'}));
 T.domains.forEach(function(d){$('domainSelect').append(el('option',{value:d.id,text:d.name+' · '+d.section+' ('+T.tables.filter(function(t){return t.domain===d.id}).length+')'}))});
-$('domainSelect').value=state.domain;$('modeSelect').value=state.mode;
-$('domainSelect').onchange=function(){state.domain=this.value;save();state.mode==='study'?render():next()};
-$('modeSelect').onchange=function(){state.mode=this.value;save();state.mode==='study'?render():next()};
-document.addEventListener('keydown',function(e){
- if(e.target.tagName==='SELECT'||e.altKey||e.ctrlKey||e.metaKey||state.mode==='study'||!state.q)return;
- var n=parseInt(e.key,10);
- if(n>=1&&n<=state.q.options.length&&state.answer===null){e.preventDefault();choose(state.q.options[n-1])}
- else if(e.key==='Enter'&&state.answer!==null){e.preventDefault();next()}
-});
-state.mode==='study'?render():next();
+$('domainSelect').value=state.domain;
+$('domainSelect').onchange=function(){state.domain=this.value;save();render()};
+render();
 })();
 </script>
 </body>
