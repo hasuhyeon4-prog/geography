@@ -93,12 +93,13 @@ test('data questions hide the countries as (가)(나)(다) and draw the data as 
 test('every lecture-table cell is an O/X statement that does not name its own row',()=>{
  require('node:child_process').execFileSync(process.execPath,[path.join(ROOT,'scripts/build-table-facts.cjs'),'--check']);
  const X=require('../assets/table-facts.js'),T=require('../assets/concept-tables.js'),G=require('../assets/goal-tables.js').create(require('../assets/goal-tables-data.js'));
- assert.ok(X.items.length>1000);
+ assert.ok(X.items.length>800);
+ assert.ok(!X.items.some(q=>/판정|함정|금지|학년도/.test(q.cell.head[1]+q.cell.row)),'study notes and exam items are not asked');
  const share=X.items.filter(q=>q.answer).length/X.items.length;assert.ok(share>.4&&share<.6,String(share));
  const tables=new Map(T.tables.concat(G.tables).map(t=>[t.id,t]));
  for(const q of X.items){
   const t=tables.get(q.table);assert.ok(t,q.id);assert.ok(X.topics.some(x=>x.id===q.topic),q.id);
-  const shown=q.claim.slice(q.claim.indexOf('」: ')+3);
+  const shown=q.cell.value;assert.ok(q.cell.title&&q.cell.head.length===2&&q.cell.row,q.id);
   for(const tok of (t.tokens||t.rows.map(r=>[r])).flat().filter(x=>x.length>=2))assert.ok(!shown.includes(tok),q.id+' shows '+tok);
  }
  assert.match(fs.readFileSync(path.join(ROOT,'facts.html'),'utf8'),/assets\/table-facts\.js/);

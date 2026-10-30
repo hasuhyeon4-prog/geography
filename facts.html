@@ -33,6 +33,7 @@ h2{font-size:21px;margin:2px 0 10px}
 .given{width:100%;border-collapse:collapse;margin:12px 0 16px;font-size:13px}.given caption{text-align:left;color:var(--muted);font-size:12px;margin-bottom:6px}.given th,.given td{padding:8px;text-align:left;border:1px solid var(--line)}
 .hint{margin-top:12px;font-size:12px;color:var(--muted);text-align:center}
 @media(min-width:700px){.scope{grid-template-columns:320px 220px;justify-content:center}.claim{font-size:22px}}
+.rowTable{width:100%;border-collapse:collapse;margin:4px 0 6px;font-size:17px}.rowTable th,.rowTable td{padding:10px;border:1px solid var(--line);text-align:left;vertical-align:top;word-break:keep-all}.rowTable thead th{background:#f3f7f7;font-size:13px;color:var(--muted);font-weight:700}.rowTable tbody th{width:38%;font-weight:700}.rowTable tbody td{font-weight:700}.rowAsk{color:var(--muted);font-size:13px;margin:4px 0 14px}
 </style>
 <link rel="stylesheet" href="assets/site.css?v=20261029-apart1"><script src="assets/site.js?v=20261029-apart1"></script></head>
 <body>
@@ -41,7 +42,7 @@ h2{font-size:21px;margin:2px 0 10px}
 <main><section class="card" id="card" aria-live="polite"></section><p class="hint">키보드: O·X(또는 1·2)로 답하고 Enter로 다음</p></main>
 <script src="assets/fact-statements.js?v=20261022-1"></script>
 <script src="assets/lecture-goal-facts.js?v=20261029-held1"></script>
-<script src="assets/table-facts.js?v=20261029-table1"></script>
+<script src="assets/table-facts.js?v=20261030-row1"></script>
 <script>
 (function(){
 'use strict';
@@ -94,7 +95,9 @@ function render(){
  card.append(el('div',{className:'meta'},[el('span',{text:topicName(it.topic)}),progressEl({pos:state.index+1,len:state.queue.length,right:state.right,answered:state.index+(state.answer!==null?1:0)})]),el('div',{className:'site-progress-row',style:'justify-content:flex-end;margin:-4px 0 8px'},[window.WGSaved?WGSaved.button('facts',it.id):null,masteredButton(it.id)]));
  var bar=el('div',{className:'bar'},[el('span',{})]);bar.firstChild.style.width=(state.index/state.queue.length*100)+'%';card.append(bar);
  if(it.data){var table=el('table',{className:'given'},[el('caption',{text:it.data.caption}),el('thead',{},[el('tr',{},it.data.headers.map(function(h){return el('th',{scope:'col',text:h})}))]),el('tbody',{},it.data.rows.map(function(row){return el('tr',{},row.map(function(v){return el('td',{text:v})}))}))]);card.append(el('p',{className:'small muted',text:'자료를 보고 판단하세요. 수치와 옛 순위를 외울 필요는 없어요.'}),table)}
- card.append(el('p',{className:'claim',text:it.claim}));
+ // A lecture-table statement is one row of that table; the question is whether the cell is right.
+ if(it.cell)card.append(el('table',{className:'given rowTable'},[el('caption',{text:it.cell.title}),el('thead',{},[el('tr',{},it.cell.head.map(function(h){return el('th',{scope:'col',text:h})}))]),el('tbody',{},[el('tr',{},[el('th',{scope:'row',text:it.cell.row}),el('td',{text:it.cell.value})])])]),el('p',{className:'rowAsk',text:'이 칸이 강의 표와 맞으면 O, 틀리면 X'}));
+ else card.append(el('p',{className:'claim',text:it.claim}));
  var ox=el('div',{className:'ox'});
  [[true,'O','맞다'],[false,'X','틀리다']].forEach(function(row){
   var b=el('button',{type:'button','aria-label':row[2]},[row[1],el('small',{text:row[2]})]);
