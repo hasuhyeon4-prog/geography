@@ -108,7 +108,8 @@ test('changed OX objectives retain old history separately and leave other learni
  for(const id of ['card','topicSelect','orderSelect'])nodes[id]=new Node('div');
  const original={topic:'trade',order:'weak',history:{t17:{right:3,wrong:2,last:false},g01:{right:4,wrong:0,last:true}}};
  let saved;
- const context={window:{WGFacts:F,scrollTo(){}},document:{getElementById:id=>nodes[id],createElement:tag=>new Node(tag),createTextNode:s=>s,addEventListener(){}},localStorage:{getItem:()=>JSON.stringify(original),setItem:(k,v)=>{saved=JSON.parse(v)}},Math,Set};
+ // The OX page deals its rounds with assets/fact-practice.js (2026-10-31).
+ const context={window:{WGFacts:F,WGFactPractice:require('../assets/fact-practice.js'),scrollTo(){}},document:{getElementById:id=>nodes[id],createElement:tag=>new Node(tag),createTextNode:s=>s,addEventListener(){}},localStorage:{getItem:()=>JSON.stringify(original),setItem:(k,v)=>{saved=JSON.parse(v)}},Math,Set};
  vm.runInNewContext([...html.matchAll(/<script>([\s\S]*?)<\/script>/g)][0][1],context);
  nodes.orderSelect.value='random';nodes.orderSelect.onchange.call(nodes.orderSelect);
  assert.equal(saved.history.t17,undefined);
