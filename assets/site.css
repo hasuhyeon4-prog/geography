@@ -13,7 +13,7 @@
 .site-controls{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:8px 10px;align-items:center;max-width:none;margin:0;padding:8px 10px;background:#fafcfc;border-bottom:1px solid #dce4e6;box-sizing:border-box}
 .site-controls label{display:flex;align-items:center;gap:6px;width:auto;min-width:0;font-size:12px;color:#60727b;white-space:nowrap}
 .site-controls select{flex:1;min-width:0;height:38px;border:1px solid #cfdcdf;border-radius:10px;background:#fff;color:#142d39;font-size:14px;padding:0 8px}
-.site-controls > :not(label){grid-column:1/-1;justify-self:start}
+.site-controls > :not(label){justify-self:start}
 @media(min-width:760px){.site-controls{grid-template-columns:340px 260px auto;justify-content:center}.site-controls > :not(label){grid-column:auto}}
 .site-hint{color:#60727b;font-size:12px;text-align:center;margin:6px 0 24px}@media(hover:none){.site-hint{display:none}}
 /* Shared progress chip, top right of each question card. */

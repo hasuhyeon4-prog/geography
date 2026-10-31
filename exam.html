@@ -54,16 +54,16 @@ td.text{white-space:normal;text-align:left;line-height:1.55;word-break:keep-all;
 @media(max-width:560px){.scope{flex-wrap:wrap;row-gap:6px}.scope label:not(.toggle){flex:1 1 100%}}
 @media(max-width:360px){.navLink{padding:8px 6px;font-size:11px}.nav a{padding:8px 4px;font-size:11px}.choices.combo button{font-size:12px}}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=20261029-apart1"><script src="assets/site.js?v=20261029-apart1"></script></head>
+<link rel="stylesheet" href="assets/site.css?v=20261031-hard1"><script src="assets/site.js?v=20261031-hard1"></script></head>
 <body>
 <header class="site-header"><h1 class="sr-only">기출형 연습</h1><nav class="site-nav" aria-label="연습 종류"><a href="index.html">위치</a><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html">OX</a><a href="concepts.html">강의 표</a><a href="exam.html" aria-current="page">기출형</a><a href="materials.html">자료형</a></nav></header>
-<div class="scope site-controls"><label for="themeSelect">주제<select id="themeSelect"></select></label><label for="formatSelect">형식<select id="formatSelect"></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><button type="button" id="reviewBtn" class="reviewBtn"></button><button type="button" id="savedBtn" class="reviewBtn"></button></div>
+<div class="scope site-controls"><label for="themeSelect">주제<select id="themeSelect"></select></label><label for="formatSelect">형식<select id="formatSelect"></select></label><label for="levelSelect">난이도<select id="levelSelect"><option value="hard">어렵게 (실전)</option><option value="basic">기본</option></select></label><label class="toggle" title="지도 대신 국가 이름 후보로 풉니다"><input type="checkbox" id="nameMode">이름으로</label><button type="button" id="reviewBtn" class="reviewBtn"></button><button type="button" id="savedBtn" class="reviewBtn"></button></div>
 
 <main id="main" aria-live="polite"></main><p class="site-hint">키보드: 1~5로 고르고 Enter로 다음</p>
 <div class="below"><details class="card kb" id="knowledge"><summary>이 모드의 배경지식 목록</summary><p class="small muted">회상으로 묻는 관계는 기출·강의가 방향을 명시하고, 항목마다 적은 기간(대개 2015~2025년)의 매년 같은 방향과 출제 기준 차이를 지킨 것만이다. 기준에 못 미쳐도 버리지 않고 아래처럼 다르게 익힌다.</p></details></div>
-<script src="assets/entity-kb.js?v=20261028-exam4"></script>
-<script src="assets/exam-themes.js?v=20261028-exam4"></script>
-<script src="assets/exam-engine.js?v=20261028-exam4"></script>
+<script src="assets/entity-kb.js?v=20261031-hard1"></script>
+<script src="assets/exam-themes.js?v=20261031-hard1"></script>
+<script src="assets/exam-engine.js?v=20261031-hard1"></script>
 <script>
 (function(){
 'use strict';
@@ -72,11 +72,31 @@ if(!window.WGEntityKB||!window.WGExamThemes||!window.WGExamEngine){$('main').tex
 var engine=WGExamEngine.create(WGEntityKB,WGExamThemes);
 // Every question gets a seed so a saved one can be built again exactly (☆ 저장).
 function buildQuestion(opts){var o=Object.assign({},opts,{integrated:true});if(o.seed==null)o.seed=1+Math.floor(Math.random()*1e9);var q=engine.build(o);if(q){q.rebuild=JSON.parse(JSON.stringify(o));q.rebuild.themeId=q.theme.id;}return q;}
+// 난이도 '어렵게' (2026-10-31): a question is drawn eight times and the hardest kept - 대상 in the
+// same region, values close to one another, and <보기> answered by knowledge rather than by reading.
+function hardness(q){
+ var es=q.entities||[],same=0,close=0,cols=0;
+ for(var i=0;i<es.length;i++)for(var j=i+1;j<es.length;j++){var a=WGEntityKB.entities[es[i]],b=WGEntityKB.entities[es[j]];if(a&&b&&a.region&&a.region===b.region)same++}
+ ((q.display&&q.display.columns)||[]).forEach(function(c,k){
+  var v=c.bar&&c.bar.values||((q.display.rows||[]).map(function(r){return parseFloat(String(r.cells[k]).replace(/,/g,''))}));v=v.filter(isFinite);if(v.length<2)return;
+  var gap=1;for(var i=0;i<v.length;i++)for(var j=i+1;j<v.length;j++){var m=Math.max(Math.abs(v[i]),Math.abs(v[j]));if(m)gap=Math.min(gap,Math.abs(v[i]-v[j])/m)}
+  close+=Math.max(0,1-gap*4);cols++;
+ });
+ var recall=q.stage2.statements.filter(function(st){return ['fact','compare','concept','both','sign','place','climateClaim','category'].indexOf(st.kind)>=0}).length;
+ // Three 대상 to tell apart are harder than two.
+ return same*2+(cols?close/cols*3:0)+recall*.5+Math.max(0,es.length-2);
+}
+function draw(opts,accept){
+ if(state.level!=='hard')return buildQuestion(opts);
+ var best=null,score=-1;
+ for(var i=0;i<8;i++){var q=buildQuestion(opts);if(!q||accept&&!accept(q))continue;var h=hardness(q);if(h>score){score=h;best=q}}
+ return best||buildQuestion(opts);
+}
 function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_exam_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
 var store=readStore();if(!store.stats||typeof store.stats!=='object')store.stats={};if(!Array.isArray(store.recent))store.recent=[];
 var FORMATS=[['all','전체 형식'],['rows','대상 식별'],['columns','항목 식별 (A~C)'],['joint','동시 식별'],['implicit','실전형 (지도)']];
-var state={theme:engine.themes.some(function(t){return t.id===store.theme})?store.theme:'all',format:FORMATS.some(function(f){return f[0]===store.format})?store.format:'all',nameMode:store.nameMode===true,targetKey:null,q:null,a1:null,a2:null,session:{s1:0,s2:0,n1:0,n2:0}};
-function save(){try{localStorage.setItem('wg_exam_v1',JSON.stringify({theme:state.theme,format:state.format,nameMode:state.nameMode,stats:store.stats,recent:store.recent,review:store.review,seen:store.seen,tried:store.tried,types:store.types,count:store.count}))}catch(e){}}
+var state={theme:engine.themes.some(function(t){return t.id===store.theme})?store.theme:'all',format:FORMATS.some(function(f){return f[0]===store.format})?store.format:'all',nameMode:store.nameMode===true,level:store.level==='basic'?'basic':'hard',targetKey:null,q:null,a1:null,a2:null,session:{s1:0,s2:0,n1:0,n2:0}};
+function save(){try{localStorage.setItem('wg_exam_v1',JSON.stringify({theme:state.theme,format:state.format,nameMode:state.nameMode,level:state.level,stats:store.stats,recent:store.recent,review:store.review,seen:store.seen,tried:store.tried,types:store.types,count:store.count}))}catch(e){}}
 // The last questions shown are not repeated while others can be made (kept across visits).
 var RECENT=40;
 function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(c){if(c!=null&&c!==false)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
@@ -128,7 +148,7 @@ function roundQuestion(){
  if(!pairs.length||!(typeof WGOrder!=='undefined'&&WGOrder))return weighted();
  // The pair counts as asked once the question is answered (answer2); one that cannot be built is passed over.
  var scope=state.theme+':'+state.format;
- for(var k=0;k<pairs.length;k++){var pair=WGOrder.peek('exam',scope,pairs),p=pair.split('|'),q=buildQuestion({themeId:p[0],format:p[1],completion:true,avoid:store.recent});if(q){q.round={scope:scope,pair:pair};return q}WGOrder.done('exam',scope,pair)}
+ for(var k=0;k<pairs.length;k++){var pair=WGOrder.peek('exam',scope,pairs),p=pair.split('|'),q=draw({themeId:p[0],format:p[1],completion:true,avoid:store.recent});if(q){q.round={scope:scope,pair:pair};return q}WGOrder.done('exam',scope,pair)}
  return null;
 }
 function weighted(){
@@ -153,7 +173,7 @@ function unseen(){
  var open=openItems();if(!open.length)return null;
  var scope=scopeThemes().map(function(t){return t.id}),can=function(id){return state.format==='all'||engine.formatsFor(engine.themes.filter(function(t){return t.id===id})[0]).indexOf(state.format)>=0};
  var x=open[Math.floor(Math.random()*open.length)],homes=x.themes.filter(function(id){return scope.indexOf(id)>=0&&can(id)});
- var q=buildQuestion(Object.assign({themeId:x.build.targetKey&&state.theme==='all'&&state.format==='all'?null:homes[Math.floor(Math.random()*homes.length)],format:state.format==='all'?null:state.format,avoid:store.recent},x.build));
+ var q=draw(Object.assign({themeId:x.build.targetKey&&state.theme==='all'&&state.format==='all'?null:homes[Math.floor(Math.random()*homes.length)],format:state.format==='all'?null:state.format,avoid:store.recent},x.build),function(c){return engine.seenIn(c).indexOf(x.key)>=0});
  // Only a build that leaves the key out counts as a try, so reloading never uses one up.
  if(q&&engine.seenIn(q).indexOf(x.key)>=0)state.fresh=true;else store.tried[x.key]=(store.tried[x.key]||0)+1;
  return q;
@@ -516,6 +536,8 @@ function formats(){
 }
 formats();
 $('formatSelect').onchange=function(){state.format=this.value;state.targetKey=null;state.reviewing=false;save();next()};
+$('levelSelect').value=state.level;
+$('levelSelect').onchange=function(){state.level=this.value;save();next()};
 $('nameMode').checked=state.nameMode;
 $('nameMode').onchange=function(){state.nameMode=this.checked;save();render()};
 $('themeSelect').onchange=function(){state.theme=this.value;state.targetKey=null;state.reviewing=false;formats();save();next()};
