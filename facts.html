@@ -39,61 +39,85 @@ h2{font-size:21px;margin:2px 0 10px}
 <body>
 <header class="site-header"><h1 class="sr-only">통계 OX</h1><nav class="site-nav" aria-label="연습 종류"><a href="index.html">위치</a><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html" aria-current="page">OX</a><a href="concepts.html">강의 표</a><a href="exam.html">기출형</a><a href="materials.html">자료형</a></nav></header>
 <div class="scope site-controls"><label for="topicSelect">주제<select id="topicSelect"></select></label><label for="orderSelect">순서<select id="orderSelect"><option value="cycle">한 바퀴 (무작위)</option><option value="wrongOnly">최근 틀린 것만</option><option value="saved">저장한 문제</option><option value="mastered">완전히 익힘 목록</option></select></label></div>
-<main><section class="card" id="card" aria-live="polite"></section><p class="hint">키보드: O·X(또는 1·2)로 답하고 Enter로 다음</p></main>
+<main><section class="card" id="card" aria-live="polite"></section><p class="hint">같은 내용은 한 바퀴에 한 번씩 · 키보드: O·X(또는 1·2)로 답하고 Enter로 다음</p></main>
 <script src="assets/fact-statements.js?v=20261022-1"></script>
 <script src="assets/lecture-goal-facts.js?v=20261029-held1"></script>
 <script src="assets/table-facts.js?v=20261030-row1"></script>
+<script src="assets/fact-practice.js?v=20261031-content1"></script>
 <script>
 (function(){
 'use strict';
 var $=function(id){return document.getElementById(id)},F=window.WGFacts;
 if(!F){$('card').textContent='문항 자료를 불러오지 못했어요. 새로고침해 주세요.';return}
-var byId={};F.items.forEach(function(it){byId[it.id]=it});
+if(!window.WGFactPractice){$('card').textContent='출제 순서를 불러오지 못했어요. 새로고침해 주세요.';return}
+var practice=window.WGFactPractice.create(F.items),byId=practice.byId;
 function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_facts_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
 var store=readStore();if(!store.history||typeof store.history!=='object')store.history={};
+if(!store.conceptRounds||typeof store.conceptRounds!=='object'||Array.isArray(store.conceptRounds))store.conceptRounds={};
+if(!store.conceptHistory||typeof store.conceptHistory!=='object'||Array.isArray(store.conceptHistory))store.conceptHistory={};
+var legacyOrder={};try{legacyOrder=JSON.parse(localStorage.getItem('wg_order_v1')||'{}')}catch(e){}
+if(!legacyOrder||typeof legacyOrder!=='object'||Array.isArray(legacyOrder))legacyOrder={};
 // 완전히 익힘: statements the learner has mastered leave every round and retry until undone.
 if(!store.mastered||typeof store.mastered!=='object'||Array.isArray(store.mastered))store.mastered={};
 if(!store.retiredHistory||typeof store.retiredHistory!=='object')store.retiredHistory={};
 F.items.forEach(function(it){var h=store.history[it.id];if(h&&it.revision&&h.revision!==it.revision){store.retiredHistory[it.id+'@'+(h.revision||1)]=h;delete store.history[it.id]}});
 // A link such as facts.html?topic=table-p03 (from the 강의 표 page) opens that topic.
 var asked=typeof location!=='undefined'&&location.search?new URLSearchParams(location.search).get('topic'):null,validTopic=function(t){return t==='table-all'||F.topics.some(function(x){return x.id===t})};
-var state={topic:validTopic(asked)?asked:validTopic(store.topic)?store.topic:'all',order:['cycle','wrongOnly','saved','mastered'].includes(store.order)?store.order:'cycle',queue:[],index:0,answer:null,right:0,wrong:[]};
-function save(){try{localStorage.setItem('wg_facts_v1',JSON.stringify({topic:state.topic,order:state.order,history:store.history,retiredHistory:store.retiredHistory,mastered:store.mastered}))}catch(e){}}
+var state={topic:validTopic(asked)?asked:validTopic(store.topic)?store.topic:'all',order:['cycle','wrongOnly','saved','mastered'].includes(store.order)?store.order:'cycle',queue:[],index:0,answer:null,right:0,total:0,wrong:[],roundEnded:false};
+function save(){try{localStorage.setItem('wg_facts_v1',JSON.stringify({topic:state.topic,order:state.order,history:store.history,retiredHistory:store.retiredHistory,mastered:store.mastered,conceptRounds:store.conceptRounds,conceptHistory:store.conceptHistory}))}catch(e){}}
 function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
 function inTopic(it){return state.topic==='all'||it.topic===state.topic||state.topic==='table-all'&&it.topic.indexOf('table-')===0}
-function pool(){return F.items.filter(function(it){return inTopic(it)&&!store.mastered[it.id]})}
-function build(only){
- var h=store.history,list=only||pool().map(function(it){return it.id});
- if(only)state.queue=shuffle(list.slice());
- // One round goes through every statement of the topic once; it carries on across visits.
- else if(state.order==='cycle'&&(typeof WGOrder!=='undefined'&&WGOrder))state.queue=WGOrder.left('facts','topic:'+state.topic,list);
- else if(state.order==='wrongOnly')state.queue=shuffle(list.filter(function(id){return h[id]&&h[id].last===false}));
- else if(state.order==='mastered')state.queue=F.items.filter(function(it){return inTopic(it)&&store.mastered[it.id]}).map(function(it){return it.id});
- else if(state.order==='saved'){var kept=window.WGSaved?WGSaved.list('facts').map(function(x){return x.key}):[];state.queue=shuffle(kept.filter(function(id){return byId[id]}));}
- // Last-missed first, then unseen, then the rest.
- else state.queue=shuffle(list.filter(function(id){return h[id]&&h[id].last===false})).concat(shuffle(list.filter(function(id){return !h[id]})),shuffle(list.filter(function(id){return h[id]&&h[id].last!==false})));
- state.index=0;state.answer=null;state.right=0;state.wrong=[];render();
+function pool(){return practice.scoped(state.topic).filter(function(g){return !practice.mastered(g,store.mastered)})}
+function groupLast(g){
+ var c=store.conceptHistory[g.id];if(c)return c.last;
+ var rows=g.items.map(function(q){return store.history[q.id]}).filter(Boolean);
+ if(rows.some(function(h){return h.last===false}))return false;
+ return rows.length?true:null;
+}
+function reviewId(g){
+ var rows=g.items.filter(function(q){return practice.inTopic(q,state.topic)&&store.history[q.id]&&store.history[q.id].last===false});
+ rows.sort(function(a,b){return (store.history[b.id].at||0)-(store.history[a.id].at||0)});
+ return (rows[0]||g.items.find(function(q){return practice.inTopic(q,state.topic)})).id;
+}
+function distinct(ids){var seen=new Set();return ids.filter(function(id){var g=practice.groupOf(id);if(!g||seen.has(g.id))return false;seen.add(g.id);return true;})}
+function build(only,keepSession,restart){
+ state.roundEnded=false;
+ if(only)state.queue=shuffle(distinct(only.slice()));
+ else if(state.order==='cycle'){
+  var scope='topic:'+state.topic,ids=pool().map(function(g){return g.id}),legacy=legacyOrder.facts&&legacyOrder.facts.decks&&legacyOrder.facts.decks[scope];
+  var left=practice.prepare(store.conceptRounds,scope,ids,{restart:!!restart,legacyLeft:legacy&&legacy.left,history:store.history}),d=store.conceptRounds[scope];
+  state.queue=left.map(function(id){return practice.variant(d,id,state.topic)});state.roundEnded=ids.length>0&&!left.length;
+ }else if(state.order==='wrongOnly')state.queue=shuffle(pool().filter(function(g){return groupLast(g)===false}).map(reviewId));
+ else if(state.order==='mastered')state.queue=practice.scoped(state.topic).filter(function(g){return practice.mastered(g,store.mastered)}).map(function(g){return g.items.find(function(q){return practice.inTopic(q,state.topic)}).id});
+ else if(state.order==='saved'){var kept=window.WGSaved?WGSaved.list('facts').map(function(x){return x.key}):[];state.queue=shuffle(distinct(kept.filter(function(id){return byId[id]})));}
+ state.index=0;state.answer=null;if(!keepSession){state.right=0;state.total=0;state.wrong=[];}save();render();
 }
 function el(tag,props,children){var e=document.createElement(tag);Object.keys(props||{}).forEach(function(k){if(props[k]==null)return;if(k==='text')e.textContent=props[k];else if(k==='onclick')e.onclick=props[k];else if(k==='className')e.className=props[k];else e.setAttribute(k,props[k])});(children||[]).forEach(function(c){if(c)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
 function progressEl(o){var p=[];if(o.len)p.push(o.pos+' / '+o.len);p.push('정답 '+o.right+'/'+o.answered);if(o.extra)p.push(o.extra);if(o.review)p.push('다시 풀기 '+o.review);return el('span',{className:'site-progress',role:'status',text:p.join(' · ')});}
 function topicName(id){var t=F.topics.find(function(x){return x.id===id});return t?t.name:''}
+function position(){
+ if(state.order!=='cycle')return{pos:state.index+1,len:state.queue.length,done:state.index};
+ var ids=pool().map(function(g){return g.id}),eligible=new Set(ids),d=store.conceptRounds['topic:'+state.topic],done=d?d.done.filter(function(id){return eligible.has(id)}).length:0;
+ return{pos:Math.min(ids.length,done+(state.answer===null?1:0)),len:ids.length,done:done};
+}
 function render(){
  var card=$('card');card.replaceChildren();
+ if(state.roundEnded){card.append(el('h2',{text:'이번 범위의 핵심 내용을 모두 풀었어요.'}),el('p',{className:'small muted',text:'다음 바퀴에는 같은 사실의 다른 O/X 표현을 우선 골라요.'}),el('button',{type:'button',className:'primary big',text:'다음 바퀴',onclick:function(){build(null,false,true)}}));return}
  if(!state.queue.length){card.append(el('h2',{text:state.order==='wrongOnly'?'최근 틀린 문항이 없어요':state.order==='saved'?'저장한 문제가 없어요':state.order==='mastered'?'완전히 익힘으로 뺀 문장이 없어요':'문항이 없어요'}),el('p',{className:'small muted',text:state.order==='wrongOnly'?'다른 출제 방식으로 풀어 보세요.':state.order==='saved'?'문제 오른쪽 위의 ☆ 저장을 누르면 여기에 모입니다.':state.order==='mastered'?'문장 위의 완전히 익힘 · 제외를 누르면 이후 연습에서 빠지고 여기에 모입니다.':'주제를 바꿔 주세요.'}));return}
  if(state.index>=state.queue.length){
   var total=state.queue.length;
-  card.append(el('h2',{text:total+'문항 중 '+state.right+'개 맞혔어요'}));
+  card.append(el('h2',{text:'이번에 푼 '+state.total+'문항 중 '+state.right+'개 맞혔어요'}));
   if(state.wrong.length){
    var ul=el('ul',{className:'wrongList'});
    state.wrong.forEach(function(id){var it=byId[id];ul.append(el('li',{},[el('b',{text:(it.answer?'O':'X')+' '}),it.claim,el('span',{className:'source muted',text:it.explain+' · '+it.source})]))});
    card.append(el('p',{className:'small muted',text:'틀린 문항과 정답'}),ul);
   }
-  card.append(el('div',{className:'actions'},[state.wrong.length?el('button',{type:'button',className:'primary big',text:'틀린 '+state.wrong.length+'개 다시',onclick:function(){build(state.wrong.slice())}}):null,el('button',{type:'button',className:state.wrong.length?'big':'primary big',text:state.order==='cycle'?'다음 바퀴':'처음부터',onclick:function(){build()}})]));
+  card.append(el('div',{className:'actions'},[state.wrong.length?el('button',{type:'button',className:'primary big',text:'틀린 '+state.wrong.length+'개 다시',onclick:function(){build(state.wrong.slice())}}):null,el('button',{type:'button',className:state.wrong.length?'big':'primary big',text:state.order==='cycle'?'다음 바퀴':'처음부터',onclick:function(){build(null,false,state.order==='cycle')}})]));
   return;
  }
- var it=byId[state.queue[state.index]];
- card.append(el('div',{className:'meta'},[el('span',{text:topicName(it.topic)}),progressEl({pos:state.index+1,len:state.queue.length,right:state.right,answered:state.index+(state.answer!==null?1:0)})]),el('div',{className:'site-progress-row',style:'justify-content:flex-end;margin:-4px 0 8px'},[window.WGSaved?WGSaved.button('facts',it.id):null,masteredButton(it.id)]));
- var bar=el('div',{className:'bar'},[el('span',{})]);bar.firstChild.style.width=(state.index/state.queue.length*100)+'%';card.append(bar);
+ var it=byId[state.queue[state.index]],pos=position();
+ card.append(el('div',{className:'meta'},[el('span',{text:topicName(it.topic)+' · 핵심내용 단위'}),progressEl({pos:pos.pos,len:pos.len,right:state.right,answered:state.total})]),el('div',{className:'site-progress-row',style:'justify-content:flex-end;margin:-4px 0 8px'},[window.WGSaved?WGSaved.button('facts',it.id):null,masteredButton(it.id)]));
+ var bar=el('div',{className:'bar'},[el('span',{})]);bar.firstChild.style.width=(pos.done/Math.max(1,pos.len)*100)+'%';card.append(bar);
  if(it.data){var table=el('table',{className:'given'},[el('caption',{text:it.data.caption}),el('thead',{},[el('tr',{},it.data.headers.map(function(h){return el('th',{scope:'col',text:h})}))]),el('tbody',{},it.data.rows.map(function(row){return el('tr',{},row.map(function(v){return el('td',{text:v})}))}))]);card.append(el('p',{className:'small muted',text:'자료를 보고 판단하세요. 수치와 옛 순위를 외울 필요는 없어요.'}),table)}
  // A lecture-table statement is one row of that table; the question is whether the cell is right.
  if(it.cell)card.append(el('table',{className:'given rowTable'},[el('caption',{text:it.cell.title}),el('thead',{},[el('tr',{},it.cell.head.map(function(h){return el('th',{scope:'col',text:h})}))]),el('tbody',{},[el('tr',{},[el('th',{scope:'row',text:it.cell.row}),el('td',{text:it.cell.value})])])]),el('p',{className:'rowAsk',text:'이 칸이 강의 표와 맞으면 O, 틀리면 X'}));
@@ -116,18 +140,19 @@ function render(){
 function answer(value){
  var id=state.queue[state.index];if(!id||state.answer!==null)return;
  state.answer=value;var ok=value===byId[id].answer,row=store.history[id]||(store.history[id]={right:0,wrong:0});
- row[ok?'right':'wrong']++;row.last=ok;if(ok)state.right++;else state.wrong.push(id);
- // Answering is what moves the round on. Misses are practised apart, in 최근 틀린 것만.
- if((typeof WGOrder!=='undefined'&&WGOrder)&&state.order==='cycle')WGOrder.done('facts','topic:'+state.topic,id);
+ row[ok?'right':'wrong']++;row.last=ok;row.at=Date.now();state.total++;if(ok)state.right++;else state.wrong.push(id);
+ var g=practice.groupOf(id);store.conceptHistory[g.id]={last:ok,at:row.at};
+ // Count one knowledge group, preserving the original statement's answer record.
+ if(state.order==='cycle')practice.answered(store.conceptRounds['topic:'+state.topic],g.id);
  row.revision=byId[id].revision||1;
  save();render();
 }
 // 완전히 익힘 · 제외, as on the 위치 page; pressing it again brings the statement back.
-function masteredButton(id){var on=!!store.mastered[id],b=el('button',{type:'button',className:'site-save','aria-pressed':on?'true':'false',title:on?'다시 연습에 넣기':'이후 연습에서 빼기',text:on?'✓ 익힘 해제':'완전히 익힘 · 제외'});b.onclick=function(){if(store.mastered[id])delete store.mastered[id];else store.mastered[id]=1;save();render()};return b}
+function masteredButton(id){var g=practice.groupOf(id),on=practice.mastered(g,store.mastered),b=el('button',{type:'button',className:'site-save','aria-pressed':on?'true':'false',title:on?'같은 내용의 문장도 다시 연습에 넣기':'같은 내용의 O/X 문장을 함께 제외',text:on?'✓ 익힘 해제':'완전히 익힘 · 제외'});b.onclick=function(){g.items.forEach(function(q){if(on)delete store.mastered[q.id];else store.mastered[q.id]=1;});save();build(null,true);};return b}
 function nextItem(){state.index++;state.answer=null;render();window.scrollTo({top:0})}
-var all=el('option',{value:'all',text:'전체 ('+F.items.length+')'});$('topicSelect').append(all);
-var tableCount=F.items.filter(function(i){return i.topic.indexOf('table-')===0}).length;if(tableCount)$('topicSelect').append(el('option',{value:'table-all',text:'강의 표 전체 ('+tableCount+')'}));
-F.topics.forEach(function(t){$('topicSelect').append(el('option',{value:t.id,text:t.name+' ('+F.items.filter(function(i){return i.topic===t.id}).length+')'}))});
+var all=el('option',{value:'all',text:'전체 ('+practice.groups.length+'개 내용)'});$('topicSelect').append(all);
+var tableCount=practice.scoped('table-all').length;if(tableCount)$('topicSelect').append(el('option',{value:'table-all',text:'강의 표 전체 ('+tableCount+')'}));
+F.topics.forEach(function(t){$('topicSelect').append(el('option',{value:t.id,text:t.name+' ('+practice.scoped(t.id).length+')'}))});
 $('topicSelect').value=state.topic;$('orderSelect').value=state.order;
 $('topicSelect').onchange=function(){state.topic=this.value;save();build()};
 $('orderSelect').onchange=function(){state.order=this.value;save();build()};
@@ -140,3 +165,4 @@ build();
 })();
 </script>
 </body></html>
+
