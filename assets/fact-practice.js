@@ -30,6 +30,8 @@ function create(items){
  function inTopic(q,topic){return topic==='all'||q.topic===topic||topic==='table-all'&&q.topic.indexOf('table-')===0;}
  function scoped(topic){return groups.filter(function(g){return g.items.some(function(q){return inTopic(q,topic);});});}
  function mastered(g,m){return g.items.some(function(q){return !!m[q.id];});}
+ // A group is screened out only when every statement in it is on the list (a Set of base IDs).
+ function screened(g,dropped){return !!dropped&&dropped.size>0&&g.items.every(function(q){return dropped.has(keys[q.id]);});}
  function prepare(rounds,scope,ids,options){
   options=options||{};var d=rounds[scope],rng=options.rng||Math.random;
   if(!d||!Array.isArray(d.left)||!Array.isArray(d.done)||options.restart){
@@ -61,7 +63,7 @@ function create(items){
   chosen=candidates[Math.floor((rng||Math.random)()*candidates.length)];d.choices[id]=chosen.id;return chosen.id;
  }
  function answered(d,id){if(d.done.indexOf(id)<0)d.done.push(id);d.left=d.left.filter(function(x){return x!==id;});}
- return{groups:groups,byId:byId,byGroup:byGroup,groupOf:function(id){return of[id];},scoped:scoped,inTopic:inTopic,mastered:mastered,prepare:prepare,variant:variant,answered:answered};
+ return{groups:groups,byId:byId,byGroup:byGroup,groupOf:function(id){return of[id];},scoped:scoped,inTopic:inTopic,mastered:mastered,screened:screened,prepare:prepare,variant:variant,answered:answered};
 }
 return{create:create};
 });

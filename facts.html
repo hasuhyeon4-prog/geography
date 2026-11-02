@@ -33,17 +33,19 @@ h2{font-size:21px;margin:2px 0 10px}
 .given{width:100%;border-collapse:collapse;margin:12px 0 16px;font-size:13px}.given caption{text-align:left;color:var(--muted);font-size:12px;margin-bottom:6px}.given th,.given td{padding:8px;text-align:left;border:1px solid var(--line)}
 .hint{margin-top:12px;font-size:12px;color:var(--muted);text-align:center}
 @media(min-width:700px){.scope{grid-template-columns:320px 220px;justify-content:center}.claim{font-size:22px}}
+.site-controls #levelLabel{grid-column:1/-1}@media(min-width:760px){.site-controls #levelLabel{grid-column:auto;min-width:250px}}
 .rowTable{width:100%;border-collapse:collapse;margin:4px 0 6px;font-size:17px}.rowTable th,.rowTable td{padding:10px;border:1px solid var(--line);text-align:left;vertical-align:top;word-break:keep-all}.rowTable thead th{background:#f3f7f7;font-size:13px;color:var(--muted);font-weight:700}.rowTable tbody th{width:38%;font-weight:700}.rowTable tbody td{font-weight:700}.rowAsk{color:var(--muted);font-size:13px;margin:4px 0 14px}
 </style>
 <link rel="stylesheet" href="assets/site.css?v=20261031-hard1"><script src="assets/site.js?v=20261031-hard1"></script></head>
 <body>
 <header class="site-header"><h1 class="sr-only">통계 OX</h1><nav class="site-nav" aria-label="연습 종류"><a href="index.html">위치</a><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html" aria-current="page">OX</a><a href="concepts.html">강의 표</a><a href="exam.html">기출형</a><a href="materials.html">자료형</a></nav></header>
-<div class="scope site-controls"><label for="topicSelect">주제<select id="topicSelect"></select></label><label for="orderSelect">순서<select id="orderSelect"><option value="cycle">한 바퀴 (무작위)</option><option value="wrongOnly">최근 틀린 것만</option><option value="saved">저장한 문제</option><option value="mastered">완전히 익힘 목록</option></select></label></div>
+<div class="scope site-controls"><label for="topicSelect">주제<select id="topicSelect"></select></label><label for="orderSelect">순서<select id="orderSelect"><option value="cycle">한 바퀴 (무작위)</option><option value="wrongOnly">최근 틀린 것만</option><option value="saved">저장한 문제</option><option value="mastered">완전히 익힘 목록</option></select></label><label for="levelSelect" id="levelLabel">범위<select id="levelSelect"><option value="picked">세부·헷갈리는 것만</option><option value="all">걸러낸 것도 포함</option></select></label></div>
 <main><section class="card" id="card" aria-live="polite"></section><p class="hint">같은 내용은 한 바퀴에 한 번씩 · 키보드: O·X(또는 1·2)로 답하고 Enter로 다음</p></main>
 <script src="assets/fact-statements.js?v=20261022-1"></script>
 <script src="assets/lecture-goal-facts.js?v=20261029-held1"></script>
 <script src="assets/table-facts.js?v=20261030-row1"></script>
-<script src="assets/fact-practice.js?v=20261031-content1"></script>
+<script src="assets/fact-practice.js?v=20261102-level1"></script>
+<script src="assets/fact-level.js?v=20261102-level1"></script>
 <script>
 (function(){
 'use strict';
@@ -51,6 +53,8 @@ var $=function(id){return document.getElementById(id)},F=window.WGFacts;
 if(!F){$('card').textContent='문항 자료를 불러오지 못했어요. 새로고침해 주세요.';return}
 if(!window.WGFactPractice){$('card').textContent='출제 순서를 불러오지 못했어요. 새로고침해 주세요.';return}
 var practice=window.WGFactPractice.create(F.items),byId=practice.byId;
+// 범위: by default only the detail/confusing statements picked for this learner; the rest stay one choice away.
+var dropped=new Set(window.WGFactLevel&&Array.isArray(window.WGFactLevel.dropped)?window.WGFactLevel.dropped:[]);
 function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_facts_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
 var store=readStore();if(!store.history||typeof store.history!=='object')store.history={};
 if(!store.conceptRounds||typeof store.conceptRounds!=='object'||Array.isArray(store.conceptRounds))store.conceptRounds={};
@@ -63,11 +67,12 @@ if(!store.retiredHistory||typeof store.retiredHistory!=='object')store.retiredHi
 F.items.forEach(function(it){var h=store.history[it.id];if(h&&it.revision&&h.revision!==it.revision){store.retiredHistory[it.id+'@'+(h.revision||1)]=h;delete store.history[it.id]}});
 // A link such as facts.html?topic=table-p03 (from the 강의 표 page) opens that topic.
 var asked=typeof location!=='undefined'&&location.search?new URLSearchParams(location.search).get('topic'):null,validTopic=function(t){return t==='table-all'||F.topics.some(function(x){return x.id===t})};
-var state={topic:validTopic(asked)?asked:validTopic(store.topic)?store.topic:'all',order:['cycle','wrongOnly','saved','mastered'].includes(store.order)?store.order:'cycle',queue:[],index:0,answer:null,right:0,total:0,wrong:[],roundEnded:false};
-function save(){try{localStorage.setItem('wg_facts_v1',JSON.stringify({topic:state.topic,order:state.order,history:store.history,retiredHistory:store.retiredHistory,mastered:store.mastered,conceptRounds:store.conceptRounds,conceptHistory:store.conceptHistory}))}catch(e){}}
+var state={topic:validTopic(asked)?asked:validTopic(store.topic)?store.topic:'all',order:['cycle','wrongOnly','saved','mastered'].includes(store.order)?store.order:'cycle',level:store.level==='all'?'all':'picked',queue:[],index:0,answer:null,right:0,total:0,wrong:[],roundEnded:false};
+function save(){try{localStorage.setItem('wg_facts_v1',JSON.stringify({topic:state.topic,order:state.order,level:state.level,history:store.history,retiredHistory:store.retiredHistory,mastered:store.mastered,conceptRounds:store.conceptRounds,conceptHistory:store.conceptHistory}))}catch(e){}}
 function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
 function inTopic(it){return state.topic==='all'||it.topic===state.topic||state.topic==='table-all'&&it.topic.indexOf('table-')===0}
-function pool(){return practice.scoped(state.topic).filter(function(g){return !practice.mastered(g,store.mastered)})}
+function inLevel(g,level){return (level||state.level)==='all'||!practice.screened(g,dropped)}
+function pool(){return practice.scoped(state.topic).filter(function(g){return inLevel(g)&&!practice.mastered(g,store.mastered)})}
 function groupLast(g){
  var c=store.conceptHistory[g.id];if(c)return c.last;
  var rows=g.items.map(function(q){return store.history[q.id]}).filter(Boolean);
@@ -103,6 +108,7 @@ function position(){
 function render(){
  var card=$('card');card.replaceChildren();
  if(state.roundEnded){card.append(el('h2',{text:'이번 범위의 핵심 내용을 모두 풀었어요.'}),el('p',{className:'small muted',text:'다음 바퀴에는 같은 사실의 다른 O/X 표현을 우선 골라요.'}),el('button',{type:'button',className:'primary big',text:'다음 바퀴',onclick:function(){build(null,false,true)}}));return}
+ if(!state.queue.length&&state.order==='cycle'&&state.level==='picked'&&!count(state.topic,'picked')&&count(state.topic,'all')){card.append(el('h2',{text:'이 주제는 기본 내용이라 모두 걸러 냈어요'}),el('p',{className:'small muted',text:'범위를 \'걸러낸 것도 포함\'으로 바꾸면 이 주제의 문장도 풀 수 있어요.'}),el('button',{type:'button',className:'primary big',text:'걸러낸 것도 포함해서 풀기',onclick:function(){setLevel('all')}}));return}
  if(!state.queue.length){card.append(el('h2',{text:state.order==='wrongOnly'?'최근 틀린 문항이 없어요':state.order==='saved'?'저장한 문제가 없어요':state.order==='mastered'?'완전히 익힘으로 뺀 문장이 없어요':'문항이 없어요'}),el('p',{className:'small muted',text:state.order==='wrongOnly'?'다른 출제 방식으로 풀어 보세요.':state.order==='saved'?'문제 오른쪽 위의 ☆ 저장을 누르면 여기에 모입니다.':state.order==='mastered'?'문장 위의 완전히 익힘 · 제외를 누르면 이후 연습에서 빠지고 여기에 모입니다.':'주제를 바꿔 주세요.'}));return}
  if(state.index>=state.queue.length){
   var total=state.queue.length;
@@ -116,7 +122,7 @@ function render(){
   return;
  }
  var it=byId[state.queue[state.index]],pos=position();
- card.append(el('div',{className:'meta'},[el('span',{text:topicName(it.topic)+' · 핵심내용 단위'}),progressEl({pos:pos.pos,len:pos.len,right:state.right,answered:state.total})]),el('div',{className:'site-progress-row',style:'justify-content:flex-end;margin:-4px 0 8px'},[window.WGSaved?WGSaved.button('facts',it.id):null,masteredButton(it.id)]));
+ card.append(el('div',{className:'meta'},[el('span',{text:topicName(it.topic)+' · 핵심내용 단위'+(inLevel(practice.groupOf(it.id),'picked')?'':' · 걸러낸 내용')}),progressEl({pos:pos.pos,len:pos.len,right:state.right,answered:state.total})]),el('div',{className:'site-progress-row',style:'justify-content:flex-end;margin:-4px 0 8px'},[window.WGSaved?WGSaved.button('facts',it.id):null,masteredButton(it.id)]));
  var bar=el('div',{className:'bar'},[el('span',{})]);bar.firstChild.style.width=(pos.done/Math.max(1,pos.len)*100)+'%';card.append(bar);
  if(it.data){var table=el('table',{className:'given'},[el('caption',{text:it.data.caption}),el('thead',{},[el('tr',{},it.data.headers.map(function(h){return el('th',{scope:'col',text:h})}))]),el('tbody',{},it.data.rows.map(function(row){return el('tr',{},row.map(function(v){return el('td',{text:v})}))}))]);card.append(el('p',{className:'small muted',text:'자료를 보고 판단하세요. 수치와 옛 순위를 외울 필요는 없어요.'}),table)}
  // A lecture-table statement is one row of that table; the question is whether the cell is right.
@@ -150,12 +156,19 @@ function answer(value){
 // 완전히 익힘 · 제외, as on the 위치 page; pressing it again brings the statement back.
 function masteredButton(id){var g=practice.groupOf(id),on=practice.mastered(g,store.mastered),b=el('button',{type:'button',className:'site-save','aria-pressed':on?'true':'false',title:on?'같은 내용의 문장도 다시 연습에 넣기':'같은 내용의 O/X 문장을 함께 제외',text:on?'✓ 익힘 해제':'완전히 익힘 · 제외'});b.onclick=function(){g.items.forEach(function(q){if(on)delete store.mastered[q.id];else store.mastered[q.id]=1;});save();build(null,true);};return b}
 function nextItem(){state.index++;state.answer=null;render();window.scrollTo({top:0})}
-var all=el('option',{value:'all',text:'전체 ('+practice.groups.length+'개 내용)'});$('topicSelect').append(all);
-var tableCount=practice.scoped('table-all').length;if(tableCount)$('topicSelect').append(el('option',{value:'table-all',text:'강의 표 전체 ('+tableCount+')'}));
-F.topics.forEach(function(t){$('topicSelect').append(el('option',{value:t.id,text:t.name+' ('+practice.scoped(t.id).length+')'}))});
-$('topicSelect').value=state.topic;$('orderSelect').value=state.order;
-$('topicSelect').onchange=function(){state.topic=this.value;save();build()};
+function count(topic,level){return practice.scoped(topic).filter(function(g){return inLevel(g,level)}).length}
+function fillOptions(){
+ var t=$('topicSelect');t.replaceChildren(el('option',{value:'all',text:'전체 ('+count('all')+'개 내용)'}));
+ if(practice.scoped('table-all').length)t.append(el('option',{value:'table-all',text:'강의 표 전체 ('+count('table-all')+')'}));
+ F.topics.forEach(function(x){t.append(el('option',{value:x.id,text:x.name+' ('+count(x.id)+')'}))});
+ var l=$('levelSelect');l.replaceChildren(el('option',{value:'picked',text:'세부·헷갈리는 것만 ('+count(state.topic,'picked')+')'}),el('option',{value:'all',text:'걸러낸 것도 포함 ('+count(state.topic,'all')+')'}));
+ t.value=state.topic;l.value=state.level;
+}
+function setLevel(level){state.level=level;fillOptions();save();build()}
+fillOptions();$('orderSelect').value=state.order;
+$('topicSelect').onchange=function(){state.topic=this.value;fillOptions();save();build()};
 $('orderSelect').onchange=function(){state.order=this.value;save();build()};
+$('levelSelect').onchange=function(){setLevel(this.value)};
 document.addEventListener('keydown',function(e){
  if(e.target.tagName==='SELECT'||e.altKey||e.ctrlKey||e.metaKey)return;
  var k=e.key.toLowerCase();
