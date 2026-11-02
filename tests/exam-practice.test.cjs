@@ -105,7 +105,7 @@ test('actual default quiz uses yearless curated questions; full ranking orders a
 });
 test('changed OX objectives retain old history separately and leave other learning records intact',()=>{
  const html=fs.readFileSync(require.resolve('../facts.html'),'utf8'),nodes={};
- for(const id of ['card','topicSelect','orderSelect'])nodes[id]=new Node('div');
+ for(const id of ['card','topicSelect','orderSelect','levelSelect'])nodes[id]=new Node('div');
  const original={topic:'trade',order:'weak',history:{t17:{right:3,wrong:2,last:false},g01:{right:4,wrong:0,last:true}}};
  let saved;
  // The OX page deals its rounds with assets/fact-practice.js (2026-10-31).
