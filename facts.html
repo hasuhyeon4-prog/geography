@@ -39,13 +39,13 @@ h2{font-size:21px;margin:2px 0 10px}
 <link rel="stylesheet" href="assets/site.css?v=20261031-hard1"><script src="assets/site.js?v=20261031-hard1"></script></head>
 <body>
 <header class="site-header"><h1 class="sr-only">통계 OX</h1><nav class="site-nav" aria-label="연습 종류"><a href="index.html">위치</a><a href="classify.html">분류 지도</a><a href="rankings.html">순위표</a><a href="facts.html" aria-current="page">OX</a><a href="concepts.html">강의 표</a><a href="exam.html">기출형</a><a href="materials.html">자료형</a></nav></header>
-<div class="scope site-controls"><label for="topicSelect">주제<select id="topicSelect"></select></label><label for="orderSelect">순서<select id="orderSelect"><option value="cycle">한 바퀴 (무작위)</option><option value="wrongOnly">최근 틀린 것만</option><option value="saved">저장한 문제</option><option value="mastered">완전히 익힘 목록</option></select></label><label for="levelSelect" id="levelLabel">범위<select id="levelSelect"><option value="picked">세부·헷갈리는 것만</option><option value="all">걸러낸 것도 포함</option></select></label></div>
+<div class="scope site-controls"><label for="topicSelect">주제<select id="topicSelect"></select></label><label for="orderSelect">순서<select id="orderSelect"><option value="cycle">한 바퀴 (무작위)</option><option value="wrongOnly">최근 틀린 것만</option><option value="saved">저장한 문제</option><option value="mastered">완전히 익힘 목록</option></select></label><label for="levelSelect" id="levelLabel">범위<select id="levelSelect"><option value="picked">모르는·틀린 것만</option><option value="all">걸러낸 것도 포함</option></select></label></div>
 <main><section class="card" id="card" aria-live="polite"></section><p class="hint">같은 내용은 한 바퀴에 한 번씩 · 키보드: O·X(또는 1·2)로 답하고 Enter로 다음</p></main>
 <script src="assets/fact-statements.js?v=20261022-1"></script>
 <script src="assets/lecture-goal-facts.js?v=20261029-held1"></script>
 <script src="assets/table-facts.js?v=20261030-row1"></script>
 <script src="assets/fact-practice.js?v=20261102-level1"></script>
-<script src="assets/fact-level.js?v=20261102-level1"></script>
+<script src="assets/fact-level.js?v=20261102-level2"></script>
 <script>
 (function(){
 'use strict';
@@ -53,7 +53,7 @@ var $=function(id){return document.getElementById(id)},F=window.WGFacts;
 if(!F){$('card').textContent='문항 자료를 불러오지 못했어요. 새로고침해 주세요.';return}
 if(!window.WGFactPractice){$('card').textContent='출제 순서를 불러오지 못했어요. 새로고침해 주세요.';return}
 var practice=window.WGFactPractice.create(F.items),byId=practice.byId;
-// 범위: by default only the detail/confusing statements picked for this learner; the rest stay one choice away.
+// 범위: by default only the statements this learner missed or did not know in the level checks; the rest stay one choice away.
 var dropped=new Set(window.WGFactLevel&&Array.isArray(window.WGFactLevel.dropped)?window.WGFactLevel.dropped:[]);
 function readStore(){try{var v=JSON.parse(localStorage.getItem('wg_facts_v1')||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
 var store=readStore();if(!store.history||typeof store.history!=='object')store.history={};
@@ -108,7 +108,7 @@ function position(){
 function render(){
  var card=$('card');card.replaceChildren();
  if(state.roundEnded){card.append(el('h2',{text:'이번 범위의 핵심 내용을 모두 풀었어요.'}),el('p',{className:'small muted',text:'다음 바퀴에는 같은 사실의 다른 O/X 표현을 우선 골라요.'}),el('button',{type:'button',className:'primary big',text:'다음 바퀴',onclick:function(){build(null,false,true)}}));return}
- if(!state.queue.length&&state.order==='cycle'&&state.level==='picked'&&!count(state.topic,'picked')&&count(state.topic,'all')){card.append(el('h2',{text:'이 주제는 기본 내용이라 모두 걸러 냈어요'}),el('p',{className:'small muted',text:'범위를 \'걸러낸 것도 포함\'으로 바꾸면 이 주제의 문장도 풀 수 있어요.'}),el('button',{type:'button',className:'primary big',text:'걸러낸 것도 포함해서 풀기',onclick:function(){setLevel('all')}}));return}
+ if(!state.queue.length&&state.order==='cycle'&&state.level==='picked'&&!count(state.topic,'picked')&&count(state.topic,'all')){card.append(el('h2',{text:'이 주제는 모두 걸러 냈어요'}),el('p',{className:'small muted',text:'기본 내용이거나 확인 테스트에서 맞힌 내용이에요. 범위를 \'걸러낸 것도 포함\'으로 바꾸면 다시 풀 수 있어요.'}),el('button',{type:'button',className:'primary big',text:'걸러낸 것도 포함해서 풀기',onclick:function(){setLevel('all')}}));return}
  if(!state.queue.length){card.append(el('h2',{text:state.order==='wrongOnly'?'최근 틀린 문항이 없어요':state.order==='saved'?'저장한 문제가 없어요':state.order==='mastered'?'완전히 익힘으로 뺀 문장이 없어요':'문항이 없어요'}),el('p',{className:'small muted',text:state.order==='wrongOnly'?'다른 출제 방식으로 풀어 보세요.':state.order==='saved'?'문제 오른쪽 위의 ☆ 저장을 누르면 여기에 모입니다.':state.order==='mastered'?'문장 위의 완전히 익힘 · 제외를 누르면 이후 연습에서 빠지고 여기에 모입니다.':'주제를 바꿔 주세요.'}));return}
  if(state.index>=state.queue.length){
   var total=state.queue.length;
@@ -161,7 +161,7 @@ function fillOptions(){
  var t=$('topicSelect');t.replaceChildren(el('option',{value:'all',text:'전체 ('+count('all')+'개 내용)'}));
  if(practice.scoped('table-all').length)t.append(el('option',{value:'table-all',text:'강의 표 전체 ('+count('table-all')+')'}));
  F.topics.forEach(function(x){t.append(el('option',{value:x.id,text:x.name+' ('+count(x.id)+')'}))});
- var l=$('levelSelect');l.replaceChildren(el('option',{value:'picked',text:'세부·헷갈리는 것만 ('+count(state.topic,'picked')+')'}),el('option',{value:'all',text:'걸러낸 것도 포함 ('+count(state.topic,'all')+')'}));
+ var l=$('levelSelect');l.replaceChildren(el('option',{value:'picked',text:'모르는·틀린 것만 ('+count(state.topic,'picked')+')'}),el('option',{value:'all',text:'걸러낸 것도 포함 ('+count(state.topic,'all')+')'}));
  t.value=state.topic;l.value=state.level;
 }
 function setLevel(level){state.level=level;fillOptions();save();build()}
