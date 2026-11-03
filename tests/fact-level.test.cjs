@@ -1,8 +1,9 @@
 'use strict';
 // 범위 (2026-11-02): the OX page opens on the statements the learner missed or did not know.
 // Pass 1 kept 384 detail/confusing groups by hand; pass 2 tested those in chat and screened the 247 answered right;
-// pass 3 re-tests the plain facts pass 1 dropped and restores the ones missed or unknown.
-const KEPT=321,PER_KIND={base:9,lecture:264,table:48};
+// pass 3 re-tests the plain facts pass 1 dropped and restores the ones missed or unknown;
+// the exam pass then screens lecture asides the exam does not ask (pH, refining steps, temple names, ...).
+const KEPT=181,PER_KIND={base:9,lecture:154,table:18};
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const P=require('../assets/fact-practice'),L=require('../assets/fact-level');
 const packs=['fact-statements','lecture-goal-facts','table-facts'].map(x=>require('../assets/'+x));
@@ -23,9 +24,12 @@ test('the screened list names only current statements and leaves the expected kn
 
 test('items the learner missed or did not know stay; basics, reading mechanics and known facts go',()=>{
  const tableRow=(row,col)=>practice.groupOf(all.find(q=>q.cell&&q.cell.row===row&&q.cell.head[1]===col).id);
- for(const g of [tableRow('미나레트','의미'),tableRow('세계 사막화 방지의 날','날짜'),byClaim('선광은 광석에서 유용 성분을'),tableRow('칸','국가')])
+ for(const g of [tableRow('미나레트','의미'),byClaim('관개는 부족한 물을 인위적으로'),byClaim('젠트리피케이션은 도심 인접 낙후'),tableRow('토르티야','주재료')])
   assert.equal(practice.screened(g,dropped),false,g.id);
  for(const g of [byClaim('N·S는 북위·남위'),byClaim('면적 기준 도형표현도에서 원의 반지름이 두 배'),tableRow('원유 생산','지리적으로 연결되는 조건'),byClaim('나이지리아의 수도는 아부자이고')])
+  assert.equal(practice.screened(g,dropped),true,g.id);
+ // Not exam material even though the learner did not know them.
+ for(const g of [byClaim('보통의 빗물도 이산화 탄소가 녹아'),byClaim('선광은 광석에서 유용 성분을'),tableRow('세계 사막화 방지의 날','날짜'),tableRow('칸','국가')])
   assert.equal(practice.screened(g,dropped),true,g.id);
 });
 
