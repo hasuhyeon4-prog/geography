@@ -2,7 +2,7 @@
 // 범위 (2026-11-02): the OX page opens on the statements the learner missed or did not know.
 // Pass 1 kept 384 detail/confusing groups by hand; pass 2 tested those in chat and screened the 247 answered right;
 // pass 3 re-tests the plain facts pass 1 dropped and restores the ones missed or unknown.
-const KEPT=198,PER_KIND={base:7,lecture:143,table:48};
+const KEPT=321,PER_KIND={base:9,lecture:264,table:48};
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const P=require('../assets/fact-practice'),L=require('../assets/fact-level');
 const packs=['fact-statements','lecture-goal-facts','table-facts'].map(x=>require('../assets/'+x));
