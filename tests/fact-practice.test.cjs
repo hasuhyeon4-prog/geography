@@ -4,7 +4,8 @@ const P=require('../assets/fact-practice');
 const packs=['fact-statements','lecture-goal-facts','table-facts'].map(x=>require('../assets/'+x));
 const all=packs.flatMap(x=>x.items),practice=P.create(all);
 test('every original item keeps its identity and belongs to exactly one knowledge group',()=>{
- assert.equal(all.length,2716);assert.equal(practice.groups.length,1919);
+ // 2026-11-05: +12 climate-trap pairs (data/climate-trap-ox.tsv).
+ assert.equal(all.length,2740);assert.equal(practice.groups.length,1931);
  const members=practice.groups.flatMap(g=>g.items.map(q=>q.id));assert.equal(new Set(members).size,all.length);
  assert.deepEqual(members.slice().sort(),all.map(q=>q.id).sort());
 });

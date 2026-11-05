@@ -3,7 +3,7 @@
 // Pass 1 kept 384 detail/confusing groups by hand; pass 2 tested those in chat and screened the 247 answered right;
 // pass 3 re-tests the plain facts pass 1 dropped and restores the ones missed or unknown;
 // the exam pass then screens lecture asides the exam does not ask (pH, refining steps, temple names, ...).
-const KEPT=181,PER_KIND={base:9,lecture:154,table:18};
+const KEPT=193,PER_KIND={base:9,lecture:166,table:18};
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const P=require('../assets/fact-practice'),L=require('../assets/fact-level');
 const packs=['fact-statements','lecture-goal-facts','table-facts'].map(x=>require('../assets/'+x));
@@ -55,9 +55,9 @@ test('the page opens on the picked range and the wider range adds only screened 
  const a=app();assert.equal(a.state.level,'picked');
  assert.equal(a.state.queue.length,KEPT);assert(groupsOf(a).every(g=>!practice.screened(g,dropped)));
  const levelOptions=a.elements.levelSelect.children.map(o=>o.textContent);
- assert.deepEqual(levelOptions,['모르는·틀린 것만 ('+KEPT+')','걸러낸 것도 포함 (1919)']);
+ assert.deepEqual(levelOptions,['모르는·틀린 것만 ('+KEPT+')','걸러낸 것도 포함 (1931)']);
  const first=a.state.queue[0];a.answer(a.practice.byId[first].answer);a.nextItem();
- a.setLevel('all');assert.equal(a.state.queue.length,1918);
+ a.setLevel('all');assert.equal(a.state.queue.length,1930);
  assert(!a.state.queue.some(id=>a.practice.groupOf(id).id===a.practice.groupOf(first).id),'answered group stays answered');
  const b=app(a.memory);assert.equal(b.state.level,'all');
  b.setLevel('picked');assert.equal(b.state.queue.length,KEPT-1);assert.equal(b.position().done,1);

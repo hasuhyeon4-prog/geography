@@ -10,7 +10,8 @@ const topics=names.map((name,i)=>({id:'goal-p'+String(i).padStart(2,'0'),name:na
 // lecture-coverage-ox.tsv is read last so earlier ids stay stable; its 4th field names the lecture block.
 // held-goal-ox.tsv (2026-10-29) covers goals whose only route was a deleted materials family.
 const HELD=new Set(fs.readFileSync(path.join(root,'data/held-goal-ox.tsv'),'utf8').split(/\r?\n/).filter(l=>l&&!l.startsWith('#')));
-for(const line of ['data/lecture-goal-ox.tsv','data/goal-completion-ox.tsv','data/lecture-coverage-ox.tsv','data/held-goal-ox.tsv'].map(p=>fs.readFileSync(path.join(root,p),'utf8')).join('\n').split(/\r?\n/)){
+// climate-trap-ox.tsv (2026-11-05) targets climate exceptions applied without their cause; read last to keep earlier ids.
+for(const line of ['data/lecture-goal-ox.tsv','data/goal-completion-ox.tsv','data/lecture-coverage-ox.tsv','data/held-goal-ox.tsv','data/climate-trap-ox.tsv'].map(p=>fs.readFileSync(path.join(root,p),'utf8')).join('\n').split(/\r?\n/)){
  if(!line||line.startsWith('#'))continue;
  const a=line.split('|');if(a.length!==3&&!(a.length===4&&/^L[12]-B\d{4}$/.test(a[3])))throw Error('Expected goal|true|false[|block]: '+line);
  const [id,yes,no]=a,g=byid[id];if(!g)throw Error('Unknown OX goal '+id);

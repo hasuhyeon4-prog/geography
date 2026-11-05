@@ -379,10 +379,33 @@
    ['annual','연 강수량','이 많다',0,'mm',function(c){return c.annual}],
    ['summer','연 강수량 중 6~8월 강수량의 비중','이 높다',15,'%',function(c){return c.summerShare}]
   ];
-  function climateExplain(n){var c=cl(n),st=c.station.replace(/_\d+$/,'');
+  // Why an exception does or does not apply at the stations learners mix up (2026-11-05):
+  // a plateau or a highland nearby is not a reason by itself; the station needs its own cause.
+  var CLIMATE_NOTES={
+   '리마':'저위도 해안 저지인데도 서늘한 것은 페루 한류가 하층 공기를 식히기 때문이다. 대기가 안정해 비가 거의 없고, 바다의 영향으로 연교차가 작다(해안 사막).',
+   '브라질리아':'브라질 고원 위(해발 약 1,160m)지만 최한월이 18℃ 이상이라 고산 기후가 아니다. 남반구 사바나라 10~3월이 우기, 5~9월이 건기이다.',
+   '상파울루':'고원 위(해발 약 790m)지만 고산 기후가 아니다. 최한월이 18℃ 아래라 온대이고, 여름이 덥고 연중 비가 와 Cfa이다.',
+   '다르에스살람':'동아프리카지만 해안 저지라 고산 기후가 아니다. 고산 기후는 아디스아바바 같은 고원 도시에서 나타난다.',
+   '아디스아바바':'적도 가까운 에티오피아 고원(해발 약 2,350m)이라 연중 서늘하다. 같은 동아프리카라도 해안 저지(다르에스살람)는 열대이다.',
+   '보고타':'안데스 고지(해발 약 2,550m)라 적도 가까운데도 연중 14℃ 안팎으로 평평하다.',
+   '키토':'적도 바로 아래 안데스 고지라 연중 서늘하고 기온선이 거의 평평하다.',
+   '덴버':'로키산맥 동쪽 대평원의 비그늘 스텝이다. 대륙 내부라 연교차가 크다.',
+   '로차':'우루과이 대서양 연안으로 팜파스와 같은 온대 초원 지대이다. 연중 비가 고르고 여름이 더운 Cfa이다.',
+   '마나우스':'아마존 저지의 적도 부근이라 연중 덥고 비가 많다.',
+   '이키토스':'아마존 저지의 적도 부근이라 연교차가 1℃ 안팎이고 연중 비가 많다.'
+  };
+  // The decision in the order the lecture teaches: 최한월 18℃ → A, 건조 한계 → B, −3℃ → C/D, 최난월 10℃ → E.
+  function climateSteps(c){var t=c.temperature,p=c.precipitation,cold=Math.min.apply(null,t),warm=Math.max.apply(null,t),dry=Math.min.apply(null,p),k=c.computed||c.lecture,s;
+   if(k[0]==='a')s='최한월 18℃ 이상 → 열대(A)'+(k==='af'?', 가장 건조한 달도 '+fmt(dry)+'mm로 건기 없음 → Af':k==='am'?', 짧은 건기(가장 건조한 달 '+fmt(dry)+'mm)가 있지만 비가 매우 많음 → Am':', 뚜렷한 건기(가장 건조한 달 '+fmt(dry)+'mm) → Aw');
+   else if(k[0]==='b')s='연 강수 '+fmt(c.annual)+'mm로 건조 한계보다 적음 → 건조(B), '+(k==='bw'?'매우 적어 BW':'BW보다는 많아 BS');
+   else if(k[0]==='c')s='최한월 −3~18℃ → 온대(C)'+(k[1]==='s'?', 여름 건조 → Cs':k[1]==='w'?', 겨울 건조 → Cw':', 연중 강수 · 최난월 '+(k==='cfa'?'22℃ 이상 → Cfa':'22℃ 미만 → Cfb'));
+   else if(k[0]==='d')s='최한월 −3℃ 미만 · 최난월 10℃ 이상 → 냉대(D)'+(k[1]==='w'?', 겨울 건조 → Dw':', 연중 강수 → Df');
+   else if(k[0]==='e')s='최난월 10℃ 미만 → 한대(E)'+(k==='ef'?', 최난월 0℃ 미만 → EF':' → ET');
+   return '최한월 '+fmt(cold)+'℃ · 최난월 '+fmt(warm)+'℃ · 연교차 '+fmt(c.range)+'℃ · 연 강수 '+fmt(c.annual)+'mm'+(c.elevation!=null?' · 해발 '+fmt(c.elevation)+'m':'')+(s?'. 판별: '+s:'')}
+  function climateExplain(n){var c=cl(n),st=c.station.replace(/_\d+$/,''),note=CLIMATE_NOTES[n]?' '+CLIMATE_NOTES[n]:'';
    // The lecture classifies H by its cause (고도), so the Köppen letters of the data are not shown as a second verdict.
-   if(c.lecture==='h')return n+' — 강의 기후형 고산 기후(H): 위도 '+fmt(Math.abs(c.lat))+'°의 저위도인데도 최한월 '+fmt(Math.min.apply(null,c.temperature))+'℃, 연교차 '+fmt(c.range)+'℃'+(c.elevation!=null?' · 해발 '+fmt(c.elevation)+'m':'')+' · '+st;
-   return n+' — 강의 기후형 '+typeLabel(c.lecture)+'('+code(c.lecture)+'), 관측소 평년값 분류 '+code(c.computed)+' · '+st}
+   if(c.lecture==='h')return n+' — 강의 기후형 고산 기후(H): 위도 '+fmt(Math.abs(c.lat))+'°의 저위도인데도 최한월 '+fmt(Math.min.apply(null,c.temperature))+'℃, 연교차 '+fmt(c.range)+'℃'+(c.elevation!=null?' · 해발 '+fmt(c.elevation)+'m':'')+'.'+note+' · '+st;
+   return n+' — 강의 기후형 '+typeLabel(c.lecture)+'('+code(c.lecture)+'). '+climateSteps(c)+(c.computed&&c.computed.indexOf(c.lecture)!==0?' (관측소 평년값으로는 '+code(c.computed)+'에 가깝다)':'')+'.'+note+' · '+st}
   function climateCandidates(theme,chosen,r){
    var out=[],L=function(n){return LABELS[chosen.indexOf(n)]},S=function(n){return L(n)+'는'};
    function add(c){if(!out.some(function(x){return x.text===c.text}))out.push(c)}
